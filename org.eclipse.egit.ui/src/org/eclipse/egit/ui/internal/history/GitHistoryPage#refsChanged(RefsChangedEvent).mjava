@@ -10,8 +10,7 @@
 				refschangedRunnable = new Runnable() {
 					public void run() {
 						if (!getControl().isDisposed()) {
-							Activator.trace("Executing async repository changed event");
-							refschangedRunnable = null;
+							Activator.trace("Executing async repository changed event"); 							refschangedRunnable = null;
 							inputSet();
 						}
 					}

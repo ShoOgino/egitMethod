@@ -2,8 +2,7 @@
 		final Group g = createGroup(parent,
 				UIText.RepositorySelectionPage_groupConnection);
 
-		newLabel(g, UIText.RepositorySelectionPage_promptScheme + ":");
-		scheme = new Combo(g, SWT.DROP_DOWN | SWT.READ_ONLY);
+		newLabel(g, UIText.RepositorySelectionPage_promptScheme + ":"); 		scheme = new Combo(g, SWT.DROP_DOWN | SWT.READ_ONLY);
 		scheme.setItems(DEFAULT_SCHEMES);
 		scheme.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {
@@ -16,11 +15,9 @@
 			}
 		});
 
-		newLabel(g, UIText.RepositorySelectionPage_promptPort + ":");
-		portText = new Text(g, SWT.BORDER);
+		newLabel(g, UIText.RepositorySelectionPage_promptPort + ":"); 		portText = new Text(g, SWT.BORDER);
 		portText.addVerifyListener(new VerifyListener() {
-			final Pattern p = Pattern.compile("^(?:[1-9][0-9]*)?$");
-
+			final Pattern p = Pattern.compile("^(?:[1-9][0-9]*)?$"); 
 			public void verifyText(final VerifyEvent e) {
 				final String v = portText.getText();
 				e.doit = p.matcher(

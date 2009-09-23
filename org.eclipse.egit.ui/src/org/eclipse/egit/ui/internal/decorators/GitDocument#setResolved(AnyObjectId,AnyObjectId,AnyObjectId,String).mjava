@@ -4,8 +4,6 @@
 		lastBlob = blob != null ? blob.copy() : null;
 		set(value);
 		if (blob != null)
-			Activator.trace("(GitDocument) resolved " + resource + " to " + lastBlob + " in " + lastCommit + "/" + lastTree);
-		else
-			Activator.trace("(GitDocument) unresolved " + resource);
-	}
+			Activator.trace("(GitDocument) resolved " + resource + " to " + lastBlob + " in " + lastCommit + "/" + lastTree); 		else
+			Activator.trace("(GitDocument) unresolved " + resource); 	}
 

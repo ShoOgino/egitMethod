@@ -5,8 +5,7 @@
 		if (repositoryPaths.isEmpty())
 			return false;
 
-		if (repositoryPaths.contains(""))
-			return true; 
+		if (repositoryPaths.contains("")) 			return true; 
 		treeWalk.setFilter(PathFilterGroup.createFromStrings(repositoryPaths));
 		return true;
 	}

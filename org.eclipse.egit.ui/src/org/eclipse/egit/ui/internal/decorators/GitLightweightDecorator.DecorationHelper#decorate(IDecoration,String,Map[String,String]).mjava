@@ -15,8 +15,7 @@
 						String s;
 
 						if (key.indexOf(':') > -1) {
-							String[] keyAndBinding = key.split(":", 2);
-							key = keyAndBinding[0];
+							String[] keyAndBinding = key.split(":", 2); 							key = keyAndBinding[0];
 							if (keyAndBinding.length > 1
 									&& bindings.get(key) != null)
 								bindings.put(key, keyAndBinding[1]);
@@ -50,12 +49,10 @@
 				}
 			}
 
-			String prefixString = prefix.toString().replaceAll("^\\s+", "");
-			if (prefixString != null) {
+			String prefixString = prefix.toString().replaceAll("^\\s+", ""); 			if (prefixString != null) {
 				decoration.addPrefix(TextProcessor.process(prefixString,
 						"()[].")); 			}
-			String suffixString = suffix.toString().replaceAll("\\s+$", "");
-			if (suffixString != null) {
+			String suffixString = suffix.toString().replaceAll("\\s+$", ""); 			if (suffixString != null) {
 				decoration.addSuffix(TextProcessor.process(suffixString,
 						"()[].")); 			}
 		}

@@ -8,8 +8,7 @@
 			nextButton.setEnabled(false);
 			previousButton.setEnabled(false);
 		}
-		currentPositionLabel.setText("");
-		progressBar.setSelection(0);
+		currentPositionLabel.setText(""); 		progressBar.setSelection(0);
 		lastErrorPattern = null;
 
 		findResults.clear();

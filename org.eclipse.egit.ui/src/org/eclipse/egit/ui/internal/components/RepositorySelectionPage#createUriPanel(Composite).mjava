@@ -1,8 +1,7 @@
 	private void createUriPanel(final Composite parent) {
 		if (configuredRemotes != null) {
 			uriButton = new Button(parent, SWT.RADIO);
-			uriButton.setText(UIText.RepositorySelectionPage_uriChoice + ":");
-			uriButton.addSelectionListener(new SelectionAdapter() {
+			uriButton.setText(UIText.RepositorySelectionPage_uriChoice + ":"); 			uriButton.addSelectionListener(new SelectionAdapter() {
 				public void widgetSelected(SelectionEvent e) {
 					updateRemoteAndURIPanels();
 					checkPage();

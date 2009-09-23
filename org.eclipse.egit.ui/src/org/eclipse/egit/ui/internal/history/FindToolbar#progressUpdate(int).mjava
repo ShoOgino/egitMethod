@@ -1,7 +1,6 @@
 	void progressUpdate(int percent) {
 		int total = findResults.size();
-		currentPositionLabel.setText("-/" + total);
-		currentPositionLabel.setForeground(null);
+		currentPositionLabel.setText("-/" + total); 		currentPositionLabel.setForeground(null);
 		if (total > 0) {
 			nextButton.setEnabled(true);
 			previousButton.setEnabled(true);

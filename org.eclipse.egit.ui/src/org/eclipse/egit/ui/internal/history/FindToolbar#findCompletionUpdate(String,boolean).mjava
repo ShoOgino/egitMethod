@@ -3,11 +3,9 @@
 		if (total > 0) {
 			if (overflow) {
 				currentPositionLabel
-						.setText(UIText.HistoryPage_findbar_exceeded + " 1/"
-								+ total);
+						.setText(UIText.HistoryPage_findbar_exceeded + " 1/" 								+ total);
 			} else {
-				currentPositionLabel.setText("1/" + total);
-			}
+				currentPositionLabel.setText("1/" + total); 			}
 			int ix = findResults.getFirstIndex();
 			sendEvent(null, ix);
 
@@ -30,8 +28,7 @@
 				lastErrorPattern = pattern;
 			} else {
 				patternField.setBackground(null);
-				currentPositionLabel.setText("");
-				nextButton.setEnabled(false);
+				currentPositionLabel.setText(""); 				nextButton.setEnabled(false);
 				previousButton.setEnabled(false);
 				lastErrorPattern = null;
 			}

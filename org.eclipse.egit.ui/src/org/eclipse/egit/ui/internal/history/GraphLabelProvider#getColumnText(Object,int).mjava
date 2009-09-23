@@ -7,12 +7,10 @@
 		if (author != null) {
 			switch (columnIndex) {
 			case 1:
-				return author.getName() + " <" + author.getEmailAddress() + ">";
-			case 2:
+				return author.getName() + " <" + author.getEmailAddress() + ">"; 			case 2:
 				return fmt.format(author.getWhen());
 			}
 		}
 
-		return "";
-	}
+		return ""; 	}
 

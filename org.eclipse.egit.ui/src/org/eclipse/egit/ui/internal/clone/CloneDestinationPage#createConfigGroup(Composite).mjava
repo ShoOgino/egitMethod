@@ -2,10 +2,8 @@
 		final Group g = createGroup(parent,
 				UIText.CloneDestinationPage_groupConfiguration);
 
-		newLabel(g, UIText.CloneDestinationPage_promptRemoteName + ":");
-		remoteText = new Text(g, SWT.BORDER);
-		remoteText.setText("origin");
-		remoteText.setLayoutData(createFieldGridData());
+		newLabel(g, UIText.CloneDestinationPage_promptRemoteName + ":"); 		remoteText = new Text(g, SWT.BORDER);
+		remoteText.setText("origin"); 		remoteText.setLayoutData(createFieldGridData());
 		remoteText.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
 				checkPage();

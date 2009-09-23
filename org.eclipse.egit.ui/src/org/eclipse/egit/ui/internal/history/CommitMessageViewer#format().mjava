@@ -54,15 +54,12 @@
 		}
 
 		makeGrayText(d, styles);
-		d.append("\n");
-		String msg = commit.getFullMessage();
-		Pattern p = Pattern.compile("\n([A-Z](?:[A-Za-z]+-)+by: [^\n]+)");
-		if (fill) {
+		d.append("\n"); 		String msg = commit.getFullMessage();
+		Pattern p = Pattern.compile("\n([A-Z](?:[A-Za-z]+-)+by: [^\n]+)"); 		if (fill) {
 			Matcher spm = p.matcher(msg);
 			if (spm.find()) {
 				String subMsg = msg.substring(0, spm.end());
-				msg = subMsg.replaceAll("([\\w.,; \t])\n(\\w)", "$1 $2")
-						+ msg.substring(spm.end());
+				msg = subMsg.replaceAll("([\\w.,; \t])\n(\\w)", "$1 $2") 						+ msg.substring(spm.end());
 			}
 		}
 		int h0 = d.length();

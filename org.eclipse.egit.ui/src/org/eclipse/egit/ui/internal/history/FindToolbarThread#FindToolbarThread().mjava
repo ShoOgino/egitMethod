@@ -1,5 +1,4 @@
 	public FindToolbarThread() {
-		super("history_find_thread" + ++globalThreadIx);
-		currentThreadIx = globalThreadIx;
+		super("history_find_thread" + ++globalThreadIx); 		currentThreadIx = globalThreadIx;
 	}
 

@@ -51,8 +51,7 @@
 		button.setText(UIText.ExistingOrNewPage_CreateButton);
 		button.addSelectionListener(new SelectionListener() {
 			public void widgetSelected(SelectionEvent e) {
-				File gitDir = new File(repositoryToCreate.getText(),".git");
-				try {
+				File gitDir = new File(repositoryToCreate.getText(),".git"); 				try {
 					Repository repository = new Repository(gitDir);
 					repository.create();
 					for (IProject project : getProjects()) {
@@ -60,8 +59,7 @@
 									new NullProgressMonitor());
 					}
 				} catch (IOException e1) {
-					MessageDialog.openError(getShell(), UIText.ExistingOrNewPage_ErrorFailedToCreateRepository, gitDir.toString() + ":\n" + e1.getMessage());
-					Activator.logError("Failed to create repository at " + gitDir, e1); 				} catch (CoreException e2) {
+					MessageDialog.openError(getShell(), UIText.ExistingOrNewPage_ErrorFailedToCreateRepository, gitDir.toString() + ":\n" + e1.getMessage()); 					Activator.logError("Failed to create repository at " + gitDir, e1); 				} catch (CoreException e2) {
 					Activator.logError(UIText.ExistingOrNewPage_ErrorFailedToRefreshRepository + gitDir, e2);
 				}
 				for (TreeItem ti : tree.getSelection()) {

@@ -1,10 +1,8 @@
 	void populate() throws IOException {
-		Activator.trace("(GitDocument) populate: " + resource);
-		final IProject project = resource.getProject();
+		Activator.trace("(GitDocument) populate: " + resource); 		final IProject project = resource.getProject();
 		RepositoryMapping mapping = RepositoryMapping.getMapping(project);
 		if (mapping == null) {
-			setResolved(null, null, null, "");
-			return;
+			setResolved(null, null, null, ""); 			return;
 		}
 		final String gitPath = mapping.getRepoRelativePath(resource);
 		final Repository repository = mapping.getRepository();
@@ -14,41 +12,35 @@
 		ObjectId commitId = repository.resolve(baseline);
 		if (commitId != null) {
 			if (commitId.equals(lastCommit)) {
-				Activator.trace("(GitDocument) already resolved");
-				return;
+				Activator.trace("(GitDocument) already resolved"); 				return;
 			}
 		} else {
 			Activator.logError("Could not resolve quickdiff baseline "
 					+ baseline + " corresponding to " + resource + " in "
 					+ repository, new Throwable());
-			setResolved(null, null, null, "");
-			return;
+			setResolved(null, null, null, ""); 			return;
 		}
 		Commit baselineCommit = repository.mapCommit(commitId);
 		if (baselineCommit == null) {
 			Activator.logError("Could not load commit " + commitId + " for "
 					+ baseline + " corresponding to " + resource + " in "
 					+ repository, new Throwable());
-			setResolved(null, null, null, "");
-			return;
+			setResolved(null, null, null, ""); 			return;
 		}
 		ObjectId treeId = baselineCommit.getTreeId();
 		if (treeId.equals(lastTree)) {
-			Activator.trace("(GitDocument) already resolved");
-			return;
+			Activator.trace("(GitDocument) already resolved"); 			return;
 		}
 		Tree baselineTree = baselineCommit.getTree();
 		if (baselineTree == null) {
 			Activator.logError("Could not load tree " + treeId + " for "
 					+ baseline + " corresponding to " + resource + " in "
 					+ repository, new Throwable());
-			setResolved(null, null, null, "");
-			return;
+			setResolved(null, null, null, ""); 			return;
 		}
 		TreeEntry blobEntry = baselineTree.findBlobMember(gitPath);
 		if (blobEntry != null && !blobEntry.getId().equals(lastBlob)) {
-			Activator.trace("(GitDocument) compareTo: " + baseline);
-			ObjectLoader loader = repository.openBlob(blobEntry.getId());
+			Activator.trace("(GitDocument) compareTo: " + baseline); 			ObjectLoader loader = repository.openBlob(blobEntry.getId());
 			byte[] bytes = loader.getBytes();
 			String charset;
 			IEncodedStorage encodedStorage = ((IEncodedStorage)resource);
@@ -62,12 +54,9 @@
 			}
 			String s = new String(bytes, charset);
 			setResolved(commitId, baselineTree.getId(), blobEntry.getId(), s);
-			Activator.trace("(GitDocument) has reference doc, size=" + s.length() + " bytes");
-		} else {
+			Activator.trace("(GitDocument) has reference doc, size=" + s.length() + " bytes"); 		} else {
 			if (blobEntry == null)
-				setResolved(null, null, null, "");
-			else
-				Activator.trace("(GitDocument) already resolved");
-		}
+				setResolved(null, null, null, ""); 			else
+				Activator.trace("(GitDocument) already resolved"); 		}
 	}
 

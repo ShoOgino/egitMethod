@@ -1,15 +1,11 @@
 	private static Image createCheckboxImage(final Control control,
 			boolean checked, boolean enabled) {
 
-		String checkboxhack = System.getProperty("egit.swt.checkboxhack");
-		if (checkboxhack == null)
+		String checkboxhack = System.getProperty("egit.swt.checkboxhack"); 		if (checkboxhack == null)
 			if (Platform.getOS().equals(Platform.OS_MACOSX))
-				checkboxhack = "hardwired";
-			else
-				checkboxhack = "screenshot";
-
-		if (checkboxhack == "hardwired") {
-			if (enabled) {
+				checkboxhack = "hardwired"; 			else
+				checkboxhack = "screenshot"; 
+		if (checkboxhack == "hardwired") { 			if (enabled) {
 				if (checked)
 					return UIIcons.CHECKBOX_ENABLED_CHECKED.createImage();
 				return UIIcons.CHECKBOX_ENABLED_UNCHECKED.createImage();

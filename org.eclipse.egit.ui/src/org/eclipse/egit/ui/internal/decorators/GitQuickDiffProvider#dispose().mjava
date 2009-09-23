@@ -1,6 +1,5 @@
 	public void dispose() {
-		Activator.trace("(GitQuickDiffProvider) dispose");
-		if (document != null)
+		Activator.trace("(GitQuickDiffProvider) dispose"); 		if (document != null)
 			document.dispose();
 	}
 

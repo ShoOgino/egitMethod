@@ -11,8 +11,7 @@
 						if (!scanned.contains(r)) {
 							if (monitor.isCanceled())
 								break;
-							trace("Scanning " + r + " for changes");
-							scanned.add(r);
+							trace("Scanning " + r + " for changes"); 							scanned.add(r);
 							ISchedulingRule rule = p.getWorkspace().getRuleFactory().modifyRule(p);
 							getJobManager().beginRule(rule, monitor);
 							try {
@@ -25,11 +24,9 @@
 					monitor.worked(1);
 				}
 				monitor.done();
-				trace("Rescheduling " + getName() + " job");
-				schedule(REPO_SCAN_INTERVAL);
+				trace("Rescheduling " + getName() + " job"); 				schedule(REPO_SCAN_INTERVAL);
 			} catch (Exception e) {
-				trace("Stopped rescheduling " + getName() + "job");
-				return new Status(
+				trace("Stopped rescheduling " + getName() + "job"); 				return new Status(
 						IStatus.ERROR,
 						getPluginId(),
 						0,

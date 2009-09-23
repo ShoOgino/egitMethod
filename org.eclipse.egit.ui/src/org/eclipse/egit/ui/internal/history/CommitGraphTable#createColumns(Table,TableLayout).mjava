@@ -1,8 +1,7 @@
 	private void createColumns(final Table rawTable, final TableLayout layout) {
 		final TableColumn graph = new TableColumn(rawTable, SWT.NONE);
 		graph.setResizable(true);
-		graph.setText("");
-		graph.setWidth(250);
+		graph.setText(""); 		graph.setWidth(250);
 		layout.addColumnData(new ColumnWeightData(20, true));
 
 		final TableColumn author = new TableColumn(rawTable, SWT.NONE);
