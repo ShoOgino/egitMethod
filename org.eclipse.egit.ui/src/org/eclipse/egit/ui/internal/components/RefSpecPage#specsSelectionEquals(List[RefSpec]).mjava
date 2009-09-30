@@ -1,0 +1,4 @@
+	public boolean specsSelectionEquals(final List<RefSpec> specs) {
+		return getRefSpecs().equals(specs);
+	}
+

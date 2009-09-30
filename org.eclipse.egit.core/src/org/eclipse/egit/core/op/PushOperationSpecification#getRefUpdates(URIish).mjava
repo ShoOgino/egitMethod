@@ -1,0 +1,4 @@
+	public Collection<RemoteRefUpdate> getRefUpdates(final URIish uri) {
+		return Collections.unmodifiableCollection(urisRefUpdates.get(uri));
+	}
+

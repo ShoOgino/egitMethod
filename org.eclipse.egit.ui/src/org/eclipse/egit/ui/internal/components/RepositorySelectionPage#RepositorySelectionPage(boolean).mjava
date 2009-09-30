@@ -1,0 +1,4 @@
+	public RepositorySelectionPage(final boolean sourceSelection) {
+		this(sourceSelection, null);
+	}
+

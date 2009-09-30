@@ -1,0 +1,9 @@
+	public boolean deleteFolder(final IResourceTree tree, final IFolder folder,
+			final int updateFlags, final IProgressMonitor monitor) {
+		if (data.isProtected(folder)) {
+			return cannotModifyRepository(tree);
+		} else {
+			return FINISH_FOR_ME;
+		}
+	}
+

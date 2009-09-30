@@ -1,0 +1,4 @@
+	public boolean isValidSelection() {
+		return uri != null || config != null;
+	}
+

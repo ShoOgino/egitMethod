@@ -1,0 +1,6 @@
+	public AdaptableFileTreeIterator(final File path,
+			final IWorkspaceRoot workspaceRoot) {
+		super(path);
+		root = workspaceRoot;
+	}
+

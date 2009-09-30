@@ -1,0 +1,4 @@
+	public RepositoryFinder(final IProject p) {
+		proj = p;
+	}
+

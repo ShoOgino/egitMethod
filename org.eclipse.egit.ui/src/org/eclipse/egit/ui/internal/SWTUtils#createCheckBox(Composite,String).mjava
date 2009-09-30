@@ -1,0 +1,4 @@
+	public static Button createCheckBox(Composite parent, String message) {
+		return createCheckBox(parent, message, 1);
+	}
+

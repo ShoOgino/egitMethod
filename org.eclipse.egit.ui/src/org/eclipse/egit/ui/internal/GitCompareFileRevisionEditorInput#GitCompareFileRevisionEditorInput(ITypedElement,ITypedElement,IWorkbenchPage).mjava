@@ -1,0 +1,6 @@
+	public GitCompareFileRevisionEditorInput(ITypedElement left, ITypedElement right, IWorkbenchPage page) {
+		super(new CompareConfiguration(), page);
+		this.left = left;
+		this.right = right;
+	}
+

@@ -1,0 +1,7 @@
+	public RefContentProposal(final Repository repo, final String refName,
+			final ObjectId objectId) {
+		this.db = repo;
+		this.refName = refName;
+		this.objectId = objectId;
+	}
+

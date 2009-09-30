@@ -1,0 +1,4 @@
+	public static Font getBoldFont(final String id) {
+		return getTheme().getFontRegistry().getBold(id);
+	}
+

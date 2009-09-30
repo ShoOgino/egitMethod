@@ -1,0 +1,25 @@
+	public RefSpecPanel(final Composite parent, final boolean pushSpecs) {
+		this.pushSpecs = pushSpecs;
+		this.localProposalProvider = new RefContentProposalProvider(pushSpecs);
+		this.remoteProposalProvider = new RefContentProposalProvider(false);
+		this.imageRegistry = new ImageRegistry(parent.getDisplay());
+
+		panel = new Composite(parent, SWT.NONE);
+		panel.setLayout(new GridLayout());
+
+		safeCreateResources();
+
+		createCreationPanel();
+		if (pushSpecs)
+			createDeleteCreationPanel();
+		createPredefinedCreationPanel();
+		createTableGroup();
+
+		addRefSpecTableListener(new SelectionChangeListener() {
+			public void selectionChanged() {
+				validateSpecs();
+			}
+		});
+		setEnable(false);
+	}
+

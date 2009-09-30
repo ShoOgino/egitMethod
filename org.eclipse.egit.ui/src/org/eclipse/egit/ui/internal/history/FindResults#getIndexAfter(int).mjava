@@ -1,0 +1,15 @@
+	public synchronized int getIndexAfter(int index) {
+		Integer[] matches = getkeysArray();
+		int sres = Arrays.binarySearch(matches, Integer.valueOf(index));
+		if (sres >= 0 && sres != matches.length - 1) {
+			return matches[sres + 1].intValue();
+		} else if (sres < 0) {
+			sres = -sres - 1;
+			if (sres < matches.length) {
+				return matches[sres].intValue();
+			}
+		}
+
+		return -1;
+	}
+

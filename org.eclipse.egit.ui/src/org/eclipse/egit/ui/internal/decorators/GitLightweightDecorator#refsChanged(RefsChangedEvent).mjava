@@ -1,0 +1,4 @@
+	public void refsChanged(RefsChangedEvent e) {
+		repositoryChanged(e);
+	}
+

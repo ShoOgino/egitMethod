@@ -1,0 +1,7 @@
+	public RepositoryMapping(final Properties p, final String initialKey) {
+		final int dot = initialKey.lastIndexOf('.');
+
+		containerPath = initialKey.substring(0, dot);
+		gitdirPath = p.getProperty(initialKey);
+	}
+

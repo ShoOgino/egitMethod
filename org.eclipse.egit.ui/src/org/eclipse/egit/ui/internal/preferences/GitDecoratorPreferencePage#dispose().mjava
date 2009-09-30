@@ -1,0 +1,6 @@
+	public void dispose() {
+		PlatformUI.getWorkbench().getThemeManager()
+				.removePropertyChangeListener(themeListener);
+		super.dispose();
+	}
+

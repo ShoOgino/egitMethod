@@ -1,0 +1,8 @@
+	private static boolean canCreateSubdir(final File parent) {
+		if (parent == null)
+			return true;
+		if (parent.exists())
+			return parent.isDirectory() && parent.canWrite();
+		return canCreateSubdir(parent.getParentFile());
+	}
+

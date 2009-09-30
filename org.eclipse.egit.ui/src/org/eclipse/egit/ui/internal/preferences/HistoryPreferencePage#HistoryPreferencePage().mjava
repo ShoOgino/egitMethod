@@ -1,0 +1,6 @@
+	public HistoryPreferencePage() {
+		super(GRID);
+		setTitle(UIText.HistoryPreferencePage_title);
+		setPreferenceStore(Activator.getDefault().getPreferenceStore());
+	}
+

@@ -1,0 +1,5 @@
+	static void fireRepositoryChanged(final RepositoryMapping which) {
+		for (RepositoryChangeListener listener : getRepositoryChangeListeners())
+			listener.repositoryChanged(which);
+	}
+

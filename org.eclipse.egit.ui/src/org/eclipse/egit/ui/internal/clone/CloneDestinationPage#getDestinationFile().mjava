@@ -1,0 +1,4 @@
+	public File getDestinationFile() {
+		return new File(directoryText.getText());
+	}
+

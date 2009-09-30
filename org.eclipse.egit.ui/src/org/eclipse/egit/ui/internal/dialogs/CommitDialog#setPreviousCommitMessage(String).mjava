@@ -1,0 +1,4 @@
+	public void setPreviousCommitMessage(String string) {
+		this.previousCommitMessage = string;
+	}
+

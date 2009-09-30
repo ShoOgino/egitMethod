@@ -1,0 +1,11 @@
+		public String getProjectLabel() {
+			if (description == null)
+				return projectName;
+
+			String path = projectSystemFile == null ? structureProvider
+					.getLabel(parent) : projectSystemFile.getParent();
+
+			return NLS.bind(UIText.WizardProjectsImportPage_projectLabel,
+					projectName, path);
+		}
+

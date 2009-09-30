@@ -1,0 +1,19 @@
+		private void setProjectName() {
+			try {
+				if (projectName == null) {
+					IPath path = new Path(projectSystemFile.getPath());
+					if (isDefaultLocation(path)) {
+						projectName = path.segment(path.segmentCount() - 2);
+						description = IDEWorkbenchPlugin.getPluginWorkspace()
+								.newProjectDescription(projectName);
+					} else {
+						description = IDEWorkbenchPlugin.getPluginWorkspace()
+								.loadProjectDescription(path);
+						projectName = description.getName();
+					}
+
+				}
+			} catch (CoreException e) {
+			}
+		}
+

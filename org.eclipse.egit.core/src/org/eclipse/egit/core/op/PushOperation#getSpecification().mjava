@@ -1,0 +1,4 @@
+	public PushOperationSpecification getSpecification() {
+		return specification;
+	}
+

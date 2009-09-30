@@ -1,0 +1,4 @@
+	public Set<URIish> getURIs() {
+		return Collections.unmodifiableSet(urisRefUpdates.keySet());
+	}
+

@@ -1,0 +1,4 @@
+	public RepositorySelection getSelection() {
+		return selection;
+	}
+

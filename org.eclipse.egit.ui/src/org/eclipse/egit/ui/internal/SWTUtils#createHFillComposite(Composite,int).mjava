@@ -1,0 +1,4 @@
+	public static Composite createHFillComposite(Composite parent, int margins) {
+		return createHFillComposite(parent, margins, 1);
+	}
+

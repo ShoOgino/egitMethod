@@ -1,0 +1,8 @@
+	public static PreferenceLinkArea createPreferenceLink(
+			IWorkbenchPreferenceContainer container, Composite parent,
+			String pageId, String text) {
+		final PreferenceLinkArea area = new PreferenceLinkArea(parent,
+				SWT.NONE, pageId, text, container, null);
+		return area;
+	}
+

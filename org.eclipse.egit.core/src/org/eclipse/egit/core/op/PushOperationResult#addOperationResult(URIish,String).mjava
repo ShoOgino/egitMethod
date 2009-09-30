@@ -1,0 +1,4 @@
+	public void addOperationResult(final URIish uri, final String errorMessage) {
+		urisEntries.put(uri, new Entry(errorMessage));
+	}
+

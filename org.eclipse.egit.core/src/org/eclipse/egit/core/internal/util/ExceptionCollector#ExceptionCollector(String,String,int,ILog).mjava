@@ -1,0 +1,8 @@
+	public ExceptionCollector(String message, String pluginId, int severity,
+			ILog log) {
+		this.message = message;
+		this.pluginId = pluginId;
+		this.severity = severity;
+		this.log = log;
+	}
+

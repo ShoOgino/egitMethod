@@ -1,0 +1,4 @@
+	public boolean isSaveRequested() {
+		return saveButton.getSelection();
+	}
+

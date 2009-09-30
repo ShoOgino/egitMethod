@@ -1,0 +1,8 @@
+	public boolean isSuccessfulConnectionForAnyURI() {
+		for (final URIish uri : getURIs()) {
+			if (isSuccessfulConnection(uri))
+				return true;
+		}
+		return false;
+	}
+

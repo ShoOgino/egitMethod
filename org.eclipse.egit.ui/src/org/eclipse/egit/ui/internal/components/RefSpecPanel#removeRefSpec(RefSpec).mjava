@@ -1,0 +1,8 @@
+	public void removeRefSpec(final RefSpec spec) {
+		final int i = indexOfSpec(spec);
+		if (i == -1)
+			throw new IllegalArgumentException("RefSpec " + spec 					+ " not found."); 		specs.remove(i);
+		tableViewer.remove(spec);
+		notifySpecsChanged();
+	}
+

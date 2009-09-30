@@ -1,0 +1,9 @@
+	public synchronized int getFirstIndex() {
+		Iterator iter = matchesMap.keySet().iterator();
+		if (iter.hasNext()) {
+			return ((Integer) iter.next()).intValue();
+		}
+
+		return -1;
+	}
+

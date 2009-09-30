@@ -1,0 +1,6 @@
+	public ContainerTreeIterator(final IWorkspaceRoot root) {
+		super("");
+		node = root;
+		init(entries());
+	}
+

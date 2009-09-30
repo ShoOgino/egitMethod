@@ -1,0 +1,39 @@
+	@Override
+	public boolean equals(final Object obj) {
+		if (!(obj instanceof PushOperationResult))
+			return false;
+
+		final PushOperationResult other = (PushOperationResult) obj;
+
+		final Set<URIish> otherURIs = other.getURIs();
+		for (final URIish uri : getURIs()) {
+			if (isSuccessfulConnection(uri)
+					&& (!otherURIs.contains(uri) || !other
+							.isSuccessfulConnection(uri)))
+				return false;
+		}
+		for (final URIish uri : other.getURIs()) {
+			if (other.isSuccessfulConnection(uri)
+					&& (!urisEntries.containsKey(uri) || !isSuccessfulConnection(uri)))
+				return false;
+		}
+
+		for (final URIish uri : getURIs()) {
+			if (!isSuccessfulConnection(uri))
+				continue;
+
+			final PushResult otherPushResult = other.getPushResult(uri);
+			for (final RemoteRefUpdate rru : getPushResult(uri)
+					.getRemoteUpdates()) {
+				final RemoteRefUpdate otherRru = otherPushResult
+						.getRemoteUpdate(rru.getRemoteName());
+				if (otherRru == null)
+					return false;
+				if (otherRru.getStatus() != rru.getStatus()
+						|| otherRru.getNewObjectId() != rru.getNewObjectId())
+					return false;
+			}
+		}
+		return true;
+	}
+

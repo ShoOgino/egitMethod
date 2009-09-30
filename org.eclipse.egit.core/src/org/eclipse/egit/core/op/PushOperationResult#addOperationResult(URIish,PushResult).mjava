@@ -1,0 +1,4 @@
+	public void addOperationResult(final URIish uri, final PushResult result) {
+		urisEntries.put(uri, new Entry(result));
+	}
+

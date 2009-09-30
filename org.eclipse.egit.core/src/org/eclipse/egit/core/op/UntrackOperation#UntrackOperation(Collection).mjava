@@ -1,0 +1,6 @@
+	public UntrackOperation(final Collection rsrcs) {
+		rsrcList = rsrcs;
+		edits = new IdentityHashMap<Repository, DirCacheEditor>();
+		mappings = new IdentityHashMap<RepositoryMapping, Object>();
+	}
+

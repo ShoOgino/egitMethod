@@ -1,0 +1,11 @@
+	public ProjectRecord[] getValidProjects() {
+		List<ProjectRecord> validProjects = new ArrayList<ProjectRecord>();
+		for (int i = 0; i < selectedProjects.length; i++) {
+			if (!isProjectInWorkspace(selectedProjects[i].getProjectName())) {
+				validProjects.add(selectedProjects[i]);
+			}
+		}
+		return validProjects
+				.toArray(new ProjectRecord[validProjects.size()]);
+	}
+

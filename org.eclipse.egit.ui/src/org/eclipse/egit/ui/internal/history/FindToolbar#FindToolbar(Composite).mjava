@@ -1,0 +1,5 @@
+	public FindToolbar(Composite parent) {
+		super(parent, SWT.NULL);
+		createToolbar();
+	}
+

@@ -1,0 +1,12 @@
+	@Override
+	public boolean isPageComplete() {
+		if (tree.getSelectionCount() == 0)
+			return false;
+		for (TreeItem ti : tree.getSelection()) {
+			String path = ti.getText(2);
+			if (path.equals("")) { 				return false;
+			}
+		}
+		return true;
+	}
+

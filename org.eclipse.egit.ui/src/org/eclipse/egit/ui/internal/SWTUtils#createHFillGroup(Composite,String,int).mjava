@@ -1,0 +1,5 @@
+	public static Group createHFillGroup(Composite parent, String text,
+			int margins) {
+		return createHFillGroup(parent, text, margins, 1);
+	}
+

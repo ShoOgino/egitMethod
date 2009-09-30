@@ -1,0 +1,4 @@
+	public void setSignedOff(boolean signedOff) {
+		this.signedOff = signedOff;
+	}
+

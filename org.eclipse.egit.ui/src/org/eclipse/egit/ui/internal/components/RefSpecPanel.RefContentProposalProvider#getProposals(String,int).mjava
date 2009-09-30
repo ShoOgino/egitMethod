@@ -1,0 +1,29 @@
+		public IContentProposal[] getProposals(final String contents,
+				int position) {
+			final List<RefContentProposal> result = new ArrayList<RefContentProposal>();
+
+			if (contents.indexOf('*') != -1 || contents.indexOf('?') != -1) {
+
+				if (isValidRefExpression(contents))
+					result.add(new RefContentProposal(localDb, contents, null));
+
+				final String regex = ".*" 						+ contents.replace("*", ".*").replace("?", ".?") + ".*"; 				final Pattern p = Pattern.compile(regex);
+				for (final RefContentProposal prop : proposals)
+					if (p.matcher(prop.getContent()).matches())
+						result.add(prop);
+			} else {
+				for (final RefContentProposal prop : proposals)
+					if (prop.getContent().contains(contents))
+						result.add(prop);
+
+				if (tryResolvingLocally && result.isEmpty()) {
+					final ObjectId id = tryResolveLocalRef(contents);
+					if (id != null)
+						result
+								.add(new RefContentProposal(localDb, contents,
+										id));
+				}
+			}
+			return result.toArray(new IContentProposal[0]);
+		}
+

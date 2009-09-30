@@ -1,0 +1,4 @@
+	public void setSelectedFiles(IFile[] items) {
+		Collections.addAll(selectedFiles, items);
+	}
+

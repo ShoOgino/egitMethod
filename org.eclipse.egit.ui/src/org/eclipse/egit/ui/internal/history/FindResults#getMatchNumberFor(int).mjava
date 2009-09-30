@@ -1,0 +1,9 @@
+	public synchronized int getMatchNumberFor(int index) {
+		Integer ix = matchesMap.get(Integer.valueOf(index));
+		if (ix != null) {
+			return ix.intValue();
+		}
+
+		return -1;
+	}
+

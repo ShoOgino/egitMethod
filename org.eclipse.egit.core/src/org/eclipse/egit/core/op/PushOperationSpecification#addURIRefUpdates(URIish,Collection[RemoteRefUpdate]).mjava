@@ -1,0 +1,5 @@
+	public void addURIRefUpdates(final URIish uri,
+			Collection<RemoteRefUpdate> refUpdates) {
+		urisRefUpdates.put(uri, refUpdates);
+	}
+

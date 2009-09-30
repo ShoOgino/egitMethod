@@ -1,0 +1,4 @@
+	public boolean isConfigSelected() {
+		return config != null;
+	}
+

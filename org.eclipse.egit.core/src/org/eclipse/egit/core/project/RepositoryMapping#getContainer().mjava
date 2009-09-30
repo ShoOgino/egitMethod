@@ -1,0 +1,4 @@
+	public synchronized IContainer getContainer() {
+		return container;
+	}
+

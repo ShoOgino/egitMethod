@@ -1,0 +1,16 @@
+	public void handleException(CoreException exception) {
+		if (log != null) {
+			log.log(new Status(severity, pluginId, 0, message, exception));
+		}
+
+		final IStatus exceptionStatus = exception.getStatus();
+
+		final IStatus status = new Status(exceptionStatus.getSeverity(),
+				exceptionStatus.getPlugin(), exceptionStatus.getCode(),
+				exceptionStatus.getMessage(), exception);
+
+		recordStatus(status);
+		for (IStatus childStatus : status.getChildren())
+			recordStatus(childStatus);
+	}
+

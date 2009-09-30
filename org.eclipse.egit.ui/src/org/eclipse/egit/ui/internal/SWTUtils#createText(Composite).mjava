@@ -1,0 +1,4 @@
+	public static Text createText(Composite parent) {
+		return createText(parent, 1);
+	}
+

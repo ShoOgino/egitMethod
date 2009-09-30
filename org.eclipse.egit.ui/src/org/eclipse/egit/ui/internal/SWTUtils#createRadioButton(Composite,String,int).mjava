@@ -1,0 +1,8 @@
+	public static Button createRadioButton(Composite parent, String message,
+			int span) {
+		final Button button = new Button(parent, SWT.RADIO);
+		button.setText(message);
+		button.setLayoutData(createHFillGridData(span));
+		return button;
+	}
+

@@ -1,0 +1,4 @@
+	public GitTag(String name) {
+		this.name = name;
+	}
+

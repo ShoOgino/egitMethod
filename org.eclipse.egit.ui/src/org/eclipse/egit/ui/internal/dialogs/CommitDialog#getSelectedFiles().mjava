@@ -1,0 +1,4 @@
+	public IFile[] getSelectedFiles() {
+		return selectedFiles.toArray(new IFile[0]);
+	}
+

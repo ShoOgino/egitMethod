@@ -1,0 +1,7 @@
+	protected void fireContentChanged() {
+		if (fChangeNotifier == null || fChangeNotifier.isEmpty()) {
+			return;
+		}
+		fChangeNotifier.fireContentChanged();
+	}
+

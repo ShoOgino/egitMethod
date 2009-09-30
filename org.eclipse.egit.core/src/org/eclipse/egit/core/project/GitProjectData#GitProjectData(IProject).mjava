@@ -1,0 +1,4 @@
+	public GitProjectData(final IProject p) {
+		project = p;
+	}
+

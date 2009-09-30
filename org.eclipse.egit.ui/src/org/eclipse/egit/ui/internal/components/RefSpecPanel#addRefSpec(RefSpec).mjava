@@ -1,0 +1,8 @@
+	public void addRefSpec(final RefSpec spec) {
+		final int i = indexOfSpec(spec);
+		if (i != -1)
+			throw new IllegalArgumentException("RefSpec " + spec 					+ " already exists."); 		specs.add(spec);
+		tableViewer.add(spec);
+		notifySpecsChanged();
+	}
+

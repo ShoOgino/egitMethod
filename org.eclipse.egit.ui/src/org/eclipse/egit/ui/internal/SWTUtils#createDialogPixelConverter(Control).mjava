@@ -1,0 +1,5 @@
+	public static PixelConverter createDialogPixelConverter(Control control) {
+		Dialog.applyDialogFont(control);
+		return new PixelConverter(control);
+	}
+

@@ -1,0 +1,8 @@
+	public synchronized void add(int matchIx, RevObject revObj) {
+		matchesMap.put(Integer.valueOf(matchIx), Integer
+				.valueOf(++matchesCount));
+		revObjList.add(revObj);
+		revObj.add(highlight);
+		keysArray = null;
+	}
+

@@ -1,0 +1,4 @@
+	public boolean isURISelected() {
+		return uri != null;
+	}
+

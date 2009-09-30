@@ -1,0 +1,6 @@
+	private static synchronized RepositoryChangeListener[] getRepositoryChangeListeners() {
+		return repositoryChangeListeners
+				.toArray(new RepositoryChangeListener[repositoryChangeListeners
+						.size()]);
+	}
+

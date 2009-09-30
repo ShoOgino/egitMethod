@@ -1,0 +1,4 @@
+	public static Control createPlaceholder(Composite parent, int heightInChars) {
+		return createPlaceholder(parent, heightInChars, 1);
+	}
+

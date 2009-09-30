@@ -1,0 +1,4 @@
+	public void setEnable(final boolean enable) {
+		getControl().setEnabled(enable);
+	}
+

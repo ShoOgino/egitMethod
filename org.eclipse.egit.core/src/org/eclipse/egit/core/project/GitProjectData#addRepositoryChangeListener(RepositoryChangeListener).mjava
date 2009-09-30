@@ -1,0 +1,7 @@
+	public static synchronized void addRepositoryChangeListener(
+			final RepositoryChangeListener objectThatCares) {
+		if (objectThatCares == null)
+			throw new NullPointerException();
+		repositoryChangeListeners.add(objectThatCares);
+	}
+

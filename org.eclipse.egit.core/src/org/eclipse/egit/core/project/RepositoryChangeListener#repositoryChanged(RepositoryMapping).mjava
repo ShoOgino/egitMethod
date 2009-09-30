@@ -1,0 +1,2 @@
+	public void repositoryChanged(RepositoryMapping which);
+

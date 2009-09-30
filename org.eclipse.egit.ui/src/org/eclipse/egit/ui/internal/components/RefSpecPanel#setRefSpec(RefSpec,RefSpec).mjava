@@ -1,0 +1,11 @@
+	public void setRefSpec(final RefSpec oldSpec, final RefSpec newSpec) {
+		final int oldI = indexOfSpec(oldSpec);
+		if (oldI == -1)
+			throw new IllegalArgumentException("RefSpec " + oldSpec 					+ " not found."); 		final int newI = indexOfSpec(newSpec);
+		if (newI != -1)
+			throw new IllegalArgumentException("RefSpec " + newSpec 					+ " already exists."); 		specs.set(oldI, newSpec);
+
+		tableViewer.refresh();
+		notifySpecsChanged();
+	}
+

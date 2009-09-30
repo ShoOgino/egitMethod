@@ -1,0 +1,9 @@
+		public void decorate(IDecoration decoration,
+				IDecoratableResource resource) {
+			if (resource.isIgnored())
+				return;
+
+			decorateText(decoration, resource);
+			decorateIcons(decoration, resource);
+		}
+

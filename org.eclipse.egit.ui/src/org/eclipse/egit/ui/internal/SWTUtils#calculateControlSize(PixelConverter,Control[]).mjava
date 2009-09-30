@@ -1,0 +1,5 @@
+	public static int calculateControlSize(PixelConverter converter,
+			Control[] controls) {
+		return calculateControlSize(converter, controls, 0, controls.length - 1);
+	}
+

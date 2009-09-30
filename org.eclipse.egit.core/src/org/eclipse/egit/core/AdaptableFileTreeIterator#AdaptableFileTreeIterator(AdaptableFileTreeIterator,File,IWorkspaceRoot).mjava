@@ -1,0 +1,6 @@
+	protected AdaptableFileTreeIterator(final AdaptableFileTreeIterator parent,
+			File path, final IWorkspaceRoot workspaceRoot) {
+		super(parent, path);
+		root = workspaceRoot;
+	}
+

@@ -1,0 +1,4 @@
+	public ClickableCellEditor(final Table table) {
+		super(table, SWT.NONE);
+	}
+

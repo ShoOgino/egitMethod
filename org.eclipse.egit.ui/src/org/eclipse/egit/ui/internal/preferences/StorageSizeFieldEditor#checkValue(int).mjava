@@ -1,0 +1,4 @@
+	protected boolean checkValue(final int number) {
+		return number >= minValidValue && number <= maxValidValue;
+	}
+

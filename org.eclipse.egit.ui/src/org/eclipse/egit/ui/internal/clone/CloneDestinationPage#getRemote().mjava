@@ -1,0 +1,4 @@
+	public String getRemote() {
+		return remoteText.getText();
+	}
+

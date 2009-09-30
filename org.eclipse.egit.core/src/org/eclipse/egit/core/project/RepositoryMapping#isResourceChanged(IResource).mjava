@@ -1,0 +1,15 @@
+	public boolean isResourceChanged(IResource rsrc) throws IOException, UnsupportedEncodingException {
+		Repository repository = getRepository();
+		GitIndex index = repository.getIndex();
+		String repoRelativePath = getRepoRelativePath(rsrc);
+		Tree headTree = repository.mapTree(Constants.HEAD);
+		TreeEntry blob = headTree!=null ? headTree.findBlobMember(repoRelativePath) : null;
+		Entry entry = index.getEntry(repoRelativePath);
+		if (rsrc instanceof IFile && entry == null && blob == null)
+			return false;
+		if (entry == null)
+			return true; 		if (blob == null)
+			return true; 		boolean hashesDiffer = !entry.getObjectId().equals(blob.getId());
+		return hashesDiffer || entry.isModified(getWorkDir());
+	}
+

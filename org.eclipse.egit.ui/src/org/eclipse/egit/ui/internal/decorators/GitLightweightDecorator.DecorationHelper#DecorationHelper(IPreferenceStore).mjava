@@ -1,0 +1,4 @@
+		public DecorationHelper(IPreferenceStore preferencesStore) {
+			store = preferencesStore;
+		}
+

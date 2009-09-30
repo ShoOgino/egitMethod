@@ -1,0 +1,4 @@
+	public ResourceEntry getResourceEntry() {
+		return (ResourceEntry) current();
+	}
+

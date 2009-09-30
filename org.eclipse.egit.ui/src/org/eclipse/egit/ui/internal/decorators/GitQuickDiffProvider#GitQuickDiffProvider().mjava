@@ -1,0 +1,4 @@
+	public GitQuickDiffProvider() {
+		Activator.trace("(GitQuickDiffProvider) constructor");
+	}
+

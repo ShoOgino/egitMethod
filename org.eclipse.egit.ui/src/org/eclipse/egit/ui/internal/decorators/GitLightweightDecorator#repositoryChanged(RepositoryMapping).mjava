@@ -1,0 +1,4 @@
+	public void repositoryChanged(RepositoryMapping mapping) {
+		postLabelEvent(new LabelProviderChangedEvent(this));
+	}
+

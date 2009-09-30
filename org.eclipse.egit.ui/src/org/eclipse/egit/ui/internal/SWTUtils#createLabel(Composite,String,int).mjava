@@ -1,0 +1,8 @@
+	public static Label createLabel(Composite parent, String message, int span) {
+		final Label label = new Label(parent, SWT.WRAP);
+		if (message != null)
+			label.setText(message);
+		label.setLayoutData(createHFillGridData(span));
+		return label;
+	}
+

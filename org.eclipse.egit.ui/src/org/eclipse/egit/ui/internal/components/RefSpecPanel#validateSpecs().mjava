@@ -1,0 +1,20 @@
+	private void validateSpecs() {
+		final RefSpec oldInvalidSpec = invalidSpec;
+		final RefSpec oldInvalidSpecSameDst = invalidSpecSameDst;
+		errorMessage = null;
+		invalidSpec = null;
+		invalidSpecSameDst = null;
+		for (final RefSpec spec : specs) {
+			errorMessage = validateSpec(spec);
+			if (errorMessage != null) {
+				invalidSpec = spec;
+				break;
+			}
+		}
+		if (errorMessage == null)
+			validateSpecsCrossDst();
+		if (invalidSpec != oldInvalidSpec
+				|| invalidSpecSameDst != oldInvalidSpecSameDst)
+			tableViewer.refresh();
+	}
+

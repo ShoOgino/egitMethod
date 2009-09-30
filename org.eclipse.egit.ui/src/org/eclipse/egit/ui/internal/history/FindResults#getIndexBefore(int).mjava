@@ -1,0 +1,13 @@
+	public synchronized int getIndexBefore(int index) {
+		Integer[] matches = getkeysArray();
+		int sres = Arrays.binarySearch(matches, Integer.valueOf(index));
+		if (sres >= 0 && sres != 0) {
+			return matches[sres - 1].intValue();
+		} else if (sres < -1) {
+			sres = -sres;
+			return matches[sres - 2].intValue();
+		}
+
+		return -1;
+	}
+

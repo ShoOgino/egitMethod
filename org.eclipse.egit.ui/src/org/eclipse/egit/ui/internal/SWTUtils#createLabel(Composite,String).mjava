@@ -1,0 +1,4 @@
+	public static Label createLabel(Composite parent, String message) {
+		return createLabel(parent, message, 1);
+	}
+

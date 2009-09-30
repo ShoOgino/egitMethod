@@ -1,0 +1,32 @@
+	public PushOperationSpecification deriveSpecification(
+			final boolean requireUnchanged) throws IOException {
+		final PushOperationSpecification spec = new PushOperationSpecification();
+		for (final URIish uri : getURIs()) {
+			final PushResult pr = getPushResult(uri);
+			if (pr == null)
+				continue;
+
+			final Collection<RemoteRefUpdate> oldUpdates = pr
+					.getRemoteUpdates();
+			final ArrayList<RemoteRefUpdate> newUpdates = new ArrayList<RemoteRefUpdate>(
+					oldUpdates.size());
+			for (final RemoteRefUpdate rru : oldUpdates) {
+				final ObjectId expectedOldObjectId;
+				if (requireUnchanged) {
+					final Ref advertisedRef = getPushResult(uri)
+							.getAdvertisedRef(rru.getRemoteName());
+					if (advertisedRef == null)
+						expectedOldObjectId = ObjectId.zeroId();
+					else
+						expectedOldObjectId = advertisedRef.getObjectId();
+				} else
+					expectedOldObjectId = rru.getExpectedOldObjectId();
+				final RemoteRefUpdate newRru = new RemoteRefUpdate(rru,
+						expectedOldObjectId);
+				newUpdates.add(newRru);
+			}
+			spec.addURIRefUpdates(uri, newUpdates);
+		}
+		return spec;
+	}
+

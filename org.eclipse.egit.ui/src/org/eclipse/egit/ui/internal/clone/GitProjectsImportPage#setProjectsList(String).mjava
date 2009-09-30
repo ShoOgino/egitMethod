@@ -1,0 +1,71 @@
+	void setProjectsList(final String path) {
+		if (path == null || path.length() == 0) {
+			setMessage(UIText.WizardProjectsImportPage_ImportProjectsDescription);
+			selectedProjects = new ProjectRecord[0];
+			projectsList.refresh(true);
+			projectsList.setCheckedElements(selectedProjects);
+			setPageComplete(projectsList.getCheckedElements().length > 0);
+			lastPath = path;
+			return;
+		}
+
+		final File directory = new File(path);
+		long modified = directory.lastModified();
+		if (path.equals(lastPath) && lastModified == modified) {
+			return;
+		}
+
+		lastPath = path;
+		lastModified = modified;
+
+		try {
+			getContainer().run(true, true, new IRunnableWithProgress() {
+
+				public void run(IProgressMonitor monitor) {
+
+					monitor.beginTask(
+							UIText.WizardProjectsImportPage_SearchingMessage,
+							100);
+					selectedProjects = new ProjectRecord[0];
+					Collection<File> files = new ArrayList<File>();
+					monitor.worked(10);
+					if (directory.isDirectory()) {
+
+						if (!collectProjectFilesFromDirectory(files, directory,
+								null, monitor)) {
+							return;
+						}
+						Iterator<File> filesIterator = files.iterator();
+						selectedProjects = new ProjectRecord[files.size()];
+						int index = 0;
+						monitor.worked(50);
+						monitor
+								.subTask(UIText.WizardProjectsImportPage_ProcessingMessage);
+						while (filesIterator.hasNext()) {
+							File file = filesIterator.next();
+							selectedProjects[index] = new ProjectRecord(file);
+							index++;
+						}
+					} else {
+						monitor.worked(60);
+					}
+					monitor.done();
+				}
+
+			});
+		} catch (InvocationTargetException e) {
+			IDEWorkbenchPlugin.log(e.getMessage(), e);
+		} catch (InterruptedException e) {
+		}
+
+		projectsList.refresh(true);
+		projectsList.setCheckedElements(getValidProjects());
+		if (getValidProjects().length < selectedProjects.length) {
+			setMessage(UIText.WizardProjectsImportPage_projectsInWorkspace,
+					WARNING);
+		} else {
+			setMessage(UIText.WizardProjectsImportPage_ImportProjectsDescription);
+		}
+		setPageComplete(projectsList.getCheckedElements().length > 0);
+	}
+

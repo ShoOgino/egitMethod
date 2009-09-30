@@ -1,0 +1,4 @@
+	public PushResult getPushResult(final URIish uri) {
+		return urisEntries.get(uri).getResult();
+	}
+

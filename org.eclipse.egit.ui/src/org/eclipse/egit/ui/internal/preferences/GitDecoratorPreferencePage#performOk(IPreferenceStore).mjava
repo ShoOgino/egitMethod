@@ -1,0 +1,7 @@
+	private boolean performOk(IPreferenceStore store) {
+		generalTab.performOk(store);
+		textDecorationTab.performOk(store);
+		iconDecorationTab.performOk(store);
+		return true;
+	}
+

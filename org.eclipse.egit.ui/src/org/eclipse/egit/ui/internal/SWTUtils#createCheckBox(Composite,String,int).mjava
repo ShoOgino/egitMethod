@@ -1,0 +1,8 @@
+	public static Button createCheckBox(Composite parent, String message,
+			int span) {
+		final Button button = new Button(parent, SWT.CHECK);
+		button.setText(message);
+		button.setLayoutData(createHFillGridData(span));
+		return button;
+	}
+

@@ -1,0 +1,9 @@
+	public PushOperation(final Repository localDb,
+			final PushOperationSpecification specification,
+			final boolean dryRun, final RemoteConfig rc) {
+		this.localDb = localDb;
+		this.specification = specification;
+		this.dryRun = dryRun;
+		this.rc = rc;
+	}
+

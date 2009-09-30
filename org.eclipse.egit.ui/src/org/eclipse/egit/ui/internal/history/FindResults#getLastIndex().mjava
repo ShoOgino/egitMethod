@@ -1,0 +1,9 @@
+	public synchronized int getLastIndex() {
+		Integer[] matches = getkeysArray();
+		if (matches.length > 0) {
+			return matches[matches.length - 1].intValue();
+		}
+
+		return -1;
+	}
+

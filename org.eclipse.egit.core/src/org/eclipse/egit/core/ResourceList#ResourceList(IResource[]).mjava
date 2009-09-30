@@ -1,0 +1,4 @@
+	public ResourceList(final IResource[] items) {
+		list = items;
+	}
+

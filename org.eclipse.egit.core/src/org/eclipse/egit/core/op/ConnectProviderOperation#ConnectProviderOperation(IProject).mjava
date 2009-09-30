@@ -1,0 +1,4 @@
+	public ConnectProviderOperation(final IProject proj) {
+		this(new IProject[] { proj });
+	}
+

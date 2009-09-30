@@ -1,0 +1,4 @@
+	public CommitDialog(Shell parentShell) {
+		super(parentShell);
+	}
+

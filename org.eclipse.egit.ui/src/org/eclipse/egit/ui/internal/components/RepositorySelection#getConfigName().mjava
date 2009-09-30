@@ -1,0 +1,6 @@
+	public String getConfigName() {
+		if (isConfigSelected())
+			return config.getName();
+		return null;
+	}
+

@@ -1,0 +1,4 @@
+	public void addRefSpecTableListener(final SelectionChangeListener listener) {
+		listeners.add(listener);
+	}
+

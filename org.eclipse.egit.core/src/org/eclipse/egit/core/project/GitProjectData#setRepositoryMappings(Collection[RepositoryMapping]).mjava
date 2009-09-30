@@ -1,0 +1,6 @@
+	public void setRepositoryMappings(final Collection<RepositoryMapping> newMappings) {
+		mappings.clear();
+		mappings.addAll(newMappings);
+		remapAll();
+	}
+

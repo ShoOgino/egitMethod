@@ -1,0 +1,4 @@
+	public CheckboxTreeViewer getProjectsList() {
+		return projectsList;
+	}
+

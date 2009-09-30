@@ -1,0 +1,4 @@
+	public void setSourceFolder(IPackageFragmentRoot sourceFolder) {
+		this.sourceFolder = sourceFolder;
+	}
+

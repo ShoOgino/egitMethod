@@ -1,0 +1,4 @@
+	public IPackageFragmentRoot getSourceFolder() {
+		return sourceFolder;
+	}
+

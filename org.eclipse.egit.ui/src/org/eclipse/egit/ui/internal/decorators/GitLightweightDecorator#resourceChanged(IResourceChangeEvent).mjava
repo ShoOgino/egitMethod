@@ -1,0 +1,60 @@
+	public void resourceChanged(IResourceChangeEvent event) {
+		final Set<IResource> resourcesToUpdate = new HashSet<IResource>();
+
+		try { 			event.getDelta().accept(new IResourceDeltaVisitor() {
+				public boolean visit(IResourceDelta delta) throws CoreException {
+
+					if (delta.getKind() == IResourceDelta.CHANGED
+							&& (delta.getFlags() & INTERESTING_CHANGES) == 0) {
+						return true;
+					}
+
+					final IResource resource = delta.getResource();
+
+					final RepositoryMapping mapping = RepositoryMapping
+							.getMapping(resource);
+					if (mapping == null) {
+						return true;
+					}
+
+					if (resource.getType() == IResource.ROOT) {
+						return true;
+					}
+
+					if (resource.getType() == IResource.PROJECT) {
+						if (!resource.isAccessible())
+							return false;
+					}
+
+					resourcesToUpdate.add(resource);
+
+					if (delta.getKind() == IResourceDelta.CHANGED
+							&& (delta.getFlags() & IResourceDelta.OPEN) > 1)
+						return false; 					else
+						return true;
+				}
+			}, true );
+		} catch (final CoreException e) {
+			handleException(null, e);
+		}
+
+		if (resourcesToUpdate.isEmpty())
+			return;
+
+		final IPreferenceStore store = Activator.getDefault()
+				.getPreferenceStore();
+		if (store.getBoolean(UIPreferences.DECORATOR_RECOMPUTE_ANCESTORS)) {
+			final IResource[] changedResources = resourcesToUpdate
+					.toArray(new IResource[resourcesToUpdate.size()]);
+			for (IResource current : changedResources) {
+				while (current.getType() != IResource.ROOT) {
+					current = current.getParent();
+					resourcesToUpdate.add(current);
+				}
+			}
+		}
+
+		postLabelEvent(new LabelProviderChangedEvent(this, resourcesToUpdate
+				.toArray()));
+	}
+

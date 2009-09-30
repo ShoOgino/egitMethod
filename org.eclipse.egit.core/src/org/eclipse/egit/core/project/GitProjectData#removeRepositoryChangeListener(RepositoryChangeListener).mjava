@@ -1,0 +1,5 @@
+	public static synchronized void removeRepositoryChangeListener(
+			final RepositoryChangeListener objectThatCares) {
+		repositoryChangeListeners.remove(objectThatCares);
+	}
+

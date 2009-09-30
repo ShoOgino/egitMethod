@@ -1,0 +1,6 @@
+	public static void trace(final String what) {
+		if (getDefault().traceVerbose) {
+			System.out.println("[" + getPluginId() + "] " + what);
+		}
+	}
+

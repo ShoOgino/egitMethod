@@ -1,0 +1,4 @@
+	public void addSelectionListener(final SelectionChangeListener l) {
+		selectionListeners.add(l);
+	}
+

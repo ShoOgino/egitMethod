@@ -1,0 +1,5 @@
+		public void addOverlay(ImageDescriptor overlayImage) {
+			if (overlay == null)
+				overlay = overlayImage;
+		}
+

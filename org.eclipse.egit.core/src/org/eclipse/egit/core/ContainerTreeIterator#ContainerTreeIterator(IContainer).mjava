@@ -1,0 +1,6 @@
+	public ContainerTreeIterator(final IContainer base) {
+		super(computePrefix(base));
+		node = base;
+		init(entries());
+	}
+

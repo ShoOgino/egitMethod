@@ -1,0 +1,4 @@
+	public String getErrorMessage(final URIish uri) {
+		return urisEntries.get(uri).getErrorMessage();
+	}
+

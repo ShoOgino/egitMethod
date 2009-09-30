@@ -1,0 +1,4 @@
+	public ResetType getResetType() {
+		return resetType;
+	}
+

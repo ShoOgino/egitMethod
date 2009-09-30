@@ -1,0 +1,4 @@
+	PushOperationResult() {
+		this.urisEntries = new LinkedHashMap<URIish, Entry>();
+	}
+

@@ -1,0 +1,37 @@
+	public void decorate(Object element, IDecoration decoration) {
+		final IResource resource = getResource(element);
+		if (resource == null)
+			return;
+
+		if (!PlatformUI.isWorkbenchRunning())
+			return;
+
+		Activator activator = Activator.getDefault();
+		if (activator == null)
+			return;
+
+		if (resource.getType() == IResource.ROOT)
+			return;
+
+		if (!resource.exists() && !resource.isPhantom())
+			return;
+
+		final RepositoryMapping mapping = RepositoryMapping
+				.getMapping(resource);
+		if (mapping == null)
+			return;
+
+		if (mapping.getRepoRelativePath(resource) == null)
+			return;
+
+		try {
+			DecorationHelper helper = new DecorationHelper(activator
+					.getPreferenceStore());
+			helper.decorate(decoration,
+					new DecoratableResourceAdapter(resource));
+		} catch (IOException e) {
+			handleException(resource, new CoreException(new Status(
+					IStatus.ERROR, Activator.getPluginId(), e.getMessage(), e)));
+		}
+	}
+

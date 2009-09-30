@@ -1,0 +1,6 @@
+	public static GridData createHVFillGridData(int span) {
+		final GridData gd = createGridData(0, 0, true, true);
+		gd.horizontalSpan = span;
+		return gd;
+	}
+

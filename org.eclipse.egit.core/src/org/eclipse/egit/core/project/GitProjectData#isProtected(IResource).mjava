@@ -1,0 +1,4 @@
+	public boolean isProtected(final IResource f) {
+		return protectedResources.contains(f);
+	}
+

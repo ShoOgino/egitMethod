@@ -1,0 +1,9 @@
+	private void checkPreviousPagesSelections() {
+		if (!repoPage.selectionEquals(displayedRepoSelection)
+				|| !refSpecPage.specsSelectionEquals(displayedRefSpecs)) {
+			setPageComplete(true);
+		} else {
+			setPageComplete(confirmedResult != null);
+		}
+	}
+

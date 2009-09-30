@@ -1,0 +1,4 @@
+	public List<RefSpec> getRefSpecs() {
+		return Collections.unmodifiableList(specs);
+	}
+

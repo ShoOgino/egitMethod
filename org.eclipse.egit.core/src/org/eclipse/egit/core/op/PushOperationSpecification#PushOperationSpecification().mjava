@@ -1,0 +1,4 @@
+	public PushOperationSpecification() {
+		this.urisRefUpdates = new LinkedHashMap<URIish, Collection<RemoteRefUpdate>>();
+	}
+

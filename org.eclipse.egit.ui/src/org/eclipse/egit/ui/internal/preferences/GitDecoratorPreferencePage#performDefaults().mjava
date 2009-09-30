@@ -1,0 +1,9 @@
+	protected void performDefaults() {
+		IPreferenceStore store = getPreferenceStore();
+		generalTab.performDefaults(store);
+		textDecorationTab.performDefaults(store);
+		iconDecorationTab.performDefaults(store);
+		super.performDefaults();
+		preview.refresh();
+	}
+

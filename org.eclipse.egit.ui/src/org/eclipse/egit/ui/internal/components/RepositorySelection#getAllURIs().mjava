@@ -1,0 +1,8 @@
+	public List<URIish> getAllURIs() {
+		if (isURISelected())
+			return Collections.singletonList(uri);
+		if (isConfigSelected())
+			return config.getURIs();
+		return null;
+	}
+

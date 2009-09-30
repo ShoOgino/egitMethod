@@ -1,0 +1,8 @@
+	static void refreshRelevant(final Repository repository) throws IOException {
+		for (Map.Entry<GitDocument, Repository> i : doc2repo.entrySet()) {
+			if (i.getValue() == repository) {
+				i.getKey().populate();
+			}
+		}
+	}
+

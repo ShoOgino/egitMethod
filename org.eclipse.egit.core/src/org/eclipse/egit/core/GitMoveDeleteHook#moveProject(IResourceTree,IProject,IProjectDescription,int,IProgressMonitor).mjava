@@ -1,0 +1,6 @@
+	public boolean moveProject(final IResourceTree tree, final IProject source,
+			final IProjectDescription description, final int updateFlags,
+			final IProgressMonitor monitor) {
+		return FINISH_FOR_ME;
+	}
+

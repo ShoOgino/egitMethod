@@ -1,0 +1,5 @@
+	QuickdiffBaselineOperation(final Repository repository, final String baseline) {
+		super(repository);
+		this.baseline = baseline;
+	}
+

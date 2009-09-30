@@ -1,0 +1,4 @@
+	public ConnectProviderOperation(final IProject[] projects) {
+		this.projects = projects;
+	}
+

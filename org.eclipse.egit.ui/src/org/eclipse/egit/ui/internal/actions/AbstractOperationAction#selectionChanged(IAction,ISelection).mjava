@@ -1,0 +1,3 @@
+	public void selectionChanged(final IAction act, final ISelection sel) {
+	}
+

@@ -1,0 +1,4 @@
+	public static GridData createHFillGridData() {
+		return createHFillGridData(1);
+	}
+

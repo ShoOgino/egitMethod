@@ -1,0 +1,6 @@
+	public static GridData createGridData(int width, int height, boolean hFill,
+			boolean vFill) {
+		return createGridData(width, height, hFill ? SWT.FILL : SWT.BEGINNING,
+				vFill ? SWT.FILL : SWT.CENTER, hFill, vFill);
+	}
+

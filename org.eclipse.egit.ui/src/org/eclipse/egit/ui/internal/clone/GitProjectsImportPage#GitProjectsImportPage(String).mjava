@@ -1,0 +1,7 @@
+	public GitProjectsImportPage(String pageName) {
+		super(pageName);
+		setPageComplete(false);
+		setTitle(UIText.WizardProjectsImportPage_ImportProjectsTitle);
+		setDescription(UIText.WizardProjectsImportPage_ImportProjectsDescription);
+	}
+
