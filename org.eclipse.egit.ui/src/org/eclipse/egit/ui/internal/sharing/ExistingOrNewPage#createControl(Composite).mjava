@@ -24,21 +24,19 @@
 			Collection<RepositoryMapping> find;
 			try {
 				find = repositoryFinder.find(new NullProgressMonitor());
-				if (find.size() == 0)
-					treeItem.setText(2, ""); 				else {
-					Iterator<RepositoryMapping> mi = find.iterator();
+				Iterator<RepositoryMapping> mi = find.iterator();
+
+				final File gitDirInProjectRoot = project.getLocation().append(
+						".git").toFile(); 				if (!gitDirInProjectRoot.isDirectory()) {
+					treeItem.setText(2, ""); 				} else {
+					fillTreeItemWithGitDirectory(mi.next(), treeItem);
+				}
+
+				while (mi.hasNext()) {
 					RepositoryMapping m = mi.next();
-					if (m.getGitDir() == null)
-						treeItem.setText(2,UIText.ExistingOrNewPage_SymbolicValueEmptyMapping);
-					else
-						treeItem.setText(2, m.getGitDir());
-					while (mi.hasNext()) {
-						TreeItem treeItem2 = new TreeItem(treeItem, SWT.NONE);
-						if (m.getGitDir() == null)
-							treeItem2.setText(2,UIText.ExistingOrNewPage_SymbolicValueEmptyMapping);
-						else
-							treeItem2.setText(2,m.getGitDir());
-					}
+					TreeItem treeItem2 = new TreeItem(treeItem, SWT.NONE);
+					treeItem2.setData(m.getContainer().getProject());
+					fillTreeItemWithGitDirectory(m, treeItem2);
 				}
 			} catch (CoreException e) {
 				TreeItem treeItem2 = new TreeItem(treeItem, SWT.BOLD|SWT.ITALIC);
