@@ -1,0 +1,4 @@
+	public ConnectProviderOperation(final Map<IProject, File> projects) {
+		this.projects.putAll(projects);
+	}
+

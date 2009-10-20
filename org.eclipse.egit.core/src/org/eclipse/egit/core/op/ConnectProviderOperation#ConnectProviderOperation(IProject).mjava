@@ -1,4 +1,4 @@
 	public ConnectProviderOperation(final IProject proj) {
-		this(new IProject[] { proj });
+		this(proj, new File(".git"));
 	}
 

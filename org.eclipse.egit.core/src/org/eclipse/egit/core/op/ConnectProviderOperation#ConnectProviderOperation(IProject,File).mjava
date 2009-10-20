@@ -1,0 +1,4 @@
+	public ConnectProviderOperation(final IProject proj, File pathToRepo) {
+		this.projects.put(proj, pathToRepo);
+	}
+
