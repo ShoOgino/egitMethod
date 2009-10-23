@@ -4,7 +4,7 @@
 				project.getProject());
 		operation.run(null);
 
-		assertTrue(RepositoryProvider.isShared(project.getProject()));
+		assertFalse(RepositoryProvider.isShared(project.getProject()));
 		assertTrue(!gitDir.exists());
 	}
 
