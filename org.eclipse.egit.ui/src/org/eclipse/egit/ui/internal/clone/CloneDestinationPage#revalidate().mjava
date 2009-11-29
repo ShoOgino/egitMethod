@@ -8,7 +8,7 @@
 
 		if (!sourcePage.selectionEquals(validatedRepoSelection)) {
 			validatedRepoSelection = sourcePage.getSelection();
-			final String n = getSuggestedName();
+			final String n = validatedRepoSelection.getURI().getHumanishName();
 			setDescription(NLS.bind(UIText.CloneDestinationPage_description, n));
 			directoryText.setText(new File(ResourcesPlugin.getWorkspace()
 					.getRoot().getRawLocation().toFile(), n).getAbsolutePath());
