@@ -7,5 +7,7 @@
 		GitProjectData.addRepositoryChangeListener(this);
 		ResourcesPlugin.getWorkspace().addResourceChangeListener(this,
 				IResourceChangeEvent.POST_CHANGE);
+
+		ensureFontAndColorsCreated(fonts, colors);
 	}
 
