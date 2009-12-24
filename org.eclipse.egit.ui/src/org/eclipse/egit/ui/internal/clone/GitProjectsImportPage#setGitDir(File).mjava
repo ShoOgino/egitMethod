@@ -1,0 +1,4 @@
+	public void setGitDir(File gitDir) {
+		this.gitDir = gitDir;
+	}
+
