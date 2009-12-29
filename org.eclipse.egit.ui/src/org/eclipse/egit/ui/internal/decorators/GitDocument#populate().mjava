@@ -1,6 +1,5 @@
 	void populate() throws IOException {
-		Activator.trace("(GitDocument) populate: " + resource); 		final IProject project = resource.getProject();
-		RepositoryMapping mapping = RepositoryMapping.getMapping(project);
+		Activator.trace("(GitDocument) populate: " + resource); 		RepositoryMapping mapping = RepositoryMapping.getMapping(resource);
 		if (mapping == null) {
 			setResolved(null, null, null, ""); 			return;
 		}
