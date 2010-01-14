@@ -4,7 +4,7 @@
 			final IContainer c = rm.getContainer();
 			if (c == null)
 				continue; 
-			final IResource dotGit = c.findMember(".git");
+			final IResource dotGit = c.findMember(Constants.DOT_GIT);
 			if (dotGit != null) {
 				try {
 					final Repository r = rm.getRepository();
