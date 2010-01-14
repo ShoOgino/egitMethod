@@ -11,47 +11,34 @@
 
 		d.append("commit ");
 		d.append(commit.getId().name());
-		d.append("\n");
-
+		d.append("\n"); 
 		if (author != null) {
 			d.append("Author: ");
 			d.append(author.getName());
-			d.append(" <");
-			d.append(author.getEmailAddress());
-			d.append("> ");
-			d.append(fmt.format(author.getWhen()));
-			d.append("\n");
-		}
+			d.append(" <"); 			d.append(author.getEmailAddress());
+			d.append("> "); 			d.append(fmt.format(author.getWhen()));
+			d.append("\n"); 		}
 
 		if (committer != null) {
 			d.append("Committer: ");
 			d.append(committer.getName());
-			d.append(" <");
-			d.append(committer.getEmailAddress());
-			d.append("> ");
-			d.append(fmt.format(committer.getWhen()));
-			d.append("\n");
-		}
+			d.append(" <"); 			d.append(committer.getEmailAddress());
+			d.append("> "); 			d.append(fmt.format(committer.getWhen()));
+			d.append("\n"); 		}
 
 		for (int i = 0; i < commit.getParentCount(); i++) {
 			final RevCommit p = commit.getParent(i);
 			d.append("Parent: ");
 			addLink(d, styles, p);
-			d.append(" (");
-			d.append(p.getShortMessage());
-			d.append(")");
-			d.append("\n");
-		}
+			d.append(" ("); 			d.append(p.getShortMessage());
+			d.append(")"); 			d.append("\n"); 		}
 
 		for (int i = 0; i < commit.getChildCount(); i++) {
 			final RevCommit p = commit.getChild(i);
 			d.append("Child:  ");
 			addLink(d, styles, p);
-			d.append(" (");
-			d.append(p.getShortMessage());
-			d.append(")");
-			d.append("\n");
-		}
+			d.append(" ("); 			d.append(p.getShortMessage());
+			d.append(")"); 			d.append("\n"); 		}
 
 		makeGrayText(d, styles);
 		d.append("\n"); 		String msg = commit.getFullMessage();
@@ -64,6 +51,10 @@
 		}
 		int h0 = d.length();
 		d.append(msg);
+
+		d.append("\n"); 
+		addDiff(d);
+
 
 		Matcher matcher = p.matcher(msg);
 		while (matcher.find()) {
