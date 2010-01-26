@@ -1,0 +1,11 @@
+	@Ignore
+	public void invalidPortFreezesDialog() throws Exception {
+		RepoPropertiesPage repoProperties = importWizard.openWizard();
+		RepoRemoteBranchesPage remoteBranches = repoProperties
+				.nextToRemoteBranches("git://localhost:80/EGIT");
+		remoteBranches
+				.assertErrorMessage("git://localhost:80/EGIT: not found.");
+		remoteBranches.assertCannotProceed();
+		remoteBranches.cancel();
+	}
+
