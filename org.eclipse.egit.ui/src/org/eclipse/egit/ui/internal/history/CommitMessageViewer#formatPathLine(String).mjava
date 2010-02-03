@@ -1,0 +1,11 @@
+	private String formatPathLine(String path) {
+		int n = 80 - path.length() - 2;
+		if (n < 0 )
+			return path;
+		final StringBuilder d = new StringBuilder();
+		int i = 0;
+		for (; i < n/2; i++)
+			d.append("-"); 		d.append(" ").append(path).append(" "); 		for (; i < n - 1; i++)
+			d.append("-"); 		return d.toString();
+	}
+
