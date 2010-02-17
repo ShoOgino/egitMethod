@@ -8,13 +8,12 @@
 			}
 
 			final IProject project = (IProject) treeItem.getData();
-			final File selectedRepo = new File(treeItem.getText(2));
-			File localPathToRepo = selectedRepo;
-			if (selectedRepo.isAbsolute()) {
-				final URI projectLocation = project.getLocationURI();
-				localPathToRepo = new File(projectLocation.relativize(selectedRepo.toURI()).getPath());
+			final IPath selectedRepo = Path.fromOSString(treeItem.getText(2));
+			IPath localPathToRepo = selectedRepo;
+			if (!selectedRepo.isAbsolute()) {
+				localPathToRepo = project.getLocation().append(selectedRepo);
 			}
-			ret.put(project, localPathToRepo);
+			ret.put(project, localPathToRepo.toFile());
 		}
 		return ret;
 	}
