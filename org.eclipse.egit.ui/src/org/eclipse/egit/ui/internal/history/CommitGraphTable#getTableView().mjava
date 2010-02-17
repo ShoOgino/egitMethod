@@ -1,0 +1,4 @@
+	public TableViewer getTableView() {
+		return table;
+	}
+
