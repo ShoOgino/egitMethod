@@ -1,3 +1,4 @@
+	@Test
 	public void testSingleRevision_2() {
 		GitProvider provider = (GitProvider)RepositoryProvider.getProvider(project.project);
 		assertNotNull(provider);
