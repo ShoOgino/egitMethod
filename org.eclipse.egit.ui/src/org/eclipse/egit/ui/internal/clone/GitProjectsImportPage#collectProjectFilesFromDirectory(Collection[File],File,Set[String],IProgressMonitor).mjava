@@ -1,5 +1,6 @@
 	private boolean collectProjectFilesFromDirectory(Collection<File> files,
-			File directory, Set<String> directoriesVisited, IProgressMonitor monitor) {
+			File directory, Set<String> directoriesVisited,
+			IProgressMonitor monitor) {
 
 		if (monitor.isCanceled()) {
 			return false;

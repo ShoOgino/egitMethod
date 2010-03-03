@@ -1,4 +1,4 @@
-	public CheckboxTreeViewer getProjectsList() {
+	public TreeViewer getProjectsList() {
 		return projectsList;
 	}
 

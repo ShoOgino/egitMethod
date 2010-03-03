@@ -1,5 +1,5 @@
 	boolean createProjects() {
-		final Object[] selected = projectsList.getCheckedElements();
+		final Object[] selected = checkedItems.toArray();
 		WorkspaceModifyOperation op = new WorkspaceModifyOperation() {
 			protected void execute(IProgressMonitor monitor)
 					throws InvocationTargetException, InterruptedException {

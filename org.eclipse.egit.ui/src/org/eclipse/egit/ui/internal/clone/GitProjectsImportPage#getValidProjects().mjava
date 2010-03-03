@@ -5,7 +5,6 @@
 				validProjects.add(selectedProjects[i]);
 			}
 		}
-		return validProjects
-				.toArray(new ProjectRecord[validProjects.size()]);
+		return validProjects.toArray(new ProjectRecord[validProjects.size()]);
 	}
 
