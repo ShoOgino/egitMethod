@@ -27,6 +27,7 @@
 				protected IStatus run(final IProgressMonitor monitor) {
 					try {
 						op.run(monitor);
+						cloneSource.saveUriInPrefs(uri.toString());
 						return Status.OK_STATUS;
 					} catch (InterruptedException e) {
 						return Status.CANCEL_STATUS;
@@ -36,6 +37,7 @@
 								.getPluginId(), 0, thr.getMessage(), thr);
 					}
 				}
+
 			};
 			job.setUser(true);
 			job.schedule();
@@ -43,6 +45,7 @@
 		} else {
 			try {
 				getContainer().run(true, true, op);
+				cloneSource.saveUriInPrefs(uri.toString());
 				return true;
 			} catch (InterruptedException e) {
 				MessageDialog.openInformation(getShell(),
