@@ -1,0 +1,9 @@
+	private static boolean canUpdateIndex(GitIndex index) {
+		Entry[] members = index.getMembers();
+		for (int i = 0; i < members.length; i++) {
+			if (members[i].getStage() != 0)
+				return false;
+		}
+		return true;
+	}
+

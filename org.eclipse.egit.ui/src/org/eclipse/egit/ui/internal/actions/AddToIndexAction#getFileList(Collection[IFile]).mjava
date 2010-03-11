@@ -1,0 +1,7 @@
+	private static String getFileList(Collection<IFile> notAddedFiles) {
+		String result = "";  		for (IFile file : notAddedFiles) {
+			result += file.getName();
+			result += "\n"; 		}
+		return result;
+	}
+
