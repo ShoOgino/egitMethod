@@ -5,7 +5,6 @@
 		if (pLen > pfxLen)
 			return p.substring(pfxLen);
 		else if (p.length() == pfxLen - 1)
-			return "";
-		return null;
+			return "";  		return null;
 	}
 

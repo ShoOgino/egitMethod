@@ -7,8 +7,7 @@
 					unmarkTeamPrivate((IContainer) c[k]);
 				}
 				if (c[k].isTeamPrivateMember()) {
-					Activator.trace("notTeamPrivate " + c[k]);
-					c[k].setTeamPrivateMember(false);
+					Activator.trace("notTeamPrivate " + c[k]);  					c[k].setTeamPrivateMember(false);
 				}
 			}
 		}

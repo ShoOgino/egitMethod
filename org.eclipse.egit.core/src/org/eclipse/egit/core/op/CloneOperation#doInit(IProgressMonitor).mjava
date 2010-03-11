@@ -1,6 +1,6 @@
 	private void doInit(final IProgressMonitor monitor)
 			throws URISyntaxException, IOException {
-		monitor.setTaskName("Initializing local repository");
+		monitor.setTaskName(CoreText.CloneOperation_initializingRepository);
 
 		local = new Repository(gitdir);
 		local.create();
@@ -15,8 +15,8 @@
 		final String dst = Constants.R_REMOTES + remoteConfig.getName();
 		RefSpec wcrs = new RefSpec();
 		wcrs = wcrs.setForceUpdate(true);
-		wcrs = wcrs.setSourceDestination(Constants.R_HEADS + "*", dst + "/*");
-
+		wcrs = wcrs.setSourceDestination(Constants.R_HEADS
+				+ "*", dst + "/*"); 
 		if (allSelected) {
 			remoteConfig.addFetchRefSpec(wcrs);
 		} else {
@@ -25,17 +25,15 @@
 					remoteConfig.addFetchRefSpec(wcrs.expandFromSource(ref));
 		}
 
-		local.getConfig().setBoolean("core", null, "bare", false);
-
+		local.getConfig().setBoolean(
+				"core", null, "bare", false); 
 		remoteConfig.update(local.getConfig());
 
 		String branchName = branch.substring(Constants.R_HEADS.length());
 
 		local.getConfig().setString(RepositoryConfig.BRANCH_SECTION,
-				branchName, "remote", remoteName);
-		local.getConfig().setString(RepositoryConfig.BRANCH_SECTION,
-				branchName, "merge", branch);
-
+				branchName, "remote", remoteName); 		local.getConfig().setString(RepositoryConfig.BRANCH_SECTION,
+				branchName, "merge", branch); 
 		local.getConfig().save();
 	}
 

@@ -1,6 +1,5 @@
 	public static void attachToWorkspace(final boolean includeChange) {
-		trace("attachToWorkspace - addResourceChangeListener");
-		ResourcesPlugin.getWorkspace().addResourceChangeListener(
+		trace("attachToWorkspace - addResourceChangeListener");  		ResourcesPlugin.getWorkspace().addResourceChangeListener(
 				rcl,
 				(includeChange ? IResourceChangeEvent.POST_CHANGE : 0)
 						| IResourceChangeEvent.PRE_CLOSE

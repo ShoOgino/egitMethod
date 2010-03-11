@@ -1,4 +1,3 @@
 	private void trace(final String m) {
-		Activator.trace("(UpdateJob)"+m);
-	}
+		Activator.trace("(UpdateJob)"+m);  	}
 

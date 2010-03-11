@@ -5,12 +5,9 @@
 			if (first)
 				first = false;
 			else
-				sb.append(", ");
-			sb.append(uri);
-			sb.append(" (");
-			sb.append(getErrorMessage(uri));
-			sb.append(")");
-		}
+				sb.append(", ");  			sb.append(uri);
+			sb.append(" (");  			sb.append(getErrorMessage(uri));
+			sb.append(")"); 		}
 		return sb.toString();
 	}
 

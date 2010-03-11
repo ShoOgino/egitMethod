@@ -1,4 +1,3 @@
 	public String getComment() {
-		return "";
-	}
+		return "";  	}
 

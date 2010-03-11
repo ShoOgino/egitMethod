@@ -1,6 +1,5 @@
 	public static void delete(final IProject p) {
-		trace("delete(" + p.getName() + ")");
-		GitProjectData d = lookup(p);
+		trace("delete(" + p.getName() + ")");   		GitProjectData d = lookup(p);
 		if (d == null) {
 			try {
 				d = new GitProjectData(p).load();

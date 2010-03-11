@@ -9,7 +9,7 @@
 			}
 		}
 		dir.delete();
-		trace("deleteDataFor(" + getProject().getName() + ")");
-		uncache(getProject());
+		trace("deleteDataFor("  				+ getProject().getName()
+				+ ")");  		uncache(getProject());
 	}
 

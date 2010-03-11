@@ -1,4 +1,3 @@
 	public String toString() {
-		return "RepositoryMapping[" + containerPath + " -> " + gitdirPath + "]";
-	}
+		return "RepositoryMapping[" 				+ containerPath + " -> " 				+ gitdirPath + "]"; 	}
 

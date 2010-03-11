@@ -1,6 +1,5 @@
 	private synchronized static void uncache(final IProject p) {
 		if (projectDataCache.remove(p) != null) {
-			trace("uncacheDataFor(" + p.getName() + ")");
-		}
+			trace("uncacheDataFor(" 				+ p.getName() + ")"); 		}
 	}
 

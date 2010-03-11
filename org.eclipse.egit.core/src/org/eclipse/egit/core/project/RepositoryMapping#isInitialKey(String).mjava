@@ -1,4 +1,3 @@
 	static boolean isInitialKey(final String key) {
-		return key.endsWith(".gitdir");
-	}
+		return key.endsWith(".gitdir");  	}
 

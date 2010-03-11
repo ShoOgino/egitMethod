@@ -11,8 +11,7 @@
 					final File dotGitDir = dotGit.getLocation().toFile()
 							.getCanonicalFile();
 					if (dotGitDir.equals(r.getDirectory())) {
-						trace("teamPrivate " + dotGit);
-						dotGit.setTeamPrivateMember(true);
+						trace("teamPrivate " + dotGit);  						dotGit.setTeamPrivateMember(true);
 					}
 				} catch (IOException err) {
 					throw Activator.error(CoreText.Error_CanonicalFile, err);

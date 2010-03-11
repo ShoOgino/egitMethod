@@ -18,8 +18,8 @@
 						Entry entry = index.getEntry(repoPath);
 						if (entry != null) {
 							if (!entry.isAssumedValid()) {
-								System.out.println("Already tracked - skipping");
-								continue;
+								System.out
+										.println("Already tracked - skipping"); 								continue;
 							}
 						}
 					}
@@ -57,7 +57,7 @@
 				m.worked(200);
 			}
 			for (RepositoryMapping rm : tomerge.keySet()) {
-				m.setTaskName("Writing index for "+rm.getRepository().getDirectory());
+				m.setTaskName(NLS.bind(CoreText.TrackOperation_writingIndex, rm.getRepository().getDirectory()));
 				rm.getRepository().getIndex().write();
 			}
 		} catch (RuntimeException e) {
