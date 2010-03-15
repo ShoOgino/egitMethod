@@ -1,0 +1,8 @@
+	protected RepositorySearchDialog(Shell parentShell, String initialPath,
+			Collection<String> existingDirs) {
+		super(parentShell);
+		this.existingRepositoryDirs.addAll(existingDirs);
+		this.myInitialPath = initialPath;
+		setShellStyle(getShellStyle() | SWT.SHELL_TRIM);
+	}
+

@@ -1,0 +1,44 @@
+	private void scheduleRefresh() {
+
+		Job job = new Job("Refreshing Git Repositories view") { 
+			@Override
+			protected IStatus run(IProgressMonitor monitor) {
+
+				final List<Repository> input;
+				try {
+					input = getRepositoriesFromDirs(monitor);
+				} catch (InterruptedException e) {
+					return new Status(IStatus.ERROR, Activator.getPluginId(), e
+							.getMessage(), e);
+				}
+
+				Display.getDefault().syncExec(new Runnable() {
+
+					public void run() {
+						Object[] expanded = tv.getExpandedElements();
+						IStructuredSelection sel = (IStructuredSelection) tv
+								.getSelection();
+						tv.setInput(input);
+						tv.setExpandedElements(expanded);
+
+						Object selected = sel.getFirstElement();
+						if (selected != null)
+							tv.reveal(selected);
+					}
+				});
+
+				return new Status(IStatus.OK, Activator.getPluginId(), ""); 
+			}
+
+		};
+		job.setSystem(true);
+
+		IWorkbenchSiteProgressService service = (IWorkbenchSiteProgressService) getSite()
+				.getService(IWorkbenchSiteProgressService.class);
+
+		service.schedule(job);
+
+		scheduledJob = job;
+
+	}
+
