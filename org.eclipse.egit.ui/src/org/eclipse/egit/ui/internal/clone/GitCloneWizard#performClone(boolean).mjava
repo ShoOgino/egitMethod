@@ -44,7 +44,13 @@
 			return true;
 		} else {
 			try {
-				getContainer().run(true, true, op);
+				getContainer().run(true, true, new IRunnableWithProgress() {
+					public void run(IProgressMonitor monitor)
+							throws InvocationTargetException,
+							InterruptedException {
+						op.run(monitor);
+					}
+				});
 				cloneSource.saveUriInPrefs(uri.toString());
 				return true;
 			} catch (InterruptedException e) {
