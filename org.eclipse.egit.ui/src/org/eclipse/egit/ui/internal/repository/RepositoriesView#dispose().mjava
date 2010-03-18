@@ -1,0 +1,9 @@
+	@Override
+	public void dispose() {
+		if (this.scheduledJob != null) {
+			this.scheduledJob.cancel();
+			this.scheduledJob = null;
+		}
+		super.dispose();
+	}
+
