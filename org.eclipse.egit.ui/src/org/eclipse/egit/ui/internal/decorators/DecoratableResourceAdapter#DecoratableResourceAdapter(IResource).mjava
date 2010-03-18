@@ -8,7 +8,12 @@
 
 		store = Activator.getDefault().getPreferenceStore();
 
-		branch = repository.getBranch();
+		File gitDir = repository.getDirectory();
+		if (gitDir != null)
+			repositoryName = repository.getDirectory().getParentFile()
+					.getName();
+		else
+			repositoryName = ""; 		branch = repository.getBranch();
 
 		TreeWalk treeWalk = createThreeWayTreeWalk();
 		if (treeWalk == null)
