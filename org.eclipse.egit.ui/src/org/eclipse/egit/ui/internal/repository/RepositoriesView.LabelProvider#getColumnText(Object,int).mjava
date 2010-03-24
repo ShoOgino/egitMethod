@@ -8,6 +8,13 @@
 				return (directory.getName() + " - " + directory 						.getAbsolutePath());
 			case BRANCHES:
 				return RepositoryViewUITexts.RepositoriesView_Branches_Nodetext;
+			case REMOTES:
+				return RepositoryViewUITexts.RepositoriesView_RemotesNodeText;
+			case REMOTE:
+				String name = (String) node.getObject();
+				String url = node.getRepository().getConfig().getString(REMOTE,
+						name, URL);
+				if (url != null && !url.equals("")) 					name = name + " - " + url; 				return name;
 			case PROJECTS:
 				return RepositoryViewUITexts.RepositoriesView_ExistingProjects_Nodetext;
 			case REF:

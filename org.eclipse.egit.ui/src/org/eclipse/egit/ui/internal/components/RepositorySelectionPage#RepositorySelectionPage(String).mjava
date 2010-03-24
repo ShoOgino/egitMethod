@@ -1,0 +1,5 @@
+	public RepositorySelectionPage(String presetUri) {
+		this(true, null);
+		this.presetUri = presetUri;
+	}
+

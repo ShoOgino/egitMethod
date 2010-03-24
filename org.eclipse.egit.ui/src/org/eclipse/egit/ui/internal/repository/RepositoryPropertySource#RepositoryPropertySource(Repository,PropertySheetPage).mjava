@@ -1,0 +1,23 @@
+	public RepositoryPropertySource(Repository rep, PropertySheetPage page) {
+
+		myPage = page;
+
+		makeActions();
+		addActions();
+
+		effectiveConfig = rep.getConfig();
+		userHomeConfig = SystemReader.getInstance().openUserConfig();
+		File configFile = new File(rep.getDirectory(), "config"); 		repositoryConfig = new FileBasedConfig(configFile);
+
+		try {
+			effectiveConfig.load();
+			userHomeConfig.load();
+			repositoryConfig.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ConfigInvalidException e) {
+			e.printStackTrace();
+		}
+
+	}
+

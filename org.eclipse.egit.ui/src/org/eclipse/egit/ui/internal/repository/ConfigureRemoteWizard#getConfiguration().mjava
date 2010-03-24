@@ -1,0 +1,4 @@
+	public RepositoryConfig getConfiguration() {
+		return myConfiguration;
+	}
+

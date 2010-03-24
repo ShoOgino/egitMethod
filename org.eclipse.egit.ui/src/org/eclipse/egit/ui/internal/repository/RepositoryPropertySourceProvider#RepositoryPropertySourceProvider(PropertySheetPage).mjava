@@ -1,0 +1,4 @@
+	public RepositoryPropertySourceProvider(PropertySheetPage page) {
+		myPage = page;
+	}
+

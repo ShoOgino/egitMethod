@@ -1,0 +1,7 @@
+	public RepositoryRemotePropertySource(RepositoryConfig config,
+			String remoteName, PropertySheetPage page) {
+		myConfig = config;
+		myName = remoteName;
+		myPage = page;
+	}
+
