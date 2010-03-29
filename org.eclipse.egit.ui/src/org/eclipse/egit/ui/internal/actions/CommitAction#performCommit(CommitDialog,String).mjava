@@ -1,5 +1,6 @@
 	private void performCommit(CommitDialog commitDialog, String commitMessage)
 			throws TeamException {
+
 		IFile[] selectedItems = commitDialog.getSelectedFiles();
 
 		HashMap<Repository, Tree> treeMap = new HashMap<Repository, Tree>();

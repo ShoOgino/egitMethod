@@ -7,7 +7,10 @@
 					unmarkTeamPrivate((IContainer) c[k]);
 				}
 				if (c[k].isTeamPrivateMember()) {
-					Activator.trace("notTeamPrivate " + c[k]);  					c[k].setTeamPrivateMember(false);
+					if (GitTraceLocation.CORE.isActive())
+						GitTraceLocation.getTrace().trace(
+								GitTraceLocation.CORE.getLocation(),
+								"notTeamPrivate " + c[k]); 					c[k].setTeamPrivateMember(false);
 				}
 			}
 		}

@@ -20,7 +20,10 @@
 				if (projTree == null)
 					projTree = new Tree(repository);
 				treeMap.put(repository, projTree);
-				System.out.println("Orig tree id: " + projTree.getId()); 			}
+				if (GitTraceLocation.UI.isActive())
+					GitTraceLocation.getTrace().trace(
+							GitTraceLocation.UI.getLocation(),
+							"Orig tree id: " + projTree.getId()); 			}
 			GitIndex index = repository.getIndex();
 			String repoRelativePath = repositoryMapping
 					.getRepoRelativePath(file);
@@ -36,7 +39,10 @@
 				if (!thisfile.isFile()) {
 					index.remove(repositoryMapping.getWorkDir(), thisfile);
 					index.write();
-					System.out.println("Phantom file, so removing from index"); 					continue;
+					if (GitTraceLocation.UI.isActive())
+						GitTraceLocation.getTrace().trace(
+								GitTraceLocation.UI.getLocation(),
+								"Phantom file, so removing from index"); 					continue;
 				} else {
 					if (idxEntry.update(thisfile))
 						index.write();
@@ -49,7 +55,10 @@
 				TreeEntry newMember = projTree.findBlobMember(repoRelativePath);
 
 				newMember.setId(idxEntry.getObjectId());
-				System.out.println("New member id for " + repoRelativePath 						+ ": " + newMember.getId() + " idx id: " 						+ idxEntry.getObjectId());
+				if (GitTraceLocation.UI.isActive())
+					GitTraceLocation.getTrace().trace(
+							GitTraceLocation.UI.getLocation(),
+							"New member id for " + repoRelativePath 									+ ": " + newMember.getId() + " idx id: " 									+ idxEntry.getObjectId());
 			}
 		}
 	}

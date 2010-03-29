@@ -1,6 +1,10 @@
 	public void start(final BundleContext context) throws Exception {
 		super.start(context);
-		traceVerbose = isOptionSet("/trace/verbose");  		GitProjectData.reconfigureWindowCache();
+		Hashtable<String, String> props = new Hashtable<String, String>(4);
+		props.put(DebugOptions.LISTENER_SYMBOLICNAME, context.getBundle().getSymbolicName());
+		context.registerService(DebugOptionsListener.class.getName(), this, props);
+
+		GitProjectData.reconfigureWindowCache();
 		GitProjectData.attachToWorkspace(true);
 	}
 

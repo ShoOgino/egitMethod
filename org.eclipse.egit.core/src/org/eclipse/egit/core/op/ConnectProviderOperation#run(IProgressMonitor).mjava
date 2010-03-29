@@ -12,7 +12,12 @@
 				m.setTaskName(NLS.bind(
 						CoreText.ConnectProviderOperation_ConnectingProject,
 						project.getName()));
-				Activator.trace("Locating repository for " + project); 				Collection<RepositoryMapping> repos = new RepositoryFinder(
+				if (GitTraceLocation.CORE.isActive())
+					GitTraceLocation.getTrace().trace(
+							GitTraceLocation.CORE.getLocation(),
+							"Locating repository for " + project);
+
+				Collection<RepositoryMapping> repos = new RepositoryFinder(
 						project).find(new SubProgressMonitor(m, 40));
 				File suggestedRepo = projects.get(project);
 				RepositoryMapping actualMapping= findActualRepository(repos, suggestedRepo);
@@ -35,8 +40,10 @@
 							new SubProgressMonitor(m, 50));
 					m.worked(10);
 				} else {
-					Activator
-							.trace("Attempted to share project without repository ignored :" 									+ project);
+					if (GitTraceLocation.CORE.isActive())
+						GitTraceLocation.getTrace().trace(
+								GitTraceLocation.CORE.getLocation(),
+								"Attempted to share project without repository ignored :" 										+ project);
 					m.worked(60);
 				}
 			}

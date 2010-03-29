@@ -14,9 +14,13 @@
 						files.add((IFile) member);
 					category.add((IFile) member);
 				} else {
-					System.out.println("Couldn't find " + filename); 				}
-			} catch (Exception t) {
-				t.printStackTrace();
+					if (GitTraceLocation.UI.isActive())
+						GitTraceLocation.getTrace().trace(
+								GitTraceLocation.UI.getLocation(),
+								"Couldn't find " + filename); 				}
+			} catch (Exception e) {
+				if (GitTraceLocation.CORE.isActive())
+					GitTraceLocation.getTrace().trace(GitTraceLocation.CORE.getLocation(), e.getMessage(), e);
 				continue;
 			} 		}
 	}

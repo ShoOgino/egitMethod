@@ -4,6 +4,14 @@
 		lastBlob = blob != null ? blob.copy() : null;
 		set(value);
 		if (blob != null)
-			Activator.trace("(GitDocument) resolved " + resource + " to " + lastBlob + " in " + lastCommit + "/" + lastTree); 		else
-			Activator.trace("(GitDocument) unresolved " + resource); 	}
+			if (GitTraceLocation.UI.isActive())
+				GitTraceLocation
+						.getTrace()
+						.trace(
+								GitTraceLocation.UI.getLocation(),
+								"(GitDocument) resolved " + resource + " to " + lastBlob + " in " + lastCommit + "/" + lastTree); 			else
+			if (GitTraceLocation.UI.isActive())
+				GitTraceLocation.getTrace().trace(
+						GitTraceLocation.UI.getLocation(),
+						"(GitDocument) unresolved " + resource); 	}
 

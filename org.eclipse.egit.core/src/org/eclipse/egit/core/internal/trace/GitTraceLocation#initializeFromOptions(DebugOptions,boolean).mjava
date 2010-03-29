@@ -1,0 +1,15 @@
+	public static void initializeFromOptions(DebugOptions options, boolean pluginIsDebugging) {
+
+		if (pluginIsDebugging) {
+			myTrace = options.newDebugTrace(Activator.getPluginId());
+			for (GitTraceLocation loc : values()) {
+				boolean active = options.getBooleanOption(loc.getFullPath(), false);
+				loc.setActive(active);
+			}
+		} else {
+			for (GitTraceLocation loc : values()) {
+				loc.setActive(false);
+			}
+		}
+	}
+

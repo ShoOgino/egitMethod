@@ -11,7 +11,10 @@
 						if (!scanned.contains(r)) {
 							if (monitor.isCanceled())
 								break;
-							trace("Scanning " + r + " for changes"); 							scanned.add(r);
+							if (GitTraceLocation.UI.isActive())
+								GitTraceLocation.getTrace().trace(
+										GitTraceLocation.UI.getLocation(),
+										"Scanning " + r + " for changes"); 							scanned.add(r);
 							ISchedulingRule rule = p.getWorkspace().getRuleFactory().modifyRule(p);
 							getJobManager().beginRule(rule, monitor);
 							try {
@@ -24,9 +27,15 @@
 					monitor.worked(1);
 				}
 				monitor.done();
-				trace("Rescheduling " + getName() + " job"); 				schedule(REPO_SCAN_INTERVAL);
+				if (GitTraceLocation.UI.isActive())
+					GitTraceLocation.getTrace().trace(
+							GitTraceLocation.UI.getLocation(),
+							"Rescheduling " + getName() + " job"); 				schedule(REPO_SCAN_INTERVAL);
 			} catch (Exception e) {
-				trace("Stopped rescheduling " + getName() + "job"); 				return new Status(
+				if (GitTraceLocation.UI.isActive())
+					GitTraceLocation.getTrace().trace(
+							GitTraceLocation.UI.getLocation(),
+							"Stopped rescheduling " + getName() + "job"); 				return new Status(
 						IStatus.ERROR,
 						getPluginId(),
 						0,
