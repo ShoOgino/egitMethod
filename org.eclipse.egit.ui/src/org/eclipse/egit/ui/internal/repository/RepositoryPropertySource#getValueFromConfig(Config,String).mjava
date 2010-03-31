@@ -6,7 +6,6 @@
 		String name;
 
 		String[] valueList = null;
-		String value = null;
 		if (tok.countTokens() == 2) {
 			section = tok.nextToken();
 			subsection = null;
@@ -19,11 +18,6 @@
 			return null;
 		}
 
-		value = config.getString(section, subsection, name);
-
-		if (value != null)
-			return value;
-
 		valueList = config.getStringList(section, subsection, name);
 
 		if (valueList == null || valueList.length == 0)
@@ -33,7 +27,14 @@
 			return valueList[0];
 		}
 
-		return valueList;
+		StringBuilder sb = new StringBuilder();
+		for (String value: valueList){
+			sb.append('[');
+			sb.append(value);
+			sb.append(']');
+		}
+
+		return sb.toString();
 
 	}
 

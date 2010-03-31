@@ -1,4 +1,4 @@
-	private void scheduleRefresh() {
+	public void scheduleRefresh() {
 
 		Job job = new Job("Refreshing Git Repositories view") { 
 			@Override

@@ -1,6 +1,6 @@
-	public Set<String> getUrisFromPrefs() {
+	public List<String> getUrisFromPrefs() {
 
-		Set<String> uriStrings = new TreeSet<String>();
+		List<String> uriStrings = new ArrayList<String>();
 
 		IEclipsePreferences prefs = new InstanceScope().getNode(Activator
 				.getPluginId());

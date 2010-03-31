@@ -1,0 +1,4 @@
+	protected static IEclipsePreferences getPrefs() {
+		return new InstanceScope().getNode(Activator.getPluginId());
+	}
+

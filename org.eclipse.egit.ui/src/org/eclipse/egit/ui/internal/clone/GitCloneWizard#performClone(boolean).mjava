@@ -17,6 +17,15 @@
 			return false;
 		}
 
+		final RepositoriesView view;
+		IViewPart vp = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+				.getActivePage().findView(RepositoriesView.VIEW_ID);
+		if (vp != null) {
+			view = (RepositoriesView) vp;
+		} else {
+			view = null;
+		}
+
 		final CloneOperation op = new CloneOperation(uri, allSelected,
 				selectedBranches, workdir, branch, remoteName);
 		importProject.setGitDir(op.getGitDir());
@@ -28,6 +37,10 @@
 					try {
 						op.run(monitor);
 						cloneSource.saveUriInPrefs(uri.toString());
+						RepositoriesView.addDir(op.getGitDir());
+						if (view != null)
+							view.scheduleRefresh();
+
 						return Status.OK_STATUS;
 					} catch (InterruptedException e) {
 						return Status.CANCEL_STATUS;
@@ -52,6 +65,9 @@
 					}
 				});
 				cloneSource.saveUriInPrefs(uri.toString());
+				RepositoriesView.addDir(op.getGitDir());
+				if (view != null)
+					view.scheduleRefresh();
 				return true;
 			} catch (InterruptedException e) {
 				MessageDialog.openInformation(getShell(),

@@ -3,18 +3,43 @@
 		myConfiguration = repository.getConfig();
 		myRemoteName = remoteName;
 		pushMode = push;
-		if (myRemoteName == null) {
+		createMode = remoteName == null;
+		if (createMode) {
 			addPage(new SelectRemoteNamePage());
-			addPage(new RepositorySelectionPage(null));
+
+			RepositorySelectionPage sp = new RepositorySelectionPage(false,
+					null, myConfiguration.getString(RepositoriesView.REMOTE,
+							null, RepositoriesView.URL));
+			addPage(sp);
+
+			RefSpecPage rsp = new RefSpecPage(repository, false, sp);
+			addPage(rsp);
+
+			sp = new RepositorySelectionPage(true, null, myConfiguration
+					.getString(RepositoriesView.REMOTE, null,
+							RepositoriesView.PUSHURL));
+			addPage(sp);
+
+			rsp = new RefSpecPage(repository, true, sp);
+			addPage(rsp);
+
 			setWindowTitle(UIText.ConfigureRemoteWizard_WizardTitle_New);
+
 		} else {
-			RepositorySelectionPage sp = new RepositorySelectionPage(
-					myConfiguration.getString(RepositoriesView.REMOTE,
-							myRemoteName, RepositoriesView.URL));
+			RepositorySelectionPage sp;
+			if (pushMode) {
+				sp = new RepositorySelectionPage(pushMode, null,
+						myConfiguration.getString(RepositoriesView.REMOTE,
+								myRemoteName, RepositoriesView.PUSHURL));
+			} else {
+				sp = new RepositorySelectionPage(pushMode, null,
+						myConfiguration.getString(RepositoriesView.REMOTE,
+								myRemoteName, RepositoriesView.URL));
+			}
 
 			addPage(sp);
-			RefSpecPage rsp = new RefSpecPage(repository, pushMode, sp,
-					myRemoteName);
+			RefSpecPage rsp = new RefSpecPage(repository, pushMode, sp);
+			rsp.setConfigName(myRemoteName);
 			addPage(rsp);
 			setWindowTitle(NLS.bind(
 					UIText.ConfigureRemoteWizard_WizardTitle_Change,

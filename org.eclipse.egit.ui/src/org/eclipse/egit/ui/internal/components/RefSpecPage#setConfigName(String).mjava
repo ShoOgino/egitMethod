@@ -1,0 +1,4 @@
+	public void setConfigName(String configName) {
+		this.configName = configName;
+	}
+

@@ -1,26 +1,27 @@
 	public void saveUriInPrefs(String stringToAdd) {
 
-		Set<String> uriStrings = getUrisFromPrefs();
+		List<String> uriStrings = getUrisFromPrefs();
 
-		if (uriStrings.add(stringToAdd)) {
+		if (uriStrings.indexOf(stringToAdd) == 0)
+			return;
+		uriStrings.add(0, stringToAdd);
 
-			IEclipsePreferences prefs = new InstanceScope().getNode(Activator
-					.getPluginId());
+		IEclipsePreferences prefs = new InstanceScope().getNode(Activator
+				.getPluginId());
 
-			StringBuilder sb = new StringBuilder();
-			StringBuilder lb = new StringBuilder();
+		StringBuilder sb = new StringBuilder();
+		StringBuilder lb = new StringBuilder();
 
-			for (String uriString : uriStrings) {
-				sb.append(uriString);
-				lb.append(uriString.length());
-				lb.append(" "); 			}
-			prefs.put(USED_URIS_PREF, sb.toString());
-			prefs.put(USED_URIS_LENGTH_PREF, lb.toString());
+		for (String uriString : uriStrings) {
+			sb.append(uriString);
+			lb.append(uriString.length());
+			lb.append(" "); 		}
+		prefs.put(USED_URIS_PREF, sb.toString());
+		prefs.put(USED_URIS_LENGTH_PREF, lb.toString());
 
-			try {
-				prefs.flush();
-			} catch (BackingStoreException e) {
-			}
+		try {
+			prefs.flush();
+		} catch (BackingStoreException e) {
 		}
 	}
 

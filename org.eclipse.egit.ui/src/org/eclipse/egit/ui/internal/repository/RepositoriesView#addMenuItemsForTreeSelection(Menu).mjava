@@ -15,8 +15,7 @@
 
 		if (importableProjectsOnly) {
 			MenuItem sync = new MenuItem(men, SWT.PUSH);
-			sync
-					.setText(RepositoryViewUITexts.RepositoriesView_ImportProject_MenuItem);
+			sync.setText(UIText.RepositoriesView_ImportProject_MenuItem);
 
 			sync.addSelectionListener(new SelectionAdapter() {
 
@@ -89,8 +88,7 @@
 			final Ref ref = (Ref) node.getObject();
 
 			MenuItem checkout = new MenuItem(men, SWT.PUSH);
-			checkout
-					.setText(RepositoryViewUITexts.RepositoriesView_CheckOut_MenuItem);
+			checkout.setText(UIText.RepositoriesView_CheckOut_MenuItem);
 			checkout.addSelectionListener(new SelectionAdapter() {
 
 				@Override
@@ -113,11 +111,9 @@
 								new NullProgressMonitor());
 						scheduleRefresh();
 					} catch (CoreException e1) {
-						MessageDialog
-								.openError(
-										getSite().getShell(),
-										RepositoryViewUITexts.RepositoriesView_Error_WindowTitle,
-										e1.getMessage());
+						MessageDialog.openError(getSite().getShell(),
+								UIText.RepositoriesView_Error_WindowTitle, e1
+										.getMessage());
 					}
 
 				}
@@ -129,98 +125,9 @@
 
 			final Repository repo = (Repository) node.getObject();
 
-			MenuItem importProjects = new MenuItem(men, SWT.PUSH);
-			importProjects
-					.setText(RepositoryViewUITexts.RepositoriesView_ImportExistingProjects_MenuItem);
-			importProjects.addSelectionListener(new SelectionAdapter() {
-
-				@Override
-				public void widgetSelected(SelectionEvent e) {
-					Wizard wiz = new ExternalProjectImportWizard(repo
-							.getWorkDir().getAbsolutePath()) {
-
-						@Override
-						public void addPages() {
-							super.addPages();
-						}
-
-						@Override
-						public boolean performFinish() {
-
-							final Set<IPath> previousLocations = new HashSet<IPath>();
-							for (IProject project : ResourcesPlugin
-									.getWorkspace().getRoot().getProjects()) {
-								previousLocations.add(project.getLocation());
-							}
-
-							boolean success = super.performFinish();
-							if (success) {
-
-								IWorkspaceRunnable wsr = new IWorkspaceRunnable() {
-
-									public void run(IProgressMonitor monitor)
-											throws CoreException {
-										File gitDir = repo.getDirectory();
-										File gitWorkDir = repo.getWorkDir();
-										Path workPath = new Path(gitWorkDir
-												.getAbsolutePath());
-
-										for (IProject prj : ResourcesPlugin
-												.getWorkspace().getRoot()
-												.getProjects()) {
-
-											if (workPath.isPrefixOf(prj
-													.getLocation())) {
-												if (previousLocations
-														.contains(prj
-																.getLocation())) {
-													continue;
-												}
-												ConnectProviderOperation connectProviderOperation = new ConnectProviderOperation(
-														prj, gitDir);
-												connectProviderOperation
-														.run(new SubProgressMonitor(
-																monitor, 20));
-
-											}
-										}
-
-									}
-								};
-
-								try {
-									ResourcesPlugin.getWorkspace().run(
-											wsr,
-											ResourcesPlugin.getWorkspace()
-													.getRoot(),
-											IWorkspace.AVOID_UPDATE,
-											new NullProgressMonitor());
-									scheduleRefresh();
-								} catch (CoreException ce) {
-									MessageDialog
-											.openError(
-													getShell(),
-													RepositoryViewUITexts.RepositoriesView_Error_WindowTitle,
-													ce.getMessage());
-								}
-
-							}
-							return success;
-						}
-
-					};
-
-					WizardDialog dlg = new WizardDialog(getSite().getShell(),
-							wiz);
-					dlg.open();
-				}
-
-			});
-
 
 			MenuItem remove = new MenuItem(men, SWT.PUSH);
-			remove
-					.setText(RepositoryViewUITexts.RepositoriesView_Remove_MenuItem);
+			remove.setText(UIText.RepositoriesView_Remove_MenuItem);
 			remove.addSelectionListener(new SelectionAdapter() {
 
 				@Override
@@ -256,7 +163,7 @@
 								}
 							}
 
-							removeDir(repo.getDirectory().getAbsolutePath());
+							removeDir(repo.getDirectory());
 							scheduleRefresh();
 						}
 					};
@@ -276,9 +183,10 @@
 
 
 
+			new MenuItem(men, SWT.SEPARATOR);
+
 			MenuItem openPropsView = new MenuItem(men, SWT.PUSH);
-			openPropsView
-					.setText(RepositoryViewUITexts.RepositoriesView_OpenPropertiesMenu);
+			openPropsView.setText(UIText.RepositoriesView_OpenPropertiesMenu);
 			openPropsView.addSelectionListener(new SelectionAdapter() {
 
 				@Override
@@ -297,8 +205,7 @@
 		if (node.getType() == RepositoryTreeNodeType.REMOTES) {
 
 			MenuItem remoteConfig = new MenuItem(men, SWT.PUSH);
-			remoteConfig
-					.setText(RepositoryViewUITexts.RepositoriesView_NewRemoteMenu);
+			remoteConfig.setText(UIText.RepositoriesView_NewRemoteMenu);
 			remoteConfig.addSelectionListener(new SelectionAdapter() {
 
 				@Override
@@ -319,7 +226,7 @@
 
 			MenuItem configureUrlFetch = new MenuItem(men, SWT.PUSH);
 			configureUrlFetch
-					.setText(RepositoryViewUITexts.RepositoriesView_ConfigureFetchMenu);
+					.setText(UIText.RepositoriesView_ConfigureFetchMenu);
 			configureUrlFetch.addSelectionListener(new SelectionAdapter() {
 
 				@Override
@@ -335,8 +242,7 @@
 			});
 
 			MenuItem configureUrlPush = new MenuItem(men, SWT.PUSH);
-			configureUrlPush
-					.setText(RepositoryViewUITexts.RepositoriesView_ConfigurePushMenu);
+			configureUrlPush.setText(UIText.RepositoriesView_ConfigurePushMenu);
 			configureUrlPush.addSelectionListener(new SelectionAdapter() {
 
 				@Override
@@ -354,8 +260,7 @@
 			new MenuItem(men, SWT.SEPARATOR);
 
 			MenuItem removeRemote = new MenuItem(men, SWT.PUSH);
-			removeRemote
-					.setText(RepositoryViewUITexts.RepositoriesView_RemoveRemoteMenu);
+			removeRemote.setText(UIText.RepositoriesView_RemoveRemoteMenu);
 			removeRemote.addSelectionListener(new SelectionAdapter() {
 
 				@Override
@@ -364,10 +269,10 @@
 					boolean ok = MessageDialog
 							.openConfirm(
 									getSite().getShell(),
-									RepositoryViewUITexts.RepositoriesView_ConfirmDeleteRemoteHeader,
+									UIText.RepositoriesView_ConfirmDeleteRemoteHeader,
 									NLS
 											.bind(
-													RepositoryViewUITexts.RepositoriesView_ConfirmDeleteRemoteMessage,
+													UIText.RepositoriesView_ConfirmDeleteRemoteMessage,
 													name));
 					if (ok) {
 						RepositoryConfig config = node.getRepository()
@@ -377,11 +282,9 @@
 							config.save();
 							scheduleRefresh();
 						} catch (IOException e1) {
-							MessageDialog
-									.openError(
-											getSite().getShell(),
-											RepositoryViewUITexts.RepositoriesView_ErrorHeader,
-											e1.getMessage());
+							MessageDialog.openError(getSite().getShell(),
+									UIText.RepositoriesView_ErrorHeader, e1
+											.getMessage());
 						}
 					}
 
@@ -392,8 +295,7 @@
 			new MenuItem(men, SWT.SEPARATOR);
 
 			MenuItem openPropsView = new MenuItem(men, SWT.PUSH);
-			openPropsView
-					.setText(RepositoryViewUITexts.RepositoriesView_OpenPropertiesMenu);
+			openPropsView.setText(UIText.RepositoriesView_OpenPropertiesMenu);
 			openPropsView.addSelectionListener(new SelectionAdapter() {
 
 				@Override
@@ -408,5 +310,45 @@
 
 			});
 		}
+
+		if (node.getType() == RepositoryTreeNodeType.FILE) {
+
+			final File file = (File) node.getObject();
+
+			MenuItem openInTextEditor = new MenuItem(men, SWT.PUSH);
+			openInTextEditor
+					.setText(UIText.RepositoriesView_OpenInTextEditor_menu);
+			openInTextEditor.addSelectionListener(new SelectionAdapter() {
+
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					IFileStore store = EFS.getLocalFileSystem().getStore(
+							new Path(file.getAbsolutePath()));
+					try {
+						IDE.openEditor(getSite().getPage(),
+								new FileStoreEditorInput(store),
+								EditorsUI.DEFAULT_TEXT_EDITOR_ID);
+
+					} catch (PartInitException e1) {
+						MessageDialog.openError(getSite().getShell(),
+								UIText.RepositoriesView_Error_WindowTitle, e1
+										.getMessage());
+					}
+
+				}
+
+			});
+		}
+
+		if (node.getType() == RepositoryTreeNodeType.FOLDER) {
+			String path = ((File) node.getObject()).getAbsolutePath();
+			createImportProjectItem(men, node.getRepository(), path);
+		}
+
+		if (node.getType() == RepositoryTreeNodeType.WORKINGDIR) {
+			String path = node.getRepository().getWorkDir().getAbsolutePath();
+			createImportProjectItem(men, node.getRepository(), path);
+		}
+
 	}
 
