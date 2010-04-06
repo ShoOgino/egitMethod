@@ -14,7 +14,7 @@
 						trace("teamPrivate " + dotGit);  						dotGit.setTeamPrivateMember(true);
 					}
 				} catch (IOException err) {
-					throw Activator.error(CoreText.Error_CanonicalFile, err);
+					throw new CoreException(Activator.error(CoreText.Error_CanonicalFile, err));
 				}
 			}
 		}
