@@ -1,0 +1,20 @@
+	private void getAllMembersHelper(IResource res, ArrayList<IResource> ret) {
+		ArrayList<IResource> tmp = new ArrayList<IResource> ();
+		if (res instanceof IContainer) {
+			IContainer cont = (IContainer) res;
+			try {
+				for (IResource r : cont.members()) {
+					if (r.getLocation().toFile().isFile()) {
+						tmp.add(r);
+					} else {
+						getAllMembersHelper(r, tmp);
+					}
+				}
+			} catch (CoreException e) {
+				return;
+			}
+
+			ret.addAll(tmp);
+		}
+	}
+
