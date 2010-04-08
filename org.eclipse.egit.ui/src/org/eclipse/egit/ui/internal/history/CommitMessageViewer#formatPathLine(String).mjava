@@ -5,7 +5,8 @@
 		final StringBuilder d = new StringBuilder();
 		int i = 0;
 		for (; i < n/2; i++)
-			d.append("-"); 		d.append(" ").append(path).append(" "); 		for (; i < n - 1; i++)
+			d.append("-"); 		d.append(SPACE).append(path).append(SPACE);
+		for (; i < n - 1; i++)
 			d.append("-"); 		return d.toString();
 	}
 

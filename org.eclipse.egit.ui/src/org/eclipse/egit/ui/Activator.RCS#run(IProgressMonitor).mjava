@@ -2,7 +2,7 @@
 		protected IStatus run(IProgressMonitor monitor) {
 			try {
 				IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
-				monitor.beginTask("Scanning Git repositories for changes", projects.length);
+				monitor.beginTask(UIText.Activator_scanningRepositories, projects.length);
 				Set<Repository> scanned = new HashSet<Repository>();
 				for (IProject p : projects) {
 					RepositoryMapping mapping = RepositoryMapping.getMapping(p);
@@ -40,7 +40,7 @@
 						IStatus.ERROR,
 						getPluginId(),
 						0,
-						"An error occurred while scanning for changes. Scanning aborted",
+						UIText.Activator_scanError,
 						e);
 			}
 			return Status.OK_STATUS;
