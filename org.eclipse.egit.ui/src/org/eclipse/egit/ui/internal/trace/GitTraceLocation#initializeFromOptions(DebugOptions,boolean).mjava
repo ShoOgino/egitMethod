@@ -3,6 +3,7 @@
 
 		if (pluginIsDebugging) {
 			myTrace = new DebugTraceImpl();
+
 			for (GitTraceLocation loc : values()) {
 				boolean active = options.getBooleanOption(loc.getFullPath(),
 						false);

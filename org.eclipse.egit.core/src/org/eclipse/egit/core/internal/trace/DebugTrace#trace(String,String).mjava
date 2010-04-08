@@ -1,0 +1,2 @@
+	public void trace(String location, String message);
+

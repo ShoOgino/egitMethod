@@ -1,0 +1,4 @@
+	public static DebugTrace getTrace() {
+		return GitTraceLocation.myTrace;
+	}
+
