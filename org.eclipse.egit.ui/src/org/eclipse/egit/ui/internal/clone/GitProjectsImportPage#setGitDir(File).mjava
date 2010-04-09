@@ -1,4 +1,4 @@
 	public void setGitDir(File gitDir) {
-		this.gitDir = gitDir;
+		this.gitRepositoryDir = gitDir;
 	}
 
