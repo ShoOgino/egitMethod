@@ -1,4 +1,6 @@
+	@Override
 	public void execute(IAction action) {
-		run(action);
+		TeamUI.getHistoryView().showHistoryFor(
+				new ResourceList(getSelectedResources()));
 	}
 
