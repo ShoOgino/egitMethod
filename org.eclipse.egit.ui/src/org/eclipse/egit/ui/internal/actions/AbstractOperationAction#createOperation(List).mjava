@@ -1,0 +1,2 @@
+	protected abstract IWorkspaceRunnable createOperation(final List selection);
+
