@@ -1,0 +1,4 @@
+	public int getSelectedIndex() {
+		return combo.getSelectionIndex();
+	}
+

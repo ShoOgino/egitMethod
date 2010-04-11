@@ -1,0 +1,4 @@
+	public void setExistingTags(List<Tag> existingTags) {
+		this.existingTags = existingTags;
+	}
+

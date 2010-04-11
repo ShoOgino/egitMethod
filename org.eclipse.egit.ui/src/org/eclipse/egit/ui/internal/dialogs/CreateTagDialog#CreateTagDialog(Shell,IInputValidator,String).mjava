@@ -1,0 +1,7 @@
+	public CreateTagDialog(Shell parent, IInputValidator tagNameValidator,
+			String branchName) {
+		super(parent);
+		this.tagNameValidator = tagNameValidator;
+		this.branchName = branchName;
+	}
+

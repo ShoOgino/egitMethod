@@ -1,0 +1,5 @@
+	public ObjectId getValue() {
+		int selectionIndex = combo.getSelectionIndex();
+		return -1 != selectionIndex ? getItem(selectionIndex) : null;
+	}
+

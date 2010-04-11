@@ -1,0 +1,9 @@
+	public ObjectId getItem(int index) {
+		checkWidget();
+
+		if (!(0 <= index && index < commits.size())) {
+			SWT.error(SWT.ERROR_INVALID_RANGE);
+		}
+		return commits.get(index).objectId;
+	}
+

@@ -1,0 +1,4 @@
+	public ObjectId getTagCommit() {
+		return tagCommit;
+	}
+

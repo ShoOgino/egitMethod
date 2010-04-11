@@ -1,0 +1,32 @@
+	public CommitCombo(Composite parent, int style) {
+		super(parent, style);
+
+		combo = new Combo(this, SWT.DROP_DOWN);
+		commits = new ArrayList<ComboCommitEnt>();
+
+		setLayout(GridLayoutFactory.swtDefaults().create());
+		setLayoutData(GridDataFactory.fillDefaults().create());
+
+		GridData totalLabelData = new GridData();
+		totalLabelData.horizontalAlignment = SWT.FILL;
+		totalLabelData.grabExcessHorizontalSpace = true;
+		combo.setLayoutData(totalLabelData);
+		combo.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (null == getValue())
+					combo.setText(""); 			}
+		});
+
+		UIUtils
+				.addBulbDecorator(combo,
+						UIText.CommitCombo_showSuggestedCommits);
+
+		ContentProposalAdapter adapter = new ContentProposalAdapter(combo,
+				new ComboContentAdapter(), new CommitContentProposalProvider(),
+				null, null);
+		adapter.setPropagateKeys(true);
+		adapter
+				.setProposalAcceptanceStyle(ContentProposalAdapter.PROPOSAL_REPLACE);
+	}
+

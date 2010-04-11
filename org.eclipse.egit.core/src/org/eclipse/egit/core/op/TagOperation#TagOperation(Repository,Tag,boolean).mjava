@@ -1,0 +1,6 @@
+	public TagOperation(Repository repo, Tag tag, boolean shouldMoveTag) {
+		this.tag = tag;
+		this.repo = repo;
+		this.shouldMoveTag = shouldMoveTag;
+	}
+

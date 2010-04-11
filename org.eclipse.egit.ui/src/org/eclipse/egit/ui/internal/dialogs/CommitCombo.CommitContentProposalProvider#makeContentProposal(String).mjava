@@ -1,0 +1,20 @@
+		private IContentProposal makeContentProposal(final String proposal) {
+			return new IContentProposal() {
+				public String getContent() {
+					return proposal;
+				}
+
+				public String getDescription() {
+					return null;
+				}
+
+				public String getLabel() {
+					return null;
+				}
+
+				public int getCursorPosition() {
+					return proposal.length();
+				}
+			};
+		}
+

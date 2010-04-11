@@ -1,0 +1,4 @@
+	public void clearSelection() {
+		combo.clearSelection();
+		combo.setText(""); 	}
+

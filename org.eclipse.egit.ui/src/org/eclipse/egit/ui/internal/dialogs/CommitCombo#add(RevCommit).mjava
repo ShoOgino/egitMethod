@@ -1,0 +1,9 @@
+	public void add(RevCommit revCommit) {
+		Assert.isNotNull(revCommit);
+		checkWidget();
+
+		String shortSha1 = revCommit.getName().substring(0, 8);
+		String message = shortSha1 + ": " + revCommit.getShortMessage(); 		combo.add(message);
+		commits.add(new ComboCommitEnt(revCommit.getId(), message));
+	}
+

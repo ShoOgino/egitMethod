@@ -1,0 +1,12 @@
+	public void setSelectedElement(ObjectId objectId) {
+		if (objectId == null) {
+			return;
+		}
+
+		for (int i = 0; i < commits.size(); i++)
+			if (objectId.equals(commits.get(i).objectId)) {
+				combo.select(i);
+				break;
+			}
+	}
+
