@@ -13,7 +13,7 @@
 			repositoryName = repository.getDirectory().getParentFile()
 					.getName();
 		else
-			repositoryName = ""; 		branch = repository.getBranch();
+			repositoryName = ""; 		branch = getShortBranch();
 
 		TreeWalk treeWalk = createThreeWayTreeWalk();
 		if (treeWalk == null)
