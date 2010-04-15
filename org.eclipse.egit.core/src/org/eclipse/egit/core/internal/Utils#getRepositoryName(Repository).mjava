@@ -1,0 +1,10 @@
+	public static String getRepositoryName(Repository repository) {
+		String repositoryName;
+		File gitDir = repository.getDirectory();
+		if (gitDir != null)
+			repositoryName = repository.getDirectory().getParentFile()
+					.getName();
+		else
+			repositoryName = ""; 		return repositoryName;
+	}
+
