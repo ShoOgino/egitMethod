@@ -5,7 +5,7 @@
 		if (items.length == 0)
 			return ""; 
 		final StringBuilder b = new StringBuilder();
-		b.append(items[0].getProject().getName());
+		b.append(db.getDirectory().getParentFile().getName());
 		if (currentWalk.getRevFilter() != RevFilter.ALL) {
 			b.append(": "); 			b.append(currentWalk.getRevFilter());
 		}
