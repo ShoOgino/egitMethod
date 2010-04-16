@@ -1,0 +1,4 @@
+		public EmptyTypedElement(String name) {
+			this.name = name;
+		}
+
