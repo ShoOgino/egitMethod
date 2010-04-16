@@ -1,0 +1,4 @@
+	public void setShowUntracked(boolean showUntracked) {
+		this.showUntracked = showUntracked;
+	}
+
