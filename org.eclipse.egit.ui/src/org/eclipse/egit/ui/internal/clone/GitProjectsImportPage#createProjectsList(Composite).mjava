@@ -27,6 +27,17 @@
 				return super.isElementVisible(viewer, element);
 			}
 
+			@Override
+			public void setPattern(String patternString) {
+				super.setPattern(patternString);
+				Display.getDefault().asyncExec(new Runnable() {
+					public void run() {
+						enableSelectAllButtons();
+					}
+				});
+
+			}
+
 		};
 
 		FilteredTree filteredTree = new FilteredTree(listComposite, SWT.CHECK
