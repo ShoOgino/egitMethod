@@ -103,9 +103,11 @@
 				}
 			});
 		}
-		createButton(parent, IDialogConstants.OK_ID,
+		confirmationBtn = createButton(parent, IDialogConstants.OK_ID,
 				showResetType ? UIText.BranchSelectionDialog_OkReset
 						: UIText.BranchSelectionDialog_OkCheckout, true);
 		createButton(parent, IDialogConstants.CANCEL_ID, IDialogConstants.CANCEL_LABEL, false);
+
+		confirmationBtn.setEnabled(branchTree.getSelectionCount() != 0);
 	}
 
