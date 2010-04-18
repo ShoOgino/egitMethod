@@ -1,0 +1,6 @@
+	public GitSynchronizeData(Repository repository, String srcRef,
+			String dstRef, IProject project, boolean includeLocal) {
+		this(repository, srcRef, dstRef, new HashSet<IProject>(Arrays
+				.asList(project)), includeLocal);
+	}
+

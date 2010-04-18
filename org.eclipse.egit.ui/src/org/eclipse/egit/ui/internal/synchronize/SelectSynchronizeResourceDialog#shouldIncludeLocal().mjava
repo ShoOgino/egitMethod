@@ -1,0 +1,4 @@
+	public boolean shouldIncludeLocal() {
+		return shouldIncluldeLocal;
+	}
+

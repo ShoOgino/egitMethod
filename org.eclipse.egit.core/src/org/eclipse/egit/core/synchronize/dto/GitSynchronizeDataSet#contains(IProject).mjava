@@ -1,0 +1,4 @@
+	public boolean contains(IProject project) {
+		return projectMapping.containsKey(project);
+	}
+

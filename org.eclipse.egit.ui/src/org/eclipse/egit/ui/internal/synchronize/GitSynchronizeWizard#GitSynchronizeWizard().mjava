@@ -1,0 +1,4 @@
+	public GitSynchronizeWizard() {
+		setWindowTitle(UIText.GitSynchronizeWizard_synchronize);
+	}
+

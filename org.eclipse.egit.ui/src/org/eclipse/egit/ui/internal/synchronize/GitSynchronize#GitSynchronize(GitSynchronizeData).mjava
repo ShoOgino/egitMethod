@@ -1,0 +1,4 @@
+	public GitSynchronize(GitSynchronizeData data) {
+		this(new GitSynchronizeDataSet(data));
+	}
+

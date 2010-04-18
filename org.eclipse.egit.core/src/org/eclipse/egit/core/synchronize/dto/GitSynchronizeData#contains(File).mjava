@@ -1,0 +1,4 @@
+	public boolean contains(File file) {
+		return file.getAbsoluteFile().toString().startsWith(repoParentPath);
+	}
+

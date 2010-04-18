@@ -1,0 +1,4 @@
+	public ObjectId getSrcObjectId() throws IOException {
+		return getObjecId(srcRev);
+	}
+

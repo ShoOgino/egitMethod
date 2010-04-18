@@ -1,0 +1,11 @@
+	public String getValue() {
+		int refSelectedIndex = refsCombo.getSelectionIndex();
+		int remoteSelectedIndex = remotesCombo.getSelectionIndex();
+
+		if (remoteSelectedIndex < 0 && refSelectedIndex < 0) {
+			return ""; 		}
+
+		return syncRepos.get(remoteSelectedIndex).getRefList().get(
+				refSelectedIndex).getValue();
+	}
+

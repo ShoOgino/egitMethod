@@ -1,0 +1,10 @@
+	private boolean contains(File file) {
+		for (GitSynchronizeData gsd : gsdData) {
+			if (gsd.contains(file)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+

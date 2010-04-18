@@ -1,0 +1,4 @@
+	public void addRef(SyncRefEntity ref) {
+		refs.add(ref);
+	}
+

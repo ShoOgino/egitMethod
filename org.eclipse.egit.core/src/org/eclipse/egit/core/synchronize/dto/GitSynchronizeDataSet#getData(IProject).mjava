@@ -1,0 +1,4 @@
+	public GitSynchronizeData getData(IProject project) {
+		return projectMapping.get(project);
+	}
+

@@ -1,0 +1,4 @@
+	public List<SyncRefEntity> getRefList() {
+		return Collections.unmodifiableList(refs);
+	}
+

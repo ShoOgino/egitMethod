@@ -1,0 +1,4 @@
+	public Set<IProject> getProjects() {
+		return Collections.unmodifiableSet(projects);
+	}
+
