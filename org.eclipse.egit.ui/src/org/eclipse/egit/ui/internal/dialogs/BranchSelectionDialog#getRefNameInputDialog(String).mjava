@@ -5,6 +5,9 @@
 				prompt,
 				null, new IInputValidator() {
 					public String isValid(String newText) {
+						if (newText.length() == 0) {
+							return ""; 						}
+
 						String testFor = Constants.R_HEADS + newText;
 						try {
 							if (repo.resolve(testFor) != null)
