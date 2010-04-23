@@ -1,0 +1,7 @@
+	public void setCompareMode(boolean compareMode) {
+		if (compareModeAction!=null) {
+			this.compareMode = compareMode;
+			compareModeAction.setChecked(compareMode);
+		}
+	}
+
