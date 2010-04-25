@@ -20,7 +20,6 @@
 
 			}
 		});
-		tv.getTree().getColumn(0).setWidth(700);
 
 		addContextMenu();
 

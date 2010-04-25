@@ -1,9 +1,6 @@
 	RepositoriesViewLabelProvider(final TreeViewer viewer) {
 
 		viewer.setLabelProvider(this);
-		Tree tree = viewer.getTree();
-		TreeColumn col = new TreeColumn(tree, SWT.NONE);
-		col.setWidth(400);
 
 
 	}
