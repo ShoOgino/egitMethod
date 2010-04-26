@@ -1,3 +1,6 @@
 	public GitProjectsImportPage() {
-		this("gitWizardExternalProjectsPage"); 	}
+		super("gitWizardExternalProjectsPage"); 		setPageComplete(false);
+		setTitle(UIText.WizardProjectsImportPage_ImportProjectsTitle);
+		setDescription(UIText.WizardProjectsImportPage_ImportProjectsDescription);
+	}
 

@@ -1,0 +1,7 @@
+	public GitImportProjectsWizard(Repository repository, String path) {
+		super();
+		myWorkingDir = path;
+		myGitDir = repository.getDirectory();
+		setWindowTitle("Import existing projects");
+	}
+
