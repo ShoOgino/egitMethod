@@ -1,4 +1,4 @@
 	public String getRefName() {
-		return refName;
+		return this.selectedBranch;
 	}
 

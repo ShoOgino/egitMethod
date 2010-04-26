@@ -1,4 +1,0 @@
-	public void setShowResetType(boolean show) {
-		this.showResetType = show;
-	}
-

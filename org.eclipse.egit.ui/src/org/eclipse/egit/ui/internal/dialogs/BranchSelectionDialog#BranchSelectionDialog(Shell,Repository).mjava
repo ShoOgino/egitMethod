@@ -1,5 +1,0 @@
-	public BranchSelectionDialog(Shell parentShell, Repository repo) {
-		super(parentShell);
-		this.repo = repo;
-	}
-

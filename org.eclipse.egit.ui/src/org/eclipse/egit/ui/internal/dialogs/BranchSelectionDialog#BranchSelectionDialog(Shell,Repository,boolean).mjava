@@ -1,0 +1,6 @@
+	public BranchSelectionDialog(Shell parentShell, Repository repo, boolean showReset) {
+		super(parentShell);
+		this.repo = repo;
+		this.showResetType = showReset;
+	}
+

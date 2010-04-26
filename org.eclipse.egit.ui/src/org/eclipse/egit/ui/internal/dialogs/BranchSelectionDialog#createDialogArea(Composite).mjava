@@ -1,6 +1,6 @@
 	@Override
 	protected Composite createDialogArea(Composite base) {
-		parent = (Composite) super.createDialogArea(base);
+		Composite parent = (Composite) super.createDialogArea(base);
 		parent.setLayout(GridLayoutFactory.swtDefaults().create());
 		new Label(parent, SWT.NONE).setText(UIText.BranchSelectionDialog_Refs);
 		branchTree = new Tree(parent, SWT.BORDER);
@@ -8,13 +8,27 @@
 		branchTree.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				refNameFromDialog();
-				confirmationBtn.setEnabled(refName != null);
+				boolean oneSelected = branchTree.getSelection().length == 1;
+
+				String refName = refNameFromDialog();
+
+				boolean headSelected = Constants.HEAD.equals(refName);
+
+				boolean tagSelected = refName!=null && refName.startsWith(
+						Constants.R_TAGS);
+
+				boolean branchSelected = refName!=null && (refName.startsWith(Constants.R_HEADS) || refName.startsWith(Constants.R_REMOTES));
+
+				confirmationBtn.setEnabled(oneSelected && branchSelected && !headSelected
+						&& !tagSelected);
+				renameButton.setEnabled(oneSelected && branchSelected && !headSelected && !tagSelected);
+
+				newButton.setEnabled(oneSelected && branchSelected && !tagSelected);
 			}
 		});
 
 		if (showResetType) {
-			buildResetGroup();
+			buildResetGroup(parent);
 		}
 
 		String rawTitle = showResetType ? UIText.BranchSelectionDialog_TitleReset
