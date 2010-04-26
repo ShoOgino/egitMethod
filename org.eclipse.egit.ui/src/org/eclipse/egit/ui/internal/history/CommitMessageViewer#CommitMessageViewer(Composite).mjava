@@ -2,7 +2,7 @@
 		super(parent, SWT.H_SCROLL | SWT.V_SCROLL | SWT.READ_ONLY);
 		fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 		final StyledText t = getTextWidget();
-		t.setFont(Activator.getFont(UIPreferences.THEME_CommitMessageFont));
+		t.setFont(UIUtils.getFont(UIPreferences.THEME_CommitMessageFont));
 
 		sys_linkColor = t.getDisplay().getSystemColor(SWT.COLOR_BLUE);
 		sys_darkgray = t.getDisplay().getSystemColor(SWT.COLOR_DARK_GRAY);
