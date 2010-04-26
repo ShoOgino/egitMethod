@@ -1,4 +1,0 @@
-	public static Font getFont(final String id) {
-		return getTheme().getFontRegistry().get(id);
-	}
-
