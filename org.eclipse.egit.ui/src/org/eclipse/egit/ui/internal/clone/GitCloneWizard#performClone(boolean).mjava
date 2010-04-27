@@ -36,7 +36,7 @@
 				protected IStatus run(final IProgressMonitor monitor) {
 					try {
 						op.run(monitor);
-						cloneSource.saveUriInPrefs(uri.toString());
+						RepositorySelectionPage.saveUriInPrefs(uri.toString());
 						RepositoriesView.addDir(op.getGitDir());
 						if (view != null)
 							view.scheduleRefresh();
@@ -64,7 +64,7 @@
 						op.run(monitor);
 					}
 				});
-				cloneSource.saveUriInPrefs(uri.toString());
+				RepositorySelectionPage.saveUriInPrefs(uri.toString());
 				RepositoriesView.addDir(op.getGitDir());
 				if (view != null)
 					view.scheduleRefresh();

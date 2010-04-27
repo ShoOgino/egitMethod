@@ -1,4 +1,4 @@
-	public List<String> getUrisFromPrefs() {
+	public static List<String> getUrisFromPrefs() {
 
 		List<String> uriStrings = new ArrayList<String>();
 

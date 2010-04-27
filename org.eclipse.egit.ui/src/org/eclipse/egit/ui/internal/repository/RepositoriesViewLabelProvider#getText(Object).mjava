@@ -35,8 +35,11 @@
 			return UIText.RepositoriesView_WorkingDir_treenode
 					+ " - " 					+ node.getRepository().getWorkDir().getAbsolutePath();
 
-		default:
-			return null;
+		case PUSH: 		case FETCH:
+			return (String) node.getObject();
+
 		}
+
+		return null;
 	}
 

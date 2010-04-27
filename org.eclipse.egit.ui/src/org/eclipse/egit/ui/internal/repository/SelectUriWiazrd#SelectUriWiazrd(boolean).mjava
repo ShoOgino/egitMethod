@@ -1,0 +1,4 @@
+	public SelectUriWiazrd(boolean sourceSelection) {
+		addPage(new RepositorySelectionPage(sourceSelection, null));
+	}
+

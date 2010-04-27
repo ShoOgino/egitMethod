@@ -1,4 +1,4 @@
-	public void saveUriInPrefs(String stringToAdd) {
+	public static void saveUriInPrefs(String stringToAdd) {
 
 		List<String> uriStrings = getUrisFromPrefs();
 

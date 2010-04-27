@@ -15,7 +15,8 @@
 				if (uri.getPath() == null) {
 					selectionIncomplete(NLS.bind(
 							UIText.RepositorySelectionPage_fieldRequired,
-							unamp(UIText.RepositorySelectionPage_promptPath), proto));
+							unamp(UIText.RepositorySelectionPage_promptPath),
+							proto));
 					return;
 				}
 
@@ -49,7 +50,8 @@
 				if (uri.getHost() == null) {
 					selectionIncomplete(NLS.bind(
 							UIText.RepositorySelectionPage_fieldRequired,
-							unamp(UIText.RepositorySelectionPage_promptHost), proto));
+							unamp(UIText.RepositorySelectionPage_promptHost),
+							proto));
 					return;
 				}
 

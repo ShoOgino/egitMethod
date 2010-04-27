@@ -1,5 +1,0 @@
-	public RepositorySelectionPage(final boolean sourceSelection,
-			final List<RemoteConfig> configuredRemotes) {
-		this(sourceSelection, configuredRemotes, null);
-	}
-

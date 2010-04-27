@@ -1,0 +1,14 @@
+	public RefSpecPage(final Repository local, final boolean pushPage) {
+		super(RefSpecPage.class.getName());
+		this.local = local;
+		this.pushPage = pushPage;
+		if (pushPage) {
+			setTitle(UIText.RefSpecPage_titlePush);
+			setDescription(UIText.RefSpecPage_descriptionPush);
+		} else {
+			setTitle(UIText.RefSpecPage_titleFetch);
+			setDescription(UIText.RefSpecPage_descriptionFetch);
+		}
+
+	}
+
