@@ -14,10 +14,9 @@
 			userHomeConfig.load();
 			repositoryConfig.load();
 		} catch (IOException e) {
-			e.printStackTrace();
+			showExceptionMessage(e);
 		} catch (ConfigInvalidException e) {
-			e.printStackTrace();
+			showExceptionMessage(e);
 		}
-
 	}
 

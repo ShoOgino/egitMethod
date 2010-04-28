@@ -2,6 +2,5 @@
 			String remoteName, PropertySheetPage page) {
 		myConfig = config;
 		myName = remoteName;
-		myPage = page;
 	}
 
