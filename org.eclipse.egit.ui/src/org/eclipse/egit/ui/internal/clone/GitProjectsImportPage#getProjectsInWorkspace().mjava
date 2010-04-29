@@ -1,7 +1,6 @@
 	private IProject[] getProjectsInWorkspace() {
 		if (wsProjects == null) {
-			wsProjects = IDEWorkbenchPlugin.getPluginWorkspace().getRoot()
-					.getProjects();
+			wsProjects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
 		}
 		return wsProjects;
 	}
