@@ -21,9 +21,12 @@
 
 				confirmationBtn.setEnabled(oneSelected && branchSelected && !headSelected
 						&& !tagSelected);
-				renameButton.setEnabled(oneSelected && branchSelected && !headSelected && !tagSelected);
 
-				newButton.setEnabled(oneSelected && branchSelected && !tagSelected);
+				if (!showResetType) {
+					renameButton.setEnabled(oneSelected && branchSelected && !headSelected && !tagSelected);
+
+					newButton.setEnabled(oneSelected && branchSelected && !tagSelected);
+				}
 			}
 		});
 
