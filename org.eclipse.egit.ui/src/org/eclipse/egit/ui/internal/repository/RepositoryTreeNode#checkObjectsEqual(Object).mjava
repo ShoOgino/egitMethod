@@ -4,10 +4,17 @@
 		case PROJECTS:
 		case REMOTES:
 		case BRANCHES:
+		case LOCALBRANCHES:
+		case REMOTEBRANCHES:
+		case SYMBOLICREFS:
+		case ERROR:
 		case WORKINGDIR:
 			return ((Repository) myObject).getDirectory().equals(
 					((Repository) otherObject).getDirectory());
 		case REF:
+		case HEAD:
+		case TAG:
+		case SYMBOLICREF:
 			return ((Ref) myObject).getName().equals(
 					((Ref) otherObject).getName());
 		case PROJ:
@@ -18,6 +25,7 @@
 		case REMOTE:
 		case FETCH:
 		case PUSH:
+		case TAGS:
 			return myObject.equals(otherObject);
 		}
 		return false;

@@ -5,24 +5,38 @@
 		switch (node.getType()) {
 		case REPO:
 			File directory = ((Repository) node.getObject()).getDirectory();
-			return (directory.getParentFile().getName() + " - " + directory 					.getAbsolutePath());
+			StringBuilder sb = new StringBuilder();
+			sb.append(directory.getParentFile().getName());
+			sb.append(" - "); 			sb.append(directory.getAbsolutePath());
+			return sb.toString();
 		case FILE:
-		case FOLDER: 			return ((File) node.getObject()).getName();
+		case FOLDER:
+			return ((File) node.getObject()).getName();
 		case BRANCHES:
 			return UIText.RepositoriesView_Branches_Nodetext;
+		case LOCALBRANCHES:
+			return UIText.RepositoriesViewLabelProvider_LocalBranchesNodetext;
+		case REMOTEBRANCHES:
+			return UIText.RepositoriesViewLabelProvider_RemoteBrancheNodetext;
+		case TAGS:
+			return UIText.RepositoriesViewLabelProvider_TagsNodeText;
+		case SYMBOLICREFS:
+			return UIText.RepositoriesViewLabelProvider_SymbolicRefNodeText;
 		case REMOTES:
 			return UIText.RepositoriesView_RemotesNodeText;
 		case REMOTE:
+		case ERROR:
 			return (String) node.getObject();
 		case PROJECTS:
 			return UIText.RepositoriesView_ExistingProjects_Nodetext;
 		case REF:
+		case HEAD:
+		case TAG:
+		case SYMBOLICREF:
 			Ref ref = (Ref) node.getObject();
 			String refName = node.getRepository().shortenRefName(ref.getName());
 			if (ref.isSymbolic()) {
-				refName = refName
-						+ " - " 						+ node.getRepository().shortenRefName(
-								ref.getLeaf().getName());
+				refName = refName + " - " 						+ ref.getLeaf().getName();
 			}
 			return refName;
 		case PROJ:
@@ -32,8 +46,7 @@
 
 		case WORKINGDIR:
 
-			return UIText.RepositoriesView_WorkingDir_treenode
-					+ " - " 					+ node.getRepository().getWorkDir().getAbsolutePath();
+			return UIText.RepositoriesView_WorkingDir_treenode + " - " 					+ node.getRepository().getWorkDir().getAbsolutePath();
 
 		case PUSH: 		case FETCH:
 			return (String) node.getObject();

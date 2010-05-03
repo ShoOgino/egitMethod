@@ -6,14 +6,20 @@
 		case REPO:
 		case PROJECTS:
 		case REMOTES:
+		case LOCALBRANCHES:
+		case REMOTEBRANCHES:
 		case BRANCHES:
+		case SYMBOLICREFS:
 		case WORKINGDIR:
 			result = prime
 					* result
 					+ ((myObject == null) ? 0 : ((Repository) myObject)
 							.getDirectory().hashCode());
 			break;
+		case HEAD:
 		case REF:
+		case TAG:
+		case SYMBOLICREF:
 			result = prime
 					* result
 					+ ((myObject == null) ? 0 : ((Ref) myObject).getName()
@@ -27,9 +33,11 @@
 					+ ((myObject == null) ? 0 : ((File) myObject).getPath()
 							.hashCode());
 			break;
+		case TAGS:
 		case REMOTE:
 		case PUSH:
 		case FETCH:
+		case ERROR:
 			result = prime * result
 					+ ((myObject == null) ? 0 : myObject.hashCode());
 
