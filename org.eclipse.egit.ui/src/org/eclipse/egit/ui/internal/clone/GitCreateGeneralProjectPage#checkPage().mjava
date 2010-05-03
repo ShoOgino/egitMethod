@@ -1,0 +1,46 @@
+	private void checkPage() {
+		String projectName = projectText.getText();
+		setErrorMessage(null);
+		try {
+			if (!myDirectory.exists()) {
+				setErrorMessage(NLS.bind(UIText.GitCreateGeneralProjectPage_DirNotExistMessage,
+						myDirectory.getPath()));
+				return;
+			}
+			if (!myDirectory.isDirectory()) {
+				setErrorMessage(NLS.bind(UIText.GitCreateGeneralProjectPage_FileNotDirMessage,
+						myDirectory.getPath()));
+				return;
+			}
+			if (myDirectory.list(new FilenameFilter() {
+
+				public boolean accept(File dir, String name) {
+					if (name.equals(".project")) 						return true;
+					return false;
+				}
+			}).length > 0) {
+				setErrorMessage(NLS.bind(
+						UIText.GitCreateGeneralProjectPage_FileExistsInDirMessage,
+						".project", myDirectory.getPath())); 				return;
+			}
+			if (projectName.length() == 0) {
+				setErrorMessage(UIText.GitCreateGeneralProjectPage_EnterProjectNameMessage);
+				return;
+			}
+			IStatus result = ResourcesPlugin.getWorkspace().validateName(
+					projectName, IResource.PROJECT);
+			if (!result.isOK()) {
+				setErrorMessage(result.getMessage());
+				return;
+			}
+			if (isProjectInWorkspace(projectName)) {
+				setErrorMessage(NLS.bind(UIText.GitCreateGeneralProjectPage_PorjectAlreadyExistsMessage,
+						projectName));
+				return;
+			}
+		} finally {
+			setPageComplete(getErrorMessage() == null);
+		}
+
+	}
+

@@ -1,0 +1,55 @@
+	@Override
+	public boolean performFinish() {
+
+		try {
+
+			final int actionSelection = mySelectionPage.getActionSelection();
+
+			final IProject[] projectsToShare;
+			if (actionSelection != GitSelectWizardPage.ACTION_DIALOG_SHARE) {
+				projectsToShare = getAddedProjects();
+			} else {
+				projectsToShare = mySharePage.getSelectedProjects();
+			}
+
+			getContainer().run(true, true, new IRunnableWithProgress() {
+
+				public void run(IProgressMonitor monitor)
+						throws InvocationTargetException, InterruptedException {
+
+					if (actionSelection != GitSelectWizardPage.ACTION_DIALOG_SHARE) {
+						importProjects();
+					}
+
+					if (actionSelection != GitSelectWizardPage.ACTION_NO_SHARE) {
+
+						for (IProject prj : projectsToShare) {
+							if (monitor.isCanceled())
+								throw new InterruptedException();
+							ConnectProviderOperation connectProviderOperation = new ConnectProviderOperation(
+									prj, myRepository.getDirectory());
+							try {
+								connectProviderOperation.run(monitor);
+							} catch (CoreException e) {
+								throw new InvocationTargetException(e);
+							}
+						}
+
+					}
+
+				}
+			});
+		} catch (InvocationTargetException e) {
+			Activator
+					.handleError(e.getCause().getMessage(), e.getCause(), true);
+			return false;
+		} catch (InterruptedException e) {
+			Activator.handleError(
+					UIText.GitCreateProjectViaWizardWizard_AbortedMessage, e,
+					true);
+			return false;
+		}
+		return true;
+
+	}
+

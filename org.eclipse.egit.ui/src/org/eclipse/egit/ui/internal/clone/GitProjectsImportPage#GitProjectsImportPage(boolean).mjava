@@ -1,0 +1,7 @@
+	public GitProjectsImportPage(boolean showShareCheckbox) {
+		super("gitWizardExternalProjectsPage"); 		this.showShare = showShareCheckbox;
+		setPageComplete(false);
+		setTitle(UIText.WizardProjectsImportPage_ImportProjectsTitle);
+		setDescription(UIText.WizardProjectsImportPage_ImportProjectsDescription);
+	}
+

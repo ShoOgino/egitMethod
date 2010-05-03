@@ -1,0 +1,14 @@
+	private void checkPage() {
+
+		IDialogSettings settings = Activator.getDefault().getDialogSettings();
+
+		settings.put(PREF_WIZ, getWizardSelection());
+		settings.put(PREF_ACT, getActionSelection());
+
+		setErrorMessage(null);
+		try {
+		} finally {
+			setPageComplete(getErrorMessage() == null);
+		}
+	}
+

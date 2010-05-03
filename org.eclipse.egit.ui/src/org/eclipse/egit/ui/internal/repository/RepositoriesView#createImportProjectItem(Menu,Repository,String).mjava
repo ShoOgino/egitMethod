@@ -1,21 +1,21 @@
 	private void createImportProjectItem(Menu men, final Repository repo,
 			final String path) {
-		MenuItem importProjects;
-		importProjects = new MenuItem(men, SWT.PUSH);
-		importProjects
-				.setText(UIText.RepositoriesView_ImportExistingProjects_MenuItem);
-		importProjects.addSelectionListener(new SelectionAdapter() {
+
+		MenuItem startWizard;
+		startWizard = new MenuItem(men, SWT.PUSH);
+		startWizard.setText(UIText.RepositoriesView_ImportProjectsMenu);
+		startWizard.addSelectionListener(new SelectionAdapter() {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				Wizard wiz = new GitImportProjectsWizard(repo, path);
-
-				WizardDialog dlg = new WizardDialog(getSite().getShell(), wiz);
+				WizardDialog dlg = new WizardDialog(getSite().getShell(),
+						new GitCreateProjectViaWizardWizard(repo, path));
 				if (dlg.open() == Window.OK)
 					scheduleRefresh();
 
 			}
 
 		});
+
 	}
 
