@@ -1,6 +1,5 @@
 	private void trace(final String m) {
 		if (GitTraceLocation.CORE.isActive())
 			GitTraceLocation.getTrace().trace(
-					GitTraceLocation.CORE.getLocation(), "(UpdateJob)" + m);
-	}
+					GitTraceLocation.CORE.getLocation(), "(UpdateJob)" + m); 	}
 

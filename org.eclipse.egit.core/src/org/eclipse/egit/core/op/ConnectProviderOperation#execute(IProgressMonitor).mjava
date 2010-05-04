@@ -15,8 +15,7 @@
 				if (GitTraceLocation.CORE.isActive())
 					GitTraceLocation.getTrace().trace(
 							GitTraceLocation.CORE.getLocation(),
-							"Locating repository for " + project);
-
+							"Locating repository for " + project); 
 				Collection<RepositoryMapping> repos = new RepositoryFinder(
 						project).find(new SubProgressMonitor(m, 40));
 				File suggestedRepo = projects.get(project);
