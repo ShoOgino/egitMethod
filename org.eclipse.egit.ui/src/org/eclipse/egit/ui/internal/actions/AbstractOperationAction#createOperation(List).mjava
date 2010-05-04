@@ -1,2 +1,2 @@
-	protected abstract IWorkspaceRunnable createOperation(final List selection);
+	protected abstract IEGitOperation createOperation(final List selection);
 

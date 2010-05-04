@@ -1,4 +1,4 @@
-	public void run(IProgressMonitor monitor) throws CoreException {
+	public void execute(IProgressMonitor monitor) throws CoreException {
 		try {
 			GitQuickDiffProvider.setBaselineReference(repository, baseline);
 		} catch (IOException e) {

@@ -1,4 +1,4 @@
-	public void run(IProgressMonitor m) throws CoreException {
+	public void execute(IProgressMonitor m) throws CoreException {
 		if (m == null) {
 			m = new NullProgressMonitor();
 		}
