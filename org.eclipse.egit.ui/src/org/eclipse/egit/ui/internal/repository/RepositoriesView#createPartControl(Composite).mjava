@@ -37,14 +37,23 @@
 					Object[] selectionArray = selection.toArray();
 					for (Object selectedElement : selectionArray) {
 						RepositoryTreeNode node = (RepositoryTreeNode) selectedElement;
-						if (node.getType() != RepositoryTreeNodeType.FILE) {
+						if (node.getType() != RepositoryTreeNodeType.FILE
+								&& node.getType() != RepositoryTreeNodeType.REF) {
 							return;
 						}
 					}
 
 					for (Object selectedElement : selectionArray) {
 						RepositoryTreeNode node = (RepositoryTreeNode) selectedElement;
-						openFile((File) node.getObject());
+						if (node.getType() == RepositoryTreeNodeType.FILE)
+							openFile((File) node.getObject());
+						else if (node.getType() == RepositoryTreeNodeType.REF) {
+							Ref ref = (Ref) node.getObject();
+							if (ref.getName().startsWith(Constants.R_HEADS)
+									|| ref.getName().startsWith(
+											Constants.R_REMOTES))
+								checkoutBranch(node, ref.getName());
+						}
 					}
 				}
 			}
