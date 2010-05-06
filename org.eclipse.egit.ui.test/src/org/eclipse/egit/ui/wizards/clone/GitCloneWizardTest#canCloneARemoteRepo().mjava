@@ -17,7 +17,6 @@
 		workingCopy.assertDirectory(destRepo.toString());
 		workingCopy.assertBranch("master");
 		workingCopy.assertRemoteName("origin");
-		workingCopy.doNotImportProjectsAfterClone();
 		workingCopy.waitForCreate();
 
 		Repository repository = new Repository(new File(destRepo, ".git"));
