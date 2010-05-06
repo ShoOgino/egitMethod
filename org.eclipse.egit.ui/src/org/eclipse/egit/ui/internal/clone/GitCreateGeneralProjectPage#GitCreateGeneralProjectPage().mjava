@@ -1,5 +1,5 @@
-	public GitProjectsImportPage(boolean showShareCheckbox) {
-		super("gitWizardExternalProjectsPage"); 		this.showShare = showShareCheckbox;
+	public GitCreateGeneralProjectPage() {
+		super(GitCreateGeneralProjectPage.class.getName());
 		setPageComplete(false);
 		setTitle(UIText.WizardProjectsImportPage_ImportProjectsTitle);
 		setDescription(UIText.WizardProjectsImportPage_ImportProjectsDescription);

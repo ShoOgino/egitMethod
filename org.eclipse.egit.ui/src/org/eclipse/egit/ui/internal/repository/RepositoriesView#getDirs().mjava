@@ -1,4 +1,4 @@
-	private static List<String> getDirs() {
+	public static List<String> getDirs() {
 		List<String> resultStrings = new ArrayList<String>();
 		String dirs = getPrefs().get(PREFS_DIRECTORIES, ""); 		if (dirs != null && dirs.length() > 0) {
 			StringTokenizer tok = new StringTokenizer(dirs, File.pathSeparator);

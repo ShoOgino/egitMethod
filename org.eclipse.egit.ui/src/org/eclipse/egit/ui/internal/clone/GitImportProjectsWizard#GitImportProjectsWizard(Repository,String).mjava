@@ -1,7 +1,0 @@
-	public GitImportProjectsWizard(Repository repository, String path) {
-		super();
-		myWorkingDir = path;
-		myGitDir = repository.getDirectory();
-		setWindowTitle(UIText.GitImportProjectsWizard_ImportExistingProjects0);
-	}
-

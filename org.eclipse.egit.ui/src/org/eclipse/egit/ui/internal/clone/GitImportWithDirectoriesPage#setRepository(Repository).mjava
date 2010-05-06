@@ -1,0 +1,9 @@
+	public void setRepository(Repository repo) {
+		List<RepositoryTreeNode<Repository>> input = new ArrayList<RepositoryTreeNode<Repository>>();
+		if (repo != null)
+			input.add(new RepositoryTreeNode<Repository>(null,
+					RepositoryTreeNodeType.WORKINGDIR, repo, repo));
+		tv.setInput(input);
+		tv.setSelection(new StructuredSelection(input.get(0)));
+	}
+

@@ -1,7 +1,0 @@
-	RepositoriesViewLabelProvider(final TreeViewer viewer) {
-
-		viewer.setLabelProvider(this);
-
-
-	}
-

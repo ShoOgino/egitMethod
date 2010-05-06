@@ -7,7 +7,7 @@
 			Ref ref = (Ref) node.getObject();
 			String refName = node.getRepository().shortenRefName(ref.getName());
 			try {
-				String branch = node.getBranch();
+				String branch = node.getRepository().getBranch();
 				if (refName.equals(branch)) {
 					return getDecoratedImage(image);
 				}

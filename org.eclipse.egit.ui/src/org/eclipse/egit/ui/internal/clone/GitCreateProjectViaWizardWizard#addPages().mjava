@@ -5,11 +5,10 @@
 		addPage(mySelectionPage);
 		myCreateGeneralProjectPage = new GitCreateGeneralProjectPage(myGitDir);
 		addPage(myCreateGeneralProjectPage);
-		myProjectsImportPage = new GitProjectsImportPage(false) {
+		myProjectsImportPage = new GitProjectsImportPage() {
 
 			@Override
 			public void setVisible(boolean visible) {
-				setGitDir(myRepository.getDirectory());
 				setProjectsList(myGitDir);
 				super.setVisible(visible);
 			}

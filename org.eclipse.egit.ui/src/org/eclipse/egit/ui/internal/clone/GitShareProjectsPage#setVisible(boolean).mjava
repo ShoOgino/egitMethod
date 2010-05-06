@@ -1,7 +1,7 @@
 	@Override
 	public void setVisible(boolean visible) {
 		if (visible) {
-			final GitCreateProjectViaWizardWizard wiz = (GitCreateProjectViaWizardWizard) getWizard();
+			final ProjectCreator wiz = (ProjectCreator) getWizard();
 			try {
 				getContainer().run(false, true, new IRunnableWithProgress() {
 
@@ -17,7 +17,8 @@
 				Activator.handleError(e.getCause().getMessage(), e.getCause(),
 						true);
 			} catch (InterruptedException e) {
-				Activator.handleError(UIText.GitShareProjectsPage_AbortedMessage, e, true);
+				Activator.handleError(
+						UIText.GitShareProjectsPage_AbortedMessage, e, true);
 			}
 
 			setProjects(wiz.getAddedProjects());

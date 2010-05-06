@@ -1,4 +1,7 @@
-	public GitProjectsImportPage(){
-		this(true);
+	public GitProjectsImportPage() {
+		super(GitProjectsImportPage.class.getName());
+		setPageComplete(false);
+		setTitle(UIText.WizardProjectsImportPage_ImportProjectsTitle);
+		setDescription(UIText.WizardProjectsImportPage_ImportProjectsDescription);
 	}
 

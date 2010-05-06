@@ -39,7 +39,6 @@
 			}
 
 		};
-
 		FilteredTree filteredTree = new FilteredTree(listComposite, SWT.CHECK
 				| SWT.BORDER, filter);
 		filteredTree.setInitialText(UIText.WizardProjectsImportPage_filterText);
@@ -67,7 +66,6 @@
 			}
 
 			public void dispose() {
-
 			}
 
 			public void inputChanged(Viewer viewer, Object oldInput,

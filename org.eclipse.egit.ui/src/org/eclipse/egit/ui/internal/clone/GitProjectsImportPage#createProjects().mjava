@@ -22,7 +22,8 @@
 			return false;
 		} catch (InvocationTargetException e) {
 			Throwable t = e.getTargetException();
-			Activator.handleError(UIText.WizardProjectImportPage_errorMessage, t, true);
+			Activator.handleError(UIText.WizardProjectImportPage_errorMessage,
+					t, true);
 			return false;
 		}
 		return true;

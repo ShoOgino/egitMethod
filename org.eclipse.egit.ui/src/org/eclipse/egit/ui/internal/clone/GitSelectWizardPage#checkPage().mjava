@@ -1,4 +1,4 @@
-	private void checkPage() {
+	protected void checkPage() {
 
 		IDialogSettings settings = Activator.getDefault().getDialogSettings();
 

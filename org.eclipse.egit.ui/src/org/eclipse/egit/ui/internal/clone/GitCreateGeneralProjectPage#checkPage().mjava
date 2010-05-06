@@ -3,12 +3,14 @@
 		setErrorMessage(null);
 		try {
 			if (!myDirectory.exists()) {
-				setErrorMessage(NLS.bind(UIText.GitCreateGeneralProjectPage_DirNotExistMessage,
+				setErrorMessage(NLS.bind(
+						UIText.GitCreateGeneralProjectPage_DirNotExistMessage,
 						myDirectory.getPath()));
 				return;
 			}
 			if (!myDirectory.isDirectory()) {
-				setErrorMessage(NLS.bind(UIText.GitCreateGeneralProjectPage_FileNotDirMessage,
+				setErrorMessage(NLS.bind(
+						UIText.GitCreateGeneralProjectPage_FileNotDirMessage,
 						myDirectory.getPath()));
 				return;
 			}
@@ -19,9 +21,10 @@
 					return false;
 				}
 			}).length > 0) {
-				setErrorMessage(NLS.bind(
-						UIText.GitCreateGeneralProjectPage_FileExistsInDirMessage,
-						".project", myDirectory.getPath())); 				return;
+				setErrorMessage(NLS
+						.bind(
+								UIText.GitCreateGeneralProjectPage_FileExistsInDirMessage,
+								".project", myDirectory.getPath())); 				return;
 			}
 			if (projectName.length() == 0) {
 				setErrorMessage(UIText.GitCreateGeneralProjectPage_EnterProjectNameMessage);
@@ -34,8 +37,19 @@
 				return;
 			}
 			if (isProjectInWorkspace(projectName)) {
-				setErrorMessage(NLS.bind(UIText.GitCreateGeneralProjectPage_PorjectAlreadyExistsMessage,
-						projectName));
+				setErrorMessage(NLS
+						.bind(
+								UIText.GitCreateGeneralProjectPage_PorjectAlreadyExistsMessage,
+								projectName));
+				return;
+			}
+			IProject newProject = ResourcesPlugin.getWorkspace().getRoot()
+					.getProject(projectName);
+			IStatus locationResult = ResourcesPlugin.getWorkspace()
+					.validateProjectLocation(newProject,
+							new Path(myDirectory.getPath()));
+			if (!locationResult.isOK()) {
+				setErrorMessage(locationResult.getMessage());
 				return;
 			}
 		} finally {
