@@ -27,10 +27,7 @@
 		case REMOTE:
 		case ERROR:
 			return (String) node.getObject();
-		case PROJECTS:
-			return UIText.RepositoriesView_ExistingProjects_Nodetext;
 		case REF:
-		case HEAD:
 		case TAG:
 		case SYMBOLICREF:
 			Ref ref = (Ref) node.getObject();
@@ -39,16 +36,11 @@
 				refName = refName + " - " 						+ ref.getLeaf().getName();
 			}
 			return refName;
-		case PROJ:
-
-			File file = (File) node.getObject();
-			return file.getName();
-
 		case WORKINGDIR:
 
 			return UIText.RepositoriesView_WorkingDir_treenode + " - " 					+ node.getRepository().getWorkDir().getAbsolutePath();
-
-		case PUSH: 		case FETCH:
+		case PUSH:
+		case FETCH:
 			return (String) node.getObject();
 
 		}

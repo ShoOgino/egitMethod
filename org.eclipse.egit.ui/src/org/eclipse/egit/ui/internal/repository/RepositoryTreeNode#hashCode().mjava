@@ -4,7 +4,6 @@
 		int result = 1;
 		switch (myType) {
 		case REPO:
-		case PROJECTS:
 		case REMOTES:
 		case LOCALBRANCHES:
 		case REMOTEBRANCHES:
@@ -16,7 +15,6 @@
 					+ ((myObject == null) ? 0 : ((Repository) myObject)
 							.getDirectory().hashCode());
 			break;
-		case HEAD:
 		case REF:
 		case TAG:
 		case SYMBOLICREF:
@@ -25,7 +23,6 @@
 					+ ((myObject == null) ? 0 : ((Ref) myObject).getName()
 							.hashCode());
 			break;
-		case PROJ:
 		case FILE:
 		case FOLDER:
 			result = prime

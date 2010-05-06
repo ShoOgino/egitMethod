@@ -7,13 +7,15 @@
 		switch (myType) {
 
 		case BRANCHES:
-		case PROJECTS:
+		case LOCALBRANCHES:
+		case REMOTEBRANCHES:
 		case REMOTES:
+		case SYMBOLICREFS:
+		case TAGS:
 		case WORKINGDIR:
 			return 0;
 
 		case FETCH:
-		case PROJ:
 		case PUSH:
 		case REMOTE:
 			return ((String) myObject)
@@ -22,6 +24,8 @@
 		case FOLDER:
 			return ((File) myObject).getName().compareTo(
 					((File) otherNode.getObject()).getName());
+		case TAG:
+		case SYMBOLICREF:
 		case REF:
 			return ((Ref) myObject).getName().compareTo(
 					((Ref) otherNode.getObject()).getName());
