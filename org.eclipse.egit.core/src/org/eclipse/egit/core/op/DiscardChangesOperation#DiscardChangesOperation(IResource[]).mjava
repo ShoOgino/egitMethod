@@ -1,0 +1,5 @@
+	public DiscardChangesOperation(IResource[] files) {
+		this.files = files;
+		schedulingRule = calcRefreshRule(files);
+	}
+
