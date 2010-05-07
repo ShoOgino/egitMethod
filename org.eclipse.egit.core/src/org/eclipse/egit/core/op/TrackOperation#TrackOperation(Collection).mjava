@@ -1,4 +1,0 @@
-	public TrackOperation(final Collection rsrcs) {
-		rsrcList = rsrcs;
-	}
-

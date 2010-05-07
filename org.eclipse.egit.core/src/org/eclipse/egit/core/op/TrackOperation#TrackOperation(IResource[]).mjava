@@ -1,0 +1,4 @@
+	public TrackOperation(IResource[] rsrcs) {
+		rsrcList = rsrcs;
+	}
+
