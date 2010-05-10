@@ -1,5 +1,5 @@
 	public int compareTo(RepositoryTreeNode otherNode) {
-		int typeDiff = otherNode.getType().ordinal() - this.myType.ordinal();
+		int typeDiff = this.myType.ordinal() - otherNode.getType().ordinal();
 		if (typeDiff != 0)
 			return typeDiff;
 
@@ -12,6 +12,7 @@
 		case REMOTES:
 		case SYMBOLICREFS:
 		case TAGS:
+		case ERROR:
 		case WORKINGDIR:
 			return 0;
 
