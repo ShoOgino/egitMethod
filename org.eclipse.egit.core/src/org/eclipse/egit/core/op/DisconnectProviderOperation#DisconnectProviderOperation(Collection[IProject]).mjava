@@ -1,0 +1,4 @@
+	public DisconnectProviderOperation(final Collection<IProject> projs) {
+		projectList = projs;
+	}
+

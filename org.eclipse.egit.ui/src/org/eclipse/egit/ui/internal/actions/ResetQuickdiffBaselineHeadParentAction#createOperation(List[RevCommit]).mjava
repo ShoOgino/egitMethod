@@ -1,4 +1,4 @@
 	@Override
-	protected IEGitOperation createOperation(List selection) {
+	protected IEGitOperation createOperation(List<RevCommit> selection) {
 		return new QuickdiffBaselineOperation(getActiveRepository(), "HEAD^1"); 	}
 

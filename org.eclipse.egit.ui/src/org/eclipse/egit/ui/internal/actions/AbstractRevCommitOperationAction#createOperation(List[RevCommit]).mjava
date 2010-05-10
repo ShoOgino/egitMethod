@@ -1,0 +1,2 @@
+	protected abstract IEGitOperation createOperation(final List<RevCommit> selection);
+

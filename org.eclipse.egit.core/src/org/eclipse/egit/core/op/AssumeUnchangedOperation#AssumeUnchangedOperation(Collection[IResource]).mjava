@@ -1,4 +1,4 @@
-	public AssumeUnchangedOperation(final Collection rsrcs) {
+	public AssumeUnchangedOperation(final Collection<IResource> rsrcs) {
 		rsrcList = rsrcs;
 		caches = new IdentityHashMap<Repository, DirCache>();
 		mappings = new IdentityHashMap<RepositoryMapping, Object>();

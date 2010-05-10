@@ -1,0 +1,2 @@
+	protected abstract IEGitOperation createOperation(final List<IResource> selection);
+
