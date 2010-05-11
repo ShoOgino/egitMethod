@@ -65,9 +65,13 @@
 				checkPage();
 			}
 		});
-		checkout = new Button(main, SWT.CHECK);
+
+		boolean isBare = myRepository.getConfig().getBoolean(
+				"core", "bare", false); 		checkout = new Button(main, SWT.CHECK);
 		checkout.setText(UIText.CreateBranchPage_CheckoutButton);
-		checkout.setSelection(true);
+		checkout.setSelection(!isBare);
+		checkout.setEnabled(!isBare);
+		checkout.setVisible(!isBare);
 		GridDataFactory.fillDefaults().grab(true, false).span(2, 1).applyTo(
 				checkout);
 		checkout.addSelectionListener(new SelectionAdapter() {

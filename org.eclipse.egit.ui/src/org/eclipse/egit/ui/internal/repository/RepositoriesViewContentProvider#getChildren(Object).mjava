@@ -131,6 +131,8 @@
 		case WORKINGDIR: {
 			List<RepositoryTreeNode<File>> children = new ArrayList<RepositoryTreeNode<File>>();
 
+			if (node.getRepository().getConfig().getBoolean(
+					"core", "bare", false)) 				return children.toArray();
 			File workingDir = repo.getWorkDir();
 			if (workingDir == null || !workingDir.exists())
 				return null;

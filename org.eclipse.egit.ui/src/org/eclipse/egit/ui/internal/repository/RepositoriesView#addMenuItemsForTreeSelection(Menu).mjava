@@ -36,32 +36,36 @@
 		final RepositoryTreeNode node = (RepositoryTreeNode) sel
 				.getFirstElement();
 
+		final boolean isBare = isBare(node.getRepository());
+
 		if (node.getType() == RepositoryTreeNodeType.REF) {
 
 			final Ref ref = (Ref) node.getObject();
 
 			if (!ref.isSymbolic()) {
 
-				MenuItem checkout = new MenuItem(men, SWT.PUSH);
-				checkout.setText(UIText.RepositoriesView_CheckOut_MenuItem);
+				if (!isBare) {
+					MenuItem checkout = new MenuItem(men, SWT.PUSH);
+					checkout.setText(UIText.RepositoriesView_CheckOut_MenuItem);
 
-				try {
-					if (node.getRepository().getFullBranch().equals(
-							ref.getName())) {
-						checkout.setEnabled(false);
+					try {
+						if (node.getRepository().getFullBranch().equals(
+								ref.getName())) {
+							checkout.setEnabled(false);
+						}
+					} catch (IOException e2) {
 					}
-				} catch (IOException e2) {
+
+					checkout.addSelectionListener(new SelectionAdapter() {
+
+						@Override
+						public void widgetSelected(SelectionEvent e) {
+							checkoutBranch(node, ref.getLeaf().getName());
+						}
+					});
+
+					new MenuItem(men, SWT.SEPARATOR);
 				}
-
-				checkout.addSelectionListener(new SelectionAdapter() {
-
-					@Override
-					public void widgetSelected(SelectionEvent e) {
-						checkoutBranch(node, ref.getLeaf().getName());
-					}
-				});
-
-				new MenuItem(men, SWT.SEPARATOR);
 
 				createCreateBranchItem(men, node);
 				createDeleteBranchItem(men, node);
@@ -92,9 +96,11 @@
 
 			new MenuItem(men, SWT.SEPARATOR);
 
-			createImportProjectItem(men, repo, repo.getWorkDir().getPath());
+			if (!isBare) {
+				createImportProjectItem(men, repo, repo.getWorkDir().getPath());
 
-			new MenuItem(men, SWT.SEPARATOR);
+				new MenuItem(men, SWT.SEPARATOR);
+			}
 
 			MenuItem openPropsView = new MenuItem(men, SWT.PUSH);
 			openPropsView.setText(UIText.RepositoriesView_OpenPropertiesMenu);
@@ -357,7 +363,7 @@
 			createCopyPathItem(men, file.getPath());
 		}
 
-		if (node.getType() == RepositoryTreeNodeType.WORKINGDIR) {
+		if (!isBare && node.getType() == RepositoryTreeNodeType.WORKINGDIR) {
 			String path = node.getRepository().getWorkDir().getAbsolutePath();
 			createImportProjectItem(men, node.getRepository(), path);
 			new MenuItem(men, SWT.SEPARATOR);
