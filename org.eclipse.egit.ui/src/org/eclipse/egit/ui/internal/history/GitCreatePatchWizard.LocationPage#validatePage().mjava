@@ -1,0 +1,15 @@
+		protected boolean validatePage() {
+			if (!canValidate)
+				return false;
+
+			if (fsRadio.getSelection())
+				pageValid = validateFilesystemLocation();
+
+			if (pageValid) {
+				setMessage(null);
+				setErrorMessage(null);
+			}
+			setPageComplete(pageValid);
+			return pageValid;
+		}
+

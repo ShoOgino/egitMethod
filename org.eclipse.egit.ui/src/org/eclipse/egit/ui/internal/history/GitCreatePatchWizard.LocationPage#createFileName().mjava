@@ -1,0 +1,16 @@
+		private String createFileName() {
+			String name = commit.getShortMessage();
+
+			name = name.trim();
+			try {
+				name = URLEncoder.encode(name, "UTF-8"); 			} catch (UnsupportedEncodingException e) {
+			}
+			if (name.length() > 80)
+				name = name.substring(0, 80);
+			while (name.endsWith(".")) 				name = name.substring(0, name.length() - 1);
+			name = name.concat(".patch"); 
+			String defaultPath = db.getWorkDir().getAbsolutePath();
+
+			return (new File(defaultPath, name)).getPath();
+		}
+

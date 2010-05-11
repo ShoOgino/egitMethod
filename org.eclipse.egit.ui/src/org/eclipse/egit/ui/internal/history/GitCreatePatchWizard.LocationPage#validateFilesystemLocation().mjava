@@ -1,0 +1,25 @@
+		private boolean validateFilesystemLocation() {
+			final String pathString = fsPathText.getText().trim();
+			if (pathString.length() == 0
+					|| !new Path("").isValidPath(pathString)) { 				setErrorMessage(""); 				return false;
+			}
+
+			final File file = new File(pathString);
+			if (!file.isAbsolute()) {
+				setErrorMessage(""); 				return false;
+			}
+
+			if (file.isDirectory()) {
+				setErrorMessage(""); 				return false;
+			}
+
+			if (pathString.endsWith("/") || pathString.endsWith("\\")) { 				setErrorMessage(""); 				return false;
+			}
+
+			final File parent = file.getParentFile();
+			if (!(parent.exists() && parent.isDirectory())) {
+				setErrorMessage(""); 				return false;
+			}
+			return true;
+		}
+
