@@ -1,4 +1,0 @@
-	public UpdateOperation(final Collection rsrcs) {
-		rsrcList = rsrcs;
-	}
-
