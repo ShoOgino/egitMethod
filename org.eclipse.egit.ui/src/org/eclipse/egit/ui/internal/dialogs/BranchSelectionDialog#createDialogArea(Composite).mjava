@@ -3,30 +3,51 @@
 		Composite parent = (Composite) super.createDialogArea(base);
 		parent.setLayout(GridLayoutFactory.swtDefaults().create());
 		new Label(parent, SWT.NONE).setText(UIText.BranchSelectionDialog_Refs);
-		branchTree = new Tree(parent, SWT.BORDER);
-		branchTree.setLayoutData(GridDataFactory.fillDefaults().grab(true,true).hint(500, 300).create());
-		branchTree.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				boolean oneSelected = branchTree.getSelection().length == 1;
+
+		branchTree = new TreeViewer(parent, SWT.SINGLE | SWT.BORDER);
+		new RepositoriesViewLabelProvider(branchTree);
+		branchTree.setContentProvider(new RepositoriesViewContentProvider());
+
+		GridDataFactory.fillDefaults().grab(true, true).hint(500, 300).applyTo(
+				branchTree.getTree());
+		branchTree.addSelectionChangedListener(new ISelectionChangedListener() {
+
+			public void selectionChanged(SelectionChangedEvent event) {
 
 				String refName = refNameFromDialog();
 
 				boolean headSelected = Constants.HEAD.equals(refName);
 
-				boolean tagSelected = refName!=null && refName.startsWith(
-						Constants.R_TAGS);
+				boolean tagSelected = refName != null
+						&& refName.startsWith(Constants.R_TAGS);
 
-				boolean branchSelected = refName!=null && (refName.startsWith(Constants.R_HEADS) || refName.startsWith(Constants.R_REMOTES));
+				boolean branchSelected = refName != null
+						&& (refName.startsWith(Constants.R_HEADS) || refName
+								.startsWith(Constants.R_REMOTES));
 
-				confirmationBtn.setEnabled(oneSelected && branchSelected && !headSelected
+				confirmationBtn.setEnabled(branchSelected && !headSelected
 						&& !tagSelected);
 
 				if (!showResetType) {
-					renameButton.setEnabled(oneSelected && branchSelected && !headSelected && !tagSelected);
+					renameButton.setEnabled(branchSelected && !headSelected
+							&& !tagSelected);
 
-					newButton.setEnabled(oneSelected && branchSelected && !tagSelected);
+					newButton.setEnabled(branchSelected && !tagSelected);
 				}
+			}
+		});
+
+		branchTree.addOpenListener(new IOpenListener() {
+
+			public void open(OpenEvent event) {
+				RepositoryTreeNode node = (RepositoryTreeNode) ((IStructuredSelection) branchTree
+						.getSelection()).getFirstElement();
+				if (node.getType() != RepositoryTreeNodeType.REF)
+					branchTree.setExpandedState(node, !branchTree
+							.getExpandedState(node));
+				else if (confirmationBtn.isEnabled())
+					okPressed();
+
 			}
 		});
 
@@ -38,12 +59,6 @@
 				: UIText.BranchSelectionDialog_TitleCheckout;
 		getShell().setText(
 				NLS.bind(rawTitle, new Object[] { repo.getDirectory() }));
-
-		try {
-			fillTreeWithBranches(null);
-		} catch (Throwable e) {
-			Activator.logError(UIText.BranchSelectionDialog_ErrorCouldNotRefresh, e);
-		}
 
 		return parent;
 	}
