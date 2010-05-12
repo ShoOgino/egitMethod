@@ -1,6 +1,0 @@
-	ProjectRecord(Object parent, int level) {
-		this.parent = parent;
-		this.level = level;
-		setProjectName();
-	}
-
