@@ -1,7 +1,4 @@
 	private void createProjectsList(Composite workArea) {
-
-		checkedItems.clear();
-
 		Label title = new Label(workArea, SWT.NONE);
 		title.setText(UIText.WizardProjectsImportPage_ProjectsListTitle);
 
@@ -20,9 +17,8 @@
 			@Override
 			public boolean isElementVisible(Viewer viewer, Object element) {
 
-				if (checkedItems.contains(element)) {
+				if (getCheckedProjects().contains(element))
 					return true;
-				}
 
 				return super.isElementVisible(viewer, element);
 			}
@@ -74,31 +70,14 @@
 
 		});
 
-		projectsList.getTree().addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseUp(MouseEvent e) {
-				if (e.widget instanceof Tree) {
-					TreeItem item = ((Tree) e.widget).getItem(new Point(e.x,
-							e.y));
-					if (item != null) {
-						if (item.getChecked())
-							checkedItems.add(item.getData());
-						else
-							checkedItems.remove(item.getData());
-						setPageComplete(!checkedItems.isEmpty());
-					}
-				}
+		projectsList.getTree().addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {
+				checkPageComplete();
 			}
 		});
 
 		projectsList.setLabelProvider(new LabelProvider() {
 			public String getText(Object element) {
-				for (final TreeItem item : projectsList.getTree().getItems()) {
-					if (checkedItems.contains(item.getData()))
-						item.setChecked(true);
-					else
-						item.setChecked(false);
-				}
 				return ((ProjectRecord) element).getProjectLabel();
 			}
 		});
