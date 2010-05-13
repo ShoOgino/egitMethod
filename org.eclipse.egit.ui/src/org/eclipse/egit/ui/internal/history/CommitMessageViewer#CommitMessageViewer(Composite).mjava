@@ -29,6 +29,10 @@
 		t.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(final MouseEvent e) {
+				if (e.button != 1) {
+					return;
+				}
+
 				final int o;
 				try {
 					o = t.getOffsetAtLocation(new Point(e.x, e.y));
