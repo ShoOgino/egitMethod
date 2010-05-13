@@ -7,11 +7,11 @@
 		Collection<GitIndex> changedIndexes = new ArrayList<GitIndex>();
 		Collection<GitIndex> indexesWithStagedEntries = new ArrayList<GitIndex>();
 		try {
-			for (Object obj : rsrcList) {
-				obj = ((IAdaptable) obj).getAdapter(IResource.class);
-				if (obj instanceof IFile)
+			for (IResource obj : rsrcList) {
+				if (obj instanceof IFile) {
 					addToIndex((IFile) obj, changedIndexes,
 							indexesWithStagedEntries);
+				}
 				monitor.worked(200);
 			}
 			if (!changedIndexes.isEmpty()) {
