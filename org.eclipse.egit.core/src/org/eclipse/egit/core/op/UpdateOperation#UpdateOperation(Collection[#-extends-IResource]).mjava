@@ -1,0 +1,4 @@
+	public UpdateOperation(final Collection<? extends IResource> rsrcs) {
+		rsrcList = rsrcs;
+	}
+
