@@ -1,5 +1,7 @@
 	@Override
 	protected Control createContents(Composite parent) {
+		noDefaultAndApplyButton();
+
 		final Composite composite = new Composite(parent, SWT.NULL);
 
 		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
