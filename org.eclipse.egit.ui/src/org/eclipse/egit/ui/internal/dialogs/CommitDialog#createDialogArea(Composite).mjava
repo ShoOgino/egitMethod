@@ -149,8 +149,16 @@
 		filesViewer.setLabelProvider(new CommitLabelProvider());
 		filesViewer.addFilter(new CommitItemFilter());
 		filesViewer.setInput(items);
-		filesViewer.setAllChecked(true);
 		filesViewer.getTable().setMenu(getContextMenu());
+
+		for (IFile selectedFile : preselectedFiles) {
+			for (CommitItem item : items) {
+				if (item.file.equals(selectedFile)) {
+					filesViewer.setChecked(item, true);
+					break;
+				}
+			}
+		}
 
 		container.pack();
 		return container;
