@@ -1,9 +1,9 @@
 		protected boolean validatePage() {
-			if (!canValidate)
-				return false;
-
-			if (fsRadio.getSelection())
+			if (fsRadio.getSelection()) {
 				pageValid = validateFilesystemLocation();
+			} else if (cpRadio.getSelection()) {
+				pageValid = true;
+			}
 
 			if (pageValid) {
 				setMessage(null);
