@@ -13,6 +13,7 @@
 				File dir = new File(dirString);
 				if (dir.exists() && dir.isDirectory()) {
 					Repository repo = new Repository(dir);
+					repo.scanForRepoChanges();
 					RepositoryTreeNode<Repository> node = new RepositoryTreeNode<Repository>(
 							null, RepositoryTreeNodeType.REPO, repo, repo);
 					input.add(node);

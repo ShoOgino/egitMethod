@@ -37,7 +37,7 @@
 										op.setRefLogMessage("branch deleted", 												false);
 										op.setForceUpdate(true);
 										op.delete();
-										scheduleRefresh();
+										tv.refresh();
 									} catch (IOException ioe) {
 										throw new InvocationTargetException(ioe);
 									}
