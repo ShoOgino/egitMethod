@@ -1,0 +1,5 @@
+	void dispose() {
+		commitMappingCache.clear();
+		repositoryNameCache.clear();
+	}
+

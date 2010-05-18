@@ -7,13 +7,9 @@
 		headId = repository.resolve(Constants.HEAD);
 
 		store = Activator.getDefault().getPreferenceStore();
+		repositoryName = Activator.getDefault().getRepositoryUtil().getRepositoryName(repository);
 
-		File gitDir = repository.getDirectory();
-		if (gitDir != null)
-			repositoryName = repository.getDirectory().getParentFile()
-					.getName();
-		else
-			repositoryName = ""; 		branch = getShortBranch();
+		branch = getShortBranch();
 
 		TreeWalk treeWalk = createThreeWayTreeWalk();
 		if (treeWalk == null)
