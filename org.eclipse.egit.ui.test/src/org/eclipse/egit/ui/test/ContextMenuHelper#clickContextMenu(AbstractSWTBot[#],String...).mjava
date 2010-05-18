@@ -1,0 +1,39 @@
+	public static void clickContextMenu(final AbstractSWTBot<?> bot,
+			final String... texts) {
+
+		final MenuItem menuItem = UIThreadRunnable
+				.syncExec(new WidgetResult<MenuItem>() {
+					public MenuItem run() {
+						MenuItem menuItem = null;
+						Control control = (Control) bot.widget;
+						Menu menu = control.getMenu();
+						for (String text : texts) {
+							Matcher<?> matcher = allOf(
+									instanceOf(MenuItem.class),
+									withMnemonic(text));
+							menuItem = show(menu, matcher);
+							if (menuItem != null) {
+								menu = menuItem.getMenu();
+							} else {
+								hide(menu);
+								break;
+							}
+						}
+
+						return menuItem;
+					}
+				});
+		if (menuItem == null) {
+			throw new WidgetNotFoundException("Could not find menu: "
+					+ Arrays.asList(texts));
+		}
+
+		click(menuItem);
+
+		UIThreadRunnable.syncExec(new VoidResult() {
+			public void run() {
+				hide(menuItem.getParent());
+			}
+		});
+	}
+
