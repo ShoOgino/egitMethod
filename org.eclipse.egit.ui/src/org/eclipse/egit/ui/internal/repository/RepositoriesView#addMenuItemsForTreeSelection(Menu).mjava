@@ -85,11 +85,10 @@
 					checkoutBranch(node, ref.getLeaf().getName());
 				}
 			});
-
 		}
 
-		if (node.getType() == RepositoryTreeNodeType.LOCALBRANCHES
-				|| node.getType() == RepositoryTreeNodeType.REMOTEBRANCHES)
+		if (node.getType() == RepositoryTreeNodeType.BRANCHES
+				|| node.getType() == RepositoryTreeNodeType.LOCALBRANCHES)
 			createCreateBranchItem(men, node);
 
 		if (node.getType() == RepositoryTreeNodeType.REPO) {

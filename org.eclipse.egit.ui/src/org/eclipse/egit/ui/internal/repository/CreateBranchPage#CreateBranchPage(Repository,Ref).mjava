@@ -1,0 +1,7 @@
+	public CreateBranchPage(Repository repo, Ref baseBranch) {
+		super(CreateBranchPage.class.getName());
+		this.myRepository = repo;
+		this.myBaseBranch = baseBranch;
+		setTitle(UIText.CreateBranchPage_Title);
+	}
+
