@@ -1,5 +1,8 @@
 	private void scheduleRefresh() {
 
+		if (scheduledJob != null && scheduledJob.getState() == Job.RUNNING)
+			return;
+
 		Job job = new Job("Refreshing Git Repositories view") { 
 			@SuppressWarnings("unchecked")
 			@Override
