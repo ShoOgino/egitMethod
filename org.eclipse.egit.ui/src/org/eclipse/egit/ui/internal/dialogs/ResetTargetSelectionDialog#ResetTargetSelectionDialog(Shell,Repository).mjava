@@ -1,0 +1,4 @@
+	public ResetTargetSelectionDialog(Shell parentShell, Repository repo) {
+		super(parentShell, repo);
+	}
+

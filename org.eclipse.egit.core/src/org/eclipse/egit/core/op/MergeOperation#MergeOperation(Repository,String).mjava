@@ -1,0 +1,5 @@
+	public MergeOperation(Repository repository, String refName) {
+		this.repository = repository;
+		this.refName = refName;
+	}
+
