@@ -1,0 +1,4 @@
+	public void setPreviousCommit(Commit previousCommit) {
+		this.previousCommit = previousCommit;
+	}
+

@@ -1,18 +1,21 @@
-	private void prepareTrees(IFile[] selectedItems,
-			HashMap<Repository, Tree> treeMap) throws IOException,
-			UnsupportedEncodingException {
+	private boolean prepareTrees(IFile[] selectedItems,
+			HashMap<Repository, Tree> treeMap, IProgressMonitor monitor)
+			throws IOException, UnsupportedEncodingException {
 		if (selectedItems.length == 0) {
-			for (IProject proj : getProjectsForSelectedResources()) {
-				Repository repo = RepositoryMapping.getMapping(proj).getRepository();
-				if (!treeMap.containsKey(repo))
-					treeMap.put(repo, repo.mapTree(Constants.HEAD));
+			for (Repository repo : repos) {
+				treeMap.put(repo, repo.mapTree(Constants.HEAD));
 			}
 		}
 
 		for (IFile file : selectedItems) {
 
+			if (monitor.isCanceled())
+				return false;
+			monitor.worked(1);
+
 			IProject project = file.getProject();
-			RepositoryMapping repositoryMapping = RepositoryMapping.getMapping(project);
+			RepositoryMapping repositoryMapping = RepositoryMapping
+					.getMapping(project);
 			Repository repository = repositoryMapping.getRepository();
 			Tree projTree = treeMap.get(repository);
 			if (projTree == null) {
@@ -20,9 +23,9 @@
 				if (projTree == null)
 					projTree = new Tree(repository);
 				treeMap.put(repository, projTree);
-				if (GitTraceLocation.UI.isActive())
+				if (GitTraceLocation.CORE.isActive())
 					GitTraceLocation.getTrace().trace(
-							GitTraceLocation.UI.getLocation(),
+							GitTraceLocation.CORE.getLocation(),
 							"Orig tree id: " + projTree.getId()); 			}
 			GitIndex index = repository.getIndex();
 			String repoRelativePath = repositoryMapping
@@ -35,37 +38,35 @@
 
 			Entry idxEntry = index.getEntry(string);
 			if (notIndexed.contains(file)) {
-				File thisfile = new File(repositoryMapping.getWorkDir(), idxEntry.getName());
+				File thisfile = new File(repositoryMapping.getWorkDir(),
+						idxEntry.getName());
 				if (!thisfile.isFile()) {
 					index.remove(repositoryMapping.getWorkDir(), thisfile);
-					index.write();
-					if (GitTraceLocation.UI.isActive())
+					if (GitTraceLocation.CORE.isActive())
 						GitTraceLocation.getTrace().trace(
-								GitTraceLocation.UI.getLocation(),
+								GitTraceLocation.CORE.getLocation(),
 								"Phantom file, so removing from index"); 					continue;
 				} else {
-					if (idxEntry.update(thisfile))
-						index.write();
+					idxEntry.update(thisfile);
 				}
 			}
 			if (notTracked.contains(file)) {
-				idxEntry = index.add(repositoryMapping.getWorkDir(), new File(repositoryMapping.getWorkDir(),
-						repoRelativePath));
-				index.write();
+				idxEntry = index.add(repositoryMapping.getWorkDir(), new File(
+						repositoryMapping.getWorkDir(), repoRelativePath));
 
 			}
-
 
 			if (idxEntry != null) {
 				projTree.addFile(repoRelativePath);
 				TreeEntry newMember = projTree.findBlobMember(repoRelativePath);
 
 				newMember.setId(idxEntry.getObjectId());
-				if (GitTraceLocation.UI.isActive())
+				if (GitTraceLocation.CORE.isActive())
 					GitTraceLocation.getTrace().trace(
-							GitTraceLocation.UI.getLocation(),
+							GitTraceLocation.CORE.getLocation(),
 							"New member id for " + repoRelativePath 									+ ": " + newMember.getId() + " idx id: " 									+ idxEntry.getObjectId());
 			}
 		}
+		return true;
 	}
 
