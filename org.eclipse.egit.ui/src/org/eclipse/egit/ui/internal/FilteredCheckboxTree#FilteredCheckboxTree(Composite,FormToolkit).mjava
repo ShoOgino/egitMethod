@@ -1,0 +1,4 @@
+	public FilteredCheckboxTree(Composite parent, FormToolkit toolkit) {
+		this(parent, toolkit, SWT.NONE);
+	}
+

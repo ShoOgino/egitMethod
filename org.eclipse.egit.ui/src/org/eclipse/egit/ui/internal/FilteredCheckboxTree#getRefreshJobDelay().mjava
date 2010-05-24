@@ -1,0 +1,4 @@
+	protected long getRefreshJobDelay() {
+		return FILTER_DELAY;
+	}
+

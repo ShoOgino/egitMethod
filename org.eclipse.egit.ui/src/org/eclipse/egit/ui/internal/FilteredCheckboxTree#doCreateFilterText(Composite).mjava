@@ -1,0 +1,10 @@
+	protected Text doCreateFilterText(Composite parent) {
+		Text parentText = super.doCreateFilterText(parent);
+		if (fToolkit != null) {
+			int style = parentText.getStyle();
+			parentText.dispose();
+			return fToolkit.createText(parent, null, style);
+		}
+		return parentText;
+	}
+

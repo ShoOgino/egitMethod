@@ -1,0 +1,7 @@
+	public Object[] getCheckedLeafElements() {
+		if (checkState == null) {
+			return new Object[0];
+		}
+		return checkState.toArray(new Object[checkState.size()]);
+	}
+

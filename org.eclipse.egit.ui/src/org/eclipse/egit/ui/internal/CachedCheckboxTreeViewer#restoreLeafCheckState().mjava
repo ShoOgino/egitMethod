@@ -1,0 +1,18 @@
+	public void restoreLeafCheckState() {
+		if (checkState == null)
+			return;
+
+		getTree().setRedraw(false);
+		super.setCheckedElements(new Object[0]);
+		setGrayedElements(new Object[0]);
+		Iterator iter = checkState.iterator();
+		Object element = null;
+		if (iter.hasNext())
+			expandAll();
+		while (iter.hasNext()) {
+			element = iter.next();
+			super.setChecked(element, true);
+		}
+		getTree().setRedraw(true);
+	}
+

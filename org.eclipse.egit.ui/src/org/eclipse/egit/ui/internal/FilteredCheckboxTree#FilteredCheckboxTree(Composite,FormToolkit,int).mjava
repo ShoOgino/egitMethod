@@ -1,0 +1,4 @@
+	public FilteredCheckboxTree(Composite parent, FormToolkit toolkit, int treeStyle) {
+		this(parent, toolkit, treeStyle, new PatternFilter());
+	}
+

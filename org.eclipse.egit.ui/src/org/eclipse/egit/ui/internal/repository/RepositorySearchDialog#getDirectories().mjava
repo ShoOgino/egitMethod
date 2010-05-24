@@ -1,4 +1,4 @@
 	public Set<String> getDirectories() {
-		return result;
+		return fResult;
 	}
 

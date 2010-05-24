@@ -1,0 +1,4 @@
+	public CachedCheckboxTreeViewer getCheckboxTreeViewer() {
+		return checkboxViewer;
+	}
+

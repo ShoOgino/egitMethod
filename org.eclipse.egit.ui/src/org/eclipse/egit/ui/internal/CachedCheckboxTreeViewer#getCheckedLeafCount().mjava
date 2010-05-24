@@ -1,0 +1,7 @@
+	public int getCheckedLeafCount() {
+		if (checkState == null) {
+			return 0;
+		}
+		return checkState.size();
+	}
+

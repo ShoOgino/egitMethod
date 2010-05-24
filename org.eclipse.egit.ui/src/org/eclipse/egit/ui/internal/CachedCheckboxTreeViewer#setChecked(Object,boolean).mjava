@@ -1,0 +1,5 @@
+	public boolean setChecked(Object element, boolean state) {
+		updateCheckState(element, state);
+		return super.setChecked(element, state);
+	}
+

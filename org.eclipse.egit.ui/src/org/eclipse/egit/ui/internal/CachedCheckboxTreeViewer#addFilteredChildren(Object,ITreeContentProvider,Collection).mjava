@@ -1,0 +1,11 @@
+	private void addFilteredChildren(Object element, ITreeContentProvider contentProvider, Collection result) {
+		if (!contentProvider.hasChildren(element)) {
+			result.add(element);
+		} else {
+			Object[] visibleChildren = getFilteredChildren(element);
+			for (int i = 0; i < visibleChildren.length; i++) {
+				addFilteredChildren(visibleChildren[i], contentProvider, result);
+			}
+		}
+	}
+

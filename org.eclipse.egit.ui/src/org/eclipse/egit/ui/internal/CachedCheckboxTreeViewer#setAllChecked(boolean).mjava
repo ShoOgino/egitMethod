@@ -1,0 +1,35 @@
+	public void setAllChecked(boolean state) {
+		super.setAllChecked(state);
+		if (state) {
+
+			Object[] visible = getFilteredChildren(getRoot());
+			if (checkState == null) {
+				checkState = new HashSet();
+			}
+
+			ITreeContentProvider contentProvider = null;
+			if (getContentProvider() instanceof ITreeContentProvider) {
+				contentProvider = (ITreeContentProvider) getContentProvider();
+			}
+
+			if (contentProvider == null) {
+				for (int i = 0; i < visible.length; i++) {
+					checkState.add(visible[i]);
+				}
+			} else {
+				Set toCheck = new HashSet();
+				for (int i = 0; i < visible.length; i++) {
+					addFilteredChildren(visible[i], contentProvider, toCheck);
+				}
+				checkState.addAll(toCheck);
+			}
+		} else {
+			if (checkState != null) {
+				Object[] visible = filter(checkState.toArray());
+				for (int i = 0; i < visible.length; i++) {
+					checkState.remove(visible[i]);
+				}
+			}
+		}
+	}
+
