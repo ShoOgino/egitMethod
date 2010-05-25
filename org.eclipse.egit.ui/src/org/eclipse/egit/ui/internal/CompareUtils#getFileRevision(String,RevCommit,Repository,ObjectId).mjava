@@ -1,10 +1,11 @@
-	private IFileRevision getFileRevision(final IFile resource,
-			final String gitPath, SWTCommit commit) throws IOException {
+	public static IFileRevision getFileRevision(final String gitPath,
+			final RevCommit commit, final Repository db, ObjectId blobId)
+			throws IOException {
 
 		TreeWalk w = TreeWalk.forPath(db, gitPath, commit.getTree());
 		if (w != null) {
 			final IFileRevision fileRevision = GitFileRevision.inCommit(db,
-					commit, gitPath, null);
+					commit, gitPath, blobId);
 			return fileRevision;
 		}
 		return null;

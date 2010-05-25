@@ -1,0 +1,5 @@
+	public static ITypedElement getFileRevisionTypedElement(
+			final String gitPath, final RevCommit commit, final Repository db) {
+		return getFileRevisionTypedElement(gitPath, commit, db, null);
+	}
+
