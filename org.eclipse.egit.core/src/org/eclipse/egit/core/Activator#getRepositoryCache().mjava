@@ -1,0 +1,4 @@
+	public RepositoryCache getRepositoryCache() {
+		return repositoryCache;
+	}
+
