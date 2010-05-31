@@ -1,0 +1,5 @@
+	public FetchNode(RepositoryTreeNode parent, Repository repository,
+			String fetchUri) {
+		super(parent, RepositoryTreeNodeType.FETCH, repository, fetchUri);
+	}
+

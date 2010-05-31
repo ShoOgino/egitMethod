@@ -1,0 +1,4 @@
+	public RemotesNode(RepositoryTreeNode parent, Repository repository) {
+		super(parent, RepositoryTreeNodeType.REMOTES, repository, repository);
+	}
+

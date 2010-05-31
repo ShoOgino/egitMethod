@@ -1,0 +1,4 @@
+	public RepositoryNode(RepositoryTreeNode parent, Repository repository) {
+		super(parent, RepositoryTreeNodeType.REPO, repository, repository);
+	}
+

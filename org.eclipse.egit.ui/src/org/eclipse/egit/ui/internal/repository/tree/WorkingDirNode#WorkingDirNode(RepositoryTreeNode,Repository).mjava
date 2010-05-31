@@ -1,0 +1,4 @@
+	public WorkingDirNode(RepositoryTreeNode parent, Repository repository) {
+		super(parent, RepositoryTreeNodeType.WORKINGDIR, repository, repository);
+	}
+

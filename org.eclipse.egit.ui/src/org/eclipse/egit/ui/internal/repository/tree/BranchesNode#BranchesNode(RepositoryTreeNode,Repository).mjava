@@ -1,0 +1,4 @@
+	public BranchesNode(RepositoryTreeNode parent, Repository repository) {
+		super(parent, RepositoryTreeNodeType.BRANCHES, repository, repository);
+	}
+

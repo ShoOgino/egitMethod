@@ -1,0 +1,4 @@
+	public FileNode(RepositoryTreeNode parent, Repository repository, File file) {
+		super(parent, RepositoryTreeNodeType.FILE, repository, file);
+	}
+

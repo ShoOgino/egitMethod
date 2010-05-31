@@ -1,0 +1,5 @@
+	public ErrorNode(RepositoryTreeNode parent, Repository repository,
+			String error) {
+		super(parent, RepositoryTreeNodeType.ERROR, repository, error);
+	}
+

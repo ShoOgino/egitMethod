@@ -1,0 +1,5 @@
+	public PushNode(RepositoryTreeNode parent, Repository repository,
+			String pushUri) {
+		super(parent, RepositoryTreeNodeType.PUSH, repository, pushUri);
+	}
+

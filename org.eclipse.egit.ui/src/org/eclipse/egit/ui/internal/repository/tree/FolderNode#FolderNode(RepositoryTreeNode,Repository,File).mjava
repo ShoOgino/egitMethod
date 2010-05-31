@@ -1,0 +1,5 @@
+	public FolderNode(RepositoryTreeNode parent, Repository repository,
+			File directory) {
+		super(parent, RepositoryTreeNodeType.FOLDER, repository, directory);
+	}
+

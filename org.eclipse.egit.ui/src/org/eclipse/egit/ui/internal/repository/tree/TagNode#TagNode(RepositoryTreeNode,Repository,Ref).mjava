@@ -1,0 +1,4 @@
+	public TagNode(RepositoryTreeNode parent, Repository repository, Ref ref) {
+		super(parent, RepositoryTreeNodeType.TAG, repository, ref);
+	}
+
