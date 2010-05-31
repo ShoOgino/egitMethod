@@ -6,6 +6,9 @@
 			uris = rc.getURIs();
 		} else {
 			uris = rc.getPushURIs();
+			if (uris.isEmpty()) {
+				uris = rc.getURIs();
+			}
 		}
 
 		for (final URIish u : uris) {
