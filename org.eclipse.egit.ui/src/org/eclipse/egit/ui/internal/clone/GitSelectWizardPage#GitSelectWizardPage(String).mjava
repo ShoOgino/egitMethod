@@ -1,4 +1,0 @@
-	protected GitSelectWizardPage(String name) {
-		super(name);
-	}
-
