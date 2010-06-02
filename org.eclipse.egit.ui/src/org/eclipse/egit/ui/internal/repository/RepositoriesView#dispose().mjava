@@ -4,6 +4,8 @@
 			this.scheduledJob.cancel();
 			this.scheduledJob = null;
 		}
+		unregisterRepositoryListener();
+		repositories.clear();
 		super.dispose();
 	}
 

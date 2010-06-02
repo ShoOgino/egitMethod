@@ -71,6 +71,8 @@
 			}
 		});
 
+		createRepositoryChangedListener();
+
 		addContextMenu();
 
 		addActionsToToolbar();

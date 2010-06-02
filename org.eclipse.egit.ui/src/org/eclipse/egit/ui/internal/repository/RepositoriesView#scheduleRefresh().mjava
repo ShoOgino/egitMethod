@@ -27,16 +27,19 @@
 				final boolean updateInput = needsNewInput;
 				final List<RepositoryTreeNode<Repository>> newInput;
 				if (updateInput) {
+					unregisterRepositoryListener();
 					try {
 						newInput = getRepositoriesFromDirs(monitor);
 					} catch (InterruptedException e) {
 						return new Status(IStatus.ERROR, Activator
 								.getPluginId(), e.getMessage(), e);
 					}
+					repositories.clear();
 					for (RepositoryTreeNode<Repository> node: newInput) {
 						Repository repo = node.getRepository();
-						repo.removeRepositoryChangedListener(RepositoriesView.this);
-						repo.addRepositoryChangedListener(RepositoriesView.this);
+						repositories.add(repo);
+						repo.removeRepositoryChangedListener(repositoryListener);
+						repo.addRepositoryChangedListener(repositoryListener);
 					}
 				} else {
 					newInput = null;
