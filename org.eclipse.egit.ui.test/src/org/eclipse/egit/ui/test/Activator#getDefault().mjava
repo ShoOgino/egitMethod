@@ -1,4 +1,0 @@
-	public static Activator getDefault() {
-		return plugin;
-	}
-
