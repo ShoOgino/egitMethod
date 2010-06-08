@@ -6,7 +6,7 @@
 		addActions();
 
 		effectiveConfig = rep.getConfig();
-		userHomeConfig = SystemReader.getInstance().openUserConfig();
+		userHomeConfig = SystemReader.getInstance().openUserConfig(FS.DETECTED);
 		File configFile = new File(rep.getDirectory(), "config"); 		repositoryConfig = new FileBasedConfig(configFile);
 
 		try {
