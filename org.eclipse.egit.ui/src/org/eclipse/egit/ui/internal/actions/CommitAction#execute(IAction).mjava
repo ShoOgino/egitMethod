@@ -1,5 +1,9 @@
 	@Override
 	public void execute(IAction act) {
+		if (!PlatformUI.getWorkbench().saveAllEditors(true)) {
+			return;
+		}
+
 		resetState();
 		try {
 			buildIndexHeadDiffList();
