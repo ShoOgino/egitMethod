@@ -101,7 +101,7 @@
 		}
 
 		setPageComplete(false);
-
+		Dialog.applyDialogFont(main);
 		setControl(main);
 
 	}

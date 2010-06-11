@@ -169,6 +169,7 @@
 			}
 		}
 
+		applyDialogFont(container);
 		container.pack();
 		return container;
 	}
