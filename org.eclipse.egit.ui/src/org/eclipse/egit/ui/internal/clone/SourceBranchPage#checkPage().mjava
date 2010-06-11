@@ -1,4 +1,5 @@
 	private void checkPage() {
+		setMessage(null);
 		if (transportError != null) {
 			setErrorMessage(transportError);
 			setPageComplete(false);
