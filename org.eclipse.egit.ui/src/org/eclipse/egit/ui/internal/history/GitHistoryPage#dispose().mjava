@@ -1,5 +1,8 @@
 	public void dispose() {
 		Repository.removeAnyRepositoryChangedListener(this);
+		for (BooleanPrefAction action: actionsToDispose)
+			action.dispose();
+		actionsToDispose.clear();
 		cancelRefreshJob();
 		if (popupMgr != null) {
 			for (final IContributionItem i : popupMgr.getItems()) {
