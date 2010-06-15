@@ -1,6 +1,7 @@
 	@Ignore
 	public void invalidPortFreezesDialog() throws Exception {
-		RepoPropertiesPage repoProperties = importWizard.openWizard();
+		importWizard.openWizard();
+		RepoPropertiesPage repoProperties = importWizard.openCloneWizard();
 		RepoRemoteBranchesPage remoteBranches = repoProperties
 				.nextToRemoteBranches("git://localhost:80/EGIT");
 		remoteBranches

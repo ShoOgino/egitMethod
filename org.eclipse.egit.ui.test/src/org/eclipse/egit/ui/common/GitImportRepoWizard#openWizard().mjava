@@ -1,0 +1,9 @@
+	public void openWizard() {
+		bot.menu("File").menu("Import...").click();
+		bot.shell("Import").activate();
+
+		bot.tree().expandNode("Git").select("Projects from Git");
+
+		bot.button("Next >").click();
+	}
+
