@@ -1,4 +1,4 @@
-	private void rmrf(File d) throws IOException {
+	public static void rmrf(File d) throws IOException {
 		if (!d.exists())
 			return;
 

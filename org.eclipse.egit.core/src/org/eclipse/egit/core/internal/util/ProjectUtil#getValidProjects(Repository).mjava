@@ -1,0 +1,20 @@
+	public static IProject[] getValidProjects(Repository repository)
+			throws CoreException {
+		final IProject[] projects = ResourcesPlugin.getWorkspace().getRoot()
+				.getProjects();
+		List<IProject> result = new ArrayList<IProject>();
+		final File parentFile = repository.getWorkDir();
+		for (IProject p : projects) {
+			String projectFilePath = p.getLocation()
+					.append(".project").toOSString(); 			File projectFile = new File(projectFilePath);
+			if (projectFile.exists()) {
+				final File file = p.getLocation().toFile();
+				if (file.getAbsolutePath().startsWith(
+						parentFile.getAbsolutePath())) {
+					result.add(p);
+				}
+			}
+		}
+		return result.toArray(new IProject[result.size()]);
+	}
+
