@@ -1,0 +1,4 @@
+	public IEclipsePreferences getPreferences() {
+		return prefs;
+	}
+

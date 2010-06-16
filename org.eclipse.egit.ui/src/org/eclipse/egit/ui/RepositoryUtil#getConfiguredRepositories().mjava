@@ -1,0 +1,4 @@
+	public List<String> getConfiguredRepositories() {
+		return this.getConfiguredRepositories(false);
+	}
+

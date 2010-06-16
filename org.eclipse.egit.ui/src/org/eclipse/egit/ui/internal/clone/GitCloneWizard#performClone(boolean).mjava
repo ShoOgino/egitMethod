@@ -30,6 +30,9 @@
 
 		alreadyClonedInto = workdir.getPath();
 
+		final RepositoryUtil config = Activator.getDefault()
+				.getRepositoryUtil();
+
 		if (background) {
 			final Job job = new Job(NLS.bind(UIText.GitCloneWizard_jobName, uri
 					.toString())) {
@@ -38,7 +41,7 @@
 					try {
 						op.run(monitor);
 						RepositorySelectionPage.saveUriInPrefs(uri.toString());
-						RepositoriesView.addDir(op.getGitDir());
+						config.addConfiguredRepository(op.getGitDir());
 						return Status.OK_STATUS;
 					} catch (InterruptedException e) {
 						return Status.CANCEL_STATUS;
@@ -66,7 +69,7 @@
 				});
 
 				RepositorySelectionPage.saveUriInPrefs(uri.toString());
-				RepositoriesView.addDir(op.getGitDir());
+				config.addConfiguredRepository(op.getGitDir());
 				return true;
 			} catch (InterruptedException e) {
 				MessageDialog.openInformation(getShell(),

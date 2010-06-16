@@ -1,58 +1,43 @@
 	private void scheduleRefresh() {
-
-		if (scheduledJob != null && scheduledJob.getState() == Job.RUNNING)
+		if (scheduledJob != null && scheduledJob.getState() == Job.RUNNING) {
 			return;
+		}
+
+		final CommonViewer tv = getCommonViewer();
+		final boolean needsNewInput = lastInputChange > lastInputUpdate;
 
 		Job job = new Job("Refreshing Git Repositories view") { 
-			@SuppressWarnings("unchecked")
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
-				final List<String> directories = getDirs();
 
-				boolean needsNewInput = tv.getInput() == null;
-				List<RepositoryTreeNode<Repository>> oldInput = (List) tv
-						.getInput();
-				if (!needsNewInput)
-					needsNewInput = oldInput.size() != directories.size();
-
-				if (!needsNewInput) {
-					List<String> oldDirectories = new ArrayList<String>();
-					for (RepositoryTreeNode<Repository> node : oldInput) {
-						oldDirectories.add(node.getRepository().getDirectory()
-								.getPath());
-					}
-					needsNewInput = !directories.containsAll(oldDirectories);
-				}
-
-				final boolean updateInput = needsNewInput;
-				final List<RepositoryTreeNode<Repository>> newInput;
-				if (updateInput) {
+				if (needsNewInput) {
 					unregisterRepositoryListener();
-					try {
-						newInput = getRepositoriesFromDirs(monitor);
-					} catch (InterruptedException e) {
-						return new Status(IStatus.ERROR, Activator
-								.getPluginId(), e.getMessage(), e);
-					}
 					repositories.clear();
-					for (RepositoryTreeNode<Repository> node: newInput) {
-						Repository repo = node.getRepository();
-						repositories.add(repo);
-						repo.removeRepositoryChangedListener(repositoryListener);
-						repo.addRepositoryChangedListener(repositoryListener);
+					for (String dir : repositoryUtil
+							.getConfiguredRepositories()) {
+						try {
+							Repository repo = repositoryCache
+									.lookupRepository(new File(dir));
+							repo
+									.addRepositoryChangedListener(repositoryListener);
+							repositories.add(repo);
+						} catch (IOException e) {
+							Activator.handleError(e.getMessage(), e, false);
+						}
 					}
-				} else {
-					newInput = null;
 				}
+
 				Display.getDefault().asyncExec(new Runnable() {
 					public void run() {
 						Object[] expanded = tv.getExpandedElements();
 						IStructuredSelection sel = (IStructuredSelection) tv
 								.getSelection();
 
-						if (updateInput)
-							tv.setInput(newInput);
-						else
+						if (needsNewInput) {
+							lastInputUpdate = System.currentTimeMillis();
+							tv.setInput(ResourcesPlugin.getWorkspace()
+									.getRoot());
+						} else
 							tv.refresh();
 						tv.setExpandedElements(expanded);
 
@@ -71,7 +56,9 @@
 						}
 					}
 				});
-				return new Status(IStatus.OK, Activator.getPluginId(), ""); 			}
+
+				return Status.OK_STATUS;
+			}
 
 		};
 		job.setSystem(true);
@@ -82,6 +69,5 @@
 		service.schedule(job);
 
 		scheduledJob = job;
-
 	}
 

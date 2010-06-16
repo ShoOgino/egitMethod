@@ -1,0 +1,6 @@
+	@SuppressWarnings("unchecked")
+	public List<T> getSelectedNodes(ExecutionEvent event) {
+		TreeSelection selection = (TreeSelection) ((IEvaluationContext) event
+				.getApplicationContext()).getRoot().getVariable("selection"); 		return selection.toList();
+	}
+

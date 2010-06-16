@@ -1,0 +1,27 @@
+	public boolean addConfiguredRepository(File repositoryDir)
+			throws IllegalArgumentException {
+		synchronized (prefs) {
+
+			if (!FileKey.isGitRepository(repositoryDir, FS.DETECTED))
+				throw new IllegalArgumentException();
+
+			String dirString;
+			try {
+				dirString = repositoryDir.getCanonicalPath();
+			} catch (IOException e) {
+				dirString = repositoryDir.getAbsolutePath();
+			}
+
+			List<String> dirStrings = getConfiguredRepositories(false);
+			if (dirStrings.contains(dirString)) {
+				return false;
+			} else {
+				Set<String> dirs = new HashSet<String>();
+				dirs.addAll(dirStrings);
+				dirs.add(dirString);
+				saveDirs(dirs);
+				return true;
+			}
+		}
+	}
+

@@ -1,0 +1,5 @@
+	public void refresh() {
+		lastInputUpdate = -1l;
+		scheduleRefresh();
+	}
+

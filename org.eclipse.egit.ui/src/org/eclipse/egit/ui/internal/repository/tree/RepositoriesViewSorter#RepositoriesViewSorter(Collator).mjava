@@ -1,0 +1,4 @@
+	public RepositoriesViewSorter(Collator collator) {
+		super(collator);
+	}
+
