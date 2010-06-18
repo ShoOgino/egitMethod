@@ -1,7 +1,7 @@
 	@BeforeClass
 	public static void beforeClass() throws Exception {
 		bot.perspectiveById("org.eclipse.pde.ui.PDEPerspective").activate();
-		GitCloneWizardTest.closeWelcomePage();
+		EGitTestCase.closeWelcomePage();
 		myProject = ResourcesPlugin.getWorkspace().getRoot().getProject(
 				PRJ_NAME);
 		if (myProject.exists())
