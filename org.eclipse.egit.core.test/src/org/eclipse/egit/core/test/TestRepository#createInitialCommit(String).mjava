@@ -1,0 +1,10 @@
+	public RevCommit createInitialCommit(String message) throws IOException,
+			NoHeadException, NoMessageException, ConcurrentRefUpdateException,
+			JGitInternalException, WrongRepositoryStateException {
+		String repoPath = repository.getWorkDir().getAbsolutePath();
+		File file = new File(repoPath, "dummy");
+		file.createNewFile();
+		track(file);
+		return commit(message);
+	}
+

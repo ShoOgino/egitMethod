@@ -1,0 +1,11 @@
+	public TestRepository(File gitDir) throws IOException {
+		repository = new Repository(gitDir);
+		repository.create();
+		try {
+			workdirPrefix = repository.getWorkDir().getCanonicalPath();
+		} catch (IOException err) {
+			workdirPrefix = repository.getWorkDir().getAbsolutePath();
+		}
+		workdirPrefix = workdirPrefix.replace('\\', '/');
+		if (!workdirPrefix.endsWith("/"))  			workdirPrefix += "/";  	}
+

@@ -1,0 +1,8 @@
+	private IFile createFile(String name) throws CoreException {
+		IFile file = project.project.getFile(name);
+		file.create(
+				new ByteArrayInputStream(new byte[] { 'T', 'e', 's', 't' }),
+				true, null);
+		return file;
+	}
+

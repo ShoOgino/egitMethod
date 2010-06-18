@@ -1,0 +1,15 @@
+	@Test
+	public void testMixedReset() throws Exception {
+		setupRepository();
+		String fileInIndexPath = fileInIndex.getLocation().toOSString();
+		new ResetOperation(repository, initialCommit.getName(),
+				ResetOperation.ResetType.MIXED).execute(null);
+		assertTrue(projectFile.exists());
+		assertTrue(project.getProject().exists());
+		assertTrue(repository.resolve("HEAD").equals(initialCommit));
+		assertTrue(untrackedFile.exists());
+		assertTrue(fileInIndex.exists());
+		assertFalse(testRepository.inHead(fileInIndexPath));
+		assertFalse(testRepository.inIndex(fileInIndexPath));
+	}
+

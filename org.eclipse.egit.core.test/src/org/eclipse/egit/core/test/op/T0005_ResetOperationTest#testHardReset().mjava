@@ -1,0 +1,15 @@
+	@Test
+	public void testHardReset() throws Exception {
+		setupRepository();
+		String fileInIndexPath = fileInIndex.getLocation().toOSString();
+		new ResetOperation(repository, initialCommit.getName(),
+				ResetOperation.ResetType.HARD).execute(null);
+		assertFalse(projectFile.exists());
+		assertFalse(project.getProject().exists());
+		assertTrue(repository.resolve("HEAD").equals(initialCommit));
+		assertFalse(untrackedFile.exists());
+		assertFalse(fileInIndex.exists());
+		assertFalse(testRepository.inHead(fileInIndexPath));
+		assertFalse(testRepository.inIndex(fileInIndexPath));
+	}
+

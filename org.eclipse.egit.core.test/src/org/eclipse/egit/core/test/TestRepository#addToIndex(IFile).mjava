@@ -1,0 +1,9 @@
+	public void addToIndex(IFile file) throws IOException {
+		GitIndex index = repository.getIndex();
+		Entry entry = index.getEntry(getRepoRelativePath(file.getLocation().toOSString()));
+		assertNotNull(entry);
+		if (entry.isModified(repository.getWorkDir()))
+			entry.update(new File(repository.getWorkDir(), entry.getName()));
+		index.write();
+	}
+

@@ -1,13 +1,13 @@
 	@Test
 	public void testBranchOperation() throws Exception {
-		createInitialCommit();
-		createBranch(MASTER, TEST);
+		testRepository.createInitialCommit("testBranchOperation\n\nfirst commit\n");
+		testRepository.createBranch(MASTER, TEST);
 		new BranchOperation(repository, TEST).execute(null);
 		assertTrue(repository.getFullBranch().equals(TEST));
 		String path = project.getProject().getLocation().append(".project").toOSString();
 		File file = new File(path);
-		track(file);
-		commit("Add .project file");
+		testRepository.track(file);
+		testRepository.commit("Add .project file");
 		new BranchOperation(repository, MASTER).execute(null);
 		assertFalse(file.exists());
 		assertFalse(project.getProject().exists());

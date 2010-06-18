@@ -1,0 +1,9 @@
+	public String getRepoRelativePath(String path) {
+		final int pfxLen = workdirPrefix.length();
+		final int pLen = path.length();
+		if (pLen > pfxLen)
+			return path.substring(pfxLen);
+		else if (path.length() == pfxLen - 1)
+			return "";  		return null;
+	}
+

@@ -1,0 +1,7 @@
+	public boolean inHead(String path) throws IOException {
+		Tree headTree = repository.mapTree(Constants.HEAD);
+		String repoPath = getRepoRelativePath(path);
+		boolean headExists = headTree.existsBlob(repoPath);
+		return headExists;
+	}
+
