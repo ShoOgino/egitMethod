@@ -3,25 +3,15 @@
 		Set<IResource> membersSet = new HashSet<IResource>();
 
 		for (IResource member : members) {
-			if (member.getType() == IResource.FILE) {
-				String repoWorkDir = repo.getWorkDir().toString();
-				String memberRelPath = member.getLocation().toString();
-				memberRelPath = memberRelPath.replace(repoWorkDir, ""); 				if (memberRelPath.startsWith(File.separator)) {
-					memberRelPath = memberRelPath.substring(1);
-				}
+			String memberRelPath = getMemberRelPath(repo, member);
+
+			if (tree.existsBlob(memberRelPath)) {
 				TreeEntry entry = tree.findBlobMember(memberRelPath);
-				if (entry != null) {
-					ObjectLoader objLoader = repo.openBlob(entry.getId());
-					store.setBytes(member, objLoader.getCachedBytes());
-					membersSet.add(member);
-				}
-			} else if (member.getType() == IResource.FOLDER ) {
-				try {
-					IResource[] resources = ((IContainer) member).members();
-					membersSet.addAll(getAllMembers(repo, tree, resources));
-				} catch (CoreException e) {
-					throw new TeamException(e.getStatus());
-				}
+				ObjectLoader objLoader = repo.openBlob(entry.getId());
+				store.setBytes(member, objLoader.getCachedBytes());
+				membersSet.add(member);
+			} else if (tree.existsTree(memberRelPath)) {
+				membersSet.add(member);
 			}
 		}
 		return membersSet;
