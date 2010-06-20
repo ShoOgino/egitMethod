@@ -1,0 +1,11 @@
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+
+		for (GitSynchronizeData data : gsd) {
+			builder.append(data.getRepository().getWorkDir());
+			builder.append(" "); 		}
+
+		return builder.toString();
+	}
+
