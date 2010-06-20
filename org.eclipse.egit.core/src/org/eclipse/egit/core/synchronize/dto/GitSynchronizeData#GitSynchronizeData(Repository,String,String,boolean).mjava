@@ -1,0 +1,19 @@
+	public GitSynchronizeData(Repository repository, String srcRev,
+			String dstRev, boolean includeLocal) {
+		repo = repository;
+		this.srcRev = srcRev;
+		this.dstRev = dstRev;
+		this.includeLocal = includeLocal;
+		repoParentPath = repo.getDirectory().getParentFile().getAbsolutePath();
+
+		projects = new HashSet<IProject>();
+		final IProject[] workspaceProjects = ResourcesPlugin.getWorkspace()
+				.getRoot().getProjects();
+		for (IProject project : workspaceProjects) {
+			RepositoryMapping mapping = RepositoryMapping.getMapping(project);
+			if (mapping != null && mapping.getRepository() == repo)
+				projects.add(project);
+		}
+
+	}
+
