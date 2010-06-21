@@ -1,0 +1,120 @@
+	private void scheduleRefresh(long delay) {
+		boolean trace = GitTraceLocation.REPOSITORIESVIEW.isActive();
+		if (trace)
+			GitTraceLocation.getTrace().trace(
+					GitTraceLocation.REPOSITORIESVIEW.getLocation(),
+					"Entering scheduleRefresh()"); 
+		if (scheduledJob != null
+				&& (scheduledJob.getState() == Job.RUNNING
+						|| scheduledJob.getState() == Job.WAITING || scheduledJob
+						.getState() == Job.SLEEPING)) {
+			if (trace)
+				GitTraceLocation.getTrace().trace(
+						GitTraceLocation.REPOSITORIESVIEW.getLocation(),
+						"Pending refresh job, returning"); 			return;
+		}
+
+		final CommonViewer tv = getCommonViewer();
+		final boolean needsNewInput = lastInputChange > lastInputUpdate;
+
+		if (trace)
+			GitTraceLocation.getTrace().trace(
+					GitTraceLocation.REPOSITORIESVIEW.getLocation(),
+					"New input required: " + needsNewInput); 
+		Job job = new Job("Refreshing Git Repositories view") { 
+			@Override
+			protected IStatus run(IProgressMonitor monitor) {
+				boolean actTrace = GitTraceLocation.REPOSITORIESVIEW.isActive();
+				if (actTrace)
+					GitTraceLocation.getTrace().trace(
+							GitTraceLocation.REPOSITORIESVIEW.getLocation(),
+							"Running the update"); 				lastInputUpdate = System.currentTimeMillis();
+				if (needsNewInput) {
+					synchronized (repositories) {
+						unregisterRepositoryListener();
+						repositories.clear();
+						for (String dir : repositoryUtil
+								.getConfiguredRepositories()) {
+							try {
+								Repository repo = repositoryCache
+										.lookupRepository(new File(dir));
+								repo
+										.addRepositoryChangedListener(repositoryListener);
+								repositories.add(repo);
+							} catch (IOException e) {
+								Activator.handleError(e.getMessage(), e, false);
+							}
+						}
+					}
+				}
+
+				Display.getDefault().asyncExec(new Runnable() {
+					public void run() {
+						long start = 0;
+						boolean traceActive = GitTraceLocation.REPOSITORIESVIEW
+								.isActive();
+						if (traceActive) {
+							start = System.currentTimeMillis();
+							GitTraceLocation.getTrace().trace(
+									GitTraceLocation.REPOSITORIESVIEW
+											.getLocation(),
+									"Starting async update job"); 						}
+						Object[] expanded = tv.getExpandedElements();
+						IStructuredSelection sel = (IStructuredSelection) tv
+								.getSelection();
+
+						if (needsNewInput) {
+							tv.setInput(ResourcesPlugin.getWorkspace()
+									.getRoot());
+						} else
+							tv.refresh();
+						tv.setExpandedElements(expanded);
+
+						Object selected = sel.getFirstElement();
+						if (selected != null)
+							tv.reveal(selected);
+
+						IViewPart part = PlatformUI.getWorkbench()
+								.getActiveWorkbenchWindow().getActivePage()
+								.findView(IPageLayout.ID_PROP_SHEET);
+						if (part != null) {
+							PropertySheet sheet = (PropertySheet) part;
+							PropertySheetPage page = (PropertySheetPage) sheet
+									.getCurrentPage();
+							page.refresh();
+						}
+						if (traceActive)
+							GitTraceLocation
+									.getTrace()
+									.trace(
+											GitTraceLocation.REPOSITORIESVIEW
+													.getLocation(),
+											"Ending async update job after " + (System.currentTimeMillis() - start) + " ms"); 					}
+				});
+
+				if (lastInputChange > lastInputUpdate
+						|| lastRepositoryChange > lastInputUpdate) {
+					if (actTrace)
+						GitTraceLocation.getTrace()
+								.trace(
+										GitTraceLocation.REPOSITORIESVIEW
+												.getLocation(),
+										"Rescheduling refresh job"); 					schedule(DEFAULT_REFRESH_DELAY);
+				}
+				return Status.OK_STATUS;
+			}
+
+		};
+		job.setSystem(true);
+
+		IWorkbenchSiteProgressService service = (IWorkbenchSiteProgressService) getSite()
+				.getService(IWorkbenchSiteProgressService.class);
+
+		if (trace)
+			GitTraceLocation.getTrace().trace(
+					GitTraceLocation.REPOSITORIESVIEW.getLocation(),
+					"Scheduling refresh job"); 		service.schedule(job, delay);
+
+		scheduledJob = job;
+	}
+
