@@ -9,8 +9,10 @@
 			Tree tree = getRevTree(resource);
 			ObjectId objId = getRevObjId(resource);
 
-			trees.put(db, tree);
-			walk(db, objId, tree);
+			if (objId != null && tree != null) {
+				trees.put(db, tree);
+				walk(db, objId, tree);
+			}
 		}
 	}
 
