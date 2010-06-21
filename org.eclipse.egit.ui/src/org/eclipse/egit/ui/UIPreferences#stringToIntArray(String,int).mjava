@@ -1,0 +1,9 @@
+	public static int[] stringToIntArray(final String value, final int cnt) {
+		final int[] r = new int[cnt];
+		if (value != null) {
+			final String[] e = value.split(","); 			for (int i = 0; i < Math.min(e.length, r.length); i++)
+				r[i] = Integer.parseInt(e[i].trim());
+		}
+		return r;
+	}
+
