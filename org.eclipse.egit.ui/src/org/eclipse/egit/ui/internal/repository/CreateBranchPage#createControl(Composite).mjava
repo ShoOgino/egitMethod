@@ -33,13 +33,6 @@
 		});
 		if (myBaseBranch != null) {
 			this.branchCombo.setText(myBaseBranch.getName());
-		} else {
-			String fullBranch;
-			try {
-				fullBranch = myRepository.getFullBranch();
-				this.branchCombo.setText(fullBranch);
-			} catch (IOException e1) {
-			}
 		}
 
 		Label nameLabel = new Label(main, SWT.NONE);
@@ -78,10 +71,17 @@
 		Dialog.applyDialogFont(main);
 		setControl(main);
 		nameText.setFocus();
+		if (myBaseBranch != null
+				&& myBaseBranch.getName().startsWith(Constants.R_REMOTES)) {
+			nameText.setText(myBaseBranch.getName().substring(
+					myBaseBranch.getName().lastIndexOf('/') + 1));
+			checkPage();
+		} else {
+			setPageComplete(false);
+		}
 
-		setPageComplete(false);
-		if (this.myBaseBranch != null)
-			setMessage(UIText.CreateBranchPage_ChosseNameMessage);
+		if (this.myBaseBranch != null && this.nameText.getText().isEmpty())
+			setMessage(UIText.CreateBranchPage_ChooseNameMessage);
 		else
 			setMessage(UIText.CreateBranchPage_ChooseBranchAndNameMessage);
 	}
