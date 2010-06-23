@@ -79,6 +79,8 @@
 						if (!gitDir.toString().contains("..")) 							project.refreshLocal(IResource.DEPTH_ONE,
 									new NullProgressMonitor());
 					}
+					RepositoryUtil util = Activator.getDefault().getRepositoryUtil();
+					util.addConfiguredRepository(gitDir);
 				} catch (IOException e1) {
 					String msg = NLS
 							.bind(
