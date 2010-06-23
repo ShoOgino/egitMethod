@@ -30,16 +30,16 @@
 						badField = UIText.RepositorySelectionPage_promptPassword;
 					if (badField != null) {
 						selectionIncomplete(NLS
-								.bind(
-										UIText.RepositorySelectionPage_fieldNotSupported,
+								.bind(UIText.RepositorySelectionPage_fieldNotSupported,
 										unamp(badField), proto));
 						return;
 					}
 
-					final File d = FS.DETECTED.resolve(new File("."), uri.getPath()); 					if (!d.exists()) {
+					final File d = FS.DETECTED.resolve(
+							new File("."), uri.getPath()); 					if (!d.exists()) {
 						selectionIncomplete(NLS.bind(
-								UIText.RepositorySelectionPage_fileNotFound, d
-										.getAbsolutePath()));
+								UIText.RepositorySelectionPage_fileNotFound,
+								d.getAbsolutePath()));
 						return;
 					}
 
@@ -63,8 +63,7 @@
 						badField = UIText.RepositorySelectionPage_promptPassword;
 					if (badField != null) {
 						selectionIncomplete(NLS
-								.bind(
-										UIText.RepositorySelectionPage_fieldNotSupported,
+								.bind(UIText.RepositorySelectionPage_fieldNotSupported,
 										unamp(badField), proto));
 						return;
 					}
@@ -78,8 +77,7 @@
 			} catch (Exception e) {
 				Activator.logError(NLS.bind(
 						UIText.RepositorySelectionPage_errorValidating,
-						getClass().getName()),
-						e);
+						getClass().getName()), e);
 				selectionIncomplete(UIText.RepositorySelectionPage_internalError);
 				return;
 			}
