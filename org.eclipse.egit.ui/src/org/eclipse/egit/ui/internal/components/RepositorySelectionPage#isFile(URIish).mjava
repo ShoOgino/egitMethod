@@ -4,6 +4,7 @@
 				|| uri.getPass() != null || uri.getPath() == null)
 			return false;
 		if (uri.getScheme() == null)
-			return FS.DETECTED.resolve(new File("."), uri.getPath()).isDirectory(); 		return false;
+			return FS.DETECTED
+					.resolve(new File("."), uri.getPath()).isDirectory(); 		return false;
 	}
 
