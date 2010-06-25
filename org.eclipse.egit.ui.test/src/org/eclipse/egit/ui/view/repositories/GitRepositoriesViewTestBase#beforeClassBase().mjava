@@ -1,0 +1,15 @@
+	@BeforeClass
+	public static void beforeClassBase() throws Exception {
+		try {
+			bot.viewByTitle("Welcome").close();
+		} catch (WidgetNotFoundException e) {
+		}
+		clearView();
+		deleteAllProjects();
+		File userHome = FS.DETECTED.userHome();
+		testDirectory = new File(userHome, "GitRepositoriesTest");
+		if (testDirectory.exists())
+			deleteRecursive(testDirectory);
+		testDirectory.mkdir();
+	}
+

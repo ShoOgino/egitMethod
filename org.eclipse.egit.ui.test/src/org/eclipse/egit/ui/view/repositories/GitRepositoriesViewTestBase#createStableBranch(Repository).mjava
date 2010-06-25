@@ -1,0 +1,13 @@
+	protected static void createStableBranch(Repository myRepository)
+			throws IOException {
+		String newRefName = "refs/heads/stable";
+		RefUpdate updateRef = myRepository.updateRef(newRefName);
+		Ref sourceBranch = myRepository.getRef("refs/heads/master");
+		ObjectId startAt = sourceBranch.getObjectId();
+		String startBranch = myRepository
+				.shortenRefName(sourceBranch.getName());
+		updateRef.setNewObjectId(startAt);
+		updateRef
+				.setRefLogMessage("branch: Created from " + startBranch, false); 		updateRef.update();
+	}
+

@@ -1,0 +1,5 @@
+	protected static void clearView() {
+		new InstanceScope().getNode(Activator.getPluginId()).remove(
+				RepositoryUtil.PREFS_DIRECTORIES);
+	}
+
