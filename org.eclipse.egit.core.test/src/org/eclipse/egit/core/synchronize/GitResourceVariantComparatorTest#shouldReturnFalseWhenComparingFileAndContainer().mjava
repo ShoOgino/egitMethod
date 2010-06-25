@@ -1,0 +1,18 @@
+	@Test
+	@SuppressWarnings("boxing")
+	public void shouldReturnFalseWhenComparingFileAndContainer() {
+		GitResourceVariantComparator grvc = new GitResourceVariantComparator(
+				null, null);
+
+		IFile local = createMock(IFile.class);
+		expect(local.exists()).andReturn(true);
+		replay(local);
+
+		IResourceVariant remote = createMock(IResourceVariant.class);
+		expect(remote.isContainer()).andReturn(true);
+		replay(remote);
+
+		assertFalse(grvc.compare(local, remote));
+		verify(local, remote);
+	}
+

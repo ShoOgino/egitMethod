@@ -1,0 +1,24 @@
+	@Test
+	@SuppressWarnings("boxing")
+	public void shouldReturnTrueWhenComparingContainerAndContainer() {
+		GitResourceVariantComparator grvc = new GitResourceVariantComparator(
+				null, null);
+
+		IPath path = createMock(IPath.class);
+		replay(path);
+
+		IContainer local = createMock(IContainer.class);
+		expect(local.exists()).andReturn(true);
+		expect(local.getFullPath()).andReturn(path);
+		replay(local);
+
+		IResource remoteResource = createMock(IResource.class);
+		expect(remoteResource.getFullPath()).andReturn(path);
+		replay(remoteResource);
+		GitFolderResourceVariant remote = new GitFolderResourceVariant(
+				remoteResource);
+
+		assertTrue(grvc.compare(local, remote));
+		verify(local, path, remoteResource);
+	}
+
