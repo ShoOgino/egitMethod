@@ -1,5 +1,4 @@
 	@Test
-	@Ignore
 	public void testContextMenuRepository() throws Exception {
 		SWTBotTree tree = getOrOpenView().bot().tree();
 		SWTBotTreeItem item = getRootItem(tree, repositoryFile);
