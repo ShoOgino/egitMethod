@@ -1,0 +1,6 @@
+	private void createWorkingSetGroup(Composite workArea) {
+		String[] workingSetTypes = new String[] {
+			"org.eclipse.ui.resourceWorkingSetPage", 			"org.eclipse.jdt.ui.JavaWorkingSetPage" 		};
+		workingSetGroup = new WorkingSetGroup(workArea, null, workingSetTypes);
+	}
+
