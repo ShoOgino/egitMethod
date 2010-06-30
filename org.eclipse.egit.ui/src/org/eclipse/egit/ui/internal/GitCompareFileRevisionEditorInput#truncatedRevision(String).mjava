@@ -1,0 +1,6 @@
+	private String truncatedRevision(String ci) {
+		if(ci.length() > 10)
+			return ci.substring(0, 7) + "..."; 		else
+			return ci;
+	}
+
