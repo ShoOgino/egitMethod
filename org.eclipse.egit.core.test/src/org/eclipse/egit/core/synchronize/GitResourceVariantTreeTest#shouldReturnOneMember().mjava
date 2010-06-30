@@ -1,0 +1,19 @@
+	@Test
+	public void shouldReturnOneMember() throws Exception {
+		createResourceAndCommit("org.egit.test", "Main.java", "class Main {}",
+				"Initial commit");
+		IPackageFragment iPackage = project
+				.createPackage("org.egit.test.nested");
+		project.createType(iPackage, "Main2.java", "class Main2 {}");
+		GitSynchronizeData data = new GitSynchronizeData(repo, Constants.HEAD,
+				Constants.MASTER, false);
+		GitSynchronizeDataSet dataSet = new GitSynchronizeDataSet(data);
+
+		GitResourceVariantTree grvt = new GitRemoteResourceVariantTree(dataSet,
+				store);
+
+		assertEquals(1, grvt.members(project.project).length);
+		IResource[] members = grvt.members(project.project);
+		assertEquals("src", members[0].getName());
+	}
+

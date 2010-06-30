@@ -1,0 +1,27 @@
+	@Ignore
+	@Test
+	public void shoulReturnSameResourceVariant() throws Exception {
+		IType mainJava = createResourceAndCommit("org.egit.test", "Main.java",
+				"class Main {}", "Initial commit");
+		GitSynchronizeData data = new GitSynchronizeData(repo, Constants.HEAD,
+				Constants.MASTER, false);
+		GitSynchronizeDataSet dataSet = new GitSynchronizeDataSet(data);
+
+		GitResourceVariantTree grvt = new GitRemoteResourceVariantTree(dataSet,
+				store);
+
+		IResourceVariant actual = grvt.getResourceVariant(mainJava
+				.getResource());
+		assertNotNull(actual);
+		assertEquals("Main.java", actual.getName());
+
+		InputStream actualIn = actual.getStorage(new NullProgressMonitor())
+				.getContents();
+		byte[] actualByte = new byte[actualIn.available()];
+		actualIn.read(actualByte);
+		InputStream expectedIn = ((IFile) mainJava.getResource()).getContents();
+		byte[] expectedByte = new byte[expectedIn.available()];
+		expectedIn.read(expectedByte);
+		assertArrayEquals(expectedByte, actualByte);
+	}
+

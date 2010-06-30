@@ -1,0 +1,10 @@
+	private ObjectId stage(String fileName, byte[] content) throws Exception {
+		GitIndex index = repo.getIndex();
+		File workdir = project.getProject().getFullPath().toFile();
+		File file = new File(workdir, fileName);
+		Entry entry = index.add(workdir, file, content);
+		index.write();
+
+		return entry.getObjectId();
+	}
+

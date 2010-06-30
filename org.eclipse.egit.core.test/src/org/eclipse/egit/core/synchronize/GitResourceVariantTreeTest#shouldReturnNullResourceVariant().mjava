@@ -1,0 +1,12 @@
+	@Test
+	public void shouldReturnNullResourceVariant() throws Exception {
+		GitSynchronizeData data = new GitSynchronizeData(repo, Constants.HEAD,
+				Constants.MASTER, false);
+		GitSynchronizeDataSet dataSet = new GitSynchronizeDataSet(data);
+
+		GitResourceVariantTree grvt = new GitRemoteResourceVariantTree(dataSet,
+				store);
+
+		assertNull(grvt.getResourceVariant(null));
+	}
+

@@ -1,0 +1,15 @@
+	@Test
+	public void shouldReturnNullResourceVariant2() throws Exception {
+		IPackageFragment iPackage = project.createPackage("org.egit.test");
+		IType mainJava = project.createType(iPackage, "Main.java",
+				"class Main {}");
+		GitSynchronizeData data = new GitSynchronizeData(repo, Constants.HEAD,
+				Constants.MASTER, false);
+		GitSynchronizeDataSet dataSet = new GitSynchronizeDataSet(data);
+
+		GitResourceVariantTree grvt = new GitRemoteResourceVariantTree(dataSet,
+				store);
+
+		assertNull(grvt.getResourceVariant(mainJava.getResource()));
+	}
+

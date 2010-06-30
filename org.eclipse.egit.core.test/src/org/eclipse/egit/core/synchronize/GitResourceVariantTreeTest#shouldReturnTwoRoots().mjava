@@ -1,0 +1,18 @@
+	@Test
+	public void shouldReturnTwoRoots() throws Exception {
+		TestProject secondProject = new TestProject(false, "Project-2");
+		IProject secondIProject = secondProject.project;
+		new ConnectProviderOperation(secondIProject, gitDir).execute(null);
+		GitSynchronizeData data = new GitSynchronizeData(repo, "", "", false);
+		GitSynchronizeDataSet dataSet = new GitSynchronizeDataSet(data);
+
+		GitResourceVariantTree grvt = new GitTestResourceVariantTree(dataSet,
+				store);
+
+		assertEquals(2, grvt.roots().length);
+		IResource actualProject = grvt.roots()[1];
+		assertEquals(this.project.project, actualProject);
+		IResource actualProject1 = grvt.roots()[0];
+		assertEquals(secondIProject, actualProject1);
+	}
+

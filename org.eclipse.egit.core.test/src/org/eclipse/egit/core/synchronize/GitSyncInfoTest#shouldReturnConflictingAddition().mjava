@@ -1,0 +1,21 @@
+	@Test
+	@SuppressWarnings("boxing")
+	public void shouldReturnConflictingAddition() throws Exception {
+
+		IResource local = createMock(IResource.class);
+		expect(local.exists()).andReturn(true).times(3);
+		expect(local.isDerived()).andReturn(false);
+		expect(local.getName()).andReturn("Mian.java").anyTimes();
+		replay(local);
+
+		IResource remoteResource = createMock(IResource.class);
+		replay(remoteResource);
+		GitBlobResourceVariant remote = new GitBlobResourceVariant(
+				remoteResource, repo, ObjectId.zeroId(), null);
+		GitSyncInfo gsi = new GitSyncInfo(local, null, remote, comparator);
+		gsi.init();
+
+		assertEquals(CONFLICTING | ADDITION, gsi.getKind());
+		verify(local, remoteResource);
+	}
+
