@@ -1,0 +1,3 @@
+	private int findNextEOL(int oldPos, String message) {
+		return message.indexOf("\n", oldPos + 1); 	}
+

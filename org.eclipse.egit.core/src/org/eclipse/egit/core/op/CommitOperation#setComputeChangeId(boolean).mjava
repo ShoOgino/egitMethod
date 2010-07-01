@@ -1,0 +1,4 @@
+	public void setComputeChangeId(boolean createChangeId) {
+		this.createChangeId = createChangeId;
+	}
+
