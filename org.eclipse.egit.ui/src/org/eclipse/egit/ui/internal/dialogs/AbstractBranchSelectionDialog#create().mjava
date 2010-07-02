@@ -1,0 +1,24 @@
+	@Override
+	public void create() {
+		super.create();
+
+		List<RepositoryTreeNode> roots = new ArrayList<RepositoryTreeNode>();
+		roots.add(localBranches);
+		roots.add(remoteBranches);
+		roots.add(tags);
+
+		branchTree.setInput(roots);
+
+		try {
+			if (refToMark != null) {
+				if (!markRef(refToMark))
+					branchTree.expandToLevel(localBranches, 1);
+			} else {
+				String fullBranch = repo.getFullBranch();
+				if (!markRef(fullBranch))
+					branchTree.expandToLevel(localBranches, 1);
+			}
+		} catch (IOException e) {
+		}
+	}
+

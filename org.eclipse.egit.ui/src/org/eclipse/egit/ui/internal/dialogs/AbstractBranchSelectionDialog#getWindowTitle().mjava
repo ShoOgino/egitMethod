@@ -1,0 +1,4 @@
+	protected String getWindowTitle() {
+		return getTitle();
+	}
+
