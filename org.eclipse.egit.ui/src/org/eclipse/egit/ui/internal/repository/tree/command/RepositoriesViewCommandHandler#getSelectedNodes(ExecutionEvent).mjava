@@ -1,6 +1,6 @@
 	@SuppressWarnings("unchecked")
-	public List<T> getSelectedNodes(ExecutionEvent event) {
-		TreeSelection selection = (TreeSelection) ((IEvaluationContext) event
-				.getApplicationContext()).getRoot().getVariable("selection"); 		return selection.toList();
+	public List<T> getSelectedNodes(ExecutionEvent event) throws ExecutionException {
+		IStructuredSelection selection = (IStructuredSelection) HandlerUtil.getCurrentSelectionChecked(event);
+		return selection.toList();
 	}
 
