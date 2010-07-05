@@ -61,7 +61,6 @@
 			ti.setChecked(true);
 			selectedRefs.add(r);
 		}
-		notifySelectionChanged();
 		checkPage();
 	}
 

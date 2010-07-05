@@ -1,0 +1,9 @@
+	private void checkPreviousPagesSelections(RepositorySelection repositorySelection,  List<RefSpec> refSpecs) {
+		if (!repositorySelection.equals(displayedRepoSelection)
+				|| !refSpecs.equals(displayedRefSpecs)) {
+			setPageComplete(true);
+		} else {
+			setPageComplete(confirmedResult != null);
+		}
+	}
+
