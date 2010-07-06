@@ -1,5 +1,0 @@
-	public RepositorySelectionPage(final boolean sourceSelection,
-			String presetUri) {
-		this(sourceSelection, null, presetUri);
-	}
-
