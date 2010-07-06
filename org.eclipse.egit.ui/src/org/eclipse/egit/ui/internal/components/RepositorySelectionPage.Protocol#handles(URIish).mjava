@@ -1,0 +1,4 @@
+		public boolean handles(URIish uri) {
+			return getDefaultScheme().equals(uri.getScheme());
+		}
+

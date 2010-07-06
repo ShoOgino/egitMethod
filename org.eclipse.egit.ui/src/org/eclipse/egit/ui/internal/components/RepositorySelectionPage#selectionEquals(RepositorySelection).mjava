@@ -1,0 +1,4 @@
+	public boolean selectionEquals(final RepositorySelection s) {
+		return selection.equals(s);
+	}
+

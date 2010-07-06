@@ -1,0 +1,4 @@
+		public boolean canAuthenticate() {
+			return canAuthenticate;
+		}
+

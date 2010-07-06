@@ -1,0 +1,4 @@
+		public static Protocol fromDefaultScheme(String scheme) {
+			return protocols.get(scheme);
+		}
+

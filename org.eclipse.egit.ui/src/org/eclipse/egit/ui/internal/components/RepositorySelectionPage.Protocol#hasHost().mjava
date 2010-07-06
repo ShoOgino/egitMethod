@@ -1,0 +1,4 @@
+		public boolean hasHost() {
+			return hasHost;
+		}
+

@@ -1,0 +1,4 @@
+		public boolean hasPort() {
+			return hasPort;
+		}
+
