@@ -1,4 +1,4 @@
-	public SelectUriWiazrd(boolean sourceSelection) {
+	public SelectUriWizard(boolean sourceSelection) {
 		addPage(new RepositorySelectionPage(sourceSelection, null));
 	}
 
