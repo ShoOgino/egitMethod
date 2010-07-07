@@ -1,4 +1,6 @@
 	public PushOperationResult getOperationResult() {
+		if (operationResult == null)
+			throw new IllegalStateException(CoreText.OperationNotYetExecuted);
 		return operationResult;
 	}
 

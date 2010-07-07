@@ -1,0 +1,50 @@
+	@Test
+	public void testPush() throws Exception {
+
+		PushOperation pop = createPushOperation();
+		pop.run(new NullProgressMonitor());
+		assertEquals(Status.UP_TO_DATE, getStatus(pop.getOperationResult()));
+
+		IProject proj = importProject(repository1, projectName);
+		ArrayList<IFile> files = new ArrayList<IFile>();
+		IFile newFile = testUtils.addFileToProject(proj, "folder2/file2.txt",
+				"New file");
+		files.add(newFile);
+		IFile[] fileArr = files.toArray(new IFile[files.size()]);
+
+		TrackOperation trop = new TrackOperation(fileArr);
+		trop.execute(null);
+		CommitOperation cop = new CommitOperation(fileArr, files, files,
+				TestUtils.AUTHOR, TestUtils.COMMITTER, "Added file");
+		cop.execute(null);
+
+		proj.delete(false, false, null);
+
+		pop = createPushOperation();
+		pop.run(null);
+		assertEquals(Status.OK, getStatus(pop.getOperationResult()));
+
+		try {
+			pop.run(null);
+			fail("Expected Exception not thrown");
+		} catch (IllegalStateException e) {
+		}
+
+		pop = createPushOperation();
+		pop.run(null);
+		assertEquals(Status.UP_TO_DATE, getStatus(pop.getOperationResult()));
+
+		String newFilePath = newFile.getFullPath().toOSString();
+
+		File testFile = new File(workdir2, newFilePath);
+		assertFalse(testFile.exists());
+		testFile = new File(workdir, newFilePath);
+		assertTrue(testFile.exists());
+
+		BranchOperation bop = new BranchOperation(repository2.getRepository(),
+				"refs/heads/test");
+		bop.execute(null);
+		testFile = new File(workdir2, newFilePath);
+		assertTrue(testFile.exists());
+	}
+

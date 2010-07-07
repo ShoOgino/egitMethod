@@ -1,0 +1,10 @@
+	public TestRepository(Repository repository) throws IOException {
+		this.repository = repository;
+		try {
+			workdirPrefix = repository.getWorkDir().getCanonicalPath();
+		} catch (IOException err) {
+			workdirPrefix = repository.getWorkDir().getAbsolutePath();
+		}
+		workdirPrefix = workdirPrefix.replace('\\', '/');
+		if (!workdirPrefix.endsWith("/"))  			workdirPrefix += "/";  	}
+

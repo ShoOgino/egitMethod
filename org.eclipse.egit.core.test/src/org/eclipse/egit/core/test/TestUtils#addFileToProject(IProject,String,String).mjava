@@ -1,0 +1,18 @@
+	public IFile addFileToProject(IProject project, String path, String content)
+			throws Exception {
+		IPath filePath = new Path(path);
+		IFolder folder = null;
+		for (int i = 0; i < filePath.segmentCount() - 1; i++) {
+			if (folder == null) {
+				folder = project.getFolder(filePath.segment(i));
+			} else {
+				folder = folder.getFolder(filePath.segment(i));
+			}
+			folder.create(false, true, null);
+		}
+		IFile file = project.getFile(filePath);
+		file.create(new ByteArrayInputStream(content.getBytes(project
+				.getDefaultCharset())), true, null);
+		return file;
+	}
+
