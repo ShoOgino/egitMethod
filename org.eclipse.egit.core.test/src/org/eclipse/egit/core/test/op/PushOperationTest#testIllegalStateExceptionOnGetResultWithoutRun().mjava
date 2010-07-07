@@ -1,0 +1,11 @@
+	@Test
+	public void testIllegalStateExceptionOnGetResultWithoutRun()
+			throws Exception {
+		PushOperation pop = createPushOperation();
+		try {
+			pop.getOperationResult();
+			fail("Expected Exception not thrown");
+		} catch (IllegalStateException e) {
+		}
+	}
+
