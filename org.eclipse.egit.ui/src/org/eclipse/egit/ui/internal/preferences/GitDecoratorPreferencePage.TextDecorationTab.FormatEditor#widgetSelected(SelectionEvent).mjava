@@ -5,18 +5,7 @@
 								+ " - " + ((Map.Entry) element).getValue(); 					}
 				};
 
-				final IStructuredContentProvider contentsProvider = new IStructuredContentProvider() {
-					public Object[] getElements(Object inputElement) {
-						return ((Collection) inputElement).toArray();
-					}
-
-					public void dispose() {
-					}
-
-					public void inputChanged(Viewer viewer, Object oldInput,
-							Object newInput) {
-					}
-				};
+				final IStructuredContentProvider contentsProvider = ArrayContentProvider.getInstance();
 
 				final ListSelectionDialog dialog = new ListSelectionDialog(text
 						.getShell(), bindings.entrySet(), contentsProvider,
