@@ -1,0 +1,4 @@
+	public IFileRevision getFileRevision() {
+		return fileRevision;
+	}
+

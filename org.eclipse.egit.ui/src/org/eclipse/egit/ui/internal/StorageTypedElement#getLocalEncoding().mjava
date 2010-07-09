@@ -1,0 +1,4 @@
+	public String getLocalEncoding() {
+		return localEncoding;
+	}
+

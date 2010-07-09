@@ -1,0 +1,4 @@
+	public void setBaseRevision(IFileRevision baseRevision) {
+		this.baseRevision = baseRevision;
+	}
+

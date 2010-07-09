@@ -1,0 +1,7 @@
+	public FileRevisionEditorInput(Object revision, IStorage storage) {
+		Assert.isNotNull(revision);
+		Assert.isNotNull(storage);
+		this.fileRevision = revision;
+		this.storage = storage;
+	}
+

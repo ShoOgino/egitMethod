@@ -1,0 +1,7 @@
+	public FileRevisionTypedElement(IFileRevision fileRevision,
+			String localEncoding) {
+		super(localEncoding);
+		Assert.isNotNull(fileRevision);
+		this.fileRevision = fileRevision;
+	}
+

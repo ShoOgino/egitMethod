@@ -6,7 +6,7 @@
 		getCompareConfiguration().setRightEditable(isRightEditable(input));
 		ensureContentsCached(getLeftRevision(), getRightRevision(), monitor);
 		initLabels(input);
-		setTitle(NLS.bind(TeamUIMessages.SyncInfoCompareInput_title, new String[] { input.getName() }));
+		setTitle(NLS.bind(UIText.GitCompareFileRevisionEditorInput_CompareInputTitle, new String[] { input.getName() }));
 
 		DiffNode flatDiffNode = new DiffNode(null,Differencer.CHANGE,null,left,right);
 		flatDiffView(flatDiffNode, (DiffNode) input);

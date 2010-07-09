@@ -1,0 +1,5 @@
+	public LocalResourceTypedElement(IResource resource) {
+		super(resource);
+		exists = resource.exists();
+	}
+

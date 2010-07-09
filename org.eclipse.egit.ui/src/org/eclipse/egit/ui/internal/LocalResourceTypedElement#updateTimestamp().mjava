@@ -1,0 +1,7 @@
+	void updateTimestamp() {
+		if (getResource().exists())
+			timestamp = getResource().getLocalTimeStamp();
+		else
+			exists = false;
+	}
+

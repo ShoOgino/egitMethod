@@ -1,0 +1,10 @@
+	public void flushDocument(IDocumentProvider provider,
+			IEditorInput documentKey, IDocument document, boolean overwrite)
+			throws CoreException {
+		if (!hasBufferedContents()) {
+			bufferedKey = documentKey;
+			provider.connect(bufferedKey);
+		}
+		this.listener.handleDocumentFlushed();
+	}
+

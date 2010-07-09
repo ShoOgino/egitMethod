@@ -1,0 +1,5 @@
+	public boolean isDescendentOf(IFileRevision revision) {
+		long compareRevisionTime = revision.getTimestamp();
+		return (this.getTimestamp() > compareRevisionTime);
+	}
+

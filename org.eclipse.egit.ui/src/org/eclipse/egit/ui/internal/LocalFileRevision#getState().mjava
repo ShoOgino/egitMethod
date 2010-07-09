@@ -1,0 +1,4 @@
+	public IFileState getState() {
+		return state;
+	}
+

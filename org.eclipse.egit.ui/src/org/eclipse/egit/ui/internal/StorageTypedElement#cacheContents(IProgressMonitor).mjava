@@ -1,0 +1,4 @@
+	public void cacheContents(IProgressMonitor monitor) throws CoreException {
+		bufferedContents = fetchContents(monitor);
+	}
+

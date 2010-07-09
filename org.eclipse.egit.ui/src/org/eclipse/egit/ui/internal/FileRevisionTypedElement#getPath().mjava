@@ -1,0 +1,7 @@
+	public String getPath() {
+		URI uri = fileRevision.getURI();
+		if (uri != null)
+			return uri.getPath();
+		return getName();
+	}
+

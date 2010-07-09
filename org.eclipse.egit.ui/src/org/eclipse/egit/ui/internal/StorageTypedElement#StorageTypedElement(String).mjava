@@ -1,0 +1,4 @@
+	public StorageTypedElement(String localEncoding) {
+		this.localEncoding = localEncoding;
+	}
+

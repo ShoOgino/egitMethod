@@ -1,0 +1,9 @@
+	public void releaseBuffer() {
+		if (bufferedKey != null) {
+			IDocumentProvider provider = SharedDocumentAdapter
+					.getDocumentProvider(bufferedKey);
+			provider.disconnect(bufferedKey);
+			bufferedKey = null;
+		}
+	}
+

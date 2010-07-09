@@ -1,0 +1,4 @@
+	public static Object getAdapter(Object element, Class adapterType) {
+		return getAdapter(element, adapterType, false);
+	}
+

@@ -1,4 +1,0 @@
-	public GitResourceNode(TreeEntry e) {
-		entry = e;
-	}
-

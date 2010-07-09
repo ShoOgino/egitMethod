@@ -1,0 +1,6 @@
+	public boolean isDirty() {
+		return fDirty
+				|| (sharedDocumentAdapter != null && sharedDocumentAdapter
+						.hasBufferedContents());
+	}
+

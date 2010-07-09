@@ -1,0 +1,2 @@
+	protected abstract IEditorInput getDocumentKey(Object element);
+

@@ -1,0 +1,7 @@
+	public static FileRevisionEditorInput createEditorInputFor(
+			IFileRevision revision, IProgressMonitor monitor)
+			throws CoreException {
+		IStorage storage = revision.getStorage(monitor);
+		return new FileRevisionEditorInput(revision, storage);
+	}
+
