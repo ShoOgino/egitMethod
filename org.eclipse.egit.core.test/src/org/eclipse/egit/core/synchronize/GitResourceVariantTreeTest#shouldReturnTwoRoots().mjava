@@ -1,6 +1,6 @@
 	@Test
 	public void shouldReturnTwoRoots() throws Exception {
-		TestProject secondProject = new TestProject(false, "Project-2");
+		TestProject secondProject = new TestProject(true, "Project-2");
 		IProject secondIProject = secondProject.project;
 		new ConnectProviderOperation(secondIProject, gitDir).execute(null);
 		GitSynchronizeData data = new GitSynchronizeData(repo, "", "", false);
