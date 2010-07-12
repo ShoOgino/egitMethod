@@ -21,6 +21,11 @@
 				if (!ref.getValue().isSymbolic())
 					this.branchCombo.add(ref.getValue().getName());
 			}
+			for (Entry<String, Ref> ref : myRepository.getRefDatabase()
+					.getRefs(Constants.R_TAGS).entrySet()) {
+				if (!ref.getValue().isSymbolic())
+					this.branchCombo.add(ref.getValue().getName());
+			}
 
 		} catch (IOException e1) {
 		}
@@ -72,7 +77,8 @@
 		setControl(main);
 		nameText.setFocus();
 		if (myBaseBranch != null
-				&& myBaseBranch.getName().startsWith(Constants.R_REMOTES)) {
+				&& (myBaseBranch.getName().startsWith(Constants.R_REMOTES) || myBaseBranch
+						.getName().startsWith(Constants.R_TAGS))) {
 			nameText.setText(myBaseBranch.getName().substring(
 					myBaseBranch.getName().lastIndexOf('/') + 1));
 			checkPage();

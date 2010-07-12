@@ -1,24 +1,19 @@
 	public void createBranch(IProgressMonitor monitor) throws CoreException,
 			IOException {
-		String newRefName = getBranchName();
-		RefUpdate updateRef;
 
 		monitor.beginTask(UIText.CreateBranchPage_CreatingBranchMessage,
 				IProgressMonitor.UNKNOWN);
-		updateRef = myRepository.updateRef(newRefName);
 
-		Ref sourceBranch;
-		if (myBaseBranch != null) {
-			sourceBranch = myBaseBranch;
-		} else {
-			sourceBranch = myRepository.getRef(getSourceBranchName());
-		}
-		ObjectId startAt = sourceBranch.getObjectId();
-		String startBranch = myRepository
-				.shortenRefName(sourceBranch.getName());
+		String newRefName = getBranchName();
+
+		RefUpdate updateRef = myRepository.updateRef(newRefName);
+		ObjectId startAt = new RevWalk(myRepository).parseCommit(myRepository
+				.resolve(getSourceBranchName()));
+
 		updateRef.setNewObjectId(startAt);
-		updateRef
-				.setRefLogMessage("branch: Created from " + startBranch, false); 		updateRef.update();
+		updateRef.setRefLogMessage(
+				"branch: Created from " + getSourceBranchName(), false); 		updateRef.update();
+
 		if (checkout.getSelection()) {
 			if (monitor.isCanceled())
 				return;
