@@ -23,7 +23,7 @@
 			uri = u;
 		} catch (URISyntaxException err) {
 			uri = new URIish();
-			hostText.setText(""); 			pathText.setText(""); 			userText.setText(""); 			passText.setText(""); 			portText.setText(""); 			scheme.select(0);
+			hostText.setText(""); 			pathText.setText(""); 			userText.setText(""); 			passText.setText(""); 			portText.setText(""); 			scheme.select(-1);
 		} finally {
 			eventDepth--;
 		}
