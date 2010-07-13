@@ -1,5 +1,5 @@
 	public IStatus getStatus() {
-		if (statuses.isEmpty()) {
+		if (statuses != null && statuses.isEmpty()) {
 			return Status.OK_STATUS;
 		} else {
 			final MultiStatus multiStatus = new MultiStatus(pluginId, severity,
