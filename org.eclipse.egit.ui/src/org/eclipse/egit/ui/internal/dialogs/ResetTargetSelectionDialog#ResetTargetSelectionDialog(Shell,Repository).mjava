@@ -1,4 +1,5 @@
 	public ResetTargetSelectionDialog(Shell parentShell, Repository repo) {
 		super(parentShell, repo);
+		super.setHelpAvailable(false);
 	}
 
