@@ -11,7 +11,15 @@
 				super.setVisible(visible);
 			}
 		};
-		confirmPage = new ConfirmationPage(localDb);
+		confirmPage = new ConfirmationPage(localDb) {
+			@Override
+			public void setVisible(boolean visible) {
+				if (visible)
+					setSelection(repoPage.getSelection(), refSpecPage
+							.getRefSpecs());
+				super.setVisible(visible);
+			}
+		};
 		setDefaultPageImageDescriptor(UIIcons.WIZBAN_IMPORT_REPO);
 		setNeedsProgressMonitor(true);
 	}
