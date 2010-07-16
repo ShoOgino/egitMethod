@@ -1,35 +1,36 @@
 	@SuppressWarnings("boxing")
 	@Test
 	public void canCloneARemoteRepo() throws Exception {
-		File destRepo = new File(ResourcesPlugin.getWorkspace().getRoot()
-				.getLocation().toFile(), "egit");
+		File destRepo = new File(ResourcesPlugin.getWorkspace()
+				.getRoot().getLocation().toFile(), "test1");
 
 		importWizard.openWizard();
 		RepoPropertiesPage propertiesPage = importWizard.openCloneWizard();
 
 		RepoRemoteBranchesPage remoteBranches = propertiesPage
-				.nextToRemoteBranches("git://repo.or.cz/egit.git");
+				.nextToRemoteBranches(r.getUri());
 
-		remoteBranches.assertRemoteBranches("historical/pre-eclipse", "master");
-		remoteBranches.selectBranches("historical/pre-eclipse");
+		remoteBranches.assertRemoteBranches(SampleTestRepository.FIX, Constants.MASTER);
+		remoteBranches.selectBranches(SampleTestRepository.FIX, Constants.MASTER);
 
 		WorkingCopyPage workingCopy = remoteBranches.nextToWorkingCopy();
+		workingCopy.setDirectory(destRepo.toString());
 
 		workingCopy.assertDirectory(destRepo.toString());
-		workingCopy.assertBranch("master");
-		workingCopy.assertRemoteName("origin");
+		workingCopy.assertBranch(Constants.MASTER);
+		workingCopy.assertRemoteName(Constants.DEFAULT_REMOTE_NAME);
 		workingCopy.waitForCreate();
 
-		Repository repository = new Repository(new File(destRepo, ".git"));
+		Repository repository = new Repository(new File(destRepo, Constants.DOT_GIT));
 		assertNotNull(repository.resolve("origin/master"));
-		assertEquals(repository.resolve("origin/master"), repository
+		assertEquals(repository.resolve("master"), repository
 				.resolve("origin/master"));
-		assertEquals("90b818e596660b813b6fcf68f1e9e9b62c615130", repository
-				.resolve("refs/tags/v0.4.0").name());
-		assertTrue(repository.getAllRefs().size() >= 10);
-		assertTrue(new File(destRepo, "README").exists());
+		assertNotNull(repository.resolve(Constants.R_TAGS + SampleTestRepository.v1_0_name).name());
+		int refs = repository.getAllRefs().size();
+		assertTrue(refs >= 4);
+		assertTrue(new File(destRepo, SampleTestRepository.A_txt_name).exists());
 		assertFalse(repository.getIndex().isChanged());
-		assertFalse(repository.getIndex().getEntry("README").isModified(
+		assertFalse(repository.getIndex().getEntry(SampleTestRepository.A_txt_name).isModified(
 				destRepo));
 		assertEquals(0,
 				ResourcesPlugin.getWorkspace().getRoot().getProjects().length);

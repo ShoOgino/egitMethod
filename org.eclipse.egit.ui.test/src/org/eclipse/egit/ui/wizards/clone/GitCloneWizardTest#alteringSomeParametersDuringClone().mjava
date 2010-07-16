@@ -1,34 +1,32 @@
 	@Test
 	public void alteringSomeParametersDuringClone() throws Exception {
-
-		File destRepo = new File(ResourcesPlugin.getWorkspace().getRoot()
-				.getLocation().toFile(), "egit2");
+		File destRepo = new File(ResourcesPlugin.getWorkspace()
+				.getRoot().getLocation().toFile(), "test2");
 
 		importWizard.openWizard();
 		RepoPropertiesPage repoProperties = importWizard.openCloneWizard();
 		RepoRemoteBranchesPage remoteBranches = repoProperties
-				.nextToRemoteBranches("git://repo.or.cz/egit.git");
+				.nextToRemoteBranches(r.getUri());
 		remoteBranches.deselectAllBranches();
 		remoteBranches
 				.assertErrorMessage("At least one branch must be selected.");
 		remoteBranches.assertNextIsDisabled();
 
-		remoteBranches.selectBranches("historical/pre-eclipse");
+		remoteBranches.selectBranches(SampleTestRepository.FIX);
 		remoteBranches.assertNextIsEnabled();
 
 		WorkingCopyPage workingCopy = remoteBranches.nextToWorkingCopy();
 		workingCopy.setDirectory(destRepo.toString());
-		workingCopy.assertBranch("historical/pre-eclipse");
+		workingCopy.assertBranch(SampleTestRepository.FIX);
 		workingCopy.setRemoteName("src");
 		workingCopy.waitForCreate();
 
-		Repository repository = new Repository(new File(destRepo, ".git"));
-		assertNotNull(repository.resolve("src/historical/pre-eclipse"));
+		Repository repository = new Repository(new File(destRepo, Constants.DOT_GIT));
+		assertNotNull(repository.resolve("src/" + SampleTestRepository.FIX));
 		assertNull(repository.resolve("src/master"));
 		assertEquals(repository.resolve("stable"), repository
 				.resolve("src/stable"));
-		assertEquals("90b818e596660b813b6fcf68f1e9e9b62c615130", repository
-				.resolve("refs/tags/v0.4.0").name());
-		assertTrue(repository.getAllRefs().size() >= 10);
+		assertNotNull(repository.resolve(Constants.R_TAGS + SampleTestRepository.v2_0_name).name());
+		assertTrue(repository.getAllRefs().size() >= 4);
 	}
 

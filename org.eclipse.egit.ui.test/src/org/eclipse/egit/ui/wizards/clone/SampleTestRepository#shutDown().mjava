@@ -1,0 +1,6 @@
+	public void shutDown() throws FileNotFoundException {
+		d.stop();
+		if (!System.getProperties().contains("test-repo-no-cleanup"))
+			delete(trash);
+	}
+

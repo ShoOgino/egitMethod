@@ -1,6 +1,0 @@
-	public void assertWorkingCopyExists() {
-		String dirName = bot.textWithLabel("Directory:").getText();
-		String message = " " + dirName + " is not an empty directory.";
-		bot.text(message);
-	}
-

@@ -1,0 +1,6 @@
+	public SampleTestRepository(int n) throws Exception {
+		src = createRepository();
+		generateSampleData(n);
+		serve();
+	}
+

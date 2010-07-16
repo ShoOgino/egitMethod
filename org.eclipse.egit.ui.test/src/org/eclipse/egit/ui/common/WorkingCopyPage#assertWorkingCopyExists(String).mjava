@@ -1,0 +1,9 @@
+	@SuppressWarnings("boxing")
+	public void assertWorkingCopyExists(String uri) {
+		String dirName = bot.textWithLabel("Directory:").getText();
+		File dir = new File(dirName);
+
+		waitForCreate();
+		assertEquals(dir.exists() && dir.isDirectory(), true);
+	}
+
