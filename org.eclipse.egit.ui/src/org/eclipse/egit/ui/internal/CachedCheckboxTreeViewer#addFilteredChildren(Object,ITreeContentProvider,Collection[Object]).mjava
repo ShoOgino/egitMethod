@@ -1,4 +1,4 @@
-	private void addFilteredChildren(Object element, ITreeContentProvider contentProvider, Collection result) {
+	private void addFilteredChildren(Object element, ITreeContentProvider contentProvider, Collection<Object> result) {
 		if (!contentProvider.hasChildren(element)) {
 			result.add(element);
 		} else {

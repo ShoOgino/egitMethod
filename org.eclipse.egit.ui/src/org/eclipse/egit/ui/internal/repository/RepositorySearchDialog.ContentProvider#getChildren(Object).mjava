@@ -1,4 +1,4 @@
 		public Object[] getChildren(Object parentElement) {
-			return null;
+			return children;
 		}
 

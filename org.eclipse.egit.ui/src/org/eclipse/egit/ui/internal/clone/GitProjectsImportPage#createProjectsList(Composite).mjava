@@ -22,31 +22,29 @@
 
 				return super.isElementVisible(viewer, element);
 			}
-
-			@Override
-			public void setPattern(String patternString) {
-				super.setPattern(patternString);
-				Display.getDefault().asyncExec(new Runnable() {
-					public void run() {
-						enableSelectAllButtons();
-					}
-				});
-
-			}
-
 		};
-		FilteredTree filteredTree = new FilteredTree(listComposite, SWT.CHECK
-				| SWT.BORDER, filter);
+
+		FilteredCheckboxTree filteredTree = new FilteredCheckboxTree(
+				listComposite, null, SWT.NONE, filter);
+
 		filteredTree.setInitialText(UIText.WizardProjectsImportPage_filterText);
-		projectsList = filteredTree.getViewer();
+		projectsList = filteredTree.getCheckboxTreeViewer();
 		GridData listData = new GridData(GridData.GRAB_HORIZONTAL
 				| GridData.GRAB_VERTICAL | GridData.FILL_BOTH);
 		projectsList.getControl().setLayoutData(listData);
+		projectsList.addCheckStateListener(new ICheckStateListener() {
+
+			public void checkStateChanged(CheckStateChangedEvent event) {
+				enableSelectAllButtons();
+			}
+		});
+
+		final Object[] children = new Object[0];
 
 		projectsList.setContentProvider(new ITreeContentProvider() {
 
 			public Object[] getChildren(Object parentElement) {
-				return null;
+				return children;
 			}
 
 			public Object[] getElements(Object inputElement) {

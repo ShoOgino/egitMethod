@@ -12,8 +12,9 @@
 		selectAll.setText(UIText.WizardProjectsImportPage_selectAll);
 		selectAll.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-				for (final TreeItem item : projectsList.getTree().getItems())
-					item.setChecked(true);
+				for (TreeItem item : projectsList.getTree().getItems())
+					projectsList.setChecked(item.getData(), true);
+				enableSelectAllButtons();
 				setPageComplete(true);
 			}
 		});
@@ -24,9 +25,10 @@
 		deselectAll.setText(UIText.WizardProjectsImportPage_deselectAll);
 		deselectAll.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-				for (final TreeItem item : projectsList.getTree().getItems())
-					item.setChecked(false);
-				projectsList.setInput(this); 				setPageComplete(false);
+				for (TreeItem item : projectsList.getTree().getItems())
+					projectsList.setChecked(item.getData(), false);
+				projectsList.setInput(this); 				enableSelectAllButtons();
+				setPageComplete(false);
 			}
 		});
 		Dialog.applyDialogFont(deselectAll);
