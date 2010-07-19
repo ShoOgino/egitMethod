@@ -68,5 +68,7 @@
 		layout();
 
 		Repository.addAnyRepositoryChangedListener(this);
+
+		getSite().setSelectionProvider(revObjectSelectionProvider);
 	}
 
