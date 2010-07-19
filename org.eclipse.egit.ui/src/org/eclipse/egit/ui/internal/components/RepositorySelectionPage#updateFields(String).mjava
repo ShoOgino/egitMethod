@@ -14,8 +14,10 @@
 				portText.setText(Integer.toString(u.getPort()));
 			else
 				portText.setText(""); 
-			if (u.getScheme() != null)
+			if (u.getScheme() != null) {
 				scheme.select(scheme.indexOf(u.getScheme()));
+				scheme.notifyListeners(SWT.Selection, new Event());
+			}
 
 			updateAuthGroup();
 			uri = u;
