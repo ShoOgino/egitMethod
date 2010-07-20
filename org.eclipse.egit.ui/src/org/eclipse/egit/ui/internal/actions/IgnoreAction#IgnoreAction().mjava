@@ -1,0 +1,4 @@
+	public IgnoreAction() {
+		super(ActionCommands.IGNORE_ACTION);
+	}
+

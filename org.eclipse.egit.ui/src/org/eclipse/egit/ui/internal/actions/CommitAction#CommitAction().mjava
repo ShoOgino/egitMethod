@@ -1,0 +1,4 @@
+	public CommitAction() {
+		super(ActionCommands.COMMIT_ACTION);
+	}
+
