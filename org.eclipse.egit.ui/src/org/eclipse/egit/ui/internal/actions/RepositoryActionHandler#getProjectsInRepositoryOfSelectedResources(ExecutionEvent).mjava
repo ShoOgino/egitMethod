@@ -1,0 +1,18 @@
+	protected IProject[] getProjectsInRepositoryOfSelectedResources(
+			ExecutionEvent event) throws ExecutionException {
+		Set<IProject> ret = new HashSet<IProject>();
+		Repository[] repositories = getRepositoriesFor(getProjectsForSelectedResources(event));
+		final IProject[] projects = ResourcesPlugin.getWorkspace().getRoot()
+				.getProjects();
+		for (IProject project : projects) {
+			RepositoryMapping mapping = RepositoryMapping.getMapping(project);
+			for (Repository repository : repositories) {
+				if (mapping != null && mapping.getRepository() == repository) {
+					ret.add(project);
+					break;
+				}
+			}
+		}
+		return ret.toArray(new IProject[ret.size()]);
+	}
+

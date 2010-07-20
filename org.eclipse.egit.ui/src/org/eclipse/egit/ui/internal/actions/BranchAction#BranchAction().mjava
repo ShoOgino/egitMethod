@@ -1,0 +1,4 @@
+	public BranchAction() {
+		super(ActionCommands.BRANCH_ACTION);
+	}
+

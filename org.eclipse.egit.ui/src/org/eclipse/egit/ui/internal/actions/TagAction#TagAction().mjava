@@ -1,0 +1,4 @@
+	public TagAction() {
+		super(ActionCommands.TAG_ACTION);
+	}
+

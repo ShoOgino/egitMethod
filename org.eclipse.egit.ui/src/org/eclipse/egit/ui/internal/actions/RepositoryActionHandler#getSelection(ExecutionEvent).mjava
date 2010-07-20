@@ -1,0 +1,20 @@
+	protected IStructuredSelection getSelection(ExecutionEvent event)
+			throws ExecutionException {
+		ISelection selection;
+		if (event != null)
+			selection = HandlerUtil.getCurrentSelectionChecked(event);
+		else {
+			ISelectionService srv = (ISelectionService) PlatformUI
+					.getWorkbench().getActiveWorkbenchWindow().getService(
+							ISelectionService.class);
+			if (srv == null)
+				throw new ExecutionException(
+						UIText.RepositoryActionHandler_CouldNotGetSelection_message);
+			else
+				selection = srv.getSelection();
+		}
+		if (selection instanceof IStructuredSelection)
+			return (IStructuredSelection) selection;
+		return new StructuredSelection();
+	}
+

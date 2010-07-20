@@ -1,0 +1,15 @@
+	private Collection<IFile> getSelectedFiles(ExecutionEvent event)
+			throws ExecutionException {
+		List<IFile> preselectionCandidates = new ArrayList<IFile>();
+		IResource[] selectedResources = getSelectedResources(event);
+		for (IFile file : files) {
+			for (IResource resource : selectedResources) {
+				if (resource.contains(file)) {
+					preselectionCandidates.add(file);
+					break;
+				}
+			}
+		}
+		return preselectionCandidates;
+	}
+
