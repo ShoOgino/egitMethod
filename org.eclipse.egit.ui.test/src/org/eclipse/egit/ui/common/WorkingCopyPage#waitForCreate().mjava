@@ -1,8 +1,28 @@
 	public void waitForCreate() {
+		String targetDir = bot.textWithLabel("Directory:").getText()
+				+ File.separatorChar + Constants.DOT_GIT;
+		assertFalse(
+				"Clone target should not be in the configured repositories list",
+				Activator.getDefault().getRepositoryUtil()
+						.getConfiguredRepositories().contains(targetDir));
+
 		bot.button("Finish").click();
 
-		SWTBotShell shell = bot.shell("Cloning from " + cloneUrl);
+		try {
+			SWTBotShell shell = bot.shell("Cloning from " + cloneUrl);
 
-		bot.waitUntil(shellCloses(shell), 120000);
+			bot.waitUntil(shellCloses(shell), 120000);
+		} catch (WidgetNotFoundException e1) {
+			for (int i = 0; i < 10; i++) {
+				if (Activator.getDefault().getRepositoryUtil()
+						.getConfiguredRepositories().contains(targetDir))
+					return;
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+				}
+			}
+			fail("The Repository was not created");
+		}
 	}
 
