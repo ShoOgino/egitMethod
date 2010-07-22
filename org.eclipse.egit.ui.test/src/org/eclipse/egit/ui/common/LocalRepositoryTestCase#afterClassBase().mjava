@@ -1,0 +1,7 @@
+	@AfterClass
+	public static void afterClassBase() throws Exception {
+		new Eclipse().reset();
+		deleteAllProjects();
+		deleteRecursive(testDirectory);
+	}
+
