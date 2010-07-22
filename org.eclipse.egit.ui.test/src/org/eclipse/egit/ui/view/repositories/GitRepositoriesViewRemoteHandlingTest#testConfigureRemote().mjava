@@ -1,4 +1,5 @@
 	@Test
-	@Ignore 	public void testConfigureRemote() throws Exception {
+	@Ignore
+	public void testConfigureRemote() throws Exception {
 	}
 

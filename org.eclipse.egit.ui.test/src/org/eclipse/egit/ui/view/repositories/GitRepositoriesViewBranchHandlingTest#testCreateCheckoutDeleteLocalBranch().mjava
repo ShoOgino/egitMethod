@@ -4,8 +4,8 @@
 				repositoryFile);
 		refreshAndWait();
 		final SWTBotView view = getOrOpenView();
-		SWTBotTreeItem localItem = getLocalBranchesItem(view.bot().tree(),
-				repositoryFile);
+		SWTBotTreeItem localItem = myRepoViewUtil.getLocalBranchesItem(view
+				.bot().tree(), repositoryFile);
 		localItem.expand();
 		assertEquals("Wrong number of children", 1, localItem.getNodes().size());
 
@@ -25,7 +25,8 @@
 		getOrOpenView().toolbarButton("Refresh").click();
 		refreshAndWait();
 
-		localItem = getLocalBranchesItem(view.bot().tree(), repositoryFile);
+		localItem = myRepoViewUtil.getLocalBranchesItem(view.bot().tree(),
+				repositoryFile);
 		localItem.expand();
 		assertEquals("Wrong number of children", 2, localItem.getNodes().size());
 
@@ -49,7 +50,7 @@
 		ContextMenuHelper.clickContextMenu(view.bot().tree(), myUtil
 				.getPluginLocalizedValue("CheckoutCommand"));
 		localItem.getNode(1).select();
-
+		waitInUI();
 		ContextMenuHelper.clickContextMenu(bot.tree(), myUtil
 				.getPluginLocalizedValue("DeleteBranchCommand"));
 		SWTBotShell confirmPopup = bot
@@ -57,7 +58,8 @@
 		confirmPopup.activate();
 		confirmPopup.bot().button(IDialogConstants.OK_LABEL).click();
 		refreshAndWait();
-		localItem = getLocalBranchesItem(view.bot().tree(), repositoryFile);
+		localItem = myRepoViewUtil.getLocalBranchesItem(view.bot().tree(),
+				repositoryFile);
 		localItem.expand();
 		assertEquals("Wrong number of children", 1, localItem.getNodes().size());
 	}

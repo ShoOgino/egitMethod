@@ -1,0 +1,10 @@
+	@BeforeClass
+	public static void beforeClassBase() throws Exception {
+		deleteAllProjects();
+		File userHome = FS.DETECTED.userHome();
+		testDirectory = new File(userHome, "LocalRepositoriesTests");
+		if (testDirectory.exists())
+			deleteRecursive(testDirectory);
+		testDirectory.mkdir();
+	}
+

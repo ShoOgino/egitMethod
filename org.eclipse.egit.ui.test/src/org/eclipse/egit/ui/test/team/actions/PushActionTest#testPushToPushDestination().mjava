@@ -1,0 +1,7 @@
+	@Test
+	@Ignore
+	public void testPushToPushDestination() throws Exception {
+		pushTo("push", true);
+		pushTo("push", false);
+	}
+
