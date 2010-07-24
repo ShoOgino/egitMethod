@@ -1,0 +1,14 @@
+	protected GitModelCommit(GitModelObject parent, RevCommit commit)
+			throws IOException {
+		super(parent);
+		remoteCommit = commit;
+		ancestorCommit = calculateAncestor(remoteCommit);
+
+		RevCommit[] parents = remoteCommit.getParents();
+		if (parents != null && parents.length > 0)
+			baseCommit = remoteCommit.getParent(0);
+		else {
+			baseCommit = null;
+		}
+	}
+

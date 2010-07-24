@@ -1,0 +1,15 @@
+	public static GitChangeSetModelProvider getProvider() {
+		if (provider == null) {
+			ModelProvider modelProvider;
+			try {
+				modelProvider = ModelProvider.getModelProviderDescriptor(ID)
+						.getModelProvider();
+				provider = (GitChangeSetModelProvider) modelProvider;
+			} catch (CoreException e) {
+				Activator.logError(e.getMessage(), e);
+			}
+		}
+
+		return provider;
+	}
+

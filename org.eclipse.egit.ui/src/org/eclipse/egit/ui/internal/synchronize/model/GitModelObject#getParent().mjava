@@ -1,0 +1,4 @@
+	public GitModelObject getParent() {
+		return parent;
+	}
+

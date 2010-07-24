@@ -1,0 +1,8 @@
+	public GitSubscriberMergeContext(Subscriber subscriber,
+			ISynchronizationScopeManager manager, GitSynchronizeDataSet gsds) {
+		super(subscriber, manager);
+		this.gsds = gsds;
+
+		initialize();
+	}
+

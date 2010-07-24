@@ -1,0 +1,5 @@
+	public void reject(IDiff diff, IProgressMonitor monitor)
+			throws CoreException {
+
+	}
+

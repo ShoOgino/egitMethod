@@ -1,0 +1,5 @@
+	public void markAsMerged(IDiff node, boolean inSyncHint,
+			IProgressMonitor monitor) throws CoreException {
+
+	}
+

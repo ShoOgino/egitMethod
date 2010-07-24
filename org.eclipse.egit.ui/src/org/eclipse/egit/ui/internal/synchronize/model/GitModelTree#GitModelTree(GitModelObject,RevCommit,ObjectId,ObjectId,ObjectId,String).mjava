@@ -1,0 +1,10 @@
+	public GitModelTree(GitModelObject parent, RevCommit commit,
+			ObjectId ancestorId, ObjectId baseId, ObjectId remoteId, String name)
+			throws IOException {
+		super(parent, commit);
+		this.name = name;
+		this.baseId = baseId;
+		this.remoteId = remoteId;
+		this.ancestorId = ancestorId;
+	}
+

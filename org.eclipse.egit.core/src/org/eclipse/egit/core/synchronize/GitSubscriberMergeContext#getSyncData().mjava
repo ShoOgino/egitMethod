@@ -1,0 +1,4 @@
+	public GitSynchronizeDataSet getSyncData() {
+		return gsds;
+	}
+

@@ -1,4 +1,4 @@
-	public String getDstRev() {
+	public Ref getDstRev() {
 		return dstRev;
 	}
 

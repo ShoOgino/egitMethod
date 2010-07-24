@@ -1,0 +1,4 @@
+	public GitModelRoot(GitSynchronizeDataSet gsds) {
+		this.gsds = gsds;
+	}
+

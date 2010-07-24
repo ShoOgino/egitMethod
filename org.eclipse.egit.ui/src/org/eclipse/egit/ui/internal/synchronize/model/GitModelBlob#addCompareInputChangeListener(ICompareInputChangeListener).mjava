@@ -1,0 +1,4 @@
+	public void addCompareInputChangeListener(
+			ICompareInputChangeListener listener) {
+	}
+
