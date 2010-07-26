@@ -50,7 +50,8 @@
 			if (GitTraceLocation.UI.isActive())
 				GitTraceLocation.getTrace().trace(
 						GitTraceLocation.UI.getLocation(),
-						"(GitDocument) compareTo: " + baseline); 			ObjectLoader loader = repository.openBlob(blobEntry.getId());
+						"(GitDocument) compareTo: " + baseline); 			ObjectLoader loader = repository.open(blobEntry.getId(),
+					Constants.OBJ_BLOB);
 			byte[] bytes = loader.getBytes();
 			String charset;
 			IEncodedStorage encodedStorage = ((IEncodedStorage)resource);

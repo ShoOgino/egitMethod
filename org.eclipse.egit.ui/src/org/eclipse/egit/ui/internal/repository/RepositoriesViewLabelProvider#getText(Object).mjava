@@ -43,7 +43,7 @@
 					"core", "bare", false)) 				return UIText.RepositoriesView_WorkingDir_treenode
 						+ " - " 						+ UIText.RepositoriesViewLabelProvider_BareRepositoryMessage;
 			else
-				return UIText.RepositoriesView_WorkingDir_treenode + " - " 						+ node.getRepository().getWorkDir().getAbsolutePath();
+				return UIText.RepositoriesView_WorkingDir_treenode + " - " 						+ node.getRepository().getWorkTree().getAbsolutePath();
 		case PUSH:
 		case FETCH:
 			return (String) node.getObject();

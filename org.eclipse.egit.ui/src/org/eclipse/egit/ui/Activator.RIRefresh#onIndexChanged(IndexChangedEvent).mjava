@@ -1,4 +1,4 @@
-		public void indexChanged(IndexChangedEvent e) {
+		public void onIndexChanged(IndexChangedEvent e) {
 			boolean autoRefresh = new InstanceScope().getNode(
 					ResourcesPlugin.getPlugin().getBundle().getSymbolicName())
 					.getBoolean(ResourcesPlugin.PREF_AUTO_REFRESH, false);

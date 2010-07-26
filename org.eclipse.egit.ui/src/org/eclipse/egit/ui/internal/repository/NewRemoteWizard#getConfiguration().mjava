@@ -1,4 +1,4 @@
-	public RepositoryConfig getConfiguration() {
+	public StoredConfig getConfiguration() {
 		return myConfiguration;
 	}
 

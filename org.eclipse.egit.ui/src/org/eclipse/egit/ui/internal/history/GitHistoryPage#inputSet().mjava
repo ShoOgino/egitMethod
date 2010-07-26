@@ -12,6 +12,10 @@
 			return false;
 
 		db = null;
+		if (currentWalk != null) {
+			currentWalk.release();
+			currentWalk = null;
+		}
 
 		final ArrayList<String> paths = new ArrayList<String>(in.length);
 		for (final IResource r : in) {
@@ -52,9 +56,8 @@
 			return false;
 		}
 
-		if (currentWalk == null || currentWalk.getRepository() != db
-				|| pathChange(pathFilters, paths) || headId != null
-				&& !headId.equals(currentHeadId)) {
+		if (currentWalk == null || pathChange(pathFilters, paths)
+				|| headId != null && !headId.equals(currentHeadId)) {
 			currentWalk = new SWTWalk(db);
 			currentWalk.sort(RevSort.COMMIT_TIME_DESC, true);
 			currentWalk.sort(RevSort.BOUNDARY, true);
@@ -85,7 +88,7 @@
 			currentWalk.setTreeFilter(TreeFilter.ALL);
 			fileWalker.setFilter(TreeFilter.ANY_DIFF);
 		}
-		fileViewer.setTreeWalk(fileWalker);
+		fileViewer.setTreeWalk(db, fileWalker);
 		fileViewer.addSelectionChangedListener(commentViewer);
 		commentViewer.setTreeWalk(fileWalker);
 		commentViewer.setDb(db);

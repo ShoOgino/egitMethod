@@ -2,7 +2,7 @@
 		if (id == null || id.equals("") 				|| GitFileRevision.WORKSPACE.equals(id))
 			return new WorkspaceFileRevision(resource);
 		if (GitFileRevision.INDEX.equals(id))
-			return new IndexFileRevision(walk.getRepository(), gitPath);
+			return new IndexFileRevision(db, gitPath);
 
 		for (IFileRevision r : revisions) {
 			if (r.getContentIdentifier().equals(id))

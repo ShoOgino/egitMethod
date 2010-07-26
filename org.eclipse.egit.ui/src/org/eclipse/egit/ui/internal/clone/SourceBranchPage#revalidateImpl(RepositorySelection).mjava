@@ -5,7 +5,7 @@
 		final ListRemoteOperation listRemoteOp;
 		try {
 			final URIish uri = newRepoSelection.getURI();
-			final Repository db = new Repository(new File("/tmp")); 			listRemoteOp = new ListRemoteOperation(db, uri);
+			final Repository db = new FileRepository(new File("/tmp")); 			listRemoteOp = new ListRemoteOperation(db, uri);
 			getContainer().run(true, true, new IRunnableWithProgress() {
 				public void run(IProgressMonitor monitor)
 						throws InvocationTargetException, InterruptedException {

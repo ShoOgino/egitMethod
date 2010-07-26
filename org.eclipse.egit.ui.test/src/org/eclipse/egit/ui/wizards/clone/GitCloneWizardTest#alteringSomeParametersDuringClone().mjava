@@ -21,7 +21,7 @@
 		workingCopy.setRemoteName("src");
 		workingCopy.waitForCreate();
 
-		Repository repository = new Repository(new File(destRepo, Constants.DOT_GIT));
+		Repository repository = new FileRepository(new File(destRepo, Constants.DOT_GIT));
 		assertNotNull(repository.resolve("src/" + SampleTestRepository.FIX));
 		assertNull(repository.resolve("src/master"));
 		assertEquals(repository.resolve("stable"), repository

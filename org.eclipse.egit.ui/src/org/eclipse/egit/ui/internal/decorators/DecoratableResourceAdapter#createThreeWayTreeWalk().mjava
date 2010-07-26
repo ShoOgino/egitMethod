@@ -11,11 +11,11 @@
 		else
 			treeWalk.addTree(new EmptyTreeIterator());
 
-		treeWalk.addTree(new DirCacheIterator(DirCache.read(repository)));
+		treeWalk.addTree(new DirCacheIterator(repository.readDirCache()));
 
 		IProject project = resource.getProject();
 		IWorkspaceRoot workspaceRoot = resource.getWorkspace().getRoot();
-		File repoRoot = repository.getWorkDir();
+		File repoRoot = repository.getWorkTree();
 
 		if (repoRoot.equals(project.getLocation().toFile()))
 			treeWalk.addTree(new ContainerTreeIterator(project));

@@ -10,6 +10,6 @@
 		if (entry == null)
 			return true; 		if (blob == null)
 			return true; 		boolean hashesDiffer = !entry.getObjectId().equals(blob.getId());
-		return hashesDiffer || entry.isModified(getWorkDir());
+		return hashesDiffer || entry.isModified(getWorkTree());
 	}
 
