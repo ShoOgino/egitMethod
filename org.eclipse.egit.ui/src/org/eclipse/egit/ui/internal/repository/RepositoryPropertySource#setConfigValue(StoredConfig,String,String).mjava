@@ -1,4 +1,4 @@
-	private void setConfigValue(FileBasedConfig configuration, String key,
+	private void setConfigValue(StoredConfig configuration, String key,
 			String value) throws IOException {
 		StringTokenizer tok = new StringTokenizer(key, "."); 		if (tok.countTokens() == 2) {
 			if (value == null || value.length() == 0) {

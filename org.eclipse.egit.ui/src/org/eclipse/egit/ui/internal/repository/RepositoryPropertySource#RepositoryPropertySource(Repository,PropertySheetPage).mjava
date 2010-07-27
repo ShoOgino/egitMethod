@@ -7,7 +7,13 @@
 
 		effectiveConfig = rep.getConfig();
 		userHomeConfig = SystemReader.getInstance().openUserConfig(FS.DETECTED);
-		File configFile = new File(rep.getDirectory(), "config"); 		repositoryConfig = new FileBasedConfig(configFile);
+
+		if (effectiveConfig instanceof FileBasedConfig) {
+			File configFile = ((FileBasedConfig) effectiveConfig).getFile();
+			repositoryConfig = new FileBasedConfig(configFile, rep.getFS());
+		} else {
+			repositoryConfig = effectiveConfig;
+		}
 
 		try {
 			effectiveConfig.load();
