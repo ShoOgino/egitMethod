@@ -25,7 +25,6 @@
 					}
 				}
 			} catch (URISyntaxException e) {
-				preset = null;
 			}
 			clippy.dispose();
 		}

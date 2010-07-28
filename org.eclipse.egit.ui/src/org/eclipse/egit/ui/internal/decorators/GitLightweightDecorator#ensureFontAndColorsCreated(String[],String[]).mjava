@@ -1,13 +1,13 @@
-	private void ensureFontAndColorsCreated(final String[] fonts, final String[] colors) {
+	private void ensureFontAndColorsCreated(final String[] actFonts, final String[] actColors) {
 		Display.getDefault().syncExec(new Runnable() {
 			public void run() {
 				ITheme theme  = PlatformUI.getWorkbench().getThemeManager().getCurrentTheme();
-				for (int i = 0; i < colors.length; i++) {
-					theme.getColorRegistry().get(colors[i]);
+				for (int i = 0; i < actColors.length; i++) {
+					theme.getColorRegistry().get(actColors[i]);
 
 				}
-				for (int i = 0; i < fonts.length; i++) {
-					theme.getFontRegistry().get(fonts[i]);
+				for (int i = 0; i < actFonts.length; i++) {
+					theme.getFontRegistry().get(actFonts[i]);
 				}
 			}
 		});

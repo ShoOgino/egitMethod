@@ -1,2 +1,2 @@
-	protected abstract IEGitOperation createOperation(final List<RevCommit> selection);
+	protected abstract IEGitOperation createOperation(final List<RevCommit> actSelection);
 
