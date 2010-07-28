@@ -1,0 +1,12 @@
+	@SuppressWarnings("unchecked")
+	protected List<PlotCommit> getSelection(ExecutionEvent event)
+			throws ExecutionException {
+		try {
+			ISelection selection = HandlerUtil
+					.getCurrentSelectionChecked(event);
+			return ((StructuredSelection) selection).toList();
+		} catch (ClassCastException e) {
+			throw new ExecutionException(e.getMessage(), e);
+		}
+	}
+

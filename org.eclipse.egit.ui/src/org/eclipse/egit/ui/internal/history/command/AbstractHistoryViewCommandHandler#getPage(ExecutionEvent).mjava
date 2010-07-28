@@ -1,0 +1,11 @@
+	private GitHistoryPage getPage(ExecutionEvent event)
+			throws ExecutionException {
+		try {
+			IHistoryView view = (IHistoryView) HandlerUtil
+					.getActivePartChecked(event);
+			return (GitHistoryPage) view.getHistoryPage();
+		} catch (ClassCastException e) {
+			throw new ExecutionException(e.getMessage(), e);
+		}
+	}
+
