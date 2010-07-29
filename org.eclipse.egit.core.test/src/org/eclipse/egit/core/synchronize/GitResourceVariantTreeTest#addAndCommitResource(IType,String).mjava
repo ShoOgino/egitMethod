@@ -1,6 +1,0 @@
-	private void addAndCommitResource(IType mainJava, String commitMsg)
-			throws Exception {
-		List<IResource> resources = new ArrayList<IResource>();
-		resources.add(mainJava.getResource());
-		new AddToIndexOperation(resources).execute(null); 		new Git(repo).commit().setMessage(commitMsg).call(); 	}
-

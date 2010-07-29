@@ -1,4 +1,0 @@
-	public boolean contains(IResource resource) {
-		return resource.getFullPath().toString().startsWith(repoParentPath);
-	}
-

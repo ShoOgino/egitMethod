@@ -1,2 +1,0 @@
-	abstract Tree getRevTree(IResource resource) throws IOException;
-

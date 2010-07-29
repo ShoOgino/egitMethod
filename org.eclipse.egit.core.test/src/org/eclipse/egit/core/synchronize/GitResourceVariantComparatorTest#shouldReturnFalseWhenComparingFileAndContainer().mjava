@@ -2,7 +2,7 @@
 	@SuppressWarnings("boxing")
 	public void shouldReturnFalseWhenComparingFileAndContainer() {
 		GitResourceVariantComparator grvc = new GitResourceVariantComparator(
-				null, null);
+				null);
 
 		IFile local = createMock(IFile.class);
 		expect(local.exists()).andReturn(true);

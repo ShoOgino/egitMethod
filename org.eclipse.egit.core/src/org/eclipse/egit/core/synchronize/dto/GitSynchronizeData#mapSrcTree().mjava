@@ -1,4 +1,0 @@
-	public Tree mapSrcTree() throws IOException {
-		return mapTree(srcRev);
-	}
-

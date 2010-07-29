@@ -7,5 +7,5 @@
 			workdirPrefix = repository.getWorkTree().getAbsolutePath();
 		}
 		workdirPrefix = workdirPrefix.replace('\\', '/');
-		if (!workdirPrefix.endsWith("/"))  			workdirPrefix += "/";  	}
+		if (!workdirPrefix.endsWith("/")) 			workdirPrefix += "/"; 	}
 

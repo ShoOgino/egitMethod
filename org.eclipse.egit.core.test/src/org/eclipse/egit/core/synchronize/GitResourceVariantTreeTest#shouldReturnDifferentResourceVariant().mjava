@@ -1,37 +1,32 @@
-	@Ignore
 	@Test
 	public void shouldReturnDifferentResourceVariant() throws Exception {
-		IType mainJava = createResourceAndCommit("org.egit.test", "Main.java",
-				"class Main {}", "Initial commit");
-		createBranch("test");
-		new BranchOperation(repo, "refs/heads/test").execute(null);
-		((IFile) mainJava.getResource()).appendContents(
-				new ByteArrayInputStream("// test".getBytes()), 0, null);
-		addAndCommitResource(mainJava, "Second commit");
+		String fileName = "Main.java";
+		File file = testRepo.createFile(iProject, fileName);
+		testRepo.appendContentAndCommit(iProject, file, "class Main {}",
+				"initial commit");
+		IFile mainJava = testRepo.getIFile(iProject, file);
+
+		testRepo.createAndCheckoutBranch(Constants.R_HEADS + Constants.MASTER, Constants.R_HEADS + "test");
+		testRepo.appendContentAndCommit(iProject, file, "// test", "first commit");
 		GitSynchronizeData data = new GitSynchronizeData(repo, Constants.HEAD,
 				Constants.MASTER, false);
 		GitSynchronizeDataSet dataSet = new GitSynchronizeDataSet(data);
 
-		GitResourceVariantTree grvt = new GitRemoteResourceVariantTree(dataSet,
-				store);
+		GitResourceVariantTree grvt = new GitRemoteResourceVariantTree(dataSet);
 
-		IResourceVariant actual = grvt.getResourceVariant(mainJava
-				.getResource());
+		IResourceVariant actual = grvt.getResourceVariant(mainJava);
 		assertNotNull(actual);
-		assertEquals("Main.java", actual.getName());
+		assertEquals(fileName, actual.getName());
 
 		InputStream actualIn = actual.getStorage(new NullProgressMonitor())
-				.getContents();
-		byte[] actualByte = new byte[actualIn.available()];
-		actualIn.read(actualByte);
-		InputStream expectedIn = ((IFile) mainJava.getResource()).getContents();
-		byte[] expectedByte = new byte[expectedIn.available()];
-		expectedIn.read(expectedByte);
+		.getContents();
+		byte[] actualByte = getBytesAndCloseStream(actualIn);
+		InputStream expectedIn = mainJava.getContents();
+		byte[] expectedByte = getBytesAndCloseStream(expectedIn);
 
-		if (Arrays.equals(expectedByte, actualByte)) {
+		if (Arrays.equals(expectedByte, actualByte))
 			fail();
-		} else {
+		else
 			assertTrue(true);
-		}
 	}
 

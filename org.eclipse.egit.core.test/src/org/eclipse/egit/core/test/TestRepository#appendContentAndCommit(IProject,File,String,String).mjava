@@ -1,0 +1,9 @@
+	public RevCommit appendContentAndCommit(IProject project, File file,
+			String content, String commitMessage) throws Exception {
+		appendFileContent(file, content);
+		track(file);
+		addToIndex(project, file);
+
+		return commit(commitMessage);
+	}
+

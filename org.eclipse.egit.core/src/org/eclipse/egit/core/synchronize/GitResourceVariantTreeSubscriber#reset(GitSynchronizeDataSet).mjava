@@ -1,6 +1,5 @@
 	public void reset(GitSynchronizeDataSet data) {
-		gitSynchronizeDataSet = data;
-		store.dispose();
+		gsds = data;
 
 		roots = null;
 		baseTree = null;

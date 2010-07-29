@@ -1,0 +1,4 @@
+	public GitResourceVariantTreeSubscriber(GitSynchronizeDataSet data) {
+		this.gsds = data;
+	}
+

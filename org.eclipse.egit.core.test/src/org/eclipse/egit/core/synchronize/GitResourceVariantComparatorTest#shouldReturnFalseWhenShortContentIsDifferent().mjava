@@ -6,7 +6,7 @@
 		GitSynchronizeData data = new GitSynchronizeData(repo, "", "", true);
 		GitSynchronizeDataSet dataSet = new GitSynchronizeDataSet(data);
 		GitResourceVariantComparator grvc = new GitResourceVariantComparator(
-				dataSet, null);
+				dataSet);
 
 		IFile local = createMock(IFile.class);
 		expect(local.exists()).andReturn(true);

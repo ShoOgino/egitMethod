@@ -2,7 +2,7 @@
 	@SuppressWarnings("boxing")
 	public void shouldReturnFalseWhenRemoteDoesNotExist() {
 		GitResourceVariantComparator grvc = new GitResourceVariantComparator(
-				null, null);
+				null);
 
 		IResource local = createMock(IResource.class);
 		expect(local.exists()).andReturn(false);

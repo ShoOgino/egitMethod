@@ -1,8 +1,9 @@
 	@Test
 	@SuppressWarnings("boxing")
-	public void shouldReturnFalseWhenComparingContainerAndContainer() {
+	public void shouldReturnFalseWhenComparingContainerAndContainer()
+			throws Exception {
 		GitResourceVariantComparator grvc = new GitResourceVariantComparator(
-				null, null);
+				null);
 
 		IPath localPath = createMock(IPath.class);
 		replay(localPath);
@@ -11,15 +12,16 @@
 		expect(local.getFullPath()).andReturn(localPath);
 		replay(local);
 
-		IPath remotePath = createMock(IPath.class);
-		replay(remotePath);
-		IResource remoteResource = createMock(IResource.class);
-		expect(remoteResource.getFullPath()).andReturn(remotePath);
-		replay(remoteResource);
-		GitFolderResourceVariant remote = new GitFolderResourceVariant(
-				remoteResource);
+		File file = testRepo.createFile(iProject, "test" + File.separator
+				+ "keep");
+		RevCommit commit = testRepo.addAndCommit(iProject, file,
+				"initial commit");
+		String path = Repository.stripWorkDir(repo.getWorkTree(), file);
+
+		GitFolderResourceVariant remote = new GitFolderResourceVariant(repo,
+				commit, path);
 
 		assertFalse(grvc.compare(local, remote));
-		verify(local, localPath, remotePath, remoteResource);
+		verify(local, localPath);
 	}
 

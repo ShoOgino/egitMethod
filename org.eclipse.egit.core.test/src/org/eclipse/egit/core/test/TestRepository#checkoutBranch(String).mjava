@@ -1,0 +1,4 @@
+	public void checkoutBranch(String refName) throws CoreException {
+		new BranchOperation(repository, refName).execute(null);
+	}
+

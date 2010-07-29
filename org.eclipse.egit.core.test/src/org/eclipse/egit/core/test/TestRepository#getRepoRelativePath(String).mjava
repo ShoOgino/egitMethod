@@ -4,6 +4,6 @@
 		if (pLen > pfxLen)
 			return path.substring(pfxLen);
 		else if (path.length() == pfxLen - 1)
-			return "";  		return null;
+			return ""; 		return null;
 	}
 

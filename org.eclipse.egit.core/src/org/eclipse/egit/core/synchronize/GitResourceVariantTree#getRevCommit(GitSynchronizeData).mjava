@@ -1,0 +1,3 @@
+	protected abstract RevCommit getRevCommit(GitSynchronizeData gsd)
+			throws TeamException;
+

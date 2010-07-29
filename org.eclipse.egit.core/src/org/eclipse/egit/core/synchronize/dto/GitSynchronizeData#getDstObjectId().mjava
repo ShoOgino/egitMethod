@@ -1,4 +1,0 @@
-	public ObjectId getDstObjectId() throws IOException {
-		return getObjecId(dstRev);
-	}
-

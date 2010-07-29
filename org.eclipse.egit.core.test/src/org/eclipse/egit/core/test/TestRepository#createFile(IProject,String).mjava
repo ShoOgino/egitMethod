@@ -1,0 +1,11 @@
+	public File createFile(IProject project, String name) throws IOException {
+		String path = project.getLocation().append(name).toOSString();
+		int lastSeparator = path.lastIndexOf(File.separator);
+		new File(path.substring(0, lastSeparator)).mkdirs();
+
+		File file = new File(path);
+		file.createNewFile();
+
+		return file;
+	}
+

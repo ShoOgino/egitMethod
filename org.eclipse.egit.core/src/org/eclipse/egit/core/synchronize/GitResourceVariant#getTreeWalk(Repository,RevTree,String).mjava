@@ -1,0 +1,3 @@
+	protected abstract TreeWalk getTreeWalk(Repository repo, RevTree revTree,
+			String path) throws IOException;
+
