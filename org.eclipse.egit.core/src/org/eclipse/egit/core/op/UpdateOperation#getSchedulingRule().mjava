@@ -1,4 +1,0 @@
-	public ISchedulingRule getSchedulingRule() {
-		return new MultiRule(rsrcList.toArray(new IResource[rsrcList.size()]));
-	}
-
