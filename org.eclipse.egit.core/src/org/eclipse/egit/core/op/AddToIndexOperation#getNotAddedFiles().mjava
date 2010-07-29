@@ -1,4 +1,0 @@
-	public Collection<IFile> getNotAddedFiles() {
-		return notAddedFiles;
-	}
-
