@@ -1,0 +1,5 @@
+	protected RepositoryAction(String commandId, RepositoryActionHandler handler) {
+		this.commandId = commandId;
+		this.handler = handler;
+	}
+
