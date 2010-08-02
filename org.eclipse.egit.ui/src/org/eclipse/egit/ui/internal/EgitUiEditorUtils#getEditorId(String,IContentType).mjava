@@ -1,0 +1,13 @@
+	private static String getEditorId(String fileName, IContentType type) {
+		IEditorRegistry registry = PlatformUI.getWorkbench()
+				.getEditorRegistry();
+		IEditorDescriptor descriptor = registry
+				.getDefaultEditor(fileName, type);
+		String id;
+		if (descriptor == null || descriptor.isOpenExternal()) {
+			id = "org.eclipse.ui.DefaultTextEditor"; 		} else {
+			id = descriptor.getId();
+		}
+		return id;
+	}
+

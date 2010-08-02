@@ -1,0 +1,19 @@
+	private static IEditorPart openEditor(IWorkbenchPage page,
+			FileRevisionEditorInput editorInput, String editorId)
+			throws PartInitException {
+		try {
+			IEditorPart part = page.openEditor(editorInput, editorId,
+					OpenStrategy.activateOnOpen());
+			if (part == null) {
+				throw new PartInitException(NLS.bind(
+						UIText.EgitUiUtils_CouldNotOpenEditorMessage, editorId));
+			}
+			return part;
+		} catch (PartInitException e) {
+			if (editorId.equals("org.eclipse.ui.DefaultTextEditor")) { 				throw e;
+			} else {
+				return page.openEditor(editorInput,
+						"org.eclipse.ui.DefaultTextEditor"); 			}
+		}
+	}
+
