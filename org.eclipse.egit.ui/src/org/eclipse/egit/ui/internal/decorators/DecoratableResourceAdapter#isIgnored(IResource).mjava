@@ -1,4 +1,0 @@
-	private static boolean isIgnored(IResource resource) {
-		return Team.isIgnoredHint(resource);
-	}
-
