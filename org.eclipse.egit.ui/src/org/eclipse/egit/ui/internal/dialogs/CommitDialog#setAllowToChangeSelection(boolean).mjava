@@ -1,0 +1,4 @@
+	public void setAllowToChangeSelection(boolean allowToChangeSelection) {
+		this.allowToChangeSelection = allowToChangeSelection;
+	}
+

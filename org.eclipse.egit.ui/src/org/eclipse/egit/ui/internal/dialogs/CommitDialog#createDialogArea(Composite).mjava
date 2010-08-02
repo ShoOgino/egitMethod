@@ -13,6 +13,7 @@
 		commitText = new CommitMessageArea(container, commitMessage);
 		commitText.setLayoutData(GridDataFactory.fillDefaults().span(2, 1).grab(true, true)
 				.hint(600, 200).create());
+		commitText.setText(commitMessage);
 
 		commitText.getTextWidget().addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent event) {
@@ -182,12 +183,30 @@
 		filesViewer.addFilter(new CommitItemFilter());
 		filesViewer.setInput(items);
 		filesViewer.getTable().setMenu(getContextMenu());
+		if (!allowToChangeSelection) {
+			amendingButton.setSelection(false);
+			amendingButton.setEnabled(false);
+			showUntrackedButton.setSelection(false);
+			showUntrackedButton.setEnabled(false);
 
-		for (IFile selectedFile : preselectedFiles) {
-			for (CommitItem item : items) {
-				if (item.file.equals(selectedFile)) {
-					filesViewer.setChecked(item, true);
-					break;
+			filesViewer.addCheckStateListener(new ICheckStateListener() {
+
+				public void checkStateChanged(CheckStateChangedEvent event) {
+				       if( !event.getChecked() ) {
+				    	   filesViewer.setAllChecked(true);
+				       }
+				}
+			});
+			filesViewer.setAllGrayed(true);
+			filesViewer.setAllChecked(true);
+		}
+		else {
+			for (IFile selectedFile : preselectedFiles) {
+				for (CommitItem item : items) {
+					if (item.file.equals(selectedFile)) {
+						filesViewer.setChecked(item, true);
+						break;
+					}
 				}
 			}
 		}

@@ -1,0 +1,4 @@
+	public void setMergeResolve(boolean mergeResolve) {
+		this.mergeResolve = mergeResolve;
+	}
+

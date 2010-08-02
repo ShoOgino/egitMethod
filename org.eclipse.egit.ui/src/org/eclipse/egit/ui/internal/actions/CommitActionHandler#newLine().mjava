@@ -1,0 +1,6 @@
+	private String newLine(){
+		if(System.getProperty("os.name").indexOf("Windows") != -1){ 			return "\r\n"; 		}
+		else {
+			return "\n"; 		}
+	}
+
