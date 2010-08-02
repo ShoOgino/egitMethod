@@ -1,4 +1,4 @@
 	public BranchAction() {
-		super(ActionCommands.BRANCH_ACTION);
+		super(ActionCommands.BRANCH_ACTION, new BranchActionHandler());
 	}
 
