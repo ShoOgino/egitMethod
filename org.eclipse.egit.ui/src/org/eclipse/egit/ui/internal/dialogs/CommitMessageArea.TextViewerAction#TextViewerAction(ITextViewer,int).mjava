@@ -1,0 +1,6 @@
+		public TextViewerAction(ITextViewer viewer, int operationCode) {
+			fOperationCode= operationCode;
+			fOperationTarget= viewer.getTextOperationTarget();
+			update();
+		}
+
