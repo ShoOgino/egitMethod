@@ -2,7 +2,7 @@
 			boolean pluginIsDebugging) {
 
 		if (pluginIsDebugging) {
-			myTrace = new DebugTraceImpl();
+			myTrace = options.newDebugTrace(Activator.getPluginId());
 
 			for (GitTraceLocation loc : values()) {
 				boolean active = options.getBooleanOption(loc.getFullPath(),
