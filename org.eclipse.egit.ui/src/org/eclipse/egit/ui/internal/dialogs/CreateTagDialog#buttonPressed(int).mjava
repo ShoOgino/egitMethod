@@ -2,9 +2,10 @@
 	protected void buttonPressed(int buttonId) {
 		switch (buttonId) {
 		case CLEAR_ID:
-			tagNameText.setText(""); 			tagMessageText.setText(""); 			commitCombo.clearSelection();
-
-			commitCombo.setEnabled(true);
+			tagNameText.setText(""); 			tagMessageText.setText(""); 			if (commitCombo != null) {
+				commitCombo.clearSelection();
+				commitCombo.setEnabled(true);
+			}
 			tagNameText.setEnabled(true);
 			tagMessageText.setEnabled(true);
 			overwriteButton.setEnabled(false);
@@ -12,7 +13,8 @@
 			break;
 		case IDialogConstants.OK_ID:
 			tagName = tagNameText.getText();
-			tagCommit = commitCombo.getValue();
+			if (commitCombo != null)
+				tagCommit = commitCombo.getValue();
 			tagMessage = tagMessageText.getText();
 			overwriteTag = overwriteButton.getSelection();
 		default:

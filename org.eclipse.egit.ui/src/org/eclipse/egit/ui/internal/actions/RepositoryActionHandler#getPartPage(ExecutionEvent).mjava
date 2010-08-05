@@ -1,5 +1,5 @@
 	protected IWorkbenchPage getPartPage(ExecutionEvent event)
 			throws ExecutionException {
-		return HandlerUtil.getActivePartChecked(event).getSite().getPage();
+		return getPart(event).getSite().getPage();
 	}
 
