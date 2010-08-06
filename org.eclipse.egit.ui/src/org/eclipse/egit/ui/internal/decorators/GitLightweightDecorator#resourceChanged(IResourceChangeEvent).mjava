@@ -27,7 +27,12 @@
 					}
 
 					if (Constants.GITIGNORE_FILENAME.equals(resource.getName())) {
-						resourcesToUpdate.addAll(Arrays.asList(resource.getParent().members()));
+						IContainer parent = resource.getParent();
+						if (parent.exists())
+							resourcesToUpdate.addAll(Arrays.asList(parent
+									.members()));
+						else
+							return false;
 					} else {
 						resourcesToUpdate.add(resource);
 					}
