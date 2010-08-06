@@ -1,4 +1,5 @@
 	public void decorate(Object element, IDecoration decoration) {
+
 		final IResource resource = getResource(element);
 		if (resource == null)
 			return;
@@ -15,7 +16,8 @@
 
 		if (!resource.exists() && !resource.isPhantom())
 			return;
-
+		if (Team.isIgnoredHint(resource))
+			return;
 		final RepositoryMapping mapping = RepositoryMapping
 				.getMapping(resource);
 		if (mapping == null)
