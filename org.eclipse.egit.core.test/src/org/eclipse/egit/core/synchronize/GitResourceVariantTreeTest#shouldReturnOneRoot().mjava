@@ -1,6 +1,8 @@
 	@Test
-	public void shouldReturnOneRoot() throws IOException {
-		GitSynchronizeData data = new GitSynchronizeData(repo, "", "", false);
+	public void shouldReturnOneRoot() throws Exception {
+		new Git(repo).commit().setAuthor("JUnit", "junit@egit.org")
+				.setMessage("Initial commit").call();
+		GitSynchronizeData data = new GitSynchronizeData(repo, HEAD, HEAD, false);
 		GitSynchronizeDataSet dataSet = new GitSynchronizeDataSet(data);
 
 		GitResourceVariantTree grvt = new GitTestResourceVariantTree(dataSet,

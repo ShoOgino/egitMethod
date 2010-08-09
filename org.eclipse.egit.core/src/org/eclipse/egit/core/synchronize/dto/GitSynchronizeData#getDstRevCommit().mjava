@@ -1,0 +1,4 @@
+	public RevCommit getDstRevCommit() {
+		return dstRev;
+	}
+

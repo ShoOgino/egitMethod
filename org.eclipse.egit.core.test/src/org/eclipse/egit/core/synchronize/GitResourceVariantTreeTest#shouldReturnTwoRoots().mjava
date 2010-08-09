@@ -3,7 +3,9 @@
 		TestProject secondProject = new TestProject(true, "Project-2");
 		IProject secondIProject = secondProject.project;
 		new ConnectProviderOperation(secondIProject, gitDir).execute(null);
-		GitSynchronizeData data = new GitSynchronizeData(repo, "", "", false);
+		new Git(repo).commit().setAuthor("JUnit", "junit@egit.org")
+				.setMessage("Initial commit").call();
+		GitSynchronizeData data = new GitSynchronizeData(repo, HEAD, HEAD, false);
 		GitSynchronizeDataSet dataSet = new GitSynchronizeDataSet(data);
 
 		GitResourceVariantTree grvt = new GitTestResourceVariantTree(dataSet,
