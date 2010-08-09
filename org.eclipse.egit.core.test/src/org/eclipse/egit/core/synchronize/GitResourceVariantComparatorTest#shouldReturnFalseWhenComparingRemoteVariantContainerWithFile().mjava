@@ -14,9 +14,9 @@
 				new File(file.getParent()));
 
 		GitFolderResourceVariant base = new GitFolderResourceVariant(repo,
-				commit, folderPath);
+				commit.getTree(), folderPath);
 		GitBlobResourceVariant remote = new GitBlobResourceVariant(repo,
-				commit, filePath);
+				commit.getTree(), filePath);
 
 		assertFalse(grvc.compare(base, remote));
 	}

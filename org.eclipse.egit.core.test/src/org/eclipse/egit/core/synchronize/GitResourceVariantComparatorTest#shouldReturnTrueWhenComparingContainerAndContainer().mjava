@@ -17,8 +17,8 @@
 		expect(local.getFullPath()).andReturn(iPath).anyTimes();
 		replay(local);
 
- 		GitFolderResourceVariant remote = new GitFolderResourceVariant(repo,
-				commit, path);
+		GitFolderResourceVariant remote = new GitFolderResourceVariant(repo,
+				commit.getTree(), path);
 
 		assertTrue(grvc.compare(local, remote));
 		verify(local);
