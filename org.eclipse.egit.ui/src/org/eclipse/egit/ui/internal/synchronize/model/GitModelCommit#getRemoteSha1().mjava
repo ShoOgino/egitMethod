@@ -1,0 +1,4 @@
+	protected String getRemoteSha1() {
+		return remoteCommit.getId().getName();
+	}
+
