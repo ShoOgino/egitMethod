@@ -1,0 +1,34 @@
+	private void addIgnore(IProgressMonitor monitor, IResource resource)
+			throws UnsupportedEncodingException, CoreException {
+		IContainer container = resource.getParent();
+		String entry = "/" + resource.getName() + "\n"; 		ByteArrayInputStream entryBytes = asStream(entry);
+
+		if (container instanceof IWorkspaceRoot) {
+			Repository repository = RepositoryMapping.getMapping(
+					resource.getProject()).getRepository();
+			IPath gitIgnorePath = resource.getLocation().removeLastSegments(1)
+					.append(Constants.GITIGNORE_FILENAME);
+			IPath repoPath = new Path(repository.getWorkTree()
+					.getAbsolutePath());
+			if (!repoPath.isPrefixOf(gitIgnorePath)) {
+				String message = NLS.bind(
+						CoreText.IgnoreOperation_parentOutsideRepo, resource
+								.getLocation().toOSString(), repoPath
+								.toOSString());
+				IStatus status = Activator.error(message, null);
+				throw new CoreException(status);
+			}
+			File gitIgnore = new File(gitIgnorePath.toOSString());
+			updateGitIgnore(gitIgnore, entry);
+			gitignoreOutsideWSChanged = true;
+		} else {
+			IFile gitignore = container.getFile(new Path(
+					Constants.GITIGNORE_FILENAME));
+			IProgressMonitor subMonitor = new SubProgressMonitor(monitor, 1);
+			if (gitignore.exists())
+				gitignore.appendContents(entryBytes, true, true, subMonitor);
+			else
+				gitignore.create(entryBytes, true, subMonitor);
+		}
+	}
+

@@ -1,0 +1,22 @@
+	public void execute(IProgressMonitor monitor) throws CoreException {
+		monitor.beginTask(CoreText.IgnoreOperation_taskName, resources.length);
+		try {
+			for (IResource resource : resources) {
+				if (monitor.isCanceled())
+					break;
+
+
+				if (!Team.isIgnoredHint(resource)) {
+					addIgnore(monitor, resource);
+				}
+				monitor.worked(1);
+			}
+			monitor.done();
+		} catch (CoreException e) {
+			throw e;
+		} catch (Exception e) {
+			throw new CoreException(Activator.error(
+					CoreText.IgnoreOperation_error, e));
+		}
+	}
+
