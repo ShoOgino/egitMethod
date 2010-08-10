@@ -1,6 +1,0 @@
-	protected Repository getActiveRepository() {
-		RevObjectSelectionProvider selectionProvider = (RevObjectSelectionProvider) wp
-				.getSite().getSelectionProvider();
-		return selectionProvider.getActiveRepository();
-	}
-

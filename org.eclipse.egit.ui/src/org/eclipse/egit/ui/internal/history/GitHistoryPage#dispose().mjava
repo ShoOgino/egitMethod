@@ -4,7 +4,7 @@
 			myRefsChangedHandle = null;
 		}
 
-		for (BooleanPrefAction action: actionsToDispose)
+		for (BooleanPrefAction action : actionsToDispose)
 			action.dispose();
 		actionsToDispose.clear();
 		cancelRefreshJob();

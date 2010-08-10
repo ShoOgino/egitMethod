@@ -1,6 +1,0 @@
-	public GitCreatePatchWizard(SWTCommit commit, TreeWalk walker, Repository db) {
-		this.commit = commit;
-		this.walker = walker;
-		this.db = db;
-	}
-

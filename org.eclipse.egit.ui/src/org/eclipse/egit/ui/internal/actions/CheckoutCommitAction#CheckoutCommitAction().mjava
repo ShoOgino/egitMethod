@@ -1,4 +1,0 @@
-	public CheckoutCommitAction() {
-		super(SharedCommands.CHECKOUT, new CheckoutCommitActionHandler());
-	}
-

@@ -1,5 +1,0 @@
-	public CreateBranchOnCommitAction() {
-		super(ActionCommands.CREATE_BRANCH,
-				new CreateBranchOnCommitActionHandler());
-	}
-

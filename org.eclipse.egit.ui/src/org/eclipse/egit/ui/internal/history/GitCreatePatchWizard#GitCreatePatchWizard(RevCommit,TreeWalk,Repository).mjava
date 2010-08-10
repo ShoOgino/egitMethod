@@ -1,0 +1,6 @@
+	public GitCreatePatchWizard(RevCommit commit, TreeWalk walker, Repository db) {
+		this.commit = commit;
+		this.walker = walker;
+		this.db = db;
+	}
+
