@@ -1,9 +1,9 @@
-	protected Text doCreateFilterText(Composite parent) {
-		Text parentText = super.doCreateFilterText(parent);
+	protected Text doCreateFilterText(Composite actParent) {
+		Text parentText = super.doCreateFilterText(actParent);
 		if (fToolkit != null) {
 			int style = parentText.getStyle();
 			parentText.dispose();
-			return fToolkit.createText(parent, null, style);
+			return fToolkit.createText(actParent, null, style);
 		}
 		return parentText;
 	}

@@ -1,5 +1,6 @@
 	public void setAllChecked(boolean state) {
-		super.setAllChecked(state);
+		for (TreeItem item: super.getTree().getItems())
+			item.setChecked(state);
 		if (state) {
 
 			Object[] visible = getFilteredChildren(getRoot());
