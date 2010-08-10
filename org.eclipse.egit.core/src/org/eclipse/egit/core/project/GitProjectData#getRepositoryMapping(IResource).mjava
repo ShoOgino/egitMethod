@@ -1,4 +1,5 @@
-	public RepositoryMapping getRepositoryMapping(IResource r) {
+	public RepositoryMapping getRepositoryMapping(IResource resource) {
+		IResource r = resource;
 		try {
 			for (; r != null; r = r.getParent()) {
 				final RepositoryMapping m;

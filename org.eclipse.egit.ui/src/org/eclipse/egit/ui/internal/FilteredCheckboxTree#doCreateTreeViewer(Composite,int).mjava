@@ -1,10 +1,10 @@
-	protected TreeViewer doCreateTreeViewer(Composite parent, int style) {
+	protected TreeViewer doCreateTreeViewer(Composite actParent, int style) {
 		int treeStyle = style | SWT.CHECK | SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER;
 		Tree tree = null;
 		if (fToolkit != null) {
-			tree = fToolkit.createTree(parent, treeStyle);
+			tree = fToolkit.createTree(actParent, treeStyle);
 		} else {
-			tree = new Tree(parent, treeStyle);
+			tree = new Tree(actParent, treeStyle);
 		}
 
 		checkboxViewer = new CachedCheckboxTreeViewer(tree);
