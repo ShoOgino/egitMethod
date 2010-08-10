@@ -2,7 +2,10 @@
 		public boolean include(TreeWalk treeWalk)
 				throws MissingObjectException, IncorrectObjectTypeException,
 				IOException {
-
+			if (trace)
+				GitTraceLocation.getTrace().trace(
+						GitTraceLocation.DECORATION.getLocation(),
+						treeWalk.getPathString());
 			final WorkingTreeIterator workingTreeIterator = treeWalk.getTree(
 					T_WORKSPACE, WorkingTreeIterator.class);
 			if (workingTreeIterator != null) {
@@ -16,6 +19,16 @@
 						ignored = true;
 						return false;
 					}
+					if (resource.getFullPath().isPrefixOf(
+							resourceEntry.getResource().getFullPath())
+							&& treeWalk.getFileMode(T_HEAD) == FileMode.MISSING
+							&& treeWalk.getFileMode(T_INDEX) == FileMode.MISSING) {
+						if (trace)
+							GitTraceLocation.getTrace().trace(
+									GitTraceLocation.DECORATION.getLocation(),
+									"CUT"); 						return false;
+					}
+
 				} else {
 					IPath wdPath = new Path(repository.getWorkTree()
 							.getAbsolutePath()).append(workingTreeIterator
@@ -25,6 +38,15 @@
 							&& workingTreeIterator.isEntryIgnored()) {
 						ignored = true;
 						return false;
+
+					}
+					if (resPath.isPrefixOf(wdPath)
+							&& treeWalk.getFileMode(T_HEAD) == FileMode.MISSING
+							&& treeWalk.getFileMode(T_INDEX) == FileMode.MISSING) {
+						if (trace)
+							GitTraceLocation.getTrace().trace(
+									GitTraceLocation.DECORATION.getLocation(),
+									"CUT"); 						return false;
 					}
 				}
 			}
