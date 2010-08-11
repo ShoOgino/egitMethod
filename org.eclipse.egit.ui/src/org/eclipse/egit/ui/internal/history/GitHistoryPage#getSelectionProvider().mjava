@@ -1,0 +1,4 @@
+	public RevObjectSelectionProvider getSelectionProvider() {
+		return revObjectSelectionProvider;
+	}
+
