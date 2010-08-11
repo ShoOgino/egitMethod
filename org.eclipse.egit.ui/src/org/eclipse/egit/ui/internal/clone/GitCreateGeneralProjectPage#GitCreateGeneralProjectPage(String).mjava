@@ -4,5 +4,10 @@
 		setPageComplete(false);
 		setTitle(UIText.WizardProjectsImportPage_ImportProjectsTitle);
 		setDescription(UIText.WizardProjectsImportPage_ImportProjectsDescription);
+		IPath parent = new Path(path).removeLastSegments(1);
+		if(ResourcesPlugin.getWorkspace().getRoot().getLocation().equals(parent))
+			defaultLocation = true;
+		else
+			defaultLocation = false;
 	}
 

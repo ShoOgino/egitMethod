@@ -1,0 +1,4 @@
+	public boolean isDefaultLocation() {
+		return defaultLocation;
+	}
+
