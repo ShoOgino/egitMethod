@@ -1,5 +1,5 @@
 	public GitQuickDiffProvider() {
-		if (GitTraceLocation.UI.isActive())
-			GitTraceLocation.getTrace().traceEntry(GitTraceLocation.UI.getLocation());
+		if (GitTraceLocation.QUICKDIFF.isActive())
+			GitTraceLocation.getTrace().traceEntry(GitTraceLocation.QUICKDIFF.getLocation());
 	}
 

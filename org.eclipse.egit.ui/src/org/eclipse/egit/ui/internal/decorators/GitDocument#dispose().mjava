@@ -1,7 +1,7 @@
 	void dispose() {
-		if (GitTraceLocation.UI.isActive())
+		if (GitTraceLocation.QUICKDIFF.isActive())
 			GitTraceLocation.getTrace().trace(
-					GitTraceLocation.UI.getLocation(),
+					GitTraceLocation.QUICKDIFF.getLocation(),
 					"(GitDocument) dispose: " + resource); 		doc2repo.remove(this);
 
 		if (myRefsChangedHandle != null) {

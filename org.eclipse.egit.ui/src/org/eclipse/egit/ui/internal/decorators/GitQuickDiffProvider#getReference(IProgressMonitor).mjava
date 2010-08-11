@@ -1,8 +1,8 @@
 	public IDocument getReference(IProgressMonitor monitor)
 			throws CoreException {
-		if (GitTraceLocation.UI.isActive())
+		if (GitTraceLocation.QUICKDIFF.isActive())
 			GitTraceLocation.getTrace().trace(
-					GitTraceLocation.UI.getLocation(),
+					GitTraceLocation.QUICKDIFF.getLocation(),
 					"(GitQuickDiffProvider) file: " + resource); 		if (resource == null)
 			return null;
 		RepositoryProvider provider = RepositoryProvider.getProvider(resource

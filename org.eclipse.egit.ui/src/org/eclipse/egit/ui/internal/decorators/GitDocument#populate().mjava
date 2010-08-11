@@ -1,7 +1,7 @@
 	void populate() throws IOException {
-		if (GitTraceLocation.UI.isActive())
+		if (GitTraceLocation.QUICKDIFF.isActive())
 			GitTraceLocation.getTrace().trace(
-					GitTraceLocation.UI.getLocation(),"(GitDocument) populate: " + resource); 		RepositoryMapping mapping = RepositoryMapping.getMapping(resource);
+					GitTraceLocation.QUICKDIFF.getLocation(),"(GitDocument) populate: " + resource); 		RepositoryMapping mapping = RepositoryMapping.getMapping(resource);
 		if (mapping == null) {
 			setResolved(null, null, null, ""); 			return;
 		}
@@ -13,9 +13,9 @@
 		ObjectId commitId = repository.resolve(baseline);
 		if (commitId != null) {
 			if (commitId.equals(lastCommit)) {
-				if (GitTraceLocation.UI.isActive())
+				if (GitTraceLocation.QUICKDIFF.isActive())
 					GitTraceLocation.getTrace().trace(
-							GitTraceLocation.UI.getLocation(),
+							GitTraceLocation.QUICKDIFF.getLocation(),
 							"(GitDocument) already resolved"); 				return;
 			}
 		} else {
@@ -33,9 +33,9 @@
 		}
 		ObjectId treeId = baselineCommit.getTreeId();
 		if (treeId.equals(lastTree)) {
-			if (GitTraceLocation.UI.isActive())
+			if (GitTraceLocation.QUICKDIFF.isActive())
 				GitTraceLocation.getTrace().trace(
-						GitTraceLocation.UI.getLocation(),
+						GitTraceLocation.QUICKDIFF.getLocation(),
 						"(GitDocument) already resolved"); 			return;
 		}
 		Tree baselineTree = baselineCommit.getTree();
@@ -47,9 +47,9 @@
 		}
 		TreeEntry blobEntry = baselineTree.findBlobMember(gitPath);
 		if (blobEntry != null && !blobEntry.getId().equals(lastBlob)) {
-			if (GitTraceLocation.UI.isActive())
+			if (GitTraceLocation.QUICKDIFF.isActive())
 				GitTraceLocation.getTrace().trace(
-						GitTraceLocation.UI.getLocation(),
+						GitTraceLocation.QUICKDIFF.getLocation(),
 						"(GitDocument) compareTo: " + baseline); 			ObjectLoader loader = repository.open(blobEntry.getId(),
 					Constants.OBJ_BLOB);
 			byte[] bytes = loader.getBytes();
@@ -64,17 +64,17 @@
 			}
 			String s = new String(bytes, charset);
 			setResolved(commitId, baselineTree.getId(), blobEntry.getId(), s);
-			if (GitTraceLocation.UI.isActive())
+			if (GitTraceLocation.QUICKDIFF.isActive())
 				GitTraceLocation
 						.getTrace()
 						.trace(
-								GitTraceLocation.UI.getLocation(),
+								GitTraceLocation.QUICKDIFF.getLocation(),
 								"(GitDocument) has reference doc, size=" + s.length() + " bytes"); 		} else {
 			if (blobEntry == null)
 				setResolved(null, null, null, ""); 			else
-			if (GitTraceLocation.UI.isActive())
+			if (GitTraceLocation.QUICKDIFF.isActive())
 				GitTraceLocation.getTrace().trace(
-						GitTraceLocation.UI.getLocation(),
+						GitTraceLocation.QUICKDIFF.getLocation(),
 						"(GitDocument) already resolved"); 		}
 	}
 
