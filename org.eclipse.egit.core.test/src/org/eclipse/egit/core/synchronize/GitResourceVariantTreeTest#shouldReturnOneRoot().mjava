@@ -1,5 +1,5 @@
 	@Test
-	public void shouldReturnOneRoot() {
+	public void shouldReturnOneRoot() throws IOException {
 		GitSynchronizeData data = new GitSynchronizeData(repo, "", "", false);
 		GitSynchronizeDataSet dataSet = new GitSynchronizeDataSet(data);
 

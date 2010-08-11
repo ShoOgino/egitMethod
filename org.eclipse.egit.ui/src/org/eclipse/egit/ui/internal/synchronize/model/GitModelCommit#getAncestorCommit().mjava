@@ -1,0 +1,4 @@
+	public RevCommit getAncestorCommit() {
+		return ancestorCommit;
+	}
+

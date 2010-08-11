@@ -1,0 +1,4 @@
+	public Repository getRepository() {
+		return parent.getRepository();
+	}
+

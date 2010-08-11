@@ -1,0 +1,4 @@
+	public RevCommit getBaseCommit() {
+		return baseCommit;
+	}
+

@@ -1,4 +1,4 @@
-	public String getSrcRev() {
+	public Ref getSrcRev() {
 		return srcRev;
 	}
 

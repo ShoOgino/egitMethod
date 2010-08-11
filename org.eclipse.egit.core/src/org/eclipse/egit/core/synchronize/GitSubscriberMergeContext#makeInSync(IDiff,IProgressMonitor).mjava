@@ -1,0 +1,6 @@
+	@Override
+	protected void makeInSync(IDiff diff, IProgressMonitor monitor)
+			throws CoreException {
+
+	}
+

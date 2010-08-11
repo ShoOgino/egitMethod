@@ -1,0 +1,4 @@
+	protected GitObjectMapping(GitModelObject parent) {
+		this.object = parent;
+	}
+

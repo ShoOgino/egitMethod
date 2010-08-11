@@ -1,0 +1,5 @@
+	public static GitModelObject createRoot(GitSynchronizeData data)
+			throws MissingObjectException, IOException {
+		return new GitModelRepository(data);
+	}
+

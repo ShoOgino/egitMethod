@@ -1,0 +1,10 @@
+	protected TreeWalk createTreeWalk() {
+		TreeWalk tw = new TreeWalk(getRepository());
+
+		tw.reset();
+		tw.setRecursive(false);
+		tw.setFilter(TreeFilter.ANY_DIFF);
+
+		return tw;
+	}
+

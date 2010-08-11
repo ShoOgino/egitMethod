@@ -1,0 +1,12 @@
+	public GitModelSynchronizeParticipant(SynchronizationContext context) {
+		super(context);
+		try {
+			setInitializationData(TeamUI.getSynchronizeManager()
+					.getParticipantDescriptor(ID));
+		} catch (CoreException e) {
+			Activator.logError(e.getMessage(), e);
+		}
+
+		setSecondaryId(Long.toString(System.currentTimeMillis()));
+	}
+
