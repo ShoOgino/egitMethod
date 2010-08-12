@@ -5,6 +5,6 @@
 		if (object instanceof IAdaptable)
 			return ((IAdaptable) object).getAdapter(ResourceMapping.class);
 
-		return Utils.getResourceMapping(object);
+		return null;
 	}
 
