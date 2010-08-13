@@ -14,7 +14,7 @@
 		sb.append(message).append("\n\n"); 
 		FileDiff[] diffs = FileDiff.compute(walker, commit);
 		for (FileDiff diff : diffs) {
-			sb.append("diff --git a").append(IPath.SEPARATOR) 					.append(diff.path).append(" b").append(IPath.SEPARATOR) 					.append(diff.path).append("\n"); 			diff.outputDiff(sb, db, diffFmt, false, false);
+			sb.append("diff --git a").append(IPath.SEPARATOR) 					.append(diff.getPath()).append(" b").append(IPath.SEPARATOR) 					.append(diff.getPath()).append("\n"); 			diff.outputDiff(sb, db, diffFmt, false, false);
 		}
 		sb.append("\n--\n"); 		Bundle bundle = Activator.getDefault().getBundle();
 		String name = (String) bundle.getHeaders().get(
