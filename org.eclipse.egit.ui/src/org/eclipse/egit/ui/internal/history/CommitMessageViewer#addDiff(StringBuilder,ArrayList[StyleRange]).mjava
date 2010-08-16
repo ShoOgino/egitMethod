@@ -47,7 +47,7 @@
 			for (FileDiff diff : diffs) {
 				if (diff.getBlobs().length == 2) {
 					String path = diff.getPath();
-					d.append(formatPathLine(path)).append("\n"); 					diff.outputDiff(d, db, diffFmt, false, false);
+					d.append(formatPathLine(path)).append("\n"); 					diff.outputDiff(d, db, diffFmt, true);
 				}
 			}
 		} catch (IOException e) {
