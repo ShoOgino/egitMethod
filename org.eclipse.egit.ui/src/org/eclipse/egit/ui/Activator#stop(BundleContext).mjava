@@ -22,8 +22,6 @@
 		if (GitTraceLocation.UI.isActive())
 			GitTraceLocation.getTrace().trace(
 					GitTraceLocation.UI.getLocation(), "Jobs terminated"); 
-		repositoryUtil.dispose();
-		repositoryUtil = null;
 		super.stop(context);
 		plugin = null;
 	}
