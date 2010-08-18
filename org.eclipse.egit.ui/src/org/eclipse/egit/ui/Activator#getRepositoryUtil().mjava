@@ -1,4 +1,4 @@
 	public RepositoryUtil getRepositoryUtil() {
-		return repositoryUtil;
+		return org.eclipse.egit.core.Activator.getDefault().getRepositoryUtil();
 	}
 
