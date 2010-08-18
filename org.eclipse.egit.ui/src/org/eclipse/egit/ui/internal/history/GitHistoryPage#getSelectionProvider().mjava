@@ -1,4 +1,4 @@
-	public RevObjectSelectionProvider getSelectionProvider() {
-		return revObjectSelectionProvider;
+	public ISelectionProvider getSelectionProvider() {
+		return graph.getTableView();
 	}
 
