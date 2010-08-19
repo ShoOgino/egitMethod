@@ -1,0 +1,5 @@
+	protected Repository getRepository() {
+		IStructuredSelection selection = getSelection();
+		return getRepository(false, selection, null);
+	}
+

@@ -1,21 +1,10 @@
 	protected IStructuredSelection getSelection(ExecutionEvent event)
 			throws ExecutionException {
-		ISelection selection;
-		if (event != null)
-			selection = HandlerUtil.getCurrentSelectionChecked(event);
-		else {
-			IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-			if (activeWorkbenchWindow == null) 				return new StructuredSelection();
-			IHandlerService hsr = (IHandlerService) activeWorkbenchWindow.getService(IHandlerService.class);
-			IEvaluationContext ctx = hsr.getCurrentState();
-			selection = (ISelection) ctx.getVariable(ISources.ACTIVE_MENU_SELECTION_NAME);
-			if (selection == null)
-				throw new ExecutionException(
-						UIText.RepositoryActionHandler_CouldNotGetSelection_message);
-
-		}
+		if (event == null)
+			throw new IllegalArgumentException("event must not be NULL"); 		ISelection selection;
+		selection = HandlerUtil.getCurrentSelectionChecked(event);
 		if (selection instanceof IStructuredSelection)
 			return (IStructuredSelection) selection;
-		return new StructuredSelection();
+		return StructuredSelection.EMPTY;
 	}
 

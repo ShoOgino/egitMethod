@@ -1,0 +1,10 @@
+	private IResource[] getSelectedResources(IStructuredSelection selection) {
+		Set<IResource> result = new HashSet<IResource>();
+		for (Object o : selection.toList()) {
+			IResource resource = (IResource) getAdapter(o, IResource.class);
+			if (resource != null)
+				result.add(resource);
+		}
+		return result.toArray(new IResource[result.size()]);
+	}
+

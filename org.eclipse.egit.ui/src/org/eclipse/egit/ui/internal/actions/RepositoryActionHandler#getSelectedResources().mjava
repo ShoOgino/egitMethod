@@ -1,0 +1,5 @@
+	protected IResource[] getSelectedResources() {
+		IStructuredSelection selection = getSelection();
+		return getSelectedResources(selection);
+	}
+
