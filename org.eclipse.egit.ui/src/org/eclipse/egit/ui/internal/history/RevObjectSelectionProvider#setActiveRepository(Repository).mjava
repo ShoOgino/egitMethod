@@ -1,4 +1,0 @@
-	public void setActiveRepository(Repository repository) {
-		this.repository = repository;
-	}
-
