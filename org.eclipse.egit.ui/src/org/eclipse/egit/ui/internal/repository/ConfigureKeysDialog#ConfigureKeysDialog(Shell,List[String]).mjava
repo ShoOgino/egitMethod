@@ -1,6 +1,0 @@
-	ConfigureKeysDialog(Shell parentShell, List<String> activeKeys) {
-		super(parentShell);
-		this.activeKeys.addAll(activeKeys);
-		setShellStyle(getShellStyle() | SWT.SHELL_TRIM);
-	}
-
