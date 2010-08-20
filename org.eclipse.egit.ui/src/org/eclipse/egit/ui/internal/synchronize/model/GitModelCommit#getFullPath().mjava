@@ -1,4 +1,4 @@
 	public String getFullPath() {
-		return null;
+		return getLocation().toPortableString();
 	}
 
