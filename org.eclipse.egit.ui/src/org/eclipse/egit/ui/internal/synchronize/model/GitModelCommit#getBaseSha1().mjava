@@ -1,4 +1,0 @@
-	protected String getBaseSha1() {
-		return baseCommit.getId().getName();
-	}
-

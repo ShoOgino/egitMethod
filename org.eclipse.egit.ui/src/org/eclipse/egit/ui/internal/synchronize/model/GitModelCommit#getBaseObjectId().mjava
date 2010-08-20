@@ -1,0 +1,4 @@
+	protected ObjectId getBaseObjectId() {
+		return baseCommit != null ? baseCommit.getId() : zeroId();
+	}
+

@@ -1,0 +1,4 @@
+	protected ObjectId getRemoteObjectId() {
+		return remoteCommit.getId();
+	}
+
