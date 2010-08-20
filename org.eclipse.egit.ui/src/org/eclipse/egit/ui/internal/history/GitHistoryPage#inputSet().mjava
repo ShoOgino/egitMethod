@@ -54,7 +54,7 @@
 			return false;
 		}
 
-		if (currentWalk == null || pathChange(pathFilters, paths)
+		if (pathChange(pathFilters, paths)
 				|| headId != null && !headId.equals(currentHeadId)) {
 			currentWalk = new SWTWalk(db);
 			currentWalk.sort(RevSort.COMMIT_TIME_DESC, true);
