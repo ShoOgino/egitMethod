@@ -1,0 +1,4 @@
+	public void setExistingTags(List<RevTag> existingTags) {
+		this.existingTags = existingTags;
+	}
+

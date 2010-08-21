@@ -24,21 +24,26 @@
 			Activator.logError(msg, new Throwable());
 			setResolved(null, null, null, ""); 			return;
 		}
-		Commit baselineCommit = repository.mapCommit(commitId);
-		if (baselineCommit == null) {
+		RevWalk rw = new RevWalk(repository);
+		RevCommit baselineCommit;
+		try {
+			baselineCommit = rw.parseCommit(commitId);
+		} catch (IOException err) {
 			String msg = NLS.bind(UIText.GitDocument_errorLoadCommit,
 					new Object[] { commitId, baseline, resource, repository });
-			Activator.logError(msg, new Throwable());
+			Activator.logError(msg, err);
 			setResolved(null, null, null, ""); 			return;
+		} finally {
+			rw.release();
 		}
-		ObjectId treeId = baselineCommit.getTreeId();
+		RevTree treeId = baselineCommit.getTree();
 		if (treeId.equals(lastTree)) {
 			if (GitTraceLocation.QUICKDIFF.isActive())
 				GitTraceLocation.getTrace().trace(
 						GitTraceLocation.QUICKDIFF.getLocation(),
 						"(GitDocument) already resolved"); 			return;
 		}
-		Tree baselineTree = baselineCommit.getTree();
+		Tree baselineTree = repository.mapTree(treeId);
 		if (baselineTree == null) {
 			String msg = NLS.bind(UIText.GitDocument_errorLoadTree,
 					new Object[] { treeId, baseline, resource, repository });
