@@ -56,6 +56,7 @@
 
 		if (pathChange(pathFilters, paths)
 				|| headId != null && !headId.equals(currentHeadId)) {
+			currentHeadId = headId;
 			currentWalk = new SWTWalk(db);
 			currentWalk.sort(RevSort.COMMIT_TIME_DESC, true);
 			currentWalk.sort(RevSort.BOUNDARY, true);
