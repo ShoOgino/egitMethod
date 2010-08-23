@@ -10,6 +10,7 @@
 		addDialog.bot().textWithLabel(UIText.AddConfigEntryDialog_ValueLabel)
 				.setText("true");
 		addDialog.bot().button(IDialogConstants.OK_LABEL).click();
+		preferencePage.bot().button(IDialogConstants.OK_LABEL).click();
 		config.load();
 
 		assertTrue("Missing section", config.getSections()
