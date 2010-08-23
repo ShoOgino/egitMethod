@@ -1,0 +1,10 @@
+	public void restore() throws IOException {
+		try {
+			editableConfig.load();
+			tv.refresh();
+		} catch (ConfigInvalidException e) {
+			throw new IOException(e.getMessage());
+		}
+		initControlsFromConfig();
+	}
+

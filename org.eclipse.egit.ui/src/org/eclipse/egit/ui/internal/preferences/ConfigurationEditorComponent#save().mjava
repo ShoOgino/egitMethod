@@ -1,0 +1,6 @@
+	public void save() throws IOException {
+		editableConfig.save();
+		setDirty(false);
+		initControlsFromConfig();
+	}
+
