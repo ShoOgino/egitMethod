@@ -17,8 +17,8 @@
 					return UIText.PushResultTable_statusOkNewBranch;
 				}
 
-				return oldRef.getObjectId().abbreviate(localDb).name()
-						+ (rru.isFastForward() ? ".." : "...") 						+ rru.getNewObjectId().abbreviate(localDb).name();
+				return safeAbbreviate(oldRef.getObjectId())
+						+ (rru.isFastForward() ? ".." : "...") 						+ safeAbbreviate(rru.getNewObjectId());
 			case UP_TO_DATE:
 				return UIText.PushResultTable_statusUpToDate;
 			case NON_EXISTING:

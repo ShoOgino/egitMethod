@@ -1,4 +1,7 @@
 	void setData(final Repository localDb, final PushOperationResult result) {
+		reader = localDb.newObjectReader();
+		abbrevations = new HashMap<ObjectId,String>();
+
 		for (final TableColumn tc : tableViewer.getTable().getColumns())
 			tc.dispose();
 		tableViewer.setInput(null);
@@ -54,8 +57,7 @@
 					.bind(UIText.PushResultTable_columnStatusRepo, Integer
 							.toString(++i)), COLUMN_STATUS_WEIGHT, SWT.CENTER);
 			statusViewer.getColumn().setToolTipText(uri.toString());
-			statusViewer.setLabelProvider(new UpdateStatusLabelProvider(
-					localDb, uri));
+			statusViewer.setLabelProvider(new UpdateStatusLabelProvider(uri));
 		}
 		tableViewer.setInput(result);
 		tablePanel.layout();
