@@ -87,7 +87,8 @@
 					UIIcons.EDITCONFIG) {
 				@Override
 				public String getId() {
-					return "Edit"; 				}
+					return EDITACTIONID;
+				}
 
 				@Override
 				public void run() {
