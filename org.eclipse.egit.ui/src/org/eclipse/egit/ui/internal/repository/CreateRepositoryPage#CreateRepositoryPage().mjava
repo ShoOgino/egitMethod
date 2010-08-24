@@ -1,0 +1,7 @@
+	public CreateRepositoryPage() {
+		super(CreateRepositoryPage.class.getName());
+		setTitle(UIText.CreateRepositoryPage_PageTitle);
+		setMessage(UIText.CreateRepositoryPage_PageMessage);
+		setPageComplete(false);
+	}
+
