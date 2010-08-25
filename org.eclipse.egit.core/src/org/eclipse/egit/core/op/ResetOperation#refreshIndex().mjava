@@ -1,8 +1,0 @@
-	private void refreshIndex() throws TeamException {
-		try {
-			index.write();
-		} catch (IOException e1) {
-			throw new TeamException(CoreText.ResetOperation_writingIndex, e1);
-		}
-	}
-
