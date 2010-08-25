@@ -1,5 +1,5 @@
 	@Override
 	protected String getMessageText() {
-		return UIText.MergeTargetSelectionDialog_SelectRef
-				+ " " + UIText.MergeTargetSelectionDialog_OnlyFastForward; 	}
+		return UIText.MergeTargetSelectionDialog_SelectRef;
+	}
 
