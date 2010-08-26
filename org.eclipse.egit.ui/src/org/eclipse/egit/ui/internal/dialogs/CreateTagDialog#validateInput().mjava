@@ -4,7 +4,7 @@
 		}
 
 		String tagNameMessage = tagNameValidator.isValid(tagNameText.getText());
-		setTagNameError(tagNameMessage);
+		setErrorMessage(tagNameMessage);
 
 		String tagMessageVal = tagMessageText.getText().trim();
 

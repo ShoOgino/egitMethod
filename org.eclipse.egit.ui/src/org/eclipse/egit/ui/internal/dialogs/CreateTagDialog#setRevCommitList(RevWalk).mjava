@@ -1,4 +1,0 @@
-	public void setRevCommitList(RevWalk revCommits) {
-		this.revCommits = revCommits;
-	}
-

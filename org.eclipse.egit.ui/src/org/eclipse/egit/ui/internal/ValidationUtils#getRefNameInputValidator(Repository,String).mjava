@@ -2,7 +2,8 @@
 		return new IInputValidator() {
 			public String isValid(String newText) {
 				if (newText.length() == 0) {
-					return ""; 				}
+					return null;
+				}
 
 				String testFor = refPrefix + newText;
 				try {
@@ -14,7 +15,7 @@
 					return e1.getMessage();
 				}
 				if (!Repository.isValidRefName(testFor))
-					return UIText.BranchSelectionDialog_ErrorInvalidRefName;
+					return UIText.ValidationUtils_InvalidTagName;
 				return null;
 			}
 		};
