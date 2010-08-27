@@ -58,8 +58,8 @@
 					|| node.getType() == RepositoryTreeNodeType.FOLDER) {
 				copyAction.setEnabled(true);
 			} else if (node.getType() == RepositoryTreeNodeType.WORKINGDIR) {
-				boolean isBare = node.getRepository().getConfig().getBoolean(
-						"core", "bare", false); 				copyAction.setEnabled(!isBare);
+				boolean isBare = node.getRepository().isBare();
+				copyAction.setEnabled(!isBare);
 			} else {
 				copyAction.setEnabled(false);
 			}
