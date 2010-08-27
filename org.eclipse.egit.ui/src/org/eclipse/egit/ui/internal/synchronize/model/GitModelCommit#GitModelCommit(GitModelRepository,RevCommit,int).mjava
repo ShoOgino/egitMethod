@@ -1,6 +1,7 @@
-	public GitModelCommit(GitModelRepository parent, RevCommit commit)
-			throws IOException {
+	public GitModelCommit(GitModelRepository parent, RevCommit commit,
+			int direction) throws IOException {
 		super(parent);
+		kind = direction;
 		remoteCommit = commit;
 		ancestorCommit = calculateAncestor(remoteCommit);
 
