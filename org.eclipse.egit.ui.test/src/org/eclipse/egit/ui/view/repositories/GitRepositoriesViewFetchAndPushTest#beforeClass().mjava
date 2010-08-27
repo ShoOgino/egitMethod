@@ -3,8 +3,8 @@
 		repositoryFile = createProjectAndCommitToRepository();
 		remoteRepositoryFile = createRemoteRepository(repositoryFile);
 		waitInUI();
-		URIish uri = new URIish(remoteRepositoryFile.getPath());
-		File workdir = new File(testDirectory, "Cloned");
+		URIish uri = new URIish("file:///" + remoteRepositoryFile.getPath());
+		File workdir = new File(testDirectory, "ClonedRepo");
 
 		CloneOperation op = new CloneOperation(uri, true, null, workdir,
 				"refs/heads/master", "origin");
@@ -13,7 +13,7 @@
 		clonedRepositoryFile = new File(workdir, Constants.DOT_GIT);
 
 		uri = new URIish(remoteRepositoryFile.getPath());
-		workdir = new File(testDirectory, "Cloned2");
+		workdir = new File(testDirectory, "ClonedRepo2");
 
 		op = new CloneOperation(uri, true, null, workdir, "refs/heads/master",
 				"origin");

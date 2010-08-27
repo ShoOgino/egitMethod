@@ -1,6 +1,6 @@
 	public ConfigureRemoteWizard(Repository repository, String remoteName,
 			boolean push) {
-
+		super.setNeedsProgressMonitor(true);
 		myConfiguration = repository.getConfig();
 		myRemoteName = remoteName;
 		pushMode = push;
@@ -37,6 +37,5 @@
 
 		setWindowTitle(NLS.bind(
 				UIText.ConfigureRemoteWizard_WizardTitle_Change, myRemoteName));
-
 	}
 

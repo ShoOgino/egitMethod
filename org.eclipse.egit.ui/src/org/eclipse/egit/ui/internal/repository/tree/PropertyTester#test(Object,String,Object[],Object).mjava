@@ -5,8 +5,8 @@
 			return false;
 		RepositoryTreeNode node = (RepositoryTreeNode) receiver;
 
-		if (property.equals("isBare")) { 			Repository rep = node.getRepository();
-			return rep.getConfig().getBoolean("core", "bare", false); 		}
+		if (property.equals("isBare")) 			return node.getRepository().isBare();
+
 		if (property.equals("isRefCheckedOut")) { 			if (!(node.getObject() instanceof Ref))
 				return false;
 			Ref ref = (Ref) node.getObject();
@@ -30,12 +30,9 @@
 					rconfig = new RemoteConfig(
 							node.getRepository().getConfig(), configName);
 				} catch (URISyntaxException e2) {
-					rconfig = null;
+					return false;
 				}
-
-				boolean fetchExists = rconfig != null
-						&& !rconfig.getURIs().isEmpty();
-				return fetchExists;
+				return !rconfig.getFetchRefSpecs().isEmpty() && !rconfig.getURIs().isEmpty();
 			}
 		}
 		if (property.equals("pushExists")) { 			if (node instanceof RemoteNode) {
@@ -46,11 +43,9 @@
 					rconfig = new RemoteConfig(
 							node.getRepository().getConfig(), configName);
 				} catch (URISyntaxException e2) {
-					rconfig = null;
+					return false;
 				}
-				boolean pushExists = rconfig != null
-						&& !rconfig.getPushURIs().isEmpty();
-				return pushExists;
+				return !rconfig.getPushRefSpecs().isEmpty() && (!rconfig.getPushURIs().isEmpty() || !rconfig.getURIs().isEmpty());
 			}
 		}
 		if (property.equals("canMerge")) { 			Repository rep = node.getRepository();
