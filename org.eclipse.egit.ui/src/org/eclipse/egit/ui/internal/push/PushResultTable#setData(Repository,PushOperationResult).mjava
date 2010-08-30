@@ -55,11 +55,15 @@
 		for (final URIish uri : result.getURIs()) {
 			final TableViewerColumn statusViewer = createColumn(layout, NLS
 					.bind(UIText.PushResultTable_columnStatusRepo, Integer
-							.toString(++i)), COLUMN_STATUS_WEIGHT, SWT.CENTER);
+							.toString(++i)), COLUMN_STATUS_WEIGHT, SWT.LEFT);
 			statusViewer.getColumn().setToolTipText(uri.toString());
 			statusViewer.setLabelProvider(new UpdateStatusLabelProvider(uri));
 		}
 		tableViewer.setInput(result);
+		Table table = tableViewer.getTable();
+		if (table.getItemCount()>0) {
+			tableViewer.setSelection(new StructuredSelection(table.getItem(0).getData()));
+		}
 		tablePanel.layout();
 	}
 
