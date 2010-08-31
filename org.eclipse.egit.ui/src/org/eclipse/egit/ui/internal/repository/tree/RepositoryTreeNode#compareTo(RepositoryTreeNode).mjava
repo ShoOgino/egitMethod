@@ -9,6 +9,9 @@
 		case BRANCHES:
 		case LOCALBRANCHES:
 		case REMOTEBRANCHES:
+		case BRANCHHIERARCHY:
+			return myObject.toString().compareTo(
+					otherNode.getObject().toString());
 		case REMOTES:
 		case SYMBOLICREFS:
 		case TAGS:

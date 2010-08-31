@@ -34,6 +34,7 @@
 		case REMOTE:
 		case PUSH:
 		case FETCH:
+		case BRANCHHIERARCHY:
 		case ERROR:
 			result = prime * result
 					+ ((myObject == null) ? 0 : myObject.hashCode());

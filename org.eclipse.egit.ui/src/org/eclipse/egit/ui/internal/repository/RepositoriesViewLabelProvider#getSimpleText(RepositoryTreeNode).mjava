@@ -15,6 +15,9 @@
 			return UIText.RepositoriesViewLabelProvider_LocalBranchesNodetext;
 		case REMOTEBRANCHES:
 			return UIText.RepositoriesViewLabelProvider_RemoteBrancheNodetext;
+		case BRANCHHIERARCHY:
+			IPath fullPath = (IPath) node.getObject();
+			return fullPath.lastSegment();
 		case TAGS:
 			return UIText.RepositoriesViewLabelProvider_TagsNodeText;
 		case SYMBOLICREFS:
@@ -31,6 +34,10 @@
 			String refName = node.getRepository().shortenRefName(ref.getName());
 			if (ref.isSymbolic()) {
 				refName = refName + " - " 				+ ref.getLeaf().getName();
+			}
+			if (node.getParent().getType() == RepositoryTreeNodeType.BRANCHHIERARCHY) {
+				int index = refName.lastIndexOf('/');
+				refName = refName.substring(index + 1);
 			}
 			return refName;
 		case WORKINGDIR:

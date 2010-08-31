@@ -22,6 +22,7 @@
 		case REMOTE:
 		case FETCH:
 		case PUSH:
+		case BRANCHHIERARCHY:
 		case TAGS:
 			return myObject.equals(otherObject);
 		}
