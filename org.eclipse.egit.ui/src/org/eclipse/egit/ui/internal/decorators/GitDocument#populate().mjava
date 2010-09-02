@@ -59,14 +59,7 @@
 					Constants.OBJ_BLOB);
 			byte[] bytes = loader.getBytes();
 			String charset;
-			IEncodedStorage encodedStorage = ((IEncodedStorage)resource);
-			try {
-				charset = encodedStorage.getCharset();
-				if (charset != null)
-					charset = resource.getParent().getDefaultCharset();
-			} catch (CoreException e) {
-				charset = Constants.CHARACTER_ENCODING;
-			}
+			charset = CompareUtils.getResourceEncoding(resource);
 			String s = new String(bytes, charset);
 			setResolved(commitId, baselineTree.getId(), blobEntry.getId(), s);
 			if (GitTraceLocation.QUICKDIFF.isActive())
