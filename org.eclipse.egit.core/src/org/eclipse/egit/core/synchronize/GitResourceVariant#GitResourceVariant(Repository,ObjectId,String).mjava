@@ -1,7 +1,0 @@
-	GitResourceVariant(Repository repo, ObjectId objectId, String path)
-			throws IOException {
-		this.path = path;
-		this.repo = repo;
-		this.objectId = objectId;
-	}
-
