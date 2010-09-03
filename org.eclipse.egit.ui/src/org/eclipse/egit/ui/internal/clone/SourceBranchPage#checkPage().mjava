@@ -1,7 +1,8 @@
 	private void checkPage() {
 		setMessage(null);
-		selectB.setEnabled(selectedRefs.size() != availableRefs.size());
-		unselectB.setEnabled(selectedRefs.size() != 0);
+		int checkedElementCount = refsViewer.getCheckedElements().length;
+		selectB.setEnabled(checkedElementCount != availableRefs.size());
+		unselectB.setEnabled(checkedElementCount != 0);
 		if (transportError != null) {
 			setErrorMessage(transportError);
 			setPageComplete(false);
@@ -14,7 +15,7 @@
 			return;
 		}
 
-		if ( getSelectedBranches().isEmpty()) {
+		if (getSelectedBranches().isEmpty()) {
 			setErrorMessage(UIText.SourceBranchPage_errorBranchRequired);
 			setPageComplete(false);
 			return;

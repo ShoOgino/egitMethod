@@ -12,8 +12,7 @@
 		transportError = null;
 		head = null;
 		availableRefs.clear();
-		selectedRefs.clear();
-		refsTable.removeAll();
+		refsViewer.setInput(null);
 		setPageComplete(false);
 		setErrorMessage(null);
 		label.getDisplay().asyncExec(new Runnable() {
