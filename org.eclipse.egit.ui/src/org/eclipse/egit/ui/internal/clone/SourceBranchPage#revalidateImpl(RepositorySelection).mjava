@@ -55,5 +55,6 @@
 		refsViewer.setInput(availableRefs);
 		refsViewer.setAllChecked(true);
 		checkPage();
+		checkForEmptyRepo();
 	}
 
