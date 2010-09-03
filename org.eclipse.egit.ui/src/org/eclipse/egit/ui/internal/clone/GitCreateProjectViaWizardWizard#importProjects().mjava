@@ -9,7 +9,7 @@
 					myProjectsImportPage.createProjects();
 					break;
 				case GitSelectWizardPage.NEW_WIZARD:
-					new NewWizardAction(PlatformUI.getWorkbench()
+					new NewProjectAction(PlatformUI.getWorkbench()
 							.getActiveWorkbenchWindow()).run();
 					break;
 				case GitSelectWizardPage.GENERAL_WIZARD:
