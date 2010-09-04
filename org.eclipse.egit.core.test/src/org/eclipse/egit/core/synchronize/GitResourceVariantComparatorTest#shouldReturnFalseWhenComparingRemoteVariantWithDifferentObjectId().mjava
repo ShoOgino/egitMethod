@@ -1,5 +1,4 @@
 	@Test
-	@SuppressWarnings("boxing")
 	public void shouldReturnFalseWhenComparingRemoteVariantWithDifferentObjectId()
 			throws Exception {
 		GitResourceVariantComparator grvc = new GitResourceVariantComparator(

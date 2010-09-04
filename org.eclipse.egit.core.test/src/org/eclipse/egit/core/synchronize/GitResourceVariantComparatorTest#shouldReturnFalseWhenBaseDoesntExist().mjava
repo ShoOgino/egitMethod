@@ -1,5 +1,4 @@
 	@Test
-	@SuppressWarnings("boxing")
 	public void shouldReturnFalseWhenBaseDoesntExist() throws Exception {
 		GitResourceVariantComparator grvc = new GitResourceVariantComparator(
 				null);
