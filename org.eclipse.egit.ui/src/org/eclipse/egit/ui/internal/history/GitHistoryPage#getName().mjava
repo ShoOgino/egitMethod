@@ -1,20 +1,36 @@
 	public String getName() {
+		final String repositoryName = Activator.getDefault()
+				.getRepositoryUtil().getRepositoryName(db);
 		final ResourceList in = (ResourceList) super.getInput();
-		if (currentWalk == null || in == null)
-			return ""; 		final IResource[] items = in.getItems();
-		if (items.length == 0)
+		if (currentWalk == null || in == null || in.getItems().length == 0)
 			return ""; 
-		final StringBuilder b = new StringBuilder();
-		b.append(db.getDirectory().getParentFile().getName());
-		if (currentWalk.getRevFilter() != RevFilter.ALL) {
-			b.append(": "); 			b.append(currentWalk.getRevFilter());
-		}
-		if (currentWalk.getTreeFilter() != TreeFilter.ALL) {
-			b.append(":"); 			for (final String p : pathFilters) {
-				b.append(' ');
-				b.append(p);
+		if (in.getItems().length == 1) {
+			IResource resource = in.getItems()[0];
+			final String type;
+			switch (resource.getType()) {
+			case IResource.FILE:
+				type = UIText.GitHistoryPage_FileType;
+				break;
+			case IResource.PROJECT:
+				type = UIText.GitHistoryPage_ProjectType;
+				break;
+			default:
+				type = UIText.GitHistoryPage_FolderType;
+				break;
 			}
+			String path = resource.getFullPath().makeRelative().toString();
+			if (resource.getType() == IResource.FOLDER)
+				path = path + '/';
+			return NLS.bind(NAME_PATTERN, new Object[] { type, path,
+					repositoryName });
+		} else {
+			StringBuilder b = new StringBuilder();
+			for (final String p : pathFilters) {
+				b.append(p);
+				b.append(' ');
+			}
+			return NLS.bind(NAME_PATTERN, new Object[] {
+					UIText.GitHistoryPage_MultiResourcesType, b.toString(), repositoryName });
 		}
-		return b.toString();
 	}
 
