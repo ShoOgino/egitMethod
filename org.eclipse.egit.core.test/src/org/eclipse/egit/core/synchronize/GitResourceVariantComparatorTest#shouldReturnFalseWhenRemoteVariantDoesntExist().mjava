@@ -1,5 +1,4 @@
 	@Test
-	@SuppressWarnings("boxing")
 	public void shouldReturnFalseWhenRemoteVariantDoesntExist()
 			throws Exception {
 		GitResourceVariantComparator grvc = new GitResourceVariantComparator(
