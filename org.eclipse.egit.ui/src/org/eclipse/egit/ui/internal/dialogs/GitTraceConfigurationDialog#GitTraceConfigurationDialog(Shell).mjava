@@ -1,0 +1,4 @@
+	public GitTraceConfigurationDialog(Shell shell) {
+		super(shell);
+	}
+

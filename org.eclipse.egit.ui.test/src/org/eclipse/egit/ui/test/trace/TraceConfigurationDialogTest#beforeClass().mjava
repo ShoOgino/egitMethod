@@ -1,0 +1,6 @@
+	@BeforeClass
+	public static void beforeClass() throws Exception {
+		EGitTestCase.closeWelcomePage();
+		Activator.getDefault().getDebugOptions().setDebugEnabled(false);
+	}
+

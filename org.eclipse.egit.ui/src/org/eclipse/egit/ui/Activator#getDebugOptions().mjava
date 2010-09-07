@@ -1,0 +1,4 @@
+	public DebugOptions getDebugOptions() {
+		return debugOptions;
+	}
+
