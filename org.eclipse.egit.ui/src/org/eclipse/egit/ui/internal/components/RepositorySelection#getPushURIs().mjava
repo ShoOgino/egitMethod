@@ -1,8 +1,13 @@
 	public List<URIish> getPushURIs() {
 		if (isURISelected())
 			return Collections.singletonList(uri);
-		if (isConfigSelected())
-			return config.getPushURIs();
+		if (isConfigSelected()) {
+			List<URIish> pushUris = new ArrayList<URIish>();
+			pushUris.addAll(config.getPushURIs());
+			if (pushUris.isEmpty())
+				pushUris.add(config.getURIs().get(0));
+			return pushUris;
+		}
 		return null;
 	}
 
