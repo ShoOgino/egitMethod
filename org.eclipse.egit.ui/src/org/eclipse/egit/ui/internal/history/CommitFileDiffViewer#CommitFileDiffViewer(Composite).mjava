@@ -1,8 +1,16 @@
 	CommitFileDiffViewer(final Composite parent) {
-		super(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER
-				| SWT.FULL_SELECTION);
-
+		super(new Composite(parent, SWT.NONE), SWT.MULTI | SWT.H_SCROLL
+				| SWT.V_SCROLL | SWT.BORDER | SWT.FULL_SELECTION);
 		final Table rawTable = getTable();
+		Composite main = rawTable.getParent();
+		stackLayout = new StackLayout();
+		main.setLayout(stackLayout);
+
+		noInputText = new StyledText(main, SWT.NONE);
+		noInputText.setFont(UIUtils
+				.getFont(UIPreferences.THEME_CommitMessageFont));
+		noInputText.setText(UIText.CommitFileDiffViewer_SelectOneCommitMessage);
+
 		rawTable.setHeaderVisible(true);
 		rawTable.setLinesVisible(true);
 
