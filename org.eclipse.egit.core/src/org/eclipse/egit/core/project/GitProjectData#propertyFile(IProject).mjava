@@ -1,0 +1,4 @@
+	private static File propertyFile(IProject project) {
+		return new File(project.getWorkingLocation(Activator.getPluginId())
+				.toFile(), "GitProjectData.properties"); 	}
+
