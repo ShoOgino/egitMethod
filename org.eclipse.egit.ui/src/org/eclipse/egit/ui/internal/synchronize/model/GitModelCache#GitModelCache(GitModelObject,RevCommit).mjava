@@ -1,0 +1,6 @@
+	public GitModelCache(GitModelObject parent, RevCommit baseCommit)
+			throws IOException {
+		super(parent, baseCommit, RIGHT);
+		cacheTreeMap = new HashMap<String, GitModelCacheTree>();
+	}
+
