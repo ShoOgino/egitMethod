@@ -1,0 +1,8 @@
+	GitResourceVariant(Repository repo, RevCommit revCommit, ObjectId objectId,
+			String path) throws IOException {
+		this.path = path;
+		this.repo = repo;
+		this.objectId = objectId;
+		this.revCommit = revCommit;
+	}
+
