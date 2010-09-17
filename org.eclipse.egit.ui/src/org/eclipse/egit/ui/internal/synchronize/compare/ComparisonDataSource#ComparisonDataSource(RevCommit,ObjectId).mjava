@@ -1,0 +1,5 @@
+	public ComparisonDataSource(RevCommit commit, ObjectId objectId) {
+		this.commit = commit;
+		this.objectId = objectId;
+	}
+

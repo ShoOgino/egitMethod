@@ -1,0 +1,4 @@
+	public SaveableComparison getSaveable() {
+		return null;
+	}
+
