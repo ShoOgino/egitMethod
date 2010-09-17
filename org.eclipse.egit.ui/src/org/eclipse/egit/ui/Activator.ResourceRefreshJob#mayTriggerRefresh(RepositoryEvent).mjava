@@ -1,0 +1,8 @@
+		private void mayTriggerRefresh(RepositoryEvent e) {
+			repositoriesChanged.add(e.getRepository());
+			if (!Activator.getDefault().getPreferenceStore()
+					.getBoolean(UIPreferences.REFESH_ONLY_WHEN_ACTIVE)
+					|| isActive())
+				triggerRefresh();
+		}
+

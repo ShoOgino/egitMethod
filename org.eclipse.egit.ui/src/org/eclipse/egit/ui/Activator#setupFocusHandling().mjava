@@ -1,0 +1,21 @@
+	private void setupFocusHandling() {
+		focusListener = new IWindowListener() {
+
+			public void windowOpened(IWorkbenchWindow window) {
+			}
+
+			public void windowDeactivated(IWorkbenchWindow window) {
+			}
+
+			public void windowClosed(IWorkbenchWindow window) {
+			}
+
+			public void windowActivated(IWorkbenchWindow window) {
+				if (rcs.doReschedule)
+					rcs.schedule();
+				refreshJob.triggerRefresh();
+			}
+		};
+		PlatformUI.getWorkbench().addWindowListener(focusListener);
+	}
+
