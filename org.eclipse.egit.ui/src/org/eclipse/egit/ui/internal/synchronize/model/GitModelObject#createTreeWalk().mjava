@@ -1,4 +1,4 @@
-	protected TreeWalk createTreeWalk() throws CorruptObjectException {
+	protected TreeWalk createTreeWalk() {
 		Repository repo = getRepository();
 		TreeWalk tw = new TreeWalk(repo);
 
