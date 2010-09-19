@@ -1,5 +1,5 @@
 	public Job refresh() {
-		lastInputUpdate = -1l;
+		lastInputUpdate = -1L;
 		return scheduleRefresh(0);
 	}
 
