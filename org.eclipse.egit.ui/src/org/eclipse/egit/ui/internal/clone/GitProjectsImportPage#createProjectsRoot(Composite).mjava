@@ -7,6 +7,5 @@
 		layout.marginWidth = 0;
 		projectGroup.setLayout(layout);
 		projectGroup.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-
 	}
 
