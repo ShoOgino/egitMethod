@@ -1,15 +1,14 @@
-	public static void clickContextMenu(final AbstractSWTBot<?> bot,
+	public static boolean isContextMenuItemEnabled(final AbstractSWTBot<?> bot,
 			final String... texts) {
 
+		final AtomicBoolean enabled = new AtomicBoolean(false);
 		final MenuItem menuItem = UIThreadRunnable
 				.syncExec(new WidgetResult<MenuItem>() {
 					@SuppressWarnings("unchecked")
 					public MenuItem run() {
 						MenuItem theItem = getMenuItem(bot, texts);
-						if (theItem != null && !theItem.isEnabled())
-							throw new IllegalStateException(
-									"Menu item is diabled");
-
+						if (theItem != null && theItem.isEnabled())
+							enabled.set(true);
 						return theItem;
 					}
 				});
@@ -17,13 +16,11 @@
 			throw new WidgetNotFoundException("Could not find menu: "
 					+ Arrays.asList(texts));
 		}
-
-		click(menuItem);
-
 		UIThreadRunnable.syncExec(new VoidResult() {
 			public void run() {
 				hide(menuItem.getParent());
 			}
 		});
+		return enabled.get();
 	}
 
