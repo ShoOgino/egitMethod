@@ -22,7 +22,8 @@
 
 		UIThreadRunnable.syncExec(new VoidResult() {
 			public void run() {
-				hide(menuItem.getParent());
+				if (menuItem.isDisposed())
+					return; 				hide(menuItem.getParent());
 			}
 		});
 	}
