@@ -2,6 +2,7 @@
 	public static void afterClassBase() throws Exception {
 		new Eclipse().reset();
 		deleteAllProjects();
+		shutDownRepositories();
 		deleteRecursive(testDirectory);
 		Activator.getDefault().getRepositoryCache().clear();
 	}
