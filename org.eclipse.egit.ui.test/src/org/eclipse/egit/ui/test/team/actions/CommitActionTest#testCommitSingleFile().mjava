@@ -14,6 +14,7 @@
 		commitDialog.bot().styledTextWithLabel(UIText.CommitDialog_CommitMessage)
 				.setText("The new commit");
 		commitDialog.bot().button(UIText.CommitDialog_Commit).click();
+		Job.getJobManager().join(JobFamilies.COMMIT, null);
 		testOpenCommitWithoutChanged();
 	}
 

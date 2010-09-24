@@ -1,4 +1,4 @@
-	private void initFilter(int filter) {
+	private void initFilter(int filter) throws Exception {
 		getHistoryViewTable(PROJ1);
 		SWTBotView view = bot
 				.viewById("org.eclipse.team.ui.GenericHistoryView");
