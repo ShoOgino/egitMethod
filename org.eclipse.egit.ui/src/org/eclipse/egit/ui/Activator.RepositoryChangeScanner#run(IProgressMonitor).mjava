@@ -22,24 +22,26 @@
 				for (Repository repo : repos) {
 					if (monitor.isCanceled())
 						break;
-					if (GitTraceLocation.UI.isActive())
+					if (GitTraceLocation.REPOSITORYCHANGESCANNER.isActive())
 						GitTraceLocation.getTrace().trace(
-								GitTraceLocation.UI.getLocation(),
+								GitTraceLocation.REPOSITORYCHANGESCANNER
+										.getLocation(),
 								"Scanning " + repo + " for changes"); 
 					repo.scanForRepoChanges();
 					monitor.worked(1);
 				}
 			} catch (IOException e) {
-				if (GitTraceLocation.UI.isActive())
+				if (GitTraceLocation.REPOSITORYCHANGESCANNER.isActive())
 					GitTraceLocation.getTrace().trace(
-							GitTraceLocation.UI.getLocation(),
+							GitTraceLocation.REPOSITORYCHANGESCANNER
+									.getLocation(),
 							"Stopped rescheduling " + getName() + "job"); 				return createErrorStatus(UIText.Activator_scanError, e);
 			} finally {
 				monitor.done();
 			}
-			if (GitTraceLocation.UI.isActive())
+			if (GitTraceLocation.REPOSITORYCHANGESCANNER.isActive())
 				GitTraceLocation.getTrace().trace(
-						GitTraceLocation.UI.getLocation(),
+						GitTraceLocation.REPOSITORYCHANGESCANNER.getLocation(),
 						"Rescheduling " + getName() + " job"); 			if (doReschedule)
 				schedule(REPO_SCAN_INTERVAL);
 			return Status.OK_STATUS;

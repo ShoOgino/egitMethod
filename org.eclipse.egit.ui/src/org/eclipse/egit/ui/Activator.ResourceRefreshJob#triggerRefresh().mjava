@@ -1,7 +1,8 @@
 		void triggerRefresh() {
-			if (GitTraceLocation.UI.isActive())
+			if (GitTraceLocation.REPOSITORYCHANGESCANNER.isActive())
 				GitTraceLocation.getTrace().trace(
-						GitTraceLocation.UI.getLocation(), "Triggered refresh"); 			IProject[] projects = ResourcesPlugin.getWorkspace().getRoot()
+						GitTraceLocation.REPOSITORYCHANGESCANNER.getLocation(),
+						"Triggered refresh"); 			IProject[] projects = ResourcesPlugin.getWorkspace().getRoot()
 					.getProjects();
 			Set<IProject> toRefresh = new HashSet<IProject>();
 			synchronized (repositoriesChanged) {
