@@ -1,0 +1,13 @@
+	private void writeGitPatchHeader(StringBuilder sb) {
+
+		final SimpleDateFormat dtfmt;
+		dtfmt = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z", Locale.US); 		dtfmt.setTimeZone(commit.getAuthorIdent().getTimeZone());
+		sb.append("From").append(" ") 				.append(commit.getId().getName()).append(" ") 				.append(dtfmt.format(Long.valueOf(System.currentTimeMillis())))
+				.append("\n"); 		sb.append("From") 				.append(": ") 				.append(commit.getAuthorIdent().getName())
+				.append(" <").append(commit.getAuthorIdent().getEmailAddress()) 				.append(">\n"); 		sb.append("Date").append(": ") 				.append(dtfmt.format(commit.getAuthorIdent().getWhen()))
+				.append("\n"); 		sb.append("Subject").append(": [PATCH] ") 				.append(commit.getShortMessage());
+
+		String message = commit.getFullMessage().substring(
+				commit.getShortMessage().length());
+		sb.append(message).append("\n\n"); 	}
+
