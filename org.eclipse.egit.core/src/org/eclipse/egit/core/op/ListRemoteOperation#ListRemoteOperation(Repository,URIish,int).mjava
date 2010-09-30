@@ -1,0 +1,7 @@
+	public ListRemoteOperation(final Repository localDb, final URIish uri,
+			int timeout) {
+		this.localDb = localDb;
+		this.uri = uri;
+		this.timeout = timeout;
+	}
+

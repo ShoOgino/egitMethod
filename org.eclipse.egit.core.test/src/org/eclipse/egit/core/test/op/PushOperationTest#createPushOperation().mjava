@@ -8,7 +8,7 @@
 		refUpdates.add(update);
 		spec.addURIRefUpdates(remote, refUpdates);
 		PushOperation pop = new PushOperation(repository1.getRepository(),
-				spec, false, null);
+				spec, false, null, 0);
 		return pop;
 	}
 
