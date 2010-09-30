@@ -1,4 +1,3 @@
 	public String getContentIdentifier() {
-		return objectId.getName();
-	}
+		return revCommit.abbreviate(7).name() + "..."; 	}
 
