@@ -5,7 +5,6 @@
 		RevCommit commit = testRepo.appendContentAndCommit(iProject, file,
 				"class Main {}", "initial commit");
 		IFile mainJava = testRepo.getIFile(iProject, file);
-		ObjectId fileId = findFileId(commit, mainJava);
 
 		testRepo.createAndCheckoutBranch(Constants.HEAD, Constants.R_HEADS
 				+ "test");
@@ -23,6 +22,7 @@
 
 		IResourceVariant actual = commonAssertionsForBaseTree(baseTree,
 				mainJava);
-		assertEquals(fileId.getName(), actual.getContentIdentifier());
+		assertEquals(commit.abbreviate(7).name() + "...",
+				actual.getContentIdentifier());
 	}
 
