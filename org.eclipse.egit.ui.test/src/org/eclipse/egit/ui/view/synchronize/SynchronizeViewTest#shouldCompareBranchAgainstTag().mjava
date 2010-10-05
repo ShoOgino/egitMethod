@@ -1,25 +1,26 @@
 	@Test
 	public void shouldCompareBranchAgainstTag() throws Exception {
-		showSynchronizationDialog("org.eclipse.egit.ui");
+		resetRepository(PROJ1);
+		createTag(PROJ1, "v0.0");
+		makeChangesAndCommit(PROJ1);
+		showDialog(PROJ1, "Team", "Synchronize...");
 
-		bot.shell("Synchronize repository: egit" + File.separator + ".git")
+		bot.shell("Synchronize repository: " + REPO1 + File.separator + ".git")
 				.activate();
 
-		bot.comboBox(0).setSelection("origin");
-		bot.comboBox(1).setSelection("stable-0.7");
+		bot.comboBox(0)
+				.setSelection(UIText.SynchronizeWithAction_localRepoName);
+		bot.comboBox(1).setSelection("v0.0");
 
-		bot.comboBox(2).setSelection("local .git");
-		bot.comboBox(3).setSelection("v0.8.1");
+		bot.comboBox(2)
+				.setSelection(UIText.SynchronizeWithAction_localRepoName);
+		bot.comboBox(3).setSelection(HEAD);
 
-		bot.button("OK").click();
+		bot.button(IDialogConstants.OK_LABEL).click();
 
-		handleConfirmOpenPerspective();
-
-		bot.waitUntil(shellIsActive("Git Resource Synchronization"), 15000);
-		SWTBotShell shell = bot.shell("Git Resource Synchronization");
-		bot.waitUntil(shellCloses(shell), 300000);
+		bot.sleep(1000);
 
 		SWTBotTree syncViewTree = bot.viewByTitle("Synchronize").bot().tree();
-		assertEquals(8, syncViewTree.getAllItems().length);
+		assertEquals(1, syncViewTree.getAllItems().length);
 	}
 
