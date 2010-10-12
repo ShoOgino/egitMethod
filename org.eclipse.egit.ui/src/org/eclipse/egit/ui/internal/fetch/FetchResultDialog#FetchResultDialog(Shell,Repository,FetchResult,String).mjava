@@ -1,4 +1,4 @@
-	FetchResultDialog(final Shell parentShell, final Repository localDb,
+	public FetchResultDialog(final Shell parentShell, final Repository localDb,
 			final FetchResult result, final String sourceString) {
 		super(parentShell);
 		setShellStyle(getShellStyle() | SWT.RESIZE);

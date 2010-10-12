@@ -1,4 +1,4 @@
-	private boolean canMerge(final Repository repository, ExecutionEvent event)
+	protected boolean canMerge(final Repository repository, ExecutionEvent event)
 			throws ExecutionException {
 		String message = null;
 		try {

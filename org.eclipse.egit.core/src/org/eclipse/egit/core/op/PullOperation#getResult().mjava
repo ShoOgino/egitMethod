@@ -1,0 +1,4 @@
+	public PullResult getResult() {
+		return this.pullResult;
+	}
+
