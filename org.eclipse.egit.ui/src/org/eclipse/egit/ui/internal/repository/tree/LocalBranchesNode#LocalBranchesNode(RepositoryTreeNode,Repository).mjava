@@ -1,5 +1,0 @@
-	public LocalBranchesNode(RepositoryTreeNode parent, Repository repository) {
-		super(parent, RepositoryTreeNodeType.LOCALBRANCHES, repository,
-				repository);
-	}
-

@@ -7,8 +7,8 @@
 		switch (myType) {
 
 		case BRANCHES:
-		case LOCALBRANCHES:
-		case REMOTEBRANCHES:
+		case LOCAL:
+		case REMOTETRACKING:
 		case BRANCHHIERARCHY:
 			return myObject.toString().compareTo(
 					otherNode.getObject().toString());

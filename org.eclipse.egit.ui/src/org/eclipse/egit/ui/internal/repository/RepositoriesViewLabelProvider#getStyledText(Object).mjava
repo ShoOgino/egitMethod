@@ -42,8 +42,8 @@
 			case FILE:
 			case FOLDER:
 			case BRANCHES:
-			case LOCALBRANCHES:
-			case REMOTEBRANCHES:
+			case LOCAL:
+			case REMOTETRACKING:
 			case BRANCHHIERARCHY:
 			case TAGS:
 			case SYMBOLICREFS:

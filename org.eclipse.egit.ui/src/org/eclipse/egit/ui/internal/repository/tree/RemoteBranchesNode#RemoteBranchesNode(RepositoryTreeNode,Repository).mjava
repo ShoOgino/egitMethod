@@ -1,5 +1,0 @@
-	public RemoteBranchesNode(RepositoryTreeNode parent, Repository repository) {
-		super(parent, RepositoryTreeNodeType.REMOTEBRANCHES, repository,
-				repository);
-	}
-

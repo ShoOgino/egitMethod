@@ -3,8 +3,8 @@
 		case REPO:
 		case REMOTES:
 		case BRANCHES:
-		case LOCALBRANCHES:
-		case REMOTEBRANCHES:
+		case LOCAL:
+		case REMOTETRACKING:
 		case SYMBOLICREFS:
 		case ERROR:
 		case WORKINGDIR:

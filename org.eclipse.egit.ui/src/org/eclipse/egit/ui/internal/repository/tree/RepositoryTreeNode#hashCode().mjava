@@ -5,8 +5,8 @@
 		switch (myType) {
 		case REPO:
 		case REMOTES:
-		case LOCALBRANCHES:
-		case REMOTEBRANCHES:
+		case LOCAL:
+		case REMOTETRACKING:
 		case BRANCHES:
 		case SYMBOLICREFS:
 		case WORKINGDIR:
