@@ -1,7 +1,7 @@
 	private void createPaintListener(final Table rawTable) {
 		rawTable.addListener(SWT.EraseItem, new Listener() {
 			public void handleEvent(final Event event) {
-				if (0 <= event.index && event.index <= 2)
+				if (0 <= event.index && event.index <= 3)
 					event.detail &= ~SWT.FOREGROUND;
 			}
 		});
