@@ -1,0 +1,7 @@
+	public DeleteBranchOperation(Repository repository, Ref branch,
+			boolean force) {
+		this.repository = repository;
+		this.branch = branch;
+		this.force = force;
+	}
+

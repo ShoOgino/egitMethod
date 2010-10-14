@@ -1,8 +1,8 @@
-	private void deleteBranch(final RefNode node, final Ref ref)
-			throws IOException {
-		RefUpdate op = node.getRepository().updateRef(ref.getName());
-		op.setRefLogMessage("branch deleted", 				false);
-		op.setForceUpdate(true);
-		op.delete();
+	private int deleteBranch(final RefNode node, final Ref ref)
+			throws CoreException {
+		DeleteBranchOperation dbop = new DeleteBranchOperation(node
+				.getRepository(), ref, true);
+		dbop.execute(null);
+		return dbop.getStatus();
 	}
 

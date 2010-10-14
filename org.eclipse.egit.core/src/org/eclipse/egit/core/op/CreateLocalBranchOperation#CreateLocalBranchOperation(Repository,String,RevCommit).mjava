@@ -1,0 +1,8 @@
+	public CreateLocalBranchOperation(Repository repository, String name,
+			RevCommit commit) {
+		this.name = name;
+		this.repository = repository;
+		this.ref = null;
+		this.commit = commit;
+	}
+

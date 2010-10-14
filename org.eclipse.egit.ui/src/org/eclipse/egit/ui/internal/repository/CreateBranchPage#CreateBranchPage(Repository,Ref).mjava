@@ -1,8 +1,7 @@
-	public CreateBranchPage(Repository repo, Ref baseBranch) {
+	public CreateBranchPage(Repository repo, Ref baseRef) {
 		super(CreateBranchPage.class.getName());
-		commitMode = false;
 		this.myRepository = repo;
-		this.myBaseBranch = baseBranch;
+		this.myBaseRef = baseRef.getName();
 		this.myBaseCommit = null;
 		this.myValidator = ValidationUtils.getRefNameInputValidator(
 				myRepository, Constants.R_HEADS, true);

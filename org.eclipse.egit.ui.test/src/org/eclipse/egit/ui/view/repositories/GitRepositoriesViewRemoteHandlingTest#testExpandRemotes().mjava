@@ -36,14 +36,6 @@
 		assertTrue(test2nodes.size() == 2);
 		remotesItem.getNode("test3").expand().getNodes();
 		assertTrue(remotesItem.getNode("test3").expand().getNodes().size() == 1);
-		final SWTBotTreeItem errorItem = remotesItem.getNode("test3")
-				.getNode(0);
-		Display.getDefault().syncExec(new Runnable() {
-			public void run() {
-				Object data = errorItem.widget.getData();
-				assertTrue(data instanceof ErrorNode);
-			}
-		});
 
 		remotesItem.getNode("test").select();
 		ContextMenuHelper.clickContextMenu(tree, myUtil

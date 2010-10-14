@@ -1,0 +1,7 @@
+	public RenameBranchOperation(Repository repository, Ref branch,
+			String newName) {
+		this.repository = repository;
+		this.branch = branch;
+		this.newName = newName;
+	}
+
