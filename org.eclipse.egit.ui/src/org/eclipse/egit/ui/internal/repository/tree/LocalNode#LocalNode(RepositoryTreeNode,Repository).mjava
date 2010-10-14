@@ -1,0 +1,5 @@
+	public LocalNode(RepositoryTreeNode parent, Repository repository) {
+		super(parent, RepositoryTreeNodeType.LOCAL, repository,
+				repository);
+	}
+
