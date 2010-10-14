@@ -2,7 +2,6 @@
 	public static void beforeClass() throws Exception {
 		repositoryFile = createProjectAndCommitToRepository();
 		remoteRepositoryFile = createRemoteRepository(repositoryFile);
-		waitInUI();
 		URIish uri = new URIish("file:///" + remoteRepositoryFile.getPath());
 		File workdir = new File(testDirectory, "ClonedRepo");
 

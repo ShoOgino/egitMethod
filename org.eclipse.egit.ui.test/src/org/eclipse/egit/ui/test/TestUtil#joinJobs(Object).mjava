@@ -1,0 +1,4 @@
+	public static void joinJobs(Object family) throws InterruptedException  {
+		Job.getJobManager().join(family, null);
+	}
+

@@ -20,7 +20,7 @@
 				myRepository, "push");
 
 		pa.run(null, false);
-
+		TestUtil.joinJobs(JobFamilies.PUSH);
 		try {
 			RefUpdate op = myRepository.updateRef("refs/heads/stable");
 			op.setRefLogMessage("branch deleted", 					false);
