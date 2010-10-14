@@ -25,12 +25,21 @@
 					repositoryName });
 		} else {
 			StringBuilder b = new StringBuilder();
-			for (final String p : pathFilters) {
-				b.append(p);
-				b.append(' ');
-			}
-			return NLS.bind(NAME_PATTERN, new Object[] {
-					UIText.GitHistoryPage_MultiResourcesType, b.toString(), repositoryName });
+			for (IResource res : in.getItems()) {
+				b.append(res.getFullPath());
+				if (res.getType() == IResource.FOLDER)
+					b.append('/');
+				if (b.length() > 100) {
+					b.append("...  "); 					break;
+				}
+				b.append(", "); 			}
+			if (b.length() > 2)
+				b.setLength(b.length() - 2);
+			String multiResourcePrefix = NLS.bind(
+					UIText.GitHistoryPage_MultiResourcesType, Integer
+							.valueOf(in.getItems().length));
+			return NLS.bind(NAME_PATTERN, new Object[] { multiResourcePrefix,
+					b.toString(), repositoryName });
 		}
 	}
 
