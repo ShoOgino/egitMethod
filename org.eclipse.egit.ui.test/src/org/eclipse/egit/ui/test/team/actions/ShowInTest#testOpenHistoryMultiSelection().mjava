@@ -5,7 +5,7 @@
 		projectExplorerTree.select(0, 1);
 		String menuString = util
 				.getPluginLocalizedValue("ShowResourceInHistoryAction_label");
-		assertFalse(ContextMenuHelper.isContextMenuItemEnabled(projectExplorerTree, "Team",
+		assertTrue(ContextMenuHelper.isContextMenuItemEnabled(projectExplorerTree, "Team",
 					menuString));
 	}
 
