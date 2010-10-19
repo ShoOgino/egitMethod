@@ -1,0 +1,4 @@
+	public boolean isSingleFile() {
+		return singleFile != null;
+	}
+

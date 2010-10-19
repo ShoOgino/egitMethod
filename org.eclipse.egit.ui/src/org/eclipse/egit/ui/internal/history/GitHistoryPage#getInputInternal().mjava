@@ -1,0 +1,4 @@
+	public HistoryPageInput getInputInternal() {
+		return this.input;
+	}
+

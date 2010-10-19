@@ -1,0 +1,4 @@
+	public Object getSingleFile() {
+		return singleFile;
+	}
+
