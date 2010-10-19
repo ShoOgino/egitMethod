@@ -1,0 +1,4 @@
+	public File[] getFileList() {
+		return files;
+	}
+

@@ -1,5 +1,7 @@
-	public HistoryPageInput(final Repository repository, final IResource[] items) {
+	public HistoryPageInput(final Repository repository,
+			final IResource[] resourceItems) {
 		this.repo = repository;
-		list = items;
+		list = resourceItems;
+		files = null;
 	}
 
