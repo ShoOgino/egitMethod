@@ -1,7 +1,7 @@
 	public String getName() {
 		final String repositoryName = Activator.getDefault()
 				.getRepositoryUtil().getRepositoryName(db);
-		final ResourceList in = (ResourceList) super.getInput();
+		final HistoryPageInput in = (HistoryPageInput) super.getInput();
 		if (currentWalk == null || in == null || in.getItems().length == 0)
 			return ""; 
 		if (in.getItems().length == 1) {

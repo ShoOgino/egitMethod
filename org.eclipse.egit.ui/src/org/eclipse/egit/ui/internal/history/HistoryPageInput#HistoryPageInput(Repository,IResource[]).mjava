@@ -1,0 +1,5 @@
+	public HistoryPageInput(final Repository repository, final IResource[] items) {
+		this.repo = repository;
+		list = items;
+	}
+
