@@ -10,11 +10,11 @@
 				refschangedRunnable = new Runnable() {
 					public void run() {
 						if (!getControl().isDisposed()) {
-							if (GitTraceLocation.UI.isActive())
+							if (GitTraceLocation.HISTORYVIEW.isActive())
 								GitTraceLocation
 										.getTrace()
 										.trace(
-												GitTraceLocation.UI
+												GitTraceLocation.HISTORYVIEW
 														.getLocation(),
 												"Executing async repository changed event"); 							refschangedRunnable = null;
 							inputSet();
