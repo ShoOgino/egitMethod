@@ -6,17 +6,8 @@
 			return true;
 		case REPO:
 			return true;
-		case SYMBOLICREFS:
-			try {
-				for (Ref refEntry : repo.getRefDatabase().getRefs(
-						RefDatabase.ALL).values()) {
-					if (refEntry.isSymbolic())
-						return true;
-				}
-			} catch (IOException e) {
-				return true;
-			}
-			return false;
+		case ADDITIONALREFS:
+			return true;
 		case TAGS:
 			try {
 				return !repo.getRefDatabase().getRefs(Constants.R_TAGS)

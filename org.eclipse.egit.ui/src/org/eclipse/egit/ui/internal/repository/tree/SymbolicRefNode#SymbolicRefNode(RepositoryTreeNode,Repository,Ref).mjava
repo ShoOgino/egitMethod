@@ -1,5 +1,0 @@
-	public SymbolicRefNode(RepositoryTreeNode parent, Repository repository,
-			Ref ref) {
-		super(parent, RepositoryTreeNodeType.SYMBOLICREF, repository, ref);
-	}
-

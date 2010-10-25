@@ -1,0 +1,5 @@
+	public AdditionalRefNode(RepositoryTreeNode parent, Repository repository,
+			Ref ref) {
+		super(parent, RepositoryTreeNodeType.ADDITIONALREF, repository, ref);
+	}
+

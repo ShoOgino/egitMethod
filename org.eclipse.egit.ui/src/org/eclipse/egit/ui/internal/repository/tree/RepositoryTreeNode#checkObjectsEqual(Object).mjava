@@ -5,14 +5,14 @@
 		case BRANCHES:
 		case LOCAL:
 		case REMOTETRACKING:
-		case SYMBOLICREFS:
+		case ADDITIONALREFS:
 		case ERROR:
 		case WORKINGDIR:
 			return ((Repository) myObject).getDirectory().equals(
 					((Repository) otherObject).getDirectory());
 		case REF:
 		case TAG:
-		case SYMBOLICREF:
+		case ADDITIONALREF:
 			return ((Ref) myObject).getName().equals(
 					((Ref) otherObject).getName());
 		case FOLDER:

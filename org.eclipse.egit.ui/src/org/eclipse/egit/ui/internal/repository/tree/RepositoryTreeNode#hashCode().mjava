@@ -8,7 +8,7 @@
 		case LOCAL:
 		case REMOTETRACKING:
 		case BRANCHES:
-		case SYMBOLICREFS:
+		case ADDITIONALREFS:
 		case WORKINGDIR:
 			result = prime
 					* result
@@ -17,7 +17,7 @@
 			break;
 		case REF:
 		case TAG:
-		case SYMBOLICREF:
+		case ADDITIONALREF:
 			result = prime
 					* result
 					+ ((myObject == null) ? 0 : ((Ref) myObject).getName()

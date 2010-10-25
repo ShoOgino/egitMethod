@@ -13,7 +13,7 @@
 			return myObject.toString().compareTo(
 					otherNode.getObject().toString());
 		case REMOTES:
-		case SYMBOLICREFS:
+		case ADDITIONALREFS:
 		case TAGS:
 		case ERROR:
 		case WORKINGDIR:
@@ -29,7 +29,7 @@
 			return ((File) myObject).getName().compareTo(
 					((File) otherNode.getObject()).getName());
 		case TAG:
-		case SYMBOLICREF:
+		case ADDITIONALREF:
 		case REF:
 			return ((Ref) myObject).getName().compareTo(
 					((Ref) otherNode.getObject()).getName());

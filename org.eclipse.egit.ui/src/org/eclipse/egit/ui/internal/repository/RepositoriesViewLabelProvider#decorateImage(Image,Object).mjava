@@ -4,8 +4,10 @@
 		switch (node.getType()) {
 
 		case TAG:
+		case ADDITIONALREF:
 		case REF:
 			String refName = ((Ref) node.getObject()).getName();
+			Ref leaf = ((Ref) node.getObject()).getLeaf();
 
 			String branchName;
 			String compareString;
@@ -31,7 +33,17 @@
 					RevWalk rw = new RevWalk(node.getRepository());
 					RevCommit commit = rw.parseCommit(id);
 					compareString = commit.getId().name();
-				} else {
+				} else if (refName.equals(Constants.HEAD))
+					return getDecoratedImage(image);
+				else {
+					String leafname = leaf.getName();
+					if (leafname.startsWith(Constants.R_REFS)
+							&& leafname.equals(node.getRepository()
+									.getFullBranch()))
+						return getDecoratedImage(image);
+					else if (leaf.getObjectId().equals(
+							node.getRepository().resolve(Constants.HEAD)))
+						return getDecoratedImage(image);
 					return image;
 				}
 			} catch (IOException e1) {
