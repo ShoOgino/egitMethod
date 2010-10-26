@@ -12,7 +12,6 @@
 		dialog.bot().textWithId("BranchName").setText("NewBranch");
 		dialog.bot().checkBox().deselect();
 		dialog.bot().button(IDialogConstants.FINISH_LABEL).click();
-		waitInUI();
 		assertNotNull(repo.resolve(Constants.R_HEADS + "NewBranch"));
 	}
 
