@@ -13,6 +13,5 @@
 						.getDefaultCharset())), false, null);
 		addAndCommit(addedFile, ADDEDMESSAGE);
 		commitCount = 3;
-		waitInUI();
 	}
 
