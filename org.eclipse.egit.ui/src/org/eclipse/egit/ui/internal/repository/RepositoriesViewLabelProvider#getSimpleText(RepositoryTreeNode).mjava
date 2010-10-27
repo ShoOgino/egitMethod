@@ -24,12 +24,17 @@
 			return UIText.RepositoriesViewLabelProvider_SymbolicRefNodeText;
 		case REMOTES:
 			return UIText.RepositoriesView_RemotesNodeText;
-		case REMOTE:
-		case ERROR:
-			return (String) node.getObject();
 		case REF:
-		case TAG:
-		case ADDITIONALREF:
+		case TAG: {
+			Ref ref = (Ref) node.getObject();
+			String refName = node.getRepository().shortenRefName(ref.getName());
+			if (node.getParent().getType() == RepositoryTreeNodeType.BRANCHHIERARCHY) {
+				int index = refName.lastIndexOf('/');
+				refName = refName.substring(index + 1);
+			}
+			return refName;
+		}
+		case ADDITIONALREF: {
 			Ref ref = (Ref) node.getObject();
 			String refName = node.getRepository().shortenRefName(ref.getName());
 			if (ref.isSymbolic()) {
@@ -38,19 +43,18 @@
 						+ " - " + ObjectId.toString(ref.getLeaf().getObjectId()); 			} else {
 				refName = refName + " - " 						+ ObjectId.toString(ref.getObjectId());
 			}
-			if (node.getParent().getType() == RepositoryTreeNodeType.BRANCHHIERARCHY) {
-				int index = refName.lastIndexOf('/');
-				refName = refName.substring(index + 1);
-			}
 			return refName;
+		}
 		case WORKINGDIR:
 			if (node.getRepository().isBare())
 				return UIText.RepositoriesView_WorkingDir_treenode
 						+ " - " 						+ UIText.RepositoriesViewLabelProvider_BareRepositoryMessage;
 			else
 				return UIText.RepositoriesView_WorkingDir_treenode + " - " 						+ node.getRepository().getWorkTree().getAbsolutePath();
+		case REMOTE:
 		case PUSH:
 		case FETCH:
+		case ERROR:
 			return (String) node.getObject();
 
 		}
