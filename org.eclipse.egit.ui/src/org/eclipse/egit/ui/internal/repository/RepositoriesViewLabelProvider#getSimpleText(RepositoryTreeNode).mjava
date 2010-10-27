@@ -35,8 +35,8 @@
 			if (ref.isSymbolic()) {
 				refName = refName
 						+ " - " 						+ ref.getLeaf().getName()
-						+ " - " + ref.getLeaf().getObjectId(); 			} else {
-				refName = refName + " - " 						+ ref.getObjectId().name();
+						+ " - " + ObjectId.toString(ref.getLeaf().getObjectId()); 			} else {
+				refName = refName + " - " 						+ ObjectId.toString(ref.getObjectId());
 			}
 			if (node.getParent().getType() == RepositoryTreeNodeType.BRANCHHIERARCHY) {
 				int index = refName.lastIndexOf('/');
