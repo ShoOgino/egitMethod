@@ -1,0 +1,4 @@
+	public MergeToolAction() {
+		super(ActionCommands.MERGE_TOOL_ACTION, new MergeToolActionHandler());
+	}
+

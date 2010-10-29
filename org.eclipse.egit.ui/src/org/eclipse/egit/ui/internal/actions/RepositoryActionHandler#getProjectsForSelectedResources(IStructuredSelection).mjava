@@ -1,4 +1,5 @@
-	private IProject[] getProjectsForSelectedResources(IStructuredSelection selection) {
+	private IProject[] getProjectsForSelectedResources(
+			IStructuredSelection selection) {
 		Set<IProject> ret = new HashSet<IProject>();
 		for (IResource resource : (IResource[]) getSelectedAdaptables(
 				selection, IResource.class))

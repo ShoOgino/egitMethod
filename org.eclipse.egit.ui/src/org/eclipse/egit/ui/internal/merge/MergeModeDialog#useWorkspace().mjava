@@ -1,0 +1,4 @@
+	public boolean useWorkspace() {
+		return useWs;
+	}
+

@@ -1,0 +1,156 @@
+	@Override
+	protected Object prepareInput(IProgressMonitor monitor)
+			throws InvocationTargetException, InterruptedException {
+		final Set<IFile> files = new HashSet<IFile>();
+		List<IContainer> folders = new ArrayList<IContainer>();
+		Set<IProject> projects = new HashSet<IProject>();
+
+		for (IResource res : resources) {
+			projects.add(res.getProject());
+			if (Team.isIgnoredHint(res))
+				continue;
+			if (res.getType() == IResource.FILE)
+				files.add((IFile) res);
+			else
+				folders.add((IContainer) res);
+		}
+
+		if (monitor.isCanceled())
+			throw new InterruptedException();
+
+		Repository repo = null;
+		for (IProject project : projects) {
+			RepositoryMapping map = RepositoryMapping.getMapping(project);
+			if (repo != null && repo != map.getRepository())
+				throw new InvocationTargetException(
+						new IllegalStateException(
+								UIText.AbstractHistoryCommanndHandler_NoUniqueRepository));
+			repo = map.getRepository();
+		}
+
+		if (repo == null)
+			throw new InvocationTargetException(new IllegalStateException(
+					UIText.AbstractHistoryCommanndHandler_NoUniqueRepository));
+
+		if (monitor.isCanceled())
+			throw new InterruptedException();
+
+		IResourceVisitor fileCollector = new IResourceVisitor() {
+			public boolean visit(IResource resource) throws CoreException {
+				if (Team.isIgnoredHint(resource))
+					return false;
+				if (resource.getType() == IResource.FILE) {
+					files.add((IFile) resource);
+				}
+				return true;
+			}
+		};
+
+		for (IContainer cont : folders) {
+			try {
+				cont.accept(fileCollector);
+			} catch (CoreException e) {
+			}
+		}
+
+		if (monitor.isCanceled())
+			throw new InterruptedException();
+
+		this.compareResult = new DiffNode(Differencer.CONFLICTING);
+
+		final RevWalk rw = new RevWalk(repo);
+
+		final RevCommit rightCommit;
+		try {
+			String target;
+			if (repo.getRepositoryState().equals(RepositoryState.MERGING))
+				target = Constants.MERGE_HEAD;
+			else
+				target = Constants.ORIG_HEAD;
+			ObjectId mergeHead = repo.resolve(target);
+			if (mergeHead == null)
+				throw new IOException(NLS.bind(
+						UIText.ValidationUtils_CanNotResolveRefMessage, target));
+			rightCommit = rw.parseCommit(mergeHead);
+		} catch (IOException e) {
+			throw new InvocationTargetException(e);
+		}
+
+		final RevCommit headCommit;
+		try {
+			ObjectId head = repo.resolve(Constants.HEAD);
+			if (head == null)
+				throw new IOException(NLS.bind(
+						UIText.ValidationUtils_CanNotResolveRefMessage,
+						Constants.HEAD));
+			headCommit = rw.parseCommit(head);
+		} catch (IOException e) {
+			throw new InvocationTargetException(e);
+		}
+
+		final String fullBranch;
+		try {
+			fullBranch = repo.getFullBranch();
+		} catch (IOException e) {
+			throw new InvocationTargetException(e);
+		}
+
+		List<RevCommit> startPoints = new ArrayList<RevCommit>();
+		rw.setRevFilter(RevFilter.MERGE_BASE);
+		startPoints.add(rightCommit);
+		startPoints.add(headCommit);
+		RevCommit ancestorCommit;
+		try {
+			rw.markStart(startPoints);
+			ancestorCommit = rw.next();
+		} catch (Exception e) {
+			ancestorCommit = null;
+		}
+
+		if (monitor.isCanceled())
+			throw new InterruptedException();
+
+		CompareConfiguration config = getCompareConfiguration();
+		config.setRightLabel(NLS.bind(LABELPATTERN, rightCommit
+				.getShortMessage(), rightCommit.name()));
+
+		if (!useWorkspace)
+			config.setLeftLabel(NLS.bind(LABELPATTERN, headCommit
+					.getShortMessage(), headCommit.name()));
+		else
+			config.setLeftLabel(UIText.GitMergeEditorInput_WorkspaceHeader);
+
+		if (ancestorCommit != null)
+			config.setAncestorLabel(NLS.bind(LABELPATTERN, ancestorCommit
+					.getShortMessage(), ancestorCommit.name()));
+
+		setTitle(NLS.bind(UIText.GitMergeEditorInput_MergeEditorTitle,
+				new Object[] {
+						Activator.getDefault().getRepositoryUtil()
+								.getRepositoryName(repo),
+						rightCommit.getShortMessage(), fullBranch }));
+
+		try {
+			for (IFile file : files) {
+				if (monitor.isCanceled())
+					throw new InterruptedException();
+
+				monitor.setTaskName(file.getFullPath().toString());
+
+				RepositoryMapping map = RepositoryMapping.getMapping(file);
+				String gitPath = map.getRepoRelativePath(file);
+				if (gitPath == null)
+					continue;
+
+				if (gitPath.startsWith(Constants.DOT_GIT))
+					continue;
+
+				fileToDiffNode(file, gitPath, map, this.compareResult,
+						rightCommit, headCommit, ancestorCommit, rw, monitor);
+			}
+		} catch (IOException e) {
+			throw new InvocationTargetException(e);
+		}
+		return compareResult;
+	}
+
