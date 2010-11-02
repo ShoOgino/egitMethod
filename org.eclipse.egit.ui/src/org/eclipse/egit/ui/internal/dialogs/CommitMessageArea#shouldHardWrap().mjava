@@ -1,0 +1,5 @@
+	private static boolean shouldHardWrap() {
+		return Activator.getDefault().getPreferenceStore()
+				.getBoolean(UIPreferences.COMMIT_DIALOG_HARD_WRAP_MESSAGE);
+	}
+

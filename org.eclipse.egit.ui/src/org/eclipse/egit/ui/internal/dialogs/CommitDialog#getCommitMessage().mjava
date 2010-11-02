@@ -1,3 +1,4 @@
 	public String getCommitMessage() {
-		return commitMessage.replaceAll(Text.DELIMITER, "\n"); 	}
+		return commitMessage;
+	}
 
