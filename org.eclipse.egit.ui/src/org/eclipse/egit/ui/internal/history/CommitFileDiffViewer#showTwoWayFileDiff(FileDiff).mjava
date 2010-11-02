@@ -7,12 +7,14 @@
 		final ITypedElement next;
 
 		if (d.getBlobs().length == 2 && !d.getChange().equals(ChangeType.ADD))
-			base = CompareUtils.getFileRevisionTypedElement(p, c.getParent(0), db, d.getBlobs()[0]);
+			base = CompareUtils.getFileRevisionTypedElement(p, c.getParent(0),
+					db, d.getBlobs()[0]);
 		else
 			base = new GitCompareFileRevisionEditorInput.EmptyTypedElement(""); 
 		if (d.getChange().equals(ChangeType.DELETE))
 			next = new GitCompareFileRevisionEditorInput.EmptyTypedElement(""); 		else
-			next = CompareUtils.getFileRevisionTypedElement(p, c, db, d.getBlobs()[1]);
+			next = CompareUtils.getFileRevisionTypedElement(p, c, db, d
+					.getBlobs()[1]);
 
 		in = new GitCompareFileRevisionEditorInput(next, base, null);
 		CompareUI.openCompareEditor(in);

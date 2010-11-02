@@ -27,7 +27,8 @@
 					return;
 				final IStructuredSelection iss = (IStructuredSelection) s;
 				final FileDiff d = (FileDiff) iss.getFirstElement();
-				if (Activator.getDefault().getPreferenceStore().getBoolean(UIPreferences.RESOURCEHISTORY_COMPARE_MODE)) {
+				if (Activator.getDefault().getPreferenceStore().getBoolean(
+						UIPreferences.RESOURCEHISTORY_COMPARE_MODE)) {
 					if (d.getBlobs().length <= 2)
 						showTwoWayFileDiff(d);
 					else
@@ -38,8 +39,7 @@
 												.getShell(),
 										UIText.CommitFileDiffViewer_CanNotOpenCompareEditorTitle,
 										UIText.CommitFileDiffViewer_MergeCommitMultiAncestorMessage);
-				}
-				else
+				} else
 					openFileInEditor(d);
 			}
 		});
