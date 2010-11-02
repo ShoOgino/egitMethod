@@ -1,0 +1,22 @@
+	public static void openInCompare(IWorkbenchPage workBenchPage,
+			CompareEditorInput input) {
+		IEditorPart editor = findReusableCompareEditor(input, workBenchPage);
+		if (editor != null) {
+			IEditorInput otherInput = editor.getEditorInput();
+			if (otherInput.equals(input)) {
+				if (OpenStrategy.activateOnOpen())
+					workBenchPage.activate(editor);
+				else
+					workBenchPage.bringToTop(editor);
+			} else {
+				CompareUI.reuseCompareEditor(input, (IReusableEditor) editor);
+				if (OpenStrategy.activateOnOpen())
+					workBenchPage.activate(editor);
+				else
+					workBenchPage.bringToTop(editor);
+			}
+		} else {
+			CompareUI.openCompareEditor(input);
+		}
+	}
+

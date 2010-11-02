@@ -1,6 +1,6 @@
 	public static String getResourceEncoding(IResource resource) {
 		String charset;
-		IEncodedStorage encodedStorage = ((IEncodedStorage)resource);
+		IEncodedStorage encodedStorage = ((IEncodedStorage) resource);
 		try {
 			charset = encodedStorage.getCharset();
 			if (charset == null)

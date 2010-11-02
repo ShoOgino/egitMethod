@@ -111,11 +111,9 @@
 		viewMenuMgr.add(fillCommentAction);
 
 		graph.getControl().addMenuDetectListener(new MenuDetectListener() {
-
 			public void menuDetected(MenuDetectEvent e) {
 				popupMgr.add(showFilesAction);
 				popupMgr.add(showCommentAction);
-
 			}
 		});
 	}
