@@ -65,6 +65,8 @@
 			}
 		}
 		if (property.equals("canMerge")) { 			Repository rep = node.getRepository();
+			if (rep.isBare())
+				return false;
 			try {
 				String branch = rep.getFullBranch();
 				if (branch == null)
