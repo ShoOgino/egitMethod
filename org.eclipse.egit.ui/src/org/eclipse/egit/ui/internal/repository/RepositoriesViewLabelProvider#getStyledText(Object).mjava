@@ -18,8 +18,8 @@
 								" [" + repository.getBranch() + "]", StyledString.DECORATIONS_STYLER); 				return string;
 			case ADDITIONALREF:
 				Ref ref = (Ref) node.getObject();
-				StyledString refName = new StyledString(node.getRepository()
-						.shortenRefName(ref.getName()));
+				StyledString refName = new StyledString(
+						Repository.shortenRefName(ref.getName()));
 				if (ref.isSymbolic()) {
 					refName.append(" - ", StyledString.QUALIFIER_STYLER); 					refName.append(ref.getLeaf().getName(),
 							StyledString.QUALIFIER_STYLER);
