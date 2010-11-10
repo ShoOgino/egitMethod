@@ -2,13 +2,19 @@
 	protected IStatus run(final IProgressMonitor monitor) {
 		IStatus status = Status.OK_STATUS;
 		try {
+			if (trace)
+				GitTraceLocation.getTrace().traceEntry(
+						GitTraceLocation.HISTORYVIEW.getLocation());
 			page.setErrorMessage(NLS.bind(
 					UIText.GenerateHistoryJob_BuildingListMessage, page
 							.getName()));
 			try {
 				for (;;) {
 					final int oldsz = allCommits.size();
-					allCommits.fillTo(oldsz + BATCH_SIZE - 1);
+					if (trace)
+						GitTraceLocation.getTrace().trace(
+								GitTraceLocation.HISTORYVIEW.getLocation(),
+								"Filling commit list"); 					allCommits.fillTo(oldsz + BATCH_SIZE - 1);
 					if (monitor.isCanceled() || oldsz == allCommits.size())
 						break;
 
@@ -32,6 +38,9 @@
 			updateUI();
 		} finally {
 			monitor.done();
+			if (trace)
+				GitTraceLocation.getTrace().traceExit(
+						GitTraceLocation.HISTORYVIEW.getLocation());
 		}
 		return status;
 	}

@@ -1,4 +1,7 @@
 	public void setErrorMessage(final String message) {
+		if (trace)
+			GitTraceLocation.getTrace().traceEntry(
+					GitTraceLocation.HISTORYVIEW.getLocation(), message);
 		getHistoryPageSite().getShell().getDisplay().asyncExec(new Runnable() {
 			public void run() {
 				StackLayout layout = (StackLayout) getControl().getParent()
@@ -12,5 +15,8 @@
 				getControl().getParent().layout();
 			}
 		});
+		if (trace)
+			GitTraceLocation.getTrace().traceExit(
+					GitTraceLocation.HISTORYVIEW.getLocation());
 	}
 
