@@ -1,0 +1,11 @@
+	public static IContainer findContainer(IWorkspaceRoot root, File file) {
+		if (!file.isDirectory())
+			throw new IllegalArgumentException(
+					"file " + file.getAbsolutePath() + " is no directory"); 		final IContainer[] containers = root.findContainersForLocationURI(file
+				.toURI());
+		for (IContainer container : containers)
+			if (container.isAccessible() && isProjectSharedWithGit(container))
+				return container;
+		return null;
+	}
+
