@@ -3,7 +3,6 @@
 		if (head == null || head.getObjectId() == null)
 			return;
 
-		final GitIndex index = new GitIndex(local);
 		final RevWalk rw = new RevWalk(local);
 		final RevCommit mapCommit;
 		try {
@@ -13,17 +12,17 @@
 		}
 
 		final RefUpdate u;
-		final WorkDirCheckout co;
 
 		u = local.updateRef(Constants.HEAD);
 		u.setNewObjectId(mapCommit.getId());
 		u.forceUpdate();
 
 		monitor.setTaskName(CoreText.CloneOperation_checkingOutFiles);
-		co = new WorkDirCheckout(local, local.getWorkTree(), index, local
-				.mapTree(mapCommit.getTree()));
-		co.checkout();
-		monitor.setTaskName(CoreText.CloneOperation_writingIndex);
-		index.write();
+		DirCacheCheckout dirCacheCheckout = new DirCacheCheckout(
+				local, null, local.lockDirCache(), mapCommit.getTree());
+		dirCacheCheckout.setFailOnConflict(true);
+		boolean result = dirCacheCheckout.checkout();
+		if (!result)
+			throw new IOException("Internal error occured on checking out files"); 		monitor.setTaskName(CoreText.CloneOperation_writingIndex);
 	}
 
