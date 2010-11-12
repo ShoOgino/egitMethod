@@ -12,7 +12,8 @@
 		try {
 			mapping = RepositoryMapping.getMapping(resource);
 			repository = mapping.getRepository();
-			headId = repository.resolve(Constants.HEAD);
+			fileMode = Boolean.valueOf(
+					repository.getConfig().getBoolean("core", null, 							"filemode", true)).booleanValue(); 			headId = repository.resolve(Constants.HEAD);
 
 			store = Activator.getDefault().getPreferenceStore();
 			String repoName = Activator.getDefault().getRepositoryUtil().getRepositoryName(repository);
