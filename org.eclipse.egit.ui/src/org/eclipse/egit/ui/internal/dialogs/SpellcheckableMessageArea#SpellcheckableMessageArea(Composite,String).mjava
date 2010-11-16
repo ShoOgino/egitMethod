@@ -1,4 +1,4 @@
-	public CommitMessageArea(Composite parent, String initialText) {
+	public SpellcheckableMessageArea(Composite parent, String initialText) {
 		super(parent, SWT.BORDER);
 		setLayout(new FillLayout());
 
