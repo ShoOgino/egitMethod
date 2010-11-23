@@ -1,0 +1,40 @@
+	@Test
+	public void testStopAndAbortOnConflict() throws Exception {
+		IFile file = project.createFile("theFile.txt", "Hello, world"
+				.getBytes("UTF-8"));
+		RevCommit first = testRepository.addAndCommit(project.project,
+				new File(file.getLocationURI()), "Adding theFile.txt");
+
+		testRepository.createBranch(MASTER, TOPIC);
+
+		file.setContents(new ByteArrayInputStream("master".getBytes("UTF-8")),
+				0, null);
+		RevCommit second = git.commit().setAll(true).setMessage(
+				"Modify theFile.txt").call();
+		assertEquals(first, second.getParent(0));
+
+		testRepository.checkoutBranch(TOPIC);
+
+		file.setContents(new ByteArrayInputStream("topic".getBytes("UTF-8")),
+				0, null);
+		RevCommit topicCommit = testRepository.addAndCommit(project.project,
+				new File(file.getLocationURI()), "Changing theFile.txt again");
+
+		assertEquals(first, topicCommit.getParent(0));
+
+		RebaseOperation op = new RebaseOperation(
+				testRepository.getRepository(), testRepository.getRepository()
+						.getRef(MASTER));
+		op.execute(null);
+
+		RebaseResult res = op.getResult();
+		assertEquals(RebaseResult.Status.STOPPED, res.getStatus());
+
+		RebaseOperation abort = new RebaseOperation(repository, Operation.ABORT);
+		abort.execute(null);
+		RebaseResult abortResult = abort.getResult();
+		assertEquals(Status.ABORTED, abortResult.getStatus());
+
+		assertEquals(topicCommit, repository.resolve(Constants.HEAD));
+	}
+

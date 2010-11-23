@@ -1,0 +1,37 @@
+	@Test
+	public void testNoConflict() throws Exception {
+		IFile file = project.createFile("theFile.txt", "Hello, world"
+				.getBytes("UTF-8"));
+		RevCommit first = testRepository.addAndCommit(project.project,
+				new File(file.getLocationURI()), "Adding theFile.txt");
+
+		testRepository.createBranch(MASTER, TOPIC);
+
+		file.setContents(new ByteArrayInputStream("master".getBytes("UTF-8")),
+				0, null);
+		RevCommit second = git.commit().setAll(true).setMessage(
+				"Modify theFile.txt").call();
+		assertEquals(first, second.getParent(0));
+
+		testRepository.checkoutBranch(TOPIC);
+
+		file = project.createFile("theSecondFile.txt", "Hello, world"
+				.getBytes("UTF-8"));
+		RevCommit topicCommit = testRepository.addAndCommit(project.project,
+				new File(file.getLocationURI()), "Adding theSecondFile.txt");
+
+		assertEquals(first, topicCommit.getParent(0));
+
+		RebaseOperation op = new RebaseOperation(
+				testRepository.getRepository(), testRepository.getRepository()
+						.getRef(MASTER));
+		op.execute(null);
+
+		RebaseResult res = op.getResult();
+		assertEquals(RebaseResult.Status.OK, res.getStatus());
+
+		RevCommit newTopic = new RevWalk(repository).parseCommit(repository
+				.resolve(TOPIC));
+		assertEquals(second, newTopic.getParent(0));
+	}
+
