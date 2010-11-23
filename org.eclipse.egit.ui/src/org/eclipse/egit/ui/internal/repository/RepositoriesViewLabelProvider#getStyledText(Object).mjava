@@ -13,9 +13,11 @@
 						.getParentFile().getName());
 				string
 						.append(
-								" - " + directory.getAbsolutePath(), StyledString.QUALIFIER_STYLER); 				string
+								" - " + directory.getAbsolutePath(), StyledString.QUALIFIER_STYLER); 				String branch = repository.getBranch();
+				if (repository.getRepositoryState() != RepositoryState.SAFE)
+					branch += " - " + repository.getRepositoryState().getDescription(); 				string
 						.append(
-								" [" + repository.getBranch() + "]", StyledString.DECORATIONS_STYLER); 				return string;
+								" [" + branch + "]", StyledString.DECORATIONS_STYLER); 				return string;
 			case ADDITIONALREF:
 				Ref ref = (Ref) node.getObject();
 				StyledString refName = new StyledString(
