@@ -14,7 +14,11 @@
 				}
 
 				if (showAllFilter == ShowFilter.SHOWALLFOLDER) {
-					final String path = map.getRepoRelativePath(r.getParent());
+					final String path;
+					if (r.getParent() instanceof IWorkspaceRoot)
+						path = map.getRepoRelativePath(r.getProject());
+					else
+						path = map.getRepoRelativePath(r.getParent());
 					if (path != null && path.length() > 0)
 						paths.add(path);
 				} else if (showAllFilter == ShowFilter.SHOWALLPROJECT) {
