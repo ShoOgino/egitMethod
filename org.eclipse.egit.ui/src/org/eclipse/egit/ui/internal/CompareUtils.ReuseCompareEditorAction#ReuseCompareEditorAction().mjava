@@ -1,0 +1,6 @@
+		public ReuseCompareEditorAction() {
+			node.addPreferenceChangeListener(this);
+			setText(UIText.GitHistoryPage_ReuseCompareEditorMenuLabel);
+			setChecked(CompareUtils.isReuseOpenEditor());
+		}
+
