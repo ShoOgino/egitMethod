@@ -3,7 +3,6 @@
 
 		final MenuItem menuItem = UIThreadRunnable
 				.syncExec(new WidgetResult<MenuItem>() {
-					@SuppressWarnings("unchecked")
 					public MenuItem run() {
 						MenuItem theItem = getMenuItem(bot, texts);
 						if (theItem != null && !theItem.isEnabled())

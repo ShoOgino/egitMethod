@@ -28,9 +28,11 @@
 		int refs = repository.getAllRefs().size();
 		assertTrue(refs >= 4);
 		assertTrue(new File(destRepo, SampleTestRepository.A_txt_name).exists());
-		assertFalse(repository.getIndex().isChanged());
-		assertFalse(repository.getIndex().getEntry(SampleTestRepository.A_txt_name).isModified(
-				destRepo));
+		DirCacheEntry fileEntry = null;
+		DirCache dc = repository.lockDirCache();
+		fileEntry = dc.getEntry(SampleTestRepository.A_txt_name);
+		dc.unlock();
+		assertNotNull(fileEntry);
 		assertEquals(0,
 				ResourcesPlugin.getWorkspace().getRoot().getProjects().length);
 
