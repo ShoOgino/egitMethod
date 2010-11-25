@@ -7,6 +7,8 @@
 
 		if (property.equals("isBare")) 			return node.getRepository().isBare();
 
+		if (property.equals("isSafe")) 			return node.getRepository().getRepositoryState() == RepositoryState.SAFE;
+
 		if (property.equals("isRefCheckedOut")) { 			if (!(node.getObject() instanceof Ref))
 				return false;
 			Ref ref = (Ref) node.getObject();
@@ -19,8 +21,8 @@
 				else {
 					String leafname = ref.getLeaf().getName();
 					if (leafname.startsWith(Constants.R_REFS)
-							&& leafname.equals(
-									node.getRepository().getFullBranch()))
+							&& leafname.equals(node.getRepository()
+									.getFullBranch()))
 						return true;
 					else
 						ref.getLeaf().getObjectId().equals(
@@ -65,7 +67,7 @@
 			}
 		}
 		if (property.equals("canMerge")) { 			Repository rep = node.getRepository();
-			if (rep.isBare())
+			if (rep.getRepositoryState() != RepositoryState.SAFE)
 				return false;
 			try {
 				String branch = rep.getFullBranch();
@@ -75,6 +77,13 @@
 				return false;
 			}
 		}
+
+		if (property.equals("isRebasing")) 			switch (node.getRepository().getRepositoryState()) {
+			case REBASING_MERGE:
+				return true;
+			default:
+				return false;
+			}
 		return false;
 	}
 

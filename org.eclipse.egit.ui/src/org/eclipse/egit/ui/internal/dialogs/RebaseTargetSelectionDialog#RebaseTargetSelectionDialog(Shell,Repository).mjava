@@ -1,0 +1,5 @@
+	public RebaseTargetSelectionDialog(Shell parentShell, Repository repo) {
+		super(parentShell, repo);
+		setRootsToShow(true, true, false);
+	}
+
