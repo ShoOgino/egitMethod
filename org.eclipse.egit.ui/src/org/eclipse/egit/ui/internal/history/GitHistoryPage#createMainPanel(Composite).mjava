@@ -1,9 +1,11 @@
 	private Composite createMainPanel(final Composite parent) {
+		topControl = new Composite(parent, SWT.NONE);
 		StackLayout layout = new StackLayout();
-		parent.setLayout(layout);
-		final Composite c = new Composite(parent, SWT.NULL);
+		topControl.setLayout(layout);
+
+		final Composite c = new Composite(topControl, SWT.NULL);
 		layout.topControl = c;
-		errorText = new StyledText(parent, SWT.NONE);
+		errorText = new StyledText(topControl, SWT.NONE);
 		errorText.setFont(UIUtils
 				.getFont(UIPreferences.THEME_CommitMessageFont));
 		errorText.setText(UIText.CommitFileDiffViewer_SelectOneCommitMessage);
