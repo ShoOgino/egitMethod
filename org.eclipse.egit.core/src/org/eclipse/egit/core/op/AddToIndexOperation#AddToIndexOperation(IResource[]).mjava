@@ -1,0 +1,4 @@
+	public AddToIndexOperation(IResource[] resources) {
+		rsrcList = Arrays.asList(resources);
+	}
+
