@@ -1,0 +1,4 @@
+	public EGitSecureStore getSecureStore() {
+		return secureStore;
+	}
+

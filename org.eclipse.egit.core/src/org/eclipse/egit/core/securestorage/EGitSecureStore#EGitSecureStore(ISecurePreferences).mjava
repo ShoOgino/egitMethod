@@ -1,0 +1,4 @@
+	public EGitSecureStore(ISecurePreferences preferences) {
+		this.preferences = preferences;
+	}
+
