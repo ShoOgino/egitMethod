@@ -8,15 +8,17 @@
 			if ("http".equals(uri.getScheme())) 				type = IProxyData.HTTP_PROXY_TYPE;
 			else if ("ftp".equals(uri.getScheme())) 				type = IProxyData.HTTP_PROXY_TYPE;
 			else if ("https".equals(uri.getScheme())) 				type = IProxyData.HTTPS_PROXY_TYPE;
-
-			final IProxyData data = service.getProxyDataForHost(host, type);
-			if (data != null) {
-				if (IProxyData.HTTP_PROXY_TYPE.equals(data.getType()))
-					addProxy(r, Proxy.Type.HTTP, data);
-				else if (IProxyData.HTTPS_PROXY_TYPE.equals(data.getType()))
-					addProxy(r, Proxy.Type.HTTP, data);
-				else if (IProxyData.SOCKS_PROXY_TYPE.equals(data.getType()))
-					addProxy(r, Proxy.Type.SOCKS, data);
+			try {
+				URI queryUri = new URI(type, "//" + host, null); 				final IProxyData[] dataArray = service.select(queryUri);
+				for (IProxyData data : dataArray) {
+					if (IProxyData.HTTP_PROXY_TYPE.equals(data.getType()))
+						addProxy(r, Proxy.Type.HTTP, data);
+					else if (IProxyData.HTTPS_PROXY_TYPE.equals(data.getType()))
+						addProxy(r, Proxy.Type.HTTP, data);
+					else if (IProxyData.SOCKS_PROXY_TYPE.equals(data.getType()))
+						addProxy(r, Proxy.Type.SOCKS, data);
+				}
+			} catch (URISyntaxException e) {
 			}
 		}
 		if (r.isEmpty())
