@@ -1,5 +1,6 @@
 	public SelectUriWizard(boolean sourceSelection) {
-		addPage(new RepositorySelectionPage(sourceSelection, null));
+		page = new RepositorySelectionPage(sourceSelection, null);
+		addPage(page);
 		setWindowTitle(UIText.SelectUriWiazrd_Title);
 	}
 

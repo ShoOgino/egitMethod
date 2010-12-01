@@ -1,0 +1,4 @@
+	public boolean getStoreInSecureStore() {
+		return this.storeInSecureStore;
+	}
+
