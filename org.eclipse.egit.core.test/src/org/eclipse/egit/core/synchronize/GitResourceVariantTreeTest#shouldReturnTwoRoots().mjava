@@ -9,7 +9,7 @@
 		GitSynchronizeDataSet dataSet = new GitSynchronizeDataSet(data);
 
 		GitResourceVariantTree grvt = new GitTestResourceVariantTree(dataSet,
-				store);
+				null);
 
 		IResource[] roots = grvt.roots();
 		Arrays.sort(roots, new Comparator<IResource>() {

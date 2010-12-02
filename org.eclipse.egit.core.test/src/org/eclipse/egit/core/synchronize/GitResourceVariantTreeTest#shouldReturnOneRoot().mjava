@@ -6,7 +6,7 @@
 		GitSynchronizeDataSet dataSet = new GitSynchronizeDataSet(data);
 
 		GitResourceVariantTree grvt = new GitTestResourceVariantTree(dataSet,
-				store);
+				null);
 
 		assertEquals(1, grvt.roots().length);
 		IResource actualProject = grvt.roots()[0];
