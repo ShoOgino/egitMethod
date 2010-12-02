@@ -6,5 +6,6 @@
 		remoteBranches = new RemoteTrackingNode(null, this.repo);
 		tags = new TagsNode(null, this.repo);
 		this.refToMark = refToMark;
+		setHelpAvailable(false);
 	}
 
