@@ -5,5 +5,6 @@
 		this.branchName = branchName;
 		this.commitId = null;
 		this.repo = repo;
+		setHelpAvailable(false);
 	}
 
