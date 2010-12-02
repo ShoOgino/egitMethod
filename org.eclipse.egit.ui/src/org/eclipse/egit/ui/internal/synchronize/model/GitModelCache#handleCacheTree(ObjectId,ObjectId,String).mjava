@@ -2,7 +2,7 @@
 			String path) throws IOException {
 		String pathKey = path.split("/")[0]; 		GitModelCacheTree cacheTree = cacheTreeMap.get(pathKey);
 		if (cacheTree == null) {
-			cacheTree = new GitModelCacheTree(this, remoteCommit, repoId,
+			cacheTree = new GitModelCacheTree(this, baseCommit, repoId,
 					cacheId, pathKey, fileFactory);
 			cacheTreeMap.put(pathKey, cacheTree);
 		}
