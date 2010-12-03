@@ -1,4 +1,4 @@
 	public Activator() {
-		plugin = this;
+		Activator.setActivator(this);
 	}
 
