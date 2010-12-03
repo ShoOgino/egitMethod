@@ -72,11 +72,12 @@
 		if (errorOccured)
 			Activator.showError(UIText.GitHistoryPage_openFailed, null);
 		if (ids.size() > 0) {
-			String idList = ""; 			for (ObjectId objectId : ids)
-				idList += objectId.getName() + " "; 			MessageDialog.openError(getPart(event).getSite().getShell(),
+			StringBuilder idList = new StringBuilder(""); 			for (ObjectId objectId : ids)
+				idList.append(objectId.getName()).append(' ');
+			MessageDialog.openError(getPart(event).getSite().getShell(),
 					UIText.GitHistoryPage_fileNotFound, NLS.bind(
 							UIText.GitHistoryPage_notContainedInCommits,
-							gitPath, idList));
+							gitPath, idList.toString()));
 		}
 		return null;
 	}
