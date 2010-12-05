@@ -3,7 +3,7 @@
 		repositoryFile = createProjectAndCommitToRepository();
 		remoteRepositoryFile = createRemoteRepository(repositoryFile);
 		final URIish uri = new URIish(remoteRepositoryFile.getPath());
-		final File workdir = new File(testDirectory, "Cloned");
+		final File workdir = new File(getTestDirectory(), "Cloned");
 
 		CloneOperation op = new CloneOperation(uri, true, null, workdir,
 				"refs/heads/master", "origin", 0);
