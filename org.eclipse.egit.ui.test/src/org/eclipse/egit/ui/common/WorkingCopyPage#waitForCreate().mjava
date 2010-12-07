@@ -6,13 +6,14 @@
 				Activator.getDefault().getRepositoryUtil()
 						.getConfiguredRepositories().contains(targetDir));
 
+		SWTBotShell dialogShell = bot.shell("Import Projects from Git");
+		SWTBotTable table = dialogShell.bot().table();
+		int expectedRowCount = table.rowCount() + 1;
 		bot.button("Finish").click();
 
-		try {
-			Job.getJobManager().join(GitCloneWizard.CLONE_JOB_FAMILY, new NullProgressMonitor());
-		} catch (Exception e) {
-			fail( "Unable to join cloning job");
-		}
+		bot.waitUntil(Conditions.tableHasRows(table, expectedRowCount), 20000);
+
+
 		for (int i = 0; i < 3; i++) {
 			if (Activator.getDefault().getRepositoryUtil()
 					.getConfiguredRepositories().contains(targetDir))
