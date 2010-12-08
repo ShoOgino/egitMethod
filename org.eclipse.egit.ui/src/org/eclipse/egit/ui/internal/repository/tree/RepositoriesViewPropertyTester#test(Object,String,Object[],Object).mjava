@@ -78,8 +78,8 @@
 			}
 		}
 
-		if (property.equals("isRebasing")) 			switch (node.getRepository().getRepositoryState()) {
-			case REBASING_MERGE:
+		if (property.equals("canAbortRebase")) 			switch (node.getRepository().getRepositoryState()) {
+			case REBASING_INTERACTIVE:
 				return true;
 			default:
 				return false;
