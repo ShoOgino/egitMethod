@@ -1,0 +1,7 @@
+	public AdaptableFileTreeIterator(final Repository repository,
+			final IWorkspaceRoot workspaceRoot) {
+		super(repository.getWorkTree(), FS.DETECTED, repository.getConfig()
+				.get(WorkingTreeOptions.KEY));
+		root = workspaceRoot;
+	}
+

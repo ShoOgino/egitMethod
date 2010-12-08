@@ -1,5 +1,0 @@
-	public ContainerTreeIterator(final IWorkspaceRoot root) {
-		super("", WorkingTreeOptions.createDefaultInstance());  		node = root;
-		init(entries());
-	}
-

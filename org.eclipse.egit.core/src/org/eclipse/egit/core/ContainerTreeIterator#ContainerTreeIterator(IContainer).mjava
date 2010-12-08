@@ -1,6 +1,0 @@
-	public ContainerTreeIterator(final IContainer base) {
-		super(computePrefix(base), WorkingTreeOptions.createDefaultInstance());
-		node = base;
-		init(entries());
-	}
-
