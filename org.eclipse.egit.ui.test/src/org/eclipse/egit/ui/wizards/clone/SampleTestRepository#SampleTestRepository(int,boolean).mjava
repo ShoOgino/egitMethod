@@ -1,0 +1,10 @@
+	public SampleTestRepository(int n, boolean serveHttp) throws Exception {
+		this.serveHttp = serveHttp;
+		src = createRepository();
+		generateSampleData(n);
+		if (serveHttp)
+			serveHttp();
+		else
+			serve();
+	}
+
