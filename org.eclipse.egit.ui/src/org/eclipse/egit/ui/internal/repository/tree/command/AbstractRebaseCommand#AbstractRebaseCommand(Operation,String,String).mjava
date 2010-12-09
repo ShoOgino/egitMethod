@@ -1,0 +1,7 @@
+	protected AbstractRebaseCommand(Operation operation, String jobname,
+			String dialogMessage) {
+		this.operation = operation;
+		this.jobname = jobname;
+		this.dialogMessage = dialogMessage;
+	}
+
