@@ -1,11 +1,12 @@
-	protected static void deleteAllProjects() throws CoreException {
+	protected static void deleteAllProjects() throws Exception {
 		for (IProject prj : ResourcesPlugin.getWorkspace().getRoot()
 				.getProjects())
 			if (prj.getName().equals(PROJ1))
 				prj.delete(false, false, null);
 			else if (prj.getName().equals(PROJ2)) {
-				EFS.getStore(prj.getFile(".project").getLocationURI())
-						.toLocalFile(EFS.NONE, null).delete();
+				FileUtils.delete(EFS.getStore(
+						prj.getFile(".project").getLocationURI()).toLocalFile(
+						EFS.NONE, null), FileUtils.RETRY);
 				prj.delete(false, false, null);
 			}
 

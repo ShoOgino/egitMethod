@@ -4,7 +4,7 @@
 		File userHome = FS.DETECTED.userHome();
 		testDirectory = new File(userHome, "LocalRepositoriesTests");
 		if (testDirectory.exists())
-			deleteRecursive(testDirectory);
+			FileUtils.delete(testDirectory, FileUtils.RECURSIVE | FileUtils.RETRY);
 		testDirectory.mkdir();
 		File repoRoot = new File(testDirectory, "RepositoryRoot");
 		repoRoot.mkdir();

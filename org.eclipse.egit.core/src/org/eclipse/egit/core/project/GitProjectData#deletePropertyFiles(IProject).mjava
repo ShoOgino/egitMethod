@@ -1,14 +1,5 @@
-	private static void deletePropertyFiles(IProject project) {
+	private static void deletePropertyFiles(IProject project) throws IOException {
 		final File dir = propertyFile(project).getParentFile();
-		final File[] todel = dir.listFiles();
-		if (todel != null) {
-			for (int k = 0; k < todel.length; k++) {
-				if (todel[k].isFile()) {
-					todel[k].delete();
-				}
-			}
-		}
-		dir.delete();
-		trace("deleteDataFor("  				+ project.getName()
-				+ ")");  	}
+		FileUtils.delete(dir, FileUtils.RECURSIVE);
+		trace("deleteDataFor(" 				+ project.getName() + ")"); 	}
 

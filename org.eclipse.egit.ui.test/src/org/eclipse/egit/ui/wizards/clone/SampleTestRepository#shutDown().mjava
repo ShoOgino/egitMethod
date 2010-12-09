@@ -3,7 +3,8 @@
 			httpServer.stop();
 		else
 			d.stop();
+
 		if (!System.getProperties().contains("test-repo-no-cleanup"))
-			delete(trash);
+			FileUtils.delete(trash, FileUtils.RECURSIVE | FileUtils.RETRY);
 	}
 

@@ -1,5 +1,5 @@
-	public static void delete(final IProject p) {
-		trace("delete(" + p.getName() + ")");   		GitProjectData d = lookup(p);
+	public static void delete(final IProject p) throws IOException {
+		trace("delete(" + p.getName() + ")"); 		GitProjectData d = lookup(p);
 		if (d == null)
 			deletePropertyFiles(p);
 		else
