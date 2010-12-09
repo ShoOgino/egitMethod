@@ -85,6 +85,7 @@
 			public void widgetSelected(SelectionEvent arg0) {
 				if (!amendingButton.getSelection()) {
 					originalChangeId = null;
+					authorText.setText(author);
 				}
 				else {
 					saveOriginalChangeId();
@@ -95,8 +96,8 @@
 							curText += Text.DELIMITER;
 						commitText.setText(curText
 								+ previousCommitMessage.replaceAll(
-										"\n", Text.DELIMITER)); 						authorText.setText(previousAuthor);
-					}
+										"\n", Text.DELIMITER)); 					}
+					authorText.setText(previousAuthor);
 				}
 				refreshChangeIdText();
 			}
