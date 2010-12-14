@@ -5,11 +5,14 @@
 		local = new FileRepository(gitdir);
 		local.create();
 
-		final RefUpdate head = local.updateRef(Constants.HEAD);
-		head.disableRefLog();
-		head.link(branch);
+		if (ref.getName().startsWith(Constants.R_HEADS)) {
+			final RefUpdate head = local.updateRef(Constants.HEAD);
+			head.disableRefLog();
+			head.link(ref.getName());
+		}
 
-		remoteConfig = new RemoteConfig(local.getConfig(), remoteName);
+		FileBasedConfig config = local.getConfig();
+		remoteConfig = new RemoteConfig(config, remoteName);
 		remoteConfig.addURI(uri);
 
 		final String dst = Constants.R_REMOTES + remoteConfig.getName();
@@ -25,13 +28,14 @@
 					remoteConfig.addFetchRefSpec(wcrs.expandFromSource(ref));
 		}
 
-		local.getConfig().setBoolean(
+		config.setBoolean(
 				"core", null, "bare", false); 
-		remoteConfig.update(local.getConfig());
+		remoteConfig.update(config);
 
-		String branchName = branch.substring(Constants.R_HEADS.length());
+		if (ref.getName().startsWith(Constants.R_HEADS)) {
+			String branchName = ref.getName().substring(Constants.R_HEADS.length());
 
-		local.getConfig().setString("branch", branchName, "remote", remoteName); 		local.getConfig().setString("branch", branchName, "merge", branch); 
-		local.getConfig().save();
+			config.setString("branch", branchName, "remote", remoteName); 			config.setString("branch", branchName, "merge", ref.getName()); 		}
+		config.save();
 	}
 
