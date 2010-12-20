@@ -18,9 +18,10 @@
 
 		bot.button(IDialogConstants.OK_LABEL).click();
 
-		bot.sleep(1000);
-
 		SWTBotTree syncViewTree = bot.viewByTitle("Synchronize").bot().tree();
+
+		waitUntilTreeHasNodeWithText(syncViewTree, "test commit");
+
 		assertEquals(1, syncViewTree.getAllItems().length);
 	}
 
