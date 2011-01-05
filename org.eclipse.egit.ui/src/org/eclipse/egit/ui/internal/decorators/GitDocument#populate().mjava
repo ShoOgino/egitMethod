@@ -51,7 +51,7 @@
 			if (tw == null) {
 				setResolved(null, null, null, ""); 				String msg = NLS
 						.bind(UIText.GitDocument_errorLoadTree, new Object[] {
-								treeId, baseline, resource, repository });
+								treeId.getName(), baseline, resource, repository });
 				Activator.logError(msg, new Throwable());
 				setResolved(null, null, null, ""); 				return;
 			}
@@ -59,7 +59,7 @@
 			if (id.equals(ObjectId.zeroId())) {
 				setResolved(null, null, null, ""); 				String msg = NLS
 						.bind(UIText.GitDocument_errorLoadTree, new Object[] {
-								treeId, baseline, resource, repository });
+								treeId.getName(), baseline, resource, repository });
 				Activator.logError(msg, new Throwable());
 				setResolved(null, null, null, ""); 				return;
 			}
