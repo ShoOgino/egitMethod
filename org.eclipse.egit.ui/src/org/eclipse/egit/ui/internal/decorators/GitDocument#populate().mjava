@@ -49,11 +49,12 @@
 
 			tw = TreeWalk.forPath(repository, gitPath, treeId);
 			if (tw == null) {
-				setResolved(null, null, null, ""); 				String msg = NLS
-						.bind(UIText.GitDocument_errorLoadTree, new Object[] {
-								treeId.getName(), baseline, resource, repository });
-				Activator.logError(msg, new Throwable());
-				setResolved(null, null, null, ""); 				return;
+				if (GitTraceLocation.QUICKDIFF.isActive())
+					GitTraceLocation
+							.getTrace()
+							.trace(
+									GitTraceLocation.QUICKDIFF.getLocation(),
+									"(GitDocument) resource " + resource + " not found in " + treeId + " in " + repository + ", baseline=" + baseline); 				setResolved(null, null, null, ""); 				return;
 			}
 			ObjectId id = tw.getObjectId(0);
 			if (id.equals(ObjectId.zeroId())) {
@@ -76,8 +77,7 @@
 				if (GitTraceLocation.QUICKDIFF.isActive())
 					GitTraceLocation
 							.getTrace()
-							.trace(
-									GitTraceLocation.QUICKDIFF.getLocation(),
+							.trace(GitTraceLocation.QUICKDIFF.getLocation(),
 									"(GitDocument) has reference doc, size=" + s.length() + " bytes"); 			} else {
 				if (GitTraceLocation.QUICKDIFF.isActive())
 					GitTraceLocation.getTrace().trace(
