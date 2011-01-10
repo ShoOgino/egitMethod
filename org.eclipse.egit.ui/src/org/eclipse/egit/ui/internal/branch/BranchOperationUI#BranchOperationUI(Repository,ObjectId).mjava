@@ -1,0 +1,5 @@
+	public BranchOperationUI(Repository repository, ObjectId commitId) {
+		this.repository = repository;
+		this.commitId = commitId;
+	}
+

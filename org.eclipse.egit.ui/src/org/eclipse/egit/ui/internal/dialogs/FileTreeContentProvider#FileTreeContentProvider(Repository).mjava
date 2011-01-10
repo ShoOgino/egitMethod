@@ -1,0 +1,4 @@
+	public FileTreeContentProvider(Repository repository) {
+		this.repository = repository;
+	}
+

@@ -1,0 +1,4 @@
+	public BranchOperationUI(Repository repository) {
+		this.repository = repository;
+	}
+
