@@ -68,10 +68,10 @@
 			this.name = calcluateName(input);
 
 			boolean filtersActive = inResources != null || inFiles != null;
-			showAllRepoVersionsAction.setEnabled(filtersActive);
-			showAllProjectVersionsAction.setEnabled(filtersActive);
-			showAllFolderVersionsAction.setEnabled(inResources != null);
-			showAllResourceVersionsAction.setEnabled(filtersActive);
+			actions.showAllRepoVersionsAction.setEnabled(filtersActive);
+			actions.showAllProjectVersionsAction.setEnabled(filtersActive);
+			actions.showAllFolderVersionsAction.setEnabled(inResources != null);
+			actions.showAllResourceVersionsAction.setEnabled(filtersActive);
 
 			try {
 				initAndStartRevWalk(true);
