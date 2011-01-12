@@ -1,4 +1,4 @@
-	private static String calcluateName(HistoryPageInput in) {
+	private static String calculateName(HistoryPageInput in) {
 		final String repositoryName = Activator.getDefault()
 				.getRepositoryUtil().getRepositoryName(in.getRepository());
 		if (in.getItems() == null && in.getFileList() == null) {

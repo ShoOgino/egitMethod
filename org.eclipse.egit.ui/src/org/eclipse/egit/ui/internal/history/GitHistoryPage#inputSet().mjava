@@ -65,7 +65,7 @@
 				return false;
 			}
 
-			this.name = calcluateName(input);
+			this.name = calculateName(input);
 
 			boolean filtersActive = inResources != null || inFiles != null;
 			actions.showAllRepoVersionsAction.setEnabled(filtersActive);
