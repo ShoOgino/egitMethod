@@ -11,7 +11,7 @@
 			Activator.logError(UIText.TagAction_errorWhileGettingRevCommits, e);
 			setErrorMessage(UIText.TagAction_errorWhileGettingRevCommits);
 		}
-		for(RevCommit commit:revWalk)
+		for (RevCommit commit : revWalk)
 			commits.add(commit);
 	}
 

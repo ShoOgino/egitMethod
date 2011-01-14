@@ -1,10 +1,9 @@
 	private String getTitle() {
 		String title = ""; 		if (branchName != null) {
-			title = NLS.bind(
-					UIText.CreateTagDialog_questionNewTagTitle, branchName);
+			title = NLS.bind(UIText.CreateTagDialog_questionNewTagTitle,
+					branchName);
 		} else if (commitId != null) {
-			title = NLS.bind(
-					UIText.CreateTagDialog_CreateTagOnCommitTitle,
+			title = NLS.bind(UIText.CreateTagDialog_CreateTagOnCommitTitle,
 					CompareUtils.truncatedRevision(commitId.getName()));
 		}
 		return title;
