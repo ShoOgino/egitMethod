@@ -1,0 +1,4 @@
+	public static EGitMylynUI getDefault() {
+		return plugin;
+	}
+
