@@ -1,0 +1,4 @@
+	public BranchSelectionDialog(Shell parentShell, Repository repo) {
+		super(parentShell, repo);
+	}
+
