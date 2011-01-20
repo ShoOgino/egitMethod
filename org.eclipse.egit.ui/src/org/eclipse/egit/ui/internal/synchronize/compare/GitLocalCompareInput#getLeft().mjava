@@ -1,7 +1,6 @@
 	public ITypedElement getLeft() {
-		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		String absoluteFilePath = repo.getWorkTree().getAbsolutePath()
-				+ "/" + gitPath; 		IFile file = root.getFileForLocation(new Path(absoluteFilePath));
+				+ "/" + gitPath; 		IFile file = ROOT.getFileForLocation(new Path(absoluteFilePath));
 
 		return new LocalResourceTypedElement(file);
 	}

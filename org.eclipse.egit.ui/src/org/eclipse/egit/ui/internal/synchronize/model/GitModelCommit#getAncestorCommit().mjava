@@ -1,0 +1,4 @@
+	protected RevCommit getAncestorCommit() {
+		return ancestorCommit;
+	}
+
