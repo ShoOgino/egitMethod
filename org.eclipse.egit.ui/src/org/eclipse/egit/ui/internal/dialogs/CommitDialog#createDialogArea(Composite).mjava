@@ -73,8 +73,7 @@
 		amendingButton = new Button(container, SWT.CHECK);
 		if (amending) {
 			amendingButton.setSelection(amending);
-			amendingButton.setEnabled(false); 			commitText.setText(previousCommitMessage);
-			authorText.setText(previousAuthor);
+			amendingButton.setEnabled(false); 			authorText.setText(previousAuthor);
 			saveOriginalChangeId();
 		} else if (!amendAllowed) {
 			amendingButton.setEnabled(false);
@@ -91,12 +90,8 @@
 					saveOriginalChangeId();
 					if (!alreadyAdded) {
 						alreadyAdded = true;
-						String curText = commitText.getText();
-						if (curText.length() > 0)
-							curText += Text.DELIMITER;
-						commitText.setText(curText
-								+ previousCommitMessage.replaceAll(
-										"\n", Text.DELIMITER)); 					}
+						commitText.setText(previousCommitMessage.replaceAll(
+								"\n", Text.DELIMITER)); 					}
 					authorText.setText(previousAuthor);
 				}
 				refreshChangeIdText();
