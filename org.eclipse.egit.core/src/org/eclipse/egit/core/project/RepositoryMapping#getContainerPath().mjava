@@ -1,4 +1,6 @@
 	public IPath getContainerPath() {
-		return Path.fromPortableString(containerPath);
+		if (containerPath == null)
+			containerPath = Path.fromPortableString(containerPathString);
+		return containerPath;
 	}
 

@@ -6,24 +6,26 @@
 		final IPath gLocParent = gLoc.removeLastSegments(1);
 
 		container = mappedContainer;
-		containerPath = container.getProjectRelativePath().toPortableString();
+		containerPathString = container.getProjectRelativePath()
+				.toPortableString();
 
 		if (cLoc.isPrefixOf(gLoc)) {
 			int matchingSegments = gLoc.matchingFirstSegments(cLoc);
 			IPath remainder = gLoc.removeFirstSegments(matchingSegments);
 			String device = remainder.getDevice();
 			if (device == null)
-				gitdirPath = remainder.toPortableString();
+				gitDirPathString = remainder.toPortableString();
 			else
-				gitdirPath = remainder.toPortableString().substring(device.length());
+				gitDirPathString = remainder.toPortableString().substring(
+						device.length());
 		} else if (gLocParent.isPrefixOf(cLoc)) {
 			int cnt = cLoc.segmentCount() - cLoc.matchingFirstSegments(gLocParent);
 			StringBuilder p = new StringBuilder("");  			while (cnt-- > 0) {
 				p.append("../");  			}
 			p.append(gLoc.segment(gLoc.segmentCount() - 1));
-			gitdirPath = p.toString();
+			gitDirPathString = p.toString();
 		} else {
-			gitdirPath = gLoc.toPortableString();
+			gitDirPathString = gLoc.toPortableString();
 		}
 	}
 

@@ -1,4 +1,4 @@
 	public String getGitDir() {
-		return gitdirPath;
+		return gitDirPathString;
 	}
 
