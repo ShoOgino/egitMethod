@@ -1,0 +1,8 @@
+	public void setInput(final IResource input, String rightVersion) {
+		this.input = input;
+		this.leftVersion = null;
+		this.rightVersion = rightVersion;
+		buildTrees();
+		updateControls();
+	}
+

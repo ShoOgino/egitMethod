@@ -1,0 +1,9 @@
+	public void setInput(final Repository input, String leftVersion,
+			String rightVersion) {
+		this.input = input;
+		this.leftVersion = leftVersion;
+		this.rightVersion = rightVersion;
+		buildTrees();
+		updateControls();
+	}
+

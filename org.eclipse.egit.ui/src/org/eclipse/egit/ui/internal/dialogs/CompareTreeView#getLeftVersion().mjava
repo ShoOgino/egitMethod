@@ -1,0 +1,6 @@
+	private String getLeftVersion() {
+		if (leftVersion == null)
+			return UIText.CompareTreeView_WorkspaceVersionText;
+		return leftVersion;
+	}
+

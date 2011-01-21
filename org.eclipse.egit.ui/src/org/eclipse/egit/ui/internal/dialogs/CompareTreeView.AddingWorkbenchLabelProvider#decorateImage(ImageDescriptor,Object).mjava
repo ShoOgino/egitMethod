@@ -1,0 +1,17 @@
+		@Override
+		protected ImageDescriptor decorateImage(ImageDescriptor baseImage,
+				Object element) {
+			if (!(element instanceof IFile)) {
+				return super.decorateImage(baseImage, element);
+			}
+			if (leftOnly.contains(new Path(repositoryMapping
+					.getRepoRelativePath((IFile) element)))) {
+				return UIIcons.ELCL16_ADD;
+			}
+			if (equalIds.contains(new Path(repositoryMapping
+					.getRepoRelativePath((IFile) element)))) {
+				return UIIcons.ELCL16_SYNCED;
+			}
+			return super.decorateImage(baseImage, element);
+		}
+
