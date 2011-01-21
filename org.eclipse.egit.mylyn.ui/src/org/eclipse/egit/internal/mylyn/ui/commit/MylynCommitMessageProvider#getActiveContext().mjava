@@ -1,0 +1,4 @@
+	protected IInteractionContext getActiveContext() {
+		return ContextCore.getContextManager().getActiveContext();
+	}
+

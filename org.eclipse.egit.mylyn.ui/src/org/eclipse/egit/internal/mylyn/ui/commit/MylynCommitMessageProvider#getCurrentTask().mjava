@@ -1,0 +1,4 @@
+	protected ITask getCurrentTask() {
+		return TasksUi.getTaskActivityManager().getActiveTask();
+	}
+

@@ -1,12 +1,13 @@
 	public String getMessage(IResource[] resources) {
-		String message = "";
-		ITaskActivityManager tam = TasksUi.getTaskActivityManager();
-		ITask task = tam.getActiveTask();
-		if(task == null)
+		String message = ""; 		if (resources == null)
 			return message;
-		String template = FocusedTeamUiPlugin.getDefault().getPreferenceStore().getString(FocusedTeamUiPlugin.COMMIT_TEMPLATE);
-		FocusedTeamUiPlugin.getDefault().getCommitTemplateManager().generateComment(task, template);
-		message = FocusedTeamUiPlugin.getDefault().getCommitTemplateManager().generateComment(task, template);
+		ITask task = getCurrentTask();
+		if (task == null)
+			return message;
+		boolean checkTaskRepository = true;
+		message = ContextChangeSet.getComment(checkTaskRepository, task,
+				resources);
+
 		return message;
 	}
 
