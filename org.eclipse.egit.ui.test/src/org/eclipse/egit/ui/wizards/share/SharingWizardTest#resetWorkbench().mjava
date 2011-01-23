@@ -1,5 +1,0 @@
-	@After
-	public void resetWorkbench() {
-		new Eclipse().reset();
-	}
-

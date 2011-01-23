@@ -4,10 +4,15 @@
 		else {
 			IPath container = m.getContainerPath();
 			if (!container.isEmpty())
-				container = container.addTrailingSeparator();
-			IPath relativePath = container.append(m.getGitDir());
-			if (isAlternative)
-				treeItem2.setText(0, relativePath.removeLastSegments(1).addTrailingSeparator().toString());
+				container = Path.fromOSString("."); 			IPath relativePath = container.append(m.getGitDir());
+			if (isAlternative) {
+				IPath withoutLastSegment = relativePath.removeLastSegments(1);
+				IPath path;
+				if (withoutLastSegment.isEmpty())
+					path = Path.fromPortableString("."); 				else
+					path = withoutLastSegment;
+				treeItem2.setText(0, path.toString());
+			}
 			treeItem2.setText(2, relativePath.toString());
 		}
 	}
