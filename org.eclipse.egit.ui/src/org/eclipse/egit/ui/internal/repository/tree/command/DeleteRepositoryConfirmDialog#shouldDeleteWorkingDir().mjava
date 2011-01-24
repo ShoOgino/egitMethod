@@ -1,0 +1,4 @@
+	public boolean shouldDeleteWorkingDir() {
+		return shouldDelete;
+	}
+
