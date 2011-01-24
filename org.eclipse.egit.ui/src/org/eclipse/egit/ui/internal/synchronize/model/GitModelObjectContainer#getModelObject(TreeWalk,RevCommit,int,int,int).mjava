@@ -1,7 +1,6 @@
 	protected GitModelObject getModelObject(TreeWalk tw, RevCommit ancestorCommit,
 			int ancestorNth, int baseNth, int actualNth) throws IOException {
-		String objName = tw.getNameString();
-
+		IPath path = new Path(getLocation() + "/" +tw.getPathString()); 
 		ObjectId objBaseId;
 		if (baseNth > -1)
 			objBaseId = tw.getObjectId(baseNth);
@@ -18,10 +17,10 @@
 
 		if (objectType == Constants.OBJ_BLOB)
 			return new GitModelBlob(this, getBaseCommit(), ancestorCommit,
-					objAncestorId, objBaseId, objRemoteId, objName);
+					objAncestorId, objBaseId, objRemoteId, path);
 		else if (objectType == Constants.OBJ_TREE)
 			return new GitModelTree(this, getBaseCommit(), ancestorCommit,
-					objAncestorId, objBaseId, objRemoteId, objName);
+					objAncestorId, objBaseId, objRemoteId, path);
 
 		return null;
 	}

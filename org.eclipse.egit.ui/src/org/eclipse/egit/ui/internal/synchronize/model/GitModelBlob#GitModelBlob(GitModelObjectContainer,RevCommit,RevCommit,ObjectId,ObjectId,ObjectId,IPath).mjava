@@ -1,12 +1,11 @@
 	public GitModelBlob(GitModelObjectContainer parent, RevCommit commit,
-			RevCommit ancestorCommit, ObjectId ancestorId, ObjectId baseId, ObjectId remoteId, String name)
+			RevCommit ancestorCommit, ObjectId ancestorId, ObjectId baseId, ObjectId remoteId, IPath location)
 			throws IOException {
 		super(parent, commit, ancestorCommit, parent.getKind() & (LEFT | RIGHT));
-		this.name = name;
 		this.baseId = baseId;
 		this.remoteId = remoteId;
 		this.ancestorId = ancestorId;
-		location = getParent().getLocation().append(name);
+		this.location = location;
 		gitPath = Repository.stripWorkDir(getRepository().getWorkTree(),
 				getLocation().toFile());
 	}
