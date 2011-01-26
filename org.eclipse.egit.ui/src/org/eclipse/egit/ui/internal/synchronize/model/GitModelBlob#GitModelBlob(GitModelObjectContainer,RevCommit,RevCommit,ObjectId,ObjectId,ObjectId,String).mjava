@@ -1,7 +1,7 @@
 	public GitModelBlob(GitModelObjectContainer parent, RevCommit commit,
-			ObjectId ancestorId, ObjectId baseId, ObjectId remoteId, String name)
+			RevCommit ancestorCommit, ObjectId ancestorId, ObjectId baseId, ObjectId remoteId, String name)
 			throws IOException {
-		super(parent, commit, parent.getKind() & (LEFT | RIGHT));
+		super(parent, commit, ancestorCommit, parent.getKind() & (LEFT | RIGHT));
 		this.name = name;
 		this.baseId = baseId;
 		this.remoteId = remoteId;
