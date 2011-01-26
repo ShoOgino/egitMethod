@@ -1,10 +1,10 @@
 	public PushOperation(final Repository localDb,
 			final PushOperationSpecification specification,
-			final boolean dryRun, final RemoteConfig rc, int timeout) {
+			final boolean dryRun, int timeout) {
 		this.localDb = localDb;
 		this.specification = specification;
 		this.dryRun = dryRun;
-		this.rc = rc;
+		this.rc = null;
 		this.timeout = timeout;
 	}
 
