@@ -28,7 +28,8 @@
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				DirectoryDialog dialog = new DirectoryDialog(getShell());
-				if (!uriText.getText().equals("")) { 					try {
+				if (!uriText.getText().equals(EMPTY_STRING)) {
+					try {
 						URI testUri = URI.create(uriText.getText().replace(
 								'\\', '/'));
 						if (testUri.getScheme().equals("file")) { 							String path = testUri.getPath();

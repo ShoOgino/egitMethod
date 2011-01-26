@@ -13,7 +13,8 @@
 			if (u.getPort() > 0)
 				portText.setText(Integer.toString(u.getPort()));
 			else
-				portText.setText(""); 
+				portText.setText(EMPTY_STRING);
+
 			if (u.getScheme() != null) {
 				scheme.select(scheme.indexOf(u.getScheme()));
 				scheme.notifyListeners(SWT.Selection, new Event());
@@ -23,7 +24,12 @@
 			uri = u;
 		} catch (URISyntaxException err) {
 			uri = new URIish();
-			hostText.setText(""); 			pathText.setText(""); 			userText.setText(""); 			passText.setText(""); 			portText.setText(""); 			scheme.select(-1);
+			hostText.setText(EMPTY_STRING);
+			pathText.setText(EMPTY_STRING);
+			userText.setText(EMPTY_STRING);
+			passText.setText(EMPTY_STRING);
+			portText.setText(EMPTY_STRING);
+			scheme.select(-1);
 		} finally {
 			eventDepth--;
 		}
