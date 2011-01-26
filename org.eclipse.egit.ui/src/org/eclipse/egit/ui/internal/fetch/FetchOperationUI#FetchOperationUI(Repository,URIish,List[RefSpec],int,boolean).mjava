@@ -1,0 +1,7 @@
+	public FetchOperationUI(Repository repository, URIish uri,
+			List<RefSpec> specs, int timeout, boolean dryRun) {
+		this.repository = repository;
+		op = new FetchOperation(repository, uri, specs, timeout, dryRun);
+		sourceString = uri.toPrivateString();
+	}
+
