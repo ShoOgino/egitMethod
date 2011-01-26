@@ -28,8 +28,10 @@
 		boolean dirty = false;
 		if (oldValues.keySet().containsAll(newValues.keySet())
 				&& newValues.keySet().containsAll(oldValues.keySet())) {
-			for (String key : oldValues.keySet()) {
-				if (!oldValues.get(key).equals(newValues.get(key))) {
+			for (Entry<String, String> oldValueEntry : oldValues.entrySet()) {
+				String key = oldValueEntry.getKey();
+				String newValue = newValues.get(key);
+				if (!oldValueEntry.getValue().equals(newValue)) {
 					dirty = true;
 					break;
 				}
