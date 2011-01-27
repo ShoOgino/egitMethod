@@ -1,6 +1,6 @@
-	public void setInput(final IResource input, String leftVersion,
+	public void setInput(final IResource[] input, String leftVersion,
 			String rightVersion) {
-		this.input = input;
+		setResourceInput(input);
 		this.leftVersion = leftVersion;
 		this.rightVersion = rightVersion;
 		buildTrees();
