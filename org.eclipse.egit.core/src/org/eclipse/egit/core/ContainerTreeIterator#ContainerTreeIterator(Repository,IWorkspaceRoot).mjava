@@ -1,5 +1,6 @@
 	public ContainerTreeIterator(final Repository repository, final IWorkspaceRoot root) {
-		super("", repository.getConfig().get(WorkingTreeOptions.KEY));  		node = root;
+		super("", repository.getConfig().get(WorkingTreeOptions.KEY));  		registerRCL();
+		node = root;
 		init(entries());
 	}
 
