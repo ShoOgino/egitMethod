@@ -1,0 +1,8 @@
+	public GitModelCacheTree(GitModelObjectContainer parent, RevCommit commit,
+			ObjectId repoId, ObjectId cacheId, IPath location,
+			FileModelFactory factory) throws IOException {
+		super(parent, commit, null, repoId, repoId, cacheId, location);
+		this.factory = factory;
+		cacheTreeMap = new HashMap<IPath, GitModelObject>();
+	}
+
