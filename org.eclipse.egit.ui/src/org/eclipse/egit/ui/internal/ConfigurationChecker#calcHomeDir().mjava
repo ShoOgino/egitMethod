@@ -1,0 +1,6 @@
+	private static String calcHomeDir() {
+		String homeDrive = System.getenv("HOMEDRIVE"); 		if (homeDrive != null) {
+			String homePath = SystemReader.getInstance().getenv("HOMEPATH"); 			return new File(homeDrive, homePath).getAbsolutePath();
+		}
+		return System.getenv("HOMESHARE"); 	}
+
