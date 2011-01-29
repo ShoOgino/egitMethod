@@ -2,6 +2,9 @@
 		String absoluteFilePath = repo.getWorkTree().getAbsolutePath()
 				+ "/" + gitPath; 		IFile file = ROOT.getFileForLocation(new Path(absoluteFilePath));
 
+		if (file == null)
+			return new LocalNonWorkspaceTypedElement(absoluteFilePath);
+
 		return new LocalResourceTypedElement(file);
 	}
 
