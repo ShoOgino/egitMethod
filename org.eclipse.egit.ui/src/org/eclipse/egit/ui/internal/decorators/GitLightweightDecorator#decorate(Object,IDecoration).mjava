@@ -56,7 +56,7 @@
 			resource.setSessionProperty(DECORATABLE_RESOURCE_KEY,
 					decoratableResource);
 			resource.setSessionProperty(REFRESHED_KEY,
-					new Long(System.currentTimeMillis()));
+					Long.valueOf(System.currentTimeMillis()));
 		} catch (IOException e) {
 			handleException(resource, new CoreException(new Status(
 					IStatus.ERROR, Activator.getPluginId(), e.getMessage(), e)));

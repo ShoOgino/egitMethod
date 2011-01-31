@@ -4,7 +4,7 @@
 					.getRoot();
 			try {
 				root.setSessionProperty(REFRESH_KEY,
-						new Long(System.currentTimeMillis()));
+						Long.valueOf(System.currentTimeMillis()));
 			} catch (CoreException e) {
 				handleException(root, e);
 			}
