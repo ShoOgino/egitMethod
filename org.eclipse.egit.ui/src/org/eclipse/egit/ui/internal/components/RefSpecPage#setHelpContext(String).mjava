@@ -1,0 +1,4 @@
+	public void setHelpContext(String id) {
+		helpContext = id;
+	}
+
