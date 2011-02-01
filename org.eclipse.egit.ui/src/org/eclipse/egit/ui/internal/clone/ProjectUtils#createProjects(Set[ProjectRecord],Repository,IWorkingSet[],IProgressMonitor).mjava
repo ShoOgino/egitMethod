@@ -2,7 +2,7 @@
 			final Set<ProjectRecord> projectsToCreate,
 			final Repository repository,
 			final IWorkingSet[] selectedWorkingSets, IProgressMonitor monitor)
-			throws CoreException, OperationCanceledException {
+			throws InvocationTargetException, InterruptedException {
 		IWorkspaceRunnable wsr = new IWorkspaceRunnable() {
 			public void run(IProgressMonitor actMonitor) throws CoreException {
 				IWorkingSetManager workingSetManager = PlatformUI
@@ -31,6 +31,12 @@
 				}
 			}
 		};
-		ResourcesPlugin.getWorkspace().run(wsr, monitor);
+		try {
+			ResourcesPlugin.getWorkspace().run(wsr, monitor);
+		} catch (OperationCanceledException e) {
+			throw new InterruptedException();
+		} catch (CoreException e) {
+			throw new InvocationTargetException(e);
+		}
 	}
 
