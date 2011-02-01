@@ -1,6 +1,6 @@
-	private Collection<IFile> getSelectedFiles(ExecutionEvent event)
+	private Set<IFile> getSelectedFiles(ExecutionEvent event)
 			throws ExecutionException {
-		List<IFile> preselectionCandidates = new ArrayList<IFile>();
+		Set<IFile> preselectionCandidates = new LinkedHashSet<IFile>();
 		IResource[] selectedResources = getSelectedResources(event);
 		for (IFile file : files) {
 			for (IResource resource : selectedResources) {

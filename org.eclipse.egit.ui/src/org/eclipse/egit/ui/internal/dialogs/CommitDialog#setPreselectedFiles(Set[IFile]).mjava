@@ -1,4 +1,4 @@
-	public void setPreselectedFiles(Collection<IFile> preselectedFiles) {
+	public void setPreselectedFiles(Set<IFile> preselectedFiles) {
 		Assert.isNotNull(preselectedFiles);
 		this.preselectedFiles = preselectedFiles;
 	}

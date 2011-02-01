@@ -1,5 +1,4 @@
-	public void setFileList(ArrayList<IFile> files,
-			Map<Repository, IndexDiff> indexDiffs) {
+	public void setFiles(Set<IFile> files, Map<Repository, IndexDiff> indexDiffs) {
 		items.clear();
 		for (IFile file : files) {
 			RepositoryMapping repositoryMapping = RepositoryMapping
