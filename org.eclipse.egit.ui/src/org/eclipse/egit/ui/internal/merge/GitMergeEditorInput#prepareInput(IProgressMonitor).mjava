@@ -1,161 +1,120 @@
 	@Override
 	protected Object prepareInput(IProgressMonitor monitor)
 			throws InvocationTargetException, InterruptedException {
-		final Set<IFile> files = new HashSet<IFile>();
-		List<IContainer> folders = new ArrayList<IContainer>();
-		Set<IProject> projects = new HashSet<IProject>();
+		RevWalk rw = null;
+		try {
+			monitor.beginTask(
+					UIText.GitMergeEditorInput_CheckingResourcesTaskName,
+					IProgressMonitor.UNKNOWN);
+			List<String> filterPaths = new ArrayList<String>();
+			Repository repo = null;
+			for (IResource resource : resources) {
+				RepositoryMapping map = RepositoryMapping.getMapping(resource
+						.getProject());
+				if (repo != null && repo != map.getRepository())
+					throw new InvocationTargetException(
+							new IllegalStateException(
+									UIText.AbstractHistoryCommanndHandler_NoUniqueRepository));
+				filterPaths.add(map.getRepoRelativePath(resource));
+				repo = map.getRepository();
+			}
 
-		for (IResource res : resources) {
-			projects.add(res.getProject());
-			if (Team.isIgnoredHint(res))
-				continue;
-			if (res.getType() == IResource.FILE)
-				files.add((IFile) res);
-			else
-				folders.add((IContainer) res);
-		}
-
-		if (monitor.isCanceled())
-			throw new InterruptedException();
-
-		Repository repo = null;
-		for (IProject project : projects) {
-			RepositoryMapping map = RepositoryMapping.getMapping(project);
-			if (repo != null && repo != map.getRepository())
+			if (repo == null)
 				throw new InvocationTargetException(
 						new IllegalStateException(
 								UIText.AbstractHistoryCommanndHandler_NoUniqueRepository));
-			repo = map.getRepository();
-		}
 
-		if (repo == null)
-			throw new InvocationTargetException(new IllegalStateException(
-					UIText.AbstractHistoryCommanndHandler_NoUniqueRepository));
+			if (monitor.isCanceled())
+				throw new InterruptedException();
 
-		if (monitor.isCanceled())
-			throw new InterruptedException();
+			rw = new RevWalk(repo);
 
-		IResourceVisitor fileCollector = new IResourceVisitor() {
-			public boolean visit(IResource resource) throws CoreException {
-				if (Team.isIgnoredHint(resource))
-					return false;
-				if (resource.getType() == IResource.FILE) {
-					files.add((IFile) resource);
-				}
-				return true;
-			}
-		};
-
-		for (IContainer cont : folders) {
+			final RevCommit rightCommit;
 			try {
-				cont.accept(fileCollector);
-			} catch (CoreException e) {
+				String target;
+				if (repo.getRepositoryState().equals(RepositoryState.MERGING))
+					target = Constants.MERGE_HEAD;
+				else if (repo.getRepositoryState().equals(
+						RepositoryState.REBASING_INTERACTIVE))
+					target = readFile(repo.getDirectory(),
+							RebaseCommand.REBASE_MERGE + File.separatorChar
+									+ RebaseCommand.STOPPED_SHA);
+				else
+					target = Constants.ORIG_HEAD;
+				ObjectId mergeHead = repo.resolve(target);
+				if (mergeHead == null)
+					throw new IOException(NLS.bind(
+							UIText.ValidationUtils_CanNotResolveRefMessage,
+							target));
+				rightCommit = rw.parseCommit(mergeHead);
+			} catch (IOException e) {
+				throw new InvocationTargetException(e);
 			}
-		}
 
-		if (monitor.isCanceled())
-			throw new InterruptedException();
+			final RevCommit headCommit;
+			try {
+				ObjectId head = repo.resolve(Constants.HEAD);
+				if (head == null)
+					throw new IOException(NLS.bind(
+							UIText.ValidationUtils_CanNotResolveRefMessage,
+							Constants.HEAD));
+				headCommit = rw.parseCommit(head);
+			} catch (IOException e) {
+				throw new InvocationTargetException(e);
+			}
 
-		this.compareResult = new DiffNode(Differencer.CONFLICTING);
+			final String fullBranch;
+			try {
+				fullBranch = repo.getFullBranch();
+			} catch (IOException e) {
+				throw new InvocationTargetException(e);
+			}
 
-		final RevWalk rw = new RevWalk(repo);
+			List<RevCommit> startPoints = new ArrayList<RevCommit>();
+			rw.setRevFilter(RevFilter.MERGE_BASE);
+			startPoints.add(rightCommit);
+			startPoints.add(headCommit);
+			RevCommit ancestorCommit;
+			try {
+				rw.markStart(startPoints);
+				ancestorCommit = rw.next();
+			} catch (Exception e) {
+				ancestorCommit = null;
+			}
 
-		final RevCommit rightCommit;
-		try {
-			String target;
-			if (repo.getRepositoryState().equals(RepositoryState.MERGING))
-				target = Constants.MERGE_HEAD;
-			else if (repo.getRepositoryState().equals(
-					RepositoryState.REBASING_INTERACTIVE))
-				target = readFile(repo.getDirectory(),
-						RebaseCommand.REBASE_MERGE + File.separatorChar
-								+ RebaseCommand.STOPPED_SHA);
+			if (monitor.isCanceled())
+				throw new InterruptedException();
+
+			CompareConfiguration config = getCompareConfiguration();
+			config.setRightLabel(NLS.bind(LABELPATTERN, rightCommit
+					.getShortMessage(), rightCommit.name()));
+
+			if (!useWorkspace)
+				config.setLeftLabel(NLS.bind(LABELPATTERN, headCommit
+						.getShortMessage(), headCommit.name()));
 			else
-				target = Constants.ORIG_HEAD;
-			ObjectId mergeHead = repo.resolve(target);
-			if (mergeHead == null)
-				throw new IOException(NLS.bind(
-						UIText.ValidationUtils_CanNotResolveRefMessage, target));
-			rightCommit = rw.parseCommit(mergeHead);
-		} catch (IOException e) {
-			throw new InvocationTargetException(e);
-		}
+				config.setLeftLabel(UIText.GitMergeEditorInput_WorkspaceHeader);
 
-		final RevCommit headCommit;
-		try {
-			ObjectId head = repo.resolve(Constants.HEAD);
-			if (head == null)
-				throw new IOException(NLS.bind(
-						UIText.ValidationUtils_CanNotResolveRefMessage,
-						Constants.HEAD));
-			headCommit = rw.parseCommit(head);
-		} catch (IOException e) {
-			throw new InvocationTargetException(e);
-		}
+			if (ancestorCommit != null)
+				config.setAncestorLabel(NLS.bind(LABELPATTERN, ancestorCommit
+						.getShortMessage(), ancestorCommit.name()));
 
-		final String fullBranch;
-		try {
-			fullBranch = repo.getFullBranch();
-		} catch (IOException e) {
-			throw new InvocationTargetException(e);
-		}
+			setTitle(NLS.bind(UIText.GitMergeEditorInput_MergeEditorTitle,
+					new Object[] {
+							Activator.getDefault().getRepositoryUtil()
+									.getRepositoryName(repo),
+							rightCommit.getShortMessage(), fullBranch }));
 
-		List<RevCommit> startPoints = new ArrayList<RevCommit>();
-		rw.setRevFilter(RevFilter.MERGE_BASE);
-		startPoints.add(rightCommit);
-		startPoints.add(headCommit);
-		RevCommit ancestorCommit;
-		try {
-			rw.markStart(startPoints);
-			ancestorCommit = rw.next();
-		} catch (Exception e) {
-			ancestorCommit = null;
-		}
-
-		if (monitor.isCanceled())
-			throw new InterruptedException();
-
-		CompareConfiguration config = getCompareConfiguration();
-		config.setRightLabel(NLS.bind(LABELPATTERN, rightCommit
-				.getShortMessage(), rightCommit.name()));
-
-		if (!useWorkspace)
-			config.setLeftLabel(NLS.bind(LABELPATTERN, headCommit
-					.getShortMessage(), headCommit.name()));
-		else
-			config.setLeftLabel(UIText.GitMergeEditorInput_WorkspaceHeader);
-
-		if (ancestorCommit != null)
-			config.setAncestorLabel(NLS.bind(LABELPATTERN, ancestorCommit
-					.getShortMessage(), ancestorCommit.name()));
-
-		setTitle(NLS.bind(UIText.GitMergeEditorInput_MergeEditorTitle,
-				new Object[] {
-						Activator.getDefault().getRepositoryUtil()
-								.getRepositoryName(repo),
-						rightCommit.getShortMessage(), fullBranch }));
-
-		try {
-			for (IFile file : files) {
-				if (monitor.isCanceled())
-					throw new InterruptedException();
-
-				monitor.setTaskName(file.getFullPath().toString());
-
-				RepositoryMapping map = RepositoryMapping.getMapping(file);
-				String gitPath = map.getRepoRelativePath(file);
-				if (gitPath == null)
-					continue;
-
-				if (gitPath.startsWith(Constants.DOT_GIT))
-					continue;
-
-				fileToDiffNode(file, gitPath, map, this.compareResult,
-						rightCommit, headCommit, ancestorCommit, rw, monitor);
+			try {
+				return buildDiffContainer(repo, rightCommit, headCommit,
+						ancestorCommit, filterPaths, rw, monitor);
+			} catch (IOException e) {
+				throw new InvocationTargetException(e);
 			}
-		} catch (IOException e) {
-			throw new InvocationTargetException(e);
+		} finally {
+			if (rw != null)
+				rw.dispose();
+			monitor.done();
 		}
-		return compareResult;
 	}
 
