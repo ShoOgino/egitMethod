@@ -1,4 +1,4 @@
-	boolean createProjects() {
+	boolean createProjects(final Repository repository) {
 		final Set<ProjectRecord> selected = getCheckedProjects();
 		WorkspaceModifyOperation op = new WorkspaceModifyOperation() {
 			protected void execute(IProgressMonitor monitor)
@@ -8,8 +8,15 @@
 						throw new OperationCanceledException();
 					}
 					for (ProjectRecord projectRecord : selected) {
-						createExistingProject(projectRecord,
+						IProject project = createExistingProject(projectRecord,
 								new SubProgressMonitor(monitor, 1));
+						ConnectProviderOperation cpo = new ConnectProviderOperation(
+								project, repository.getDirectory());
+						try {
+							cpo.execute(new NullProgressMonitor());
+						} catch (CoreException e) {
+							throw new InvocationTargetException(e);
+						}
 					}
 				} finally {
 					monitor.done();
