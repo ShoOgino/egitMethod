@@ -2,45 +2,10 @@
 	public boolean performFinish() {
 
 		try {
-
-			final int actionSelection = mySelectionPage.getActionSelection();
-
-			final IProject[] projectsToShare;
-			if (actionSelection == GitSelectWizardPage.ACTION_DIALOG_SHARE)
-				projectsToShare = mySharePage.getSelectedProjects();
-			else
-				projectsToShare = null;
-
 			getContainer().run(true, true, new IRunnableWithProgress() {
-
 				public void run(IProgressMonitor monitor)
 						throws InvocationTargetException, InterruptedException {
-
-					if (actionSelection != GitSelectWizardPage.ACTION_DIALOG_SHARE) {
 						importProjects();
-					}
-
-					if (actionSelection != GitSelectWizardPage.ACTION_NO_SHARE) {
-
-						IProject[] projects;
-						if (projectsToShare == null)
-							projects = getAddedProjects();
-						else
-							projects = projectsToShare;
-						for (IProject prj : projects) {
-							if (monitor.isCanceled())
-								throw new InterruptedException();
-							ConnectProviderOperation connectProviderOperation = new ConnectProviderOperation(
-									prj, myRepository.getDirectory());
-							try {
-								connectProviderOperation.execute(monitor);
-							} catch (CoreException e) {
-								throw new InvocationTargetException(e);
-							}
-						}
-
-					}
-
 				}
 			});
 		} catch (InvocationTargetException e) {
