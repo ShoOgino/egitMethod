@@ -1,7 +1,5 @@
 	public String getProjectLabel() {
 		String path = projectSystemFile.getParent();
 
-		return NLS.bind(UIText.WizardProjectsImportPage_projectLabel,
-				projectName, path);
-	}
+		return NLS.bind("{0} ({1})", projectName, path); 	}
 

@@ -1,0 +1,4 @@
+	public void setProjectDescription(IProjectDescription description) {
+		this.description = description;
+	}
+
