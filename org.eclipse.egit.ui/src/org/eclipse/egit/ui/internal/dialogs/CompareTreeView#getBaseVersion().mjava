@@ -1,0 +1,6 @@
+	private String getBaseVersion() {
+		if (baseVersion == null)
+			return UIText.CompareTreeView_WorkspaceVersionText;
+		return baseVersion;
+	}
+
