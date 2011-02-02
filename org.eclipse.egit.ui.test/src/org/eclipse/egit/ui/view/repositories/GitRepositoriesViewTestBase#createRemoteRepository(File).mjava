@@ -16,10 +16,9 @@
 				null, ConfigConstants.CONFIG_KEY_REPO_FORMAT_VERSION, "0");
 
 		myRepository.getConfig().save();
-		PushConfiguredRemoteAction pa = new PushConfiguredRemoteAction(
-				myRepository, "push");
-
-		pa.run(null, false);
+		RemoteConfig config = new RemoteConfig(myRepository.getConfig(), "push");
+		PushOperationUI pa = new PushOperationUI(myRepository, config, 0, false);
+		pa.execute(null);
 		TestUtil.joinJobs(JobFamilies.PUSH);
 		try {
 			RefUpdate op = myRepository.updateRef("refs/heads/stable");

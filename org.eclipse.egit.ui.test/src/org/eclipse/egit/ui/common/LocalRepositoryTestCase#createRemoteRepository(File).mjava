@@ -35,10 +35,9 @@
 				"+refs/heads/*:refs/heads/*");
 
 		myRepository.getConfig().save();
-		PushConfiguredRemoteAction pa = new PushConfiguredRemoteAction(
-				myRepository, "push");
-
-		pa.run(null, false);
+		RemoteConfig config = new RemoteConfig(myRepository.getConfig(), "push");
+		PushOperationUI pa = new PushOperationUI(myRepository, config, 0, false);
+		pa.execute(null);
 
 		try {
 			RefUpdate op = myRepository.updateRef("refs/heads/stable");

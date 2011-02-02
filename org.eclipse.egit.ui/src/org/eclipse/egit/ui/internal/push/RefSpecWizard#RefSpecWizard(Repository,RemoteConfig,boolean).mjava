@@ -1,0 +1,8 @@
+	public RefSpecWizard(Repository repository, RemoteConfig config,
+			boolean pushMode) {
+		setNeedsProgressMonitor(true);
+		this.pushMode = pushMode;
+		this.config = config;
+		page = new RefSpecPage(repository, pushMode);
+	}
+

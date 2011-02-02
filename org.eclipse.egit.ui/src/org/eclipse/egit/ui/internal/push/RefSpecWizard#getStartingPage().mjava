@@ -1,0 +1,6 @@
+	@Override
+	public IWizardPage getStartingPage() {
+		page.setSelection(new RepositorySelection(null, config));
+		return super.getStartingPage();
+	}
+
