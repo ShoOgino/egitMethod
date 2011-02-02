@@ -4,5 +4,6 @@
 		this.repository = repository;
 		this.ref = null;
 		this.commit = commit;
+		this.upstreamConfig = null;
 	}
 

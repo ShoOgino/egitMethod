@@ -53,21 +53,12 @@
 			}
 		});
 		newButton.addSelectionListener(new SelectionAdapter() {
-
 			public void widgetSelected(SelectionEvent e) {
-				Ref ref = refFromDialog();
-
-				InputDialog labelDialog = getRefNameInputDialog(NLS.bind(
-						UIText.BranchSelectionDialog_QuestionNewBranchMessage,
-						ref.getName(), Constants.R_HEADS), Constants.R_HEADS,
-						null);
-
-				if (labelDialog.open() == Window.OK) {
-					String newRefName = labelDialog.getValue();
-					CreateLocalBranchOperation cbop = new CreateLocalBranchOperation(
-							repo, newRefName, ref);
+				CreateBranchWizard wiz = new CreateBranchWizard(repo,
+						refFromDialog());
+				if (new WizardDialog(getShell(), wiz).open() == Window.OK) {
+					String newRefName = wiz.getNewBranchName();
 					try {
-						cbop.execute(null);
 						branchTree.refresh();
 						markRef(Constants.R_HEADS + newRefName);
 					} catch (Throwable e1) {
