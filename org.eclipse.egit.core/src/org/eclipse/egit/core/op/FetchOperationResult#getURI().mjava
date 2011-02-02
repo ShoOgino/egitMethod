@@ -1,0 +1,4 @@
+	public URIish getURI() {
+		return uri;
+	}
+

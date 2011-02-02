@@ -12,7 +12,6 @@
 								configureFetchUriPage.getUri()
 										.toPrivateString());
 						monitor.beginTask(taskName, IProgressMonitor.UNKNOWN);
-						configureFetchSpecPage.setConfigName(myRemoteName);
 						configureFetchSpecPage
 								.setSelection(new RepositorySelection(
 										configureFetchUriPage.getUri(), null));
@@ -41,7 +40,6 @@
 								configurePushUriPage.getAllUris().get(0)
 										.toPrivateString());
 						monitor.beginTask(taskName, IProgressMonitor.UNKNOWN);
-						configurePushSpecPage.setConfigName(myRemoteName);
 						configurePushSpecPage
 								.setSelection(new RepositorySelection(
 										configurePushUriPage.getAllUris()

@@ -1,0 +1,4 @@
+	public FetchResult getFetchResult() {
+		return fetchResult;
+	}
+
