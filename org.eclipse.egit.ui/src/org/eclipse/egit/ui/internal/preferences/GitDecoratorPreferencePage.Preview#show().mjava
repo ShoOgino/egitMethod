@@ -1,0 +1,6 @@
+		public void show() {
+			((GridData)composite.getLayoutData()).exclude = false;				composite.setVisible(true);
+			composite.layout();
+			parent.layout();
+		}
+

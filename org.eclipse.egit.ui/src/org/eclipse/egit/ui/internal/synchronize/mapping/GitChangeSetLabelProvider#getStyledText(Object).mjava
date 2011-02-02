@@ -1,7 +1,8 @@
 	public StyledString getStyledText(Object element) {
 		String rawText = getText(element);
 		if (element.getClass().equals(GitModelCommit.class)) {
-			StyledString string = new StyledString(rawText);
+			String formattedName = createChangeSetLabel((GitModelCommit) element);
+			StyledString string = new StyledString(formattedName);
 			GitModelCommit commit = (GitModelCommit) element;
 			String format = " [" + getAbbreviatedId(commit) + "]"; 			string.append(format, StyledString.DECORATIONS_STYLER);
 			return string;
