@@ -1,0 +1,5 @@
+	private boolean isMergedInto(final RevWalk rw, final RevCommit base, final RevCommit tip, boolean swap)
+			throws IOException {
+		return !swap ? rw.isMergedInto(base, tip) : rw.isMergedInto(tip, base);
+	}
+

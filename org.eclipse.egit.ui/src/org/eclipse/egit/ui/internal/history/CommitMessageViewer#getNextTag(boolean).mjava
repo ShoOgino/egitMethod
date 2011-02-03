@@ -1,0 +1,27 @@
+	private Ref getNextTag(boolean searchDescendant) throws IOException {
+		RevWalk revWalk = new RevWalk(db);
+
+		Map<String, Ref> tagsMap = db.getTags();
+		Ref tagRef = null;
+
+		for (String tagName : tagsMap.keySet()) {
+			RevCommit current = revWalk.parseCommit(commit);
+			RevCommit newTag = revWalk.parseCommit(tagsMap.get(tagName).getObjectId());
+
+			if (newTag.getId().equals(commit))
+				continue;
+
+			if (isMergedInto(revWalk, newTag, current, searchDescendant)) {
+				if (tagRef != null) {
+					RevCommit oldTag = revWalk.parseCommit(tagRef.getObjectId());
+
+					if (isMergedInto(revWalk, oldTag, newTag, searchDescendant))
+						tagRef = tagsMap.get(tagName);
+				} else
+					tagRef = tagsMap.get(tagName);
+			}
+		}
+
+		return tagRef;
+	}
+
