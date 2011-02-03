@@ -1,0 +1,11 @@
+	public static synchronized GitDecoratorJob getJobForRepository(
+			final String gitDir) {
+		GitDecoratorJob job = jobs.get(gitDir);
+		if (job == null) {
+			job = new GitDecoratorJob("GitDecoratorJob[" + gitDir + "]"); 			job.setSystem(true);
+			job.setPriority(DECORATE);
+			jobs.put(gitDir, job);
+		}
+		return job;
+	}
+

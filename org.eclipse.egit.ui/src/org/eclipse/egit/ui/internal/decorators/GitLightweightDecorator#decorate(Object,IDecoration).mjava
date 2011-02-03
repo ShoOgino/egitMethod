@@ -17,6 +17,29 @@
 		if (!resource.exists() && !resource.isPhantom())
 			return;
 
+		try {
+			final Long refreshed = (Long) resource
+					.getSessionProperty(REFRESHED_KEY);
+			if (refreshed != null) {
+				final Long refresh = (Long) resource.getWorkspace().getRoot()
+						.getSessionProperty(REFRESH_KEY);
+				if (refresh == null
+						|| refresh.longValue() <= refreshed.longValue()) {
+					final IDecoratableResource decoratableResource = (IDecoratableResource) resource
+							.getSessionProperty(DECORATABLE_RESOURCE_KEY);
+					if (decoratableResource != null) {
+						final DecorationHelper helper = new DecorationHelper(
+								activator.getPreferenceStore());
+						helper.decorate(decoration, decoratableResource);
+						return;
+					}
+				}
+			}
+		} catch (CoreException e) {
+			handleException(resource, e);
+			return;
+		}
+
 		if (Team.isIgnoredHint(resource))
 			return;
 
@@ -28,40 +51,8 @@
 		if (mapping.getRepoRelativePath(resource) == null)
 			return;
 
-		try {
-			IDecoratableResource decoratableResource = null;
-			final DecorationHelper helper = new DecorationHelper(
-					activator.getPreferenceStore());
-
-			final Long refreshed = (Long) resource
-					.getSessionProperty(REFRESHED_KEY);
-			if (refreshed != null) {
-				final IWorkspaceRoot root = resource.getWorkspace().getRoot();
-				final Long refresh = (Long) root
-						.getSessionProperty(REFRESH_KEY);
-				if (refresh == null
-						|| refresh.longValue() < refreshed.longValue()) {
-					decoratableResource = (IDecoratableResource) resource
-							.getSessionProperty(DECORATABLE_RESOURCE_KEY);
-					if (decoratableResource != null) {
-						helper.decorate(decoration, decoratableResource);
-						return;
-					}
-				}
-			}
-
-			decoratableResource = new DecoratableResourceAdapter(resource);
-			helper.decorate(decoration, decoratableResource);
-
-			resource.setSessionProperty(DECORATABLE_RESOURCE_KEY,
-					decoratableResource);
-			resource.setSessionProperty(REFRESHED_KEY,
-					Long.valueOf(System.currentTimeMillis()));
-		} catch (IOException e) {
-			handleException(resource, new CoreException(new Status(
-					IStatus.ERROR, Activator.getPluginId(), e.getMessage(), e)));
-		} catch (CoreException e) {
-			handleException(resource, e);
-		}
+		GitDecoratorJob.getJobForRepository(
+				mapping.getGitDirAbsolutePath().toString())
+				.addDecorationRequest(element);
 	}
 
