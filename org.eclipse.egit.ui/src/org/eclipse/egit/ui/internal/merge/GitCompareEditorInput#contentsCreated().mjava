@@ -1,0 +1,6 @@
+	@Override
+	protected void contentsCreated() {
+		super.contentsCreated();
+		getNavigator().selectChange(true);
+	}
+
