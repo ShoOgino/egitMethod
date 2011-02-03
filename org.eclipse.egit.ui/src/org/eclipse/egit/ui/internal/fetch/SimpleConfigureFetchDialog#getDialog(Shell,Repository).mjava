@@ -1,0 +1,5 @@
+	public static Dialog getDialog(Shell shell, Repository repository) {
+		RemoteConfig configToUse = getConfiguredRemote(repository);
+		return new SimpleConfigureFetchDialog(shell, repository, configToUse);
+	}
+

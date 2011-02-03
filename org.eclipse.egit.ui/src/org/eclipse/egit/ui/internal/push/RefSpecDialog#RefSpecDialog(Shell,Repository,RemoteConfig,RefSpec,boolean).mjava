@@ -1,0 +1,6 @@
+	public RefSpecDialog(Shell parentShell, Repository repository,
+			RemoteConfig config, RefSpec spec, boolean push) {
+		this(parentShell, repository, config, push);
+		this.spec = spec;
+	}
+

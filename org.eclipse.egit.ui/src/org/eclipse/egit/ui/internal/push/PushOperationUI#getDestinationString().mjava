@@ -1,0 +1,4 @@
+	public String getDestinationString() {
+		return destinationString;
+	}
+

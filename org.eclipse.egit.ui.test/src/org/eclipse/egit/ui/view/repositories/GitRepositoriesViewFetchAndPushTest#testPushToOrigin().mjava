@@ -23,6 +23,7 @@
 		String dialogTitle = NLS.bind(UIText.ResultDialog_title,
 				destinationString);
 
+		TestUtil.joinJobs(JobFamilies.PUSH);
 		SWTBotShell confirmed = bot.shell(dialogTitle);
 		SWTBotTable table = confirmed.bot().table();
 		int rowCount = table.rowCount();

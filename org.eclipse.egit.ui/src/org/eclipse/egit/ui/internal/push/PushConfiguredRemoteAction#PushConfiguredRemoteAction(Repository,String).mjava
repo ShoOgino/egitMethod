@@ -1,5 +1,0 @@
-	public PushConfiguredRemoteAction(Repository repository, String remoteName) {
-		this.repository = repository;
-		this.remoteName = remoteName;
-	}
-

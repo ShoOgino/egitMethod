@@ -1,0 +1,4 @@
+	public ConfigurePushAction() {
+		super(ActionCommands.CONFIGURE_PUSH, new ConfigurePushActionHandler());
+	}
+
