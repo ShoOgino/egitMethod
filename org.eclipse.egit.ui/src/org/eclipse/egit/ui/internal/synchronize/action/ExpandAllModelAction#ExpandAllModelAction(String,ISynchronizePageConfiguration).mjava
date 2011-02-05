@@ -1,0 +1,5 @@
+	public ExpandAllModelAction(String text,
+			ISynchronizePageConfiguration configuration) {
+		super(text, configuration);
+	}
+
