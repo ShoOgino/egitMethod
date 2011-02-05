@@ -1,0 +1,8 @@
+	@Test public void shouldReturnEqualForSameInstance() throws Exception {
+		GitModelWorkingFile left = createWorkingFile(getFile1Location());
+
+		boolean actual = left.equals(left);
+
+		assertTrue(actual);
+	}
+

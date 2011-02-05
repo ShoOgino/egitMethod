@@ -1,0 +1,16 @@
+	@Test public void shouldReturnNotEqualForDifferentParents()
+			throws Exception {
+		File localRightRepoFile = createProjectAndCommitToRepository(REPO2);
+
+		GitModelRepository rightGsd = new GitModelRepository(
+				getGSD(lookupRepository(localRightRepoFile)));
+		GitModelCommit left = new GitModelCommit(createModelRepository(),
+				getCommit(leftRepoFile, HEAD), LEFT);
+		GitModelCommit right = new GitModelCommit(rightGsd,
+				getCommit(localRightRepoFile, HEAD), LEFT);
+
+		boolean actual = left.equals(right);
+
+		assertFalse(actual);
+	}
+

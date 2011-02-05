@@ -1,0 +1,10 @@
+	@Test public void shouldReturnNotEqualForDifferentLocation()
+			throws Exception {
+		GitModelWorkingFile left = createWorkingFile(getFile1Location());
+		GitModelWorkingFile right = createWorkingFile(getFile2Location());
+
+		boolean actual = left.equals(right);
+
+		assertFalse(actual);
+	}
+

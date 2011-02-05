@@ -1,0 +1,11 @@
+	@Test public void shouldReturnNotEqualForTreeAndBlob()
+			throws Exception {
+		GitModelTree left = createModelTree(HEAD, getTreeLocation());
+		GitModelBlob right = new GitModelBlob(createModelCommit(), getCommit(
+				leftRepoFile, HEAD), null, null, null, null, getTreeLocation());
+
+		boolean actual = left.equals(right);
+
+		assertFalse(actual);
+	}
+

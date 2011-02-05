@@ -1,0 +1,13 @@
+	@Test public void shouldReturnNotEqualWhenCommitTreeAndBlob()
+			throws Exception {
+		GitModelCommit left = new GitModelCommit(createModelRepository(),
+				getCommit(leftRepoFile, HEAD), LEFT);
+		GitModelBlob right = new GitModelBlob(left,
+				getCommit(leftRepoFile, HEAD), null, null, null, null,
+				getFile1Location());
+
+		boolean actual = left.equals(right);
+
+		assertFalse(actual);
+	}
+

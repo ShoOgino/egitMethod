@@ -1,0 +1,9 @@
+	@Test public void shouldReturnEqualForSameInstance() throws Exception {
+		GitModelCacheFile left = createCacheFile(zeroId(), zeroId(),
+				getFile1Location());
+
+		boolean actual = left.equals(left);
+
+		assertTrue(actual);
+	}
+

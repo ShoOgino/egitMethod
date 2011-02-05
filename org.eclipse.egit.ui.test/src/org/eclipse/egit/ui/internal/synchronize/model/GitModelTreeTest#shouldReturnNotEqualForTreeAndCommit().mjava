@@ -1,0 +1,11 @@
+	@Test public void shouldReturnNotEqualForTreeAndCommit()
+			throws Exception {
+		GitModelTree left = createModelTree(HEAD, getTreeLocation());
+		GitModelCommit right = new GitModelCommit(createModelRepository(),
+				getCommit(leftRepoFile, HEAD), LEFT);
+
+		boolean actual = left.equals(right);
+
+		assertFalse(actual);
+	}
+

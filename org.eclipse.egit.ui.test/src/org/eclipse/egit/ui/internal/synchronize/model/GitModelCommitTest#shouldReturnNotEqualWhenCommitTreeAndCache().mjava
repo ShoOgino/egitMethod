@@ -1,0 +1,12 @@
+	@Test public void shouldReturnNotEqualWhenCommitTreeAndCache()
+			throws Exception {
+		GitModelCommit left = new GitModelCommit(createModelRepository(),
+				getCommit(leftRepoFile, HEAD), LEFT);
+		GitModelCache right = new GitModelCache(createModelRepository(),
+				getCommit(leftRepoFile, HEAD));
+
+		boolean actual = left.equals(right);
+
+		assertFalse(actual);
+	}
+

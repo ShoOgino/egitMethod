@@ -3,20 +3,12 @@
 		if (obj == this)
 			return true;
 
-		if (obj instanceof GitModelCommit) {
+		if (obj instanceof GitModelCommit && !(obj instanceof GitModelTree)
+				&& !(obj instanceof GitModelBlob)) {
 			GitModelCommit objCommit = (GitModelCommit) obj;
 
-			boolean equalsBaseCommit;
-			RevCommit objBaseCommit = objCommit.getBaseCommit();
-			if (objBaseCommit != null)
-				equalsBaseCommit = objBaseCommit.equals(baseCommit);
-			else
-				equalsBaseCommit = baseCommit == null;
-
-
-			return equalsBaseCommit
-					&& objCommit.getRemoteCommit().equals(remoteCommit)
-					&& objCommit.getLocation().equals(getLocation());
+			return objCommit.getBaseCommit().equals(baseCommit)
+					&& objCommit.getParent().equals(getParent());
 		}
 
 		return false;

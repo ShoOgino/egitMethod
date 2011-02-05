@@ -1,0 +1,9 @@
+	@Test public void shouldReturnEqualForSameData() throws Exception {
+		GitModelCacheTree left = crateCacheTree(zeroId(), getTreeLocation());
+		GitModelCacheTree right = crateCacheTree(zeroId(), getTreeLocation());
+
+		boolean actual = left.equals(right);
+
+		assertTrue(actual);
+	}
+

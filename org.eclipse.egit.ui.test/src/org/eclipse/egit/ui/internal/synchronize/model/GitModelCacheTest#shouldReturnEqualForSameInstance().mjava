@@ -1,0 +1,9 @@
+	@Test public void shouldReturnEqualForSameInstance() throws Exception {
+		GitModelCache left = new GitModelCache(createModelRepository(),
+				getCommit(leftRepoFile, HEAD));
+
+		boolean actual = left.equals(left);
+
+		assertTrue(actual);
+	}
+

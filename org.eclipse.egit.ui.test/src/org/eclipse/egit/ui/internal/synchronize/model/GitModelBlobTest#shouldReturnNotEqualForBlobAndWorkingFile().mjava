@@ -1,0 +1,12 @@
+	@Test public void shouldReturnNotEqualForBlobAndWorkingFile()
+			throws Exception {
+		GitModelBlob left = createGitModelBlob();
+		GitModelWorkingFile right = new GitModelWorkingFile(
+				createModelCommit(), getCommit(leftRepoFile, HEAD), null,
+				getFile1Location());
+
+		boolean actual = left.equals(right);
+
+		assertFalse(actual);
+	}
+

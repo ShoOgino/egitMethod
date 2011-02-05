@@ -1,0 +1,11 @@
+	@Test public void shouldReturnNotEqualWhenComparingWorkingFileAndCacheFile()
+			throws Exception {
+		GitModelWorkingFile left = createWorkingFile(getFile1Location());
+		GitModelCacheFile right = new GitModelCacheFile(createModelCommit(),
+				getCommit(leftRepoFile, HEAD), null, null, getFile1Location());
+
+		boolean actual = left.equals(right);
+
+		assertFalse(actual);
+	}
+
