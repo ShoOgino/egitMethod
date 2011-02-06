@@ -1,5 +1,0 @@
-	public GitSynchronize(GitSynchronizeDataSet data) {
-		GitSubscriberParticipant participant = getParticipant(data);
-		participant.refresh(data);
-	}
-

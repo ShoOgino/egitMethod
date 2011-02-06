@@ -1,5 +1,0 @@
-	public GitSubscriberParticipant(GitSynchronizeDataSet data) {
-		setSubscriber(new GitResourceVariantTreeSubscriber(data));
-		setName(data.toString());
-	}
-

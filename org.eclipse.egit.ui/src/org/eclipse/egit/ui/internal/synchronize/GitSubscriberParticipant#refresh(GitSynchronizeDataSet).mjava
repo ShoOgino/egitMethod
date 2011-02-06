@@ -1,6 +1,0 @@
-	public void refresh(GitSynchronizeDataSet data) {
-		refresh(data.getAllProjects(),
-				UIText.GitSynchronizeWizard_gitResourceSynchronization, null,
-				null);
-	}
-
