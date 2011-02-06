@@ -6,8 +6,11 @@
 
 		for (String tagName : tagsMap.keySet()) {
 			RevCommit current = revWalk.parseCommit(commit);
-			RevCommit newTag = revWalk.parseCommit(tagsMap.get(tagName).getObjectId());
-
+			Ref ref = tagsMap.get(tagName);
+			RevObject any = revWalk.peel(revWalk.parseAny(ref.getObjectId()));
+			if (!(any instanceof RevCommit))
+				continue;
+			RevCommit newTag = (RevCommit) any;
 			if (newTag.getId().equals(commit))
 				continue;
 
@@ -16,9 +19,9 @@
 					RevCommit oldTag = revWalk.parseCommit(tagRef.getObjectId());
 
 					if (isMergedInto(revWalk, oldTag, newTag, searchDescendant))
-						tagRef = tagsMap.get(tagName);
+						tagRef = ref;
 				} else
-					tagRef = tagsMap.get(tagName);
+					tagRef = ref;
 			}
 		}
 
