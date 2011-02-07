@@ -1,0 +1,7 @@
+	public FetchGerritChangeWizard(Repository repository) {
+		this.repository = repository;
+		setNeedsProgressMonitor(true);
+		setHelpAvailable(false);
+		setWindowTitle(UIText.FetchGerritChangeWizard_WizardTitle);
+	}
+
