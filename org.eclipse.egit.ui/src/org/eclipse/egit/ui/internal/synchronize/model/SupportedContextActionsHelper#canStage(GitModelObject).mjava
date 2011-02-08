@@ -1,0 +1,5 @@
+	public static boolean canStage(GitModelObject object) {
+		return object instanceof GitModelWorkingFile
+				|| getRootObject(object) instanceof GitModelWorkingTree;
+	}
+

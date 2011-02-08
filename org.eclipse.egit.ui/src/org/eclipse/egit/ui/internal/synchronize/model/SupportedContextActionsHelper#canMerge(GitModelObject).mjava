@@ -1,0 +1,4 @@
+	public static boolean canMerge(GitModelObject object) {
+		return getRootObject(object) instanceof GitModelCommit;
+	}
+

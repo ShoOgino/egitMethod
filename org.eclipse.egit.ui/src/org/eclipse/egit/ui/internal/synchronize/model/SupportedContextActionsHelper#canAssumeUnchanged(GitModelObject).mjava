@@ -1,0 +1,5 @@
+	public static boolean canAssumeUnchanged(GitModelObject object) {
+		return canStage(object) || object instanceof GitModelCacheFile
+				|| object instanceof GitModelCacheTree;
+	}
+

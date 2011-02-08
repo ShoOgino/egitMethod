@@ -1,0 +1,4 @@
+	public static boolean canReset(GitModelObject object) {
+		return isOutGoingCommit(object) || canCommit(object);
+	}
+
