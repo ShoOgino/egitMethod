@@ -29,13 +29,16 @@
 		}
 
 		config.setBoolean(
-				"core", null, "bare", false); 
+				ConfigConstants.CONFIG_CORE_SECTION, null, ConfigConstants.CONFIG_KEY_BARE, false);
+
 		remoteConfig.update(config);
 
 		if (ref.getName().startsWith(Constants.R_HEADS)) {
 			String branchName = ref.getName().substring(Constants.R_HEADS.length());
 
-			config.setString("branch", branchName, "remote", remoteName); 			config.setString("branch", branchName, "merge", ref.getName()); 		}
+			config.setString(ConfigConstants.CONFIG_BRANCH_SECTION, branchName, ConfigConstants.CONFIG_KEY_REMOTE, remoteName);
+			config.setString(ConfigConstants.CONFIG_BRANCH_SECTION, branchName, ConfigConstants.CONFIG_KEY_MERGE, ref.getName());
+		}
 		config.save();
 	}
 
