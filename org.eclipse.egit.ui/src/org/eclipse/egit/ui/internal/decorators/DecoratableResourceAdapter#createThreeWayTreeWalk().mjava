@@ -11,7 +11,7 @@
 		else
 			treeWalk.addTree(new EmptyTreeIterator());
 
-		treeWalk.addTree(new DirCacheIterator(repository.readDirCache()));
+		treeWalk.addTree(new DirCacheIterator(DecoratableResourceHelper.getDirCache(repository)));
 
 		treeWalk.addTree(IteratorService.createInitialIterator(repository));
 		return treeWalk;
