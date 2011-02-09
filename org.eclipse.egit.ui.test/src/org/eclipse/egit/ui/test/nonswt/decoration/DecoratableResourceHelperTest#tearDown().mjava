@@ -1,0 +1,16 @@
+	@After
+	public void tearDown() throws Exception {
+		super.tearDown();
+
+
+		RepositoryProvider.unmap(project);
+
+		GitProjectData.delete(project);
+
+		project.delete(true, true, null);
+
+		repository.close();
+
+		recursiveDelete(gitDir);
+	}
+

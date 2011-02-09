@@ -1,4 +1,4 @@
-	DecoratableResource(IResource resource) {
+	protected DecoratableResource(IResource resource) {
 		this.resource = resource;
 	}
 
