@@ -1,0 +1,15 @@
+		static Change fromRef(String refName) {
+			try {
+				if (!refName.startsWith("refs/changes/")) 					return null;
+				String[] tokens = refName.substring(13).split("/"); 				if (tokens.length != 3)
+					return null;
+				Integer changeNumber = Integer.valueOf(tokens[1]);
+				Integer patchSetNumber = Integer.valueOf(tokens[2]);
+				return new Change(refName, changeNumber, patchSetNumber);
+			} catch (NumberFormatException e) {
+				return null;
+			} catch (IndexOutOfBoundsException e) {
+				return null;
+			}
+		}
+

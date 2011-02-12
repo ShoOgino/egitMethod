@@ -7,7 +7,6 @@
 		ObjectId headId = repo.getRef(Constants.HEAD).getObjectId();
 		tw.addTree(new RevWalk(repo).parseTree(headId));
 		tw.addTree(new DirCacheIterator(index));
-		dirCacheIteratorNth = 1;
 
 		return tw;
 	}
