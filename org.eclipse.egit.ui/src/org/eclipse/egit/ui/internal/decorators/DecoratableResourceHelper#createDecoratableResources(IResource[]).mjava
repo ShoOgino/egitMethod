@@ -1,5 +1,8 @@
-	static IDecoratableResource[] createDecoratableResources(
+	public static IDecoratableResource[] createDecoratableResources(
 			final IResource[] resources) throws IOException {
+		if (resources == null)
+			return null;
+
 		int i = 0;
 		while (resources[i] == null) {
 			i++;

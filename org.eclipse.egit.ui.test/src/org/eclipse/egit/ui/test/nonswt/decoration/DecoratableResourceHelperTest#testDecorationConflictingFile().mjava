@@ -1,0 +1,37 @@
+	@Test
+	public void testDecorationConflictingFile() throws Exception {
+		File f = new File(project.getLocation().toFile(), TEST_FILE);
+		write(f, "Something");
+		project.refreshLocal(IResource.DEPTH_INFINITE, null);
+		IResource file = project.findMember(TEST_FILE);
+		git.add().addFilepattern(".").call();
+		git.commit().setMessage("Commit on master branch").call();
+
+		git.checkout().setCreateBranch(true).setName("first_topic").call();
+		write(f, "SomethingElse");
+		git.add().addFilepattern(".").call();
+		RevCommit commitOnFirstTopicBranch = git.commit()
+				.setMessage("Commit on first topic branch").call();
+
+		git.checkout().setName("master").call();
+		git.checkout().setCreateBranch(true).setName("second_topic").call();
+		write(f, "SomethingDifferent");
+		git.add().addFilepattern(".").call();
+		git.commit().setMessage("Commit on second topic branch").call();
+
+		assertTrue(git.merge().include(commitOnFirstTopicBranch).call()
+				.getMergeStatus() == MergeStatus.CONFLICTING);
+
+		IDecoratableResource[] expectedDRs = new IDecoratableResource[] {
+				new TestDecoratableResource(project, true, false, true, true,
+						Staged.MODIFIED),
+				new TestDecoratableResource(file, true, false, true, true,
+						Staged.MODIFIED) };
+
+		IDecoratableResource[] actualDRs = DecoratableResourceHelper
+				.createDecoratableResources(new IResource[] { project, file });
+
+		for (int i = 0; i < expectedDRs.length; i++)
+			assertTrue(expectedDRs[i].equals(actualDRs[i]));
+	}
+
