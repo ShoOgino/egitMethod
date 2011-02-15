@@ -1,7 +1,5 @@
-	private Set<IFile> getSelectedFiles(ExecutionEvent event)
-			throws ExecutionException {
+	private Set<IFile> getSelectedFiles() {
 		Set<IFile> preselectionCandidates = new LinkedHashSet<IFile>();
-		IResource[] selectedResources = getSelectedResources(event);
 		for (IFile file : files) {
 			for (IResource resource : selectedResources) {
 				if (resource.contains(file)) {

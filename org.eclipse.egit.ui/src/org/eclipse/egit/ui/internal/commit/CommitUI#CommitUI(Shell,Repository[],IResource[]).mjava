@@ -1,0 +1,7 @@
+	public CommitUI(Shell shell, Repository[] repos,
+			IResource[] selectedResources) {
+		this.shell = shell;
+		this.repos = repos;
+		this.selectedResources = selectedResources;
+	}
+
