@@ -1,5 +1,5 @@
 	public BranchHierarchyNode(RepositoryTreeNode parent,
 			Repository repository, IPath path) {
-		super(parent, RepositoryTreeNodeType.BRANCHHIERARCHY, repository, path);
+		super(parent, RepositoryTreeNodeType.BRANCHHIERARCHY, repository, path.addTrailingSeparator());
 	}
 
