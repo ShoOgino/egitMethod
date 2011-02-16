@@ -11,5 +11,6 @@
 		newButton.setEnabled(branchSelected || tagSelected);
 
 		renameButton.setEnabled(branchSelected && !tagSelected);
+		deleteteButton.setEnabled(branchSelected && !tagSelected);
 	}
 
