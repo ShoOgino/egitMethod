@@ -1,6 +1,7 @@
 	@Override
 	public boolean setInput(Object object) {
 		try {
+			setWarningText(null);
 			trace = GitTraceLocation.HISTORYVIEW.isActive();
 			if (trace)
 				GitTraceLocation.getTrace().traceEntry(

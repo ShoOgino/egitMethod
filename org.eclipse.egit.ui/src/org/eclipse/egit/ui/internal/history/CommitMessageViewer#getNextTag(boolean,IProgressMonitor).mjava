@@ -1,10 +1,13 @@
-	private Ref getNextTag(boolean searchDescendant) throws IOException {
+	private Ref getNextTag(boolean searchDescendant, IProgressMonitor monitor)
+			throws IOException, InterruptedException {
 		RevWalk revWalk = new RevWalk(db);
 
 		Map<String, Ref> tagsMap = db.getTags();
 		Ref tagRef = null;
 
 		for (String tagName : tagsMap.keySet()) {
+			if (monitor.isCanceled())
+				throw new InterruptedException();
 			RevCommit current = revWalk.parseCommit(commit);
 			Ref ref = tagsMap.get(tagName);
 			RevObject any = revWalk.peel(revWalk.parseAny(ref.getObjectId()));

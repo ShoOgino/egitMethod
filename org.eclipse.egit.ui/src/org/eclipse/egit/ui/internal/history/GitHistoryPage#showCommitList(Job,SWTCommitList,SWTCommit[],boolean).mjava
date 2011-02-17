@@ -1,5 +1,5 @@
 	void showCommitList(final Job j, final SWTCommitList list,
-			final SWTCommit[] asArray) {
+			final SWTCommit[] asArray, final boolean incomplete) {
 		if (trace)
 			GitTraceLocation.getTrace().traceEntry(
 					GitTraceLocation.HISTORYVIEW.getLocation(),
@@ -16,6 +16,10 @@
 								GitTraceLocation.HISTORYVIEW.getLocation(),
 								"Setting input to table"); 					findToolbar.setInput(highlightFlag, graph.getTableView()
 							.getTable(), asArray);
+					if (incomplete)
+						setWarningText(UIText.GitHistoryPage_ListIncompleteWarningMessage);
+					else
+						setWarningText(null);
 					setErrorMessage(null);
 				}
 			}
