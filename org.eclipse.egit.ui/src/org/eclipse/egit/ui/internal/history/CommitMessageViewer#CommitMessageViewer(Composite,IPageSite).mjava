@@ -1,18 +1,8 @@
 	CommitMessageViewer(final Composite parent, final IPageSite site) {
 		super(parent, SWT.H_SCROLL | SWT.V_SCROLL | SWT.READ_ONLY);
-		fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+
 		final StyledText t = getTextWidget();
 		t.setFont(UIUtils.getFont(UIPreferences.THEME_CommitMessageFont));
-
-		sys_linkColor = t.getDisplay().getSystemColor(SWT.COLOR_BLUE);
-		sys_darkgray = t.getDisplay().getSystemColor(SWT.COLOR_DARK_GRAY);
-		sys_hunkHeaderColor = t.getDisplay().getSystemColor(SWT.COLOR_BLUE);
-		sys_linesAddedColor = t.getDisplay().getSystemColor(
-				SWT.COLOR_DARK_GREEN);
-		sys_linesRemovedColor = t.getDisplay().getSystemColor(
-				SWT.COLOR_DARK_RED);
-
-		sys_linkCursor = t.getDisplay().getSystemCursor(SWT.CURSOR_HAND);
 
 		sys_normalCursor = t.getCursor();
 
@@ -28,7 +18,7 @@
 
 				final StyleRange r = t.getStyleRangeAtOffset(o);
 				if (r instanceof ObjectLink)
-					t.setCursor(sys_linkCursor);
+					t.setCursor(SYS_LINK_CURSOR);
 				else
 					t.setCursor(sys_normalCursor);
 			}
@@ -58,8 +48,8 @@
 		setTextDoubleClickStrategy(new DefaultTextDoubleClickStrategy(),
 				IDocument.DEFAULT_CONTENT_TYPE);
 		activatePlugins();
-		listener = new IPropertyChangeListener() {
 
+		listener = new IPropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent event) {
 				if (event.getProperty().equals(
 						UIPreferences.RESOURCEHISTORY_SHOW_COMMENT_WRAP)) {
@@ -73,6 +63,8 @@
 				}
 			}
 		};
+		Activator.getDefault().getPreferenceStore().addPropertyChangeListener(
+				listener);
 
 		final IAction selectAll = new Action() {
 			@Override
@@ -97,8 +89,6 @@
 				return canDoOperation(ITextOperationTarget.COPY);
 			}
 		};
-		Activator.getDefault().getPreferenceStore().addPropertyChangeListener(
-				listener);
 		getControl().addFocusListener(new FocusListener() {
 			public void focusLost(FocusEvent e) {
 				site.getActionBars().setGlobalActionHandler(
