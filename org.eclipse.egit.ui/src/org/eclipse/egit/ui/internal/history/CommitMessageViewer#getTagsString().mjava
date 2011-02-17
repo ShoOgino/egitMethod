@@ -8,7 +8,6 @@
 					sb.append(", "); 				sb.append(tagName);
 			}
 		}
-
 		return sb.toString();
 	}
 

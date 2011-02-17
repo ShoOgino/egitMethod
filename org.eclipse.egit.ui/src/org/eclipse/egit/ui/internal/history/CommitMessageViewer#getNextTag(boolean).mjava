@@ -16,7 +16,8 @@
 
 			if (isMergedInto(revWalk, newTag, current, searchDescendant)) {
 				if (tagRef != null) {
-					RevCommit oldTag = revWalk.parseCommit(tagRef.getObjectId());
+					RevCommit oldTag = revWalk
+							.parseCommit(tagRef.getObjectId());
 
 					if (isMergedInto(revWalk, oldTag, newTag, searchDescendant))
 						tagRef = ref;
@@ -24,7 +25,6 @@
 					tagRef = ref;
 			}
 		}
-
 		return tagRef;
 	}
 

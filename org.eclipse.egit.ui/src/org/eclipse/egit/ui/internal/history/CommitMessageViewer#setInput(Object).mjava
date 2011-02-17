@@ -1,5 +1,8 @@
 	@Override
 	public void setInput(final Object input) {
+		if (input == commit)
+			return;
+		currentDiffs.clear();
 		commit = (PlotCommit<?>) input;
 		format();
 	}
