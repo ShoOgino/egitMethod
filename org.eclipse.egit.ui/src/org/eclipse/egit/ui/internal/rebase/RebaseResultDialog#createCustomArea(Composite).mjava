@@ -41,6 +41,11 @@
 				if (dc.getEntry(i).getStage() > 0)
 					conflictPaths.add(dc.getEntry(i).getPathString());
 			}
+			if (conflictPaths.size() > 0) {
+				message = NLS.bind(UIText.RebaseResultDialog_Conflicting,
+						conflictPaths.size());
+				messageLabel.setText(message);
+			}
 		} catch (IOException e) {
 			conflictListFailure = true;
 		} finally {
@@ -70,17 +75,72 @@
 		actionGroup.setText(UIText.RebaseResultDialog_ActionGroupTitle);
 		actionGroup.setLayout(new GridLayout(1, false));
 
+		nextStepsGroup = new Group(main, SWT.SHADOW_ETCHED_IN);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(nextStepsGroup);
+		nextStepsGroup.setText(UIText.RebaseResultDialog_NextSteps);
+		nextStepsGroup.setLayout(new GridLayout(1, false));
+		final TextViewer nextSteps = new TextViewer(nextStepsGroup, SWT.MULTI
+				| SWT.BORDER | SWT.READ_ONLY);
+		GridDataFactory.fillDefaults().grab(true, true).hint(SWT.DEFAULT, 60)
+				.applyTo(nextSteps.getControl());
+		nextSteps.getTextWidget().setText(
+				UIText.RebaseResultDialog_NextStepsAfterResolveConflicts);
+
 		startMergeButton = new Button(actionGroup, SWT.RADIO);
 		startMergeButton.setText(UIText.RebaseResultDialog_StartMergeRadioText);
+		startMergeButton.addSelectionListener(new SelectionListener() {
+
+			public void widgetSelected(SelectionEvent e) {
+				nextSteps
+						.getTextWidget()
+						.setText(
+								UIText.RebaseResultDialog_NextStepsAfterResolveConflicts);
+			}
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+
+		});
 
 		skipCommitButton = new Button(actionGroup, SWT.RADIO);
 		skipCommitButton.setText(UIText.RebaseResultDialog_SkipCommitButton);
+		skipCommitButton.addSelectionListener(new SelectionListener() {
+
+			public void widgetSelected(SelectionEvent e) {
+				nextSteps.getTextWidget().setText(""); 			}
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+
+		});
 
 		abortRebaseButton = new Button(actionGroup, SWT.RADIO);
 		abortRebaseButton
 				.setText(UIText.RebaseResultDialog_AbortRebaseRadioText);
+		abortRebaseButton.addSelectionListener(new SelectionListener() {
+
+			public void widgetSelected(SelectionEvent e) {
+				nextSteps.getTextWidget().setText(""); 			}
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+
+		});
+
 		doNothingButton = new Button(actionGroup, SWT.RADIO);
 		doNothingButton.setText(UIText.RebaseResultDialog_DoNothingRadioText);
+		doNothingButton.addSelectionListener(new SelectionListener() {
+
+			public void widgetSelected(SelectionEvent e) {
+				nextSteps.getTextWidget().setText(
+						UIText.RebaseResultDialog_NextStepsDoNothing);
+			}
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+
+		});
+
 		startMergeButton.setSelection(true);
 
 		commitGroup.pack();
