@@ -1,6 +1,5 @@
 	@Test public void shouldReturnEqualsForTheSameInstance() throws Exception {
-		GitModelWorkingTree left = new GitModelWorkingTree(createModelCommit(),
-				getCommit(leftRepoFile, HEAD));
+		GitModelWorkingTree left = new GitModelWorkingTree(createModelCommit());
 
 		boolean actual = left.equals(left);
 

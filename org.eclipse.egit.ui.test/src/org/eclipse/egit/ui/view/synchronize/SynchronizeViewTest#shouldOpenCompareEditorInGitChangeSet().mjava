@@ -4,14 +4,8 @@
 		changeFilesInProject();
 		showDialog(PROJ1, "Team", "Synchronize...");
 
-		bot.shell("Synchronize repository: " + REPO1 + File.separator + ".git")
-				.activate();
-
-		bot.comboBox(2)
-				.setSelection(UIText.SynchronizeWithAction_tagsName);
-		bot.comboBox(3).setSelection("compare1");
-
-		bot.button(IDialogConstants.OK_LABEL).click();
+		launchSynchronization(null, null, SynchronizeWithAction_tagsName,
+				"compare1", true);
 
 		SWTBotTree syncViewTree = bot.viewByTitle("Synchronize").bot().tree();
 		syncViewTree.getAllItems()[0].collapse().doubleClick();

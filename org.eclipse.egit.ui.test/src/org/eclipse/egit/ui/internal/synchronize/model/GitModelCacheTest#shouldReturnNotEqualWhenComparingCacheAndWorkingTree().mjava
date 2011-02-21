@@ -2,8 +2,7 @@
 			throws Exception {
 		GitModelCache left = new GitModelCache(createModelRepository(),
 				getCommit(leftRepoFile, HEAD));
-		GitModelCache right = new GitModelWorkingTree(createModelRepository(),
-				getCommit(leftRepoFile, HEAD));
+		GitModelCache right = new GitModelWorkingTree(createModelRepository());
 
 		boolean actual = left.equals(right);
 

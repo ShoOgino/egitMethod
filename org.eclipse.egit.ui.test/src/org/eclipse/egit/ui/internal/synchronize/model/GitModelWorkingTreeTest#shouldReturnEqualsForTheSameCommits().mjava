@@ -1,9 +1,8 @@
 	@Test public void shouldReturnEqualsForTheSameCommits()
 			throws Exception {
-		GitModelWorkingTree left = new GitModelWorkingTree(createModelCommit(),
-				getCommit(leftRepoFile, HEAD));
+		GitModelWorkingTree left = new GitModelWorkingTree(createModelCommit());
 		GitModelWorkingTree right = new GitModelWorkingTree(
-				createModelCommit(), getCommit(leftRepoFile, HEAD));
+				createModelCommit());
 
 		boolean actual = left.equals(right);
 

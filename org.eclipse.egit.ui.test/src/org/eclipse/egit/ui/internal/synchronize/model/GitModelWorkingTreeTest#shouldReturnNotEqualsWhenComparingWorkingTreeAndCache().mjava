@@ -1,7 +1,6 @@
 	@Test public void shouldReturnNotEqualsWhenComparingWorkingTreeAndCache()
 			throws Exception {
-		GitModelWorkingTree left = new GitModelWorkingTree(createModelCommit(),
-				getCommit(leftRepoFile, HEAD));
+		GitModelWorkingTree left = new GitModelWorkingTree(createModelCommit());
 		GitModelCache right = new GitModelCache(createModelCommit(),
 				getCommit(leftRepoFile, HEAD));
 

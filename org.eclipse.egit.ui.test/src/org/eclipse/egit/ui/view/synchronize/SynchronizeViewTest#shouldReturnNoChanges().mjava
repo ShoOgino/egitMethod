@@ -4,22 +4,8 @@
 		changeFilesInProject();
 		showDialog(PROJ1, "Team", "Synchronize...");
 
-		bot.shell("Synchronize repository: " + REPO1 + File.separator + ".git")
-				.activate();
-
-		bot.checkBox(
-				UIText.SelectSynchronizeResourceDialog_includeUncommitedChanges)
-				.click();
-
-		bot.comboBox(0)
-				.setSelection(UIText.SynchronizeWithAction_localRepoName);
-		bot.comboBox(1).setSelection(HEAD);
-
-		bot.comboBox(2)
-				.setSelection(UIText.SynchronizeWithAction_localRepoName);
-		bot.comboBox(3).setSelection(MASTER);
-
-		bot.button(IDialogConstants.OK_LABEL).click();
+		launchSynchronization(SynchronizeWithAction_localRepoName, HEAD,
+				SynchronizeWithAction_localRepoName, MASTER, false);
 
 		SWTBotTree syncViewTree = bot.viewByTitle("Synchronize").bot().tree();
 		assertEquals(0, syncViewTree.getAllItems().length);

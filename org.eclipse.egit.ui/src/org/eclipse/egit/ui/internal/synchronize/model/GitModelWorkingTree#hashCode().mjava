@@ -1,5 +1,5 @@
 	@Override
 	public int hashCode() {
-		return 31 + baseCommit.hashCode() ^ getParent().hashCode();
+		return getParent().hashCode();
 	}
 
