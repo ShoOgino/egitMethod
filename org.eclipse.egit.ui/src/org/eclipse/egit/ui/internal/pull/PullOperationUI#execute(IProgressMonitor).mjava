@@ -1,0 +1,4 @@
+	public void execute(IProgressMonitor monitor) throws CoreException {
+		pull.execute(monitor);
+	}
+
