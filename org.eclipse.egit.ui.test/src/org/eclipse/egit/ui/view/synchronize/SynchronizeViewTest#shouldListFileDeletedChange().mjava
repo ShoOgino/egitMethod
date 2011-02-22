@@ -1,5 +1,4 @@
-	@Test
-	public void shouldListFileDeletedChange() throws Exception {
+	@Test public void shouldListFileDeletedChange() throws Exception {
 		resetRepository(PROJ1);
 		createTag(PROJ1, "base");
 		deleteFileAndCommit(PROJ1);
