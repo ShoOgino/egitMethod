@@ -1,0 +1,11 @@
+	@Test public void cacheTreeShouldBeLessThanTree() {
+		Viewer viewer = mock(Viewer.class);
+		GitChangeSetSorter sorter = new GitChangeSetSorter();
+		GitModelCache cache = mock(GitModelCache.class);
+		GitModelTree tree = mock(GitModelTree.class);
+
+		int actual = sorter.compare(viewer, cache, tree);
+
+		assertTrue(actual < 0);
+	}
+
