@@ -1,14 +1,12 @@
 	@Test public void shouldOpenCompareEditorInWorkspaceModel()
 			throws Exception {
-		resetRepository(PROJ1);
-		createTag(PROJ1, "compare2");
+		resetRepositoryToCreateInitialTag(PROJ1);
 		changeFilesInProject();
-		showDialog(PROJ1, "Team", "Synchronize...");
 
 		launchSynchronization(null, null, SynchronizeWithAction_tagsName,
-				"compare2", true);
+				INITIAL_TAG, true);
 
-		SWTBot compare = getCompareEditorForFileInWorkspaceModel(true).bot();
+		SWTBot compare = getCompareEditorForFileInWorkspaceModel().bot();
 		assertNotNull(compare);
 	}
 

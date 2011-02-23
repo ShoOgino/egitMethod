@@ -1,25 +1,13 @@
 	@Test
 	public void shouldReturnListOfChanges() throws Exception {
-		resetRepository(PROJ1);
+		resetRepositoryToCreateInitialTag(PROJ1);
 		changeFilesInProject();
-		showDialog(PROJ1, "Team", "Synchronize...");
 
-		bot.shell("Synchronize repository: " + REPO1 + File.separator + ".git")
-				.activate();
-
-		bot.comboBox(2)
-				.setSelection(UIText.SynchronizeWithAction_localRepoName);
-		bot.comboBox(3).setSelection(MASTER);
-
-		bot.button(IDialogConstants.OK_LABEL).click();
+		launchSynchronization(null, null, SynchronizeWithAction_localRepoName,
+				HEAD, true);
 
 		SWTBotTree syncViewTree = bot.viewByTitle("Synchronize").bot().tree();
-
-		waitUntilTreeHasNodeWithText(syncViewTree,
-				UIText.GitModelWorkingTree_workingTree);
-
 		SWTBotTreeItem[] syncItems = syncViewTree.getAllItems();
-		assertEquals(UIText.GitModelWorkingTree_workingTree,
-				syncItems[0].getText());
+		assertEquals(GitModelWorkingTree_workingTree, syncItems[0].getText());
 	}
 

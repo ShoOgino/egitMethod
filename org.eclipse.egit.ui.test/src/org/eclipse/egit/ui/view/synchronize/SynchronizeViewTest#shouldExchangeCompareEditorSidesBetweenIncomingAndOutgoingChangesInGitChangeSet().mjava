@@ -1,25 +1,22 @@
 	@Test public void shouldExchangeCompareEditorSidesBetweenIncomingAndOutgoingChangesInGitChangeSet()
 			throws Exception {
-		String tagName = "exchangeCompareSidesInGitChangeSet";
-		resetRepository(PROJ1);
-		createTag(PROJ1, tagName);
-		changeFilesInProject();
-		commit(PROJ1);
-		showDialog(PROJ1, "Team", "Synchronize...");
+		resetRepositoryToCreateInitialTag(PROJ1);
+		makeChangesAndCommit(PROJ1);
 
 		launchSynchronization(SynchronizeWithAction_localRepoName, HEAD,
-				SynchronizeWithAction_tagsName, tagName, false);
-		SWTBot outgoingCompare = getCompareEditorForFileInGitChangeSet(FILE1,
-				false);
-		String outgoingLeft = outgoingCompare.styledText(0).getText();
-		String outgoingRight = outgoingCompare.styledText(1).getText();
+				SynchronizeWithAction_tagsName, INITIAL_TAG, false);
+		SWTBotEditor outgoingCompare = getCompareEditorForFileInGitChangeSet(
+				FILE1, false);
+		SWTBot outgoingCompareBot = outgoingCompare.bot();
+		String outgoingLeft = outgoingCompareBot.styledText(0).getText();
+		String outgoingRight = outgoingCompareBot.styledText(1).getText();
+		outgoingCompare.close();
 
-		showDialog(PROJ1, "Team", "Synchronize...");
-		launchSynchronization(SynchronizeWithAction_tagsName, tagName,
+		launchSynchronization(SynchronizeWithAction_tagsName, INITIAL_TAG,
 				SynchronizeWithAction_localRepoName, HEAD, false);
 
-		SWTBot incomingComp = getCompareEditorForFileInGitChangeSet(FILE1,
-				false);
+		SWTBot incomingComp = getCompareEditorForFileInGitChangeSet(
+				FILE1, false).bot();
 		assertThat(outgoingLeft, equalTo(incomingComp.styledText(1).getText()));
 		assertThat(outgoingRight, equalTo(incomingComp.styledText(0).getText()));
 	}
