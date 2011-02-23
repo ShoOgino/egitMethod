@@ -1,12 +1,11 @@
-	private void format(final List<StyleRange> styles, final StringBuilder d,
-			IProgressMonitor monitor) throws InterruptedException,
-			InvocationTargetException {
+	public String format(final List<StyleRange> styles,
+			IProgressMonitor monitor) throws IOException {
 		boolean trace = GitTraceLocation.HISTORYVIEW.isActive();
 		if (trace)
 			GitTraceLocation.getTrace().traceEntry(
 					GitTraceLocation.HISTORYVIEW.getLocation());
-		monitor
-				.setTaskName(UIText.CommitMessageViewer_FormattingMessageTaskName);
+		monitor.setTaskName(UIText.CommitMessageViewer_FormattingMessageTaskName);
+		final StringBuilder d = new StringBuilder();
 		final PersonIdent author = commit.getAuthorIdent();
 		final PersonIdent committer = commit.getCommitterIdent();
 		d.append(UIText.CommitMessageViewer_commit);
@@ -77,8 +76,7 @@
 		if (Activator.getDefault().getPreferenceStore().getBoolean(
 				UIPreferences.HISTORY_SHOW_TAG_SEQUENCE)) {
 			try {
-				monitor
-						.setTaskName(UIText.CommitMessageViewer_GettingPreviousTagTaskName);
+				monitor.setTaskName(UIText.CommitMessageViewer_GettingPreviousTagTaskName);
 				Ref followingTag = getNextTag(false, monitor);
 				if (followingTag != null) {
 					d.append(UIText.CommitMessageViewer_follows);
@@ -92,8 +90,7 @@
 			}
 
 			try {
-				monitor
-						.setTaskName(UIText.CommitMessageViewer_GettingNextTagTaskName);
+				monitor.setTaskName(UIText.CommitMessageViewer_GettingNextTagTaskName);
 				Ref precedingTag = getNextTag(true, monitor);
 				if (precedingTag != null) {
 					d.append(UIText.CommitMessageViewer_precedes);
@@ -133,5 +130,6 @@
 		if (trace)
 			GitTraceLocation.getTrace().traceExit(
 					GitTraceLocation.HISTORYVIEW.getLocation());
+		return d.toString();
 	}
 

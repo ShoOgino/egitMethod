@@ -1,5 +1,7 @@
 	private Ref getNextTag(boolean searchDescendant, IProgressMonitor monitor)
-			throws IOException, InterruptedException {
+			throws IOException, OperationCanceledException {
+		if (monitor.isCanceled())
+			throw new OperationCanceledException();
 		RevWalk revWalk = new RevWalk(db);
 
 		Map<String, Ref> tagsMap = db.getTags();
@@ -7,7 +9,7 @@
 
 		for (String tagName : tagsMap.keySet()) {
 			if (monitor.isCanceled())
-				throw new InterruptedException();
+				throw new OperationCanceledException();
 			RevCommit current = revWalk.parseCommit(commit);
 			Ref ref = tagsMap.get(tagName);
 			RevObject any = revWalk.peel(revWalk.parseAny(ref.getObjectId()));
@@ -18,6 +20,8 @@
 				continue;
 
 			if (isMergedInto(revWalk, newTag, current, searchDescendant)) {
+				if (monitor.isCanceled())
+					throw new OperationCanceledException();
 				if (tagRef != null) {
 					RevCommit oldTag = revWalk
 							.parseCommit(tagRef.getObjectId());

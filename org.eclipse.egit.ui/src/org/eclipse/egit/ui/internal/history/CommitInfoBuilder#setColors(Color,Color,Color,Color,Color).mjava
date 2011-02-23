@@ -1,0 +1,8 @@
+	public void setColors(Color linkColor, Color darkGrey, Color hunkheaderColor, Color linesAddedColor, Color linesRemovedColor) {
+		this.linkColor = linkColor;
+		this.darkGrey = darkGrey;
+		this.hunkheaderColor = hunkheaderColor;
+		this.linesAddedColor = linesAddedColor;
+		this.linesRemovedColor = linesRemovedColor;
+	}
+
