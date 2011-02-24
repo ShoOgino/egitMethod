@@ -6,7 +6,13 @@
 				elements = elementList.toArray(new Object[elementList.size()]);
 				elementList.clear();
 			}
-			GitLightweightDecorator.processDecoration(elements);
+			try {
+				GitLightweightDecorator.processDecoration(elements);
+			} catch (Exception e) {
+				if (GitTraceLocation.DECORATION.isActive())
+					GitTraceLocation.getTrace().trace(
+							GitTraceLocation.DECORATION.getLocation(),
+							"An error occurred during resource decoration", e); 			}
 		}
 		return Status.OK_STATUS;
 	}
