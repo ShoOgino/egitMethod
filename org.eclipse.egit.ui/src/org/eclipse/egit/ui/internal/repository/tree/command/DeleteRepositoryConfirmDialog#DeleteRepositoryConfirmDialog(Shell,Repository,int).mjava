@@ -1,7 +1,8 @@
 	public DeleteRepositoryConfirmDialog(Shell parentShell,
-			Repository repository) {
+			Repository repository, int numberOfProjects) {
 		super(parentShell);
 		setHelpAvailable(false);
 		this.repository = repository;
+		this.numberOfProjects = numberOfProjects;
 	}
 
