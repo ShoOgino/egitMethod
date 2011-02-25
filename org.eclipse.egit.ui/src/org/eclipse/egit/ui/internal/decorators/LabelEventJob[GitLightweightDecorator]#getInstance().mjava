@@ -1,0 +1,4 @@
+	static LabelEventJob getInstance() {
+		return instance;
+	}
+

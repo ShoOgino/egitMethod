@@ -1,5 +1,5 @@
-	private void postLabelEvent(final LabelProviderChangedEvent event) {
-		if (event.getElement() == null) {
+	private void postLabelEvent(final Object[] elements) {
+		if (elements == null) {
 			final IWorkspaceRoot root = ResourcesPlugin.getWorkspace()
 					.getRoot();
 			try {
@@ -8,10 +8,7 @@
 			} catch (CoreException e) {
 				handleException(root, e);
 			}
-
-			fireLabelEvent(event);
 		} else {
-			Object[] elements = event.getElements();
 			for (Object element : elements) {
 				final IResource resource = getResource(element);
 				if (resource != null)
@@ -20,8 +17,8 @@
 					} catch (CoreException e) {
 					}
 			}
-
-			fireLabelEvent(new LabelProviderChangedEvent(this));
 		}
+
+		LabelEventJob.getInstance().postLabelEvent(this);
 	}
 
