@@ -4,6 +4,7 @@
 		if (resource == null)
 			return;
 
+
 		if (!PlatformUI.isWorkbenchRunning())
 			return;
 
@@ -17,37 +18,37 @@
 		if (!resource.exists() && !resource.isPhantom())
 			return;
 
+		IDecoratableResource decoratableResource = null;
+		final DecorationHelper helper = new DecorationHelper(
+				activator.getPreferenceStore());
+
+
 		try {
 			final Boolean notDecoratable = (Boolean) resource
 					.getSessionProperty(NOT_DECORATABLE_KEY);
 			if (notDecoratable != null && notDecoratable.equals(Boolean.TRUE))
 				return;
 
-			final IDecoratableResource decoratableResource = (IDecoratableResource) resource
+			decoratableResource = (IDecoratableResource) resource
 					.getSessionProperty(DECORATABLE_RESOURCE_KEY);
-			boolean decorated = false;
 			if (decoratableResource != null) {
-				final DecorationHelper helper = new DecorationHelper(
-						activator.getPreferenceStore());
-				helper.decorate(decoration, decoratableResource);
-				decorated = true;
-			}
-
-			final Long refreshed = (Long) resource
-					.getSessionProperty(REFRESHED_KEY);
-			if (refreshed != null) {
-				final Long refresh = (Long) resource.getWorkspace().getRoot()
-						.getSessionProperty(REFRESH_KEY);
-				if (refresh == null
-						|| refresh.longValue() <= refreshed.longValue()) {
-					if (decorated)
+				final Long refreshed = (Long) resource
+						.getSessionProperty(REFRESHED_KEY);
+				if (refreshed != null) {
+					final Long refresh = (Long) resource.getWorkspace()
+							.getRoot().getSessionProperty(REFRESH_KEY);
+					if (refresh == null
+							|| refresh.longValue() <= refreshed.longValue()) {
+						helper.decorate(decoration, decoratableResource);
 						return;
+					}
 				}
 			}
 		} catch (CoreException e) {
 			handleException(resource, e);
 			return;
 		}
+
 
 		if (Team.isIgnoredHint(resource))
 			return;
@@ -59,6 +60,24 @@
 
 		if (mapping.getRepoRelativePath(resource) == null)
 			return;
+
+		if (resource.getType() == IResource.PROJECT) {
+			try {
+				decoratableResource = DecoratableResourceHelper
+						.createTemporaryDecoratableResource(resource
+								.getProject());
+			} catch (IOException e) {
+				handleException(
+						resource,
+						new CoreException(Activator.createErrorStatus(
+								UIText.Decorator_exceptionMessage, e)));
+				return;
+			}
+		}
+
+		if (decoratableResource != null) {
+			helper.decorate(decoration, decoratableResource);
+		}
 
 		GitDecoratorJob.getJobForRepository(
 				mapping.getGitDirAbsolutePath().toString())
