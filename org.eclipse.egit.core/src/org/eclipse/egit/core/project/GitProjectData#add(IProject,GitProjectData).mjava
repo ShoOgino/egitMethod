@@ -1,0 +1,5 @@
+	public static void add(final IProject p, final GitProjectData d) {
+		trace("add(" + p.getName() + ")"); 
+		cache(p, d);
+	}
+
