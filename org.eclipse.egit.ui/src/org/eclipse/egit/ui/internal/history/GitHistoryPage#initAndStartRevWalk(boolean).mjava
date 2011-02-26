@@ -11,18 +11,25 @@
 			List<String> paths = buildFilterPaths(input.getItems(), input
 					.getFileList(), db);
 
-			if (forceNewWalk || pathChange(pathFilters, paths)
-					|| currentWalk == null || !headId.equals(currentHeadId)) {
-				createNewWalk(db, headId);
-			} else {
-				currentWalk.reset();
+			boolean pathChange = pathChange(pathFilters, paths);
+			boolean headChange = !headId.equals(currentHeadId);
+			boolean repoChange = false;
+			if (!db.equals(currentRepo))
+			{
+				repoChange = true;
+				currentRepo = db;
 			}
-			setWalkStartPoints(db, headId);
+			if (forceNewWalk || pathChange
+					|| currentWalk == null || headChange || repoChange) {
+				createNewWalk(db, headId);
+				setWalkStartPoints(db, headId);
 
-			setupFileViewer(db, paths);
-			setupCommentViewer(db);
+				setupFileViewer(db, paths);
+				setupCommentViewer(db);
 
-			scheduleNewGenerateHistoryJob();
+				scheduleNewGenerateHistoryJob();
+			} else
+				graph.setHistoryPageInput(input);
 		} finally {
 			if (trace)
 				GitTraceLocation.getTrace().traceExit(
