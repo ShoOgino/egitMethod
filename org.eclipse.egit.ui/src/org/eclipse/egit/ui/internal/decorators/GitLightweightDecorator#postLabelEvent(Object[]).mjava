@@ -1,24 +1,4 @@
 	private void postLabelEvent(final Object[] elements) {
-		if (elements == null) {
-			final IWorkspaceRoot root = ResourcesPlugin.getWorkspace()
-					.getRoot();
-			try {
-				root.setSessionProperty(REFRESH_KEY,
-						Long.valueOf(System.currentTimeMillis()));
-			} catch (CoreException e) {
-				handleException(root, e);
-			}
-		} else {
-			for (Object element : elements) {
-				final IResource resource = getResource(element);
-				if (resource != null)
-					try {
-						resource.setSessionProperty(REFRESHED_KEY, null);
-					} catch (CoreException e) {
-					}
-			}
-		}
-
-		LabelEventJob.getInstance().postLabelEvent(this);
+		postLabelEvent(elements, false);
 	}
 

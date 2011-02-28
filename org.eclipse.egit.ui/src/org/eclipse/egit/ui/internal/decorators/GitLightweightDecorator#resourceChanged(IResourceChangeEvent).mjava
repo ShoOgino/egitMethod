@@ -1,4 +1,5 @@
 	public void resourceChanged(IResourceChangeEvent event) {
+		final long currentTime = System.currentTimeMillis();
 		final Set<IResource> resourcesToUpdate = new HashSet<IResource>();
 
 		try { 			event.getDelta().accept(new IResourceDeltaVisitor() {
@@ -25,6 +26,12 @@
 						if (!resource.isAccessible())
 							return false;
 					}
+
+					if (currentTime - resource.getLocalTimeStamp() > 10000)
+						return false;
+
+					if (Team.isIgnoredHint(resource))
+						return false;
 
 					if (Constants.GITIGNORE_FILENAME.equals(resource.getName())) {
 						IContainer parent = resource.getParent();

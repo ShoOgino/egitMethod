@@ -1,0 +1,4 @@
+	private void postLabelEvent() {
+		postLabelEvent(null, true);
+	}
+
