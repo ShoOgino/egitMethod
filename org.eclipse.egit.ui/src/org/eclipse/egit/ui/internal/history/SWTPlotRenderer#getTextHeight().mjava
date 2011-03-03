@@ -1,0 +1,4 @@
+	public int getTextHeight() {
+		return textHeight;
+	}
+
