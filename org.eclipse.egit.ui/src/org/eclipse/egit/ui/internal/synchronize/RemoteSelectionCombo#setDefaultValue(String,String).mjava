@@ -1,11 +1,11 @@
-	public void setDefaultValue(String remote, String ref) {
+	public boolean setDefaultValue(String remote, String ref) {
 		int i = 0;
 		for (; i < syncRepos.size(); i++)
 			if (syncRepos.get(i).getName().equals(remote))
 				break;
 
 		if (i == syncRepos.size())
-			return;	
+			return false; 
 		remotesCombo.select(i);
 		fillRefsCombo();
 
@@ -16,6 +16,8 @@
 				break;
 
 		if (i == syncRepos.size())
-			return;			refsCombo.select(i);
+			return false; 		refsCombo.select(i);
+
+		return true;
 	}
 
