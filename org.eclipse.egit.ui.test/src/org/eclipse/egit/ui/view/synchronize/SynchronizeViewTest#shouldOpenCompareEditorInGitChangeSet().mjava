@@ -1,5 +1,5 @@
 	@Test public void shouldOpenCompareEditorInGitChangeSet() throws Exception {
-		resetRepositoryToCreateInitialTag(PROJ1);
+		resetRepositoryToCreateInitialTag();
 		changeFilesInProject();
 
 		launchSynchronization(null, null, SynchronizeWithAction_tagsName,

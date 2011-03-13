@@ -1,6 +1,6 @@
 	@Test public void shouldExchangeCompareEditorSidesBetweenIncomingAndOutgoingChangesInWorkspaceModel()
 			throws Exception {
-		resetRepositoryToCreateInitialTag(PROJ1);
+		resetRepositoryToCreateInitialTag();
 		makeChangesAndCommit(PROJ1);
 
 		launchSynchronization(SynchronizeWithAction_localRepoName, HEAD,

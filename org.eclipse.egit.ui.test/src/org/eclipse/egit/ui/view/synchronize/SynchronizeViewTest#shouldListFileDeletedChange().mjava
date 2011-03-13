@@ -1,5 +1,5 @@
 	@Test public void shouldListFileDeletedChange() throws Exception {
-		resetRepositoryToCreateInitialTag(PROJ1);
+		resetRepositoryToCreateInitialTag();
 		deleteFileAndCommit(PROJ1);
 
 		launchSynchronization(null, null, SynchronizeWithAction_tagsName,
