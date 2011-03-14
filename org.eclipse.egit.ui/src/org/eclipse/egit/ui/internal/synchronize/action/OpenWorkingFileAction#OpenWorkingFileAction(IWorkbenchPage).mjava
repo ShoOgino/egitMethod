@@ -1,0 +1,7 @@
+	public OpenWorkingFileAction(IWorkbenchPage page) {
+		super(null);
+		setText(UIText.OpenWorkingFileAction_text);
+		setToolTipText(UIText.OpenWorkingFileAction_tooltip);
+		this.workbenchPage = page;
+	}
+

@@ -1,0 +1,5 @@
+	protected boolean updateSelection(IStructuredSelection selection) {
+		return super.updateSelection(selection)
+				&& selectionIsOfType(IResource.FILE);
+	}
+
