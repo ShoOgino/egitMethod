@@ -1,6 +1,6 @@
 	@Test public void shouldOpenCompareEditorInWorkspaceModel()
 			throws Exception {
-		resetRepositoryToCreateInitialTag(PROJ1);
+		resetRepositoryToCreateInitialTag();
 		changeFilesInProject();
 
 		launchSynchronization(null, null, SynchronizeWithAction_tagsName,

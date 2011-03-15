@@ -1,6 +1,6 @@
 	@Test
 	public void shouldReturnListOfChanges() throws Exception {
-		resetRepositoryToCreateInitialTag(PROJ1);
+		resetRepositoryToCreateInitialTag();
 		changeFilesInProject();
 
 		launchSynchronization(null, null, SynchronizeWithAction_localRepoName,

@@ -1,6 +1,6 @@
 	@Test
 	public void shouldCompareBranchAgainstTag() throws Exception {
-		resetRepositoryToCreateInitialTag(PROJ1);
+		resetRepositoryToCreateInitialTag();
 		makeChangesAndCommit(PROJ1);
 
 		launchSynchronization(SynchronizeWithAction_tagsName, INITIAL_TAG,
