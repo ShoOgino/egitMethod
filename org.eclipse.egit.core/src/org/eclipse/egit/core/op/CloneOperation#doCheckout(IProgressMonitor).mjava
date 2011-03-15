@@ -26,6 +26,6 @@
 		dirCacheCheckout.setFailOnConflict(true);
 		boolean result = dirCacheCheckout.checkout();
 		if (!result)
-			throw new IOException("Internal error occured on checking out files"); 		monitor.setTaskName(CoreText.CloneOperation_writingIndex);
+			throw new IOException("Internal error occurred on checking out files"); 		monitor.setTaskName(CoreText.CloneOperation_writingIndex);
 	}
 
