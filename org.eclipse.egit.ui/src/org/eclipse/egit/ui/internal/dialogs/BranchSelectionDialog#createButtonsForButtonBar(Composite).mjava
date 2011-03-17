@@ -67,6 +67,8 @@
 					try {
 						branchTree.refresh();
 						markRef(Constants.R_HEADS + newRefName);
+						if (repo.getBranch().equals(newRefName))
+							BranchSelectionDialog.this.okPressed();
 					} catch (Throwable e1) {
 						reportError(
 								e1,
