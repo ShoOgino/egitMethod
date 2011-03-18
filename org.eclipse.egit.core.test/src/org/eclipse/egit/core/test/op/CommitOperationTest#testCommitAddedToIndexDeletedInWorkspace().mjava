@@ -11,13 +11,23 @@
 		testUtils.addFileToProject(project.getProject(), "zar/b.txt", "some text");
 		resources.add(project.getProject().getFolder("zar"));
 		new AddToIndexOperation(resources).execute(null);
-		project.getProject().getFile("zar/b.txt").delete(true, null);
+		IFile zarFile = project.getProject().getFile("zar/b.txt");
+		IPath zarFilePath = zarFile.getLocation();
+		assertTrue("could not delete file " + zarFilePath.toOSString(),
+				zarFilePath.toFile().delete());
+		zarFile.refreshLocal(0, null);
+
 		assertTrue(!project.getProject().getFile("zar/b.txt").exists());
 
 		IFile[] filesToCommit = new IFile[] { project.getProject().getFile("zar/b.txt") };
 		commitOperation = new CommitOperation(filesToCommit, Arrays.asList(filesToCommit), null, TestUtils.AUTHOR, TestUtils.COMMITTER, "first commit");
 		commitOperation.setRepos(new Repository[] {repository});
-		commitOperation.execute(null);
+		try {
+			commitOperation.execute(null);
+			fail("expected CoreException");
+		} catch (CoreException e) {
+			assertEquals("No changes", e.getCause().getMessage());
+		}
 
 		TreeWalk treeWalk = new TreeWalk(repository);
 		treeWalk.addTree(repository.resolve("HEAD^{tree}"));
