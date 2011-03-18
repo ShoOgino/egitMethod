@@ -9,6 +9,8 @@
 		assertFalse(branchNameDialog.bot().button(IDialogConstants.FINISH_LABEL)
 				.isEnabled());
 		branchName.setText("Unrenamed");
+		branchNameDialog.bot().checkBox(UIText.CreateBranchPage_CheckoutButton)
+				.deselect();
 		branchNameDialog.bot().button(IDialogConstants.FINISH_LABEL).click();
 
 		assertEquals("New Branch should be selected", "Unrenamed", bot.tree()
