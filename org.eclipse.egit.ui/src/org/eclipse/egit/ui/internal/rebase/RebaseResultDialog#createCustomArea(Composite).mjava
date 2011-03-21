@@ -91,10 +91,12 @@
 		startMergeButton.addSelectionListener(new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
-				nextSteps
-						.getTextWidget()
-						.setText(
-								UIText.RebaseResultDialog_NextStepsAfterResolveConflicts);
+				if (startMergeButton.getSelection()) {
+					nextSteps
+							.getTextWidget()
+							.setText(
+									UIText.RebaseResultDialog_NextStepsAfterResolveConflicts);
+				}
 			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -107,7 +109,8 @@
 		skipCommitButton.addSelectionListener(new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
-				nextSteps.getTextWidget().setText(""); 			}
+				if (skipCommitButton.getSelection())
+					nextSteps.getTextWidget().setText(""); 			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
@@ -120,7 +123,8 @@
 		abortRebaseButton.addSelectionListener(new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
-				nextSteps.getTextWidget().setText(""); 			}
+				if (abortRebaseButton.getSelection())
+					nextSteps.getTextWidget().setText(""); 			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
@@ -132,8 +136,9 @@
 		doNothingButton.addSelectionListener(new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
-				nextSteps.getTextWidget().setText(
-						UIText.RebaseResultDialog_NextStepsDoNothing);
+				if (doNothingButton.getSelection())
+					nextSteps.getTextWidget().setText(
+							UIText.RebaseResultDialog_NextStepsDoNothing);
 			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {
