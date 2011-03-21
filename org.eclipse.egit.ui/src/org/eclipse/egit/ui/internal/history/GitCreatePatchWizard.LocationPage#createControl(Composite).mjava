@@ -35,19 +35,23 @@
 
 			cpRadio.addListener(SWT.Selection, new Listener() {
 				public void handleEvent(Event event) {
-					fsPathText.setEnabled(false);
-					fsBrowseButton.setEnabled(false);
-					validatePage();
+					if (((Button) event.widget).getSelection()) {
+						fsPathText.setEnabled(false);
+						fsBrowseButton.setEnabled(false);
+						validatePage();
+					}
 				}
 			});
 
 			fsRadio.addListener(SWT.Selection, new Listener() {
 
 				public void handleEvent(Event event) {
-					fsPathText.setEnabled(true);
-					fsBrowseButton.setEnabled(true);
-					fsPathText.setFocus();
-					validatePage();
+					if (((Button) event.widget).getSelection()) {
+						fsPathText.setEnabled(true);
+						fsBrowseButton.setEnabled(true);
+						fsPathText.setFocus();
+						validatePage();
+					}
 				}
 			});
 
