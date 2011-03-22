@@ -7,11 +7,10 @@
 		Map<String, Ref> tagsMap = db.getTags();
 		Ref tagRef = null;
 
-		for (String tagName : tagsMap.keySet()) {
+		for (Ref ref : tagsMap.values()) {
 			if (monitor.isCanceled())
 				throw new OperationCanceledException();
 			RevCommit current = revWalk.parseCommit(commit);
-			Ref ref = tagsMap.get(tagName);
 			RevObject any = revWalk.peel(revWalk.parseAny(ref.getObjectId()));
 			if (!(any instanceof RevCommit))
 				continue;
