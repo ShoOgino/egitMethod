@@ -13,5 +13,10 @@
 				.setValue(UIPreferences.DEFAULT_REPO_DIR, repoRoot.getPath());
 		org.eclipse.egit.ui.Activator.getDefault().getPreferenceStore()
 				.setValue(UIPreferences.SHOW_INITIAL_CONFIG_DIALOG, false);
+		org.eclipse.egit.ui.Activator
+				.getDefault()
+				.getPreferenceStore()
+				.setValue(UIPreferences.SHOW_DETACHED_HEAD_WARNING,
+						MessageDialogWithToggle.ALWAYS);
 	}
 
