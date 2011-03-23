@@ -1,5 +1,8 @@
 	@Override
 	public boolean performFinish() {
+		boolean calledFromRepoPage = false;
+		if (getContainer().getCurrentPage()==repoPage)
+			calledFromRepoPage = true;
 		if (repoPage.getSelection().isConfigSelected()
 				&& refSpecPage.isSaveRequested())
 			saveConfig();
@@ -14,7 +17,10 @@
 				UIPreferences.REMOTE_CONNECTION_TIMEOUT);
 		final RepositorySelection repoSelection = repoPage.getSelection();
 
-		if (repoSelection.isConfigSelected())
+		if (calledFromRepoPage)
+			op = new FetchOperationUI(localDb, repoSelection.getConfig(),
+					timeout, false);
+		else if (repoSelection.isConfigSelected())
 			op = new FetchOperationUI(localDb, repoSelection.getConfig()
 					.getURIs().get(0), refSpecPage.getRefSpecs(), timeout,
 					false);
@@ -27,7 +33,8 @@
 			op.setCredentialsProvider(new UsernamePasswordCredentialsProvider(
 					credentials.getUser(), credentials.getPassword()));
 
-		op.setTagOpt(refSpecPage.getTagOpt());
+		if (!calledFromRepoPage)
+			op.setTagOpt(refSpecPage.getTagOpt());
 		op.start();
 
 		repoPage.saveUriInPrefs();
