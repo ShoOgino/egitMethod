@@ -7,6 +7,8 @@
 
 		if (property.equals("isBare")) 			return node.getRepository().isBare();
 
+		if (property.equals("containsHead")) 			return containsHead(node);
+
 		if (property.equals("isSafe")) 			return node.getRepository().getRepositoryState() == RepositoryState.SAFE;
 
 		if (property.equals("isRefCheckedOut")) { 			if (!(node.getObject() instanceof Ref))
