@@ -6,10 +6,22 @@
 
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(main);
 
-		tv = new TableViewer(main, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL
-				| SWT.BORDER);
-		tv.setContentProvider(new RepositoriesViewContentProvider());
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(tv.getTable());
+		FilteredTree tree = new FilteredTree(main, SWT.SINGLE | SWT.BORDER
+				| SWT.H_SCROLL | SWT.V_SCROLL, new PatternFilter(), true);
+
+		tv = tree.getViewer();
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(tree);
+		tv.setContentProvider(new RepositoriesViewContentProvider() {
+			@Override
+			public Object[] getChildren(Object parentElement) {
+				return null;
+			}
+
+			@Override
+			public boolean hasChildren(Object element) {
+				return false;
+			}
+		});
 		tv.setLabelProvider(new RepositoriesViewLabelProvider());
 
 		Composite tb = new Composite(main, SWT.NONE);

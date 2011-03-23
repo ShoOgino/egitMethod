@@ -5,7 +5,7 @@
 		if (visible && tv.getSelection().isEmpty()) {
 			String repoDir = settings.get(LAST_SELECTED_REPO_PREF);
 			if (repoDir != null) {
-				for (TableItem item : tv.getTable().getItems()) {
+				for (TreeItem item : tv.getTree().getItems()) {
 					RepositoryNode node = (RepositoryNode) item.getData();
 					if (node.getRepository().getDirectory().getPath().equals(
 							repoDir)) {
