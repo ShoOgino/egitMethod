@@ -26,17 +26,17 @@
 
 		if (txt.length() > 12)
 			txt = txt.substring(0,11) + "\u2026"; 
+		Font oldFont = g.getFont();
+		boolean isHead = isHead(name);
+		if (isHead)
+			g.setFont(CommitGraphTable.highlightFont());
+
 		Point textsz = g.stringExtent(txt);
 		int arc = textsz.y/2;
 		final int texty = (y * 2 - textsz.y) / 2;
 
 		g.fillRoundRectangle(cellX + x + 1, cellY + texty -1, textsz.x + 3, textsz.y + 1, arc, arc);
 		g.setForeground(sys_black);
-
-		Font oldFont = g.getFont();
-		boolean isHead = isHead(name);
-		if (isHead)
-			g.setFont(CommitGraphTable.highlightFont());
 
 		g.drawString(txt,cellX + x + 2, cellY + texty, true);
 
