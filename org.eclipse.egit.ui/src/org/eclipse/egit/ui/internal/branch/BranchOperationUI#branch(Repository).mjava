@@ -1,0 +1,4 @@
+	public static BranchOperationUI branch(Repository repository) {
+		return new BranchOperationUI(repository);
+	}
+
