@@ -1,0 +1,4 @@
+	public SwitchToMenu() {
+		this(null);
+	}
+
