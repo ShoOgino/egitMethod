@@ -11,40 +11,69 @@
 		remotesItem.select();
 		ContextMenuHelper.clickContextMenu(tree, myUtil
 				.getPluginLocalizedValue("NewRemoteCommand"));
-		SWTBotShell shell = bot
-				.shell(UIText.ConfigureRemoteWizard_WizardTitle_New);
-		shell.bot().textWithLabel(UIText.SelectRemoteNamePage_RemoteNameLabel)
-				.setText("testRemote");
-		shell.bot().checkBox(UIText.SelectRemoteNamePage_ConfigureFetch_button)
-				.select();
-		shell.bot().checkBox(UIText.SelectRemoteNamePage_ConfigurePush_button)
-				.select();
-		shell.bot().button(IDialogConstants.NEXT_LABEL).click();
-		shell.bot().button(UIText.ConfigureUriPage_Change_button).click();
+		SWTBotShell shell = bot.shell(UIText.NewRemoteDialog_WindowTitle);
+		shell.bot().textWithLabel(UIText.NewRemoteDialog_NameLabel).setText(
+				"testRemote");
+		shell.bot().radio(UIText.NewRemoteDialog_FetchRadio).click();
+		shell.bot().button(IDialogConstants.OK_LABEL).click();
+
+		shell = bot.shell(UIText.SimpleConfigureFetchDialog_WindowTitle);
+		shell.bot().button(UIText.SimpleConfigureFetchDialog_ChangeUriButton)
+				.click();
 		shell = bot.shell(UIText.SelectUriWiazrd_Title);
 		shell.bot().text().setText("file:///" + remoteRepositoryFile.getPath());
 		shell.bot().button(IDialogConstants.FINISH_LABEL).click();
-		shell = bot.shell(UIText.ConfigureRemoteWizard_WizardTitle_New);
+		shell = bot.shell(UIText.SimpleConfigureFetchDialog_WindowTitle);
+		shell.bot().button(UIText.SimpleConfigureFetchDialog_AddRefSpecButton)
+				.click();
+		shell = bot.shell(UIText.SimpleFetchRefSpecWizard_WizardTitle);
+		shell.bot().textWithLabel(UIText.FetchSourcePage_SourceLabel).setText(
+				"refs/heads/*");
 		shell.bot().button(IDialogConstants.NEXT_LABEL).click();
-		shell.bot().button(UIText.RefSpecPanel_predefinedAll).click();
-		shell.bot().button(IDialogConstants.NEXT_LABEL).click();
-		String testString = new org.eclipse.jgit.transport.URIish("file:///"
-				+ remoteRepositoryFile.getPath()).toPrivateString();
-		assertEquals(testString, shell.bot().text().getText());
-		shell.bot().button(UIText.ConfigureUriPage_Add_button).click();
-		shell = bot.shell(UIText.SelectUriWiazrd_Title);
-		shell.bot().text().setText("file:///" + remoteRepositoryFile.getPath());
+		shell.bot().textWithLabel(UIText.FetchDestinationPage_DestinationLabel)
+				.setText("refs/remotes/testRemote/*");
 		shell.bot().button(IDialogConstants.FINISH_LABEL).click();
-		shell = bot.shell(UIText.ConfigureUriPage_DuplicateUriTitle);
-		shell.close();
-		shell = bot.shell(UIText.ConfigureRemoteWizard_WizardTitle_New);
-		shell.bot().button(IDialogConstants.NEXT_LABEL).click();
-		shell.bot().button(UIText.RefSpecPanel_predefinedAll).click();
-		shell.bot().button(IDialogConstants.FINISH_LABEL).click();
+		shell = bot.shell(UIText.SimpleConfigureFetchDialog_WindowTitle);
+		shell.bot().button(UIText.SimpleConfigureFetchDialog_SaveButton)
+				.click();
+
 		refreshAndWait();
 		SWTBotTreeItem item = myRepoViewUtil.getRemotesItem(tree,
 				repositoryFile).expand().getNode("testRemote").expand();
 		List<String> children = item.getNodes();
+		assertTrue(children.size() == 1);
+		item.select();
+		ContextMenuHelper.clickContextMenu(tree, myUtil
+				.getPluginLocalizedValue("ConfigurePushCommand"));
+
+		shell = bot.shell(UIText.SimpleConfigurePushDialog_WindowTitle);
+		shell.bot()
+				.button(UIText.SimpleConfigurePushDialog_AddRefSpecButton, 1)
+				.click();
+
+		shell = bot.shell(UIText.RefSpecDialog_WindowTitle);
+
+		shell.bot().textWithLabel(UIText.RefSpecDialog_SourceBranchPushLabel)
+				.setText("HEAD");
+		shell.bot().textWithLabel(UIText.RefSpecDialog_DestinationPushLabel)
+				.setText("refs/for/master");
+		final Text text = shell.bot().textWithLabel(
+				UIText.RefSpecDialog_DestinationPushLabel).widget;
+		shell.display.syncExec(new Runnable() {
+
+			public void run() {
+				text.setFocus();
+				text.notifyListeners(SWT.Modify, new Event());
+			}
+		});
+		shell.bot().button(IDialogConstants.OK_LABEL).click();
+		shell = bot.shell(UIText.SimpleConfigurePushDialog_WindowTitle);
+		shell.bot().button(UIText.SimpleConfigurePushDialog_SaveButton).click();
+
+		refreshAndWait();
+		item = myRepoViewUtil.getRemotesItem(tree, repositoryFile).expand()
+				.getNode("testRemote").expand();
+		children = item.getNodes();
 		assertTrue(children.size() == 2);
 		item.getNode(0).select();
 		ContextMenuHelper.clickContextMenu(tree, myUtil
@@ -83,11 +112,12 @@
 		shell.bot().textWithLabel(UIText.FetchSourcePage_SourceLabel).setText(
 				"refs/heads/*");
 		shell.bot().button(IDialogConstants.NEXT_LABEL).click();
-		shell.bot().textWithLabel(UIText.FetchDestinationPage_DestinationLabel).setText(
-				"refs/remotes/testRemote/*");
+		shell.bot().textWithLabel(UIText.FetchDestinationPage_DestinationLabel)
+				.setText("refs/remotes/testRemote/*");
 		shell.bot().button(IDialogConstants.FINISH_LABEL).click();
 		shell = bot.shell(shellText);
-		shell.bot().button(UIText.SimpleConfigureFetchDialog_SaveButton).click();
+		shell.bot().button(UIText.SimpleConfigureFetchDialog_SaveButton)
+				.click();
 		refreshAndWait();
 		item = myRepoViewUtil.getRemotesItem(tree, repositoryFile).expand()
 				.getNode("testRemote").expand();
@@ -111,25 +141,30 @@
 
 		shellText = UIText.SimpleConfigurePushDialog_WindowTitle;
 		shell = bot.shell(shellText);
-		shell.bot().button(UIText.SimpleConfigurePushDialog_AddPushUriButton).click();
+		shell.bot().button(UIText.SimpleConfigurePushDialog_AddPushUriButton)
+				.click();
 
 		shell = bot.shell(shellText);
 		shell = bot.shell(UIText.SelectUriWiazrd_Title);
 		shell.bot().text().setText("file:///" + remoteRepositoryFile.getPath());
 		shell.bot().button(IDialogConstants.FINISH_LABEL).click();
 		shell = bot.shell(shellText);
-		shell.bot().button(UIText.SimpleConfigurePushDialog_AddRefSpecButton, 1).click();
+		shell.bot()
+				.button(UIText.SimpleConfigurePushDialog_AddRefSpecButton, 1)
+				.click();
 		shell = bot.shell(UIText.RefSpecDialog_WindowTitle);
 
-		shell.bot().textWithLabel(UIText.RefSpecDialog_SourceBranchPushLabel).setText("HEAD");
-		shell.bot().textWithLabel(UIText.RefSpecDialog_DestinationPushLabel).setText("refs/for/master");
-		final Text text = shell.bot().textWithLabel(
+		shell.bot().textWithLabel(UIText.RefSpecDialog_SourceBranchPushLabel)
+				.setText("HEAD");
+		shell.bot().textWithLabel(UIText.RefSpecDialog_DestinationPushLabel)
+				.setText("refs/for/master");
+		final Text text2 = shell.bot().textWithLabel(
 				UIText.RefSpecDialog_DestinationPushLabel).widget;
 		shell.display.syncExec(new Runnable() {
 
 			public void run() {
-				text.setFocus();
-				text.notifyListeners(SWT.Modify, new Event());
+				text2.setFocus();
+				text2.notifyListeners(SWT.Modify, new Event());
 			}
 		});
 
