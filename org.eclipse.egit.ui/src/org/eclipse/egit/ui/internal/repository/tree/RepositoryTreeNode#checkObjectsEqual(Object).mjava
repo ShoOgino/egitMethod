@@ -6,7 +6,6 @@
 		case LOCAL:
 		case REMOTETRACKING:
 		case ADDITIONALREFS:
-		case ERROR:
 		case WORKINGDIR:
 			return ((Repository) myObject).getDirectory().equals(
 					((Repository) otherObject).getDirectory());
@@ -19,6 +18,7 @@
 		case FILE:
 			return ((File) myObject).getPath().equals(
 					((File) otherObject).getPath());
+		case ERROR:
 		case REMOTE:
 		case FETCH:
 		case PUSH:
