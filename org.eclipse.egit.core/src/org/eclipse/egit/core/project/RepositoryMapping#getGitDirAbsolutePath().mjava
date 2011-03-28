@@ -1,4 +1,4 @@
-	public IPath getGitDirAbsolutePath() {
+	public synchronized IPath getGitDirAbsolutePath() {
 		if (gitDirAbsolutePath == null)
 			gitDirAbsolutePath = container.getLocation()
 					.append(getGitDirPath());
