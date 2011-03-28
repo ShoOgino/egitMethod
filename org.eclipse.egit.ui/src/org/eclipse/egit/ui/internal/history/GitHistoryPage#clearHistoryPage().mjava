@@ -1,0 +1,8 @@
+	private void clearHistoryPage() {
+		currentRepo = null;
+		name = ""; 		input = null;
+		commentViewer.setInput(null);
+		fileViewer.setInput(null);
+		setInput(null);
+	}
+
