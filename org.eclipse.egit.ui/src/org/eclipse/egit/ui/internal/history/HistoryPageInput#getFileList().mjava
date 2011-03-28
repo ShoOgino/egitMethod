@@ -1,4 +1,4 @@
 	public File[] getFileList() {
-		return files;
+		return files == null ? null : files.toArray(new File[files.size()]);
 	}
 

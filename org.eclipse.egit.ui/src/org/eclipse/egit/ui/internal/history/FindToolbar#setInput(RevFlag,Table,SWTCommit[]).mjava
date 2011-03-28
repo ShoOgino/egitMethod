@@ -1,4 +1,4 @@
-	public void setInput(final RevFlag hFlag, final Table historyTable,
+	void setInput(final RevFlag hFlag, final Table historyTable,
 			final SWTCommit[] commitArray) {
 		this.fileRevisions = commitArray;
 		this.historyTable = historyTable;

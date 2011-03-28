@@ -1,4 +1,4 @@
 	public IResource[] getItems() {
-		return list;
+		return list == null ? null : list.toArray(new IResource[list.size()]);
 	}
 
