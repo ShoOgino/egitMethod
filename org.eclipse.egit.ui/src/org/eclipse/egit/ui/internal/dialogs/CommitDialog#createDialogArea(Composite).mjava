@@ -92,7 +92,8 @@
 						alreadyAdded = true;
 						commitText.setText(previousCommitMessage.replaceAll(
 								"\n", Text.DELIMITER)); 					}
-					authorText.setText(previousAuthor);
+					if (previousAuthor != null)
+						authorText.setText(previousAuthor);
 				}
 				refreshChangeIdText();
 			}
