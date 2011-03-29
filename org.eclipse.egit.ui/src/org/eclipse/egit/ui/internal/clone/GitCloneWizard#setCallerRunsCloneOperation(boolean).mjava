@@ -1,0 +1,4 @@
+	public void setCallerRunsCloneOperation(boolean newValue) {
+		callerRunsCloneOperation = newValue;
+	}
+
