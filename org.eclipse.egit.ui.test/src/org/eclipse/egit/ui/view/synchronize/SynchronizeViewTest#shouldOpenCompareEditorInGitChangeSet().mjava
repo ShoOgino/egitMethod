@@ -1,5 +1,5 @@
 	@Test
-	@Ignore 	public void shouldOpenCompareEditorInGitChangeSet() throws Exception {
+	public void shouldOpenCompareEditorInGitChangeSet() throws Exception {
 		resetRepositoryToCreateInitialTag();
 		changeFilesInProject();
 

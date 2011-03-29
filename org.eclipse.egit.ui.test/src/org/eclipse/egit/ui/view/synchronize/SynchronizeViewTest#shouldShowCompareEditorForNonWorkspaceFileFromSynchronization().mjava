@@ -1,5 +1,5 @@
 	@Test
-	@Ignore 	public void shouldShowCompareEditorForNonWorkspaceFileFromSynchronization()
+	public void shouldShowCompareEditorForNonWorkspaceFileFromSynchronization()
 			throws Exception {
 		String content = "file content";
 		String name = "non-workspace.txt";
@@ -21,7 +21,8 @@
 		SWTBotEditor editor = bot.editorByTitle(name);
 		editor.setFocus();
 
-		assertNotNull(editor);
-		assertThat(editor.bot().styledText(1).getText(), equalTo(content));
+		SWTBotStyledText left = editor.bot().styledText(content);
+		SWTBotStyledText right = editor.bot().styledText("");
+		assertNotSame(left, right);
 	}
 
