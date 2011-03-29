@@ -1,0 +1,14 @@
+	@Test
+	public void testContextMenuRepository() throws Exception {
+		SWTBotTree tree = getOrOpenView().bot().tree();
+		SWTBotTreeItem item = myRepoViewUtil.getRootItem(tree, repositoryFile);
+		item.select();
+		assertClickOpens(tree,
+				myUtil.getPluginLocalizedValue("RepoViewCommit.label"),
+				UIText.CommitDialog_CommitChanges);
+		assertClickOpens(tree,
+				myUtil.getPluginLocalizedValue("RepoViewImportProjects.label"),
+				NLS.bind(UIText.GitCreateProjectViaWizardWizard_WizardTitle,
+						repositoryFile));
+	}
+
