@@ -4,8 +4,9 @@
 			return;
 		try {
 			bot.viewByTitle("Welcome").close();
-			welcomePageClosed = true;
 		} catch (WidgetNotFoundException e) {
+		} finally {
+			welcomePageClosed = true;
 		}
 	}
 
