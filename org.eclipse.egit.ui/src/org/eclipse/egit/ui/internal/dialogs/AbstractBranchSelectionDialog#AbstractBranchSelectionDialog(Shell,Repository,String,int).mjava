@@ -1,7 +1,8 @@
 	public AbstractBranchSelectionDialog(Shell parentShell,
-			Repository repository, String refToMark) {
+			Repository repository, String refToMark, int settings) {
 		super(parentShell);
 		this.repo = repository;
+		this.settings = settings;
 		localBranches = new LocalNode(null, this.repo);
 		remoteBranches = new RemoteTrackingNode(null, this.repo);
 		tags = new TagsNode(null, this.repo);

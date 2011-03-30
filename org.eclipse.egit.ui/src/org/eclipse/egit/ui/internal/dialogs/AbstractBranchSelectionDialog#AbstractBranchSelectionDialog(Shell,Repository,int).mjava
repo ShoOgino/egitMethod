@@ -1,0 +1,6 @@
+	public AbstractBranchSelectionDialog(Shell parentShell,
+			Repository repository, int settings) {
+		this(parentShell, repository, null, settings);
+		setHelpAvailable(false);
+	}
+
