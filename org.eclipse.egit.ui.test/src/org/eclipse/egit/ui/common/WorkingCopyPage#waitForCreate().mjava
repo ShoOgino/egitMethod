@@ -7,11 +7,11 @@
 						.getConfiguredRepositories().contains(targetDir));
 
 		SWTBotShell dialogShell = bot.shell("Import Projects from Git");
-		SWTBotTable table = dialogShell.bot().table();
-		int expectedRowCount = table.rowCount() + 1;
+		SWTBotTree tree = dialogShell.bot().tree();
+		int expectedRowCount = tree.rowCount() + 1;
 		bot.button("Finish").click();
 
-		bot.waitUntil(Conditions.tableHasRows(table, expectedRowCount), 20000);
+		bot.waitUntil(Conditions.treeHasRows(tree, expectedRowCount), 20000);
 
 
 		for (int i = 0; i < 3; i++) {
