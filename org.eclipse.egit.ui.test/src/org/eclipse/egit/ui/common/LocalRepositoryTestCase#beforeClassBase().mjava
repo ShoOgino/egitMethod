@@ -17,6 +17,6 @@
 				.getDefault()
 				.getPreferenceStore()
 				.setValue(UIPreferences.SHOW_DETACHED_HEAD_WARNING,
-						MessageDialogWithToggle.ALWAYS);
+						false);
 	}
 

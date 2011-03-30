@@ -1,9 +1,8 @@
 	public static void checkConfiguration() {
 		if (!runsOnWindows())
 			return;
-		if (!Activator.getDefault().getPreferenceStore()
-				.getString(UIPreferences.SHOW_HOME_DIR_WARNING)
-				.equals(MessageDialogWithToggle.PROMPT))
+		if (!Activator.getDefault().getPreferenceStore().getBoolean(
+				UIPreferences.SHOW_HOME_DIR_WARNING))
 			return;
 		Job job = new Job(UIText.ConfigurationChecker_checkConfiguration) {
 			@Override
