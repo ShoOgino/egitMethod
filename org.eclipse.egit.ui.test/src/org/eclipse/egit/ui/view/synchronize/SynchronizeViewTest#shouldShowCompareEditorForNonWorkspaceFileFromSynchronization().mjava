@@ -19,7 +19,6 @@
 		workingTree.expand().getNode(name).doubleClick();
 
 		SWTBotEditor editor = bot.editorByTitle(name);
-		editor.setFocus();
 
 		SWTBotStyledText left = editor.bot().styledText(content);
 		SWTBotStyledText right = editor.bot().styledText("");
