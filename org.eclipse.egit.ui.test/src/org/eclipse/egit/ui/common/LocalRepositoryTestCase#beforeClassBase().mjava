@@ -6,9 +6,11 @@
 		if (testDirectory.exists())
 			FileUtils.delete(testDirectory, FileUtils.RECURSIVE
 					| FileUtils.RETRY);
-		testDirectory.mkdir();
+		if (!testDirectory.exists())
+			FileUtils.mkdir(testDirectory, true);
 		File repoRoot = new File(testDirectory, "RepositoryRoot");
-		repoRoot.mkdir();
+		if (!repoRoot.exists())
+			FileUtils.mkdir(repoRoot, true);
 		org.eclipse.egit.ui.Activator.getDefault().getPreferenceStore()
 				.setValue(UIPreferences.DEFAULT_REPO_DIR, repoRoot.getPath());
 		org.eclipse.egit.ui.Activator.getDefault().getPreferenceStore()
