@@ -1,0 +1,4 @@
+	public RebaseCurrentRefCommand() {
+		super(null, null, null);
+	}
+

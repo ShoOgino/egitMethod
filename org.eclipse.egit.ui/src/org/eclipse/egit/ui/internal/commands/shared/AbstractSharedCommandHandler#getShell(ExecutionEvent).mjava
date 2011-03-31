@@ -1,0 +1,4 @@
+	protected Shell getShell(ExecutionEvent event) {
+		return HandlerUtil.getActiveShell(event);
+	}
+

@@ -6,6 +6,10 @@
 		if ("isShared".equals(property)) { 			RepositoryMapping mapping = RepositoryMapping.getMapping(res
 					.getProject());
 			return mapping != null && mapping.getRepository() != null;
+		} else if ("isSafe".equals(property)) { 			RepositoryMapping mapping = RepositoryMapping.getMapping(res
+					.getProject());
+			return mapping != null
+					&& SAFE == mapping.getRepository().getRepositoryState();
 		}
 		return false;
 	}
