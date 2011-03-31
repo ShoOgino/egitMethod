@@ -1,5 +1,5 @@
 	public MergeTargetSelectionDialog(Shell parentShell, Repository repo) {
-		super(parentShell, repo);
-		setRootsToShow(true, true, true, false);
+		super(parentShell, repo, SHOW_LOCAL_BRANCHES | SHOW_REMOTE_BRANCHES
+				| SHOW_TAGS | EXPAND_LOCAL_BRANCHES_NODE);
 	}
 
