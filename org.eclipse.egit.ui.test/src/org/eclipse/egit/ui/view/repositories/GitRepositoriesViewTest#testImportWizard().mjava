@@ -16,7 +16,6 @@
 		String wizardNode = selected.get(0, 0);
 		assertEquals(myRepoViewUtil.getWorkdirItem(tree, repositoryFile)
 				.getText(), wizardNode);
-		waitInUI();
 		shell.close();
 		myRepoViewUtil.getWorkdirItem(tree, repositoryFile).expand().getNode(
 				Constants.DOT_GIT).select();
@@ -31,7 +30,7 @@
 		shell.bot().button(IDialogConstants.BACK_LABEL).click();
 		shell.bot().tree().getAllItems()[0].getNode(PROJ1).select();
 		shell.bot().button(IDialogConstants.NEXT_LABEL).click();
-		waitInUI();
+		bot.button(UIText.WizardProjectsImportPage_selectAll);
 		assertTrue(shell.bot().tree().getAllItems().length == 1);
 		assertTrue(!shell.bot().button(IDialogConstants.FINISH_LABEL)
 				.isEnabled());
@@ -39,7 +38,7 @@
 		assertTrue(shell.bot().button(IDialogConstants.FINISH_LABEL)
 				.isEnabled());
 		shell.bot().button(IDialogConstants.FINISH_LABEL).click();
-		waitInUI();
+		bot.waitUntil(Conditions.shellCloses(shell));
 		assertProjectExistence(PROJ1, true);
 		assertProjectIsShared(PROJ1, true);
 	}

@@ -29,18 +29,15 @@
 
 			getOrOpenView().toolbarButton("Link with Editor").click();
 			bot.editorByTitle(FILE2).show();
-			waitInUI();
-			assertTrue(tree.selection().get(0, 0).equals(FILE2));
+			TestUtil.waitUntilTreeHasSelectedNodeWithText(bot, tree, FILE2, 10000);
 
 			bot.editorByTitle(FILE1).show();
-			waitInUI();
-			assertTrue(tree.selection().get(0, 0).equals(FILE1));
+			TestUtil.waitUntilTreeHasSelectedNodeWithText(bot, tree, FILE1, 10000);
 
 			getOrOpenView().toolbarButton("Link with Editor").click();
 
 			bot.editorByTitle(FILE2).show();
-			waitInUI();
-			assertTrue(tree.selection().get(0, 0).equals(FILE1));
+			TestUtil.waitUntilTreeHasSelectedNodeWithText(bot, tree, FILE1, 10000);
 
 			bot.editorByTitle(FILE1).show();
 
@@ -50,27 +47,25 @@
 
 			assertEquals(FILE1, bot.activeEditor().getTitle());
 
-			getOrOpenView().toolbarButton("Link with Editor").click();
+			SWTBotView repoView = getOrOpenView();
+			repoView.toolbarButton("Link with Editor").click();
 			waitInUI();
 			myRepoViewUtil.getWorkdirItem(tree, repositoryFile).expand()
 					.getNode(PROJ1).expand().getNode(FOLDER).expand().getNode(
 							FILE2).select();
-			waitInUI();
-			assertEquals(FILE2, bot.activeEditor().getTitle());
+			TestUtil.waitUntilEditorIsActive(bot, bot.editorByTitle(FILE2), 10000);
 
 			myRepoViewUtil.getWorkdirItem(tree, repositoryFile).expand()
 					.getNode(PROJ1).expand().getNode(FOLDER).expand().getNode(
 							FILE1).select();
-			waitInUI();
-			assertEquals(FILE1, bot.activeEditor().getTitle());
+			TestUtil.waitUntilEditorIsActive(bot, bot.editorByTitle(FILE1), 10000);
 
 			getOrOpenView().toolbarButton("Link with Editor").click();
 
 			myRepoViewUtil.getWorkdirItem(tree, repositoryFile).expand()
 					.getNode(PROJ1).expand().getNode(FOLDER).expand().getNode(
 							FILE2).select();
-			waitInUI();
-			assertEquals(FILE1, bot.activeEditor().getTitle());
+			TestUtil.waitUntilEditorIsActive(bot, bot.editorByTitle(FILE1), 10000);
 
 		} finally {
 			if (perspective != null)

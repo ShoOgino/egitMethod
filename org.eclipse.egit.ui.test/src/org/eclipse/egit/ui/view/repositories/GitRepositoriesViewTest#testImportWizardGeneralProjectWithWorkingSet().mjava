@@ -16,7 +16,7 @@
 		SWTBotButton button = shell.bot().button(IDialogConstants.NEXT_LABEL);
 		button.setFocus();
 		button.click();
-		waitInUI();
+		shell.bot().text(UIText.WizardProjectsImportPage_ImportProjectsDescription);
 		shell.bot().tree().getAllItems()[0].check();
 		shell.bot().checkBox().select();
 		shell.bot().button("Select...").click();
@@ -31,7 +31,7 @@
 		workingSetDialog.bot().table().getTableItem(workingSetName).check();
 		workingSetDialog.bot().button(IDialogConstants.OK_LABEL).click();
 		shell.bot().button(IDialogConstants.FINISH_LABEL).click();
-		waitInUI();
+		bot.waitUntil(Conditions.shellCloses(shell));
 		assertProjectExistence(PROJ1, true);
 		assertProjectInWorkingSet(workingSetName, PROJ1);
 		assertProjectIsShared(PROJ1, true);
