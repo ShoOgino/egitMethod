@@ -1,4 +1,4 @@
-	static FileDiff[] compute(final TreeWalk walk, final RevCommit commit)
+	public static FileDiff[] compute(final TreeWalk walk, final RevCommit commit)
 			throws MissingObjectException, IncorrectObjectTypeException,
 			CorruptObjectException, IOException {
 		final ArrayList<FileDiff> r = new ArrayList<FileDiff>();
