@@ -96,19 +96,18 @@
 		else
 			propertiesPage.setURI("file://" + System.getProperty("user.home"));
 		propertiesPage.assertSourceParams(null, "", System.getProperty(
-				"user.home").replace('\\', '/'), "file", "", false, "", "",
+				"user.home"), "file", "", false, "", "",
 				false, false);
 
 		propertiesPage.setURI(System.getProperty("user.home"));
 		propertiesPage.assertSourceParams(null, "", System.getProperty(
-				"user.home").replace('\\', '/'), "file", "", false, "", "",
+				"user.home"), "file", "", false, "", "",
 				false, false);
 
 		if (Platform.getOS().equals(Platform.OS_WIN32)) {
-			propertiesPage.setURI(System.getProperty("user.home").replace('\\',
-					'/'));
+			propertiesPage.setURI(System.getProperty("user.home"));
 			propertiesPage.assertSourceParams(null, "", System.getProperty(
-					"user.home").replace('\\', '/'), "file", "", false, "", "",
+					"user.home"), "file", "", false, "", "",
 					false, false);
 		}
 		bot.button("Cancel").click();
