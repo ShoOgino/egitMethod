@@ -4,6 +4,7 @@
 			return false;
 		switch (repos[0].getRepositoryState()) {
 		case MERGING:
+		case CHERRY_PICKING:
 		case REBASING:
 		case REBASING_INTERACTIVE:
 		case REBASING_MERGE:
