@@ -1,5 +1,0 @@
-	public PullOperation(Repository repository, int timeout) {
-		this.timeout = timeout;
-		this.repository = repository;
-	}
-

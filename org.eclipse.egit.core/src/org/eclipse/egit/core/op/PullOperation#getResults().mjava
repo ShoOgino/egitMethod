@@ -1,0 +1,4 @@
+	public Map<Repository, Object> getResults() {
+		return this.results;
+	}
+
