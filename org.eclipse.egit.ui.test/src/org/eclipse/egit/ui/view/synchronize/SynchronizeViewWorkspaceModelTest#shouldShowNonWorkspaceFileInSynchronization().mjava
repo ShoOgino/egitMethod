@@ -1,0 +1,18 @@
+	@Test @Ignore	public void shouldShowNonWorkspaceFileInSynchronization()
+			throws Exception {
+		String name = "non-workspace.txt";
+		File root = new File(getTestDirectory(), REPO1);
+		File nonWorkspace = new File(root, name);
+		BufferedWriter writer = new BufferedWriter(new FileWriter(nonWorkspace));
+		writer.append("file content");
+		writer.close();
+
+		launchSynchronization(SynchronizeWithAction_tagsName, INITIAL_TAG,
+				SynchronizeWithAction_localRepoName, HEAD, true);
+
+		SWTBotTree syncViewTree = bot.viewByTitle("Synchronize").bot().tree();
+		SWTBotTreeItem workingTree = syncViewTree.expandNode(PROJ1);
+		assertEquals(1, syncViewTree.getAllItems().length);
+		assertEquals(1, workingTree.getNodes(name).size());
+	}
+
