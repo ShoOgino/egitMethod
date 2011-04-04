@@ -41,7 +41,7 @@
 		SWTBotTreeItem item = myRepoViewUtil.getRemotesItem(tree,
 				repositoryFile).expand().getNode("testRemote").expand();
 		List<String> children = item.getNodes();
-		assertTrue(children.size() == 1);
+		assertEquals(2, children.size());
 		item.select();
 		ContextMenuHelper.clickContextMenu(tree, myUtil
 				.getPluginLocalizedValue("ConfigurePushCommand"));
@@ -122,12 +122,12 @@
 		item = myRepoViewUtil.getRemotesItem(tree, repositoryFile).expand()
 				.getNode("testRemote").expand();
 		children = item.getNodes();
-		assertTrue(children.size() == 1);
+		assertEquals(2, children.size());
 
 		item = myRepoViewUtil.getRemotesItem(tree, repositoryFile).expand()
 				.getNode("testRemote").expand();
 		children = item.getNodes();
-		assertTrue(children.size() == 1);
+		assertEquals(2, children.size());
 		item.getNode(0).select();
 		ContextMenuHelper.clickContextMenu(tree, myUtil
 				.getPluginLocalizedValue("RemoveFetchCommand"));

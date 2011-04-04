@@ -244,7 +244,7 @@
 			if (uriCount == 0 && !rc.getURIs().isEmpty())
 				uriCount++;
 
-			if (uriCount > 0 && !rc.getPushRefSpecs().isEmpty()) {
+			if (uriCount > 0) {
 				URIish firstUri;
 				if (!rc.getPushURIs().isEmpty())
 					firstUri = rc.getPushURIs().get(0);
