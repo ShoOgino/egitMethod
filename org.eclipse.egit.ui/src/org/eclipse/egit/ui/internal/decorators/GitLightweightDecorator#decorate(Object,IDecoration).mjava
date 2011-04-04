@@ -55,7 +55,8 @@
 		}
 
 
-		if (Team.isIgnoredHint(resource))
+		if (resource.getType() != IResource.PROJECT
+				&& Team.isIgnoredHint(resource))
 			return;
 
 		if (mapping.getRepoRelativePath(resource) == null)
