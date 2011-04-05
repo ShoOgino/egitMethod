@@ -94,7 +94,7 @@
 						.getService(ICommandService.class);
 				Command deleteCommand = commandService
 						.getCommand("org.eclipse.egit.ui.RepositoriesViewDeleteBranch"); 
-				deleteCommand.addExecutionListener(new IExecutionListener() {
+				IExecutionListener deleteListener = new IExecutionListener() {
 					public void preExecute(String commandId,
 							ExecutionEvent event) {	 }
 
@@ -108,10 +108,11 @@
 
 					public void notHandled(String commandId,
 							NotHandledException exception) {  }
-				});
+				};
 
 				ExecutionEvent executionEvent = hsr.createExecutionEvent(
 						deleteCommand, null);
+				deleteCommand.addExecutionListener(deleteListener);
 				try {
 					deleteCommand.executeWithChecks(executionEvent);
 				} catch (Throwable e) {
@@ -119,6 +120,8 @@
 							e,
 							UIText.BranchSelectionDialog_ErrorCouldNotDeleteRef,
 							refNameFromDialog());
+				} finally {
+					deleteCommand.removeExecutionListener(deleteListener);
 				}
 			}
 		});
