@@ -15,7 +15,9 @@
 					if (trace)
 						GitTraceLocation.getTrace().trace(
 								GitTraceLocation.HISTORYVIEW.getLocation(),
-								"Filling commit list"); 					allCommits.fillTo(oldsz + BATCH_SIZE - 1);
+								"Filling commit list"); 					synchronized (allCommits) {
+						allCommits.fillTo(oldsz + BATCH_SIZE - 1);
+					}
 					if (monitor.isCanceled()) {
 						page.setErrorMessage(NLS.bind(
 								UIText.GenerateHistoryJob_CancelMessage, page
