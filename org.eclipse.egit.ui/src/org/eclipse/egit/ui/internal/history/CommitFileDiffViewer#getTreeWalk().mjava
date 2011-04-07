@@ -1,4 +1,5 @@
 	TreeWalk getTreeWalk() {
-		return walker;
+		if (walker == null)
+			throw new IllegalStateException("TreeWalk has not been set"); 		return walker;
 	}
 
