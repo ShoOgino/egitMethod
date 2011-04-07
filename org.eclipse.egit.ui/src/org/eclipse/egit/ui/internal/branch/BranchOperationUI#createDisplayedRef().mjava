@@ -1,0 +1,9 @@
+	private String createDisplayedRef() {
+		String refToCheckOut = ""; 		if (refName != null)
+			refToCheckOut = refName;
+		else if (commitId != null)
+			refToCheckOut = commitId.getName().substring(0, 7)+ "... "; 		else
+			throw new IllegalStateException(
+					"Either refName or commitId must be non-null"); 		return refToCheckOut;
+	}
+
