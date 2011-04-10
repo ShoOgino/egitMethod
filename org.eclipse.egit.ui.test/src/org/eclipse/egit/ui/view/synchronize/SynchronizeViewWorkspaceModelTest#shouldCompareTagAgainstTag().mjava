@@ -2,7 +2,7 @@
 	public void shouldCompareTagAgainstTag() throws Exception {
 		resetRepositoryToCreateInitialTag();
 		makeChangesAndCommit(PROJ1);
-		createTag(PROJ1, "v0.1");
+		createTag("v0.1");
 
 		launchSynchronization(SynchronizeWithAction_tagsName, INITIAL_TAG,
 				SynchronizeWithAction_tagsName, "v0.1", false);
