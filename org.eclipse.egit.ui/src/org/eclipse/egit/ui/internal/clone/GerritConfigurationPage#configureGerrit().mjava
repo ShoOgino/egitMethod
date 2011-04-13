@@ -1,0 +1,4 @@
+	public boolean configureGerrit() {
+		return configureGerrit.isEnabled();
+	}
+

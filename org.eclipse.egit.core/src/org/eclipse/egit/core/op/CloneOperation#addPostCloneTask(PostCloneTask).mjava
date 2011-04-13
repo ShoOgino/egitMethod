@@ -1,0 +1,6 @@
+	public synchronized void addPostCloneTask(PostCloneTask task) {
+		if (postCloneTasks == null)
+			postCloneTasks = new ArrayList<PostCloneTask>();
+		postCloneTasks.add(task);
+	}
+

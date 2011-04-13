@@ -1,0 +1,6 @@
+	public void setSelection(RepositorySelection selection) {
+		setDefaults(selection);
+		checkPage();
+		updateEnablement();
+	}
+
