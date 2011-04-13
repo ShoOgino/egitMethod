@@ -1,4 +1,4 @@
-	private void setEnabledRecursively(final Control control,
+	public static void setEnabledRecursively(final Control control,
 			final boolean enable) {
 		control.setEnabled(enable);
 		if (control instanceof Composite)
