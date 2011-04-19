@@ -1,4 +1,0 @@
-	private BranchOperationUI(Repository repository) {
-		this.repository = repository;
-	}
-
