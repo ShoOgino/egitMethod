@@ -1,0 +1,4 @@
+	protected String getTitle() {
+		return UIText.RenameBranchDialog_DialogTitle;
+	}
+

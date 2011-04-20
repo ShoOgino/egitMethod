@@ -8,9 +8,5 @@
 						.startsWith(Constants.R_REMOTES));
 
 		getButton(Window.OK).setEnabled(branchSelected || tagSelected);
-		newButton.setEnabled(branchSelected || tagSelected);
-
-		renameButton.setEnabled(branchSelected && !tagSelected);
-		deleteteButton.setEnabled(branchSelected && !tagSelected);
 	}
 

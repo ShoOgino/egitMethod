@@ -1,0 +1,4 @@
+	protected String getMessageText() {
+		return UIText.RenameBranchDialog_DialogMessage;
+	}
+
