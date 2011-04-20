@@ -80,8 +80,7 @@
 					treeViewer.refresh(element, true);
 				}
 
-				setPageComplete(selectedBranches.size() == selectedRepositories
-						.size());
+				validatePage();
 			}
 
 			@Override
@@ -183,13 +182,7 @@
 				selectedProjects.clear();
 
 				save();
-
-				if (event.getChecked()) {
-					setPageComplete(selectedBranches.size() == selectedRepositories
-							.size());
-				} else if (treeViewer.getCheckedElements().length == 0) {
-					setPageComplete(false);
-				}
+				validatePage();
 			}
 		});
 
@@ -207,8 +200,7 @@
 			public void handleEvent(Event event) {
 				treeViewer.setCheckedElements(array);
 				save();
-				setPageComplete(selectedBranches.size() == selectedRepositories
-						.size());
+				validatePage();
 			}
 		});
 		selectAllBtn.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, false,
@@ -221,7 +213,7 @@
 				treeViewer.setCheckedElements(new Object[0]);
 				selectedRepositories.clear();
 				selectedProjects.clear();
-				setPageComplete(false);
+				validatePage();
 			}
 		});
 		deselectAllBtn.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING,
