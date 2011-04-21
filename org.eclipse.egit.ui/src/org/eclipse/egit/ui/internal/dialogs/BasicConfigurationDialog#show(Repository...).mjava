@@ -1,6 +1,7 @@
-	public static void show() {
-		if (Activator.getDefault().getPreferenceStore().getBoolean(
-				UIPreferences.SHOW_INITIAL_CONFIG_DIALOG))
+	public static void show(Repository... repositories) {
+		if (Activator.getDefault().getPreferenceStore()
+				.getBoolean(UIPreferences.SHOW_INITIAL_CONFIG_DIALOG)
+				&& isImplicitUserConfig(repositories))
 			PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
 				public void run() {
 					new BasicConfigurationDialog(PlatformUI.getWorkbench()
