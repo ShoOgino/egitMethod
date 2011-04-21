@@ -125,5 +125,6 @@
 		refText.setFocus();
 		Dialog.applyDialogFont(main);
 		setControl(main);
+		setPageComplete(false);
 	}
 
