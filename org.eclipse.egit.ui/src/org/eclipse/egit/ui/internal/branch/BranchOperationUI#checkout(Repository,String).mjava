@@ -1,0 +1,5 @@
+	public static BranchOperationUI checkout(Repository repository,
+			String target) {
+		return new BranchOperationUI(repository, target);
+	}
+

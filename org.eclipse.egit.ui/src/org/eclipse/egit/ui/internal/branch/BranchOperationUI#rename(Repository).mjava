@@ -1,0 +1,4 @@
+	public static BranchOperationUI rename(Repository repository) {
+		return new BranchOperationUI(repository, MODE_RENAME);
+	}
+

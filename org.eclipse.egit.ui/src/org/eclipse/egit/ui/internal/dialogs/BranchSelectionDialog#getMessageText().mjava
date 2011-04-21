@@ -1,4 +1,0 @@
-	protected String getMessageText() {
-		return UIText.BranchSelectionDialog_Refs;
-	}
-

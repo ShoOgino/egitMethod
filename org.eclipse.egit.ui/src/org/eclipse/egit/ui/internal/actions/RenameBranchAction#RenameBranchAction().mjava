@@ -1,0 +1,5 @@
+	public RenameBranchAction() {
+		super(ActionCommands.RENAME_BRANCH_ACTION,
+				new RenameBranchActionHandler());
+	}
+

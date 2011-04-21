@@ -6,5 +6,6 @@
 			ConfigurePushAfterCloneTask push = new ConfigurePushAfterCloneTask(remoteName,
 					"HEAD:refs/for/" + gerritBranch, pushURI); 			op.addPostCloneTask(push);
 		}
+		op.addPostCloneTask(new SetChangeIdTask(true));
 	}
 

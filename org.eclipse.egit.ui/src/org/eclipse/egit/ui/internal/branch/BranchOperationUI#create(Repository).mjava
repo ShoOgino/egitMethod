@@ -1,0 +1,5 @@
+	public static BranchOperationUI create(Repository repository) {
+		BranchOperationUI op = new BranchOperationUI(repository, MODE_CREATE);
+		return op;
+	}
+

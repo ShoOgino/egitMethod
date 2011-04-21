@@ -1,5 +1,0 @@
-	public CreateBranchWizard(Repository repository, RevCommit baseCommit) {
-		myPage = new CreateBranchPage(repository, baseCommit);
-		setWindowTitle(UIText.CreateBranchWizard_NewBranchTitle);
-	}
-

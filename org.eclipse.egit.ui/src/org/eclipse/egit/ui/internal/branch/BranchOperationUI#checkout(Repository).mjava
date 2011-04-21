@@ -1,0 +1,4 @@
+	public static BranchOperationUI checkout(Repository repository) {
+		return new BranchOperationUI(repository, MODE_CHECKOUT);
+	}
+

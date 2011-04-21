@@ -73,6 +73,7 @@
 		} else {
 			setMessage(UIText.WizardProjectsImportPage_ImportProjectsDescription);
 		}
+		selectAllNewProjects();
 		enableSelectAllButtons();
 		checkPageComplete();
 	}

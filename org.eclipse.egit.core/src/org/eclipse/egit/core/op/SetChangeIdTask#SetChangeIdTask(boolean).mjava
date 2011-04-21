@@ -1,0 +1,4 @@
+	public SetChangeIdTask(boolean createchangeid) {
+		this.createchangeid = createchangeid;
+	}
+

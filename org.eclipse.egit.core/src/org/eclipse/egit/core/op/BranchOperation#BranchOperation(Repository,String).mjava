@@ -1,6 +1,5 @@
-	public BranchOperation(Repository repository, String refName) {
+	public BranchOperation(Repository repository, String target) {
 		this.repository = repository;
-		this.refName = refName;
-		this.commitId = null;
+		this.target = target;
 	}
 
