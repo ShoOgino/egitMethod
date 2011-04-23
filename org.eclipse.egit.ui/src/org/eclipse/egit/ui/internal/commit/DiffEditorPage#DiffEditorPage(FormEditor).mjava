@@ -1,0 +1,3 @@
+	public DiffEditorPage(FormEditor editor) {
+		this(editor, "diffPage", UIText.DiffEditorPage_Title); 	}
+
