@@ -1,4 +1,4 @@
 	public boolean exists() {
-		return false;
+		return true;
 	}
 

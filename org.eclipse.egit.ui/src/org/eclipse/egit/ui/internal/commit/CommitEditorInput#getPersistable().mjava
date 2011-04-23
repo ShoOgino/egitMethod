@@ -1,4 +1,4 @@
 	public IPersistableElement getPersistable() {
-		return null;
+		return this;
 	}
 

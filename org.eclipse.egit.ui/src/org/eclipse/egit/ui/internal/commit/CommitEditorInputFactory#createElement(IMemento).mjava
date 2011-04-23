@@ -1,0 +1,12 @@
+	public IAdaptable createElement(IMemento memento) {
+		Repository repository = getRepository(memento);
+		if (repository == null)
+			return null;
+
+		RevCommit commit = getCommit(memento, repository);
+		if (commit == null)
+			return null;
+
+		return new CommitEditorInput(new RepositoryCommit(repository, commit));
+	}
+

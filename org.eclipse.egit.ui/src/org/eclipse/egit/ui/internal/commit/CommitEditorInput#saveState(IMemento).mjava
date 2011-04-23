@@ -1,0 +1,4 @@
+	public void saveState(IMemento memento) {
+		CommitEditorInputFactory.saveState(memento, this);
+	}
+
