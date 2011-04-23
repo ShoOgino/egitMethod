@@ -1,0 +1,4 @@
+	public boolean isMatchCommitter() {
+		return this.isMatchCommitter;
+	}
+

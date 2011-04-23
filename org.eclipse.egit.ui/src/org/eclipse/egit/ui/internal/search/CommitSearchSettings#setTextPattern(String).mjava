@@ -1,0 +1,4 @@
+	public void setTextPattern(String textPattern) {
+		this.textPattern = textPattern;
+	}
+

@@ -1,0 +1,4 @@
+	public boolean isMatchCommit() {
+		return this.isMatchCommit;
+	}
+

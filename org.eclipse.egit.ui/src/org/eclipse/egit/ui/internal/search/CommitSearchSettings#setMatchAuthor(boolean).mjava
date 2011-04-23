@@ -1,0 +1,4 @@
+	public void setMatchAuthor(boolean isMatchAuthor) {
+		this.isMatchAuthor = isMatchAuthor;
+	}
+

@@ -1,0 +1,4 @@
+	public boolean isMatchMessage() {
+		return this.isMatchMessage;
+	}
+

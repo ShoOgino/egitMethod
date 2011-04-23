@@ -1,0 +1,4 @@
+	public boolean isMatchTree() {
+		return this.isMatchTree;
+	}
+

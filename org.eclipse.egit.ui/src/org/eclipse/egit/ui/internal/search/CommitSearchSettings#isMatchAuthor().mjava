@@ -1,0 +1,4 @@
+	public boolean isMatchAuthor() {
+		return this.isMatchAuthor;
+	}
+

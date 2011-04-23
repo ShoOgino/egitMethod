@@ -1,0 +1,4 @@
+	public boolean isRegExSearch() {
+		return this.isRegExSearch;
+	}
+

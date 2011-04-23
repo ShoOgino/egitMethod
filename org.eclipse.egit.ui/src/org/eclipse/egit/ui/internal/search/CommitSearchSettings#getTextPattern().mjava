@@ -1,0 +1,4 @@
+	public String getTextPattern() {
+		return this.textPattern;
+	}
+
