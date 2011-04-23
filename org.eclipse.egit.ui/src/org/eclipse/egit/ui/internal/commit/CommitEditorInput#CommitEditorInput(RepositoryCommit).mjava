@@ -1,0 +1,4 @@
+	public CommitEditorInput(RepositoryCommit commit) {
+		Assert.isNotNull(commit, "Repository commit cannot be null"); 		this.commit = commit;
+	}
+
