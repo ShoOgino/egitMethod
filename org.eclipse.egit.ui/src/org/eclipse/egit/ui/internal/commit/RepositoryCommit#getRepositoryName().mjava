@@ -1,0 +1,4 @@
+	public String getRepositoryName() {
+		return repository.getDirectory().getParentFile().getName();
+	}
+

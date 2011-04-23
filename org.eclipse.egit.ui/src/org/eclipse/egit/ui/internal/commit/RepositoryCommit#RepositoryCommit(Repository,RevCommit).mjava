@@ -1,0 +1,5 @@
+	public RepositoryCommit(Repository repository, RevCommit commit) {
+		Assert.isNotNull(repository, "Repository cannot be null"); 		Assert.isNotNull(commit, "Commit cannot be null"); 		this.repository = repository;
+		this.commit = commit;
+	}
+
