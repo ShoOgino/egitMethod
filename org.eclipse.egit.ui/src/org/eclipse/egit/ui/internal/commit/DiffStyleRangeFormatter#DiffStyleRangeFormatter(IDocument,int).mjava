@@ -1,0 +1,5 @@
+	public DiffStyleRangeFormatter(IDocument document, int offset) {
+		super(new DocumentOutputStream(document, offset));
+		this.stream = (DocumentOutputStream) getOutputStream();
+	}
+

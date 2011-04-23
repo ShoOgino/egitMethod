@@ -1,0 +1,12 @@
+	protected void writeLine(char prefix, RawText text, int cur)
+			throws IOException {
+		if (prefix == ' ')
+			super.writeLine(prefix, text, cur);
+		else {
+			DiffStyleRange range = addRange(prefix == '+' ? Type.ADD
+					: Type.REMOVE);
+			super.writeLine(prefix, text, cur);
+			range.length = stream.offset - range.start;
+		}
+	}
+

@@ -1,0 +1,4 @@
+	public DiffStyleRangeFormatter(IDocument document) {
+		this(document, document.getLength());
+	}
+
