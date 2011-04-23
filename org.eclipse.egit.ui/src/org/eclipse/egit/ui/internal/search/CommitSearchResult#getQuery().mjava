@@ -1,0 +1,4 @@
+	public ISearchQuery getQuery() {
+		return this.query;
+	}
+

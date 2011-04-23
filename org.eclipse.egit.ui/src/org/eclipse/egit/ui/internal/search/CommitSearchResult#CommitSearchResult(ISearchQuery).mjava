@@ -1,0 +1,4 @@
+	public CommitSearchResult(ISearchQuery query) {
+		this.query = query;
+	}
+

@@ -1,0 +1,6 @@
+	public CommitSearchResult addResult(Object object) {
+		if (object != null)
+			addMatch(new Match(object, 0, 0));
+		return this;
+	}
+
