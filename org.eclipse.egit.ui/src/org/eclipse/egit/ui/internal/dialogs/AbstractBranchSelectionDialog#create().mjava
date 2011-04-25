@@ -28,5 +28,7 @@
 				branchTree.expandToLevel(remoteBranches, 1);
 		} catch (IOException e) {
 		}
+
+		getButton(Window.OK).setEnabled(false);
 	}
 
