@@ -225,6 +225,7 @@
 		}
 
 		applyDialogFont(container);
+		resourceCol.pack();
 		container.pack();
 		return container;
 	}
