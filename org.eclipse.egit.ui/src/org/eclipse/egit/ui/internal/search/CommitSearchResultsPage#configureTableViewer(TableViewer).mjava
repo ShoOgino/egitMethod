@@ -1,0 +1,4 @@
+	protected void configureTableViewer(TableViewer viewer) {
+		configureViewer(viewer);
+	}
+

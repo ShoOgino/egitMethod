@@ -1,0 +1,4 @@
+	protected void configureTreeViewer(TreeViewer viewer) {
+		configureViewer(viewer);
+	}
+
