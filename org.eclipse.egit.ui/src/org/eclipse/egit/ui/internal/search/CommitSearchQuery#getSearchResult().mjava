@@ -1,0 +1,4 @@
+	public ISearchResult getSearchResult() {
+		return this.result;
+	}
+
