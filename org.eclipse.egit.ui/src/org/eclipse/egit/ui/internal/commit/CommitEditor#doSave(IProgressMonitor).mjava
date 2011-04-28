@@ -1,0 +1,3 @@
+	public void doSave(IProgressMonitor monitor) {
+	}
+

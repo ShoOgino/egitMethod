@@ -1,0 +1,8 @@
+	protected void addPages() {
+		try {
+			addPage(new CommitEditorPage(this));
+			addPage(new DiffEditorPage(this));
+		} catch (PartInitException e) {
+			Activator.error("Error adding page", e); 		}
+	}
+

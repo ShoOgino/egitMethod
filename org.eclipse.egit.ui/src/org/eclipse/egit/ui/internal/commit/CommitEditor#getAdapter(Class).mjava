@@ -1,0 +1,7 @@
+	public Object getAdapter(Class adapter) {
+		if (RepositoryCommit.class == adapter)
+			return getEditorInput().getAdapter(adapter);
+
+		return super.getAdapter(adapter);
+	}
+
