@@ -1,0 +1,3 @@
+	public CommitEditorPage(FormEditor editor) {
+		this(editor, "commitPage", UIText.CommitEditorPage_Title); 	}
+
