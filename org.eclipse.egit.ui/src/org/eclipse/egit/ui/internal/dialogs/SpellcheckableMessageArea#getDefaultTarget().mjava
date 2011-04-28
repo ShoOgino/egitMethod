@@ -1,0 +1,4 @@
+	protected IAdaptable getDefaultTarget() {
+		return null;
+	}
+

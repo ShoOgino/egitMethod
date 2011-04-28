@@ -1,0 +1,4 @@
+	protected Map<String, IAdaptable> getHyperlinkTargets() {
+		return Collections.singletonMap("org.eclipse.ui.DefaultTextEditor", 				getDefaultTarget());
+	}
+
