@@ -1,0 +1,8 @@
+	public Object execute(ExecutionEvent event) throws ExecutionException {
+		HandlerUtil.toggleCommandState(event.getCommand());
+		IWorkbenchPart part = HandlerUtil.getActivePartChecked(event);
+		if (part instanceof RepositoriesView)
+			(((RepositoriesView) part).getCommonViewer()).refresh();
+		return null;
+	}
+

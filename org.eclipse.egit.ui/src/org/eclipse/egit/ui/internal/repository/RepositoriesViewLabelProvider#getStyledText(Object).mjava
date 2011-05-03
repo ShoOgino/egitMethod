@@ -49,6 +49,22 @@
 							.getAbsolutePath(), StyledString.QUALIFIER_STYLER);
 				}
 				return dirString;
+
+			case REF:
+			case TAG:
+				StyledString styled = null;
+				String nodeText = getSimpleText(node);
+				if (nodeText != null) {
+					styled = new StyledString(nodeText);
+					if (verboseBranchMode) {
+						RevCommit latest = getLatestCommit(node);
+						if (latest != null)
+							styled.append(' ' + latest.abbreviate(7).name()
+									+ ' ' + latest.getShortMessage(),
+									StyledString.QUALIFIER_STYLER);
+					}
+				}
+				return styled;
 			case PUSH:
 			case FETCH:
 			case FILE:
@@ -61,9 +77,7 @@
 			case ADDITIONALREFS:
 			case REMOTES:
 			case REMOTE:
-			case ERROR:
-			case REF:
-			case TAG: {
+			case ERROR: {
 				String label = getSimpleText(node);
 				if (label != null)
 					return new StyledString(label);
