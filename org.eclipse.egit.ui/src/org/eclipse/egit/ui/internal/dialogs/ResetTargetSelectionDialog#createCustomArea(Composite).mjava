@@ -3,11 +3,81 @@
 		Composite main = new Composite(parent, SWT.NONE);
 		main.setLayout(new GridLayout(1, false));
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(main);
+
+		Group g2 = new Group(main, SWT.NONE);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(g2);
+		g2.setLayout(new GridLayout(2, false));
+		Label label = new Label(g2, SWT.NONE);
+		label.setText("Reset to (expression):"); 		anySha1 = new Text(g2, SWT.BORDER);
+		anySha1.setToolTipText("Any git expression evaluating to a commit-ish"); 		GridDataFactory.fillDefaults().grab(true, false).applyTo(anySha1);
+
+		Group g3 = new Group(g2, SWT_NONE);
+		GridDataFactory.fillDefaults().grab(true, false).span(2, 1).applyTo(g3);
+		g3.setLayout(new GridLayout(2, false));
+		new Label(g3, SWT.NONE).setText("SHA-1:"); 		sha1 = new Label(g3, SWT.BORDER);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(sha1);
+		new Label(g3, SWT.NONE).setText("Subject:"); 		subject = new Label(g3, SWT.BORDER);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(subject);
+		new Label(g3, SWT.NONE).setText("Author:"); 		author = new Label(g3, SWT.BORDER);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(author);
+		new Label(g3, SWT.NONE).setText("Committer:"); 		committer = new Label(g3, SWT.BORDER);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(committer);
+
 		Group g = new Group(main, SWT.NONE);
 		g.setText(UIText.ResetTargetSelectionDialog_ResetTypeGroup);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(g);
 		g.setLayout(new GridLayout(1, false));
 
+		anySha1.addFocusListener(new FocusListener() {
+			public void focusLost(FocusEvent e) {
+			}
+			public void focusGained(FocusEvent e) {
+				branchTree.setSelection(null);
+			}
+		});
+		anySha1.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				String text = anySha1.getText();
+				if (text.length() == 0) {
+					parsedCommitish = null;
+					setMessage(""); 					return;
+				}
+				try {
+					ObjectId resolved = repo.resolve(text+"^{commit}"); 					if (resolved == null) {
+						setMessage(
+								"Unresolvable expression ", IMessageProvider.ERROR); 						getButton(OK).setEnabled(false);
+						parsedCommitish = null;
+						sha1.setText(""); 						subject.setText(""); 						author.setText(""); 						committer.setText(""); 						return;
+					} else {
+						setMessage(""); 						parsedCommitish = text;
+						getButton(OK).setEnabled(true);
+						RevWalk rw = new RevWalk(repo);
+						RevCommit commit = rw.parseCommit(resolved);
+						sha1.setText(AbbreviatedObjectId.fromObjectId(commit)
+								.name());
+						subject.setText(commit.getShortMessage());
+						author.setText(commit.getAuthorIdent().getName()
+								+ " <" 								+ commit.getAuthorIdent().getEmailAddress()
+								+ "> " + commit.getAuthorIdent().getWhen()); 						committer.setText(commit.getCommitterIdent().getName()
+								+ " <" 								+ commit.getCommitterIdent().getEmailAddress()
+								+ " >" + commit.getCommitterIdent().getWhen()); 						rw.dispose();
+					}
+				} catch (IOException e1) {
+					setMessage(e1.getMessage(), IMessageProvider.ERROR);
+					getButton(OK).setEnabled(false);
+					parsedCommitish = null;
+				}
+			}
+		});
+		branchTree.addSelectionChangedListener(new ISelectionChangedListener() {
+
+			public void selectionChanged(SelectionChangedEvent event) {
+				if (!event.getSelection().isEmpty()) {
+					anySha1.setText(refNameFromDialog());
+					anySha1.selectAll();
+				}
+			}
+		});
 		Button soft = new Button(g, SWT.RADIO);
 		soft.setText(UIText.ResetTargetSelectionDialog_ResetTypeSoftButton);
 		soft.addListener(SWT.Selection, new Listener() {
