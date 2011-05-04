@@ -5,10 +5,9 @@
 		String dialogTitle = UIText.CompareTargetSelectionDialog_WindowTitle;
 		SWTBotShell dialog = openCompareWithDialog(compareWithRefActionLabel,
 				dialogTitle);
-		dialog.bot().button(UIText.CompareTargetSelectionDialog_CompareButton)
-				.click();
-		waitUntilCompareTreeViewTreeHasNodeCount(0);
-		dialog = openCompareWithDialog(compareWithRefActionLabel, dialogTitle);
+		assertFalse(dialog.bot()
+				.button(UIText.CompareTargetSelectionDialog_CompareButton)
+				.isEnabled());
 		dialog.bot().tree().getTreeItem(TAGS).expand().getNode("SomeTag")
 				.select();
 		dialog.bot().button(UIText.CompareTargetSelectionDialog_CompareButton)
