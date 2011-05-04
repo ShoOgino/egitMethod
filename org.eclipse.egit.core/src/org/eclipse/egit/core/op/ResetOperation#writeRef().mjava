@@ -5,7 +5,7 @@
 			String name = refName;
 			if (name.startsWith("refs/heads/"))  				name = name.substring(11);
 			if (name.startsWith("refs/remotes/"))  				name = name.substring(13);
-			String message = "reset --" 					+ type.toString().toLowerCase() + " " + name; 			ru.setRefLogMessage(message, false);
+			String message = name + ": updating " + Constants.HEAD; 			ru.setRefLogMessage(message, false);
 			if (ru.forceUpdate() == RefUpdate.Result.LOCK_FAILURE)
 				throw new TeamException(NLS.bind(
 						CoreText.ResetOperation_cantUpdate, ru.getName()));
