@@ -46,6 +46,9 @@
 					}
 					for (RevCommit revCommit : commits)
 						commitCombo.add(revCommit);
+
+					if (tag != null)
+						commitCombo.setSelectedElement(tag.getObject());
 				}
 				composite.layout(true);
 			}
