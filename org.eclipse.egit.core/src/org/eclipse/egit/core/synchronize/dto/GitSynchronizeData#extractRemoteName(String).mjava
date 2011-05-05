@@ -1,0 +1,6 @@
+	private String extractRemoteName(String rev) {
+		if (rev.contains(R_REMOTES)) {
+			String remote = rev.replaceAll(R_REMOTES, ""); 			return remote.substring(0, remote.indexOf("/")); 		} else
+			return null;
+	}
+

@@ -1,4 +1,4 @@
 	public RevCommit getSrcRevCommit() {
-		return srcRev;
+		return srcRevCommit;
 	}
 

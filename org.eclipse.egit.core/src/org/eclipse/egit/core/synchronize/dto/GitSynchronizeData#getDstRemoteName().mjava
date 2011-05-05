@@ -1,0 +1,4 @@
+	public String getDstRemoteName() {
+		return dstRemote;
+	}
+

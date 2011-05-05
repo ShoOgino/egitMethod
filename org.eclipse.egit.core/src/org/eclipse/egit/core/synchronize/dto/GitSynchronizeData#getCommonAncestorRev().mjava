@@ -1,4 +1,4 @@
 	public RevCommit getCommonAncestorRev() {
-		return commonAncestorRev;
+		return ancestorRevCommit;
 	}
 
