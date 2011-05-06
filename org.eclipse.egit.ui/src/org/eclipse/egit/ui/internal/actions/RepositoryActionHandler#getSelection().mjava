@@ -1,6 +1,6 @@
 	protected IStructuredSelection getSelection() {
 		if (mySelection != null)
 			return mySelection;
-		return convertSelection(getEvaluationContext(), null);
+		return convertSelection(evaluationContext, null);
 	}
 
