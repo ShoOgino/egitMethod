@@ -1,0 +1,4 @@
+	public PullAction(String text, ISynchronizePageConfiguration configuration) {
+		super(text, configuration);
+	}
+
