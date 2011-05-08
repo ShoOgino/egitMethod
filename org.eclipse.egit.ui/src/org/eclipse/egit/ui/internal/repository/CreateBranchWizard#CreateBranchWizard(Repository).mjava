@@ -1,0 +1,4 @@
+	public CreateBranchWizard(Repository repository) {
+		this(repository, null);
+	}
+
