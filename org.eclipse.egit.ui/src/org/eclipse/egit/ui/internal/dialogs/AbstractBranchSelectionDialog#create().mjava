@@ -2,6 +2,8 @@
 	public void create() {
 		super.create();
 
+		getButton(Window.OK).setEnabled(false);
+
 		List<RepositoryTreeNode> roots = new ArrayList<RepositoryTreeNode>();
 		if ((settings & SHOW_LOCAL_BRANCHES) != 0)
 			roots.add(localBranches);
@@ -28,7 +30,5 @@
 				branchTree.expandToLevel(remoteBranches, 1);
 		} catch (IOException e) {
 		}
-
-		getButton(Window.OK).setEnabled(false);
 	}
 
