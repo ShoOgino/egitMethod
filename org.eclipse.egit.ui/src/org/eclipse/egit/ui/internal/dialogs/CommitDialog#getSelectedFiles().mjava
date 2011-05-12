@@ -1,4 +1,4 @@
-	public IFile[] getSelectedFiles() {
-		return selectedFiles.toArray(new IFile[0]);
+	public Collection<String> getSelectedFiles() {
+		return selectedFiles;
 	}
 

@@ -1,0 +1,15 @@
+	public CommitOperation(Repository repository, Collection<String> filesToCommit, Collection<String> notIndexed,
+			Collection<String> notTracked, String author, String committer,
+			String message) throws CoreException {
+		this.repo = repository;
+		this.author = author;
+		this.committer = committer;
+		this.message = message;
+		if (filesToCommit != null)
+			commitFileList = new HashSet<String>(filesToCommit);
+		if (notIndexed != null)
+			this.notIndexed = new HashSet<String>(notIndexed);
+		if (notTracked != null)
+			this.notTracked = new HashSet<String>(notTracked);
+	}
+

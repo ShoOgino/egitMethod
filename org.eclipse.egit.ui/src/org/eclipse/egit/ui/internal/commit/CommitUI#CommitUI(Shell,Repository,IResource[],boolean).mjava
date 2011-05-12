@@ -1,10 +1,10 @@
-	public CommitUI(Shell shell, Repository[] repos,
-			IResource[] selectedResources) {
+	public CommitUI(Shell shell, Repository repo,
+			IResource[] selectedResources, boolean preselectAll) {
 		this.shell = shell;
-		this.repos = new Repository[repos.length];
-		System.arraycopy(repos, 0, this.repos, 0, repos.length);
+		this.repo = repo;
 		this.selectedResources = new IResource[selectedResources.length];
 		System.arraycopy(selectedResources, 0, this.selectedResources, 0,
 				selectedResources.length);
+		this.preselectAll = preselectAll;
 	}
 

@@ -1,15 +1,16 @@
 	public CommitOperation(IFile[] filesToCommit, Collection<IFile> notIndexed,
 			Collection<IFile> notTracked, String author, String committer,
-			String message) {
-		if (filesToCommit != null) {
-			this.filesToCommit = new IFile[filesToCommit.length];
-			System.arraycopy(filesToCommit, 0, this.filesToCommit, 0,
-					filesToCommit.length);
-		}
-		this.notIndexed = notIndexed;
-		this.notTracked = notTracked;
+			String message) throws CoreException {
 		this.author = author;
 		this.committer = committer;
 		this.message = message;
+		if (filesToCommit != null && filesToCommit.length > 0)
+			setRepository(filesToCommit[0]);
+		if (filesToCommit != null)
+			commitFileList = buildFileList(Arrays.asList(filesToCommit));
+		if (notIndexed != null)
+			this.notIndexed = buildFileList(notIndexed);
+		if (notTracked != null)
+			this.notTracked = buildFileList(notTracked);
 	}
 
