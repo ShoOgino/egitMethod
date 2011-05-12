@@ -1,5 +1,9 @@
-	public static final void launch(GitSynchronizeDataSet gsdSet,
+	public static final void launch(final GitSynchronizeDataSet gsdSet,
 			IResource[] resources) {
+		Job fetchJob = new SynchronizeFetchJob(gsdSet);
+		fetchJob.setUser(true);
+		fetchJob.schedule();
+
 		ResourceMapping[] mappings = getSelectedResourceMappings(resources);
 
 		GitResourceVariantTreeSubscriber subscriber = new GitResourceVariantTreeSubscriber(
@@ -21,6 +25,10 @@
 		if (window != null)
 			activePart = window.getActivePage().getActivePart();
 
+		try {
+			fetchJob.join();
+		} catch (InterruptedException e) {
+			Activator.logError("Fetch operation interupted", e); 		}
 		participant.run(activePart);
 	}
 
