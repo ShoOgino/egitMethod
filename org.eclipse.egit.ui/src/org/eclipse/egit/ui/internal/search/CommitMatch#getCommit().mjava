@@ -1,0 +1,4 @@
+	public RepositoryCommit getCommit() {
+		return this.commit;
+	}
+

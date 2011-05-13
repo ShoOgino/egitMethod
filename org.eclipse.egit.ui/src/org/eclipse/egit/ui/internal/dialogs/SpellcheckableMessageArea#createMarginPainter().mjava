@@ -1,4 +1,4 @@
-	private void createMarginPainter() {
+	protected void createMarginPainter() {
 		MarginPainter marginPainter = new MarginPainter(sourceViewer);
 		marginPainter.setMarginRulerColumn(MAX_LINE_WIDTH);
 		marginPainter.setMarginRulerColor(Display.getDefault().getSystemColor(

@@ -1,0 +1,5 @@
+	public boolean performAction() {
+		NewSearchUI.runQueryInBackground(newQuery());
+		return true;
+	}
+

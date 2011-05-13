@@ -1,0 +1,4 @@
+	public CommitMatch(RepositoryCommit commit) {
+		this(commit, 0, 0);
+	}
+

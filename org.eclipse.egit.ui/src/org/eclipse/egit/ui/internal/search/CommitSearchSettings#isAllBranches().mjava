@@ -1,0 +1,4 @@
+	public boolean isAllBranches() {
+		return this.isAllBranches;
+	}
+

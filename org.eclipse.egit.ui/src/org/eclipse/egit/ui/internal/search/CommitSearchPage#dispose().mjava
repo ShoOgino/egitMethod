@@ -1,5 +1,5 @@
 	public void dispose() {
-		this.commitImage.dispose();
+		writeConfiguration();
 		super.dispose();
 	}
 

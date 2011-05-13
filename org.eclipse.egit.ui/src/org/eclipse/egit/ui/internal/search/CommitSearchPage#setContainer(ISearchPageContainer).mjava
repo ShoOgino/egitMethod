@@ -1,0 +1,4 @@
+	public void setContainer(ISearchPageContainer container) {
+		this.container = container;
+	}
+

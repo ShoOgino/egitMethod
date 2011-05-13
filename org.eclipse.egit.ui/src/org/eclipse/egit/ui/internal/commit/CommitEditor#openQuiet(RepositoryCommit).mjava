@@ -1,0 +1,9 @@
+	public static final IEditorPart openQuiet(RepositoryCommit commit) {
+		try {
+			return open(commit);
+		} catch (PartInitException e) {
+			Activator.logError(e.getMessage(), e);
+			return null;
+		}
+	}
+

@@ -1,0 +1,9 @@
+	private IDialogSettings getDialogSettings() {
+		IDialogSettings dialogSettings = Activator.getDefault()
+				.getDialogSettings();
+		IDialogSettings section = dialogSettings.getSection(PAGE_NAME);
+		if (section == null)
+			section = dialogSettings.addNewSection(PAGE_NAME);
+		return section;
+	}
+

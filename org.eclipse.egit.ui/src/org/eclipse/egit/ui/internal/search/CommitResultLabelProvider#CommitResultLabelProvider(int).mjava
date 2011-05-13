@@ -1,0 +1,4 @@
+	public CommitResultLabelProvider(int layout) {
+		this.layout = layout;
+	}
+

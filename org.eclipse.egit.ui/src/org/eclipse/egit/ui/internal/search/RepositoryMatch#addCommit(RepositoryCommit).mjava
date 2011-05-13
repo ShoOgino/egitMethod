@@ -1,0 +1,6 @@
+	public RepositoryMatch addCommit(RepositoryCommit commit) {
+		if (commit != null)
+			commits.add(commit);
+		return this;
+	}
+

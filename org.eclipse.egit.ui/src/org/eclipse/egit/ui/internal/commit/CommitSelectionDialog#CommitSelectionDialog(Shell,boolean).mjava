@@ -1,0 +1,9 @@
+	public CommitSelectionDialog(Shell shell, boolean multi) {
+		super(shell, multi);
+		setTitle(UIText.CommitSelectionDialog_Title);
+		setMessage(UIText.CommitSelectionDialog_Message);
+		labelProvider = new CommitLabelProvider();
+		setListLabelProvider(labelProvider);
+		setDetailsLabelProvider(new RepositoryLabelProvider());
+	}
+

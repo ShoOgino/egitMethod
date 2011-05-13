@@ -1,0 +1,6 @@
+	public CommitSearchResult addResult(RepositoryCommit commit) {
+		if (commit != null)
+			addMatch(new CommitMatch(commit));
+		return this;
+	}
+
