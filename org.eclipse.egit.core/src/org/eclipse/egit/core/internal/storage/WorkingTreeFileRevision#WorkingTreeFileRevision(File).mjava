@@ -1,0 +1,5 @@
+	public WorkingTreeFileRevision(final File file) {
+		super(file.getName());
+		this.file = file;
+	}
+
