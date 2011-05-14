@@ -13,6 +13,8 @@
 		String outgoingRight = outgoingCompareBot.styledText(1).getText();
 		outgoingCompare.close();
 
+		assertNotSame("Text from SWTBot widgets was the same", outgoingLeft, outgoingRight);
+
 		launchSynchronization(SynchronizeWithAction_tagsName, INITIAL_TAG,
 				SynchronizeWithAction_localRepoName, HEAD, false);
 		setGitChangeSetPresentationModel();
