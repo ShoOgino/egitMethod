@@ -11,11 +11,6 @@
 			rootTree = waitForNodeWithText(syncViewTree, TEST_COMMIT_MSG);
 
 		SWTBotTreeItem projNode = waitForNodeWithText(rootTree, PROJ1);
-		SWTBotTreeItem folderNode = waitForNodeWithText(projNode, FOLDER);
-		waitForNodeWithText(folderNode, fileName).doubleClick();
-
-		SWTBotEditor editor = bot.editorByTitle(fileName);
-		editor.toTextEditor().setFocus();
-		return editor;
+		return getCompareEditor(projNode, fileName);
 	}
 
