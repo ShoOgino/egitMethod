@@ -1,3 +1,4 @@
 	private void stage(IStructuredSelection selection) {
-		runCommand("org.eclipse.egit.ui.team.AddToIndex", selection); 	}
+		runCommand(ActionCommands.ADD_TO_INDEX, selection);
+	}
 
