@@ -1,6 +1,7 @@
 	public static boolean canCommit(GitModelObject object) {
 		return object instanceof GitModelWorkingFile
 				|| object instanceof GitModelCacheFile
-				|| object instanceof GitModelCacheTree;
+				|| object instanceof GitModelCacheTree
+				|| object instanceof GitModelCache;
 	}
 
