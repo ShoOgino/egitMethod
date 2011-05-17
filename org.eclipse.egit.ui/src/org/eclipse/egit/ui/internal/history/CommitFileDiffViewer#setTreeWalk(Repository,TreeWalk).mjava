@@ -1,4 +1,4 @@
-	void setTreeWalk(Repository repository, TreeWalk walk) {
+	public void setTreeWalk(Repository repository, TreeWalk walk) {
 		db = repository;
 		walker = walk;
 	}
