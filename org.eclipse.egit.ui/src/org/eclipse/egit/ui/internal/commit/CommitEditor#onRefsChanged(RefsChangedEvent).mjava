@@ -3,7 +3,8 @@
 				.equals(event.getRepository().getDirectory())) {
 			UIJob job = new UIJob("Refreshing editor") { 
 				public IStatus runInUIThread(IProgressMonitor monitor) {
-					commitPage.refresh();
+					if (!getContainer().isDisposed())
+						commitPage.refresh();
 					return Status.OK_STATUS;
 				}
 			};
