@@ -7,7 +7,7 @@
 
 		layout.addPlaceholder("org.eclipse.jdt.ui.PackageExplorer", IPageLayout.BOTTOM, (float) 0.7, RepositoriesView.VIEW_ID); 
 		layout.addShowViewShortcut("org.eclipse.jdt.ui.PackageExplorer"); 		layout.addShowViewShortcut(IHistoryView.VIEW_ID);
-
+		layout.addShowViewShortcut(ISynchronizeView.VIEW_ID);
 
 
 	}
