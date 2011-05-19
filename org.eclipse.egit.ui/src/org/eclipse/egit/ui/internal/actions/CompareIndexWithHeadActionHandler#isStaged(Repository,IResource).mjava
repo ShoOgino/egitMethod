@@ -2,6 +2,10 @@
 			IResource resource) {
 		String resRelPath = RepositoryMapping.getMapping(resource).getRepoRelativePath(resource);
 
+		if (resRelPath == null || resRelPath.length() == 0) {
+			return false;
+		}
+
 		try {
 			FileTreeIterator fileTreeIterator = new FileTreeIterator(repository);
 			IndexDiff indexDiff = new IndexDiff(repository, Constants.HEAD,
