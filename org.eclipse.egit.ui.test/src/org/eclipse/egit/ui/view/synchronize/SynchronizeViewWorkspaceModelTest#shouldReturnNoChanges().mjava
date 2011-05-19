@@ -3,8 +3,7 @@
 		resetRepositoryToCreateInitialTag();
 		changeFilesInProject();
 
-		launchSynchronization(SynchronizeWithAction_localRepoName, HEAD,
-				SynchronizeWithAction_localRepoName, MASTER, false);
+		launchSynchronization(HEAD, R_HEADS + MASTER, false);
 
 		SWTBotTree syncViewTree = bot.viewByTitle("Synchronize").bot().tree();
 		assertEquals(0, syncViewTree.getAllItems().length);

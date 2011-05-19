@@ -2,8 +2,7 @@
 		resetRepositoryToCreateInitialTag();
 		deleteFileAndCommit(PROJ1);
 
-		launchSynchronization(null, null, SynchronizeWithAction_tagsName,
-				INITIAL_TAG, true);
+		launchSynchronization(HEAD, INITIAL_TAG, true);
 		setGitChangeSetPresentationModel();
 
 		SWTBotTree syncViewTree = bot.viewByTitle("Synchronize").bot().tree();

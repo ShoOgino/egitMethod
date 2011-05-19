@@ -1,0 +1,4 @@
+	public SynchronizeWithMenu() {
+		this(null);
+	}
+

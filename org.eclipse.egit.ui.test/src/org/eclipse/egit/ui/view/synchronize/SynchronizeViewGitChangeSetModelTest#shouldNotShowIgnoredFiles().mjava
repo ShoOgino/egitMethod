@@ -16,8 +16,7 @@
 						.getDefaultCharset())), false, null);
 		proj.refreshLocal(IResource.DEPTH_INFINITE, null);
 
-		launchSynchronization(SynchronizeWithAction_tagsName, INITIAL_TAG,
-				SynchronizeWithAction_localRepoName, HEAD, true);
+		launchSynchronization(INITIAL_TAG, HEAD, true);
 		setGitChangeSetPresentationModel();
 
 		SWTBotTree syncViewTree = bot.viewByTitle("Synchronize").bot().tree();

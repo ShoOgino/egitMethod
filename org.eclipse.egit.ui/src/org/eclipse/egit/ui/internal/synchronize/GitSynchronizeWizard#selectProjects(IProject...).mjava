@@ -1,0 +1,4 @@
+	public void selectProjects(IProject ... projects) {
+		this.selectProjects = projects;
+	}
+

@@ -3,8 +3,7 @@
 		resetRepositoryToCreateInitialTag();
 		makeChangesAndCommit(PROJ1);
 
-		launchSynchronization(SynchronizeWithAction_localRepoName, HEAD,
-				SynchronizeWithAction_tagsName, INITIAL_TAG, false);
+		launchSynchronization(HEAD, INITIAL_TAG, false);
 		SWTBotEditor compEditor = getCompareEditorForFileInWorspaceModel(
 				FILE1);
 		SWTBot outgoingCompare = compEditor.bot();
@@ -12,8 +11,7 @@
 		String outgoingRight = outgoingCompare.styledText(1).getText();
 		compEditor.close();
 
-		launchSynchronization(SynchronizeWithAction_tagsName, INITIAL_TAG,
-				SynchronizeWithAction_localRepoName, HEAD, false);
+		launchSynchronization(INITIAL_TAG, HEAD, false);
 
 		SWTBot incomingComp = getCompareEditorForFileInWorspaceModel(
 				FILE1).bot();

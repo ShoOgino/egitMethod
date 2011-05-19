@@ -3,8 +3,7 @@
 		resetRepositoryToCreateInitialTag();
 		makeChangesAndCommit(PROJ1);
 
-		launchSynchronization(SynchronizeWithAction_localRepoName, HEAD,
-				SynchronizeWithAction_tagsName, INITIAL_TAG, false);
+		launchSynchronization(HEAD, INITIAL_TAG, false);
 		setGitChangeSetPresentationModel();
 		SWTBotEditor outgoingCompare = getCompareEditorForFileInGitChangeSet(
 				FILE1, false);
@@ -15,8 +14,7 @@
 
 		assertNotSame("Text from SWTBot widgets was the same", outgoingLeft, outgoingRight);
 
-		launchSynchronization(SynchronizeWithAction_tagsName, INITIAL_TAG,
-				SynchronizeWithAction_localRepoName, HEAD, false);
+		launchSynchronization(INITIAL_TAG, HEAD, false);
 		setGitChangeSetPresentationModel();
 
 		SWTBot incomingComp = getCompareEditorForFileInGitChangeSet(

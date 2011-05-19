@@ -3,8 +3,7 @@
 		resetRepositoryToCreateInitialTag();
 		changeFilesInProject();
 
-		launchSynchronization(null, null, SynchronizeWithAction_tagsName,
-				INITIAL_TAG, true);
+		launchSynchronization(HEAD, INITIAL_TAG, true);
 		setGitChangeSetPresentationModel();
 
 		SWTBot compare = getCompareEditorForFileInGitChangeSet(FILE1, true)
