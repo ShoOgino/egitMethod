@@ -1,4 +1,4 @@
 	public boolean configureGerrit() {
-		return configureGerrit.isEnabled();
+		return configureGerrit.getSelection();
 	}
 
