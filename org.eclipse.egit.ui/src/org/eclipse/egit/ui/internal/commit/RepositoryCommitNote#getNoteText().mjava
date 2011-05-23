@@ -1,0 +1,15 @@
+	public String getNoteText() {
+		try {
+			ObjectLoader loader = commit.getRepository().open(note.getData(),
+					Constants.OBJ_BLOB);
+			byte[] contents;
+			if (loader.isLarge())
+				contents = IO.readWholeStream(loader.openStream(),
+						(int) loader.getSize()).array();
+			else
+				contents = loader.getCachedBytes();
+			return new String(contents);
+		} catch (IOException e) {
+			Activator.logError("Error loading note text", e); 		}
+		return ""; 	}
+

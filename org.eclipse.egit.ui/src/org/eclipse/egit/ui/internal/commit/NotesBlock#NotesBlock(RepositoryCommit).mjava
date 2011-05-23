@@ -1,0 +1,4 @@
+	public NotesBlock(RepositoryCommit commit) {
+		this.commit = commit;
+	}
+

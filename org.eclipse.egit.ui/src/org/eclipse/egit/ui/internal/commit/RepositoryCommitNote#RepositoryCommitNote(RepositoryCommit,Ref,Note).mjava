@@ -1,0 +1,6 @@
+	public RepositoryCommitNote(RepositoryCommit commit, Ref ref, Note note) {
+		Assert.isNotNull(commit, "Commit cannot be null"); 		Assert.isNotNull(ref, "Ref cannot be null"); 		Assert.isNotNull(note, "Note cannot be null"); 		this.commit = commit;
+		this.ref = ref;
+		this.note = note;
+	}
+

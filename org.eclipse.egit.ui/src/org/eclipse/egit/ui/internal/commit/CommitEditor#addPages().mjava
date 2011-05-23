@@ -6,6 +6,8 @@
 				diffPage = new DiffEditorPage(this);
 				addPage(diffPage);
 			}
+			notePage = new NotesEditorPage(this);
+			addPage(notePage);
 		} catch (PartInitException e) {
 			Activator.error("Error adding page", e); 		}
 		refListenerHandle = Repository.getGlobalListenerList()
