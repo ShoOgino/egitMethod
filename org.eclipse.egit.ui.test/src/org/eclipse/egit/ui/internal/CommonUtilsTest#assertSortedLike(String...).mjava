@@ -1,0 +1,8 @@
+	private void assertSortedLike(String... inputs) {
+		List<String> expected = Arrays.asList(inputs);
+		List<String> tmp = new ArrayList<String>(expected);
+		Collections.shuffle(tmp, new Random(1));
+		Collections.sort(tmp, CommonUtils.STRING_ASCENDING_COMPARATOR);
+		assertEquals(expected, tmp);
+	}
+
