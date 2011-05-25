@@ -13,6 +13,5 @@
 		setupRepoIndexRefresh();
 		setupFocusHandling();
 		setupCredentialsProvider();
-		setupDefaultRepositoryFolder();
 	}
 
