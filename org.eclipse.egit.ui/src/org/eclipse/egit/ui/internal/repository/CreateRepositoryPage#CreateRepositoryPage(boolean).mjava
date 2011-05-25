@@ -1,5 +1,6 @@
-	public CreateRepositoryPage() {
+	public CreateRepositoryPage(boolean hideBareOption) {
 		super(CreateRepositoryPage.class.getName());
+		this.hideBare = hideBareOption;
 		setTitle(UIText.CreateRepositoryPage_PageTitle);
 		setMessage(UIText.CreateRepositoryPage_PageMessage);
 		setPageComplete(false);

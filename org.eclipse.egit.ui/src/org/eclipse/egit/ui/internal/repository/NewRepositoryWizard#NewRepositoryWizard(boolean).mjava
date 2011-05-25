@@ -1,0 +1,4 @@
+	public NewRepositoryWizard(boolean hideBareOption) {
+		myCreatePage = new CreateRepositoryPage(hideBareOption);
+	}
+

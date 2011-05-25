@@ -21,6 +21,7 @@
 
 		ExistingOrNewPage existingOrNewPage = sharingWizard.openWizard(
 				projectName1, projectName2, projectName3);
+		existingOrNewPage.setInternalMode(true);
 
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		String projectPath1 = workspace.getRoot().getProject(projectName1)

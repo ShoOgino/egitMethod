@@ -1,4 +1,4 @@
 	public boolean getBare() {
-		return bareButton.getSelection();
+		return bareButton != null && bareButton.getSelection();
 	}
 

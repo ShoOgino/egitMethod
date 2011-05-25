@@ -1,0 +1,6 @@
+	protected void setRepository(Repository repository) {
+		if (repository == this.selectedRepository)
+			return;
+		this.selectedRepository = repository;
+		relPath.setText(""); 	}
+
