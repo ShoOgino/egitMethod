@@ -1,0 +1,4 @@
+	public BlameInformationControlCreator(boolean resizable) {
+		this.resizable = resizable;
+	}
+
