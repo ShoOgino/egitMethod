@@ -1,0 +1,5 @@
+	public BlameRevision setCommit(RevCommit commit) {
+		this.commit = commit;
+		return this;
+	}
+

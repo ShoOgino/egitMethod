@@ -1,0 +1,5 @@
+	public BlameRevision addLine() {
+		lines++;
+		return this;
+	}
+
