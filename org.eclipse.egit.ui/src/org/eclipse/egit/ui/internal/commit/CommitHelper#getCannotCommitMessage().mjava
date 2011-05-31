@@ -1,0 +1,4 @@
+	public String getCannotCommitMessage() {
+		return cannotCommitMessage;
+	}
+

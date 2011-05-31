@@ -1,0 +1,6 @@
+	public void updateStateFromUI() {
+		commitMessage = commitText.getCommitMessage();
+		author = authorText.getText().trim();
+		committer = committerText.getText().trim();
+	}
+

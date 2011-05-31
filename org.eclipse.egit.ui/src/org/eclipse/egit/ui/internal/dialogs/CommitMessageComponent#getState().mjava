@@ -1,0 +1,11 @@
+	public CommitMessageComponentState getState() {
+		updateStateFromUI();
+		CommitMessageComponentState state = new CommitMessageComponentState();
+		state.setAmend(isAmending());
+		state.setAuthor(getAuthor());
+		state.setCommitMessage(getCommitMessage());
+		state.setCommitter(getCommitter());
+		state.setHeadCommit(getHeadCommit());
+		return state;
+	}
+

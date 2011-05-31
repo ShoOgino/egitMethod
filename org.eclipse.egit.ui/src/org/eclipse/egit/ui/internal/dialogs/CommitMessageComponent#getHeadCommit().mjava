@@ -1,0 +1,4 @@
+	public ObjectId getHeadCommit() {
+		return headCommitId;
+	}
+

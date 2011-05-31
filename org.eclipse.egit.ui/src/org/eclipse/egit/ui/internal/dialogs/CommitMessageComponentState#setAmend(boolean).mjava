@@ -1,0 +1,4 @@
+	public void setAmend(boolean amend) {
+		this.amend = amend;
+	}
+

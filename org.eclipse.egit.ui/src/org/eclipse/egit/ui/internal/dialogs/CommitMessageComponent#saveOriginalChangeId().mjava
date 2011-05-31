@@ -1,0 +1,17 @@
+	private void saveOriginalChangeId() {
+		int changeIdOffset = findOffsetOfChangeIdLine(previousCommitMessage);
+		if (changeIdOffset > 0) {
+			int endOfChangeId = findNextEOL(changeIdOffset,
+					previousCommitMessage);
+			if (endOfChangeId < 0)
+				endOfChangeId = previousCommitMessage.length() - 1;
+			int sha1Offset = changeIdOffset + "\nChange-Id: I".length(); 			try {
+				originalChangeId = ObjectId.fromString(previousCommitMessage
+						.substring(sha1Offset, endOfChangeId));
+			} catch (IllegalArgumentException e) {
+				originalChangeId = null;
+			}
+		} else
+			originalChangeId = null;
+	}
+

@@ -1,0 +1,2 @@
+	void updateSignedOffToggleSelection(boolean selection);
+

@@ -1,0 +1,4 @@
+	public String getCommitter() {
+		return committer;
+	}
+

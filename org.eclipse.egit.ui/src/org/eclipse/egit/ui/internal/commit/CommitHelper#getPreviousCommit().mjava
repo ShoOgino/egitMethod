@@ -1,0 +1,4 @@
+	public RevCommit getPreviousCommit() {
+		return previousCommit;
+	}
+
