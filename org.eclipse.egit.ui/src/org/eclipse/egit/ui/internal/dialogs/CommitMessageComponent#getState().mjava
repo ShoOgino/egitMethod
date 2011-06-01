@@ -3,7 +3,7 @@
 		CommitMessageComponentState state = new CommitMessageComponentState();
 		state.setAmend(isAmending());
 		state.setAuthor(getAuthor());
-		state.setCommitMessage(getCommitMessage());
+		state.setCommitMessage(commitText.getText());
 		state.setCommitter(getCommitter());
 		state.setHeadCommit(getHeadCommit());
 		return state;
