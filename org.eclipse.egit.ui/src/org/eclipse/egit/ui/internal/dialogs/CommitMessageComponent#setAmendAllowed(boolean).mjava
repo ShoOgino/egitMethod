@@ -1,0 +1,4 @@
+	public void setAmendAllowed(boolean amendAllowed) {
+		this.amendAllowed = amendAllowed;
+	}
+

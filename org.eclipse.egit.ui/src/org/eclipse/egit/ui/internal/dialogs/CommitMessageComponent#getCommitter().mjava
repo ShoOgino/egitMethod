@@ -1,0 +1,5 @@
+	public String getCommitter() {
+		committer = committerText.getText().trim();
+		return committer;
+	}
+

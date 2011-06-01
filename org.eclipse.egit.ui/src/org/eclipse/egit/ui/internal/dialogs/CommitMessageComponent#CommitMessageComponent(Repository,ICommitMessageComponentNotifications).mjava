@@ -1,0 +1,6 @@
+	public CommitMessageComponent(Repository repository,
+			ICommitMessageComponentNotifications listener) {
+		this.repository = repository;
+		this.listener = listener;
+	}
+

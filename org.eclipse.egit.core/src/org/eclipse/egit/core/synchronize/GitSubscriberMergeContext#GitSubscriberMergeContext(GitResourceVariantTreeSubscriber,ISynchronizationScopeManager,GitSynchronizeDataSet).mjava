@@ -1,0 +1,16 @@
+	public GitSubscriberMergeContext(final GitResourceVariantTreeSubscriber subscriber,
+			ISynchronizationScopeManager manager, GitSynchronizeDataSet gsds) {
+		super(subscriber, manager);
+		this.gsds = gsds;
+
+
+		repoChangeListener = new RepositoryChangeListener() {
+			public void repositoryChanged(RepositoryMapping which) {
+				update(subscriber, which);
+			}
+		};
+		GitProjectData.addRepositoryChangeListener(repoChangeListener);
+
+		initialize();
+	}
+

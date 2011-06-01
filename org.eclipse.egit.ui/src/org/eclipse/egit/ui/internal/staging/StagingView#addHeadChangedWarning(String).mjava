@@ -1,0 +1,5 @@
+	private void addHeadChangedWarning(String commitMessage) {
+		String message = UIText.StagingView_headCommitChanged + "\n\n" + 				commitMessage;
+		commitMessageComponent.setCommitMessage(message);
+	}
+

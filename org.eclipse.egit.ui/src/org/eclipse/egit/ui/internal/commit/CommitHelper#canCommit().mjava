@@ -1,0 +1,4 @@
+	public boolean canCommit() {
+		return canCommit;
+	}
+

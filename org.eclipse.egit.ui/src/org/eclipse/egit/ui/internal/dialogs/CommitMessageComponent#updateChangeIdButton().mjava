@@ -1,0 +1,8 @@
+	private void updateChangeIdButton() {
+		String curText = commitText.getText();
+		if (!curText.endsWith(Text.DELIMITER))
+			curText += Text.DELIMITER;
+
+		createChangeId = curText.indexOf(Text.DELIMITER + "Change-Id: ") != -1; 		listener.updateChangeIdToggleSelection(createChangeId);
+	}
+

@@ -1,0 +1,15 @@
+	public void setAmendingButtonSelection(boolean selection) {
+		amending = selection;
+		if (!selection) {
+			originalChangeId = null;
+			authorText.setText(author);
+		} else {
+			getHeadCommitInfo();
+			saveOriginalChangeId();
+			commitText.setText(previousCommitMessage.replaceAll(
+					"\n", Text.DELIMITER)); 			if (previousAuthor != null)
+				authorText.setText(previousAuthor);
+		}
+		refreshChangeIdText();
+	}
+

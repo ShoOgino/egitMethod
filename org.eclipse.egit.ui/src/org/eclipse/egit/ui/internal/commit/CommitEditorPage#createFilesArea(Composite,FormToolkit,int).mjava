@@ -9,8 +9,10 @@
 
 		CommitFileDiffViewer viewer = new CommitFileDiffViewer(filesArea,
 				getSite(), SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL
-						| SWT.FULL_SELECTION);
+						| SWT.FULL_SELECTION | toolkit.getBorderStyle());
 		toolkit.paintBordersFor(viewer.getTable().getParent());
+		viewer.getTable().setData(FormToolkit.KEY_DRAW_BORDER,
+				FormToolkit.TREE_BORDER);
 		StackLayout viewerLayout = (StackLayout) viewer.getControl()
 				.getParent().getLayout();
 		viewerLayout.marginHeight = 2;

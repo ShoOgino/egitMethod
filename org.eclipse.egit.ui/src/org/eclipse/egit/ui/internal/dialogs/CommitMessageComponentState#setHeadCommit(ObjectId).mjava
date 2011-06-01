@@ -1,0 +1,4 @@
+	public void setHeadCommit(ObjectId headCommit) {
+		this.headCommit = headCommit;
+	}
+

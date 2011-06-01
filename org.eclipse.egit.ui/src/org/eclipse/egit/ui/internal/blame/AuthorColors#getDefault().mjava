@@ -1,0 +1,6 @@
+	public static synchronized AuthorColors getDefault() {
+		if (instance == null)
+			instance = new AuthorColors();
+		return instance;
+	}
+
