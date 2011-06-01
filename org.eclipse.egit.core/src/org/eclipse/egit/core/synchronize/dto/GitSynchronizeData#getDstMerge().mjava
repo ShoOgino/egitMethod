@@ -1,0 +1,4 @@
+	public String getDstMerge() {
+		return dstMerge;
+	}
+
