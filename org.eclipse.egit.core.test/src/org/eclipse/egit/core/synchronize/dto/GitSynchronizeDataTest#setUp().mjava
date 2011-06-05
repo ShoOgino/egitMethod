@@ -1,0 +1,12 @@
+	@Before
+	public void setUp() throws Exception {
+		super.setUp();
+
+		TestRepository testRepo = new TestRepository(gitDir);
+		testRepo.connect(project.project);
+		repo = RepositoryMapping.getMapping(project.project).getRepository();
+
+		new Git(repo).commit().setAuthor("JUnit", "junit@jgit.org")
+				.setMessage("Initall commit").call();
+	}
+
