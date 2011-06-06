@@ -1,0 +1,4 @@
+	public boolean isWorkingTree() {
+		return factory.isWorkingTree();
+	}
+

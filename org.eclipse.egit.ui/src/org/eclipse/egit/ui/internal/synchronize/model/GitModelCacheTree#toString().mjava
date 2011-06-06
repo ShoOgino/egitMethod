@@ -1,4 +1,4 @@
 	@Override
 	public String toString() {
-		return "GitModelTree[" + getLocation() + "]"; 	}
+		return "GitModelCacheTree[" + getLocation() + ", isWorkingTree:" + factory.isWorkingTree() + "]"; 	}
 
