@@ -5,6 +5,8 @@
 		String commitMessage = headCommit.getFullMessage().replaceAll(
 				"\n", Text.DELIMITER); 		PersonIdent authorIdent = headCommit.getAuthorIdent();
 		String author = authorIdent.getName()
-				+ " <" + authorIdent.getEmailAddress() + ">"; 		return new CommitInfo(headCommit, author, commitMessage);
+				+ " <" + authorIdent.getEmailAddress() + ">"; 		PersonIdent committerIdent = headCommit.getCommitterIdent();
+		String committer = committerIdent.getName()
+				+ " <" + committerIdent.getEmailAddress() + ">"; 		return new CommitInfo(headCommit, author, committer, commitMessage);
 	}
 
