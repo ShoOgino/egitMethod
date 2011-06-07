@@ -14,7 +14,7 @@
 				int endOfChangeId = findNextEOL(changeIdOffset, text);
 				String cleanedText = text.substring(0, changeIdOffset)
 						+ text.substring(endOfChangeId);
-				cleanedText = cleanedText.replaceAll("\n", Text.DELIMITER); 				commitText.setText(cleanedText);
+				commitText.setText(cleanedText);
 			}
 		}
 	}
