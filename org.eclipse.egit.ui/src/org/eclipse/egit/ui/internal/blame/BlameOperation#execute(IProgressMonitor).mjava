@@ -17,6 +17,13 @@
 		monitor.beginTask("", lineCount); 		BlameRevision previous = null;
 		for (int i = 0; i < lineCount; i++) {
 			RevCommit commit = result.getSourceCommit(i);
+			if (commit == null) {
+				if (previous != null) {
+					previous.register();
+					previous = null;
+				}
+				continue;
+			}
 			BlameRevision revision = revisions.get(commit);
 			if (revision == null) {
 				revision = new BlameRevision();
