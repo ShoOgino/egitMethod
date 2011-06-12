@@ -1,0 +1,16 @@
+	private void commitOneFileChange(String fileContent) throws Exception {
+		setTestFileContent(fileContent);
+		new Git(repository).add().addFilepattern(".").call();
+		selectRepositoryNode(); 		StagingViewTester stagingViewTester = StagingViewTester
+				.openStagingView();
+		stagingViewTester.setAuthor(TestUtil.TESTAUTHOR);
+		stagingViewTester.setCommitter(TestUtil.TESTCOMMITTER);
+		stagingViewTester.setCommitMessage("Commit message");
+		stagingViewTester.setInsertChangeId(true);
+		stagingViewTester.setSignedOff(true);
+		String commitMessage = stagingViewTester.getCommitMessage();
+		assertTrue(commitMessage.indexOf("Change-Id") > 0);
+		assertTrue(commitMessage.indexOf("Signed-off-by") > 0);
+		stagingViewTester.commit();
+	}
+

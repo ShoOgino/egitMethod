@@ -1,3 +1,4 @@
 	private static int findOffsetOfChangeIdLine(String message) {
-		return message.indexOf(Text.DELIMITER + "Change-Id: I"); 	}
+		return message.indexOf("\nChange-Id: I");
+	}
 
