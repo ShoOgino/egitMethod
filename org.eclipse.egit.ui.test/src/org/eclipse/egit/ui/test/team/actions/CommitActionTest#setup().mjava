@@ -2,6 +2,7 @@
 	public static void setup() throws Exception {
 		repositoryFile = createProjectAndCommitToRepository();
 		Repository repo = lookupRepository(repositoryFile);
+		TestUtil.configureTestCommitterAsUser(repo);
 		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(PROJ2);
 		File dotProject = new File(project.getLocation().toOSString(), ".project");
 		project.delete(false, false, null);

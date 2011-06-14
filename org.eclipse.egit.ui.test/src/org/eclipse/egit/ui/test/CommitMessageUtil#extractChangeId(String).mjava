@@ -1,0 +1,8 @@
+	public static String extractChangeId(String commitMessage) {
+		int changeIdOffset = findOffsetOfChangeIdLine(commitMessage);
+		if (changeIdOffset <= 0)
+			return null;
+		int endOfChangeId = findNextEOL(changeIdOffset, commitMessage);
+		return commitMessage.substring(changeIdOffset, endOfChangeId);
+	}
+
