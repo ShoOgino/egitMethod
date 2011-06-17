@@ -12,8 +12,6 @@
 		files.add(newFile);
 		IFile[] fileArr = files.toArray(new IFile[files.size()]);
 
-		Thread.sleep(1000);
-
 		AddToIndexOperation trop = new AddToIndexOperation(files);
 		trop.execute(null);
 		CommitOperation cop = new CommitOperation(fileArr, files, files,
