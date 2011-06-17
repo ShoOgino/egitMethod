@@ -1,0 +1,21 @@
+	@After
+	public void tearDown() throws Exception {
+
+		Thread.sleep(1000); 
+		RepositoryProvider.unmap(project);
+		RepositoryProvider.unmap(project2);
+
+		GitProjectData.delete(project);
+		GitProjectData.delete(project2);
+
+		project.delete(true, true, null);
+		project2.delete(true, true, null);
+
+		repository.close();
+		repository2.close();
+
+		org.eclipse.egit.core.Activator.getDefault().getRepositoryCache().clear();
+
+		FileUtils.delete(gitDir, FileUtils.RECURSIVE);
+	}
+
