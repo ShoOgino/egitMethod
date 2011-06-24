@@ -9,6 +9,6 @@
 		layout.addShowViewShortcut("org.eclipse.jdt.ui.PackageExplorer"); 		layout.addShowViewShortcut(IHistoryView.VIEW_ID);
 		layout.addShowViewShortcut(ISynchronizeView.VIEW_ID);
 		layout.addShowViewShortcut(StagingView.VIEW_ID);
-
+		layout.addShowViewShortcut(ReflogView.VIEW_ID);
 	}
 
