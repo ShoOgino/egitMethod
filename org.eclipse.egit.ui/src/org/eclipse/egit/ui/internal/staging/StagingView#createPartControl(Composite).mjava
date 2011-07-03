@@ -256,6 +256,9 @@
 		updateSectionText();
 		updateToolbar();
 
+		createPopupMenu(unstagedTableViewer);
+		createPopupMenu(stagedTableViewer);
+
 		final ICommitMessageComponentNotifications listener = new ICommitMessageComponentNotifications() {
 
 			public void updateSignedOffToggleSelection(boolean selection) {
