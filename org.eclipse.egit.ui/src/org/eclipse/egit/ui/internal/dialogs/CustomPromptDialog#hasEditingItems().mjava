@@ -1,0 +1,15 @@
+	private boolean hasEditingItems() {
+		for (CredentialItem item : credentialItems) {
+			if (item instanceof StringType) {
+				return true;
+			}
+			if (item instanceof CharArrayType) {
+				return true;
+			}
+			if (item instanceof YesNoType) {
+				return true;
+			}
+		}
+		return false;
+	}
+
