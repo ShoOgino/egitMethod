@@ -5,8 +5,8 @@
 		gd.exclude = warning == null;
 		warningComposite.setVisible(!gd.exclude);
 		if (warning != null)
-			warningText.setText(warning);
+			warningLabel.setText(warning);
 		else
-			warningText.setText(""); 		warningComposite.getParent().layout(true);
+			warningLabel.setText(""); 		warningComposite.getParent().layout(true);
 	}
 
