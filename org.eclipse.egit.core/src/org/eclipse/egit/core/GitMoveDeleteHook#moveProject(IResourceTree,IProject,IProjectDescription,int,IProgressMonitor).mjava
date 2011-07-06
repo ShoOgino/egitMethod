@@ -9,10 +9,21 @@
 			final String sPath = srcm.getRepoRelativePath(source);
 			final String dPath = new Path(newLocation.getAbsolutePath().substring(
 					srcm.getRepository().getWorkTree().getAbsolutePath().length() + 1) + "/").toPortableString(); 			try {
-				if (!moveIndexContent(dPath, srcm, sPath))
-					tree.failed(new Status(IStatus.ERROR, Activator.getPluginId(),
-							0, CoreText.MoveDeleteHook_operationError, null));
-				tree.standardMoveProject(source, description, updateFlags, monitor);
+				MoveResult result = moveIndexContent(dPath, srcm, sPath);
+				switch (result) {
+				case SUCCESS:
+					break;
+				case FAILED:
+					tree.failed(new Status(IStatus.ERROR, Activator
+							.getPluginId(), 0,
+							CoreText.MoveDeleteHook_operationError, null));
+					break;
+				case UNTRACKED:
+					return FINISH_FOR_ME;
+				}
+
+				tree.standardMoveProject(source, description, updateFlags,
+						monitor);
 			} catch (IOException e) {
 				tree.failed(new Status(IStatus.ERROR, Activator.getPluginId(), 0,
 						CoreText.MoveDeleteHook_operationError, e));
