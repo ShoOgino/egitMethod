@@ -16,8 +16,7 @@
 				null, ConfigConstants.CONFIG_KEY_REPO_FORMAT_VERSION, "0");
 
 		myRepository.getConfig().save();
-		RemoteConfig config = new RemoteConfig(myRepository.getConfig(), "push");
-		PushOperationUI pa = new PushOperationUI(myRepository, config, 0, false);
+		PushOperationUI pa = new PushOperationUI(myRepository, "push", 0, false);
 		pa.execute(null);
 		TestUtil.joinJobs(JobFamilies.PUSH);
 		try {
