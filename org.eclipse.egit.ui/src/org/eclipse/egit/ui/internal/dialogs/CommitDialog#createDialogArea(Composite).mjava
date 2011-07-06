@@ -81,10 +81,8 @@
 		amendingItem = new ToolItem(messageToolbar, SWT.CHECK);
 		amendingItem.setSelection(amending);
 		if (amending)
-			amendingItem.setEnabled(false); 		else if (!amendAllowed) {
+			amendingItem.setEnabled(false); 		else if (!amendAllowed)
 			amendingItem.setEnabled(false);
-			originalChangeId = null;
-		}
 		amendingItem.setToolTipText(UIText.CommitDialog_AmendPreviousCommit);
 		Image amendImage = UIIcons.AMEND_COMMIT.createImage();
 		UIUtils.hookDisposal(amendingItem, amendImage);
