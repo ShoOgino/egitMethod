@@ -1,0 +1,4 @@
+	public static void showErrorStatus(String message, IStatus status) {
+		StatusManager.getManager().handle(status, StatusManager.SHOW);
+	}
+
