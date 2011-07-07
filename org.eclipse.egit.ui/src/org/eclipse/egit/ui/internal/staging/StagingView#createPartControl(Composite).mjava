@@ -255,6 +255,7 @@
 
 		updateSectionText();
 		updateToolbar();
+		enableCommitWidgets(false);
 
 		createPopupMenu(unstagedTableViewer);
 		createPopupMenu(stagedTableViewer);
