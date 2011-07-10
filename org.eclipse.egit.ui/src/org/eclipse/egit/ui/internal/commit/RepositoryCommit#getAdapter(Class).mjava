@@ -5,6 +5,6 @@
 		if (RevCommit.class == adapter)
 			return commit;
 
-		return super.getAdapter(adapter);
+		return Platform.getAdapterManager().getAdapter(this, adapter);
 	}
 

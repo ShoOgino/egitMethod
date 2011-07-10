@@ -1,0 +1,7 @@
+	public static String formatDate(final Date date) {
+		if (date == null)
+			return ""; 		synchronized (FORMAT) {
+			return FORMAT.format(date);
+		}
+	}
+
