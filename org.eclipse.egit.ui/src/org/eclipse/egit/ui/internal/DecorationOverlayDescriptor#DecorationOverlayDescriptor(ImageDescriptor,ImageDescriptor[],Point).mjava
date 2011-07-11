@@ -1,0 +1,7 @@
+	public DecorationOverlayDescriptor(ImageDescriptor baseImage,
+			ImageDescriptor[] overlaysArray, Point sizeValue) {
+		this.base = baseImage;
+		this.overlays = overlaysArray;
+		this.size = sizeValue;
+	}
+
