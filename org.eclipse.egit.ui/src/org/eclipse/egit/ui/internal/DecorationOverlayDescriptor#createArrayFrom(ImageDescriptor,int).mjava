@@ -1,0 +1,8 @@
+	private static ImageDescriptor[] createArrayFrom(
+			ImageDescriptor overlayImage, int quadrant) {
+		ImageDescriptor[] descs = new ImageDescriptor[] { null, null, null,
+				null, null };
+		descs[quadrant] = overlayImage;
+		return descs;
+	}
+
