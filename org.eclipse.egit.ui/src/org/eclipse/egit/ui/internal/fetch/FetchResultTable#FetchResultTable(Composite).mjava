@@ -6,23 +6,7 @@
 
 		addToolbar(treePanel);
 
-		final IStyledLabelProvider styleProvider = new IStyledLabelProvider() {
-
-			private final WorkbenchLabelProvider wrapped = new WorkbenchLabelProvider();
-
-			public void removeListener(ILabelProviderListener listener) {
-			}
-
-			public boolean isLabelProperty(Object element, String property) {
-				return false;
-			}
-
-			public void dispose() {
-				wrapped.dispose();
-			}
-
-			public void addListener(ILabelProviderListener listener) {
-			}
+		final IStyledLabelProvider styleProvider = new WorkbenchStyledLabelProvider() {
 
 			public StyledString getStyledText(Object element) {
 				if (element instanceof FetchResultAdapter)
@@ -31,11 +15,7 @@
 				if (element instanceof RepositoryCommit)
 					return ((RepositoryCommit) element).getStyledText(element);
 
-				return new StyledString(wrapped.getText(element));
-			}
-
-			public Image getImage(Object element) {
-				return wrapped.getImage(element);
+				return super.getStyledText(element);
 			}
 		};
 		treeViewer.setLabelProvider(new DelegatingStyledCellLabelProvider(
