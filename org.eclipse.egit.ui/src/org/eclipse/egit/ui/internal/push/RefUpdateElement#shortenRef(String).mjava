@@ -1,0 +1,4 @@
+	protected String shortenRef(final String ref) {
+		return NoteMap.shortenRefName(Repository.shortenRefName(ref));
+	}
+
