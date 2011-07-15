@@ -1,0 +1,5 @@
+	public static boolean canUseMergeTool(GitModelObject object) {
+		return object instanceof GitModelWorkingFile
+				|| object instanceof GitModelCacheFile;
+	}
+
