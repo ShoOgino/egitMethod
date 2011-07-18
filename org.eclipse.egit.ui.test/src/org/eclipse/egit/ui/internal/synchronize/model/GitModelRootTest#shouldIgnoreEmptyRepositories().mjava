@@ -1,0 +1,13 @@
+	@Test
+	public void shouldIgnoreEmptyRepositories() throws Exception {
+		touchAndSubmit("second commit");
+		GitSynchronizeDataSet gsds = new GitSynchronizeDataSet();
+		gsds.add(new GitSynchronizeData(repo1, HEAD + "~1", HEAD, false));
+		gsds.add(new GitSynchronizeData(repo2, HEAD, HEAD, false));
+
+		GitModelRoot root = new GitModelRoot(gsds);
+
+		assertThat(Integer.valueOf(root.getChildren().length),
+				is(Integer.valueOf(1)));
+	}
+
