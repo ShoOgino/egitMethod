@@ -1,5 +1,4 @@
 	public StyledString getStyledText(Object element) {
-		String rawText = getText(element);
 		if (element.getClass().equals(GitModelCommit.class)) {
 			String formattedName = createChangeSetLabel((GitModelCommit) element);
 			StyledString string = new StyledString(formattedName);
@@ -8,6 +7,6 @@
 			return string;
 		}
 
-		return new StyledString(rawText);
+		return getDelegateLabelProvider().getStyledText(element);
 	}
 

@@ -1,0 +1,21 @@
+	protected StyledString getStyledTextFor(Repository repository)
+			throws IOException {
+		File directory = repository.getDirectory();
+		StyledString string = new StyledString();
+		if (!repository.isBare())
+			string.append(directory.getParentFile().getName());
+		else
+			string.append(directory.getName());
+		string.append(" - ", StyledString.QUALIFIER_STYLER); 		string.append(directory.getAbsolutePath(), StyledString.QUALIFIER_STYLER);
+
+		String branch = repository.getBranch();
+		string.append(" "); 		string.append("[", StyledString.DECORATIONS_STYLER); 		string.append(branch, StyledString.DECORATIONS_STYLER);
+
+		RepositoryState repositoryState = repository.getRepositoryState();
+		if (repositoryState != RepositoryState.SAFE) {
+			string.append(" - ", StyledString.DECORATIONS_STYLER); 			string.append(repositoryState.getDescription(), StyledString.DECORATIONS_STYLER);
+		}
+
+		string.append("]", StyledString.DECORATIONS_STYLER); 		return string;
+	}
+
