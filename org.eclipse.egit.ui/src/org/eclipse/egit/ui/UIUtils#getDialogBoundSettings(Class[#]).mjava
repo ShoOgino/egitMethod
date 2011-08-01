@@ -1,0 +1,3 @@
+	public static IDialogSettings getDialogBoundSettings(final Class<?> clazz) {
+		return getDialogSettings(clazz.getName() + ".dialogBounds"); 	}
+
