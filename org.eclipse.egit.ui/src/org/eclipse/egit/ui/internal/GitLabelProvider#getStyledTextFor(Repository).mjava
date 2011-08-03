@@ -9,6 +9,8 @@
 		string.append(" - ", StyledString.QUALIFIER_STYLER); 		string.append(directory.getAbsolutePath(), StyledString.QUALIFIER_STYLER);
 
 		String branch = repository.getBranch();
+		if (branch == null)
+			return null;
 		string.append(" "); 		string.append("[", StyledString.DECORATIONS_STYLER); 		string.append(branch, StyledString.DECORATIONS_STYLER);
 
 		RepositoryState repositoryState = repository.getRepositoryState();
