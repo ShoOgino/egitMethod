@@ -1,0 +1,19 @@
+	public GitModelCache(GitModelObject parent, RevCommit baseCommit, TreeFilter pathFilter)
+			throws IOException {
+		this(parent, baseCommit, pathFilter, new FileModelFactory() {
+
+			public GitModelBlob createFileModel(
+					GitModelObjectContainer modelParent, RevCommit commit,
+					ObjectId repoId, ObjectId cacheId, IPath location)
+					throws IOException {
+				return new GitModelCacheFile(modelParent, commit, repoId,
+						cacheId, location);
+			}
+
+			public boolean isWorkingTree() {
+				return false;
+			}
+		});
+
+	}
+

@@ -1,7 +1,8 @@
 	protected GitModelCache(GitModelObject parent, RevCommit baseCommit,
-			FileModelFactory fileFactory) throws IOException {
+			TreeFilter pathFilter, FileModelFactory fileFactory) throws IOException {
 		super(parent, baseCommit, RIGHT);
 		this.fileFactory = fileFactory;
+		this.pathFilter = pathFilter;
 		cacheTreeMap = new HashMap<String, GitModelCacheTree>();
 		location = new Path(getRepository().getWorkTree().toString());
 	}

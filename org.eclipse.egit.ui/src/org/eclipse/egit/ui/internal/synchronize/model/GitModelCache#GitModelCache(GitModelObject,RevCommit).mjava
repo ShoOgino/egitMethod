@@ -1,18 +1,5 @@
-	public GitModelCache(GitModelObject parent, RevCommit baseCommit)
+	GitModelCache(GitModelObject parent, RevCommit baseCommit)
 			throws IOException {
-		this(parent, baseCommit, new FileModelFactory() {
-
-			public GitModelBlob createFileModel(
-					GitModelObjectContainer modelParent, RevCommit commit,
-					ObjectId repoId, ObjectId cacheId, IPath location)
-					throws IOException {
-				return new GitModelCacheFile(modelParent, commit, repoId,
-						cacheId, location);
-			}
-
-			public boolean isWorkingTree() {
-				return false;
-			}
-		});
+		this(parent, baseCommit, null);
 	}
 

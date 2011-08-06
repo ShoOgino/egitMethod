@@ -1,0 +1,4 @@
+	public TreeFilter getPathFilter() {
+		return pathFilter;
+	}
+
