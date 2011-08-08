@@ -1,5 +1,0 @@
-	public RemoveFromIndexOperation(Repository repo, Collection<String> paths) {
-		this.repo = repo;
-		this.paths = paths;
-	}
-
