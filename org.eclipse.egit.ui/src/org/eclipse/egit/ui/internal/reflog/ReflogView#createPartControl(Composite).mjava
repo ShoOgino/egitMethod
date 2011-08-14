@@ -103,6 +103,7 @@
 				if (comment.startsWith("pull :")) 					return (Image) resourceManager.get(UIIcons.PULL);
 				if (comment.startsWith("clone:")) 					return (Image) resourceManager.get(UIIcons.CLONEGIT);
 				if (comment.startsWith("rebase finished:")) 					return (Image) resourceManager.get(UIIcons.REBASE);
+				if (comment.startsWith("merge branch")) 					return (Image) resourceManager.get(UIIcons.MERGE);
 				return null;
 			}
 
