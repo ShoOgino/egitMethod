@@ -16,7 +16,7 @@
 				"initial commit");
 		String path = Repository.stripWorkDir(repo.getWorkTree(), file);
 
-		GitFolderResourceVariant remote = new GitFolderResourceVariant(repo, null,
+		GitRemoteFolder remote = new GitRemoteFolder(repo, null,
 				commit.getTree(), path);
 
 		assertFalse(grvc.compare(local, remote));

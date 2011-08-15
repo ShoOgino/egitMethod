@@ -1,13 +1,12 @@
 	@Test
 	@SuppressWarnings("boxing")
-	public void shouldReturnFalseWhenRemoteDoesNotExist2() throws Exception{
+	public void shouldReturnFalseWhenRemoteDoesNotExist2() throws Exception {
 		GitResourceVariantComparator grvc = new GitResourceVariantComparator(
 				null);
 
 		IResource local = mock(IResource.class);
 		when(local.exists()).thenReturn(false);
-		IResourceVariant remote = new GitFolderResourceVariant(repo, null,
-				ObjectId.zeroId(), "./");
+		IResourceVariant remote = new GitRemoteFolder(repo, null, null, "./");
 
 		assertFalse(grvc.compare(local, remote));
 	}

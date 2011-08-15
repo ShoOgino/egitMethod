@@ -8,11 +8,10 @@
 				"a", "initial commit");
 
 		String path = Repository.stripWorkDir(repo.getWorkTree(), file);
-		GitBlobResourceVariant base = new GitBlobResourceVariant(repo, null,
-				commit.getTree(), path);
+		GitRemoteFile base = new GitRemoteFile(repo, null, commit.getTree(),
+				path);
 
-		GitBlobResourceVariant remote = new GitBlobResourceVariant(repo, null,
-				commit.getTree(), path);
+		GitRemoteFile remote = new GitRemoteFile(repo, null, commit.getTree(), path);
 
 		assertTrue(grvc.compare(base, remote));
 	}

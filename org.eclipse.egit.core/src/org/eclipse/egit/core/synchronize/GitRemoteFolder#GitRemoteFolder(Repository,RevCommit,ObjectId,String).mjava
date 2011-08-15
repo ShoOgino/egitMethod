@@ -1,0 +1,5 @@
+	GitRemoteFolder(Repository repo, RevCommit revCommit, ObjectId objectId,
+			String path) {
+		super(repo, revCommit, objectId, path);
+	}
+
