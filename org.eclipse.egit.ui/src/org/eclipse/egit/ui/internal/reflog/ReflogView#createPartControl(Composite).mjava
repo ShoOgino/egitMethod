@@ -44,7 +44,9 @@
 
 		ColumnViewerToolTipSupport.enableFor(refLogTableTreeViewer);
 
-		TreeViewerColumn fromColum = createColumn(layout, "From", 10, SWT.LEFT); 		fromColum.setLabelProvider(new ColumnLabelProvider() {
+		TreeViewerColumn fromColum = createColumn(layout,
+				UIText.ReflogView_FromColumnHeader, 10, SWT.LEFT);
+		fromColum.setLabelProvider(new ColumnLabelProvider() {
 
 			@Override
 			public String getText(Object element) {
@@ -64,7 +66,9 @@
 			}
 		});
 
-		TreeViewerColumn toColumn = createColumn(layout, "To", 10, SWT.LEFT); 		toColumn.setLabelProvider(new ColumnLabelProvider() {
+		TreeViewerColumn toColumn = createColumn(layout,
+				UIText.ReflogView_ToColumnHeader, 10, SWT.LEFT);
+		toColumn.setLabelProvider(new ColumnLabelProvider() {
 
 			@Override
 			public String getText(Object element) {
@@ -85,7 +89,8 @@
 
 		});
 		TreeViewerColumn messageColumn = createColumn(layout,
-				"Message", 50, SWT.LEFT); 		messageColumn.setLabelProvider(new ColumnLabelProvider() {
+				UIText.ReflogView_MessageColumnHeader, 50, SWT.LEFT);
+		messageColumn.setLabelProvider(new ColumnLabelProvider() {
 
 			private ResourceManager resourceManager = new LocalResourceManager(
 					JFaceResources.getResources());
@@ -134,7 +139,8 @@
 									walk.parseCommit(id)));
 					}
 				} catch (IOException e) {
-					Activator.logError("Error opening commit", e); 				} finally {
+					Activator.logError(UIText.ReflogView_ErrorOnOpenCommit, e);
+				} finally {
 					walk.release();
 				}
 
