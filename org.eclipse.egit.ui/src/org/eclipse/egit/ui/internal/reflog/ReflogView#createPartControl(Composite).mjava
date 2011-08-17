@@ -109,7 +109,7 @@
 				if (comment.startsWith("commit (amend):")) 					return (Image) resourceManager.get(UIIcons.AMEND_COMMIT);
 				if (comment.startsWith("pull ")) 					return (Image) resourceManager.get(UIIcons.PULL);
 				if (comment.startsWith("clone:")) 					return (Image) resourceManager.get(UIIcons.CLONEGIT);
-				if (comment.startsWith("rebase finished:")) 					return (Image) resourceManager.get(UIIcons.REBASE);
+				if (comment.startsWith("rebase ")) 					return (Image) resourceManager.get(UIIcons.REBASE);
 				if (comment.startsWith("merge ")) 					return (Image) resourceManager.get(UIIcons.MERGE);
 				if (comment.startsWith("fetch:")) 					return (Image) resourceManager.get(UIIcons.FETCH);
 				if (comment.startsWith("branch:")) 					return (Image) resourceManager.get(UIIcons.CREATE_BRANCH);
