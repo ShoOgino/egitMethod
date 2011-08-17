@@ -1,0 +1,4 @@
+	public EditableRevision(IFileRevision fileRevision, String encoding) {
+		super(fileRevision, encoding);
+	}
+
