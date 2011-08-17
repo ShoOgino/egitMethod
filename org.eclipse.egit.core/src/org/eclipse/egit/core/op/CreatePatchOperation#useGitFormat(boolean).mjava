@@ -1,0 +1,4 @@
+	public void useGitFormat(boolean useFormat) {
+		this.useGitFormat = useFormat;
+	}
+

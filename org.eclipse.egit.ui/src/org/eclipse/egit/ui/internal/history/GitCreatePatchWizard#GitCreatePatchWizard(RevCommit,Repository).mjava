@@ -1,0 +1,5 @@
+	public GitCreatePatchWizard(RevCommit commit, Repository db) {
+		this.commit = commit;
+		this.db = db;
+	}
+

@@ -1,0 +1,6 @@
+	public String getPatchContent() {
+		if (patchContent == null)
+			throw new IllegalStateException(
+					"#execute needs to be called before this method."); 		return patchContent;
+	}
+
