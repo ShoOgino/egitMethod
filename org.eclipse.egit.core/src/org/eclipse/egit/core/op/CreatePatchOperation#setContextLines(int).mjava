@@ -1,0 +1,4 @@
+	public void setContextLines(int contextLines) {
+		this.contextLines = contextLines;
+	}
+
