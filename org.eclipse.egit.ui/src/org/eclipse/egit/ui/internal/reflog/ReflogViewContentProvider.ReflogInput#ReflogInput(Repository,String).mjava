@@ -1,0 +1,5 @@
+		public ReflogInput(Repository repository, String ref) {
+			Assert.isNotNull(repository, "Repository cannot be null"); 			Assert.isNotNull(ref, "Ref cannot be null"); 			this.repository = repository;
+			this.ref = ref;
+		}
+
