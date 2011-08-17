@@ -71,7 +71,7 @@
 							"(GitDocument) compareTo: " + baseline); 				ObjectLoader loader = repository.open(id, Constants.OBJ_BLOB);
 				byte[] bytes = loader.getBytes();
 				String charset;
-				charset = CompareUtils.getResourceEncoding(resource);
+				charset = CompareCoreUtils.getResourceEncoding(resource);
 				String s = new String(bytes, charset);
 				setResolved(commitId, treeId, id, s);
 				if (GitTraceLocation.QUICKDIFF.isActive())

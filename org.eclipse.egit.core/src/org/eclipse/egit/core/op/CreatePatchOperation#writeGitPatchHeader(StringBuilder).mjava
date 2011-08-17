@@ -1,5 +1,4 @@
 	private void writeGitPatchHeader(StringBuilder sb) {
-
 		final SimpleDateFormat dtfmt;
 		dtfmt = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z", Locale.US); 		dtfmt.setTimeZone(commit.getAuthorIdent().getTimeZone());
 		sb.append("From").append(" ") 				.append(commit.getId().getName()).append(" ") 				.append(dtfmt.format(Long.valueOf(System.currentTimeMillis())))

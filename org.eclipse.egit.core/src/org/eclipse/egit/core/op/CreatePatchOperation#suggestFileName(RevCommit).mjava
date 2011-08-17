@@ -1,0 +1,19 @@
+	public static String suggestFileName(RevCommit commit) {
+		String name = commit.getShortMessage();
+
+		name = name.trim();
+		StringBuilder filteredBuilder = new StringBuilder();
+		char[] charArray = name.toCharArray();
+		for (char c : charArray) {
+			if(Character.isLetter(c) || Character.isDigit(c))
+				filteredBuilder.append(c);
+			if(Character.isWhitespace(c) || c == '/')
+				filteredBuilder.append("-"); 		}
+		name = filteredBuilder.toString();
+		if (name.length() > 52)
+			name = name.substring(0, 52);
+		while (name.endsWith(".")) 			name = name.substring(0, name.length() - 1);
+		name = name.concat(".patch"); 
+		return name;
+	}
+
