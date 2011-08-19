@@ -1,0 +1,4 @@
+	public RevCommit getNewHead() {
+		return newHead;
+	}
+

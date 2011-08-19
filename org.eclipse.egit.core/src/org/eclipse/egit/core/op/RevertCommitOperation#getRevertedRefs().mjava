@@ -1,0 +1,4 @@
+	public List<Ref> getRevertedRefs() {
+		return reverted;
+	}
+
