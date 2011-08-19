@@ -1,0 +1,5 @@
+	public RevertCommitOperation(Repository repository, RevCommit commit) {
+		this.repo = repository;
+		this.commit = commit;
+	}
+
