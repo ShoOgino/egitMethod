@@ -1,0 +1,4 @@
+	public CherryPickResult getResult() {
+		return result;
+	}
+
