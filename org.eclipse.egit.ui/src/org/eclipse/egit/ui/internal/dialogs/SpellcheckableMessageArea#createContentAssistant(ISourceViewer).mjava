@@ -1,0 +1,4 @@
+	protected IContentAssistant createContentAssistant(ISourceViewer viewer) {
+		return null;
+	}
+
