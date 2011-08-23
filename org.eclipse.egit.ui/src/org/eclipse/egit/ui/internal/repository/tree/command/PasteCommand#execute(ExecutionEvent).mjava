@@ -13,8 +13,15 @@
 
 			File file = new File(content);
 			if (!file.exists() || !file.isDirectory()) {
-				errorMessage = UIText.RepositoriesView_ClipboardContentNotDirectoryMessage;
-				return null;
+				URIish cloneURI = getCloneURI(content);
+				if (cloneURI == null) {
+					errorMessage = UIText.RepositoriesView_ClipboardContentNotDirectoryOrURIMessage;
+					return null;
+				} else {
+					CloneCommand cmd = new CloneCommand(cloneURI.toString());
+					cmd.execute(event);
+					return null;
+				}
 			}
 
 			if (!RepositoryCache.FileKey.isGitRepository(file, FS.DETECTED)) {

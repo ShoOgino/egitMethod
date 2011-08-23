@@ -1,0 +1,4 @@
+	public CloneCommand() {
+		this(null);
+	}
+

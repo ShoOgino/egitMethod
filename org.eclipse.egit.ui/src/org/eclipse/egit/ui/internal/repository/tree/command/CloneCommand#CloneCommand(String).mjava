@@ -1,0 +1,4 @@
+	public CloneCommand(String presetURI) {
+		this.presetURI = presetURI;
+	}
+
