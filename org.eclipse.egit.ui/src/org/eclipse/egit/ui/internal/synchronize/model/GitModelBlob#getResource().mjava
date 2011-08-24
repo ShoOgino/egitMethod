@@ -1,0 +1,7 @@
+	public IResource getResource() {
+		String absoluteFilePath = getRepository().getWorkTree()
+				.getAbsolutePath() + "/" + gitPath; 		IFile file = ResourcesPlugin.getWorkspace().getRoot()
+				.getFileForLocation(new Path(absoluteFilePath));
+		return file;
+	}
+
