@@ -1,0 +1,5 @@
+	public GitScopeOperation(IWorkbenchPart part,
+			ISynchronizationScopeManager manager) {
+		super(part, manager);
+	}
+

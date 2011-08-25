@@ -1,0 +1,19 @@
+	public static IResource[] getRelatedChanges(IWorkbenchPart part,
+			IResource[] resources) throws ExecutionException,
+			InterruptedException {
+		if (part == null)
+			throw new IllegalArgumentException();
+		if (resources == null)
+			return new IResource[0];
+		IResource[] resourcesInScope;
+		try {
+			resourcesInScope = findRelatedChanges(part, resources);
+		} catch (InvocationTargetException e) {
+			Activator.handleError(
+					UIText.CommitActionHandler_errorBuildingScope,
+					e.getCause(), true);
+			resourcesInScope = resources;
+		}
+		return resourcesInScope;
+	}
+

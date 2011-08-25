@@ -1,0 +1,9 @@
+	List<IResource> getRelevantResources() {
+		List<IResource> resourcesInScope = new ArrayList<IResource>();
+		ResourceTraversal[] traversals = getScope().getTraversals();
+		for (ResourceTraversal resourceTraversal : traversals)
+			resourcesInScope.addAll(Arrays.asList(resourceTraversal
+					.getResources()));
+		return resourcesInScope;
+	}
+

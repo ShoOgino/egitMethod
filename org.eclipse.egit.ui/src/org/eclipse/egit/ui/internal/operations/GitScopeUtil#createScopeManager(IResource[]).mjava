@@ -1,0 +1,12 @@
+	private static SubscriberScopeManager createScopeManager(
+			final IResource[] resources) {
+		ResourceMapping[] mappings = GitScopeUtil
+				.getResourceMappings(resources);
+		GitSynchronizeDataSet set = new GitSynchronizeDataSet();
+		Subscriber subscriber = new GitResourceVariantTreeSubscriber(set);
+		SubscriberScopeManager manager = new SubscriberScopeManager(
+				UIText.GitScopeOperation_GitScopeManager, mappings, subscriber,
+				true);
+		return manager;
+	}
+

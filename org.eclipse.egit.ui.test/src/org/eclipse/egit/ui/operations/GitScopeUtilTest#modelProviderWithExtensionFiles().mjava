@@ -1,0 +1,12 @@
+	@Test
+	public void modelProviderWithExtensionFiles() throws Exception {
+		IFile modelFile = createProjectAndModelFiles();
+
+		IResource[] selectedResources = new IResource[] { modelFile };
+		IResource[] relatedChanges = getRelatedChangesInUIThread(selectedResources);
+		assertEquals(2, relatedChanges.length);
+
+		assertContainsResourceByName(relatedChanges, MODEL_FILE);
+		assertContainsResourceByName(relatedChanges, MODEL_EXTENSIONS_FILE);
+	}
+
