@@ -8,7 +8,8 @@
 		initLabels(input);
 		setTitle(NLS.bind(UIText.GitCompareFileRevisionEditorInput_CompareInputTitle, new String[] { input.getName() }));
 
-		DiffNode flatDiffNode = new DiffNode(null,Differencer.CHANGE,null,left,right);
+		DiffNode flatDiffNode = new NotifiableDiffNode(null,
+				Differencer.CHANGE, null, left, right);
 		flatDiffView(flatDiffNode, (DiffNode) input);
 
 		return flatDiffNode;
