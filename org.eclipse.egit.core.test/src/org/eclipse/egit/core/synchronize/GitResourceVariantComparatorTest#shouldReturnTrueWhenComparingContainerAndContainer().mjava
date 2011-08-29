@@ -16,7 +16,7 @@
 		when(local.exists()).thenReturn(true);
 		when(local.getLocation()).thenReturn(iPath);
 
-		GitRemoteFolder remote = new GitRemoteFolder(repo, null,
+		GitRemoteFolder remote = new GitRemoteFolder(repo, null, commit,
 				commit.getTree(), path);
 
 		assertTrue(grvc.compare(local, remote));

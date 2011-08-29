@@ -1,0 +1,3 @@
+	public GitSyncObjectCache() {
+		this("", null); 	}
+

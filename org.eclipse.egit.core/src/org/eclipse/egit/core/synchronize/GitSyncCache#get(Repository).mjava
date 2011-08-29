@@ -1,0 +1,4 @@
+	public GitSyncObjectCache get(Repository repo) {
+		return cache.get(repo.getDirectory());
+	}
+

@@ -1,0 +1,7 @@
+	public GitSubscriberResourceMappingContext(
+			GitResourceVariantTreeSubscriber subscriber,
+			GitSynchronizeDataSet data) {
+		super(subscriber, true);
+		this.data = data;
+	}
+

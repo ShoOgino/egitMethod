@@ -1,0 +1,4 @@
+	public int membersCount() {
+		return members != null ? members.size() : 0;
+	}
+

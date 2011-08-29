@@ -1,0 +1,9 @@
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		for (Entry<File, GitSyncObjectCache> entry : cache.entrySet())
+			builder.append(entry.getKey().getPath())
+					.append(": ").append(entry.getValue()); 
+		return builder.toString();
+	}
+

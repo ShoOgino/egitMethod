@@ -6,7 +6,8 @@
 				false);
 		GitSynchronizeDataSet dataSet = new GitSynchronizeDataSet(data);
 
-		GitResourceVariantTree grvt = new GitRemoteResourceVariantTree(dataSet);
+		GitResourceVariantTree grvt = new GitRemoteResourceVariantTree(null,
+				dataSet);
 
 		assertNull(grvt.getResourceVariant(null));
 	}

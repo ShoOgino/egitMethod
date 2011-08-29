@@ -1,0 +1,4 @@
+	public Collection<GitSyncObjectCache> members() {
+		return members != null ? members.values() : null;
+	}
+

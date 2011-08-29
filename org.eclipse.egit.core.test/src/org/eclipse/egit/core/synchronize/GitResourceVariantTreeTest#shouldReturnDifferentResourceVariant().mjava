@@ -11,10 +11,13 @@
 		testRepo.appendContentAndCommit(iProject, file, "// test",
 				"first commit");
 		GitSynchronizeData data = new GitSynchronizeData(repo, HEAD, MASTER,
-				false);
+				true);
 		GitSynchronizeDataSet dataSet = new GitSynchronizeDataSet(data);
+		GitSyncCache cache = GitSyncCache.getAllData(dataSet,
+				new NullProgressMonitor());
 
-		GitResourceVariantTree grvt = new GitRemoteResourceVariantTree(dataSet);
+		GitResourceVariantTree grvt = new GitBaseResourceVariantTree(cache,
+				dataSet);
 
 		IResourceVariant actual = grvt.getResourceVariant(mainJava);
 		assertNotNull(actual);
@@ -26,9 +29,6 @@
 		InputStream expectedIn = mainJava.getContents();
 		byte[] expectedByte = getBytesAndCloseStream(expectedIn);
 
-		if (Arrays.equals(expectedByte, actualByte))
-			fail();
-		else
-			assertTrue(true);
+		assertFalse(Arrays.equals(expectedByte, actualByte));
 	}
 

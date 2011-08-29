@@ -5,8 +5,6 @@
 
 		launchSynchronization(HEAD, R_HEADS + MASTER, false);
 
-		bot.shell("Synchronize Complete - Git").close();
-
 		SWTBot viewBot = bot.viewByTitle("Synchronize").bot();
 		@SuppressWarnings("unchecked")
 		Matcher matcher = allOf(widgetOfType(Label.class),

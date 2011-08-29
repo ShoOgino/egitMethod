@@ -1,0 +1,4 @@
+	public DiffEntry getDiffEntry() {
+		return diffEntry;
+	}
+

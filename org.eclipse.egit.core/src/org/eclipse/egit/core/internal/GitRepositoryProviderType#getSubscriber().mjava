@@ -11,6 +11,9 @@
 		} catch (IOException e) {
 		}
 
-		return new GitResourceVariantTreeSubscriber(set);
+		GitResourceVariantTreeSubscriber subscriber = new GitResourceVariantTreeSubscriber(set);
+		subscriber.init(new NullProgressMonitor());
+
+		return subscriber;
 	}
 

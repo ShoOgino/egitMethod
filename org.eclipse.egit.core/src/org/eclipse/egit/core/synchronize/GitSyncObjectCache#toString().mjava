@@ -1,0 +1,10 @@
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("entry: ").append(diffEntry).append("\n"); 		if (members != null) {
+			builder.append("members: "); 			for (GitSyncObjectCache obj : members.values())
+				builder.append(obj.toString()).append("\n"); 		}
+
+		return builder.toString();
+	}
+

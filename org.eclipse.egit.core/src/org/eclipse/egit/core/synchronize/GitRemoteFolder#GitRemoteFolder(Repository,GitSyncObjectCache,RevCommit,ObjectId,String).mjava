@@ -1,0 +1,7 @@
+	GitRemoteFolder(Repository repo, GitSyncObjectCache cachedData,
+			RevCommit commitId, ObjectId objectId, String path) {
+		super(commitId, objectId, path);
+		this.repo = repo;
+		this.cachedData = cachedData;
+	}
+

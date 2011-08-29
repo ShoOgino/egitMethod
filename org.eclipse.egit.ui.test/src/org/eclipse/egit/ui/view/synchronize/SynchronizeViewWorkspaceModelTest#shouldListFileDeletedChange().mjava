@@ -2,7 +2,7 @@
 		resetRepositoryToCreateInitialTag();
 		deleteFileAndCommit(PROJ1);
 
-		launchSynchronization(HEAD, INITIAL_TAG, true);
+		launchSynchronization(HEAD, HEAD + "~1", true);
 
 		SWTBotTree syncViewTree = bot.viewByTitle("Synchronize").bot().tree();
 		assertEquals(1, syncViewTree.getAllItems().length);
