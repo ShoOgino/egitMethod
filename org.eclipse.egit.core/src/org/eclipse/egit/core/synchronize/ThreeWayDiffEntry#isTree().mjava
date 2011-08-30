@@ -1,0 +1,4 @@
+	public boolean isTree() {
+		return isTree;
+	}
+

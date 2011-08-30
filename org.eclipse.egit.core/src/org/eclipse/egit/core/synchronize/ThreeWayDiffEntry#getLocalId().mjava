@@ -1,0 +1,4 @@
+	public AbbreviatedObjectId getLocalId() {
+		return localId;
+	}
+

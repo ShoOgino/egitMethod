@@ -1,7 +1,0 @@
-	private GitSyncObjectCache put(Repository repo) {
-		GitSyncObjectCache objectCache = new GitSyncObjectCache();
-		cache.put(repo.getDirectory(), objectCache);
-
-		return objectCache;
-	}
-

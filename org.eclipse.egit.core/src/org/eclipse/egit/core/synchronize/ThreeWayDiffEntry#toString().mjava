@@ -1,0 +1,7 @@
+	@Override
+	public String toString() {
+		StringBuilder buf = new StringBuilder();
+		buf.append("ThreeDiffEntry["); 		buf.append(changeType).append(" ").append(path); 		buf.append("]"); 
+		return buf.toString();
+	}
+

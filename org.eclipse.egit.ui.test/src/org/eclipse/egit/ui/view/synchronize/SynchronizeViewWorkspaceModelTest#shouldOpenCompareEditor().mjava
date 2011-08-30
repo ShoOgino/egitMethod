@@ -1,6 +1,7 @@
 	@Test public void shouldOpenCompareEditor()
 			throws Exception {
 		resetRepositoryToCreateInitialTag();
+		makeChangesAndCommit(PROJ1);
 		changeFilesInProject();
 
 		launchSynchronization(HEAD, INITIAL_TAG, true);

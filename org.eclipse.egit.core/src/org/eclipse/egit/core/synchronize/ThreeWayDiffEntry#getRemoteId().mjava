@@ -1,0 +1,4 @@
+	public AbbreviatedObjectId getRemoteId() {
+		return remoteId;
+	}
+

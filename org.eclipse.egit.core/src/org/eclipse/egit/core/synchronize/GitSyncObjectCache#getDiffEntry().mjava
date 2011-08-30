@@ -1,4 +1,4 @@
-	public DiffEntry getDiffEntry() {
+	public ThreeWayDiffEntry getDiffEntry() {
 		return diffEntry;
 	}
 

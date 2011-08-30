@@ -6,23 +6,28 @@
 			tw.setFilter(gsd.getPathFilter());
 
 		try {
-			if (gsd.getDstRevCommit() != null)
-				tw.addTree(gsd.getDstRevCommit().getTree());
-			else
-				tw.addTree(new EmptyTreeIterator());
-
 			if (gsd.shouldIncludeLocal()) {
 				tw.addTree(new FileTreeIterator(repo));
-				tw.setFilter(new NotIgnoredFilter(1));
+				tw.setFilter(new NotIgnoredFilter(0));
 			} else if (gsd.getSrcRevCommit() != null)
 				tw.addTree(gsd.getSrcRevCommit().getTree());
 			else
 				tw.addTree(new EmptyTreeIterator());
 
-			List<DiffEntry> diffEntrys = DiffEntry.scan(tw, true);
+			if (gsd.getCommonAncestorRev() != null)
+				tw.addTree(gsd.getCommonAncestorRev().getTree());
+			else
+				tw.addTree(new EmptyTreeIterator());
+
+			if (gsd.getDstRevCommit() != null)
+				tw.addTree(gsd.getDstRevCommit().getTree());
+			else
+				tw.addTree(new EmptyTreeIterator());
+
+			List<ThreeWayDiffEntry> diffEntrys = ThreeWayDiffEntry.scan(tw);
 			tw.release();
 
-			for (DiffEntry diffEntry : diffEntrys)
+			for (ThreeWayDiffEntry diffEntry : diffEntrys)
 				repoCache.addMember(diffEntry);
 		} catch (Exception e) {
 			Activator.logError(e.getMessage(), e);
