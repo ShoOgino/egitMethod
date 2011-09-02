@@ -23,9 +23,11 @@
 								"(GitDocument) already resolved"); 					return;
 				}
 			} else {
-				String msg = NLS.bind(UIText.GitDocument_errorResolveQuickdiff,
-						new Object[] { baseline, resource, repository });
-				Activator.logError(msg, new Throwable());
+				if (repository.getRef(Constants.HEAD) == null) {
+					String msg = NLS.bind(UIText.GitDocument_errorResolveQuickdiff,
+							new Object[] { baseline, resource, repository });
+					Activator.logError(msg, new Throwable());
+				}
 				setResolved(null, null, null, ""); 				return;
 			}
 			rw = new RevWalk(repository);
