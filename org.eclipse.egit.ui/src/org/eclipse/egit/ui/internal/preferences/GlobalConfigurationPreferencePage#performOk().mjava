@@ -17,7 +17,9 @@
 				ok = false;
 			}
 		}
-		for (Repository repository : dirtyRepositories) {
+		final Repository[] repos = dirtyRepositories
+				.toArray(new Repository[dirtyRepositories.size()]);
+		for (Repository repository : repos) {
 			ConfigurationEditorComponent editor = repoConfigEditors.get(repository);
 			try {
 				editor.save();
