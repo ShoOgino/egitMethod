@@ -6,8 +6,8 @@
 			File fileToDelete = new File(repository.getWorkTree(), path);
 			if (fileToDelete.exists())
 				try {
-					FileUtils.delete(fileToDelete, FileUtils.RETRY
-							| FileUtils.RECURSIVE);
+					if (!fileToDelete.isFile())
+						FileUtils.delete(fileToDelete, FileUtils.RETRY);
 				} catch (IOException e) {
 				}
 		}
