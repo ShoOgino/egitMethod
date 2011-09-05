@@ -1,0 +1,5 @@
+		public void setLayoutData(Object layoutData) {
+			if (getLayoutData() == null)
+				super.setLayoutData(layoutData);
+		}
+
