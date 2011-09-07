@@ -41,20 +41,22 @@
 				localBranches.remove(shortName);
 			}
 
-			if (itemCount < MAX_NUM_MENU_ENTRIES && itemCount > 0 && sortedRefs.size() > 0) {
+			if (itemCount < MAX_NUM_MENU_ENTRIES) {
+				if (itemCount > 0 && localBranches.size() > 0)
+					new MenuItem(menu, SWT.SEPARATOR);
+
 				sortedRefs.clear();
 				sortedRefs.putAll(localBranches);
-				new MenuItem(menu, SWT.SEPARATOR);
 				for (final Entry<String, Ref> entry : sortedRefs.entrySet()) {
 					itemCount++;
 					if (itemCount > MAX_NUM_MENU_ENTRIES)
 						break;
 					final String fullName = entry.getValue().getName();
 					final String shortName = entry.getKey();
-					createMenuItem(menu, repository, fullName, shortName, shortName);
+					createMenuItem(menu, repository, currentBranch, fullName, shortName);
 				}
 			}
-			if (localBranches.size() > 0)
+			if (itemCount > 0)
 				new MenuItem(menu, SWT.SEPARATOR);
 			MenuItem others = new MenuItem(menu, SWT.PUSH);
 			others.setText(UIText.SwitchToMenu_OtherMenuLabel);
