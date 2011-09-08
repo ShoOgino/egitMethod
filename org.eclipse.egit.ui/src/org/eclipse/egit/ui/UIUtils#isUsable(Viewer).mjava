@@ -1,0 +1,4 @@
+	public static boolean isUsable(final Viewer viewer) {
+		return viewer != null && isUsable(viewer.getControl());
+	}
+
