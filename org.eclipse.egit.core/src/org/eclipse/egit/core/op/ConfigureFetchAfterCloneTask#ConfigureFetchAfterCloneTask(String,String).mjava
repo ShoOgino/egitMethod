@@ -1,0 +1,5 @@
+	public ConfigureFetchAfterCloneTask(String remoteName, String fetchRefSpec) {
+		this.remoteName = remoteName;
+		this.fetchRefSpec = fetchRefSpec;
+	}
+
