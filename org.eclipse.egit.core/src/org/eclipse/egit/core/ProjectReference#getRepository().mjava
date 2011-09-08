@@ -1,0 +1,4 @@
+	public URIish getRepository() {
+		return repository;
+	}
+
