@@ -1,0 +1,11 @@
+	private void addContributions(IToolBarManager toolBarManager) {
+		IMenuService menuService = (IMenuService) getSite().getService(
+				IMenuService.class);
+		if (menuService != null
+				&& toolBarManager instanceof ContributionManager) {
+			ContributionManager contributionManager = (ContributionManager) toolBarManager;
+			String toolbarUri = "toolbar:" + TOOLBAR_HEADER_ID; 			menuService.populateContributionManager(contributionManager,
+					toolbarUri);
+		}
+	}
+
