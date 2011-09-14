@@ -1,0 +1,4 @@
+	public ViewsPreferencePage() {
+		super(GRID);
+	}
+
