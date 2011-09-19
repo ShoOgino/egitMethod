@@ -1,3 +1,4 @@
 	public RepositoriesViewSorter() {
+		this(null);
 	}
 
