@@ -15,7 +15,8 @@
 		top.execute(null);
 		touchAndSubmit(null);
 
-		RepositoriesViewLabelProvider provider = new RepositoriesViewLabelProvider();
+		RepositoriesViewLabelProvider provider = GitRepositoriesViewTestUtils
+				.createLabelProvider();
 		TAGS = provider.getText(new TagsNode(new RepositoryNode(null, repo),
 				repo));
 		waitInUI();

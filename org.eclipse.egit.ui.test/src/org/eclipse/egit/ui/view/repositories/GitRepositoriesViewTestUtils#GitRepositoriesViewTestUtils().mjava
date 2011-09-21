@@ -1,0 +1,4 @@
+	public GitRepositoriesViewTestUtils() {
+		labelProvider = createLabelProvider();
+	}
+
