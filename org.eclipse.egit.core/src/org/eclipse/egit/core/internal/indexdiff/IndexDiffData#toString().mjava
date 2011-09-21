@@ -1,0 +1,7 @@
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		dumpList(builder, "added", added); 		dumpList(builder, "changed", changed); 		dumpList(builder, "removed", removed); 		dumpList(builder, "missing", missing); 		dumpList(builder, "modified", modified); 		dumpList(builder, "untracked", untracked); 		dumpList(builder, "conflicts", conflicts); 		dumpFileResourceList(builder,
+				"changedFileResources", changedFileResources); 		return builder.toString();
+	}
+

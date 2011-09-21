@@ -1,0 +1,4 @@
+	public Collection<IFile> getChangedFileResources() {
+		return changedFileResources;
+	}
+

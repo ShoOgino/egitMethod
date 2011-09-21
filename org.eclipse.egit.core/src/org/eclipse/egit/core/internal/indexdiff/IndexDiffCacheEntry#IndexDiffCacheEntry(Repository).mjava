@@ -1,0 +1,12 @@
+	public IndexDiffCacheEntry(Repository repository) {
+		this.repository = repository;
+		repository.getListenerList().addIndexChangedListener(
+				new IndexChangedListener() {
+					public void onIndexChanged(IndexChangedEvent event) {
+						scheduleReloadJob();
+					}
+				});
+		scheduleReloadJob();
+		createResourceChangeListener();
+	}
+

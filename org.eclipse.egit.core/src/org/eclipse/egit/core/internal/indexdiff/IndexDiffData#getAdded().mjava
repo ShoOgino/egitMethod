@@ -1,0 +1,4 @@
+	public Set<String> getAdded() {
+		return Collections.unmodifiableSet(added);
+	}
+

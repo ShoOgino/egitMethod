@@ -1,0 +1,50 @@
+	private void createResourceChangeListener() {
+		resourceChangeListener = new IResourceChangeListener() {
+			public void resourceChanged(IResourceChangeEvent event) {
+				final Collection<String> filesToUpdate = new HashSet<String>();
+				final Collection<IFile> fileResourcesToUpdate = new HashSet<IFile>();
+
+				try {
+					event.getDelta().accept(new IResourceDeltaVisitor() {
+						public boolean visit(IResourceDelta delta)
+								throws CoreException {
+							if (delta.getKind() == IResourceDelta.CHANGED
+									&& (delta.getFlags() & INTERESTING_CHANGES) == 0)
+								return true;
+
+							final IResource resource = delta.getResource();
+
+							if (resource.getType() != IResource.FILE)
+								return true;
+
+							final RepositoryMapping mapping = RepositoryMapping
+									.getMapping(resource);
+							if (mapping == null
+									|| mapping.getRepository() != repository)
+								return true;
+
+							if (Team.isIgnoredHint(resource))
+								return false;
+
+							String repoRelativePath = mapping
+									.getRepoRelativePath(resource);
+							filesToUpdate.add(repoRelativePath);
+							fileResourcesToUpdate.add((IFile) resource);
+
+							return true;
+						}
+					});
+				} catch (CoreException e) {
+					Activator.logError(e.getMessage(), e);
+					return;
+				}
+
+				if (!filesToUpdate.isEmpty())
+					scheduleUpdateJob(filesToUpdate, fileResourcesToUpdate);
+			}
+
+		};
+		ResourcesPlugin.getWorkspace().addResourceChangeListener(
+				resourceChangeListener, IResourceChangeEvent.POST_CHANGE);
+	}
+
