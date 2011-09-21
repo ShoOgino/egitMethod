@@ -1,0 +1,4 @@
+	public IndexDiffCache getIndexDiffCache() {
+		return indexDiffCache;
+	}
+

@@ -1,0 +1,2 @@
+	void indexDiffChanged(Repository repository, IndexDiffData indexDiffData);
+

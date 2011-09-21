@@ -1,0 +1,4 @@
+	public IndexDiffData getIndexDiff() {
+		return indexDiffData;
+	}
+

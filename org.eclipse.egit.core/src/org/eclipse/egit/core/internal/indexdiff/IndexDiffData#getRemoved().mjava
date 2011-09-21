@@ -1,0 +1,4 @@
+	public Set<String> getRemoved() {
+		return removed;
+	}
+
