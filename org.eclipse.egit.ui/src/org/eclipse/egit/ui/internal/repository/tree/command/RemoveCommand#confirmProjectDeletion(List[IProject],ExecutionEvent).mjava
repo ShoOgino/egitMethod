@@ -11,9 +11,10 @@
 						IDialogConstants.YES_LABEL, IDialogConstants.NO_LABEL,
 						IDialogConstants.CANCEL_LABEL }, 0);
 		int index = dlg.open();
-		if (index == 2)
-			throw new OperationCanceledException();
-
-		return index == 0;
+		if (index == 0)
+			return true;
+		if (index == 1)
+			return false;
+		throw new OperationCanceledException();
 	}
 
