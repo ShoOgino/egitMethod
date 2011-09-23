@@ -1,0 +1,19 @@
+	private void extractContainerProperties() {
+		String repoRelativePath = makeRepoRelative(resource) + "/"; 
+		tracked = true;
+
+		Set<String> changed = new HashSet<String>(indexDiffData.getChanged());
+		changed.addAll(indexDiffData.getAdded());
+		changed.addAll(indexDiffData.getRemoved());
+		if (containsPrefix(changed, repoRelativePath))
+			staged = Staged.MODIFIED;
+		else
+			staged = Staged.NOT_STAGED;
+
+		Set<String> conflicting = indexDiffData.getConflicting();
+		conflicts = containsPrefix(conflicting, repoRelativePath);
+
+		Set<String> modified = indexDiffData.getModified();
+		dirty = containsPrefix(modified, repoRelativePath);
+	}
+

@@ -1,4 +1,0 @@
-	private void postLabelEvent(final Object[] elements) {
-		postLabelEvent(elements, false);
-	}
-
