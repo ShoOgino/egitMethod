@@ -52,9 +52,12 @@
 					StyledString.DECORATIONS_STYLER);
 			break;
 		case REJECTED_NODELETE:
-		case REJECTED_NONFASTFORWARD:
 		case REJECTED_REMOTE_CHANGED:
 			styled.append(UIText.PushResultTable_statusRejected,
+					StyledString.DECORATIONS_STYLER);
+			break;
+		case REJECTED_NONFASTFORWARD:
+			styled.append(UIText.RefUpdateElement_statusRejectedNonFastForward,
 					StyledString.DECORATIONS_STYLER);
 			break;
 		case REJECTED_OTHER_REASON:
