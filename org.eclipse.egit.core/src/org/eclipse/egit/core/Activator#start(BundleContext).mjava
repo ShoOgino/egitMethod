@@ -20,5 +20,7 @@
 		repositoryUtil = new RepositoryUtil();
 
 		secureStore = new EGitSecureStore(SecurePreferencesFactory.getDefault());
+
+		registerAutoShareProjects();
 	}
 
