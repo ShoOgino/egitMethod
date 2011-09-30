@@ -1,0 +1,14 @@
+	@Test
+	public void testMoveProjectWithinGitRepoMoveFromLevelZeroDownOne()
+			throws Exception {
+		try {
+			dotestMoveProjectWithinRepoWithinWorkspace("P/", "Project-1",
+					"P/Project-1/", "P2", "P/Project-1/");
+			if (!"true".equals(System.getProperty("egit.assume_307140_fixed")))
+				fail("ResourceException expected, core functionality dangerously broken and therefore forbidden");
+		} catch (CoreException e) {
+			if ("true".equals(System.getProperty("egit.assume_307140_fixed")))
+				throw e;
+		}
+	}
+
