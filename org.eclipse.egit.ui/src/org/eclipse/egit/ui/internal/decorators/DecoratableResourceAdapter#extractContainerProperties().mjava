@@ -1,7 +1,12 @@
 	private void extractContainerProperties() {
 		String repoRelativePath = makeRepoRelative(resource) + "/"; 
-		tracked = true;
+		Set<String> ignoredFiles = indexDiffData.getIgnoredNotInIndex();
+		ignored = containsPrefixPath(ignoredFiles, repoRelativePath);
 
+		if (ignored)
+			tracked = false;
+		else
+			tracked = true; 
 		Set<String> changed = new HashSet<String>(indexDiffData.getChanged());
 		changed.addAll(indexDiffData.getAdded());
 		changed.addAll(indexDiffData.getRemoved());

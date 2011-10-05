@@ -13,6 +13,8 @@
 				.getUntracked()));
 		conflicts = Collections.unmodifiableSet(new HashSet<String>(indexDiff
 				.getConflicting()));
+		ignored = Collections.unmodifiableSet(new HashSet<String>(indexDiff
+				.getIgnoredNotInIndex()));
 		changedFileResources = null;
 	}
 
