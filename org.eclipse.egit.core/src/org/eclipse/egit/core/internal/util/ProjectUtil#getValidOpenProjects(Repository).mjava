@@ -1,10 +1,12 @@
-	public static IProject[] getValidProjects(Repository repository)
+	public static IProject[] getValidOpenProjects(Repository repository)
 			throws CoreException {
 		final IProject[] projects = ResourcesPlugin.getWorkspace().getRoot()
 				.getProjects();
 		List<IProject> result = new ArrayList<IProject>();
 		final File parentFile = repository.getWorkTree();
 		for (IProject p : projects) {
+			if (!p.isOpen())
+				continue;
 			String projectFilePath = p.getLocation()
 					.append(".project").toOSString(); 			File projectFile = new File(projectFilePath);
 			if (projectFile.exists()) {
