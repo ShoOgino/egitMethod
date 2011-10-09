@@ -5,9 +5,10 @@
 		List<IProject> result = new ArrayList<IProject>();
 		final File parentFile = repository.getWorkTree();
 		for (IProject p : projects) {
-			if (!p.isOpen())
+			IPath projectLocation = p.getLocation();
+			if (!p.isOpen() || projectLocation == null)
 				continue;
-			String projectFilePath = p.getLocation()
+			String projectFilePath = projectLocation
 					.append(".project").toOSString(); 			File projectFile = new File(projectFilePath);
 			if (projectFile.exists()) {
 				final File file = p.getLocation().toFile();
