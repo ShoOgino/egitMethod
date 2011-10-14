@@ -10,11 +10,13 @@
 					event.getDelta().accept(new IResourceDeltaVisitor() {
 						public boolean visit(IResourceDelta delta)
 								throws CoreException {
+							final IResource resource = delta.getResource();
+							if (Team.isIgnoredHint(resource))
+								return false;
+
 							if (delta.getKind() == IResourceDelta.CHANGED
 									&& (delta.getFlags() & INTERESTING_CHANGES) == 0)
 								return true;
-
-							final IResource resource = delta.getResource();
 
 							if (resource.getType() != IResource.FILE)
 								return true;
@@ -29,8 +31,6 @@
 								gitIgnoreChanged[0] = true;
 								return false;
 							}
-							if (Team.isIgnoredHint(resource))
-								return false;
 
 							String repoRelativePath = mapping
 									.getRepoRelativePath(resource);
