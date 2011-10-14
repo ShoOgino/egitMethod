@@ -23,9 +23,11 @@
 					if (id == null)
 						return image;
 					RevWalk rw = new RevWalk(node.getRepository());
-					RevTag tag = rw.parseTag(id);
-					compareString = tag.getObject().name();
-
+					try {
+						compareString = rw.parseTag(id).getObject().name();
+					} catch (IncorrectObjectTypeException e) {
+						compareString = id.name();
+					}
 				} else if (refName.startsWith(Constants.R_REMOTES)) {
 					ObjectId id = node.getRepository().resolve(refName);
 					if (id == null)

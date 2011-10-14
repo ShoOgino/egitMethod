@@ -6,8 +6,7 @@
 		}
 		resourceManager.dispose();
 		decoratedImages.clear();
-		tagImage.dispose();
-		lightweightTagImage.dispose();
+		annotatedTagImage.dispose();
 		super.dispose();
 	}
 
