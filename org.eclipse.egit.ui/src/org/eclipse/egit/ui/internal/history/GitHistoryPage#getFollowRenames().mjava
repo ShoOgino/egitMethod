@@ -1,0 +1,4 @@
+	protected boolean getFollowRenames() {
+		return store.getBoolean(UIPreferences.RESOURCEHISTORY_FOLLOW_RENAMES);
+	}
+
