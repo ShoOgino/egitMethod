@@ -45,14 +45,13 @@
 					return;
 				}
 
-				if (gitIgnoreChanged[0] || indexDiffData == null)
-					scheduleReloadJob();
-				else if (!filesToUpdate.isEmpty())
+				if (gitIgnoreChanged[0])
+					scheduleReloadJob("A .gitignore changed"); 				else if (indexDiffData == null)
+					scheduleReloadJob("Resource changed, no diff available"); 				else if (!filesToUpdate.isEmpty())
 					if (filesToUpdate.size() < RESOURCE_LIST_UPDATE_LIMIT)
 						scheduleUpdateJob(filesToUpdate, fileResourcesToUpdate);
 					else
-						scheduleReloadJob();
-			}
+						scheduleReloadJob("Too many resources changed"); 			}
 
 		};
 		ResourcesPlugin.getWorkspace().addResourceChangeListener(
