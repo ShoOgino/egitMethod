@@ -3,16 +3,13 @@
 		repository.getListenerList().addIndexChangedListener(
 				new IndexChangedListener() {
 					public void onIndexChanged(IndexChangedEvent event) {
-						scheduleReloadJob();
-					}
+						scheduleReloadJob("IndexChanged"); 					}
 				});
 		repository.getListenerList().addRefsChangedListener(
 				new RefsChangedListener() {
 					public void onRefsChanged(RefsChangedEvent event) {
-						scheduleReloadJob();
-					}
+						scheduleReloadJob("RefsChanged"); 					}
 				});
-		scheduleReloadJob();
-		createResourceChangeListener();
+		scheduleReloadJob("IndexDiffCacheEntry construction"); 		createResourceChangeListener();
 	}
 

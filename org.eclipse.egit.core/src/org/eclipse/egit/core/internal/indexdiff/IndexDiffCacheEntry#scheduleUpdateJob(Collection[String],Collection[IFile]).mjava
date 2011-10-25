@@ -34,8 +34,7 @@
 						GitTraceLocation.getTrace().trace(
 								GitTraceLocation.INDEXDIFFCACHE.getLocation(),
 								"Calculating IndexDiff failed", e); 					}
-					scheduleReloadJob();
-					return Status.OK_STATUS;
+					scheduleReloadJob("Recalculation due to Exception in update job"); 					return Status.OK_STATUS;
 				} finally {
 					lock.unlock();
 				}

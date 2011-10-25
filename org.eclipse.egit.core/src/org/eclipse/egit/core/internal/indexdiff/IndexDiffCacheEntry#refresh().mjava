@@ -1,4 +1,3 @@
 	public void refresh() {
-		scheduleReloadJob();
-	}
+		scheduleReloadJob("Refresh called"); 	}
 
