@@ -1,0 +1,4 @@
+		public boolean isRegularFile() {
+			return regularFile;
+		}
+
