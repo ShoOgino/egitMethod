@@ -20,8 +20,8 @@
 						long time = System.currentTimeMillis() - startTime;
 						StringBuilder message = new StringBuilder(
 								NLS.bind(
-										"Updated IndexDiffData based on resource list (length = {0}) in {1} ms\n", 										new Integer(fileResourcesToUpdate
-												.size()), new Long(time)));
+										"Updated IndexDiffData based on resource list (length = {0}) in {1} ms\n", 										Integer.valueOf(fileResourcesToUpdate
+												.size()), Long.valueOf(time)));
 						GitTraceLocation.getTrace().trace(
 								GitTraceLocation.INDEXDIFFCACHE.getLocation(),
 								message.append(indexDiffData.toString())
