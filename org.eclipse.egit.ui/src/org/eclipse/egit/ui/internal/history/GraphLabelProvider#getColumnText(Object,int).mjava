@@ -10,10 +10,7 @@
 				case 1:
 					return author.getName()
 							+ " <" + author.getEmailAddress() + ">"; 				case 2:
-					if (relativeDate)
-						return RelativeDateFormatter.format(author.getWhen());
-					else
-						return absoluteFormatter.format(author.getWhen());
+					return getDateFormatter().formatDate(author);
 				}
 			}
 		}
