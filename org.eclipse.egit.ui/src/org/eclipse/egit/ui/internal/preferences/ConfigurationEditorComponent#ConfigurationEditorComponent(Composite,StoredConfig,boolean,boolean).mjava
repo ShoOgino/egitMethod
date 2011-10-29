@@ -1,8 +1,9 @@
 	public ConfigurationEditorComponent(Composite parent, StoredConfig config,
-			boolean useDialogFont) {
+			boolean useDialogFont, boolean changeablePath) {
 		editableConfig = config;
 		this.shellProvider = new SameShellProvider(parent);
 		this.parent = parent;
 		this.useDialogFont = useDialogFont;
+		this.changeablePath = changeablePath;
 	}
 
