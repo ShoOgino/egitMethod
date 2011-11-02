@@ -19,5 +19,6 @@
 		} else if (members != null)
 			for (GitSyncObjectCache obj : members.values())
 				obj.diffEntry.changeType = ChangeType.IN_SYNC;
+		else 			diffEntry.changeType = value.diffEntry.changeType;
 	}
 

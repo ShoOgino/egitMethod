@@ -1,0 +1,4 @@
+	public boolean getGitIgnoreChanged() {
+		return gitIgnoreChanged;
+	}
+
