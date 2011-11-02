@@ -1,55 +1,20 @@
 	private void createResourceChangeListener() {
 		resourceChangeListener = new IResourceChangeListener() {
 			public void resourceChanged(IResourceChangeEvent event) {
-				final Collection<String> filesToUpdate = new HashSet<String>();
-				final Collection<IFile> fileResourcesToUpdate = new HashSet<IFile>();
-				final boolean[] gitIgnoreChanged = new boolean[1];
-				gitIgnoreChanged[0] = false;
-
+				GitResourceDeltaVisitor visitor = new GitResourceDeltaVisitor(repository);
 				try {
-					event.getDelta().accept(new IResourceDeltaVisitor() {
-						public boolean visit(IResourceDelta delta)
-								throws CoreException {
-							final IResource resource = delta.getResource();
-							if (Team.isIgnoredHint(resource))
-								return false;
-
-							if (delta.getKind() == IResourceDelta.CHANGED
-									&& (delta.getFlags() & INTERESTING_CHANGES) == 0)
-								return true;
-
-							if (resource.getType() != IResource.FILE)
-								return true;
-
-							final RepositoryMapping mapping = RepositoryMapping
-									.getMapping(resource);
-							if (mapping == null
-									|| mapping.getRepository() != repository)
-								return true;
-
-							if (resource.getName().equals(GITIGNORE_NAME)) {
-								gitIgnoreChanged[0] = true;
-								return false;
-							}
-
-							String repoRelativePath = mapping
-									.getRepoRelativePath(resource);
-							filesToUpdate.add(repoRelativePath);
-							fileResourcesToUpdate.add((IFile) resource);
-
-							return true;
-						}
-					});
+					event.getDelta().accept(visitor);
 				} catch (CoreException e) {
 					Activator.logError(e.getMessage(), e);
 					return;
 				}
 
-				if (gitIgnoreChanged[0])
+				Collection<String> filesToUpdate = visitor.getFilesToUpdate();
+				if (visitor.getGitIgnoreChanged())
 					scheduleReloadJob("A .gitignore changed"); 				else if (indexDiffData == null)
 					scheduleReloadJob("Resource changed, no diff available"); 				else if (!filesToUpdate.isEmpty())
 					if (filesToUpdate.size() < RESOURCE_LIST_UPDATE_LIMIT)
-						scheduleUpdateJob(filesToUpdate, fileResourcesToUpdate);
+						scheduleUpdateJob(filesToUpdate, visitor.getFileResourcesToUpdate());
 					else
 						scheduleReloadJob("Too many resources changed"); 			}
 
