@@ -10,5 +10,6 @@
 		layout.addShowViewShortcut(ISynchronizeView.VIEW_ID);
 		layout.addShowViewShortcut(StagingView.VIEW_ID);
 		layout.addShowViewShortcut(ReflogView.VIEW_ID);
-	}
+
+		layout.addActionSet("org.eclipse.egit.ui.navigation"); 	}
 
