@@ -1,4 +1,4 @@
 	public GitPreferenceRoot() {
-		super(GRID);
+		super(FLAT);
 	}
 
