@@ -2,8 +2,14 @@
 
 		layout.addView(RepositoriesView.VIEW_ID, IPageLayout.LEFT, (float) 0.5, layout.getEditorArea());
 
-		layout.addView(IPageLayout.ID_PROP_SHEET, IPageLayout.BOTTOM, (float) 0.5, layout
-				.getEditorArea());
+		IFolderLayout bottom = layout.createFolder(
+				"bottom", IPageLayout.BOTTOM, (float) 0.5, 				layout.getEditorArea());
+
+		bottom.addView(IPageLayout.ID_PROP_SHEET);
+		bottom.addView(IHistoryView.VIEW_ID);
+		bottom.addView(ISynchronizeView.VIEW_ID);
+		bottom.addView(StagingView.VIEW_ID);
+		bottom.addView(ReflogView.VIEW_ID);
 
 		layout.addPlaceholder("org.eclipse.jdt.ui.PackageExplorer", IPageLayout.BOTTOM, (float) 0.7, RepositoriesView.VIEW_ID); 
 		layout.addShowViewShortcut("org.eclipse.jdt.ui.PackageExplorer"); 		layout.addShowViewShortcut(IHistoryView.VIEW_ID);
