@@ -1,4 +1,4 @@
-	private Repository getRepository() {
+	public Repository getRepository() {
 		Object input = refLogTableTreeViewer.getInput();
 		if (input instanceof ReflogInput)
 			return ((ReflogInput) input).getRepository();
