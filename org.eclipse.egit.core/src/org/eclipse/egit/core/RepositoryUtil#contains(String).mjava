@@ -1,0 +1,4 @@
+	public boolean contains(final String repositoryDir) {
+		return getConfiguredRepositories().contains(repositoryDir);
+	}
+
