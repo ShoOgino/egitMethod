@@ -108,15 +108,15 @@
 
 			public Image getImage(Object element) {
 				String comment = ((ReflogEntry) element).getComment();
-				if (comment.startsWith("commit:")) 					return (Image) resourceManager.get(UIIcons.COMMIT);
+				if (comment.startsWith("commit:") || comment.startsWith("commit (initial):")) 					return (Image) resourceManager.get(UIIcons.COMMIT);
 				if (comment.startsWith("commit (amend):")) 					return (Image) resourceManager.get(UIIcons.AMEND_COMMIT);
-				if (comment.startsWith("pull ")) 					return (Image) resourceManager.get(UIIcons.PULL);
-				if (comment.startsWith("clone:")) 					return (Image) resourceManager.get(UIIcons.CLONEGIT);
-				if (comment.startsWith("rebase ")) 					return (Image) resourceManager.get(UIIcons.REBASE);
-				if (comment.startsWith("merge ")) 					return (Image) resourceManager.get(UIIcons.MERGE);
-				if (comment.startsWith("fetch:")) 					return (Image) resourceManager.get(UIIcons.FETCH);
-				if (comment.startsWith("branch:")) 					return (Image) resourceManager.get(UIIcons.CREATE_BRANCH);
-				if (comment.startsWith("checkout:")) 					return (Image) resourceManager.get(UIIcons.CHECKOUT);
+				if (comment.startsWith("pull")) 					return (Image) resourceManager.get(UIIcons.PULL);
+				if (comment.startsWith("clone")) 					return (Image) resourceManager.get(UIIcons.CLONEGIT);
+				if (comment.startsWith("rebase")) 					return (Image) resourceManager.get(UIIcons.REBASE);
+				if (comment.startsWith("merge")) 					return (Image) resourceManager.get(UIIcons.MERGE);
+				if (comment.startsWith("fetch")) 					return (Image) resourceManager.get(UIIcons.FETCH);
+				if (comment.startsWith("branch")) 					return (Image) resourceManager.get(UIIcons.CREATE_BRANCH);
+				if (comment.startsWith("checkout")) 					return (Image) resourceManager.get(UIIcons.CHECKOUT);
 				return null;
 			}
 
