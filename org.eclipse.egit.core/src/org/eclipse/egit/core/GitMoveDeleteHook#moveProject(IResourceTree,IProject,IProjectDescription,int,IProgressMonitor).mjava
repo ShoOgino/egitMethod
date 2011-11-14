@@ -4,33 +4,38 @@
 		final RepositoryMapping srcm = RepositoryMapping.getMapping(source);
 		if (srcm == null)
 			return false;
-		File newLocation = new File(description.getLocationURI().getPath());
-		if(newLocation.getAbsolutePath().contains(srcm.getRepository().getWorkTree().getAbsolutePath())) {
-			final String sPath = srcm.getRepoRelativePath(source);
-			final String dPath = new Path(newLocation.getAbsolutePath().substring(
-					srcm.getRepository().getWorkTree().getAbsolutePath().length() + 1) + "/").toPortableString(); 			try {
-				MoveResult result = moveIndexContent(dPath, srcm, sPath);
-				switch (result) {
-				case SUCCESS:
-					break;
-				case FAILED:
-					tree.failed(new Status(IStatus.ERROR, Activator
-							.getPluginId(), 0,
-							CoreText.MoveDeleteHook_operationError, null));
-					break;
-				case UNTRACKED:
-					return FINISH_FOR_ME;
-				}
-
-				tree.standardMoveProject(source, description, updateFlags,
-						monitor);
-			} catch (IOException e) {
-				tree.failed(new Status(IStatus.ERROR, Activator.getPluginId(), 0,
-						CoreText.MoveDeleteHook_operationError, e));
-			}
+		IPath newLocation = null;
+		if (description.getLocationURI() != null)
+			newLocation = URIUtil.toPath(description.getLocationURI());
+		else
+			newLocation = source.getWorkspace().getRoot().getLocation()
+					.append(description.getName());
+		IPath sourceLocation = source.getLocation();
+		if (sourceLocation.isPrefixOf(newLocation)
+				&& sourceLocation.segmentCount() != newLocation.segmentCount()
+				&& !"true".equals(System.getProperty("egit.assume_307140_fixed"))) { 			tree.failed(new Status(
+					IStatus.ERROR,
+					Activator.getPluginId(),
+					0,
+					"Cannot move project. See https://bugs.eclipse.org/bugs/show_bug.cgi?id=307140 (not resolved in 3.7)", 					null));
 			return true;
 		}
-
-		return FINISH_FOR_ME;
+		File newLocationFile = newLocation.toFile();
+		Path workTree = new Path(srcm.getRepository().getWorkTree().getAbsolutePath());
+		int matchingFirstSegments = workTree.matchingFirstSegments(newLocation);
+		if (matchingFirstSegments == workTree.segmentCount()) {
+			return moveProjectHelperMoveOnlyProject(tree, source, description, updateFlags,
+					monitor, srcm, newLocationFile);
+		} else {
+			int dstAboveSrcRepo = newLocation.matchingFirstSegments(RepositoryMapping
+					.getMapping(source).getGitDirAbsolutePath());
+			int srcAboveSrcRepo = sourceLocation.matchingFirstSegments(RepositoryMapping.getMapping(source).getGitDirAbsolutePath());
+			if (dstAboveSrcRepo > 0 && srcAboveSrcRepo > 0) {
+				return moveProjectHelperMoveRepo(tree, source, description, updateFlags, monitor,
+					srcm, newLocation, sourceLocation);
+			} else {
+				return FINISH_FOR_ME;
+			}
+		}
 	}
 
