@@ -1,35 +1,23 @@
 	void addDoneListenerToFormatJob() {
-		formatJob.addJobChangeListener(new IJobChangeListener() {
-
-			public void sleeping(IJobChangeEvent event) {
-			}
-
-			public void scheduled(IJobChangeEvent event) {
-			}
-
-			public void running(IJobChangeEvent event) {
-			}
+		formatJob.addJobChangeListener(new JobChangeAdapter() {
 
 			public void done(IJobChangeEvent event) {
-				if (event.getResult().isOK()) {
-					if (getTextWidget().isDisposed())
-						return;
-					final FormatJob job = (FormatJob) event.getJob();
-					getTextWidget().getDisplay().asyncExec(new Runnable() {
-						public void run() {
-							if (getTextWidget().isDisposed())
-								return;
-							setDocument(new Document(job.getFormatResult().getCommitInfo()));
-							getTextWidget().setStyleRanges(job.getFormatResult().getStyleRange());
-						}
-					});
-				}
-			}
-
-			public void awake(IJobChangeEvent event) {
-			}
-
-			public void aboutToRun(IJobChangeEvent event) {
+				if (!event.getResult().isOK())
+					return;
+				final StyledText text = getTextWidget();
+				if (text == null || text.isDisposed())
+					return;
+				final FormatJob job = (FormatJob) event.getJob();
+				text.getDisplay().asyncExec(new Runnable() {
+					public void run() {
+						if (text.isDisposed())
+							return;
+						setDocument(new Document(job.getFormatResult()
+								.getCommitInfo()));
+						text.setStyleRanges(job.getFormatResult()
+								.getStyleRange());
+					}
+				});
 			}
 		});
 	}
