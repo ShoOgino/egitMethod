@@ -1,0 +1,5 @@
+	public CloneDestinationPage setShowProjectImport(boolean show) {
+		showProjectImport = show;
+		return this;
+	}
+

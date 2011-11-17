@@ -1,0 +1,6 @@
+	public IWorkingSet[] getWorkingSets() {
+		if (workingSetGroup == null)
+			return new IWorkingSet[0];
+		return workingSetGroup.getSelectedWorkingSets();
+	}
+

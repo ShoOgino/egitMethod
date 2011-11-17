@@ -1,0 +1,5 @@
+	public boolean isImportProjects() {
+		return importProjectsButton != null
+				&& importProjectsButton.getSelection();
+	}
+

@@ -1,0 +1,5 @@
+	public GitCloneWizard setShowProjectImport(boolean show) {
+		cloneDestination.setShowProjectImport(show);
+		return this;
+	}
+
