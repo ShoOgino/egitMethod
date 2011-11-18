@@ -3,20 +3,11 @@
 			final PushOperationSpecification spec;
 			final RemoteConfig config = repoPage.getSelection().getConfig();
 			if (calledFromRepoPage) {
-				final Collection<RefSpec> fetchSpecs = new ArrayList<RefSpec>();
-				fetchSpecs.addAll(config.getPushRefSpecs());
-				if (fetchSpecs.isEmpty())
-					fetchSpecs.add(DEFAULT_FETCH_REF_SPEC);
+				final Collection<RefSpec> pushSpecs = new ArrayList<RefSpec>();
+				pushSpecs.addAll(config.getPushRefSpecs());
 				final Collection<RemoteRefUpdate> updates = Transport
-						.findRemoteRefUpdatesFor(localDb, fetchSpecs,
-								fetchSpecs);
-				if (updates.isEmpty()) {
-					ErrorDialog.openError(getShell(),
-							UIText.PushWizard_missingRefsTitle, null,
-							new Status(IStatus.ERROR, Activator.getPluginId(),
-									UIText.PushWizard_missingRefsMessage));
-					return null;
-				}
+						.findRemoteRefUpdatesFor(localDb, pushSpecs,
+								pushSpecs);
 				spec = new PushOperationSpecification();
 				for (final URIish uri : repoPage.getSelection().getPushURIs())
 					spec.addURIRefUpdates(uri, ConfirmationPage
