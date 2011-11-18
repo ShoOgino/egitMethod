@@ -1,0 +1,4 @@
+	public static boolean isNonWorkspace(IResource resource) {
+		return resource.getLocation() == null;
+	}
+
