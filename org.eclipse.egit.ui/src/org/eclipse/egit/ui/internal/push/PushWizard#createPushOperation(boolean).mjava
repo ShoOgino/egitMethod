@@ -6,7 +6,7 @@
 				final Collection<RefSpec> fetchSpecs = new ArrayList<RefSpec>();
 				fetchSpecs.addAll(config.getPushRefSpecs());
 				if (fetchSpecs.isEmpty())
-					fetchSpecs.add(PushOperationUI.DEFAULT_PUSH_REF_SPEC);
+					fetchSpecs.add(DEFAULT_FETCH_REF_SPEC);
 				final Collection<RemoteRefUpdate> updates = Transport
 						.findRemoteRefUpdatesFor(localDb, fetchSpecs,
 								fetchSpecs);

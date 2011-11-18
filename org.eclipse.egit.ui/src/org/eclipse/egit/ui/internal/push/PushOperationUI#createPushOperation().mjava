@@ -15,8 +15,6 @@
 
 			List<RefSpec> pushRefSpecs = new ArrayList<RefSpec>();
 			pushRefSpecs.addAll(config.getPushRefSpecs());
-			if (pushRefSpecs.isEmpty())
-				pushRefSpecs.add(DEFAULT_PUSH_REF_SPEC);
 
 			for (URIish uri : urisToPush) {
 				try {
