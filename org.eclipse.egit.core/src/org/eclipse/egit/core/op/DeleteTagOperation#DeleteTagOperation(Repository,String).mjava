@@ -1,0 +1,5 @@
+	public DeleteTagOperation(final Repository repository, final String tag) {
+		this.repository = repository;
+		this.tag = tag;
+	}
+
