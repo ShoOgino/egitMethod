@@ -49,11 +49,9 @@
 				}
 			}
 
-			String prefixString = prefix.toString().replaceAll("^\\s+", ""); 			if (prefixString != null) {
+			String prefixString = prefix.toString().replaceAll("^\\s+", ""); 			if (prefixString.length() > 0)
 				decoration.addPrefix(TextProcessor.process(prefixString,
-						"()[].")); 			}
-			String suffixString = suffix.toString().replaceAll("\\s+$", ""); 			if (suffixString != null) {
+						"()[].")); 			String suffixString = suffix.toString().replaceAll("\\s+$", ""); 			if (suffixString.length() > 0)
 				decoration.addSuffix(TextProcessor.process(suffixString,
-						"()[].")); 			}
-		}
+						"()[].")); 		}
 
