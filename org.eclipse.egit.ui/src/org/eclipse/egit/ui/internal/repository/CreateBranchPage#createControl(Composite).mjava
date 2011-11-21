@@ -140,11 +140,9 @@
 		Dialog.applyDialogFont(main);
 		setControl(main);
 		nameText.setFocus();
-		if (myBaseRef != null
-				&& (myBaseRef.startsWith(Constants.R_REMOTES) || myBaseRef
-						.startsWith(Constants.R_TAGS))) {
-			nameText.setText(myBaseRef
-					.substring(myBaseRef.lastIndexOf('/') + 1));
+		String targetName = getProposedTargetName(myBaseRef);
+		if (targetName != null) {
+			nameText.setText(targetName);
 			nameText.selectAll();
 		} else
 			setPageComplete(false);
