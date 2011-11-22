@@ -17,6 +17,8 @@
 
 			start = separatorIdx;
 			separatorIdx = childPath.indexOf("/", separatorIdx + 1); 			parent = childObject.members;
+			if (parent == null)
+				return null;
 		}
 
 		if (parent == null)
