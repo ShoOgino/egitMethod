@@ -10,6 +10,9 @@
 			gdRelativeDstParent = gdRelativeDstParent
 					.substring(gitDir.length());
 
+		registerWorkspaceRelativeTestDirProject(srcParent, srcProjectName);
+		registerWorkspaceRelativeTestDirProject(dstParent, dstProjecName);
+
 		TestProject project = initRepoAboveProject(srcParent, gitDir, sourceInsideWs);
 		IProject project0 = project.getProject().getWorkspace().getRoot()
 				.getProject(dstProjecName);
