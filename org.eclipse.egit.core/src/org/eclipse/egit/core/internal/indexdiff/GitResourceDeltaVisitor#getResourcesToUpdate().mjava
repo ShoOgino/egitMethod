@@ -1,0 +1,4 @@
+	public Collection<IResource> getResourcesToUpdate() {
+		return resourcesToUpdate;
+	}
+

@@ -2,17 +2,22 @@
 		final IResource resource = delta.getResource();
 		if (Team.isIgnoredHint(resource))
 			return false;
+		final RepositoryMapping mapping = RepositoryMapping
+				.getMapping(resource);
+		if (mapping == null || mapping.getRepository() != repository)
+			return true;
+
+		if (resource instanceof IFolder
+				&& delta.getKind() == IResourceDelta.ADDED) {
+			filesToUpdate.add(mapping.getRepoRelativePath(resource) + "/"); 			resourcesToUpdate.add(resource);
+			return true;
+		}
 
 		if (delta.getKind() == IResourceDelta.CHANGED
 				&& (delta.getFlags() & INTERESTING_CHANGES) == 0)
 			return true;
 
 		if (resource.getType() != IResource.FILE)
-			return true;
-
-		final RepositoryMapping mapping = RepositoryMapping
-				.getMapping(resource);
-		if (mapping == null || mapping.getRepository() != repository)
 			return true;
 
 		if (resource.getName().equals(GITIGNORE_NAME)) {
@@ -22,7 +27,7 @@
 
 		String repoRelativePath = mapping.getRepoRelativePath(resource);
 		filesToUpdate.add(repoRelativePath);
-		fileResourcesToUpdate.add((IFile) resource);
+		resourcesToUpdate.add(resource);
 
 		return true;
 	}

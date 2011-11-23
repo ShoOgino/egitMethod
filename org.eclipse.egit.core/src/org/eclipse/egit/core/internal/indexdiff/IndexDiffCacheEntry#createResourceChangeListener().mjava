@@ -8,13 +8,12 @@
 					Activator.logError(e.getMessage(), e);
 					return;
 				}
-
 				Collection<String> filesToUpdate = visitor.getFilesToUpdate();
 				if (visitor.getGitIgnoreChanged())
 					scheduleReloadJob("A .gitignore changed"); 				else if (indexDiffData == null)
 					scheduleReloadJob("Resource changed, no diff available"); 				else if (!filesToUpdate.isEmpty())
 					if (filesToUpdate.size() < RESOURCE_LIST_UPDATE_LIMIT)
-						scheduleUpdateJob(filesToUpdate, visitor.getFileResourcesToUpdate());
+						scheduleUpdateJob(filesToUpdate, visitor.getResourcesToUpdate());
 					else
 						scheduleReloadJob("Too many resources changed"); 			}
 
