@@ -38,7 +38,12 @@
 				case PARTIALLY_MODIFIED:
 				case UNTRACKED:
 				default:
-					menuMgr.add(createItem(ActionCommands.DISCARD_CHANGES_ACTION, tableViewer));						menuMgr.add(createItem(ActionCommands.ADD_TO_INDEX, tableViewer));
+					menuMgr.add(createItem(ActionCommands.DISCARD_CHANGES_ACTION, tableViewer));						menuMgr.add(new Action(UIText.StagingView_StageItemMenuLabel) {
+						@Override
+						public void run() {
+							stage((IStructuredSelection) tableViewer.getSelection());
+						}
+					});
 				}
 			}
 		});
