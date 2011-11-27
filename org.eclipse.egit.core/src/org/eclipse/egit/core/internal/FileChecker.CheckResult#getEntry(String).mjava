@@ -1,0 +1,4 @@
+		public CheckResultEntry getEntry(String path) {
+			return problems.get(path);
+		}
+

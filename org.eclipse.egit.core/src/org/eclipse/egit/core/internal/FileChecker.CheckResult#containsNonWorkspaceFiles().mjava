@@ -1,0 +1,4 @@
+		public boolean containsNonWorkspaceFiles() {
+			return containsNonWorkspaceFiles;
+		}
+

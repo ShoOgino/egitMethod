@@ -1,0 +1,4 @@
+		public boolean containsNotSharedResources() {
+			return containsNotSharedResources;
+		}
+

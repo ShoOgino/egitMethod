@@ -1,0 +1,5 @@
+		public CheckResultEntry(boolean inWorkspace, boolean shared) {
+			this.inWorkspace = inWorkspace;
+			this.shared = shared;
+		}
+
