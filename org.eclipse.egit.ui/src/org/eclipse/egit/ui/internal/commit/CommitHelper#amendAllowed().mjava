@@ -1,0 +1,4 @@
+	public boolean amendAllowed() {
+		return previousCommit != null && repository.getRepositoryState().canAmend();
+	}
+
