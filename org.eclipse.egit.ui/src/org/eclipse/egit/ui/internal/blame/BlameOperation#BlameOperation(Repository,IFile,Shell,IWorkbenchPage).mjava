@@ -1,8 +1,0 @@
-	public BlameOperation(Repository repository, IFile file, Shell shell,
-			IWorkbenchPage page) {
-		this.repository = repository;
-		this.file = file;
-		this.shell = shell;
-		this.page = page;
-	}
-
