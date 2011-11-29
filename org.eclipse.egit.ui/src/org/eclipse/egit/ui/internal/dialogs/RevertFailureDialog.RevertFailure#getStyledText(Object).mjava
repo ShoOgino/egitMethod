@@ -1,0 +1,7 @@
+		public StyledString getStyledText(Object object) {
+			StyledString styled = new StyledString(getLabel(object));
+			styled.append(' ');
+			styled.append(MessageFormat.format("({0})", 					Integer.valueOf(paths.size())), StyledString.COUNTER_STYLER);
+			return styled;
+		}
+

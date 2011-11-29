@@ -1,0 +1,4 @@
+	public MergeResult getFailingResult() {
+		return result;
+	}
+
