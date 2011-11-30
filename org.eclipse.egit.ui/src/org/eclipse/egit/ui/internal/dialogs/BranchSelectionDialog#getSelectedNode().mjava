@@ -1,0 +1,6 @@
+	public T getSelectedNode() {
+		if (selected.isEmpty())
+			return null;
+		return selected.get(0);
+	}
+
