@@ -1,4 +1,0 @@
-	public boolean hasBufferedContents() {
-		return bufferedKey != null;
-	}
-

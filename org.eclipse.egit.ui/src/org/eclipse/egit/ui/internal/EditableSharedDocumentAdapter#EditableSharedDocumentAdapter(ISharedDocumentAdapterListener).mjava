@@ -1,5 +1,0 @@
-	public EditableSharedDocumentAdapter(ISharedDocumentAdapterListener listener) {
-		super();
-		this.listener = listener;
-	}
-

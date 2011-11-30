@@ -1,5 +1,0 @@
-	public boolean isSynchronized() {
-		long current = getResource().getLocalTimeStamp();
-		return current == getTimestamp();
-	}
-

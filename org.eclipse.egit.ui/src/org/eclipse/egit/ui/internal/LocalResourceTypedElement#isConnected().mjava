@@ -1,5 +1,0 @@
-	public boolean isConnected() {
-		return sharedDocumentAdapter != null
-				&& sharedDocumentAdapter.isConnected();
-	}
-

@@ -1,4 +1,0 @@
-	private long getTimestamp() {
-		return timestamp;
-	}
-

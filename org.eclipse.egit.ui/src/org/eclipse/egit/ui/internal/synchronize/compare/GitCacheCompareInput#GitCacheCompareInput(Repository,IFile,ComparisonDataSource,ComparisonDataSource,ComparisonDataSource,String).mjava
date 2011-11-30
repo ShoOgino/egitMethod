@@ -1,0 +1,9 @@
+	public GitCacheCompareInput(Repository repo,
+			IFile baseFile, ComparisonDataSource ancestorDataSource,
+			ComparisonDataSource baseDataSource,
+			ComparisonDataSource remoteDataSource, String gitPath) {
+		super(repo, ancestorDataSource, baseDataSource, remoteDataSource,
+				gitPath);
+		this.baseFile = baseFile;
+	}
+
