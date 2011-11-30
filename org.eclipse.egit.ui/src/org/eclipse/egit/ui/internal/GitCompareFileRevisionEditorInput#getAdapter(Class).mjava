@@ -1,6 +1,6 @@
 	public Object getAdapter(Class adapter) {
 		if (adapter == IFile.class || adapter == IResource.class) {
-			return getResource(getCompareInput());
+			return getResource();
 		}
 		return super.getAdapter(adapter);
 	}
