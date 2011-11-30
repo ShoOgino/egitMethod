@@ -1,0 +1,6 @@
+	protected <V> V getSelectedItem(final Class<V> itemClass,
+			final ExecutionEvent event) {
+		final Object selected = getSelection(event).getFirstElement();
+		return AdapterUtils.adapt(selected, itemClass);
+	}
+
