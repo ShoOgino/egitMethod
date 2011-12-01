@@ -20,16 +20,6 @@
 
 		String projectPath = mapping.getRepoRelativePath(project);
 		if (projectPath.equals("")) 			projectPath = "."; 
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(VERSION);
-		sb.append(ProjectReference.SEPARATOR);
-		sb.append(url);
-		sb.append(ProjectReference.SEPARATOR);
-		sb.append(branch);
-		sb.append(ProjectReference.SEPARATOR);
-		sb.append(projectPath);
-
-		return sb.toString();
+		return asReference(url, branch, projectPath);
 	}
 
