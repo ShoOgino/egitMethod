@@ -1,5 +1,8 @@
 	public boolean deleteFile(final IResourceTree tree, final IFile file,
 			final int updateFlags, final IProgressMonitor monitor) {
+		if (file.isLinked())
+			return false;
+
 		final boolean force = (updateFlags & IResource.FORCE) == IResource.FORCE;
 		if (!force && !tree.isSynchronized(file, IResource.DEPTH_ZERO))
 			return false;
