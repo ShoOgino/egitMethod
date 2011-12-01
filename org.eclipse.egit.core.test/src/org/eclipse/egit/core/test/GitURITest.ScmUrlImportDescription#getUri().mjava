@@ -1,0 +1,3 @@
+		public URI getUri() {
+			return URI.create(url.replaceAll("\"", "")); 		}
+
