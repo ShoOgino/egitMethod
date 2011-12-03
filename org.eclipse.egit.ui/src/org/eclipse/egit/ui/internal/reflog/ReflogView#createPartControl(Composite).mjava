@@ -111,12 +111,6 @@
 			}
 
 			@Override
-			public String getToolTipText(Object element) {
-				final ReflogEntry entry = (ReflogEntry) element;
-				return entry.getNewId().name();
-			}
-
-			@Override
 			public Image getImage(Object element) {
 				return null;
 			}
@@ -172,8 +166,9 @@
 			@Override
 			public String getToolTipText(Object element) {
 				final ReflogEntry entry = (ReflogEntry) element;
-				return entry.getNewId().name();
-			}
+				final PersonIdent who = entry.getWho();
+				String email = who.getEmailAddress();
+				return who.getName() + " <" + email + ">";  			}
 
 			@Override
 			public Image getImage(Object element) {
