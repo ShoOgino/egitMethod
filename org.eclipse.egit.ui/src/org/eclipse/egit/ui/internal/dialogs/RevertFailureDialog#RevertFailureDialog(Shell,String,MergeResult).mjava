@@ -1,6 +1,0 @@
-	public RevertFailureDialog(Shell shell, String message, MergeResult result) {
-		super(shell, UIText.RevertFailureDialog_Title, null, message, ERROR,
-				new String[] { IDialogConstants.OK_LABEL }, 0);
-		this.result = result;
-	}
-
