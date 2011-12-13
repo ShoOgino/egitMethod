@@ -8,8 +8,7 @@
 				.getPreviousCommit()));
 		commitMessageComponent.setAmendAllowed(helper.amendAllowed());
 		commitMessageComponent.setAmending(false);
-		commitMessageComponent.setSignedOff(false);
-		commitMessageComponent.setCreateChangeId(false);
+		commitMessageComponent.setDefaults();
 		commitMessageComponent.updateUI();
 		commitMessageComponent.enableListers(true);
 	}
