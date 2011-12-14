@@ -2,10 +2,10 @@
 		URIish storedURI = uri.setUser(null).setPass(null).setPath(null);
 		if (uri.getPort() == -1) {
 			String s = uri.getScheme();
-			if (s.equals("http")) 				storedURI = storedURI.setPort(80);
-			else if (s.equals("https")) 				storedURI = storedURI.setPort(443);
-			else if (s.equals("ssh") || s.equals("sftp")) 				storedURI = storedURI.setPort(22);
-			else if (s.equals("ftp")) 				storedURI = storedURI.setPort(21);
+			if ("http".equals(s)) 				storedURI = storedURI.setPort(80);
+			else if ("https".equals(s)) 				storedURI = storedURI.setPort(443);
+			else if ("ssh".equals(s) || "sftp".equals(s)) 				storedURI = storedURI.setPort(22);
+			else if ("ftp".equals(s)) 				storedURI = storedURI.setPort(21);
 		}
 		String pathName = GIT_PATH_PREFIX
 				+ EncodingUtils.encodeSlashes(storedURI.toString());
