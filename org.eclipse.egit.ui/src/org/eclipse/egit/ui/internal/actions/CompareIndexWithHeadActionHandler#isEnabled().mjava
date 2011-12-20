@@ -5,7 +5,7 @@
 			return false;
 
 		IResource resource = (IResource) getAdapter(selection.getFirstElement(), IResource.class);
-		if (resource == null)
+		if (resource == null || !(resource instanceof IFile))
 			return false;
 
 		Repository repository = getRepository();
