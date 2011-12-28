@@ -48,20 +48,28 @@
 		List<Ref> branches = getBranches();
 		if (!branches.isEmpty()) {
 			d.append(UIText.CommitMessageViewer_branches);
-			d.append(": "); 			for (Iterator<Ref> i = branches.iterator(); i.hasNext();) {
+			d.append(": "); 			int count = 0;
+			for (Iterator<Ref> i = branches.iterator(); i.hasNext();) {
 				Ref head = i.next();
 				RevCommit p;
 				try {
 					p = new RevWalk(db).parseCommit(head.getObjectId());
 					addLink(d, formatHeadRef(head), styles, p);
-					if (i.hasNext())
-						d.append(", "); 				} catch (MissingObjectException e) {
+					if (i.hasNext()) {
+						if (count++ <= MAXBRANCHES) {
+							d.append(", "); 						} else {
+							d.append(NLS.bind(UIText.CommitMessageViewer_MoreBranches, Integer.valueOf(branches.size() - MAXBRANCHES)));
+							break;
+						}
+					}
+				} catch (MissingObjectException e) {
 					Activator.logError(e.getMessage(), e);
 				} catch (IncorrectObjectTypeException e) {
 					Activator.logError(e.getMessage(), e);
 				} catch (IOException e) {
 					Activator.logError(e.getMessage(), e);
 				}
+
 			}
 			d.append(LF);
 		}
