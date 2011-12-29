@@ -3,16 +3,40 @@
 		List<Ref> result = new ArrayList<Ref>();
 
 		try {
+			revWalk.markStart(Arrays.asList(commit.getParents()));
+			ObjectIdSubclassMap<ObjectId> cutOff = new ObjectIdSubclassMap<ObjectId>();
 			Map<String, Ref> refsMap = new HashMap<String, Ref>();
 			refsMap.putAll(db.getRefDatabase().getRefs(Constants.R_HEADS));
 			refsMap.putAll(db.getRefDatabase().getRefs(Constants.R_REMOTES));
 
+			final int SKEW = 24*3600; 
 			for (Ref ref : refsMap.values()) {
 				RevCommit headCommit = revWalk.parseCommit(ref.getObjectId());
-				RevCommit base = revWalk.parseCommit(commit);
 
-				if (revWalk.isMergedInto(base, headCommit))
-					result.add(ref); 			}
+				if (headCommit.getCommitTime() + SKEW < commit.getCommitTime())
+					continue;
+
+				List<ObjectId> maybeCutOff = new ArrayList<ObjectId>(cutOff.size()); 				revWalk.resetRetain();
+				revWalk.markStart(headCommit);
+				RevCommit current;
+				Ref found = null;
+				while ((current = revWalk.next()) != null) {
+					if (AnyObjectId.equals(current, commit)) {
+						found = ref;
+						break;
+					}
+					if (cutOff.contains(current))
+						break;
+					maybeCutOff.add(current.toObjectId());
+				}
+				if (found != null)
+					result.add(ref);
+				else
+					for (ObjectId id : maybeCutOff)
+						cutOff.addIfAbsent(id);
+
+			}
+			revWalk.dispose();
 		} catch (IOException e) {
 		}
 		return result;
