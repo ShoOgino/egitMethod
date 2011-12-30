@@ -16,6 +16,7 @@
 		case ADDITIONALREFS:
 		case TAGS:
 		case ERROR:
+		case SUBMODULES:
 		case WORKINGDIR:
 			return 0;
 

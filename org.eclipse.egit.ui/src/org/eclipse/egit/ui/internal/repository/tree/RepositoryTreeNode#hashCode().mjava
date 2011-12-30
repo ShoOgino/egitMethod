@@ -9,6 +9,7 @@
 		case REMOTETRACKING:
 		case BRANCHES:
 		case ADDITIONALREFS:
+		case SUBMODULES:
 		case WORKINGDIR:
 			result = prime
 					* result

@@ -1,0 +1,4 @@
+	public SubmodulesNode(RepositoryTreeNode parent, Repository repository) {
+		super(parent, RepositoryTreeNodeType.SUBMODULES, repository, repository);
+	}
+

@@ -21,6 +21,8 @@
 			return UIText.RepositoriesViewLabelProvider_SymbolicRefNodeText;
 		case REMOTES:
 			return UIText.RepositoriesView_RemotesNodeText;
+		case SUBMODULES:
+			return UIText.RepositoriesViewLabelProvider_SubmodulesNodeText;
 		case REF:
 		case TAG: {
 			Ref ref = (Ref) node.getObject();

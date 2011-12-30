@@ -7,8 +7,10 @@
 		try {
 			switch (node.getType()) {
 			case REPO:
-				Repository repository = (Repository) node.getObject();
-				return getStyledTextFor(repository);
+				if (node.getParent() != null
+						&& node.getParent().getType() == RepositoryTreeNodeType.SUBMODULES)
+					return getStyledTextForSubmodule(node);
+				return getStyledTextFor((Repository) node.getObject());
 			case ADDITIONALREF:
 				Ref ref = (Ref) node.getObject();
 				StyledString refName = new StyledString(
@@ -65,6 +67,7 @@
 			case ADDITIONALREFS:
 			case REMOTES:
 			case REMOTE:
+			case SUBMODULES:
 			case ERROR: {
 				String label = getSimpleText(node);
 				if (label != null)
