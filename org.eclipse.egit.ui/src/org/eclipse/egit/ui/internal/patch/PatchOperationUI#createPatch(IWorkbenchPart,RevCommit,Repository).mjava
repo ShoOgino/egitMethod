@@ -1,0 +1,5 @@
+	public static PatchOperationUI createPatch(IWorkbenchPart part,
+			RevCommit commit, Repository repo) {
+		return new PatchOperationUI(part, repo, commit);
+	}
+
