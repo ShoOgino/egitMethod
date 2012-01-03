@@ -1,0 +1,5 @@
+	public boolean isCloneSubmodules() {
+		return cloneSubmodulesButton != null
+				&& cloneSubmodulesButton.getSelection();
+	}
+

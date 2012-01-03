@@ -1,0 +1,4 @@
+	public void setCloneSubmodules(boolean cloneSubmodules) {
+		this.cloneSubmodules = cloneSubmodules;
+	}
+
