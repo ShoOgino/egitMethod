@@ -1,7 +1,0 @@
-	public synchronized void addDecorationRequest(Object element) {
-		if (elementList.add(element)) {
-			if (getState() == NONE)
-				schedule(DELAY);
-		}
-	}
-

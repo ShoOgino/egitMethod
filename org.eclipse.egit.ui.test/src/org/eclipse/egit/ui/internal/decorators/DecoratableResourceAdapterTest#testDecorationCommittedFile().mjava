@@ -1,18 +1,22 @@
 	@Test
-	public void testDecorationAddedFile() throws Exception {
+	public void testDecorationCommittedFile() throws Exception {
 		write(new File(project.getLocation().toFile(), TEST_FILE), "Something");
 		project.refreshLocal(IResource.DEPTH_INFINITE, null);
 		IResource file = project.findMember(TEST_FILE);
 		git.add().addFilepattern(".").call();
+		git.commit().setMessage("First commit").call();
 
 		IDecoratableResource[] expectedDRs = new IDecoratableResource[] {
 				new TestDecoratableResource(project, true, false, false, false,
-						Staged.MODIFIED),
+						Staged.NOT_STAGED),
 				new TestDecoratableResource(file, true, false, false, false,
-						Staged.ADDED) };
+						Staged.NOT_STAGED) };
+
 		waitForIndexDiffUpdate(true);
-		IDecoratableResource[] actualDRs = DecoratableResourceHelper
-				.createDecoratableResources(new IResource[] { project, file });
+		IndexDiffData indexDiffData = indexDiffCacheEntry.getIndexDiff();
+		IDecoratableResource[] actualDRs = {
+				new DecoratableResourceAdapter(indexDiffData, project),
+				new DecoratableResourceAdapter(indexDiffData, file) };
 
 		for (int i = 0; i < expectedDRs.length; i++)
 			assertTrue(expectedDRs[i].equals(actualDRs[i]));
