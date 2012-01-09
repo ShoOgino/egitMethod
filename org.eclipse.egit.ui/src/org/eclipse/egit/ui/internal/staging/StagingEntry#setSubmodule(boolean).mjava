@@ -1,0 +1,4 @@
+	public void setSubmodule(final boolean submodule) {
+		this.submodule = submodule;
+	}
+

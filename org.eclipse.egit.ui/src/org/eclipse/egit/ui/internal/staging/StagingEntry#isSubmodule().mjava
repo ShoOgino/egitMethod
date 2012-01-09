@@ -1,0 +1,4 @@
+	public boolean isSubmodule() {
+		return submodule;
+	}
+
