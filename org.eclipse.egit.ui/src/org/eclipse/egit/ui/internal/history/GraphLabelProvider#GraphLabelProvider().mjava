@@ -1,3 +1,4 @@
 	GraphLabelProvider() {
-		absoluteFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 	}
+		absoluteFormatter = DateFormat.getDateTimeInstance();
+	}
 
