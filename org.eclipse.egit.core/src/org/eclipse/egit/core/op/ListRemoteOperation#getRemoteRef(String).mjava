@@ -1,5 +1,8 @@
 	public Ref getRemoteRef(final String refName) {
 		checkState();
-		return remoteRefsMap.get(refName);
+		for (Ref r: remoteRefs)
+			if (r.getName().equals(refName))
+				return r;
+		return null;
 	}
 
