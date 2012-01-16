@@ -1,4 +1,5 @@
-	private static IPath getWorkingDir(URIish gitUrl, String branch, Set<String> allBranches) {
+	private static IPath getWorkingDir(URIish gitUrl, String branch,
+			Set<String> allBranches) {
 		final IPath workspaceLocation = ResourcesPlugin.getWorkspace()
 				.getRoot().getRawLocation();
 		final String humanishName = gitUrl.getHumanishName();

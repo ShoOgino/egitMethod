@@ -1,0 +1,4 @@
+	public ProjectReferenceImporter(String[] referenceStrings) {
+		this.referenceStrings = referenceStrings;
+	}
+
