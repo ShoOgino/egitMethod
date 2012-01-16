@@ -13,13 +13,25 @@
 					if ((start = format.indexOf('}', end)) > -1) {
 						String key = format.substring(end + 1, start);
 						String s;
+						boolean spaceBefore = false;
+						boolean spaceAfter = false;
 
 						if (key.indexOf(':') > -1) {
 							String[] keyAndBinding = key.split(":", 2); 							key = keyAndBinding[0];
 							if (keyAndBinding.length > 1
 									&& bindings.get(key) != null)
 								bindings.put(key, keyAndBinding[1]);
+						} else {
+							if (key.charAt(0) == ' ') {
+								spaceBefore = true;
+								key = key.substring(1);
+							}
+							if (key.charAt(key.length() - 1) == ' ') {
+								spaceAfter = true;
+								key = key.substring(0, key.length() - 1);
+							}
 						}
+
 
 						if (key.equals(BINDING_RESOURCE_NAME)) {
 							output = suffix;
@@ -29,7 +41,11 @@
 						}
 
 						if (s != null) {
+							if (spaceBefore)
+								output.append(' ');
 							output.append(s);
+							if (spaceAfter)
+								output.append(' ');
 						} else {
 							int curLength = output.length();
 							if (curLength > 0) {
