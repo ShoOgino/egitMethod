@@ -1,0 +1,4 @@
+	public BranchProjectTracker(final Repository repository) {
+		this.repository = repository;
+	}
+

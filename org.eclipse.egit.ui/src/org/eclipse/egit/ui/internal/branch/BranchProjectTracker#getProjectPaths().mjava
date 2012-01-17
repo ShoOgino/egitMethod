@@ -1,0 +1,7 @@
+	public String[] getProjectPaths() {
+		String branch = getBranch();
+		if (branch == null)
+			return new String[0];
+		return getProjectPaths(branch);
+	}
+

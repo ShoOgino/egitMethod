@@ -1,0 +1,8 @@
+	public String getPreference(final String branch) {
+		if (branch == null)
+			throw new IllegalArgumentException("Branch cannot be null"); 		if (branch.length() == 0)
+			throw new IllegalArgumentException("Branch cannot be empty"); 
+		return PREFIX + '_' + repository.getDirectory().getAbsolutePath() + '_'
+				+ branch;
+	}
+

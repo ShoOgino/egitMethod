@@ -1,5 +1,4 @@
 	public BranchOperation(Repository repository, String target) {
-		this.repository = repository;
-		this.target = target;
+		this(repository, target, true);
 	}
 

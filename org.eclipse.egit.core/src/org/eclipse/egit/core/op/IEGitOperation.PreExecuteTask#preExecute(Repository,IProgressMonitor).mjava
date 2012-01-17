@@ -1,0 +1,3 @@
+		void preExecute(Repository repository, IProgressMonitor monitor)
+				throws CoreException;
+

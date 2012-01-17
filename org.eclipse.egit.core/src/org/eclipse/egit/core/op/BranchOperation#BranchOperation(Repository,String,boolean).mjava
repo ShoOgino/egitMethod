@@ -1,0 +1,6 @@
+	public BranchOperation(Repository repository, String target, boolean delete) {
+		super(repository);
+		this.target = target;
+		this.delete = delete;
+	}
+

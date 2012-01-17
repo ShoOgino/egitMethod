@@ -1,0 +1,8 @@
+	protected void preExecute(IProgressMonitor monitor) throws CoreException {
+		synchronized (this) {
+			if (preTasks != null)
+				for (PreExecuteTask task : preTasks)
+					task.preExecute(repository, monitor);
+		}
+	}
+

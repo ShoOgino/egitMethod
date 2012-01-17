@@ -1,0 +1,6 @@
+	public synchronized void addPreExecuteTask(final PreExecuteTask task) {
+		if (preTasks == null)
+			preTasks = new ArrayList<PreExecuteTask>();
+		preTasks.add(task);
+	}
+

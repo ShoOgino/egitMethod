@@ -1,0 +1,30 @@
+	public IMemento snapshot() {
+		String branch = getBranch();
+		if (branch == null)
+			return null;
+
+		IProject[] projects;
+		try {
+			projects = ProjectUtil.getValidOpenProjects(repository);
+		} catch (CoreException e) {
+			return null;
+		}
+		XMLMemento memento = XMLMemento.createWriteRoot(KEY_PROJECTS);
+		memento.putString(KEY_BRANCH, branch);
+		final String workDir = repository.getWorkTree().getAbsolutePath();
+		for (IProject project : projects) {
+			IPath path = project.getLocation();
+			if (path == null)
+				continue;
+			if (!(RepositoryProvider.getProvider(project) instanceof GitProvider))
+				continue;
+			String fullPath = path.toOSString();
+			if (fullPath.startsWith(workDir)) {
+				String relative = fullPath.substring(workDir.length());
+				IMemento child = memento.createChild(KEY_PROJECT);
+				child.putTextData(relative);
+			}
+		}
+		return memento;
+	}
+
