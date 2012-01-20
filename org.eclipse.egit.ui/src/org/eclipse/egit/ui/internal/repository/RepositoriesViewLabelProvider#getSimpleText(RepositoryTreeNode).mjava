@@ -45,11 +45,7 @@
 			return refName;
 		}
 		case WORKINGDIR:
-			if (node.getRepository().isBare())
-				return UIText.RepositoriesView_WorkingDir_treenode
-						+ " - " 						+ UIText.RepositoriesViewLabelProvider_BareRepositoryMessage;
-			else
-				return UIText.RepositoriesView_WorkingDir_treenode + " - " 						+ node.getRepository().getWorkTree().getAbsolutePath();
+			return UIText.RepositoriesView_WorkingDir_treenode + " - " 					+ node.getRepository().getWorkTree().getAbsolutePath();
 		case REMOTE:
 		case PUSH:
 		case FETCH:

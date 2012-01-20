@@ -29,15 +29,8 @@
 			case WORKINGDIR:
 				StyledString dirString = new StyledString(
 						UIText.RepositoriesView_WorkingDir_treenode);
-				dirString.append(" - ", StyledString.QUALIFIER_STYLER); 				if (node.getRepository().isBare()) {
-					dirString
-							.append(
-									UIText.RepositoriesViewLabelProvider_BareRepositoryMessage,
-									StyledString.QUALIFIER_STYLER);
-				} else {
-					dirString.append(node.getRepository().getWorkTree()
-							.getAbsolutePath(), StyledString.QUALIFIER_STYLER);
-				}
+				dirString.append(" - ", StyledString.QUALIFIER_STYLER); 				dirString.append(node.getRepository().getWorkTree()
+						.getAbsolutePath(), StyledString.QUALIFIER_STYLER);
 				return dirString;
 
 			case REF:
