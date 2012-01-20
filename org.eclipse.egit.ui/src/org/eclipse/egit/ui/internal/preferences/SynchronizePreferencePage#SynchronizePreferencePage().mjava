@@ -1,0 +1,4 @@
+	public SynchronizePreferencePage() {
+		super(FLAT);
+	}
+
