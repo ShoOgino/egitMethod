@@ -1,2 +1,2 @@
-	public Collection<RepositoryServerInfo> getRepositoryServerInfos();
+	public Collection<RepositoryServerInfo> getRepositoryServerInfos() throws NoRepositoryServerInfoException;
 
