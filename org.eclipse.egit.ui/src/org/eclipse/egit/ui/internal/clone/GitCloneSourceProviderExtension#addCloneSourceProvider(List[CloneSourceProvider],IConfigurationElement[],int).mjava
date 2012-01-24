@@ -1,23 +1,35 @@
 	private static void addCloneSourceProvider(
 			List<CloneSourceProvider> cloneSourceProvider,
 			IConfigurationElement[] config, int index) {
-		int myIndex = index;
-		String label = config[myIndex].getAttribute("label"); 		boolean hasFixLocation = Boolean.valueOf(
-				config[myIndex].getAttribute("hasFixLocation")).booleanValue(); 		myIndex++;
-		IConfigurationElement serverProviderElement = null;
-		if (myIndex < config.length
-				&& config[myIndex].getName().equals("repositoryServerProvider")) { 			serverProviderElement = config[myIndex];
+		try {
+			int myIndex = index;
+			String label = config[myIndex].getAttribute("label"); 			boolean hasFixLocation = Boolean.valueOf(
+					config[myIndex].getAttribute("hasFixLocation")).booleanValue(); 
+
+			String iconPath = config[myIndex].getAttribute("icon"); 			ImageDescriptor icon = null;
+			if (iconPath != null) {
+				Bundle declaringBundle = Platform.getBundle(config[myIndex]
+						.getDeclaringExtension().getNamespaceIdentifier());
+				icon = ImageDescriptor.createFromURL(declaringBundle.getResource(iconPath));
+			}
 			myIndex++;
+			IConfigurationElement serverProviderElement = null;
+			if (myIndex < config.length
+					&& config[myIndex].getName().equals("repositoryServerProvider")) { 				serverProviderElement = config[myIndex];
+				myIndex++;
+			}
+			IConfigurationElement pageElement = null;
+			if (myIndex < config.length
+					&& config[myIndex].getName().equals("repositorySearchPage")) { 				pageElement = config[myIndex];
+				myIndex++;
+			}
+			cloneSourceProvider.add(new CloneSourceProvider(label,
+					serverProviderElement, pageElement, hasFixLocation, icon));
+			if (myIndex == config.length)
+				return;
+			addCloneSourceProvider(cloneSourceProvider, config, myIndex);
+		} catch (Exception e) {
+			Activator.logError("Could not create extension provided by " + 					Platform.getBundle(config[index].getDeclaringExtension().getNamespaceIdentifier()), e);
 		}
-		IConfigurationElement pageElement = null;
-		if (myIndex < config.length
-				&& config[myIndex].getName().equals("repositorySearchPage")) { 			pageElement = config[myIndex];
-			myIndex++;
-		}
-		cloneSourceProvider.add(new CloneSourceProvider(label,
-				serverProviderElement, pageElement, hasFixLocation));
-		if (myIndex == config.length)
-			return;
-		addCloneSourceProvider(cloneSourceProvider, config, myIndex);
 	}
 
