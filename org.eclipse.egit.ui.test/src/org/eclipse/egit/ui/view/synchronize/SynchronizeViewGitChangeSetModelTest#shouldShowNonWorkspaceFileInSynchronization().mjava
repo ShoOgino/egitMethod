@@ -1,5 +1,6 @@
 	@Test public void shouldShowNonWorkspaceFileInSynchronization()
 			throws Exception {
+		resetRepositoryToCreateInitialTag();
 		String name = "non-workspace.txt";
 		File root = new File(getTestDirectory(), REPO1);
 		File nonWorkspace = new File(root, name);
