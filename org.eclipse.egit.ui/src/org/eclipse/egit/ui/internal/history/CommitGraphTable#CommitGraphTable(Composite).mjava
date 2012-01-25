@@ -59,11 +59,7 @@
 			@Override
 			public void mouseHover(MouseEvent e) {
 				synchronized (this) {
-					if (hoverShell != null) {
-						hoverShell.setVisible(false);
-						hoverShell.dispose();
-						hoverShell = null;
-					}
+					disposeHover();
 
 					TableItem item = table.getTable().getItem(
 							new Point(e.x, e.y));
@@ -109,11 +105,7 @@
 		table.getTable().addMouseMoveListener(new MouseMoveListener() {
 			public void mouseMove(MouseEvent e) {
 				synchronized (this) {
-					if (hoverShell == null || hoverShell.isDisposed())
-						return;
-					hoverShell.setVisible(false);
-					hoverShell.dispose();
-					hoverShell = null;
+					disposeHover();
 				}
 			}
 		});
@@ -125,6 +117,7 @@
 					allCommits.dispose();
 				if (renderer != null)
 					renderer.dispose();
+				disposeHover();
 			}
 		});
 
