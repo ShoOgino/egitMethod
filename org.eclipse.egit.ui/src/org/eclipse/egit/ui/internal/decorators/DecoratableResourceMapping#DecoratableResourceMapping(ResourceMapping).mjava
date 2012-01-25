@@ -1,0 +1,31 @@
+	public DecoratableResourceMapping(ResourceMapping mapping) {
+		super(null); 
+		this.mapping = mapping;
+		IProject[] projects = mapping.getProjects();
+
+		if(projects == null || projects.length == 0)
+			return;
+
+		for(IProject prj : projects) {
+			RepositoryMapping repoMapping = RepositoryMapping.getMapping(prj);
+			if(repoMapping == null)
+				continue;
+
+			IndexDiffData diffData = GitLightweightDecorator.getIndexDiffDataOrNull(prj);
+			if(diffData == null)
+				continue;
+
+			tracked = true;
+
+			String repoRelative = makeRepoRelative(repoMapping.getRepository(), prj) + "/"; 
+			Set<String> modified = diffData.getModified();
+			Set<String> conflicting = diffData.getConflicting();
+
+			if(containsPrefix(modified, repoRelative))
+				dirty = true;
+
+			if(containsPrefix(conflicting, repoRelative))
+				conflicts = true;
+		}
+	}
+

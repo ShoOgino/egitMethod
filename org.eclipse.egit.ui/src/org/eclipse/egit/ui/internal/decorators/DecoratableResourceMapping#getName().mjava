@@ -1,0 +1,8 @@
+	public String getName() {
+		if(mapping.getModelObject() instanceof IWorkingSet) {
+			IWorkingSet ws = (IWorkingSet)mapping.getModelObject();
+			return ws.getLabel();
+		}
+
+		return "<unknown>"; 	}
+

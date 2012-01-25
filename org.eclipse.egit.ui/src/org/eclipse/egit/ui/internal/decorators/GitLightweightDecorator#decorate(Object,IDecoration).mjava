@@ -1,52 +1,19 @@
 	public void decorate(Object element, IDecoration decoration) {
-
-		final IResource resource = getResource(element);
-		if (resource == null)
+		if (Activator.getDefault() == null)
 			return;
 
 		if (!PlatformUI.isWorkbenchRunning())
 			return;
 
-		final Activator activator = Activator.getDefault();
-		if (activator == null)
-			return;
-
-		if (resource.getType() == IResource.ROOT)
-			return;
-
-		if (!resource.exists() && !resource.isPhantom())
-			return;
-
-		final RepositoryMapping mapping = RepositoryMapping
-				.getMapping(resource);
-		if (mapping == null)
-			return;
-
-		if (resource.getType() != IResource.PROJECT
-				&& Team.isIgnoredHint(resource))
-			return;
-
-		if (mapping.getRepoRelativePath(resource) == null)
-			return;
-
-		IndexDiffData indexDiffData = org.eclipse.egit.core.Activator
-				.getDefault().getIndexDiffCache()
-				.getIndexDiffCacheEntry(mapping.getRepository()).getIndexDiff();
-		if (indexDiffData == null)
-			return;
-
-		IDecoratableResource decoratableResource = null;
-		final DecorationHelper helper = new DecorationHelper(
-				activator.getPreferenceStore());
-		try {
-			decoratableResource = new DecoratableResourceAdapter(indexDiffData, resource);
-		} catch (IOException e) {
-			handleException(
-					resource,
-					new CoreException(Activator.createErrorStatus(
-							UIText.Decorator_exceptionMessage, e)));
-			return;
+		final IResource resource = getResource(element);
+		if (resource == null)
+			decorateResourceMapping(element, decoration);
+		else {
+			try {
+				decorateResource(resource, decoration);
+			} catch(CoreException e) {
+				handleException(resource, e);
+			}
 		}
-		helper.decorate(decoration, decoratableResource);
 	}
 
