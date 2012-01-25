@@ -1,0 +1,4 @@
+	public void setHeaderFormat(DiffHeaderFormat format) {
+		this.headerFormat = format;
+	}
+

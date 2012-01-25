@@ -1,12 +1,28 @@
 	private void writeGitPatchHeader(StringBuilder sb) {
-		final SimpleDateFormat dtfmt;
-		dtfmt = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z", Locale.US); 		dtfmt.setTimeZone(commit.getAuthorIdent().getTimeZone());
-		sb.append("From").append(" ") 				.append(commit.getId().getName()).append(" ") 				.append(dtfmt.format(Long.valueOf(System.currentTimeMillis())))
-				.append("\n"); 		sb.append("From") 				.append(": ") 				.append(commit.getAuthorIdent().getName())
-				.append(" <").append(commit.getAuthorIdent().getEmailAddress()) 				.append(">\n"); 		sb.append("Date").append(": ") 				.append(dtfmt.format(commit.getAuthorIdent().getWhen()))
-				.append("\n"); 		sb.append("Subject").append(": [PATCH] ") 				.append(commit.getShortMessage());
+		String template = headerFormat.getTemplate();
+		String[] segments = template.split("\\$\\{"); 		Stack<String> evaluated = new Stack<String>();
+		evaluated.add(segments[0]);
 
-		String message = commit.getFullMessage().substring(
-				commit.getShortMessage().length());
-		sb.append(message).append("\n\n"); 	}
+		for (int i = 1; i < segments.length; i++) {
+			String segment = segments[i];
+			String value = null;
+			int brace = segment.indexOf('}');
+			if (brace > 0) {
+				String keyword = segment.substring(0, brace);
+				keyword = keyword.toUpperCase().replaceAll(" ", "_"); 				value = processKeyword(commit, DiffHeaderKeyword.valueOf(keyword));
+			}
+
+			String trailingCharacters = segment.substring(brace + 1);
+			if (value != null) {
+				evaluated.add(value);
+				evaluated.add(trailingCharacters);
+			} else if (!evaluated.isEmpty())
+				evaluated.add(trailingCharacters);
+		}
+		StringBuffer buffer = new StringBuffer();
+		for (String string : evaluated)
+			buffer.append(string);
+
+		sb.append(buffer);
+	}
 
