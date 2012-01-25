@@ -1,0 +1,9 @@
+	@Test
+	public void shouldNotBeEqualWithNullRefference() {
+		Change change = new Change();
+
+		boolean result = change.equals(null);
+
+		assertFalse(result);
+	}
+

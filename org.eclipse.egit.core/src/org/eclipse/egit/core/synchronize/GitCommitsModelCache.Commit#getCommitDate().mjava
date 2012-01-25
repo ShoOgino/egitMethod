@@ -1,0 +1,4 @@
+		public Date getCommitDate() {
+			return commitDate;
+		}
+

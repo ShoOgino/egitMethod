@@ -1,0 +1,9 @@
+	@Test
+	public void shouldBeEqualWhenBothIdsAreNull() {
+		Change change = new Change();
+
+		boolean result = change.equals(new Change());
+
+		assertTrue(result);
+	}
+

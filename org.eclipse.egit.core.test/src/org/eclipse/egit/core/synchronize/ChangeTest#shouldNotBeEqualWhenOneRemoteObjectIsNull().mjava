@@ -1,0 +1,13 @@
+	@Test
+	public void shouldNotBeEqualWhenOneRemoteObjectIsNull() {
+		Change c1 = new Change();
+		Change c2 = new Change();
+		c1.objectId = c2.commitId = ZERO_ID;
+		c1.remoteObjectId = MISC_ID;
+
+		boolean result = c1.equals(c2);
+
+		assertFalse(result);
+		assertFalse(c1.hashCode() == c2.hashCode());
+	}
+

@@ -1,0 +1,10 @@
+	@Test
+	public void shouldNotBeEqualWhenOneObjectIdIsNull() {
+		Change change = new Change();
+		change.objectId = ZERO_ID;
+
+		boolean result = change.equals(new Change());
+
+		assertFalse(result);
+	}
+

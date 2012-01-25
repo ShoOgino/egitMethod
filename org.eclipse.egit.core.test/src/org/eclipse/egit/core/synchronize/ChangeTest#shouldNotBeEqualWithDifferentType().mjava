@@ -1,0 +1,9 @@
+	@Test
+	public void shouldNotBeEqualWithDifferentType() {
+		Change change = new Change();
+
+		boolean result = change.equals(new Object());
+
+		assertFalse(result);
+	}
+

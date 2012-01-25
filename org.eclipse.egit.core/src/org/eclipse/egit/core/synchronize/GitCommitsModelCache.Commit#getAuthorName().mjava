@@ -1,0 +1,4 @@
+		public String getAuthorName() {
+			return authorName;
+		}
+

@@ -1,0 +1,4 @@
+		public AbbreviatedObjectId getId() {
+			return commitId;
+		}
+

@@ -1,0 +1,4 @@
+		public AbbreviatedObjectId getObjectId() {
+			return objectId;
+		}
+
