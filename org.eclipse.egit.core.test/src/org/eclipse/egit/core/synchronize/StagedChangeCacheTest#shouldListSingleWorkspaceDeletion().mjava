@@ -1,0 +1,14 @@
+	@Test
+	public void shouldListSingleWorkspaceDeletion() throws Exception {
+		Git git = new Git(db);
+		writeTrashFile(db, "a.txt", "trash");
+		git.add().addFilepattern("a.txt").call();
+		git.commit().setMessage("initial add").call();
+		git.rm().addFilepattern("a.txt").call();
+
+		Map<String, Change> result = StagedChangeCache.build(db);
+
+		assertThat(result.size(), is(1));
+		assertFileDeletion(result, "a.txt", "a.txt");
+	}
+

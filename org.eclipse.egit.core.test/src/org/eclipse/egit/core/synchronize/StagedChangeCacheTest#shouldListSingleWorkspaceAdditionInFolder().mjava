@@ -1,0 +1,11 @@
+	@Test
+	public void shouldListSingleWorkspaceAdditionInFolder() throws Exception {
+		writeTrashFile(db, "folder/a.txt", "trash");
+		new Git(db).add().addFilepattern("folder/a.txt").call();
+
+		Map<String, Change> result = StagedChangeCache.build(db);
+
+		assertThat(result.size(), is(1));
+		assertFileAddition(result, "folder/a.txt", "a.txt");
+	}
+

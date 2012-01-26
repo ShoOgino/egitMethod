@@ -1,0 +1,16 @@
+	@Test
+	public void shouldListTwoWorkspaceDeletions() throws Exception {
+		Git git = new Git(db);
+		writeTrashFile(db, "a.txt", "trash");
+		writeTrashFile(db, "b.txt", "trash");
+		git.add().addFilepattern("a.txt").addFilepattern("b.txt").call();
+		git.commit().setMessage("new commit").call();
+		git.rm().addFilepattern("a.txt").addFilepattern("b.txt").call();
+
+		Map<String, Change> result = StagedChangeCache.build(db);
+
+		assertThat(result.size(), is(2));
+		assertFileDeletion(result, "a.txt", "a.txt");
+		assertFileDeletion(result, "b.txt", "b.txt");
+	}
+
