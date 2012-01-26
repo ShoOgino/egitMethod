@@ -1,0 +1,10 @@
+	@Test
+	public void shouldListSingleWorkspaceAddition() throws Exception {
+		writeTrashFile(db, "a.txt", "trash");
+
+		Map<String, Change> result = WorkingTreeChangeCache.build(db);
+
+		assertThat(result.size(), is(1));
+		assertFileAddition(result, "a.txt", "a.txt");
+	}
+

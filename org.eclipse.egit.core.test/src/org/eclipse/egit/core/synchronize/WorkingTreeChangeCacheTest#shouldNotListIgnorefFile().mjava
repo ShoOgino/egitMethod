@@ -1,0 +1,11 @@
+	@Test
+	public void shouldNotListIgnorefFile() throws Exception {
+		writeTrashFile(db, "a.txt", "content");
+		writeTrashFile(db, ".gitignore", "a.txt");
+
+		Map<String, Change> result = WorkingTreeChangeCache.build(db);
+
+		assertThat(result.size(), is(1));
+		assertFileAddition(result, ".gitignore", ".gitignore");
+	}
+

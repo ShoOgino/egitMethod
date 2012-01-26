@@ -1,0 +1,15 @@
+	@Test
+	public void shouldListTwoWorkspaceDeletionsInFolder() throws Exception {
+		writeTrashFile(db, "folder/a.txt", "trash");
+		writeTrashFile(db, "folder/b.txt", "trash");
+		new Git(db).add().addFilepattern("folder/a.txt").addFilepattern("folder/b.txt").call();
+		deleteTrashFile(db, "folder/a.txt");
+		deleteTrashFile(db, "folder/b.txt");
+
+		Map<String, Change> result = WorkingTreeChangeCache.build(db);
+
+		assertThat(result.size(), is(2));
+		assertFileDeletion(result, "folder/a.txt", "a.txt");
+		assertFileDeletion(result, "folder/b.txt", "b.txt");
+	}
+

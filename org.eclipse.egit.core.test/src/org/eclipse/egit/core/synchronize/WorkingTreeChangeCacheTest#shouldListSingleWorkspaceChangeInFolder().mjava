@@ -1,0 +1,12 @@
+	@Test
+	public void shouldListSingleWorkspaceChangeInFolder() throws Exception {
+		writeTrashFile(db, "folder/a.txt", "trash");
+		new Git(db).add().addFilepattern("folder/a.txt").call();
+		writeTrashFile(db, "folder/a.txt", "modification");
+
+		Map<String, Change> result = WorkingTreeChangeCache.build(db);
+
+		assertThat(result.size(), is(1));
+		assertFileChange(result, "folder/a.txt", "a.txt");
+	}
+

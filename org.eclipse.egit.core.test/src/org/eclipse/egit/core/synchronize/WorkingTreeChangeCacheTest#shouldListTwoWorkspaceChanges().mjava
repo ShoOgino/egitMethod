@@ -1,0 +1,15 @@
+	@Test
+	public void shouldListTwoWorkspaceChanges() throws Exception {
+		writeTrashFile(db, "a.txt", "trash");
+		writeTrashFile(db, "b.txt", "trash");
+		new Git(db).add().addFilepattern("a.txt").addFilepattern("b.txt").call();
+		writeTrashFile(db, "a.txt", "modification");
+		writeTrashFile(db, "b.txt", "modification");
+
+		Map<String, Change> result = WorkingTreeChangeCache.build(db);
+
+		assertThat(result.size(), is(2));
+		assertFileChange(result, "a.txt", "a.txt");
+		assertFileChange(result, "b.txt", "b.txt");
+	}
+
