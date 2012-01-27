@@ -1,0 +1,4 @@
+	public void setSelection(URIish uri) {
+		setSelection(uri, null);
+	}
+
