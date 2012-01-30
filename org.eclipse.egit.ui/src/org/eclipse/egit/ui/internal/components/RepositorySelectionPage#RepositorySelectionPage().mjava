@@ -1,0 +1,4 @@
+	public RepositorySelectionPage() {
+		this(true, null);
+	}
+
