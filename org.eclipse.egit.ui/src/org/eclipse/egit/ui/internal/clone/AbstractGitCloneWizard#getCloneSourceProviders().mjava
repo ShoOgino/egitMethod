@@ -1,4 +1,4 @@
-	protected List<CloneSourceProvider> getCloneSourceProvider() {
+	protected List<CloneSourceProvider> getCloneSourceProviders() {
 		return GitCloneSourceProviderExtension.getCloneSourceProvider();
 	}
 

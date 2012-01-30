@@ -1,9 +1,5 @@
-	public GitCloneWizard(String presetURI) {
-		super();
-		setWindowTitle(UIText.GitCloneWizard_title);
-		setDefaultPageImageDescriptor(UIIcons.WIZBAN_IMPORT_REPO);
-		setNeedsProgressMonitor(true);
-		validSource.setHelpContext(HELP_CONTEXT);
-		cloneDestination.setHelpContext(HELP_CONTEXT);
+	public GitCloneWizard(String presetUri) {
+		super(new RepositorySelectionPage(true, presetUri));
+		initialize();
 	}
 
