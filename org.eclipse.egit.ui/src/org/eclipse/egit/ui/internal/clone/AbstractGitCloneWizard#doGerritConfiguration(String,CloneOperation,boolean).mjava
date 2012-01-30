@@ -6,8 +6,8 @@
 			String notesRef = Constants.R_NOTES + "review"; 			op.addPostCloneTask(new ConfigureFetchAfterCloneTask(remoteName,
 					notesRef + ":" + notesRef)); 		}
 		if (gerritBranch != null && gerritBranch.length() > 0) {
-			ConfigurePushAfterCloneTask push = new ConfigurePushAfterCloneTask(remoteName,
-					"HEAD:refs/for/" + gerritBranch, pushURI); 			op.addPostCloneTask(push);
+			ConfigurePushAfterCloneTask push = new ConfigurePushAfterCloneTask(
+					remoteName, "HEAD:refs/for/" + gerritBranch, pushURI); 			op.addPostCloneTask(push);
 		}
 		op.addPostCloneTask(new SetChangeIdTask(true));
 	}
