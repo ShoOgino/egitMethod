@@ -1,0 +1,4 @@
+	public void addPushInfo(String pushRefSpec, String pushUri) {
+		this.pushInfos.add(new PushInfo(pushRefSpec, pushUri));
+	}
+

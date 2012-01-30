@@ -1,0 +1,4 @@
+	public GitRepositoryInfo(String cloneUri) {
+		this.cloneUri = cloneUri;
+	}
+

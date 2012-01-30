@@ -1,0 +1,11 @@
+		public IRepositoryServerProvider getRepositoryServerProvider()
+				throws CoreException {
+			if (repositoryServerProviderElement == null)
+				return null;
+			Object object = repositoryServerProviderElement
+					.createExecutableExtension("class"); 			IRepositoryServerProvider provider = null;
+			if (object instanceof IRepositoryServerProvider)
+				provider = (IRepositoryServerProvider) object;
+			return provider;
+		}
+

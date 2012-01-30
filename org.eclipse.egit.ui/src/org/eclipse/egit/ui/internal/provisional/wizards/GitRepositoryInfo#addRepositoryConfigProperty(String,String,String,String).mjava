@@ -1,0 +1,4 @@
+	public void addRepositoryConfigProperty(String section, String subsection, String name, String value) {
+		repositoryConfigProperties.add(new RepositoryConfigProperty(section, subsection, name, value));
+	}
+

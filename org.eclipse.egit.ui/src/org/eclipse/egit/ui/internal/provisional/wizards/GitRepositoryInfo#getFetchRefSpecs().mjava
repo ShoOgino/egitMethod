@@ -1,0 +1,4 @@
+	public List<String> getFetchRefSpecs() {
+		return fetchRefSpecs;
+	}
+

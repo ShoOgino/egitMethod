@@ -1,0 +1,5 @@
+		public PushInfo(String pushRefSpec, String pushUri) {
+			this.pushRefSpec = pushRefSpec;
+			this.pushUri = pushUri;
+		}
+

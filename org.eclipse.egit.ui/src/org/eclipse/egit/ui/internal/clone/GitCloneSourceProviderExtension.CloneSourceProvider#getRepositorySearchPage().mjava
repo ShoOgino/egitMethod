@@ -1,0 +1,11 @@
+		public WizardPage getRepositorySearchPage() throws CoreException {
+			if (repositorySearchPageELement == null)
+				return null;
+			Object object = repositorySearchPageELement
+					.createExecutableExtension("class"); 			WizardPage page = null;
+			if (object instanceof WizardPage
+					&& object instanceof IRepositorySearchResult)
+				page = (WizardPage) object;
+			return page;
+		}
+

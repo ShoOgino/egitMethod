@@ -1,0 +1,5 @@
+	public RepositoryServerInfo(String label, URI uri) {
+		this.label = label;
+		this.uri = uri;
+	}
+
