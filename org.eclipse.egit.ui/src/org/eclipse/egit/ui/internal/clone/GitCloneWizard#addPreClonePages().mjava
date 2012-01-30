@@ -1,5 +1,4 @@
 	@Override
 	protected void addPreClonePages() {
-		addPage(cloneSource);
 	}
 
