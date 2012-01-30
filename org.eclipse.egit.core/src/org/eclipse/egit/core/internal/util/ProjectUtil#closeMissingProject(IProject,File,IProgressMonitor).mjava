@@ -20,7 +20,7 @@
 				} catch (IOException e) {
 					closeFailed = true;
 				}
-				if (hasRoot)
+				if (!hasRoot)
 					try {
 						FileUtils.delete(projectRoot, FileUtils.RETRY
 								| FileUtils.SKIP_MISSING | FileUtils.RECURSIVE);
