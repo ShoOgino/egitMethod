@@ -10,6 +10,7 @@
 		case BRANCHES:
 		case ADDITIONALREFS:
 		case SUBMODULES:
+		case STASH:
 		case WORKINGDIR:
 			result = prime
 					* result
@@ -36,6 +37,7 @@
 		case PUSH:
 		case FETCH:
 		case BRANCHHIERARCHY:
+		case STASHED_COMMIT:
 		case ERROR:
 			result = prime * result
 					+ ((myObject == null) ? 0 : myObject.hashCode());

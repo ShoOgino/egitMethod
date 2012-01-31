@@ -7,6 +7,7 @@
 		case REMOTETRACKING:
 		case ADDITIONALREFS:
 		case SUBMODULES:
+		case STASH:
 		case WORKINGDIR:
 			return ((Repository) myObject).getDirectory().equals(
 					((Repository) otherObject).getDirectory());
@@ -24,6 +25,7 @@
 		case FETCH:
 		case PUSH:
 		case BRANCHHIERARCHY:
+		case STASHED_COMMIT:
 		case TAGS:
 			return myObject.equals(otherObject);
 		}
