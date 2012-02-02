@@ -48,6 +48,8 @@
 					}
 				}
 				return styled;
+			case STASHED_COMMIT:
+				return getStyledTextForCommit((StashedCommitNode) node);
 			case PUSH:
 			case FETCH:
 			case FILE:
@@ -61,6 +63,7 @@
 			case REMOTES:
 			case REMOTE:
 			case SUBMODULES:
+			case STASH:
 			case ERROR: {
 				String label = getSimpleText(node);
 				if (label != null)

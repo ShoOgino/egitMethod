@@ -1,0 +1,6 @@
+	public StashedCommitNode(RepositoryTreeNode parent, Repository repository,
+			int index, RevCommit commit) {
+		super(parent, RepositoryTreeNodeType.STASHED_COMMIT, repository, commit);
+		this.index = index;
+	}
+

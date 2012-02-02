@@ -17,6 +17,7 @@
 		case TAGS:
 		case ERROR:
 		case SUBMODULES:
+		case STASH:
 		case WORKINGDIR:
 			return 0;
 
@@ -29,6 +30,9 @@
 		case FOLDER:
 			return ((File) myObject).getName().compareTo(
 					((File) otherNode.getObject()).getName());
+		case STASHED_COMMIT:
+			return ((RevCommit) myObject).compareTo(((RevCommit) otherNode
+					.getObject()));
 		case TAG:
 		case ADDITIONALREF:
 		case REF:
