@@ -1,0 +1,8 @@
+		@Override
+		public String toString() {
+			StringBuilder builder = new StringBuilder();
+			builder.append("CommitHyperlink [region="); 			builder.append(region);
+			builder.append(", objectId="); 			builder.append(objectId);
+			builder.append("]"); 			return builder.toString();
+		}
+

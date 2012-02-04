@@ -1,71 +1,61 @@
 	public IHyperlink[] detectHyperlinks(ITextViewer textViewer,
-			IRegion region, boolean canShowMultipleHyperlinks) {
-
+			final IRegion region, boolean canShowMultipleHyperlinks) {
 		IDocument document = textViewer.getDocument();
-		if (document == null || document.getLength() == 0)
-			return null;
-
-		String content;
-		int offset = region.getOffset();
-		int length = region.getLength();
-		try {
-			if (length == 0) {
-				IRegion lineInformation = document
-						.getLineInformationOfOffset(offset);
-				offset = lineInformation.getOffset();
-				length = lineInformation.getLength();
-			}
-			content = document.get(offset, length);
-		} catch (BadLocationException e) {
+		if (document == null || document.getLength() == 0) {
 			return null;
 		}
 
-		List<IHyperlink> hyperlinks = new ArrayList<IHyperlink>();
-		String[] words = content.split(" "); 		Shell shell = textViewer.getTextWidget().getShell();
-		for (String potentialId : words) {
-			String foundId = null;
-			int foundOffset = 0;
-			if (ObjectId.isId(potentialId)) {
-				foundId = potentialId;
-				foundOffset = offset;
-			} else if (potentialId.length() > Constants.OBJECT_ID_STRING_LENGTH) {
-				String potentialIdAtBeginning = potentialId.substring(0,
-						Constants.OBJECT_ID_STRING_LENGTH);
-				if (ObjectId.isId(potentialIdAtBeginning)) {
-					foundId = potentialIdAtBeginning;
-					foundOffset = offset;
+		String content;
+		int contentOffset;
+		int index;
+		try {
+			if (region.getLength() == 0) {
+				IRegion lineInfo = document.getLineInformationOfOffset(region
+						.getOffset());
+				int lineLength = lineInfo.getLength();
+				int lineOffset = lineInfo.getOffset();
+				int lineEnd = lineOffset + lineLength;
+				int regionEnd = region.getOffset() + region.getLength();
+				if (lineOffset < region.getOffset()) {
+					int regionLength = Math.max(regionEnd, lineEnd)
+							- lineOffset;
+					contentOffset = lineOffset;
+					content = document.get(lineOffset, regionLength);
+					index = region.getOffset() - lineOffset;
 				} else {
-					String potentialIdAtEnd = potentialId.substring(potentialId
-							.length() - Constants.OBJECT_ID_STRING_LENGTH);
-					if (ObjectId.isId(potentialIdAtEnd)) {
-						foundId = potentialIdAtEnd;
-						foundOffset = potentialId.length()
-								- Constants.OBJECT_ID_STRING_LENGTH;
-					}
-
+					int regionLength = Math.max(regionEnd, lineEnd)
+							- region.getOffset();
+					contentOffset = region.getOffset();
+					content = document.get(contentOffset, regionLength);
+					index = 0;
 				}
+			} else {
+				content = document.get(region.getOffset(), region.getLength());
+				contentOffset = region.getOffset();
+				index = -1;
 			}
-			if (foundId != null) {
-				CommitHyperlink hyperlink = new CommitHyperlink(new Region(
-						foundOffset, Constants.OBJECT_ID_STRING_LENGTH),
-						foundId, shell);
-				hyperlinks.add(hyperlink);
-			}
-			offset += potentialId.length() + 1;
+		} catch (BadLocationException ex) {
+			return null;
+		}
+
+		List<IHyperlink> hyperlinks = detectHyperlinks(textViewer, content,
+				index, contentOffset);
+		if (hyperlinks == null) {
+			return null;
 		}
 
 		if (region.getLength() == 0) {
 			for (Iterator<IHyperlink> it = hyperlinks.iterator(); it.hasNext();) {
 				IHyperlink hyperlink = it.next();
 				IRegion hyperlinkRegion = hyperlink.getHyperlinkRegion();
-				if (!isInRegion(region, hyperlinkRegion))
+				if (!isInRegion(region, hyperlinkRegion)) {
 					it.remove();
+				}
 			}
 		}
-
-		if (hyperlinks.isEmpty())
+		if (hyperlinks.isEmpty()) {
 			return null;
-
+		}
 		return hyperlinks.toArray(new IHyperlink[hyperlinks.size()]);
 	}
 
