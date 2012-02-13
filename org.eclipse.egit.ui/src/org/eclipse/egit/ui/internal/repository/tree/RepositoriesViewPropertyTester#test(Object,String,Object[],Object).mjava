@@ -86,6 +86,11 @@
 			default:
 				return false;
 			}
+
+		if ("isSubmodule".equals(property)) { 			RepositoryTreeNode<?> parent = node.getParent();
+			return parent != null
+					&& parent.getType() == RepositoryTreeNodeType.SUBMODULES;
+		}
 		return false;
 	}
 

@@ -1,0 +1,4 @@
+	public void addFetchRefSpec(String fetchRefSpec) {
+		this.fetchRefSpecs.add(fetchRefSpec);
+	}
+

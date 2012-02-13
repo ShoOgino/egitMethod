@@ -1,0 +1,4 @@
+	public NoRepositoryInfoException(String message, Throwable cause) {
+		super(message, cause);
+	}
+

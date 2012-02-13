@@ -1,0 +1,6 @@
+	public GitImportWizard(IRepositorySearchResult searchResult) {
+		super(searchResult);
+		setWindowTitle(UIText.GitImportWizard_WizardTitle);
+		setDefaultPageImageDescriptor(UIIcons.WIZBAN_IMPORT_REPO);
+	}
+

@@ -1,0 +1,4 @@
+	public SubmodulePathWizardPage(Repository repo) {
+		super("pathPage"); 		this.repo = repo;
+	}
+

@@ -8,6 +8,6 @@
 
 		SWTBotTree syncViewTree = bot.viewByTitle("Synchronize").bot().tree();
 		SWTBotTreeItem[] syncItems = syncViewTree.getAllItems();
-		assertEquals(GitModelWorkingTree_workingTree, syncItems[0].getText());
+		assertTrue(syncItems[0].getText().endsWith(GitModelWorkingTree_workingTree));
 	}
 

@@ -1,0 +1,7 @@
+		public RepositoryConfigProperty(String section, String subsection, String name, String value) {
+			this.section = section;
+			this.subsection = subsection;
+			this.name = name;
+			this.value = value;
+		}
+

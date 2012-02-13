@@ -1,0 +1,4 @@
+	public NoRepositoryServerInfoException(String message) {
+		super(message);
+	}
+

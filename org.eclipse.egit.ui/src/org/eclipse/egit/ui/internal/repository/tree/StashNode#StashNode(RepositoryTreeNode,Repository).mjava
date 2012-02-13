@@ -1,0 +1,4 @@
+	public StashNode(RepositoryTreeNode parent, Repository repository) {
+		super(parent, RepositoryTreeNodeType.STASH, repository, repository);
+	}
+

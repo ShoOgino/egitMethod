@@ -1,0 +1,5 @@
+	public SubmoduleSyncOperation addPath(final String path) {
+		paths.add(path);
+		return this;
+	}
+

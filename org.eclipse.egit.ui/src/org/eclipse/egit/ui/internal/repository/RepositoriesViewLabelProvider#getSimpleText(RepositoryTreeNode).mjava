@@ -23,6 +23,12 @@
 			return UIText.RepositoriesView_RemotesNodeText;
 		case SUBMODULES:
 			return UIText.RepositoriesViewLabelProvider_SubmodulesNodeText;
+		case STASH:
+			return UIText.RepositoriesViewLabelProvider_StashNodeText;
+		case STASHED_COMMIT:
+			return MessageFormat.format(
+					"{0}@'{'{1}'}'", 					Constants.STASH,
+					Integer.valueOf(((StashedCommitNode) node).getIndex()));
 		case REF:
 		case TAG: {
 			Ref ref = (Ref) node.getObject();
