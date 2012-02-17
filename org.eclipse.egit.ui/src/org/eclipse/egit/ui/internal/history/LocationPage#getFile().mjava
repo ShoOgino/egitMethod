@@ -1,0 +1,12 @@
+	public File getFile() {
+		if (pageValid && fsRadio.getSelection())
+			return new File(fsPathText.getText().trim());
+		if (pageValid && wsRadio.getSelection()) {
+			final String filename= wsPathText.getText().trim();
+			IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+			final IFile file = root.getFile(new Path(filename));
+			return file.getLocation().toFile();
+		}
+		return null;
+	}
+

@@ -1,0 +1,17 @@
+	protected boolean validatePage() {
+		if (wsRadio.getSelection()) {
+			pageValid = validateWorkspaceLocation();
+		}else if (fsRadio.getSelection()) {
+			pageValid = validateFilesystemLocation();
+		} else if (cpRadio.getSelection()) {
+			pageValid = true;
+		}
+
+		if (pageValid) {
+			setMessage(null);
+			setErrorMessage(null);
+		}
+		setPageComplete(pageValid);
+		return pageValid;
+	}
+
