@@ -1,6 +1,5 @@
 		public void run() {
-			if (fOperationCode != -1 && fOperationTarget != null) {
+			if (fOperationCode != -1 && fOperationTarget != null)
 				fOperationTarget.doOperation(fOperationCode);
-			}
 		}
 
