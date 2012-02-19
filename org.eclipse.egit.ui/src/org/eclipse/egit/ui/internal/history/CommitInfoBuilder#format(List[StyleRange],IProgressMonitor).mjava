@@ -45,7 +45,7 @@
 			d.append(")"); 			d.append(LF);
 		}
 
-		List<Ref> branches = getBranches();
+		List<Ref> branches = getBranches(allRefs);
 		if (!branches.isEmpty()) {
 			d.append(UIText.CommitMessageViewer_branches);
 			d.append(": "); 			int count = 0;

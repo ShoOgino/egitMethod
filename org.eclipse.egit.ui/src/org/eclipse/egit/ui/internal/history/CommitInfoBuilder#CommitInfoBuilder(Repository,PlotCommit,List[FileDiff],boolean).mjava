@@ -1,7 +1,0 @@
-	public CommitInfoBuilder(Repository db, PlotCommit commit, List<FileDiff> currentDiffs, boolean fill) {
-		this.db = db;
-		this.commit = commit;
-		this.fill = fill;
-		this.currentDiffs = new ArrayList<FileDiff>(currentDiffs);
-	}
-

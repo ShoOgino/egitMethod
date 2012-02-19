@@ -18,9 +18,8 @@
 		t.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseDown(final MouseEvent e) {
-				if (e.button != 1) {
+				if (e.button != 1)
 					return;
-				}
 
 				final StyleRange r = getStyleRange(e.x, e.y);
 				if (r instanceof ObjectLink) {
