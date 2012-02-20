@@ -4,9 +4,8 @@
 		if (!config.getURIs().isEmpty()) {
 			commonUriText.setText(config.getURIs().get(0).toPrivateString());
 			anyUri = true;
-		} else {
-			commonUriText.setText(""); 		}
-
+		} else
+			commonUriText.setText(""); 
 		specViewer.setInput(config.getFetchRefSpecs());
 		specViewer.getTable().setEnabled(true);
 
