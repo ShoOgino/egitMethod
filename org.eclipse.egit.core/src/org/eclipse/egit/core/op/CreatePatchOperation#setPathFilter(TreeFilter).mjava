@@ -1,0 +1,4 @@
+	public void setPathFilter(TreeFilter pathFilter) {
+		this.pathFilter = pathFilter;
+	}
+

@@ -1,0 +1,5 @@
+	public static PatchOperationUI createPatch(IWorkbenchPart part,
+			Repository repo, Collection<? extends IResource> resources) {
+		return new PatchOperationUI(null, repo, resources);
+	}
+

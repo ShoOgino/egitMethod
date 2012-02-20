@@ -1,6 +1,7 @@
-	public GitCreatePatchWizard(RevCommit commit, Repository db) {
+	public GitCreatePatchWizard(RevCommit commit, Repository db, Collection<? extends IResource> resources) {
 		this.commit = commit;
 		this.db = db;
+		this.resources = resources;
 
 		setDialogSettings(getOrCreateSection(Activator.getDefault().getDialogSettings(), "GitCreatePatchWizard")); 	}
 
