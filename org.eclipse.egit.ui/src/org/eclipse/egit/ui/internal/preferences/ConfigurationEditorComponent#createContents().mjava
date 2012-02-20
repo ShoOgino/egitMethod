@@ -11,7 +11,10 @@
 			Label locationLabel = new Label(locationPanel, SWT.NONE);
 			locationLabel
 					.setText(UIText.ConfigurationEditorComponent_ConfigLocationLabel);
-			location = new Text(locationPanel, SWT.BORDER);
+			int locationStyle = SWT.BORDER;
+			if (!changeablePath)
+				locationStyle |= SWT.READ_ONLY;
+			location = new Text(locationPanel, locationStyle);
 			GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER)
 					.grab(true, false).applyTo(location);
 			if (changeablePath) {
