@@ -36,8 +36,8 @@
 		}
 		if (buttonId == REVERT) {
 			try {
-				config = new RemoteConfig(repository.getConfig(), config
-						.getName());
+				config = new RemoteConfig(repository.getConfig(),
+						config.getName());
 				updateControls();
 			} catch (URISyntaxException e) {
 				Activator.handleError(e.getMessage(), e, true);
@@ -51,7 +51,7 @@
 			} catch (IOException e) {
 				Activator.handleError(e.getMessage(), e, true);
 			}
-			if (buttonId == OK) {
+			if (buttonId == OK)
 				try {
 					new ProgressMonitorDialog(getShell()).run(false, true,
 							new IRunnableWithProgress() {
@@ -63,7 +63,8 @@
 											.getPreferenceStore()
 											.getInt(UIPreferences.REMOTE_CONNECTION_TIMEOUT);
 									PushOperationUI op = new PushOperationUI(
-											repository, config.getName(), timeout, false);
+											repository, config.getName(),
+											timeout, false);
 									op.start();
 								}
 							});
@@ -72,7 +73,6 @@
 				} catch (InterruptedException e) {
 					Activator.handleError(e.getMessage(), e, true);
 				}
-			}
 			okPressed();
 			return;
 		}

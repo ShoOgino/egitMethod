@@ -10,13 +10,12 @@
 			return null;
 
 		String remoteName;
-		if (ObjectId.isId(branch)) {
+		if (ObjectId.isId(branch))
 			remoteName = Constants.DEFAULT_REMOTE_NAME;
-		} else {
+		else
 			remoteName = repository.getConfig().getString(
 					ConfigConstants.CONFIG_BRANCH_SECTION, branch,
 					ConfigConstants.CONFIG_REMOTE_SECTION);
-		}
 
 		List<RemoteConfig> allRemotes;
 		try {
