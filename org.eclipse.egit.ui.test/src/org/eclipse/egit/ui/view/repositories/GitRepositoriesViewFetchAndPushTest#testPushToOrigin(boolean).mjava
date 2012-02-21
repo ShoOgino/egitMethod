@@ -1,5 +1,4 @@
-	@Test
-	public void testPushToOrigin() throws Exception {
+	private void testPushToOrigin(boolean useRemote) throws Exception {
 		Activator.getDefault().getRepositoryUtil().addConfiguredRepository(
 				clonedRepositoryFile);
 		shareProjects(clonedRepositoryFile);
@@ -11,8 +10,11 @@
 				"refs/heads/*:refs/remotes/origin/*");
 		repository.getConfig().save();
 
-		myRepoViewUtil.getRemotesItem(tree, clonedRepositoryFile).expand().getNode(
-				"origin").expand().getNode(1).select();
+		String currentBranch = repository.getBranch();
+		new Git(repository).branchRename().setOldName(currentBranch)
+				.setNewName("" + System.currentTimeMillis()).call();
+
+		selectNode(tree, useRemote, false);
 
 		ContextMenuHelper.clickContextMenu(tree, myUtil
 				.getPluginLocalizedValue("SimplePushCommand"));
@@ -35,8 +37,7 @@
 		}
 		confirmed.close();
 		assertTrue("New branch expected", newBranch);
-		myRepoViewUtil.getRemotesItem(tree, clonedRepositoryFile).expand().getNode(
-				"origin").expand().getNode(1).select();
+		selectNode(tree, useRemote, false);
 
 		ContextMenuHelper.clickContextMenu(tree, myUtil
 				.getPluginLocalizedValue("SimplePushCommand"));
@@ -52,13 +53,12 @@
 		}
 		confirmed.close();
 		assertTrue("Up to date expected", uptodate);
-		String objectIdBefore = repository.getRef("refs/heads/master")
+		String objectIdBefore = repository.getRef(repository.getFullBranch())
 				.getLeaf().getObjectId().name();
 		objectIdBefore = objectIdBefore.substring(0, 7);
 		touchAndSubmit(null);
 
-		myRepoViewUtil.getRemotesItem(tree, clonedRepositoryFile).expand().getNode(
-				"origin").expand().getNode(1).select();
+		selectNode(tree, useRemote, false);
 
 		ContextMenuHelper.clickContextMenu(tree, myUtil
 				.getPluginLocalizedValue("SimplePushCommand"));
