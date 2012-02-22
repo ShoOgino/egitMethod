@@ -6,22 +6,27 @@
 		composite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		initializeDialogUnits(composite);
 
+		String selectedOption= getDialogSettings().get(LOCATION_KEY);
+		if (selectedOption == null)
+			selectedOption = LOCATION_VALUE_CLIPBOARD;
+
 		GridData gd = new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING);
 		gd.horizontalSpan = 3;
 		cpRadio = new Button(composite, SWT.RADIO);
 		cpRadio.setText(UIText.GitCreatePatchWizard_Clipboard);
 		cpRadio.setLayoutData(gd);
-		cpRadio.setSelection(true);
+		cpRadio.setSelection(LOCATION_VALUE_CLIPBOARD.equals(selectedOption));
 
+		boolean isFileSystemSelected = LOCATION_VALUE_FILE_SYSTEM.equals(selectedOption);
 		fsRadio = new Button(composite, SWT.RADIO);
 		fsRadio.setText(UIText.GitCreatePatchWizard_File);
-		fsRadio.setSelection(false);
+		fsRadio.setSelection(isFileSystemSelected);
 
 		fsPathText = new Text(composite, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		fsPathText.setLayoutData(gd);
 		fsPathText.setText(createFileName());
-		fsPathText.setEnabled(false);
+		fsPathText.setEnabled(isFileSystemSelected);
 
 		fsBrowseButton = new Button(composite, SWT.PUSH);
 		fsBrowseButton.setText(UIText.GitCreatePatchWizard_Browse);
@@ -31,20 +36,21 @@
 				SWT.DEFAULT, true);
 		data.widthHint = Math.max(widthHint, minSize.x);
 		fsBrowseButton.setLayoutData(data);
-		fsBrowseButton.setEnabled(false);
+		fsBrowseButton.setEnabled(isFileSystemSelected);
 
+		boolean isWorkspaceSelected = LOCATION_VALUE_WORKSPACE.equals(selectedOption);
 		wsRadio = new Button(composite, SWT.RADIO);
 		wsRadio.setText(UIText.GitCreatePatchWizard_Workspace);
-		wsRadio.setSelection(false);
+		wsRadio.setSelection(isWorkspaceSelected);
 
 		wsPathText = new Text(composite, SWT.BORDER);
 		wsPathText.setLayoutData(gd);
-		wsPathText.setEnabled(false);
+		wsPathText.setEnabled(isWorkspaceSelected);
 
 		wsBrowseButton = new Button(composite, SWT.PUSH);
 		wsBrowseButton.setText(UIText.GitCreatePatchWizard_Browse);
 		wsBrowseButton.setLayoutData(data);
-		wsBrowseButton.setEnabled(false);
+		wsBrowseButton.setEnabled(isWorkspaceSelected);
 
 		cpRadio.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
@@ -53,6 +59,7 @@
 					fsBrowseButton.setEnabled(false);
 					wsPathText.setEnabled(false);
 					wsBrowseButton.setEnabled(false);
+					getDialogSettings().put(LOCATION_KEY, LOCATION_VALUE_CLIPBOARD);
 					validatePage();
 				}
 			}
@@ -67,6 +74,7 @@
 					wsPathText.setEnabled(false);
 					wsBrowseButton.setEnabled(false);
 					fsPathText.setFocus();
+					getDialogSettings().put(LOCATION_KEY, LOCATION_VALUE_FILE_SYSTEM);
 					validatePage();
 				}
 			}
@@ -90,9 +98,8 @@
 					final File file = new File(fsPathText.getText());
 					dialog.setFilterPath(file.getParent());
 					dialog.setFileName(file.getName());
-				} else {
-					dialog.setFileName(""); 				}
-				dialog.setText(""); 				final String path = dialog.open();
+				} else
+					dialog.setFileName(""); 				dialog.setText(""); 				final String path = dialog.open();
 				if (path != null)
 					fsPathText.setText(new Path(path).toOSString());
 				validatePage();
@@ -108,6 +115,7 @@
 					wsPathText.setEnabled(true);
 					wsBrowseButton.setEnabled(true);
 					wsPathText.setFocus();
+					getDialogSettings().put(LOCATION_KEY, LOCATION_VALUE_WORKSPACE);
 					validatePage();
 				}
 			}
