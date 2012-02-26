@@ -34,7 +34,7 @@
 
 				Display.getDefault().asyncExec(new Runnable() {
 					public void run() {
-						if (tv.getTree().isDisposed())
+						if (!UIUtils.isUsable(tv))
 							return;
 						long start = 0;
 						boolean traceActive = GitTraceLocation.REPOSITORIESVIEW
@@ -49,10 +49,10 @@
 						IStructuredSelection sel = (IStructuredSelection) tv
 								.getSelection();
 
-						if (needsNewInput) {
+						if (needsNewInput)
 							tv.setInput(ResourcesPlugin.getWorkspace()
 									.getRoot());
-						} else
+						else
 							tv.refresh(true);
 						tv.setExpandedElements(expanded);
 
