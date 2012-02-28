@@ -1,8 +1,7 @@
 	private boolean allRegularFiles(List<FilterPath> paths) {
-		for (FilterPath filterPath : paths) {
+		for (FilterPath filterPath : paths)
 			if (!filterPath.isRegularFile())
 				return false;
-		}
 		return true;
 	}
 
