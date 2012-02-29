@@ -1,0 +1,4 @@
+	public StashCreateOperation(final Repository repository) {
+		this.repository = repository;
+	}
+
