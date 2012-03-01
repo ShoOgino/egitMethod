@@ -1,3 +1,4 @@
+	@Ignore
 	@Test
 	public void invalidPortFreezesDialog() throws Exception {
 		importWizard.openWizard();
