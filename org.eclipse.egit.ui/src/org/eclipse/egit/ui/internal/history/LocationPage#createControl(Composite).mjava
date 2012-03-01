@@ -143,5 +143,6 @@
 		Dialog.applyDialogFont(composite);
 		setControl(composite);
 
+		validatePage();
 	}
 
