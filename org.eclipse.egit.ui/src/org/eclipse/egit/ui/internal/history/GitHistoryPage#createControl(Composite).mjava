@@ -22,7 +22,7 @@
 		preferencesLink.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				String preferencePageId = "org.eclipse.egit.ui.GitPreferences"; 				PreferenceDialog dialog = PreferencesUtil
+				String preferencePageId = "org.eclipse.egit.ui.internal.preferences.HistoryPreferencePage"; 				PreferenceDialog dialog = PreferencesUtil
 						.createPreferenceDialogOn(getSite().getShell(), preferencePageId,
 								new String[] { preferencePageId }, null);
 				dialog.open();
