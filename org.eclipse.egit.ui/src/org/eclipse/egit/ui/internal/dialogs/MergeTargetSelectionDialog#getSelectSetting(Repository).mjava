@@ -1,0 +1,4 @@
+	private static int getSelectSetting(Repository repo) {
+		return getMergeTarget(repo) != null ? SELECT_CURRENT_REF : 0;
+	}
+
