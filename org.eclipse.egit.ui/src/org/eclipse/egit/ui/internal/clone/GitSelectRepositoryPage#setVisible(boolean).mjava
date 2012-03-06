@@ -4,15 +4,13 @@
 		IDialogSettings settings = Activator.getDefault().getDialogSettings();
 		if (visible && tv.getSelection().isEmpty()) {
 			String repoDir = settings.get(LAST_SELECTED_REPO_PREF);
-			if (repoDir != null) {
+			if (repoDir != null)
 				for (TreeItem item : tv.getTree().getItems()) {
 					RepositoryNode node = (RepositoryNode) item.getData();
 					if (node.getRepository().getDirectory().getPath().equals(
-							repoDir)) {
+							repoDir))
 						tv.setSelection(new StructuredSelection(node));
-					}
 				}
-			}
 		} else {
 			Object element = ((IStructuredSelection) tv.getSelection())
 					.getFirstElement();
