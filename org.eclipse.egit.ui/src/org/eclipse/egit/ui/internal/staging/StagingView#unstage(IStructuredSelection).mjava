@@ -40,7 +40,5 @@
 		} finally {
 			dirCache.unlock();
 		}
-
-		reload(currentRepository);
 	}
 

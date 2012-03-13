@@ -12,7 +12,7 @@
 				try {
 					final TreeWalk tw = TreeWalk.forPath(currentRepository,
 							entry.getPath(), headRev.getTree());
-					if (tw != null) {
+					if (tw != null)
 						edit.add(new DirCacheEditor.PathEdit(entry.getPath()) {
 							@Override
 							public void apply(DirCacheEntry ent) {
@@ -21,7 +21,6 @@
 								ent.setLastModified(0);
 							}
 						});
-					}
 				} catch (IOException e) {
 					MessageDialog.openError(getSite().getShell(),
 							UIText.CommitAction_MergeHeadErrorTitle,

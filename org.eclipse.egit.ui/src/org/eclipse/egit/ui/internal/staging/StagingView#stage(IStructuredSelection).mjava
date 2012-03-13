@@ -36,7 +36,5 @@
 				rm.call();
 			} catch (NoFilepatternException e) {
 			}
-
-		reload(currentRepository);
 	}
 
