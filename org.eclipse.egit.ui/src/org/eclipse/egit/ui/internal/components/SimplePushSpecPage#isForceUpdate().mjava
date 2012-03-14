@@ -1,0 +1,4 @@
+	public boolean isForceUpdate() {
+		return forceUpdate;
+	}
+

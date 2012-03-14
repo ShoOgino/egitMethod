@@ -1,0 +1,9 @@
+	public SimplePushSpecPage(String niceSourceName, Repository repo) {
+		super(UIText.SimplePushSpecPage_title);
+		setTitle(UIText.SimplePushSpecPage_title);
+		setMessage(NLS.bind(UIText.SimplePushSpecPage_message, niceSourceName));
+
+		this.sourceName = niceSourceName;
+		this.repository = repo;
+	}
+

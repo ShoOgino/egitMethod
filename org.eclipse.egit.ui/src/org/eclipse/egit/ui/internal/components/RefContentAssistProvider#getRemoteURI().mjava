@@ -1,0 +1,4 @@
+	public URIish getRemoteURI() {
+		return uri;
+	}
+

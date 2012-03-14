@@ -1,0 +1,6 @@
+	public RefContentAssistProvider(Repository repo, URIish uri, Shell shell) {
+		this.repo = repo;
+		this.uri = uri;
+		this.shell = shell;
+	}
+
