@@ -1,4 +1,4 @@
-	protected Repository getRepository(ExecutionEvent event) {
+	public static Repository getRepository(ExecutionEvent event) {
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
 		return getRepository(selection);
 	}
