@@ -1,0 +1,16 @@
+	public SWTBotTreeItem[] getProjectItems(SWTBotTree projectExplorerTree,
+			String... projects) {
+		List<SWTBotTreeItem> items = new ArrayList<SWTBotTreeItem>();
+		for (SWTBotTreeItem item : projectExplorerTree.getAllItems()) {
+			String itemText = item.getText();
+			StringTokenizer tok = new StringTokenizer(itemText, " ");
+			String name = tok.nextToken();
+			if (name.equals(">"))
+				name = tok.nextToken();
+			for (String project : projects)
+				if (project.equals(name))
+					items.add(item);
+		}
+		return items.isEmpty() ? null : items.toArray(new SWTBotTreeItem[items.size()]);
+	}
+

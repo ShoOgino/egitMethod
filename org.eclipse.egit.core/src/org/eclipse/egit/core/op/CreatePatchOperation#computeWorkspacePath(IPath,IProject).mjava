@@ -1,0 +1,10 @@
+	public static IPath computeWorkspacePath(final IPath path, final IProject project) {
+		RepositoryMapping rm = RepositoryMapping.getMapping(project);
+		String repoRelativePath = rm.getRepoRelativePath(project);
+		if (repoRelativePath == null)
+			return path;
+		if (repoRelativePath.equals("")) 			return path;
+		return path.removeFirstSegments(path.matchingFirstSegments(new Path(
+				repoRelativePath)));
+	}
+
