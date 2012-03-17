@@ -1,7 +1,7 @@
 	@Override
 	public boolean isEnabled() {
 		Repository[] repos = getRepositories();
-		for (Repository repo : repos) {
+		for (Repository repo : repos)
 			try {
 				String fullBranch = repo.getFullBranch();
 				if (fullBranch == null
@@ -12,7 +12,6 @@
 				Activator.handleError(e.getMessage(), e, false);
 				return false;
 			}
-		}
-		return true;
+		return repos.length > 0;
 	}
 
