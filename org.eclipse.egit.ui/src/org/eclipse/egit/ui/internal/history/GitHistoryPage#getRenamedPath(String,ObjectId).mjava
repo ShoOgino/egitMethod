@@ -1,0 +1,4 @@
+	public String getRenamedPath(String path, ObjectId commit) {
+		return renameTracker.getPath(commit, path);
+	}
+
