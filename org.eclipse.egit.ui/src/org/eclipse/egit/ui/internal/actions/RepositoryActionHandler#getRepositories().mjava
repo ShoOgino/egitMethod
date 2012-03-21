@@ -1,5 +1,5 @@
 	protected Repository[] getRepositories() {
-		IProject[] selectedProjects = getSelectedProjects(getSelection());
+		IProject[] selectedProjects = getProjectsForSelectedResources();
 		if (selectedProjects.length > 0)
 			return getRepositoriesFor(selectedProjects);
 		IStructuredSelection selection = getSelection();
