@@ -1,16 +1,8 @@
 	public CommitFileDiffViewer(final Composite parent,
 			final IWorkbenchSite site, final int style) {
-		super(new Composite(parent, SWT.NONE), style);
+		super(parent, style);
 		this.site = site;
 		final Table rawTable = getTable();
-		Composite main = rawTable.getParent();
-		stackLayout = new StackLayout();
-		main.setLayout(stackLayout);
-
-		noInputText = new StyledText(main, SWT.NONE);
-		noInputText.setFont(UIUtils
-				.getFont(UIPreferences.THEME_CommitMessageFont));
-		noInputText.setText(UIText.CommitFileDiffViewer_SelectOneCommitMessage);
 
 		rawTable.setLinesVisible(true);
 
@@ -65,9 +57,8 @@
 				if (s.isEmpty() || !(s instanceof IStructuredSelection))
 					return;
 				final IStructuredSelection iss = (IStructuredSelection) s;
-				for (Iterator<FileDiff> it = iss.iterator(); it.hasNext();) {
+				for (Iterator<FileDiff> it = iss.iterator(); it.hasNext();)
 					openFileInEditor(it.next());
-				}
 			}
 		};
 
