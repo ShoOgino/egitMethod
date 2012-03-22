@@ -32,14 +32,13 @@
 				IPath repoWorkdirPath = new Path(repo.getWorkTree().getPath());
 				for (String repoPath : conflictPaths) {
 					IPath filePath = repoWorkdirPath.append(repoPath);
-					for (IProject project : validProjects) {
+					for (IProject project : validProjects)
 						if (project.getLocation().isPrefixOf(filePath)) {
 							IResource res = project.getFile(filePath
 									.removeFirstSegments(project.getLocation()
 											.segmentCount()));
 							resourceList.add(res);
 						}
-					}
 				}
 				IResource[] resources = new IResource[resourceList.size()];
 				resourceList.toArray(resources);
@@ -58,7 +57,7 @@
 				}
 				CompareUI.openCompareEditor(input);
 				return;
-			} else if (skipCommitButton.getSelection()) {
+			} else if (skipCommitButton.getSelection())
 				try {
 					final RebaseOperation op = new RebaseOperation(repo,
 							Operation.SKIP);
@@ -68,7 +67,7 @@
 				} catch (CoreException e) {
 					Activator.handleError(e.getMessage(), e, true);
 				}
-			} else if (abortRebaseButton.getSelection()) {
+			else if (abortRebaseButton.getSelection())
 				try {
 					final RebaseOperation op = new RebaseOperation(repo,
 							Operation.ABORT);
@@ -78,7 +77,7 @@
 				} catch (CoreException e) {
 					Activator.handleError(e.getMessage(), e, true);
 				}
-			} else if (doNothingButton.getSelection()) {
+			else if (doNothingButton.getSelection()) {
 			}
 		}
 		super.buttonPressed(buttonId);

@@ -15,15 +15,13 @@
 
 				String patternString = contents;
 				while (patternString.length() > 0
-						&& patternString.charAt(0) == ' ') {
+						&& patternString.charAt(0) == ' ')
 					patternString = patternString.substring(1);
-				}
 
 				patternString = Pattern.quote(patternString);
 
 				patternString = patternString.replaceAll("\\x2A", ".*"); 
-				if (!patternString.endsWith(".*")) { 					patternString = patternString + ".*"; 				}
-
+				if (!patternString.endsWith(".*")) 					patternString = patternString + ".*"; 
 				Pattern pattern;
 				try {
 					pattern = Pattern.compile(patternString,
