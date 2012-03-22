@@ -1,0 +1,45 @@
+	public void updateWorkspacePatchPrefixes(StringBuilder sb, DiffFormatter diffFmt) {
+		RawText rt = new RawText(sb.toString().getBytes());
+
+		final String oldPrefix = diffFmt.getOldPrefix();
+		final String newPrefix = diffFmt.getNewPrefix();
+
+		StringBuilder newSb = new StringBuilder();
+		final Pattern diffPattern = Pattern
+				.compile("^diff --git (" + oldPrefix + "(.+)) (" + newPrefix + "(.+))$"); 		final Pattern oldPattern = Pattern
+				.compile("^--- (" + oldPrefix + "(.+))$"); 		final Pattern newPattern = Pattern
+				.compile("^\\+\\+\\+ (" + newPrefix + "(.+))$"); 
+		int i = 0;
+		while (i < rt.size()) {
+			String line = rt.getString(i);
+
+			Matcher diffMatcher = diffPattern.matcher(line);
+			Matcher oldMatcher = oldPattern.matcher(line);
+			Matcher newMatcher = newPattern.matcher(line);
+			if (diffMatcher.find()) {
+				String group = diffMatcher.group(2); 				IProject project = getProject(group);
+				IPath newPath = computeWorkspacePath(new Path(group), project);
+				line = line.replaceAll(diffMatcher.group(1), newPath.toString());
+				group = diffMatcher.group(4); 				newPath = computeWorkspacePath(new Path(group), project);
+				line = line.replaceAll(diffMatcher.group(3), newPath.toString());
+			} else if (oldMatcher.find()) {
+				String group = oldMatcher.group(2);
+				IProject project = getProject(group);
+				IPath newPath = computeWorkspacePath(new Path(group), project);
+				line = line.replaceAll(oldMatcher.group(1), newPath.toString());
+			} else if (newMatcher.find()) {
+				String group = newMatcher.group(2);
+				IProject project = getProject(group);
+				IPath newPath = computeWorkspacePath(new Path(group), project);
+				line = line.replaceAll(newMatcher.group(1), newPath.toString());
+			}
+			newSb.append(line);
+
+			i++;
+			if (i < rt.size() || !rt.isMissingNewlineAtEnd())
+				newSb.append(rt.getLineDelimiter());
+		}
+		sb.setLength(0);
+		sb.append(newSb);
+	}
+

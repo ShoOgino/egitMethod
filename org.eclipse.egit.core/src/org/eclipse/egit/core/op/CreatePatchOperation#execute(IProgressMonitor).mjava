@@ -15,14 +15,30 @@
 						super.write(b, off, len);
 						if (currentEncoding == null)
 							sb.append(toString());
-						else try {
-							sb.append(toString(currentEncoding));
-						} catch (UnsupportedEncodingException e) {
-							sb.append(toString());
-						}
+						else
+							try {
+								sb.append(toString(currentEncoding));
+							} catch (UnsupportedEncodingException e) {
+								sb.append(toString());
+							}
 						reset();
 					}
-				});
+				}) {
+			private IProject project;
+
+			@Override
+			public void format(DiffEntry ent) throws IOException,
+					CorruptObjectException, MissingObjectException {
+				if (DiffHeaderFormat.WORKSPACE == headerFormat) {
+					IProject p = getProject(ent);
+					if (!p.equals(project)) {
+						project = p;
+						getOutputStream().write(
+								encodeASCII("#P " + project.getName() + "\n")); 					}
+				}
+				super.format(ent);
+			}
+		};
 
 		diffFmt.setProgressMonitor(gitMonitor);
 		diffFmt.setContext(contextLines);
@@ -61,7 +77,12 @@
 			Activator.logError(CoreText.CreatePatchOperation_patchFileCouldNotBeWritten, e);
 		}
 
+		if (DiffHeaderFormat.WORKSPACE == headerFormat)
+			updateWorkspacePatchPrefixes(sb, diffFmt);
+
+		if (sb.charAt(sb.length() - 1) == '\n')
+			sb.setLength(sb.length() - 1);
+
 		patchContent = sb.toString();
-		if (patchContent.endsWith("\n")) 			patchContent = patchContent.substring(0, patchContent.length() - 1);
 	}
 
