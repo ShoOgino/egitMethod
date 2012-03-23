@@ -3,9 +3,8 @@
 				UIText.RepositorySelectionPage_groupConnection);
 
 		newLabel(g, UIText.RepositorySelectionPage_promptScheme + ":"); 		scheme = new Combo(g, SWT.DROP_DOWN | SWT.READ_ONLY);
-		for (Protocol p : Protocol.values()) {
+		for (Protocol p : Protocol.values())
 			scheme.add(p.getDefaultScheme());
-		}
 		scheme.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(final SelectionEvent e) {
 				final int idx = scheme.getSelectionIndex();
@@ -35,12 +34,11 @@
 				final String val = nullString(portText.getText());
 				if (val == null)
 					setURI(uri.setPort(-1));
-				else {
+				else
 					try {
 						setURI(uri.setPort(Integer.parseInt(val)));
 					} catch (NumberFormatException err) {
 					}
-				}
 			}
 		});
 	}

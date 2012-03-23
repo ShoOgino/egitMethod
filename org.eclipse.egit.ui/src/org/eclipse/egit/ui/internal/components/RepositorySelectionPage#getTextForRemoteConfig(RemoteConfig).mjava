@@ -2,13 +2,12 @@
 		final StringBuilder sb = new StringBuilder(rc.getName());
 		sb.append(": "); 		boolean first = true;
 		List<URIish> uris;
-		if (sourceSelection) {
+		if (sourceSelection)
 			uris = rc.getURIs();
-		} else {
+		else {
 			uris = rc.getPushURIs();
-			if (uris.isEmpty()) {
+			if (uris.isEmpty())
 				uris = rc.getURIs();
-			}
 		}
 
 		for (final URIish u : uris) {

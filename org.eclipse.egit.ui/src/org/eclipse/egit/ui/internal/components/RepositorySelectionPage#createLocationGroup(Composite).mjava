@@ -28,7 +28,7 @@
 			@Override
 			public void widgetSelected(SelectionEvent evt) {
 				DirectoryDialog dialog = new DirectoryDialog(getShell());
-				if (!uriText.getText().equals(EMPTY_STRING)) {
+				if (!uriText.getText().equals(EMPTY_STRING))
 					try {
 						File testFile = new File(uriText.getText());
 						if (testFile.exists())
@@ -45,7 +45,6 @@
 					} catch (IllegalArgumentException e) {
 					} catch (URISyntaxException e) {
 					}
-				}
 				if (EMPTY_STRING.equals(dialog.getFilterPath()))
 					dialog.setFilterPath(Activator.getDefault().getPreferenceStore().getString(UIPreferences.DEFAULT_REPO_DIR));
 				String result = dialog.open();
