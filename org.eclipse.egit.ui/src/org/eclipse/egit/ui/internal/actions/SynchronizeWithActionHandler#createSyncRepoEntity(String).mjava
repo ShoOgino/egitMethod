@@ -1,3 +1,0 @@
-	private SyncRefEntity createSyncRepoEntity(String ref) {
-		return createSyncRepoEntity("", ref); 	}
-

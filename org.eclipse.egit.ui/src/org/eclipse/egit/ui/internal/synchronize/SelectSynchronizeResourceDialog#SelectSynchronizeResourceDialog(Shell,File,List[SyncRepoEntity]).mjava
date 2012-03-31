@@ -1,9 +1,0 @@
-	public SelectSynchronizeResourceDialog(Shell parent, File repoDirectory,
-			List<SyncRepoEntity> syncRepos) {
-		super(parent);
-		this.repoName = repoDirectory.getParentFile().getName()
-				+ File.separator + repoDirectory.getName();
-		this.syncRepos = syncRepos;
-		setHelpAvailable(false);
-	}
-
