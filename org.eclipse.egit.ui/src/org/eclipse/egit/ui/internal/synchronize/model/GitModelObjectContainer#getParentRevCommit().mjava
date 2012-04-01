@@ -1,4 +1,0 @@
-	protected ObjectId getParentRevCommit() {
-		return baseCommit.getParent(0);
-	}
-

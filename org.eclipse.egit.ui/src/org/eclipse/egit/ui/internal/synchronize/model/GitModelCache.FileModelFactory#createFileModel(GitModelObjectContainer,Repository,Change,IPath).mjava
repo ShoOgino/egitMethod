@@ -1,0 +1,3 @@
+		GitModelBlob createFileModel(GitModelObjectContainer objParent,
+				Repository repo, Change change, IPath fullPath);
+

@@ -1,7 +1,8 @@
 	@Test public void shouldReturnNotEqualForBlobAndCommit() throws Exception {
 		GitModelBlob left = createGitModelBlob();
-		GitModelCommit right = new GitModelCommit(createModelRepository(), getCommit(
-				leftRepoFile, HEAD), LEFT);
+		GitModelCommit right = new GitModelCommit(createModelRepository(),
+				lookupRepository(leftRepoFile), getCommit(leftRepoFile, HEAD),
+				null);
 
 		boolean actual = left.equals(right);
 

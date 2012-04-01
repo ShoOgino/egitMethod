@@ -1,4 +1,0 @@
-		GitModelBlob createFileModel(GitModelObjectContainer parent,
-				RevCommit commit, ObjectId repoId, ObjectId cacheId, IPath location)
-				throws IOException;
-

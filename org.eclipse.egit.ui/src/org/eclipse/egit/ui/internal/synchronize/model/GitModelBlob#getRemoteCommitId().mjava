@@ -1,0 +1,4 @@
+	public AbbreviatedObjectId getRemoteCommitId() {
+		return change.getRemoteCommitId();
+	}
+

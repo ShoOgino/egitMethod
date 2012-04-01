@@ -1,8 +1,0 @@
-	protected GitModelCommit(GitModelObject parent, RevCommit commit,
-			RevCommit ancestorCommit, int direction) throws IOException {
-		super(parent, commit, direction);
-
-		pathFilter = null;
-		this.ancestorCommit = ancestorCommit;
-	}
-

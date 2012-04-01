@@ -1,0 +1,4 @@
+	public Commit getCachedCommitObj() {
+		return commit;
+	}
+

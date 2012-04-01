@@ -1,6 +1,7 @@
 	@Test public void shouldReturnEqualForSameInstance() throws Exception {
 		GitModelCommit left = new GitModelCommit(createModelRepository(),
-				getCommit(leftRepoFile, HEAD), LEFT);
+				lookupRepository(leftRepoFile), getCommit(leftRepoFile, HEAD),
+				null);
 
 		boolean actual = left.equals(left);
 

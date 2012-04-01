@@ -1,0 +1,4 @@
+	public GitModelObjectContainer(GitModelObjectContainer parent) {
+		super(parent);
+	}
+

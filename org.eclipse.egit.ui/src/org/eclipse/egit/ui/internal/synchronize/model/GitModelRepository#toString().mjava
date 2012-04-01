@@ -1,4 +1,4 @@
 	@Override
 	public String toString() {
-		return "ModelRepository[" + repo.getWorkTree() + "]"; 	}
+		return "ModelRepository[" + gsd.getRepository().getWorkTree() + "]"; 	}
 

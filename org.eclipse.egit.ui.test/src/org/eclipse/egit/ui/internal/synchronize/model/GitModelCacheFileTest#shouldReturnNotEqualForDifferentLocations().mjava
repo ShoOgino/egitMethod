@@ -1,3 +1,4 @@
+	@Ignore
 	@Test public void shouldReturnNotEqualForDifferentLocations()
 			throws Exception {
 		GitModelCacheFile left = createCacheFile(zeroId(),

@@ -2,7 +2,8 @@
 	public void shouldBeSymmetric1() throws Exception {
 		GitModelBlob left = createGitModelBlob(zeroId(), getFile1Location());
 		GitModelCommit right = new GitModelCommit(createModelRepository(),
-				getCommit(leftRepoFile, HEAD), LEFT);
+				lookupRepository(leftRepoFile), getCommit(leftRepoFile, HEAD),
+				null);
 
 		boolean actual1 = left.equals(right);
 		boolean actual2 = right.equals(left);

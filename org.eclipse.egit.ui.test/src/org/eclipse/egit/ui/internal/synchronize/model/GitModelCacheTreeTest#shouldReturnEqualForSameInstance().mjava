@@ -1,5 +1,5 @@
 	@Test public void shouldReturnEqualForSameInstance() throws Exception {
-		GitModelCacheTree left = crateCacheTree(zeroId(), getTreeLocation());
+		GitModelCacheTree left = crateCacheTree(getTreeLocation());
 
 		boolean actual = left.equals(left);
 

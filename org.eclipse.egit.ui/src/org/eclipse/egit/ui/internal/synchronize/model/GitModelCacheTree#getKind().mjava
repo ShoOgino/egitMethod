@@ -1,5 +1,0 @@
-	@Override
-	public int getKind() {
-		return Differencer.RIGHT | Differencer.CHANGE;
-	}
-

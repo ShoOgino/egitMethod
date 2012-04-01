@@ -1,4 +1,4 @@
 	public ObjectId getSrcRev() {
-		return srcRev;
+		return gsd.getSrcRevCommit();
 	}
 

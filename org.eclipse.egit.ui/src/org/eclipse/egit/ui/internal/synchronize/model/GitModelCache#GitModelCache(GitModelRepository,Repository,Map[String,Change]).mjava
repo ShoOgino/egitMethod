@@ -1,0 +1,16 @@
+	public GitModelCache(GitModelRepository parent, Repository repo,
+			Map<String, Change> cache) {
+		this(parent, repo, cache, new FileModelFactory() {
+			public GitModelBlob createFileModel(
+					GitModelObjectContainer objParent, Repository nestedRepo,
+					Change change, IPath path) {
+				return new GitModelCacheFile(objParent, nestedRepo, change,
+						path);
+			}
+
+			public boolean isWorkingTree() {
+				return false;
+			}
+		});
+	}
+

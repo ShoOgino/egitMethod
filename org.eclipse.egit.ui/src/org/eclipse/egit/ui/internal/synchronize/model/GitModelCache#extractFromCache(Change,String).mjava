@@ -1,0 +1,7 @@
+	private GitModelObject extractFromCache(Change change, String path) {
+		if (path.contains("/")) 			return handleCacheTree(change, path);
+
+		return fileFactory.createFileModel(this, repo, change,
+				location.append(path));
+	}
+

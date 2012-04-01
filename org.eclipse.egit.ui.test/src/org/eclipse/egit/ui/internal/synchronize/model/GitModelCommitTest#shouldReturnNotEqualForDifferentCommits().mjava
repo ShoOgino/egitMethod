@@ -1,9 +1,11 @@
 	@Test public void shouldReturnNotEqualForDifferentCommits()
 			throws Exception {
 		GitModelCommit left = new GitModelCommit(createModelRepository(),
-				getCommit(leftRepoFile, HEAD), LEFT);
+				lookupRepository(leftRepoFile), getCommit(leftRepoFile, HEAD),
+				null);
 		GitModelCommit right = new GitModelCommit(createModelRepository(),
-				getCommit(leftRepoFile, HEAD + "~1"), LEFT);
+				lookupRepository(leftRepoFile), getCommit(leftRepoFile, HEAD
+						+ "~1"), null);
 
 		boolean actual = left.equals(right);
 

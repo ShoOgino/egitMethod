@@ -1,0 +1,7 @@
+	public GitModelTree(GitModelObjectContainer parent, IPath fullPath,
+			int kind) {
+		super(parent);
+		this.kind = kind;
+		this.path = fullPath;
+	}
+

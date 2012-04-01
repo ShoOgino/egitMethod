@@ -1,4 +1,4 @@
-	protected GitModelObject(GitModelObject parent) {
+	public GitModelObject(GitModelObject parent) {
 		this.parent = parent;
 	}
 

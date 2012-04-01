@@ -4,16 +4,17 @@
 		writeTrashFile(db, "a.txt", "content");
 		git.add().addFilepattern("a.txt").call();
 		RevCommit c = commit(git, "first commit");
-
-		List<Commit> leftResult = GitCommitsModelCache.build(db, initialTagId(), c);
-		List<Commit> rightResult = GitCommitsModelCache.build(db, c, initialTagId());
-
+		List<Commit> leftResult = GitCommitsModelCache.build(db,
+				initialTagId(), c, null);
+		List<Commit> rightResult = GitCommitsModelCache.build(db, c,
+				initialTagId(), null);
 		assertThat(leftResult, notNullValue());
 		assertCommit(leftResult.get(0), c, 1);
-		assertFileDeletion(c, leftResult.get(0).getChildren().get("a.txt"), "a.txt", LEFT | DELETION);
-
+		assertFileDeletion(c, leftResult.get(0).getChildren().get("a.txt"),
+				"a.txt", LEFT);
 		assertThat(rightResult, notNullValue());
 		assertCommit(rightResult.get(0), c, 1);
-		assertFileAddition(c, rightResult.get(0).getChildren().get("a.txt"), "a.txt", RIGHT | ADDITION);
+		assertFileAddition(c, rightResult.get(0).getChildren().get("a.txt"),
+				"a.txt", RIGHT);
 	}
 

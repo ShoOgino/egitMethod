@@ -1,7 +1,7 @@
 	@Test public void shouldReturnNotEqualForDifferetnLocation()
 			throws Exception {
-		GitModelCacheTree left = crateCacheTree(zeroId(), getTreeLocation());
-		GitModelCacheTree right = crateCacheTree(zeroId(), getTree1Location());
+		GitModelCacheTree left = crateCacheTree(getTreeLocation());
+		GitModelCacheTree right = crateCacheTree(getTree1Location());
 
 		boolean actual = left.equals(right);
 

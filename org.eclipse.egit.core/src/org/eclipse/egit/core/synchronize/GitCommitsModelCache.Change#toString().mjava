@@ -1,0 +1,17 @@
+		@Override
+		public String toString() {
+			StringBuilder change = new StringBuilder("Change("); 			if ((kind & LEFT) != 0)
+				change.append("OUTGOING "); 			else
+				change.append("INCOMING "); 			if ((kind & ADDITION) != 0)
+				change.append("ADDITION "); 			else if ((kind & DELETION) != 0)
+				change.append("DELETION "); 			else
+				change.append("CHANGE "); 
+			change.append(name);
+			change.append(";\n\tcurrent objectId: "); 			change.append(getObjectId(objectId));
+			change.append(";\n\tparent objectId: "); 			change.append(getObjectId(remoteObjectId));
+			change.append(";\n\tcurrent commit: "); 			change.append(getObjectId(commitId));
+			change.append(";\n\tparent commit: "); 			change.append(remoteCommitId.toObjectId().getName());
+			change.append("\n)"); 
+			return change.toString();
+		}
+

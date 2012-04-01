@@ -1,4 +1,6 @@
 	public Object getParent(Object o) {
+		if (o instanceof GitModelRepository)
+			return null; 
 		if (o instanceof GitModelObject)
 			return ((GitModelObject) o).getParent();
 

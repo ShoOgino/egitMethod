@@ -1,0 +1,4 @@
+	public AbbreviatedObjectId getBaseCommitId() {
+		return change.getCommitId();
+	}
+

@@ -1,5 +1,0 @@
-	GitModelCommit(GitModelRepository parent, RevCommit commit,
-			int direction) throws IOException {
-		this(parent, commit, direction, null);
-	}
-

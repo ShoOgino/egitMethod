@@ -1,9 +1,9 @@
 	@Test public void shouldReturnEqualForSameCommits()
 			throws Exception {
 		GitModelCache left = new GitModelCache(createModelRepository(),
-				getCommit(leftRepoFile, HEAD));
+				lookupRepository(leftRepoFile), null);
 		GitModelCache right = new GitModelCache(createModelRepository(),
-				getCommit(leftRepoFile, HEAD));
+				lookupRepository(leftRepoFile), null);
 
 		boolean actual = left.equals(right);
 

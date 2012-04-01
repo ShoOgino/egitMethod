@@ -1,4 +1,0 @@
-	GitModelWorkingTree(GitModelObject parent) throws IOException {
-		this(parent, null);
-	}
-

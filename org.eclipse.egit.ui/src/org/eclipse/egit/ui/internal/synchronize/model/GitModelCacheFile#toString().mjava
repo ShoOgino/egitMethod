@@ -1,4 +1,0 @@
-	@Override
-	public String toString() {
-		return "ModelCacheFile[repoId=" + baseId + ". cacheId=" + remoteId + ", location=" 				+ getLocation() + "]"; 	}
-

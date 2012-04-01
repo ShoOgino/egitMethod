@@ -1,7 +1,7 @@
 	@Test public void shouldReturnNotEqualForDifferentLocation()
 			throws Exception {
-		GitModelTree left = createModelTree(HEAD, getTreeLocation());
-		GitModelTree right = createModelTree(HEAD, getTree1Location());
+		GitModelTree left = createModelTree(getTreeLocation());
+		GitModelTree right = createModelTree(getTree1Location());
 
 		boolean actual = left.equals(right);
 

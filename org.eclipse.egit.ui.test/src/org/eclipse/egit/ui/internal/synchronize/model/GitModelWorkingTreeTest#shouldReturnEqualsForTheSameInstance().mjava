@@ -1,8 +1,9 @@
 	@Test public void shouldReturnEqualsForTheSameInstance() throws Exception {
-		GitModelWorkingTree left = new GitModelWorkingTree(createModelCommit());
+		GitModelWorkingTree left = new GitModelWorkingTree(
+				createModelRepository(), lookupRepository(leftRepoFile), null);
 
 		boolean actual = left.equals(left);
 
-		assertFalse(!actual);
+		assertTrue(actual);
 	}
 

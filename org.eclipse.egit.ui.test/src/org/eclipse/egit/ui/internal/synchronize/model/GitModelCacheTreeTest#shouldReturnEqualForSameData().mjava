@@ -1,6 +1,6 @@
 	@Test public void shouldReturnEqualForSameData() throws Exception {
-		GitModelCacheTree left = crateCacheTree(zeroId(), getTreeLocation());
-		GitModelCacheTree right = crateCacheTree(zeroId(), getTreeLocation());
+		GitModelCacheTree left = crateCacheTree(getTreeLocation());
+		GitModelCacheTree right = crateCacheTree(getTreeLocation());
 
 		boolean actual = left.equals(right);
 

@@ -1,0 +1,58 @@
+	public static List<Commit> build(Repository repo, ObjectId srcId,
+			ObjectId dstId, TreeFilter pathFilter) throws IOException {
+		if (dstId.equals(srcId))
+			return new ArrayList<Commit>(0);
+
+		final RevWalk rw = new RevWalk(repo);
+
+		final RevFlag localFlag = rw.newFlag("local"); 		final RevFlag remoteFlag = rw.newFlag("remote"); 		final RevFlagSet allFlags = new RevFlagSet();
+		allFlags.add(localFlag);
+		allFlags.add(remoteFlag);
+		rw.carry(allFlags);
+
+		RevCommit srcCommit = rw.parseCommit(srcId);
+		srcCommit.add(localFlag);
+		rw.markStart(srcCommit);
+		srcCommit = null; 
+		RevCommit dstCommit = rw.parseCommit(dstId);
+		dstCommit.add(remoteFlag);
+		rw.markStart(dstCommit);
+		dstCommit = null; 
+		if (pathFilter != null)
+			rw.setTreeFilter(pathFilter);
+
+		List<Commit> result = new ArrayList<Commit>();
+		for (RevCommit revCommit : rw) {
+			if (revCommit.hasAll(allFlags))
+				break;
+
+			Commit commit = new Commit();
+			commit.shortMessage = revCommit.getShortMessage();
+			commit.commitId = AbbreviatedObjectId.fromObjectId(revCommit);
+			commit.authorName = revCommit.getAuthorIdent().getName();
+			commit.committerName = revCommit.getCommitterIdent().getName();
+			commit.commitDate = revCommit.getAuthorIdent().getWhen();
+
+			RevCommit actualCommit, parentCommit;
+			if (revCommit.has(localFlag)) {
+				actualCommit = revCommit;
+				parentCommit = getParentCommit(revCommit);
+				commit.direction = RIGHT;
+			} else if (revCommit.has(remoteFlag)) {
+				actualCommit = getParentCommit(revCommit);
+				parentCommit = revCommit;
+				commit.direction = LEFT;
+			} else
+				throw new GitCommitsModelDirectionException();
+
+			commit.children = getChangedObjects(repo, actualCommit,
+					parentCommit, pathFilter, commit.direction);
+
+			if (commit.children != null)
+				result.add(commit);
+		}
+		rw.dispose();
+
+		return result;
+	}
+
