@@ -28,11 +28,10 @@
 					notifyListeners();
 					return Status.OK_STATUS;
 				} catch (RuntimeException e) {
-					if (GitTraceLocation.INDEXDIFFCACHE.isActive()) {
+					if (GitTraceLocation.INDEXDIFFCACHE.isActive())
 						GitTraceLocation.getTrace().trace(
 								GitTraceLocation.INDEXDIFFCACHE.getLocation(),
-								"Calculating IndexDiff failed", e); 					}
-					scheduleReloadJob("Recalculation due to Exception in reload job"); 					return Status.OK_STATUS;
+								"Calculating IndexDiff failed", e); 					scheduleReloadJob("Recalculation due to Exception in reload job"); 					return Status.OK_STATUS;
 				} finally {
 					lock.unlock();
 				}
