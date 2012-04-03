@@ -1,8 +1,0 @@
-	public SelectResetTypePage(String repoName, String currentRef,
-			String targetRef) {
-		super(SelectResetTypePage.class.getName());
-		setTitle(NLS.bind(UIText.SelectResetTypePage_PageTitle, repoName));
-		setMessage(NLS.bind(UIText.SelectResetTypePage_PageMessage, currentRef,
-				targetRef));
-	}
-
