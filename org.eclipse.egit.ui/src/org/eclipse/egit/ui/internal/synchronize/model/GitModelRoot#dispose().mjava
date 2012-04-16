@@ -1,7 +1,5 @@
 	public void dispose() {
-		for (GitModelObject child : children)
-			child.dispose();
-
+		disposeOldChildren();
 		gsds.dispose();
 	}
 

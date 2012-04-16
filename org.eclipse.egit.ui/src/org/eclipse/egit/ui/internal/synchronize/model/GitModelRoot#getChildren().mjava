@@ -1,7 +1,4 @@
 	public GitModelObject[] getChildren() {
-		if (children == null)
-			children = getChildrenImpl();
-
-		return children;
+		return getChildrenImpl();
 	}
 
