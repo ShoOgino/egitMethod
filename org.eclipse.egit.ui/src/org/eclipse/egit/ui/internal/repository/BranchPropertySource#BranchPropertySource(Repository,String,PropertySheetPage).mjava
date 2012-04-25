@@ -1,0 +1,26 @@
+	public BranchPropertySource(Repository repository, String fullBranchName,
+			PropertySheetPage page) {
+		myPage = page;
+		myBranchName = Repository.shortenRefName(fullBranchName);
+		myRepository = repository;
+
+		synchronized (myPage) {
+			IActionBars bars = myPage.getSite().getActionBars();
+			IToolBarManager mgr = bars.getToolBarManager();
+
+			editAction = ((ActionContributionItem) mgr.find(EDITACTIONID));
+			if (editAction != null)
+				((EditAction) editAction.getAction()).setSource(this);
+			else {
+				editAction = new ActionContributionItem(new EditAction(
+						UIText.RepositoryPropertySource_EditConfigButton,
+						UIIcons.EDITCONFIG, this));
+
+				mgr.add(new Separator());
+				mgr.add(editAction);
+			}
+
+			mgr.update(false);
+		}
+	}
+

@@ -1,0 +1,11 @@
+	public BranchConfigurationDialog(Shell shell, String branchName,
+			Repository repository) {
+		super(shell);
+		myBranchName = branchName;
+		myRepository = repository;
+		myConfig = myRepository.getConfig();
+		setShellStyle(getShellStyle() | SWT.SHELL_TRIM);
+		myTitle = UIText.BranchConfigurationDialog_BranchConfigurationTitle;
+		setHelpAvailable(false);
+	}
+
