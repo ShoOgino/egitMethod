@@ -1,4 +1,4 @@
-	private static Set<String> getCommitHistory() {
+	public static Set<String> getCommitHistory() {
 		String all = getPreferenceStore().getString(
 				UIPreferences.COMMIT_DIALOG_HISTORY_MESSAGES);
 		if (all.length() == 0)
