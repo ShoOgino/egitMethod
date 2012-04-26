@@ -1,0 +1,4 @@
+	public CommitMessageArea(Composite parent, String initialText, int styles) {
+		super(parent, initialText, styles);
+	}
+
