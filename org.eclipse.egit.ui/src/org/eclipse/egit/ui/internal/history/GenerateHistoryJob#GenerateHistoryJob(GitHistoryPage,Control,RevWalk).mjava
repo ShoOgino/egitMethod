@@ -4,8 +4,8 @@
 						ghp.getInputInternal().getRepository())));
 		page = ghp;
 		this.walk = walk;
-		allCommits = new SWTCommitList(control);
-		allCommits.source(walk);
+		highlightFlag = walk.newFlag("highlight"); 		loadedCommits = new SWTCommitList(control);
+		loadedCommits.source(walk);
 		trace = GitTraceLocation.HISTORYVIEW.isActive();
 	}
 
