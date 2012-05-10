@@ -189,11 +189,11 @@
 				RepositoryMapping m = mi.hasNext() ? mi.next() : null;
 				if (m == null) {
 					TreeItem treeItem = new TreeItem(tree, SWT.NONE);
-					treeItem.setText(0, project.getName());
+					updateProjectTreeItem(treeItem, project);
 					treeItem.setText(1, project.getLocation().toOSString());
 					treeItem.setText(2, ""); 					treeItem.setData(new ProjectAndRepo(project, "")); 				} else if (!mi.hasNext()) {
 					TreeItem treeItem = new TreeItem(tree, SWT.NONE);
-					treeItem.setText(0, project.getName());
+					updateProjectTreeItem(treeItem, project);
 					treeItem.setText(1, project.getLocation().toOSString());
 					fillTreeItemWithGitDirectory(m, treeItem, false);
 					treeItem.setData(new ProjectAndRepo(project, treeItem
@@ -203,18 +203,18 @@
 
 				else {
 					TreeItem treeItem = new TreeItem(tree, SWT.NONE);
-					treeItem.setText(0, project.getName());
+					updateProjectTreeItem(treeItem, project);
 					treeItem.setText(1, project.getLocation().toOSString());
 					treeItem.setData(new ProjectAndRepo(null, null));
 
 					TreeItem treeItem2 = new TreeItem(treeItem, SWT.NONE);
-					treeItem2.setText(0, project.getName());
+					updateProjectTreeItem(treeItem2, project);
 					fillTreeItemWithGitDirectory(m, treeItem2, true);
 					treeItem2.setData(new ProjectAndRepo(project, treeItem2
 							.getText(2)));
 					while (mi.hasNext()) { 						m = mi.next();
 						treeItem2 = new TreeItem(treeItem, SWT.NONE);
-						treeItem2.setText(0, project.getName());
+						updateProjectTreeItem(treeItem2, project);
 						fillTreeItemWithGitDirectory(m, treeItem2, true);
 						treeItem2.setData(new ProjectAndRepo(m.getContainer()
 								.getProject(), treeItem2.getText(2)));
