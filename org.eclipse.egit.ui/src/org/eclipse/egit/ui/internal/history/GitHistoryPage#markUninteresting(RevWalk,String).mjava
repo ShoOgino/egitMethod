@@ -1,11 +1,14 @@
-	private void markStartAllRefs(String prefix) throws IOException,
+	private void markUninteresting(RevWalk walk, String prefix) throws IOException,
 			MissingObjectException, IncorrectObjectTypeException {
 		for (Entry<String, Ref> refEntry : input.getRepository()
 				.getRefDatabase().getRefs(prefix).entrySet()) {
 			Ref ref = refEntry.getValue();
 			if (ref.isSymbolic())
 				continue;
-			markStartRef(ref);
+			Object refTarget = walk
+					.parseAny(ref.getLeaf().getObjectId());
+			if (refTarget instanceof RevCommit)
+				walk.markUninteresting((RevCommit) refTarget);
 		}
 	}
 

@@ -25,13 +25,13 @@
 					.getFileList(), db);
 
 			if (forceNewWalk || shouldRedraw(db, headId, paths)) {
-				createNewWalk(db, headId);
-				setWalkStartPoints(db, headId);
+				SWTWalk walk = createNewWalk(db, headId);
+				setWalkStartPoints(walk, db, headId);
 
-				setupFileViewer(db, paths);
+				setupFileViewer(walk, db, paths);
 				setupCommentViewer(db);
 
-				scheduleNewGenerateHistoryJob();
+				scheduleNewGenerateHistoryJob(walk);
 			} else
 				graph.setHistoryPageInput(input);
 		} finally {

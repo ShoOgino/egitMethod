@@ -8,7 +8,7 @@
 
 			final SWTCommit[] asArray = new SWTCommit[allCommits.size()];
 			allCommits.toArray(asArray);
-			page.showCommitList(this, allCommits, asArray, incomplete);
+			RevFlag highlightFlag = walk.newFlag("highlight"); 			page.showCommitList(this, allCommits, asArray, incomplete, highlightFlag);
 			lastUpdateCnt = allCommits.size();
 		} finally {
 			if (trace)
