@@ -1,5 +1,9 @@
 	public static RevCommit getCommonAncestor(Repository repo,
 			AnyObjectId commit1, AnyObjectId commit2) throws IOException {
+		Assert.isNotNull(repo);
+		Assert.isNotNull(commit1);
+		Assert.isNotNull(commit2);
+
 		RevWalk rw = new RevWalk(repo);
 		rw.setRevFilter(RevFilter.MERGE_BASE);
 
