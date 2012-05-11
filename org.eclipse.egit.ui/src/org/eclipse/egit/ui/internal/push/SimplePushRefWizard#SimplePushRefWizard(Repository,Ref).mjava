@@ -1,5 +1,0 @@
-	public SimplePushRefWizard(Repository repo, Ref refToPush)
-			throws URISyntaxException {
-		this(repo, refToPush.getObjectId(), refToPush.getName());
-	}
-
