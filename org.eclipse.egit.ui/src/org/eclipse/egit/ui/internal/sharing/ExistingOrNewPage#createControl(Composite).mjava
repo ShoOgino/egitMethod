@@ -180,6 +180,7 @@
 		TreeColumn c3 = new TreeColumn(tree, SWT.NONE);
 		c3.setText(UIText.ExistingOrNewPage_HeaderRepository);
 		c3.setWidth(200);
+		boolean allProjectsInExistingRepos = true;
 		for (IProject project : myWizard.projects) {
 			RepositoryFinder repositoryFinder = new RepositoryFinder(project);
 			try {
@@ -191,7 +192,8 @@
 					TreeItem treeItem = new TreeItem(tree, SWT.NONE);
 					updateProjectTreeItem(treeItem, project);
 					treeItem.setText(1, project.getLocation().toOSString());
-					treeItem.setText(2, ""); 					treeItem.setData(new ProjectAndRepo(project, "")); 				} else if (!mi.hasNext()) {
+					treeItem.setText(2, ""); 					treeItem.setData(new ProjectAndRepo(project, "")); 					allProjectsInExistingRepos = false;
+				} else if (!mi.hasNext()) {
 					TreeItem treeItem = new TreeItem(tree, SWT.NONE);
 					updateProjectTreeItem(treeItem, project);
 					treeItem.setText(1, project.getLocation().toOSString());
@@ -220,6 +222,7 @@
 								.getProject(), treeItem2.getText(2)));
 					}
 					treeItem.setExpanded(true);
+					allProjectsInExistingRepos = false;
 				}
 			} catch (CoreException e) {
 				TreeItem treeItem2 = new TreeItem(tree, SWT.BOLD | SWT.ITALIC);
@@ -292,5 +295,11 @@
 
 		Dialog.applyDialogFont(main);
 		setControl(main);
+
+		if (allProjectsInExistingRepos) {
+			internalMode = true;
+			internalModeButton.setSelection(true);
+			updateControls();
+		}
 	}
 
