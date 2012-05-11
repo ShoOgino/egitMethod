@@ -29,6 +29,11 @@
 					}
 					notifyListeners();
 					return Status.OK_STATUS;
+				} catch (IOException e) {
+					if (GitTraceLocation.INDEXDIFFCACHE.isActive())
+						GitTraceLocation.getTrace().trace(
+								GitTraceLocation.INDEXDIFFCACHE.getLocation(),
+								"Calculating IndexDiff failed", e); 					return Status.OK_STATUS;
 				} finally {
 					lock.unlock();
 				}
