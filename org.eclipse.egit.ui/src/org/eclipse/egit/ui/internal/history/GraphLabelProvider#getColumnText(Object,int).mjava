@@ -9,8 +9,11 @@
 			if (author != null)
 				switch (columnIndex) {
 				case 1:
-					return author.getName()
-							+ " <" + author.getEmailAddress() + ">"; 				case 2:
+					if (showEmail)
+						return author.getName()
+								+ " <" + author.getEmailAddress() + '>'; 					else
+						return author.getName();
+				case 2:
 					return getDateFormatter().formatDate(author);
 				}
 		}
@@ -19,8 +22,11 @@
 			if (committer != null)
 				switch (columnIndex) {
 				case 4:
-					return committer.getName()
-							+ " <" + committer.getEmailAddress() + ">"; 				case 5:
+					if (showEmail)
+						return committer.getName()
+								+ " <" + committer.getEmailAddress() + '>'; 					else
+						return committer.getName();
+				case 5:
 					return getDateFormatter().formatDate(committer);
 				}
 		}
