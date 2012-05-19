@@ -1,0 +1,7 @@
+	public void showMessage(String message) {
+		warningText.setText(message);
+		layout(true);
+
+		changeVisibility(true);
+	}
+

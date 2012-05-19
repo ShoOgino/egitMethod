@@ -30,6 +30,7 @@
 
 			public void run() {
 				commitMessageComponent.setAmendingButtonSelection(isChecked());
+				updateMessage();
 			}
 		};
 		amendPreviousCommitAction.setImageDescriptor(UIIcons.AMEND_COMMIT);

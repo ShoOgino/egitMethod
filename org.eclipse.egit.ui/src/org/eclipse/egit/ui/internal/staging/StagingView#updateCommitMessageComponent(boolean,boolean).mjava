@@ -22,5 +22,6 @@
 		amendPreviousCommitAction.setChecked(commitMessageComponent
 				.isAmending());
 		amendPreviousCommitAction.setEnabled(indexDiffAvailable && helper.amendAllowed());
+		updateMessage();
 	}
 
