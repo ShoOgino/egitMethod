@@ -46,8 +46,9 @@
 				}
 			});
 
-			showUndeleted.bot().radio(
-					UIText.NonDeletedFilesTree_FileSystemPathsButton).click();
+			SWTBotToolbarDropDownButton pathButton = showUndeleted.bot().toolbarDropDownButton();
+			pathButton.menuItem(UIText.NonDeletedFilesTree_FileSystemPathsButton).click();
+			pathButton.pressShortcut(KeyStroke.getInstance("ESC"));
 			IPath path = new Path(lookupRepository(repositoryFile)
 					.getWorkTree().getPath()).append(PROJ1).append(FOLDER)
 					.append("ToBeDeleted");
@@ -55,17 +56,15 @@
 			for (int i = 0; i < path.segmentCount(); i++) {
 				boolean found = false;
 				String segment = path.segment(i);
-				for (SWTBotTreeItem item : items) {
+				for (SWTBotTreeItem item : items)
 					if (item.getText().equals(segment)) {
 						found = true;
 						items = item.getItems();
 					}
-				}
 				assertTrue(found);
 			}
-
-			showUndeleted.bot().radio(
-					UIText.NonDeletedFilesTree_ResourcePathsButton).click();
+			pathButton.menuItem(UIText.NonDeletedFilesTree_ResourcePathsButton).click();
+			pathButton.pressShortcut(KeyStroke.getInstance("ESC"));
 			assertEquals("ToBeDeleted", showUndeleted.bot().tree()
 					.getAllItems()[0].getItems()[0].getItems()[0].getText());
 			Display.getDefault().syncExec(new Runnable() {
