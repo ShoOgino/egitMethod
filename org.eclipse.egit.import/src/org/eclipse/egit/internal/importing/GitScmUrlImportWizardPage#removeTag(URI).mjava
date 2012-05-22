@@ -1,0 +1,13 @@
+	private static String removeTag(URI scmUri) {
+		StringBuffer sb = new StringBuffer();
+		sb.append(scmUri.getScheme()).append(':');
+		String ssp = scmUri.getSchemeSpecificPart();
+		int j = ssp.indexOf(';');
+		if (j != -1) {
+			sb.append(ssp.substring(0, j));
+			String[] params = ssp.substring(j).split(";"); 			for (int k = 0; k < params.length; k++)
+				if (params[k].startsWith("tag=")) { 				} else if (params[k].startsWith("version=")) { 				} else if (params[k]!=null && !params[k].equals("")) 					sb.append(";").append(params[k]); 		} else
+			sb.append(ssp);
+		return sb.toString();
+	}
+

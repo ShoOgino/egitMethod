@@ -1,0 +1,4 @@
+	public GitScmUrlImportWizardPage() {
+		super("git", Messages.GitScmUrlImportWizardPage_title, null); 		setDescription(Messages.GitScmUrlImportWizardPage_description);
+	}
+

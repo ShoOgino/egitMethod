@@ -1,0 +1,4 @@
+		public Image getImage(Object element) {
+			return PlatformUI.getWorkbench().getSharedImages().getImage(IDE.SharedImages.IMG_OBJ_PROJECT);
+		}
+
