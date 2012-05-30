@@ -1,0 +1,6 @@
+		private String getHoverText(Ref r) {
+			String name = r.getName();
+			if (r.isSymbolic())
+				name += ": " + r.getLeaf().getName(); 			return name;
+		}
+
