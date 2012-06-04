@@ -31,6 +31,8 @@
 					string.append(commit.getShortMessage(),
 							StyledString.QUALIFIER_STYLER);
 				} catch (IOException ignored) {
+				} finally {
+					walk.release();
 				}
 			}
 		}
