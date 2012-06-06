@@ -1,19 +1,5 @@
 	static String getShortBranch(Repository repository) throws IOException {
-		Ref head = repository.getRef(Constants.HEAD);
-		if (head != null && !head.isSymbolic()) {
-			String refString = Activator
-					.getDefault()
-					.getRepositoryUtil()
-					.mapCommitToRef(repository, repository.getFullBranch(),
-							false);
-			if (refString != null) {
-				return repository.getFullBranch().substring(0, 7)
-						+ "... (" + refString + ")"; 			} else
-				return repository.getFullBranch().substring(0, 7) + "..."; 		}
-
-		if (head == null || head.getObjectId() == null)
-			return UIText.DecoratableResourceHelper_noHead;
-
-		return repository.getBranch();
+		return Activator.getDefault().getRepositoryUtil()
+				.getShortBranch(repository);
 	}
 
