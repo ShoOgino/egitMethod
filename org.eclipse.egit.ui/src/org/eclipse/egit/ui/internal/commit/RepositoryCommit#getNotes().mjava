@@ -14,7 +14,7 @@
 				}
 				notes = noteList.toArray(new RepositoryCommitNote[noteList
 						.size()]);
-			} catch (IOException e) {
+			} catch (Exception e) {
 				Activator.logError("Error showing notes", e); 				notes = new RepositoryCommitNote[0];
 			}
 		}

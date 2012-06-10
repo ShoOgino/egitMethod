@@ -1,0 +1,4 @@
+	public ScmUrlImportDescription[] getSelection() {
+		return descriptions;
+	}
+

@@ -1,4 +1,3 @@
-	@SuppressWarnings("boxing")
 	@Test public void shouldOrderCommitsByCommitDate() {
 		Viewer viewer = mock(Viewer.class);
 		GitChangeSetSorter sorter = new GitChangeSetSorter();

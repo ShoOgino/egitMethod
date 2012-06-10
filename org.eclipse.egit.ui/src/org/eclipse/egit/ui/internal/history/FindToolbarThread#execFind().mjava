@@ -39,6 +39,11 @@
 
 				notFound = true;
 				SWTCommit revision = fileRevisions[i];
+				try {
+					revision.parseBody();
+				} catch (IOException e) {
+					Activator.error("Error parsing body", e); 					continue;
+				}
 
 				if (findInCommitId) {
 					String contentId = revision.getId().name();

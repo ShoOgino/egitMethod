@@ -1,0 +1,24 @@
+	public CommitStatus getStatus() {
+		String authorValue = authorText.getText();
+		if (authorValue.length() == 0
+				|| RawParseUtils.parsePersonIdent(authorValue) == null)
+			return new CommitStatus(
+					UIText.CommitMessageComponent_MessageInvalidAuthor,
+					IMessageProvider.ERROR);
+
+		String committerValue = committerText.getText();
+		if (committerValue.length() == 0
+				|| RawParseUtils.parsePersonIdent(committerValue) == null) {
+			return new CommitStatus(
+					UIText.CommitMessageComponent_MessageInvalidCommitter,
+					IMessageProvider.ERROR);
+		}
+
+		if (amending && amendingCommitInRemoteBranch)
+			return new CommitStatus(
+					UIText.CommitMessageComponent_AmendingCommitInRemoteBranch,
+					IMessageProvider.WARNING);
+
+		return CommitStatus.OK;
+	}
+
