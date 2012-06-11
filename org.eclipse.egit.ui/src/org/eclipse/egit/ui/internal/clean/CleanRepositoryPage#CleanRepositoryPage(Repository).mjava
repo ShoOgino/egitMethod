@@ -1,0 +1,8 @@
+	public CleanRepositoryPage(Repository repository) {
+		super(UIText.CleanRepositoryPage_title);
+		this.repository = repository;
+
+		setTitle(UIText.CleanRepositoryPage_title);
+		setMessage(UIText.CleanRepositoryPage_message);
+	}
+

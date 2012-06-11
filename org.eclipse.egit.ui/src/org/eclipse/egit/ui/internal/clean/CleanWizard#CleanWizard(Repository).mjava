@@ -1,0 +1,6 @@
+	public CleanWizard(Repository repository) {
+		setNeedsProgressMonitor(true);
+		cleanPage = new CleanRepositoryPage(repository);
+		addPage(cleanPage);
+	}
+
