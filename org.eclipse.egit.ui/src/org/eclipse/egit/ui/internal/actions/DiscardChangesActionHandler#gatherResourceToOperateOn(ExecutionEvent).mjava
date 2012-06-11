@@ -1,4 +1,5 @@
-	protected IResource[] gatherResourceToOperateOn(ExecutionEvent event) throws ExecutionException {
+	protected IResource[] gatherResourceToOperateOn(ExecutionEvent event)
+			throws ExecutionException {
 		return getSelectedResources(event);
 	}
 
