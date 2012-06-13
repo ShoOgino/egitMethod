@@ -1,4 +1,5 @@
-	protected String gatherRevision(ExecutionEvent event) throws ExecutionException {
+	protected String gatherRevision(ExecutionEvent event)
+			throws ExecutionException {
 		return null;
 	}
 

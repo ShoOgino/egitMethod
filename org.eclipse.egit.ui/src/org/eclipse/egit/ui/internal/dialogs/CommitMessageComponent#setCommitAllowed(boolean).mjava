@@ -1,0 +1,4 @@
+	public void setCommitAllowed(boolean commitAllowed) {
+		this.commitAllowed = commitAllowed;
+	}
+

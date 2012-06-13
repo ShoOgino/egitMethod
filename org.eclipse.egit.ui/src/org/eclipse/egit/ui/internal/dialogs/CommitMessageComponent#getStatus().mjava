@@ -1,4 +1,7 @@
 	public CommitStatus getStatus() {
+		if (!commitAllowed)
+			return new CommitStatus(cannotCommitMessage, IMessageProvider.ERROR);
+
 		String authorValue = authorText.getText();
 		if (authorValue.length() == 0
 				|| RawParseUtils.parsePersonIdent(authorValue) == null)

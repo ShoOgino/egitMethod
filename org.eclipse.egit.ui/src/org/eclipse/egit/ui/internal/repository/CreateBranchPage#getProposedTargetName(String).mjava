@@ -14,6 +14,5 @@
 		if (sourceName.startsWith(Constants.R_TAGS))
 			return sourceName.substring(Constants.R_TAGS.length());
 
-		return null;
-	}
+		return ""; 	}
 
