@@ -1,6 +1,5 @@
 	@Override
 	protected CommonViewer createCommonViewer(Composite aParent) {
-		ConfigurationChecker.checkConfiguration();
 		CommonViewer viewer = super.createCommonViewer(aParent);
 		viewer.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {
