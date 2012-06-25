@@ -12,6 +12,8 @@
 			myRefsChangedHandle = null;
 		}
 
+		resources.dispose();
+
 		for (IWorkbenchAction action : actions.actionsToDispose)
 			action.dispose();
 		actions.actionsToDispose.clear();
