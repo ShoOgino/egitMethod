@@ -1,0 +1,4 @@
+	void setInterestingPaths(Set<String> interestingPaths) {
+		((FileDiffContentProvider) getContentProvider()).setInterestingPaths(interestingPaths);
+	}
+
