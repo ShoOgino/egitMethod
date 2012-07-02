@@ -2,6 +2,5 @@
 
 		setDefaults(uri, targetBranch);
 		checkPage();
-		updateEnablement();
 	}
 

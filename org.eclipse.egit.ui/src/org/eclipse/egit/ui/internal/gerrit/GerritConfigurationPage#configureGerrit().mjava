@@ -1,4 +1,0 @@
-	public boolean configureGerrit() {
-		return createGerritCheckbox == false || configureGerrit.getSelection();
-	}
-

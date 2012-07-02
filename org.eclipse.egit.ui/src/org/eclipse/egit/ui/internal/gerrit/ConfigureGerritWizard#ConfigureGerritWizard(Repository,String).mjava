@@ -1,9 +1,9 @@
-	public ConfigureGerritWizard(StoredConfig config, String remoteName) {
+	public ConfigureGerritWizard(Repository repository, String remoteName) {
 		super();
 		setWindowTitle(UIText.ConfigureGerritWizard_title);
 		setDefaultPageImageDescriptor(UIIcons.WIZBAN_IMPORT_REPO);
 		setNeedsProgressMonitor(true);
-		gerritConfiguration = new GerritConfigurationPage(false) {
+		gerritConfiguration = new GerritConfigurationPage(repository, remoteName) {
 			@Override
 			public void setVisible(boolean visible) {
 				if (visible)
@@ -12,7 +12,7 @@
 			}
 
 		};
-		this.config = config;
+		this.config = repository.getConfig();
 		this.remoteName = remoteName;
 
 	}

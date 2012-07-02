@@ -1,0 +1,12 @@
+	public GerritConfigurationPage(Repository repository, String remoteName) {
+		super(GerritConfigurationPage.class.getName());
+		this.repository = repository;
+		this.remoteName = remoteName;
+		setTitle(UIText.GerritConfigurationPage_title);
+		String repositoryName = Activator.getDefault().getRepositoryUtil().getRepositoryName(repository);
+		setDescription(MessageFormat.format(
+				UIText.GerritConfigurationPage_PageDescription, remoteName,
+				repositoryName));
+
+	}
+
