@@ -50,7 +50,6 @@
 		c.setMenu(mgr.createContextMenu(c));
 
 		open = new Action(UIText.CommitFileDiffViewer_OpenInEditorMenuLabel) {
-			@SuppressWarnings("unchecked")
 			@Override
 			public void run() {
 				final ISelection s = getSelection();
@@ -65,7 +64,6 @@
 		blame = new Action(
 				UIText.CommitFileDiffViewer_ShowAnnotationsMenuLabel,
 				UIIcons.ANNOTATE) {
-			@SuppressWarnings("unchecked")
 			@Override
 			public void run() {
 				final ISelection s = getSelection();
@@ -79,7 +77,6 @@
 
 		openWorkingTreeVersion = new Action(
 				UIText.CommitFileDiffViewer_OpenWorkingTreeVersionInEditorMenuLabel) {
-			@SuppressWarnings("unchecked")
 			@Override
 			public void run() {
 				final ISelection s = getSelection();
