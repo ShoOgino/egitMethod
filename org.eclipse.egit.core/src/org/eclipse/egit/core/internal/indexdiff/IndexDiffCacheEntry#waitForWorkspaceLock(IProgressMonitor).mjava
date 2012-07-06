@@ -1,14 +1,11 @@
 	private void waitForWorkspaceLock(IProgressMonitor monitor) {
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		try {
-			ResourcesPlugin.getWorkspace().run(new IWorkspaceRunnable() {
-
-				public void run(IProgressMonitor innerMonitor) throws CoreException {
-				}
-			}, monitor);
+			Job.getJobManager().beginRule(root, monitor);
 		} catch (OperationCanceledException e) {
 			return;
-		} catch (CoreException e) {
-			throw new RuntimeException(e);
+		} finally {
+			Job.getJobManager().endRule(root);
 		}
 	}
 
