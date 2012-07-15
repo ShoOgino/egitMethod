@@ -1,0 +1,5 @@
+	public void refreshFiles(final Collection<String> filesToRefresh) {
+		List<IResource> resources = Collections.emptyList();
+		scheduleUpdateJob(filesToRefresh, resources);
+	}
+
