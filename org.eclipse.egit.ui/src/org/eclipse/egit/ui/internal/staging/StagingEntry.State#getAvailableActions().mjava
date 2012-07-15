@@ -1,0 +1,4 @@
+		public Set<Action> getAvailableActions() {
+			return availableActions;
+		}
+
