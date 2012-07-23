@@ -48,20 +48,15 @@
 									GitTraceLocation.REPOSITORIESVIEW
 											.getLocation(),
 									"Starting async update job"); 						}
-						Object[] expanded = tv.getExpandedElements();
-						IStructuredSelection sel = (IStructuredSelection) tv
-								.getSelection();
 
-						if (needsNewInput)
+
+						if (needsNewInput) {
+							Object[] expanded = tv.getExpandedElements();
 							tv.setInput(ResourcesPlugin.getWorkspace()
 									.getRoot());
-						else
+							tv.setExpandedElements(expanded);
+						} else
 							tv.refresh(true);
-						tv.setExpandedElements(expanded);
-
-						Object selected = sel.getFirstElement();
-						if (selected != null)
-							tv.reveal(selected);
 
 						IViewPart part = PlatformUI.getWorkbench()
 								.getActiveWorkbenchWindow().getActivePage()
