@@ -53,6 +53,7 @@
 		attachCommitSelectionChanged();
 		initActions();
 
+		getSite().setSelectionProvider(graph.getTableView());
 		getSite().registerContextMenu(POPUP_ID, popupMgr, graph.getTableView());
 		layout();
 
