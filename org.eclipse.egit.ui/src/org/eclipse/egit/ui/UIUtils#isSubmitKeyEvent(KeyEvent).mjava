@@ -1,0 +1,4 @@
+	public static boolean isSubmitKeyEvent(KeyEvent event) {
+		return event.stateMask == SUBMIT_KEY_STROKE.getModifierKeys() && event.keyCode == SUBMIT_KEY_STROKE.getNaturalKey();
+	}
+
