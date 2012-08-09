@@ -1,0 +1,10 @@
+	private boolean isDescendantOfRoots(IResource resource) {
+		for (int l = 0; l < roots.length; l++) {
+			IResource root = roots[l];
+			if (root.getFullPath().isPrefixOf(resource.getFullPath())) {
+				return true;
+			}
+		}
+		return false;
+	}
+

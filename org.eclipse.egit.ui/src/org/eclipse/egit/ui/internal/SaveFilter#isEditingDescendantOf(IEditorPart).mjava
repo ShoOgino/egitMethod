@@ -1,0 +1,8 @@
+	private boolean isEditingDescendantOf(IEditorPart part) {
+		IFile file = ResourceUtil.getFile(part.getEditorInput());
+		if (file != null) {
+			return isDescendantOfRoots(file);
+		}
+		return false;
+	}
+

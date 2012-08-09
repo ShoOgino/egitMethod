@@ -1,0 +1,5 @@
+	public RepositorySaveableFilter(Repository repository) {
+		super(ProjectUtil.getProjects(repository));
+		this.workDir = new Path(repository.getWorkTree().getAbsolutePath());
+	}
+

@@ -1,0 +1,4 @@
+	public SaveFilter(IResource[] roots) {
+		this.roots = roots;
+	}
+

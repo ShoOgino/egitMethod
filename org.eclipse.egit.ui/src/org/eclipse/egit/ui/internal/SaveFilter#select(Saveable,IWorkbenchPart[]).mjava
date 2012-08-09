@@ -1,0 +1,17 @@
+	public boolean select(Saveable saveable,
+			IWorkbenchPart[] containingParts) {
+		if (isDescendantOfRoots(saveable)) {
+			return true;
+		}
+		for (int i = 0; i < containingParts.length; i++) {
+			IWorkbenchPart workbenchPart = containingParts[i];
+			if (workbenchPart instanceof IEditorPart) {
+				IEditorPart editorPart = (IEditorPart) workbenchPart;
+				if (isEditingDescendantOf(editorPart)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
