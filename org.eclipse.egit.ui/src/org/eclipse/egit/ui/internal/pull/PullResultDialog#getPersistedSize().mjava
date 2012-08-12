@@ -1,0 +1,11 @@
+	private Point getPersistedSize() {
+		boolean oldPersistSize = persistSize;
+		persistSize = true;
+		try {
+			Point persistedSize = super.getInitialSize();
+			return persistedSize;
+		} finally {
+			persistSize = oldPersistSize;
+		}
+	}
+

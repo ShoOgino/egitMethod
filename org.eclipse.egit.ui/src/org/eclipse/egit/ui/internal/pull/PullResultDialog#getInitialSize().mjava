@@ -1,0 +1,10 @@
+	@Override
+	protected Point getInitialSize() {
+		if (!persistSize) {
+			Point size = super.getInitialSize();
+			size.x = getPersistedSize().x;
+			return size;
+		}
+		return super.getInitialSize();
+	}
+

@@ -4,7 +4,6 @@
 		setBlockOnOpen(false);
 		this.repo = repo;
 		this.result = result;
-		hasUpdates = hasFetchResults() || hasMergeResults()
-				|| hasRebaseResults();
+		persistSize = hasFetchResults() || hasMergeResults();
 	}
 
