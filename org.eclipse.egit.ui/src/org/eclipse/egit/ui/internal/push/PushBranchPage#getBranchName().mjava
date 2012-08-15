@@ -1,0 +1,4 @@
+	String getBranchName() {
+		return branchNameText.getText();
+	}
+

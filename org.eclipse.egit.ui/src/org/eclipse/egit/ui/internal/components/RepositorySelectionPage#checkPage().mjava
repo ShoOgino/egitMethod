@@ -1,4 +1,4 @@
-	private void checkPage() {
+	protected void checkPage() {
 		if (isURISelected()) {
 			assert uri != null;
 			if (uriText.getText().length() == 0) {

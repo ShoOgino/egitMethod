@@ -1,0 +1,4 @@
+	public String getRemoteName() {
+		return remoteName;
+	}
+

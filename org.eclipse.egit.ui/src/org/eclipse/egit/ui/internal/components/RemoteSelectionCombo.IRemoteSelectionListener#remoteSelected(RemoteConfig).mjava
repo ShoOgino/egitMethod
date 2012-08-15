@@ -1,0 +1,2 @@
+		void remoteSelected(RemoteConfig remoteConfig);
+

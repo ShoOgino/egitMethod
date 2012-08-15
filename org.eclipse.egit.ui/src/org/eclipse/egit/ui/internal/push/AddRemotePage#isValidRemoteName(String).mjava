@@ -1,0 +1,4 @@
+	private static boolean isValidRemoteName(String remoteName) {
+		String testRef = Constants.R_REMOTES + remoteName + "/test"; 		return Repository.isValidRefName(testRef);
+	}
+

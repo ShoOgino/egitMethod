@@ -1,0 +1,5 @@
+	public PushUpstreamOrBranchAction() {
+		super(ActionCommands.SIMPLE_PUSH_ACTION,
+				new PushUpstreamOrBranchActionHandler());
+	}
+

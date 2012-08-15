@@ -1,0 +1,4 @@
+	public void setShowNewRemoteButton(boolean showNewRemoteButton) {
+		this.showNewRemoteButton = showNewRemoteButton;
+	}
+

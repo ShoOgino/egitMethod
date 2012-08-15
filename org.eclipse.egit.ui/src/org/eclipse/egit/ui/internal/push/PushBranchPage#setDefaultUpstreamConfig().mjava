@@ -1,0 +1,8 @@
+	private void setDefaultUpstreamConfig() {
+		UpstreamConfig defaultUpstreamConfig = UpstreamConfig.getDefault(
+				repository,
+				Constants.R_REMOTES + Constants.DEFAULT_REMOTE_NAME
+						+ "/" + Repository.shortenRefName(ref.getName())); 		upstreamConfigComponent.setUpstreamConfig(defaultUpstreamConfig);
+		upstreamConfig = defaultUpstreamConfig;
+	}
+

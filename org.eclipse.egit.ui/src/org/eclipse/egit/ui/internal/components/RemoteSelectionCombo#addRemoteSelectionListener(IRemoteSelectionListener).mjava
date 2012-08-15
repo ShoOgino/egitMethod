@@ -1,0 +1,5 @@
+	public void addRemoteSelectionListener(
+			IRemoteSelectionListener selectionListener) {
+		selectionListeners.add(selectionListener);
+	}
+

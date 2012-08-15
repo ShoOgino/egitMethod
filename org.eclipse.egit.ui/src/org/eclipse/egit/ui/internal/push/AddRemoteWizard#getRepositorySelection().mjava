@@ -1,0 +1,4 @@
+	public RepositorySelection getRepositorySelection() {
+		return page.getSelection();
+	}
+
