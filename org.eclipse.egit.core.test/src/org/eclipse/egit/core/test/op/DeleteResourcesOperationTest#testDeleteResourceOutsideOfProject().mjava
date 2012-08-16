@@ -7,10 +7,14 @@
 		IWorkspaceRoot root = project.getWorkspace().getRoot();
 		IResource resource = root.getFile(path);
 
+		initIndexDiffCache(repository1.getRepository());
+
+		JobSchedulingAssert jobSchedulingAssertion = JobSchedulingAssert
+				.forFamily(JobFamilies.INDEX_DIFF_CACHE_UPDATE);
 		deleteResources(Arrays.asList(resource));
 
 		assertFalse("File should have been deleted", outsideOfProject.exists());
-		Job[] indexDiffCacheJobs = Job.getJobManager().find(JobFamilies.INDEX_DIFF_CACHE_UPDATE);
-		assertTrue("Should cause an index diff cache job", indexDiffCacheJobs.length > 0);
+		jobSchedulingAssertion
+				.assertScheduled("Delete of file outside of workspace should have cause an index diff cache job.");
 	}
 
