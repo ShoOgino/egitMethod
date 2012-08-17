@@ -1,8 +1,8 @@
 	public static List<ThreeWayDiffEntry> scan(TreeWalk walk)
 			throws IOException {
-		if (walk.getTreeCount() != 3)
+		if (walk.getTreeCount() != 3 && walk.getTreeCount() != 4)
 			throw new IllegalArgumentException(
-					"TreeWalk need to have exactly three trees"); 		if (walk.isRecursive())
+					"TreeWalk need to have three or four trees"); 		if (walk.isRecursive())
 			throw new IllegalArgumentException(
 					"TreeWalk shouldn't be recursive."); 
 		List<ThreeWayDiffEntry> r = new ArrayList<ThreeWayDiffEntry>();
