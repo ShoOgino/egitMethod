@@ -1,0 +1,12 @@
+	private static List<Ref> getBranches(RevCommit commit,
+			Collection<Ref> allRefs, Repository db)
+			throws MissingObjectException, IncorrectObjectTypeException,
+			IOException {
+		RevWalk revWalk = new RevWalk(db);
+		try {
+			return findBranchesReachableFrom(commit, revWalk, allRefs);
+		} finally {
+			revWalk.dispose();
+		}
+	}
+
