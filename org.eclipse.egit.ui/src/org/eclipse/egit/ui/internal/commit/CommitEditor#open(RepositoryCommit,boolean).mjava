@@ -1,0 +1,7 @@
+	public static final IEditorPart open(RepositoryCommit commit, boolean activateOnOpen)
+			throws PartInitException {
+		CommitEditorInput input = new CommitEditorInput(commit);
+		return IDE.openEditor(PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getActivePage(), input, ID, activateOnOpen);
+	}
+
