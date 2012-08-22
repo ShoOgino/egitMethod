@@ -1,5 +1,6 @@
 	public static void show(final CheckoutResult result,
 			final Repository repository, final String target) {
+		BranchResultDialog.target = target;
 		if (result.getStatus() == CheckoutResult.Status.CONFLICTS)
 			PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
 				public void run() {
