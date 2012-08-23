@@ -15,9 +15,15 @@
 								textWidget.getText(), MAX_LINE_WIDTH,
 								lineDelimiter);
 						active = false;
-						for (WrapEdit wrapEdit : wrapEdits)
-							textWidget.replaceTextRange(wrapEdit.getStart(), wrapEdit.getLength(), lineDelimiter);
-						active = true;
+						textWidget.setRedraw(false);
+						try {
+							for (WrapEdit wrapEdit : wrapEdits)
+								textWidget.replaceTextRange(wrapEdit.getStart(), wrapEdit.getLength(),
+										wrapEdit.getReplacement());
+						} finally {
+							textWidget.setRedraw(true);
+							active = true;
+						}
 					}
 				};
 				textWidget.addModifyListener(hardWrapModifyListener);
