@@ -1,0 +1,4 @@
+	public boolean isMergeSquash() {
+		return mergeSquash;
+	}
+
