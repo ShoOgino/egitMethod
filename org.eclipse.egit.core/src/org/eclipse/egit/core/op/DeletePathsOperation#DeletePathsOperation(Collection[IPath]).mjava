@@ -1,0 +1,5 @@
+	public DeletePathsOperation(final Collection<IPath> paths) {
+		this.paths = paths;
+		schedulingRule = calculateSchedulingRule();
+	}
+

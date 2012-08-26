@@ -1,7 +1,0 @@
-	public DeleteResourcesOperation(final Collection<IResource> resources) {
-		this.resources = resources;
-
-		IResource[] r = resources.toArray(new IResource[resources.size()]);
-		schedulingRule = RuleUtil.getRuleForRepositories(r);
-	}
-

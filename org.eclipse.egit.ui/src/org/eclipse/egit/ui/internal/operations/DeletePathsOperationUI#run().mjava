@@ -1,0 +1,8 @@
+	public void run() {
+		List<IResource> resources = getSelectedResourcesIfAllExist();
+		if (resources != null)
+			runNormalAction(resources);
+		else
+			runNonWorkspaceAction();
+	}
+

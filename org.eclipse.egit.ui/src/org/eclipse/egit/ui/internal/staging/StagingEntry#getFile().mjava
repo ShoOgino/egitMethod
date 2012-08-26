@@ -1,5 +1,5 @@
 	public IFile getFile() {
-		IPath absolutePath = new Path(repository.getWorkTree().getAbsolutePath()).append(path);
+		IPath absolutePath = getLocation();
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		IFile resource = root.getFileForLocation(absolutePath);
 		if (resource == null)

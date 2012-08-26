@@ -1,0 +1,6 @@
+	public DeletePathsOperationUI(final Collection<IPath> paths,
+			final IShellProvider shellProvider) {
+		this.paths = paths;
+		this.shellProvider = shellProvider;
+	}
+
