@@ -1,5 +1,0 @@
-		public WrapEdit(int start, int length) {
-			this.start = start;
-			this.length = length;
-		}
-
