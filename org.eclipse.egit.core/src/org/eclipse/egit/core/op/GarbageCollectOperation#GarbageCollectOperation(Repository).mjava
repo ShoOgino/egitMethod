@@ -1,0 +1,4 @@
+	public GarbageCollectOperation(Repository repository) {
+		this.repository = repository;
+	}
+
