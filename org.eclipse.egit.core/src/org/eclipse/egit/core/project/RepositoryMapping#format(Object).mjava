@@ -1,0 +1,7 @@
+	private String format(Object o) {
+		if (o == null)
+			return "<null>"; 		else if (o.toString().length() == 0)
+			return "<empty>"; 		else
+			return o.toString();
+	}
+

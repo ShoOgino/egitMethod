@@ -1,3 +1,6 @@
 	public String toString() {
-		return "RepositoryMapping[" 				+ containerPathString + " -> " 				+ gitDirPathString + "]"; 	}
+		IPath absolutePath = getGitDirAbsolutePath();
+		return "RepositoryMapping[" 				+ format(containerPathString)
+				+ " -> '" 				+ format(gitDirPathString)
+				+ "', absolute path: '"  				+ format(absolutePath) + "' ]"; 	}
 
