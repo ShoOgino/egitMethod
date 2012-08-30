@@ -1,4 +1,0 @@
-	public FileRevisionTypedElement(IFileRevision fileRevision) {
-		this(fileRevision, null);
-	}
-
