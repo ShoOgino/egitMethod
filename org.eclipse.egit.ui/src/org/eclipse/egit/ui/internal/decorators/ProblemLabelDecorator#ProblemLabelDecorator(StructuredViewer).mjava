@@ -1,0 +1,6 @@
+	public ProblemLabelDecorator(StructuredViewer viewer) {
+		this.viewer = viewer;
+		if (this.viewer != null)
+			ResourcesPlugin.getWorkspace().addResourceChangeListener(this);
+	}
+
