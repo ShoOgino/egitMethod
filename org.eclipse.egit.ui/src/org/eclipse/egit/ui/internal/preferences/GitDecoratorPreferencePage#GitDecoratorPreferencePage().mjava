@@ -1,4 +1,0 @@
-	public GitDecoratorPreferencePage() {
-		setDescription(UIText.DecoratorPreferencesPage_description);
-	}
-
