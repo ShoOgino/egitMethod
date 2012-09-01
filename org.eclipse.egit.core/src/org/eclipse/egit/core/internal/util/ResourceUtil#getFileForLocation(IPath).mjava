@@ -1,0 +1,5 @@
+	public static IFile getFileForLocation(IPath location) {
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		return root.getFileForLocation(location);
+	}
+

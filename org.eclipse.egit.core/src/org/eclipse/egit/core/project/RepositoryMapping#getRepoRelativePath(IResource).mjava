@@ -1,7 +1,7 @@
 	public String getRepoRelativePath(final IResource rsrc) {
 		IPath location = rsrc.getLocation();
 		if (location == null)
-			location = rsrc.getFullPath();
+			return null;
 		return getRepoRelativePath(location);
 	}
 

@@ -5,7 +5,7 @@
 			if (resource != null)
 				result.add(resource);
 			else
-				extractResourcesFromMapping(result, o);
+				result.addAll(extractResourcesFromMapping(o));
 		}
 		return result.toArray(new IResource[result.size()]);
 	}

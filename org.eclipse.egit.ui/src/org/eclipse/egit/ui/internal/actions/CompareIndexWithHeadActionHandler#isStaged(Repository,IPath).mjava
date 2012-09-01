@@ -1,6 +1,6 @@
 	private boolean isStaged(Repository repository,
-			IResource resource) {
-		String resRelPath = RepositoryMapping.getMapping(resource).getRepoRelativePath(resource);
+			IPath location) {
+		String resRelPath = RepositoryMapping.getMapping(location).getRepoRelativePath(location);
 
 		if (resRelPath == null || resRelPath.length() == 0) {
 			return false;
@@ -17,7 +17,7 @@
 					|| indexDiff.getRemoved().contains(resRelPath);
 		} catch (IOException e) {
 			Activator.error(NLS.bind(UIText.GitHistoryPage_errorLookingUpPath,
-					resource.getFullPath().toString()), e);
+					location.toString()), e);
 			return false;
 		}
 	}
