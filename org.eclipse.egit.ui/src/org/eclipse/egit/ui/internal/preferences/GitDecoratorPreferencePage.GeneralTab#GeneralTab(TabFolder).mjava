@@ -9,6 +9,14 @@
 			recomputeAncestorDecorations
 					.setToolTipText(UIText.DecoratorPreferencesPage_recomputeAncestorDecorationsTooltip);
 
+			SWTUtils.createPreferenceLink(
+					(IWorkbenchPreferenceContainer) getContainer(), composite,
+					"org.eclipse.ui.preferencePages.Decorators", 					UIText.DecoratorPreferencesPage_labelDecorationsLink);
+
+			SWTUtils.createPreferenceLink(
+					(IWorkbenchPreferenceContainer) getContainer(), composite,
+					"org.eclipse.ui.preferencePages.ColorsAndFonts", 					UIText.DecoratorPreferencesPage_colorsAndFontsLink);
+
 			recomputeAncestorDecorations.addSelectionListener(this);
 
 			final TabItem tabItem = new TabItem(parent, SWT.NONE);
