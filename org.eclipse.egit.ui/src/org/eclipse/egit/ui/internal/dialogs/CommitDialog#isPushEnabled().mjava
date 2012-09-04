@@ -1,0 +1,4 @@
+	public boolean isPushEnabled() {
+		return pushEnabled;
+	}
+
