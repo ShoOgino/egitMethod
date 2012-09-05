@@ -250,11 +250,19 @@
 				if (UIUtils.isSubmitKeyEvent(event)) {
 					event.doit = false;
 					commit();
-				} else if (event.keyCode == SWT.TAB
-						&& (event.stateMask & SWT.SHIFT) == 0) {
-					event.doit = false;
-					authorText.setFocus();
 				}
+			}
+		});
+
+		commitMessageText.getTextWidget().addFocusListener(new FocusListener() {
+			public void focusGained(FocusEvent e) {
+				commitAction.setToolTipText(MessageFormat.format(
+						UIText.StagingView_CommitToolTip,
+						UIUtils.SUBMIT_KEY_STROKE.format()));
+			}
+
+			public void focusLost(FocusEvent e) {
+				commitAction.setToolTipText(null);
 			}
 		});
 
