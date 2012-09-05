@@ -1,0 +1,4 @@
+	public String getSrcRev() {
+		return srcRev;
+	}
+
