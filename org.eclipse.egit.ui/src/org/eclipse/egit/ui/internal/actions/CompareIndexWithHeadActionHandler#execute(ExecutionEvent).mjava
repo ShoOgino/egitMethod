@@ -10,7 +10,7 @@
 
 		ITypedElement next;
 		try {
-			base = CompareUtils.getHeadTypedElement(baseFile);
+			base = CompareUtils.getIndexTypedElement(baseFile);
 			Ref head = repository.getRef(Constants.HEAD);
 			if (head == null || head.getObjectId() == null)
 				next = new EmptyTypedElement(""); 			else {
