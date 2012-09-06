@@ -1,0 +1,7 @@
+	public CommitJob(final Repository repository,
+			final CommitOperation commitOperation) {
+		super(UIText.CommitAction_CommittingChanges);
+		this.repository = repository;
+		this.commitOperation = commitOperation;
+	}
+
