@@ -10,10 +10,6 @@
 		if (mapping == null)
 			return null;
 
-		if (resource.getType() != IResource.PROJECT
-				&& Team.isIgnoredHint(resource))
-			return null;
-
 		if (mapping.getRepoRelativePath(resource) == null)
 			return null;
 

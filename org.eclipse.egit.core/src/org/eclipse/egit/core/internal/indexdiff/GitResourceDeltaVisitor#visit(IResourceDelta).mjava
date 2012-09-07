@@ -1,7 +1,5 @@
 	public boolean visit(IResourceDelta delta) throws CoreException {
 		final IResource resource = delta.getResource();
-		if (Team.isIgnoredHint(resource))
-			return false;
 		final RepositoryMapping mapping = RepositoryMapping
 				.getMapping(resource);
 		if (mapping == null || mapping.getRepository() != repository)
