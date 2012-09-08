@@ -2,8 +2,23 @@
 		try {
 			Ref head = repository.getRef(Constants.HEAD);
 			if (head == null || head.getObjectId() == null)
-				return new EmptyTypedElement(""); 			RevCommit headCommit = new RevWalk(repository).parseCommit(head.getObjectId());
-			return CompareUtils.getFileRevisionTypedElement(repoRelativePath, headCommit, repository);
+				return new EmptyTypedElement(""); 
+			RevCommit latestFileCommit;
+			RevWalk rw = new RevWalk(repository);
+			try {
+				RevCommit headCommit = rw.parseCommit(head.getObjectId());
+				rw.markStart(headCommit);
+				rw.setTreeFilter(AndTreeFilter.create(
+						PathFilter.create(repoRelativePath),
+						TreeFilter.ANY_DIFF));
+				latestFileCommit = rw.next();
+				if (latestFileCommit == null)
+					latestFileCommit = headCommit;
+			} finally {
+				rw.release();
+			}
+
+			return CompareUtils.getFileRevisionTypedElement(repoRelativePath, latestFileCommit, repository);
 		} catch (IOException e) {
 			Activator.handleError(UIText.CompareUtils_errorGettingHeadCommit,
 					e, true);
