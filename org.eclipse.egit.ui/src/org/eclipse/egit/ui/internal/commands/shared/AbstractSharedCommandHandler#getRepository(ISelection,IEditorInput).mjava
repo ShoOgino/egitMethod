@@ -1,4 +1,4 @@
-	protected static Repository getRepository(ISelection selection) {
+	protected static Repository getRepository(ISelection selection, IEditorInput editorInput) {
 		if (selection == null || selection.isEmpty())
 			return null;
 		if (selection instanceof IStructuredSelection) {
@@ -34,12 +34,9 @@
 			}
 			return result;
 		}
-		if (selection instanceof TextSelection) {
-			IEditorInput activeEditor = WORKBENCH.getActiveWorkbenchWindow()
-					.getActivePage().getActiveEditor().getEditorInput();
-			IResource resource = (IResource) activeEditor
+		if (selection instanceof TextSelection && editorInput != null) {
+			IResource resource = (IResource) editorInput
 					.getAdapter(IResource.class);
-
 			if (resource != null) {
 				RepositoryMapping mapping = RepositoryMapping
 						.getMapping(resource);
