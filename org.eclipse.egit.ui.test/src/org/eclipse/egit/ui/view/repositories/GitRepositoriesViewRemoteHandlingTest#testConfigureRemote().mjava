@@ -74,7 +74,7 @@
 		item = myRepoViewUtil.getRemotesItem(tree, repositoryFile).expand()
 				.getNode("testRemote").expand();
 		children = item.getNodes();
-		assertTrue(children.size() == 2);
+		assertEquals(2, children.size());
 		item.getNode(0).select();
 		ContextMenuHelper.clickContextMenu(tree, myUtil
 				.getPluginLocalizedValue("RemoveFetchCommand"));
@@ -82,7 +82,7 @@
 		item = myRepoViewUtil.getRemotesItem(tree, repositoryFile).expand()
 				.getNode("testRemote").expand();
 		children = item.getNodes();
-		assertTrue(children.size() == 1);
+		assertEquals(1, children.size());
 		item.getNode(0).select();
 		ContextMenuHelper.clickContextMenu(tree, myUtil
 				.getPluginLocalizedValue("RemovePushCommand"));
@@ -90,7 +90,7 @@
 		item = myRepoViewUtil.getRemotesItem(tree, repositoryFile).expand()
 				.getNode("testRemote").expand();
 		children = item.getNodes();
-		assertTrue(children.size() == 0);
+		assertEquals(0, children.size());
 
 		myRepoViewUtil.getRemotesItem(tree, repositoryFile).expand().getNode(
 				"testRemote").select();
@@ -176,7 +176,7 @@
 		item = myRepoViewUtil.getRemotesItem(tree, repositoryFile).expand()
 				.getNode("testRemote").expand();
 		children = item.getNodes();
-		assertTrue(children.size() == 1);
+		assertEquals(1, children.size());
 		item.select();
 		ContextMenuHelper.clickContextMenu(tree, myUtil
 				.getPluginLocalizedValue("RepoViewRemoveRemote.label"));
@@ -187,7 +187,7 @@
 		item = myRepoViewUtil.getRemotesItem(tree, repositoryFile).expand()
 				.getNode("testRemote").expand();
 		children = item.getNodes();
-		assertTrue(children.size() == 1);
+		assertEquals(1, children.size());
 
 		ContextMenuHelper.clickContextMenu(tree, myUtil
 				.getPluginLocalizedValue("RepoViewRemoveRemote.label"));
