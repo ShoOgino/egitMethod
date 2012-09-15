@@ -1,3 +1,4 @@
+	@SuppressWarnings("boxing")
 	@Test
 	public void shouldBeSymmetric() throws Exception {
 		GitModelBlob left = createGitModelBlob(zeroId(), getFile1Location());
@@ -6,6 +7,6 @@
 		boolean actual1 = left.equals(right);
 		boolean actual2 = right.equals(left);
 
-		assertTrue(actual1 == actual2);
+		assertEquals(actual1, actual2);
 	}
 
