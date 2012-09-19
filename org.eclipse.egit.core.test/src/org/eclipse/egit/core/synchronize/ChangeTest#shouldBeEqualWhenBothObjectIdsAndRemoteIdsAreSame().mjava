@@ -8,6 +8,6 @@
 		boolean result = c1.equals(c2);
 
 		assertTrue(result);
-		assertTrue(c1.hashCode() == c2.hashCode());
+		assertEquals(c1.hashCode(), c2.hashCode());
 	}
 
