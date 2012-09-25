@@ -1,0 +1,4 @@
+	public boolean isPushRequested() {
+		return isPushRequested;
+	}
+
