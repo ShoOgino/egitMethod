@@ -1,0 +1,8 @@
+	public CommitSelectionDialog(Shell parentShell, Repository repository,
+			IResource[] filterResources) {
+		super(parentShell);
+		setShellStyle(getShellStyle() | SWT.SHELL_TRIM);
+		this.repository = repository;
+		this.filterResources = filterResources;
+	}
+
