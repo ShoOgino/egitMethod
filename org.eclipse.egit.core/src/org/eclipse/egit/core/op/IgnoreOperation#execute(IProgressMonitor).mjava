@@ -1,12 +1,12 @@
 	public void execute(IProgressMonitor monitor) throws CoreException {
-		monitor.beginTask(CoreText.IgnoreOperation_taskName, resources.length);
+		monitor.beginTask(CoreText.IgnoreOperation_taskName, paths.size());
 		try {
-			for (IResource resource : resources) {
+			for (IPath path : paths) {
 				if (monitor.isCanceled())
 					break;
 
-				if (!isIgnored(resource))
-					addIgnore(monitor, resource);
+				if (!isIgnored(path))
+					addIgnore(monitor, path);
 				monitor.worked(1);
 			}
 			monitor.done();
