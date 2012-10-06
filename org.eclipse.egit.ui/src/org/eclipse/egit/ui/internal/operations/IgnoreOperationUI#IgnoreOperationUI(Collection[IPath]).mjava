@@ -1,0 +1,4 @@
+	public IgnoreOperationUI(final Collection<IPath> paths) {
+		this.paths = paths;
+	}
+
