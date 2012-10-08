@@ -1,0 +1,46 @@
+	public static int[] calculateWrapOffsets(final String line, final int maxLineLength) {
+		if (line.length() == 0)
+			return null;
+
+		IntList wrapOffsets = new IntList();
+		int wordStart = 0;
+		int lineStart = 0;
+		boolean lastWasSpace = true;
+		boolean onlySpaces = true;
+		for (int i = 0; i < line.length(); i++) {
+			char ch = line.charAt(i);
+			if (ch == ' ') {
+				lastWasSpace = true;
+			} else if (ch == '\n') {
+				lineStart = i + 1;
+				wordStart = i + 1;
+				lastWasSpace = true;
+				onlySpaces = true;
+			} else { 				if (lastWasSpace) {
+					lastWasSpace = false;
+					if (!onlySpaces) { 						wordStart = i;
+					}
+				} else {
+					onlySpaces = false;
+				}
+				if (i >= lineStart + maxLineLength) {
+					if (wordStart != lineStart) { 						wrapOffsets.add(wordStart);
+						lineStart = wordStart;
+						onlySpaces = true;
+					}
+				}
+			}
+		}
+
+		int size = wrapOffsets.size();
+		if (size == 0) {
+			return null;
+		} else {
+			int[] result = new int[size];
+			for (int i = 0; i < size; i++) {
+				result[i] = wrapOffsets.get(i);
+			}
+			return result;
+		}
+	}
+

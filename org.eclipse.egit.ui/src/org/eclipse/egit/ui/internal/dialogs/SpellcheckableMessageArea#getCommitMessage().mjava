@@ -1,5 +1,8 @@
 	public String getCommitMessage() {
 		String text = getText();
-		return Utils.normalizeLineEndings(text);
+		text = Utils.normalizeLineEndings(text);
+		if (shouldHardWrap())
+			text = hardWrap(text);
+		return text;
 	}
 

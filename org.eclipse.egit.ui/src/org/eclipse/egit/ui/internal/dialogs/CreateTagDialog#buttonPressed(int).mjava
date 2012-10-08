@@ -15,7 +15,7 @@
 			tagName = tagNameText.getText();
 			if (commitCombo != null)
 				tagCommit = commitCombo.getValue();
-			tagMessage = tagMessageText.getText();
+			tagMessage = tagMessageText.getCommitMessage();
 			overwriteTag = overwriteButton.getSelection();
 		default:
 			super.buttonPressed(buttonId);
