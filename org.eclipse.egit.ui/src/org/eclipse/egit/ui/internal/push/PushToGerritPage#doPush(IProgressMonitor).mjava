@@ -5,8 +5,10 @@
 			URIish uri = new URIish(uriCombo.getText());
 			Ref currentHead = repository.getRef(Constants.HEAD);
 			RemoteRefUpdate update = new RemoteRefUpdate(repository,
-					currentHead,
-					"refs/for/" + branchText.getText(), false, null, null); 			PushOperationSpecification spec = new PushOperationSpecification();
+					currentHead, prefixCombo.getItem(prefixCombo
+							.getSelectionIndex()) + branchText.getText(),
+					false, null, null);
+			PushOperationSpecification spec = new PushOperationSpecification();
 
 			spec.addURIRefUpdates(uri, Arrays.asList(update));
 			PushOperationUI op = new PushOperationUI(repository, spec, timeout,
