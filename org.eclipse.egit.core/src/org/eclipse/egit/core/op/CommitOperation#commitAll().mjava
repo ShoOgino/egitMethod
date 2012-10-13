@@ -1,0 +1,15 @@
+	private void commitAll() throws TeamException {
+
+		Git git = new Git(repo);
+		try {
+			CommitCommand commitCommand = git.commit();
+			setAuthorAndCommitter(commitCommand);
+			commit = commitCommand.setAll(true).setMessage(message)
+					.setInsertChangeId(createChangeId).call();
+		} catch (JGitInternalException e) {
+			throw new TeamException(CoreText.MergeOperation_InternalError, e);
+		} catch (GitAPIException e) {
+			throw new TeamException(e.getLocalizedMessage(), e);
+		}
+	}
+
