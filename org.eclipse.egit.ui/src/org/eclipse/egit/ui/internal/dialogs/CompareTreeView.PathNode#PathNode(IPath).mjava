@@ -1,0 +1,4 @@
+		public PathNode(IPath path) {
+			this.path = path;
+		}
+

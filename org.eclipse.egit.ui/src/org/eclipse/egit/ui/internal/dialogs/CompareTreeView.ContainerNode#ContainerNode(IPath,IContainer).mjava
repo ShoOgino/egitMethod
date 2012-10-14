@@ -1,0 +1,5 @@
+		public ContainerNode(IPath path, IContainer resource) {
+			super(path);
+			this.resource = resource;
+		}
+

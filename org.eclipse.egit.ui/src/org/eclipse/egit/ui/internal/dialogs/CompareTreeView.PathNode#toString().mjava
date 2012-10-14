@@ -1,4 +1,4 @@
 		@Override
 		public String toString() {
-			return type.name() + ": " + path.toString(); 		}
+			return getType().name() + ": " + path.toString(); 		}
 

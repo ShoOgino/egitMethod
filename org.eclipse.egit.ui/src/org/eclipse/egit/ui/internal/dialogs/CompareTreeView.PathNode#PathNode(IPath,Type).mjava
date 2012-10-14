@@ -1,5 +1,0 @@
-		public PathNode(IPath path, Type type) {
-			this.path = path;
-			this.type = type;
-		}
-

@@ -4,21 +4,19 @@
 				.getPluginLocalizedValue("CompareWithIndexAction_label");
 		clickCompareWith(compareWithIndexActionLabel);
 
-		assertEquals(0, bot.viewById(CompareTreeView.ID).bot().tree()
-				.getAllItems().length);
+		assertTreeCompareNoChange();
 		setTestFileContent("Hello there");
 
 		clickCompareWith(compareWithIndexActionLabel);
 
-		waitUntilCompareTreeViewTreeHasNodeCount(1);
+		assertTreeCompareChanges(1);
 
 		new Git(lookupRepository(repositoryFile)).add().addFilepattern(
 				PROJ1 + "/" + FOLDER + "/" + FILE1).call();
 
 		clickCompareWith(compareWithIndexActionLabel);
 
-		assertEquals(0, bot.viewById(CompareTreeView.ID).bot().tree()
-				.getAllItems().length);
+		assertTreeCompareNoChange();
 
 		ResetOperation rop = new ResetOperation(
 				lookupRepository(repositoryFile), "refs/heads/master",
@@ -27,6 +25,6 @@
 
 		clickCompareWith(compareWithIndexActionLabel);
 
-		waitUntilCompareTreeViewTreeHasNodeCount(0);
+		assertTreeCompareNoChange();
 	}
 
