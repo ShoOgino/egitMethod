@@ -24,6 +24,10 @@
 					return I_AM_DONE;
 				case UNTRACKED:
 					return FINISH_FOR_ME;
+				case UNMERGED:
+					tree.failed(new Status(IStatus.WARNING, Activator.getPluginId(),
+							CoreText.MoveDeleteHook_unmergedFileInFolderError));
+					return I_AM_DONE;
 				}
 			}
 			tree.standardMoveFolder(srcf, dstf, updateFlags, monitor);
