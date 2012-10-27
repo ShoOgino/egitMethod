@@ -1,0 +1,11 @@
+	public void join() {
+		try {
+			doJoin();
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+			throw new RuntimeException("Thread was interrupted.", e);
+		} finally {
+			Job.getJobManager().removeJobChangeListener(listener);
+		}
+	}
+

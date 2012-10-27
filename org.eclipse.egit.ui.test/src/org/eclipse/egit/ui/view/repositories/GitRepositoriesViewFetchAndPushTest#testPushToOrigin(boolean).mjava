@@ -16,8 +16,7 @@
 
 		selectNode(tree, useRemote, false);
 
-		ContextMenuHelper.clickContextMenu(tree, myUtil
-				.getPluginLocalizedValue("SimplePushCommand"));
+		runPush(tree);
 
 		String destinationString = clonedRepositoryFile.getParentFile()
 				.getName()
@@ -25,7 +24,6 @@
 		String dialogTitle = NLS.bind(UIText.ResultDialog_title,
 				destinationString);
 
-		TestUtil.joinJobs(JobFamilies.PUSH);
 		SWTBotShell confirmed = bot.shell(dialogTitle);
 		SWTBotTreeItem[] treeItems = confirmed.bot().tree().getAllItems();
 		boolean newBranch = false;
@@ -39,8 +37,7 @@
 		assertTrue("New branch expected", newBranch);
 		selectNode(tree, useRemote, false);
 
-		ContextMenuHelper.clickContextMenu(tree, myUtil
-				.getPluginLocalizedValue("SimplePushCommand"));
+		runPush(tree);
 
 		confirmed = bot.shell(dialogTitle);
 		treeItems = confirmed.bot().tree().getAllItems();
@@ -60,8 +57,7 @@
 
 		selectNode(tree, useRemote, false);
 
-		ContextMenuHelper.clickContextMenu(tree, myUtil
-				.getPluginLocalizedValue("SimplePushCommand"));
+		runPush(tree);
 
 		confirmed = bot.shell(dialogTitle);
 		treeItems = confirmed.bot().tree().getAllItems();

@@ -1,0 +1,5 @@
+	public static JobJoiner startListening(Object jobFamily, long timeoutDuration,
+			TimeUnit timeoutUnit) {
+		return new JobJoiner(jobFamily, timeoutUnit.toMillis(timeoutDuration));
+	}
+

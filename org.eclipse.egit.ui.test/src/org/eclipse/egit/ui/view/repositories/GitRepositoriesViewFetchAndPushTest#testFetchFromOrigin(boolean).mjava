@@ -19,8 +19,7 @@
 				destinationString);
 
 		selectNode(tree, useRemote, true);
-		ContextMenuHelper.clickContextMenu(tree, myUtil
-				.getPluginLocalizedValue("SimpleFetchCommand"));
+		runFetch(tree);
 
 		SWTBotShell confirm = bot.shell(dialogTitle);
 		assertEquals("Wrong result tree row count", 0, confirm.bot().tree()
@@ -46,10 +45,8 @@
 		refreshAndWait();
 
 		selectNode(tree, useRemote, true);
-		ContextMenuHelper.clickContextMenu(tree, myUtil
-				.getPluginLocalizedValue("SimpleFetchCommand"));
+		runFetch(tree);
 
-		TestUtil.joinJobs(JobFamilies.FETCH);
 		confirm = bot.shell(dialogTitle);
 		SWTBotTreeItem[] treeItems = confirm.bot().tree().getAllItems();
 		boolean found = false;
@@ -62,8 +59,7 @@
 		confirm.close();
 
 		selectNode(tree, useRemote, true);
-		ContextMenuHelper.clickContextMenu(tree, myUtil
-				.getPluginLocalizedValue("SimpleFetchCommand"));
+		runFetch(tree);
 
 		confirm = bot.shell(dialogTitle);
 		assertEquals("Wrong result tree row count", 0, confirm.bot().tree()
