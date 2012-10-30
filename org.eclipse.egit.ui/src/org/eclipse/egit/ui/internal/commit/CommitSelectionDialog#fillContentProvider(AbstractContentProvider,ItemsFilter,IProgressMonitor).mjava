@@ -20,6 +20,7 @@
 							new RepositoryCommit(repository, commit),
 							itemsFilter);
 				}
+			} catch (RevisionSyntaxException ignored) {
 			} catch (IOException ignored) {
 			}
 			progressMonitor.worked(1);
