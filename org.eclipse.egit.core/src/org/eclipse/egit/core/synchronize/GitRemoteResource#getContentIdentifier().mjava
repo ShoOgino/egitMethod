@@ -1,7 +1,11 @@
 	public String getContentIdentifier() {
+		if (commitId == null)
+			return ""; 
 		StringBuilder s = new StringBuilder();
 		s.append(commitId.abbreviate(7).name());
-		s.append("..."); 		if (authorIdent != null) {
+		s.append("..."); 
+		PersonIdent authorIdent = commitId.getAuthorIdent();
+		if (authorIdent != null) {
 			s.append(" ("); 			s.append(authorIdent.getName());
 			s.append(")"); 		}
 		return s.toString();
