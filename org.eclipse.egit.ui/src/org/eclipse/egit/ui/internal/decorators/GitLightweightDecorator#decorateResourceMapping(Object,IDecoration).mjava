@@ -1,8 +1,13 @@
-	private void decorateResourceMapping(Object element, IDecoration decoration) {
+	private void decorateResourceMapping(Object element, IDecoration decoration) throws CoreException {
 		@SuppressWarnings("restriction")
 		ResourceMapping mapping = Utils.getResourceMapping(element);
 
-		IDecoratableResource decoRes = new DecoratableResourceMapping(mapping);
+		IDecoratableResource decoRes;
+		try {
+			decoRes = new DecoratableResourceMapping(mapping);
+		} catch (IOException e) {
+			throw new CoreException(Activator.createErrorStatus(UIText.Decorator_exceptionMessage, e));
+		}
 
 		if(!decoRes.isTracked())
 			return;
