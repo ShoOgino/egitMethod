@@ -4,12 +4,12 @@
 		ICompareInput input = createCompareInput();
 		getCompareConfiguration().setLeftEditable(isLeftEditable(input));
 		getCompareConfiguration().setRightEditable(isRightEditable(input));
-		ensureContentsCached(getLeftRevision(), getRightRevision(), monitor);
+		ensureContentsCached(getLeftRevision(), getRightRevision(), getAncestorRevision(), monitor);
 		initLabels(input);
 		setTitle(NLS.bind(UIText.GitCompareFileRevisionEditorInput_CompareInputTitle, new String[] { input.getName() }));
 
 		DiffNode flatDiffNode = new NotifiableDiffNode(null,
-				Differencer.CHANGE, null, left, right);
+				ancestor != null ? Differencer.CONFLICTING : Differencer.CHANGE, ancestor, left, right);
 		flatDiffView(flatDiffNode, (DiffNode) input);
 
 		return flatDiffNode;
