@@ -1,7 +1,8 @@
 	public void resetState() {
 		originalChangeId = null;
 		commitMessage = null;
-		previousCommitMessage =EMPTY_STRING;
+		commitMessageBeforeAmending = EMPTY_STRING;
+		previousCommitMessage = EMPTY_STRING;
 		author = null;
 		previousAuthor = null;
 		committer = null;
