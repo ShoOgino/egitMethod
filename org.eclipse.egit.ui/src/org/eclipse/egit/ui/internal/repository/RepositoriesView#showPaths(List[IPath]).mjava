@@ -1,9 +1,8 @@
-	private void showResources(final List<IResource> resources) {
+	private void showPaths(final List<IPath> paths) {
 		final List<RepositoryTreeNode> nodesToShow = new ArrayList<RepositoryTreeNode>();
 
-		IResource[] r = resources.toArray(new IResource[resources.size()]);
-		Map<Repository, Collection<String>> resourcesByRepo = ResourceUtil.splitResourcesByRepository(r);
-		for (Map.Entry<Repository, Collection<String>> entry : resourcesByRepo.entrySet()) {
+		Map<Repository, Collection<String>> pathsByRepo = ResourceUtil.splitPathsByRepository(paths);
+		for (Map.Entry<Repository, Collection<String>> entry : pathsByRepo.entrySet()) {
 			Repository repository = entry.getKey();
 			try {
 				boolean added = repositoryUtil.addConfiguredRepository(repository.getDirectory());

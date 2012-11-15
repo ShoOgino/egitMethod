@@ -1,4 +1,6 @@
 	private void showResource(final IResource resource) {
-		showResources(Arrays.asList(resource));
+		IPath location = resource.getLocation();
+		if (location != null)
+			showPaths(Arrays.asList(location));
 	}
 
