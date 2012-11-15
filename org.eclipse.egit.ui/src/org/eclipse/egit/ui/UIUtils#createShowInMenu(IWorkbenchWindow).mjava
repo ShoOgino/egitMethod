@@ -1,0 +1,6 @@
+	public static MenuManager createShowInMenu(IWorkbenchWindow workbenchWindow) {
+		MenuManager showInSubMenu = new MenuManager(getShowInMenuLabel());
+		showInSubMenu.add(ContributionItemFactory.VIEWS_SHOW_IN.create(workbenchWindow));
+		return showInSubMenu;
+	}
+
