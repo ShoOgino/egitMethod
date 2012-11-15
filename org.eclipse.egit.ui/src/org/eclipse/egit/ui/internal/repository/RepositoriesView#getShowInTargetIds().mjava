@@ -1,0 +1,10 @@
+	public String[] getShowInTargetIds() {
+		IStructuredSelection selection = (IStructuredSelection) getCommonViewer()
+				.getSelection();
+		for (Object element : selection.toList())
+			if (element instanceof RepositoryNode)
+				return new String[] { ReflogView.VIEW_ID };
+
+		return new String[] {};
+	}
+
