@@ -1,7 +1,0 @@
-	public LocalNonWorkspaceTypedElement(String path) {
-		super(ROOT.getFile(new Path(path)));
-		this.path = path;
-
-		exists = new File(path).exists();
-	}
-

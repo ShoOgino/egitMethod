@@ -1,5 +1,5 @@
 	@Override
 	public void update() {
-		exists = getResource().getFullPath().toFile().exists();
+		exists = path.toFile().exists();
 	}
 
