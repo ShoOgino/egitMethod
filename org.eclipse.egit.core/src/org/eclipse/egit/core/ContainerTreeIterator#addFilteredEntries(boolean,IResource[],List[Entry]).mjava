@@ -19,11 +19,12 @@
 			}
 
 			Set<File> resourceEntries = new HashSet<File>();
-			for (IResource resource : memberResources) {
-				IPath location = resource.getLocation();
-				if (location != null)
-					resourceEntries.add(location.toFile());
-			}
+			for (IResource resource : memberResources)
+				if (!resource.isLinked()) {
+					IPath location = resource.getLocation();
+					if (location != null)
+						resourceEntries.add(location.toFile());
+				}
 
 			IPath containerLocation = node.getLocation();
 			if (containerLocation != null) {
@@ -31,9 +32,7 @@
 				File[] children = folder.listFiles();
 				for (File child : children) {
 					if (resourceEntries.contains(child))
-						continue;
-
-					IPath childLocation = new Path(child.getAbsolutePath());
+						continue; 					IPath childLocation = new Path(child.getAbsolutePath());
 					IWorkspaceRoot root = node.getWorkspace().getRoot();
 					IContainer container = root.getContainerForLocation(childLocation);
 					if (container != null && container.isAccessible())

@@ -4,7 +4,8 @@
 
 		for (IResource resource : resources) {
 			RepositoryMapping rm = RepositoryMapping.getMapping(resource);
-			if (resource instanceof IProject)
+			if (rm == null)
+				continue; 			if (resource instanceof IProject)
 				result.put(rm.getRepository(), new HashSet<IContainer>());
 			else if (resource instanceof IContainer) {
 				Set<IContainer> containers = result.get(rm.getRepository());

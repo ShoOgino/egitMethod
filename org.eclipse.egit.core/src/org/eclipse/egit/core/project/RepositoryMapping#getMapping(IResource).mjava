@@ -2,6 +2,9 @@
 		if (isNonWorkspace(resource))
 			return null;
 
+		if (resource.isLinked(IResource.CHECK_ANCESTORS))
+			return getMapping(resource.getLocation());
+
 		IProject project = resource.getProject();
 		if (project == null)
 			return null;

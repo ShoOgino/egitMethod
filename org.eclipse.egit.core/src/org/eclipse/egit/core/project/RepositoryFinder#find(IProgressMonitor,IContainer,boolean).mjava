@@ -1,6 +1,7 @@
-	private void find(final IProgressMonitor m, final IContainer c)
-			throws CoreException {
-		final IPath loc = c.getLocation();
+	private void find(final IProgressMonitor m, final IContainer c, boolean searchLinkedFolders)
+				throws CoreException {
+		if (!searchLinkedFolders && c.isLinked())
+			return; 		final IPath loc = c.getLocation();
 
 		m.beginTask("", 101);  		m.subTask(CoreText.RepositoryFinder_finding);
 		try {
@@ -13,7 +14,7 @@
 				if (ownCfg.isFile()) {
 					register(c, ownCfg.getParentFile());
 				}
-				if (c.isLinked() || c instanceof IProject) {
+				if (c instanceof IProject) {
 					File p = fsLoc.getParentFile();
 					while (p != null) {
 						if (GitTraceLocation.CORE.isActive())
@@ -39,7 +40,7 @@
 						if (o instanceof IContainer
 								&& !o.getName().equals(Constants.DOT_GIT)) {
 							find(new SubProgressMonitor(m, scale),
-									(IContainer) o);
+									(IContainer) o, searchLinkedFolders);
 						} else {
 							m.worked(scale);
 						}

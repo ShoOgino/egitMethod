@@ -1,0 +1,5 @@
+	public IProject createProjectInLocalFileSystem(
+			String projectName) throws Exception {
+		return createProjectInLocalFileSystem(getBaseTempDir(), projectName);
+	}
+

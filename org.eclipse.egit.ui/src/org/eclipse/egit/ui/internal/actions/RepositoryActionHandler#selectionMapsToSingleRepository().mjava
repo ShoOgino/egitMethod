@@ -1,0 +1,4 @@
+	protected boolean selectionMapsToSingleRepository() {
+		return getRepository() != null;
+	}
+

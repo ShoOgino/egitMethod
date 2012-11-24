@@ -1,0 +1,19 @@
+	@Test
+	public void testLinkedResourcesIgnoredByContainerTreeIterator()
+			throws Exception {
+		IFolder folder = project1.getFolder("link2project2");
+		folder.createLink(project2.getLocation(),
+				IResource.ALLOW_MISSING_LOCAL, null);
+		IFile file = project1.getFile("link2project2folder1file1.txt");
+		file.createLink(
+				project2.getFile("project2folder1/project2folder1file1.txt")
+						.getLocation(), IResource.ALLOW_MISSING_LOCAL, null);
+		WorkingTreeIterator iterator = IteratorService
+				.createInitialIterator(repository1.repository);
+		assertTrue(iterator instanceof ContainerTreeIterator);
+		while (!iterator.eof()) {
+			assertFalse(iterator.getEntryPathString().startsWith("link2"));
+			iterator.next(1);
+		}
+	}
+

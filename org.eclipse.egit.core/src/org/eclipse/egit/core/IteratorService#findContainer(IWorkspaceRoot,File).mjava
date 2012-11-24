@@ -4,7 +4,9 @@
 					"file " + file.getAbsolutePath() + " is no directory"); 		final IContainer[] containers = root.findContainersForLocationURI(file
 				.toURI());
 		for (IContainer container : containers)
-			if (container.isAccessible() && isProjectSharedWithGit(container))
+			if (container.isAccessible()
+					&& !container.isLinked(IResource.CHECK_ANCESTORS)
+					&& isProjectSharedWithGit(container))
 				return container;
 		return null;
 	}
