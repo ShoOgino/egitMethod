@@ -1,0 +1,6 @@
+	public static final void synchronizeModelBetweenRefs(IFile file,
+			Repository repository, String sourceRef, String destinationRef) throws IOException {
+		synchronizeModel(file, new GitSynchronizeData(repository,
+				sourceRef, destinationRef, false));
+	}
+
