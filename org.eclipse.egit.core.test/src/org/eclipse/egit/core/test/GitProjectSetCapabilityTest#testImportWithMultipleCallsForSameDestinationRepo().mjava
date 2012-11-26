@@ -15,13 +15,9 @@
 		String xaReference = createProjectReference(xPath, "master", "xa");
 		String xbReference = createProjectReference(xPath, "master", "xb");
 
-		capability.addToWorkspace(new String[] { xaReference },
-				new ProjectSetSerializationContext(),
-				new NullProgressMonitor());
+		addToWorkspace(new String[] { xaReference });
 
-		capability.addToWorkspace(new String[] { xbReference },
-				new ProjectSetSerializationContext(),
-				new NullProgressMonitor());
+		addToWorkspace(new String[] { xbReference });
 
 		pathsToClean.add(root.getLocation().append("x").toFile());
 
