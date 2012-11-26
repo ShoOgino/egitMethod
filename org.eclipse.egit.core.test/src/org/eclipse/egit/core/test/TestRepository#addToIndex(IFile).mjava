@@ -1,5 +1,0 @@
-	public void addToIndex(IFile file) throws CoreException, IOException, NoFilepatternException, GitAPIException {
-		String repoPath = getRepoRelativePath(file.getLocation().toOSString());
-		new Git(repository).add().addFilepattern(repoPath).call();
-	}
-
