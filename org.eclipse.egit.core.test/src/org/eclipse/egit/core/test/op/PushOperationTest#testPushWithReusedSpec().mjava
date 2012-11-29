@@ -2,8 +2,7 @@
 	public void testPushWithReusedSpec() throws Exception {
 
 		PushOperationSpecification spec = new PushOperationSpecification();
-		URIish remote = new URIish("file:///"
-				+ repository2.getRepository().getDirectory().toString());
+		URIish remote = repository2.getUri();
 		List<RemoteRefUpdate> refUpdates = new ArrayList<RemoteRefUpdate>();
 		RemoteRefUpdate update = new RemoteRefUpdate(repository1
 				.getRepository(), "HEAD", "refs/heads/test", false, null, null);
