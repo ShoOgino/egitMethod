@@ -1,0 +1,4 @@
+	public RemoveFromIndexOperation(Collection<IPath> paths) {
+		this.pathsByRepository = ResourceUtil.splitPathsByRepository(paths);
+	}
+

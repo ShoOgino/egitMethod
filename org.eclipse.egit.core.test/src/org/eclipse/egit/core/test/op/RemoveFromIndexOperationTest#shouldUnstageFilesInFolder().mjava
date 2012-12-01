@@ -3,7 +3,6 @@
 		IFile file1 = createFileInRepo("sub/a.txt");
 		IFile file2 = createFileInRepo("sub/b.txt");
 		IFolder container = project.getProject().getFolder("sub");
-		IResource[] resources = new IResource[] { container };
 		List<IFolder> addResources = asList(project.getProject().getFolder("sub"));
 		new AddToIndexOperation(addResources).execute(null);
 
@@ -19,7 +18,7 @@
 						.getDefaultCharset())), 0, null);
 		new AddToIndexOperation(addResources).execute(null);
 
-		new RemoveFromIndexOperation(repo, resources).execute(null);
+		new RemoveFromIndexOperation(asList(container.getLocation())).execute(null);
 
 		assertTrue(testRepo.removedFromIndex(file1.getLocation().toPortableString()));
 		assertTrue(testRepo.removedFromIndex(file2.getLocation().toPortableString()));
