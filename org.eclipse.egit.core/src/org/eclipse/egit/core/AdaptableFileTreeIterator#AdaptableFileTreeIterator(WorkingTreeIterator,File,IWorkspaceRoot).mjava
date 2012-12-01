@@ -1,4 +1,4 @@
-	protected AdaptableFileTreeIterator(final AdaptableFileTreeIterator parent,
+	protected AdaptableFileTreeIterator(final WorkingTreeIterator parent,
 			File path, final IWorkspaceRoot workspaceRoot) {
 		super(parent, path, FS.DETECTED);
 		root = workspaceRoot;
