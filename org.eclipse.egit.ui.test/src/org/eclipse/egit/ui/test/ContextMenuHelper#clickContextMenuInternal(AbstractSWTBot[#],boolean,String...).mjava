@@ -1,5 +1,5 @@
 	private static void clickContextMenuInternal(final AbstractSWTBot<?> bot,
-			final String... texts) {
+			final boolean sync, final String... texts) {
 		final MenuItem menuItem = UIThreadRunnable
 				.syncExec(new WidgetResult<MenuItem>() {
 					public MenuItem run() {
@@ -15,7 +15,7 @@
 			throw new WidgetNotFoundException("Could not find menu: "
 					+ Arrays.asList(texts));
 
-		click(menuItem);
+		click(menuItem, sync);
 
 		UIThreadRunnable.syncExec(new VoidResult() {
 			public void run() {

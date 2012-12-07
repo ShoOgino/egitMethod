@@ -21,7 +21,7 @@
 		localBranchesItem = myRepoViewUtil.getLocalBranchesItem(tree,
 				repositoryFile).expand();
 		localBranchesItem.select("abc", "123");
-		ContextMenuHelper.clickContextMenu(tree, myUtil
+		ContextMenuHelper.clickContextMenuSync(tree, myUtil
 				.getPluginLocalizedValue("RepoViewDeleteBranch.label"));
 		refreshAndWait();
 

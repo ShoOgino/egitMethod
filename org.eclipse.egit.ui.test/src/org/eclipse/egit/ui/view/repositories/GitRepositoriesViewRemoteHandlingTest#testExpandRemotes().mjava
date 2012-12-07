@@ -38,7 +38,7 @@
 		assertEquals(1, remotesItem.getNode("test3").expand().getNodes().size());
 
 		remotesItem.getNode("test").select();
-		ContextMenuHelper.clickContextMenu(tree,
+		ContextMenuHelper.clickContextMenuSync(tree,
 				myUtil.getPluginLocalizedValue("ShowIn"),
 				myUtil.getPluginLocalizedValue("RepoViewOpenProperties.label"));
 		waitInUI();
