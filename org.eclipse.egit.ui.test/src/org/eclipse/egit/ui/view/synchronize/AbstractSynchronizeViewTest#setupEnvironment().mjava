@@ -7,7 +7,7 @@
 		repositoryFile = createProjectAndCommitToRepository();
 		createAndCommitDotGitignore();
 
-		createChildRepository(repositoryFile);
+		childRepositoryFile = createChildRepository(repositoryFile);
 		Activator.getDefault().getRepositoryUtil()
 				.addConfiguredRepository(repositoryFile);
 
