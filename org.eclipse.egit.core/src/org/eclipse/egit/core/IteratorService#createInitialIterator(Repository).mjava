@@ -1,6 +1,11 @@
 	public static WorkingTreeIterator createInitialIterator(
 			Repository repository) {
-		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		IWorkspaceRoot root;
+		try {
+			root = ResourcesPlugin.getWorkspace().getRoot();
+		} catch (IllegalStateException e) {
+			return null;
+		}
 		IContainer container = findContainer(root, repository.getWorkTree());
 		if (container != null)
 			return new ContainerTreeIterator(repository, container);
