@@ -1,0 +1,5 @@
+	private static String getCommandPath(String path) {
+		if ("".equals(path)) 			return "."; 		else
+			return path;
+	}
+

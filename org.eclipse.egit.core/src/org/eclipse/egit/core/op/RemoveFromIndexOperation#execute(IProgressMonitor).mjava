@@ -9,14 +9,10 @@
 			Repository repository = entry.getKey();
 			Collection<String> paths = entry.getValue();
 
-			ResetCommand resetCommand = new Git(repository).reset();
-			resetCommand.setRef(HEAD);
-			for (String path : paths)
-				if (path == "") 					resetCommand.addPath("."); 				else
-					resetCommand.addPath(path);
+			GitCommand<?> command = prepareCommand(repository, paths);
 
 			try {
-				resetCommand.call();
+				command.call();
 				monitor.worked(1);
 			} catch (GitAPIException e) {
 				Activator.logError(e.getMessage(), e);
