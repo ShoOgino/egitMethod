@@ -43,7 +43,6 @@
 		createBranch = new Button(checkoutGroup, SWT.RADIO);
 		GridDataFactory.fillDefaults().span(2, 1).applyTo(createBranch);
 		createBranch.setText(UIText.FetchGerritChangePage_LocalBranchRadio);
-		createBranch.setSelection(true);
 		createBranch.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -107,6 +106,9 @@
 		});
 
 		if ("checkout".equals(defaultCommand)) 			checkout.setSelection(true);
+		else
+			createBranch.setSelection(true);
+
 		warningAdditionalRefNotActive = new Composite(main, SWT.NONE);
 		GridDataFactory.fillDefaults().span(2, 1).grab(true, false)
 				.exclude(true).applyTo(warningAdditionalRefNotActive);
@@ -158,6 +160,6 @@
 		refText.setFocus();
 		Dialog.applyDialogFont(main);
 		setControl(main);
-		setPageComplete(false);
+		checkPage();
 	}
 
