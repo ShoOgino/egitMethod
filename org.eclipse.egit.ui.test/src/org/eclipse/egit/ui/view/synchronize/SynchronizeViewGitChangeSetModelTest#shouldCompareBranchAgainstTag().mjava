@@ -1,12 +1,10 @@
 	@Test
 	public void shouldCompareBranchAgainstTag() throws Exception {
-		resetRepositoryToCreateInitialTag();
 		makeChangesAndCommit(PROJ1);
 
 		launchSynchronization(INITIAL_TAG, HEAD, false);
-		setGitChangeSetPresentationModel();
 
-		SWTBotTree syncViewTree = bot.viewByTitle("Synchronize").bot().tree();
-		assertEquals(1, syncViewTree.getAllItems().length);
+		SWTBotTreeItem changeSetTreeItem = getChangeSetTreeItem();
+		assertEquals(1, changeSetTreeItem.getItems().length);
 	}
 

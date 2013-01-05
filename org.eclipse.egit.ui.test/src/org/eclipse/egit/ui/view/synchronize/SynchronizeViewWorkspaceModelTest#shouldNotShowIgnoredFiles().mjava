@@ -1,6 +1,6 @@
-	@Test public void shouldNotShowIgnoredFiles()
+	@Test
+	public void shouldNotShowIgnoredFiles()
 			throws Exception {
-		resetRepositoryToCreateInitialTag();
 		String ignoredName = "to-be-ignored.txt";
 
 		IProject proj = ResourcesPlugin.getWorkspace().getRoot()

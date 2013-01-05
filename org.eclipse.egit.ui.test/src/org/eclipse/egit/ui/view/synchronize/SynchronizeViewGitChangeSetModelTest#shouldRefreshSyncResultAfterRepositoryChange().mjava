@@ -1,17 +1,12 @@
-	@Ignore
 	@Test
 	public void shouldRefreshSyncResultAfterRepositoryChange() throws Exception {
-		resetRepositoryToCreateInitialTag();
 		changeFilesInProject();
 		launchSynchronization(HEAD, HEAD, true);
-		setGitChangeSetPresentationModel();
 
-		SWTBotTree syncViewTree = bot.viewByTitle("Synchronize").bot().tree();
-		SWTBotTreeItem[] syncItems = syncViewTree.getAllItems();
-		assertTrue(syncItems[0].getText().endsWith(GitModelWorkingTree_workingTree));
-		syncItems[0].doubleClick();
+		SWTBotTreeItem workingTree = getExpandedWorkingTreeItem();
+		assertTrue(workingTree.getText().endsWith(GitModelWorkingTree_workingTree));
 		assertEquals(2,
-				syncItems[0].getItems()[0].getItems()[0].getItems().length);
+				workingTree.getItems()[0].getItems()[0].getItems().length);
 
 		commit(PROJ1);
 

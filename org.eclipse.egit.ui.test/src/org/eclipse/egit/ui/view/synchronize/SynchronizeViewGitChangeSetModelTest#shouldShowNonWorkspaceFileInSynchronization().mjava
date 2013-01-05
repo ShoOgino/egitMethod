@@ -1,19 +1,17 @@
-	@Test public void shouldShowNonWorkspaceFileInSynchronization()
+	@Test
+	public void shouldShowNonWorkspaceFileInSynchronization()
 			throws Exception {
-		resetRepositoryToCreateInitialTag();
 		String name = "non-workspace.txt";
 		File root = new File(getTestDirectory(), REPO1);
 		File nonWorkspace = new File(root, name);
 		BufferedWriter writer = new BufferedWriter(new FileWriter(nonWorkspace));
 		writer.append("file content");
 		writer.close();
+		setTestFileContent("other content");
 
 		launchSynchronization(INITIAL_TAG, HEAD, true);
-		setGitChangeSetPresentationModel();
 
-		SWTBotTree syncViewTree = bot.viewByTitle("Synchronize").bot().tree();
-		SWTBotTreeItem workingTree = expandWorkingTreeNode(syncViewTree);
-		assertEquals(2, syncViewTree.getAllItems().length);
+		SWTBotTreeItem workingTree = getExpandedWorkingTreeItem();
 		assertEquals(1, workingTree.getNodes(name).size());
 	}
 

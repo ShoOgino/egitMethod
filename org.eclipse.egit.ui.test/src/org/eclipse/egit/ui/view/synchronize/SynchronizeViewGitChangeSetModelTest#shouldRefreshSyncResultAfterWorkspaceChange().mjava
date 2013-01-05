@@ -1,8 +1,7 @@
+	@Test
 	public void shouldRefreshSyncResultAfterWorkspaceChange() throws Exception {
 		String newFileName = "new.txt";
-		resetRepositoryToCreateInitialTag();
 		launchSynchronization(INITIAL_TAG, HEAD, true);
-		setGitChangeSetPresentationModel();
 		IProject proj = ResourcesPlugin.getWorkspace().getRoot()
 				.getProject(PROJ1);
 
@@ -13,10 +12,9 @@
 		proj.refreshLocal(IResource.DEPTH_INFINITE, null);
 		Job.getJobManager().join(ResourcesPlugin.FAMILY_AUTO_BUILD, null);
 
-		SWTBotTree syncViewTree = bot.viewByTitle("Synchronize").bot().tree();
-		SWTBotTreeItem[] syncItems = syncViewTree.getAllItems();
-		assertEquals(GitModelWorkingTree_workingTree, syncItems[0].getText());
-		syncItems[0].doubleClick(); 		assertNotNull(syncItems[0].getNode(PROJ1));
-		assertNotNull(syncItems[0].getNode(PROJ1).getNode(newFileName));
+		SWTBotTreeItem workingTree = getExpandedWorkingTreeItem();
+		assertEquals(GitModelWorkingTree_workingTree, workingTree.getText());
+		assertNotNull(workingTree.getNode(PROJ1).expand());
+		assertNotNull(workingTree.getNode(PROJ1).getNode(newFileName));
 	}
 

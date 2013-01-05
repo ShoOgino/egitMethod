@@ -1,10 +1,10 @@
-	@Test public void shouldExchangeCompareEditorSidesBetweenIncomingAndOutgoingChanges()
+	@Test
+	public void shouldExchangeCompareEditorSidesBetweenIncomingAndOutgoingChanges()
 			throws Exception {
-		resetRepositoryToCreateInitialTag();
 		makeChangesAndCommit(PROJ1);
 
 		launchSynchronization(HEAD, INITIAL_TAG, false);
-		setGitChangeSetPresentationModel();
+
 		SWTBotEditor outgoingCompare = getCompareEditorForFileInGitChangeSet(
 				FILE1, false);
 		SWTBot outgoingCompareBot = outgoingCompare.bot();
@@ -15,7 +15,6 @@
 		assertNotSame("Text from SWTBot widgets was the same", outgoingLeft, outgoingRight);
 
 		launchSynchronization(INITIAL_TAG, HEAD, false);
-		setGitChangeSetPresentationModel();
 
 		SWTBot incomingComp = getCompareEditorForFileInGitChangeSet(
 				FILE1, false).bot();

@@ -1,14 +1,13 @@
-	@Test public void shouldListFileDeletedChange() throws Exception {
-		resetRepositoryToCreateInitialTag();
+	@Test
+	public void shouldListFileDeletedChange() throws Exception {
 		deleteFileAndCommit(PROJ1);
 
 		launchSynchronization(HEAD, HEAD + "~1", true);
-		setGitChangeSetPresentationModel();
 
-		SWTBotTree syncViewTree = bot.viewByTitle("Synchronize").bot().tree();
-		assertEquals(1, syncViewTree.getAllItems().length);
+		SWTBotTreeItem changeSetTreeItem = getChangeSetTreeItem();
+		assertEquals(1, changeSetTreeItem.getItems().length);
 
-		SWTBotTreeItem commitTree = waitForNodeWithText(syncViewTree,
+		SWTBotTreeItem commitTree = waitForNodeWithText(changeSetTreeItem,
 				TEST_COMMIT_MSG);
 		SWTBotTreeItem projectTree = waitForNodeWithText(commitTree, PROJ1);
 		assertEquals(1, projectTree.getItems().length);

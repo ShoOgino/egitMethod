@@ -1,7 +1,6 @@
 	@Test
 	public void shouldRefreshSyncResultAfterWorkspaceChange() throws Exception {
 		String newFileName = "new.txt";
-		resetRepositoryToCreateInitialTag();
 		launchSynchronization(INITIAL_TAG, HEAD, true);
 		IProject proj = ResourcesPlugin.getWorkspace().getRoot()
 				.getProject(PROJ1);

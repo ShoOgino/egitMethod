@@ -1,6 +1,5 @@
 	@Test
 	public void shouldCompareTagAgainstTag() throws Exception {
-		resetRepositoryToCreateInitialTag();
 		makeChangesAndCommit(PROJ1);
 		createTag("v0.1");
 

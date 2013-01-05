@@ -1,7 +1,6 @@
 	@Test
 	public void shouldShowCompareEditorForNonWorkspaceFileFromSynchronization()
 			throws Exception {
-		resetRepositoryToCreateInitialTag();
 		String content = "file content";
 		String name = "non-workspace.txt";
 		File root = new File(getTestDirectory(), REPO1);
@@ -9,14 +8,9 @@
 		BufferedWriter writer = new BufferedWriter(new FileWriter(nonWorkspace));
 		writer.append(content);
 		writer.close();
+		setTestFileContent("other content");
 
 		launchSynchronization(INITIAL_TAG, HEAD, true);
-		setGitChangeSetPresentationModel();
-
-		SWTBotTree syncViewTree = bot.viewByTitle("Synchronize").bot().tree();
-		SWTBotTreeItem workingTree = expandWorkingTreeNode(syncViewTree);
-		assertEquals(2, syncViewTree.getAllItems().length);
-		workingTree.expand().getNode(name).doubleClick();
 
 		SWTBotEditor editor = getCompareEditorForNonWorkspaceFileInGitChangeSet(name);
 		editor.setFocus();
