@@ -1,0 +1,4 @@
+	public void setFastForwardMode(FastForwardMode ffmode) {
+		this.fastForwardMode = ffmode;
+	}
+
