@@ -14,6 +14,7 @@
 					|| element instanceof RemoteNode
 					|| element instanceof FetchNode
 					|| element instanceof PushNode
+					|| element instanceof TagNode
 					|| element instanceof RefNode) {
 				elements.add(element);
 			}
