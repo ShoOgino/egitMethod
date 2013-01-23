@@ -24,7 +24,7 @@
 
 		Map<RevCommit, BlameRevision> revisions = new HashMap<RevCommit, BlameRevision>();
 		int lineCount = result.getResultContents().size();
-		monitor.beginTask("", lineCount); 		BlameRevision previous = null;
+		BlameRevision previous = null;
 		for (int i = 0; i < lineCount; i++) {
 			RevCommit commit = result.getSourceCommit(i);
 			if (commit == null) {
@@ -51,7 +51,6 @@
 				}
 			else
 				previous = revision.reset(i);
-			monitor.worked(1);
 		}
 		if (previous != null)
 			previous.register();
