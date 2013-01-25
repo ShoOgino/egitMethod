@@ -1,0 +1,16 @@
+	public static IProject[] getProjectsContaining(Repository repository,
+			Collection<String> fileList) throws CoreException {
+		Set<IProject> result = new LinkedHashSet<IProject>();
+		File workTree = repository.getWorkTree();
+
+		for (String member : fileList) {
+			File file = new File(workTree, member);
+
+			IContainer container = findContainer(file);
+			if (container instanceof IProject)
+				result.add((IProject) container);
+		}
+
+		return result.toArray(new IProject[result.size()]);
+	}
+

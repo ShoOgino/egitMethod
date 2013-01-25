@@ -1,0 +1,23 @@
+	public static IContainer findContainer(File file) {
+		String absFile = file.getAbsolutePath();
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		IProject[] allProjects = root.getProjects();
+
+		Arrays.sort(allProjects, new Comparator<IProject>() {
+			public int compare(IProject o1, IProject o2) {
+				return -o1.getLocation().toFile()
+						.compareTo(o2.getLocation().toFile());
+			}
+
+		});
+
+		for (IProject prj : allProjects)
+			if (checkContainerMatch(prj, absFile))
+				return prj;
+
+		if (checkContainerMatch(root, absFile))
+			return root;
+
+		return null;
+	}
+
