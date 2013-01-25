@@ -1,4 +1,4 @@
 		private File asFile() {
-			return ((IFile) rsrc).getLocation().toFile();
+			return ContainerTreeIterator.asFile(rsrc);
 		}
 
