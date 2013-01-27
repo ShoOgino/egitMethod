@@ -1,4 +1,4 @@
-	public static IContainer findContainer(File file) {
+	public static IContainer findProjectOrWorkspaceRoot(File file) {
 		String absFile = file.getAbsolutePath();
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		IProject[] allProjects = root.getProjects();
