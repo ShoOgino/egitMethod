@@ -1,0 +1,5 @@
+	public static GitFileRevision inIndex(final Repository db,
+			final String path, int stage) {
+		return new IndexFileRevision(db, path, stage);
+	}
+
