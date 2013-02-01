@@ -1,6 +1,6 @@
-	public static boolean findProjectFiles(final Collection<File> files,
-			final File directory, final Set<String> visistedDirs,
-			final IProgressMonitor monitor) {
+	private static boolean findProjectFiles(final Collection<File> files,
+			final File directory, final boolean searchNested,
+			final Set<String> visistedDirs, final IProgressMonitor monitor) {
 		if (directory == null)
 			return false;
 
@@ -32,13 +32,17 @@
 		} else
 			directoriesVisited = visistedDirs;
 
+		boolean foundProject = false;
 		final String dotProject = IProjectDescription.DESCRIPTION_FILE_NAME;
 		for (int i = 0; i < contents.length; i++) {
 			File file = contents[i];
 			if (file.isFile() && file.getName().equals(dotProject)) {
 				files.add(file);
+				foundProject = true;
 			}
 		}
+		if (foundProject && !searchNested)
+			return true;
 		for (int i = 0; i < contents.length; i++) {
 			if (!contents[i].isDirectory())
 				continue;
@@ -52,7 +56,8 @@
 				Activator.logError(exception.getLocalizedMessage(), exception);
 
 			}
-			findProjectFiles(files, contents[i], directoriesVisited, pm);
+			findProjectFiles(files, contents[i], searchNested,
+					directoriesVisited, pm);
 		}
 		return true;
 	}

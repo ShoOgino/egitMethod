@@ -1,6 +1,0 @@
-	private boolean collectProjectFilesFromDirectory(Collection<File> files,
-			File directory, Set<String> visistedDirs, IProgressMonitor monitor) {
-		return ProjectUtil.findProjectFiles(files, directory, visistedDirs,
-				monitor);
-	}
-

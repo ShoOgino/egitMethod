@@ -1,0 +1,6 @@
+	public static boolean findProjectFiles(final Collection<File> files,
+			final File directory, boolean searchNested,
+			final IProgressMonitor monitor) {
+		return findProjectFiles(files, directory, searchNested, null, monitor);
+	}
+
