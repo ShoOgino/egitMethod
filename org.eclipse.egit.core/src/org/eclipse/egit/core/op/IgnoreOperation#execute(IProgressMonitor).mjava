@@ -5,7 +5,7 @@
 				if (monitor.isCanceled())
 					break;
 
-				if (!isIgnored(path))
+				if (!RepositoryUtil.isIgnored(path))
 					addIgnore(monitor, path);
 				monitor.worked(1);
 			}
