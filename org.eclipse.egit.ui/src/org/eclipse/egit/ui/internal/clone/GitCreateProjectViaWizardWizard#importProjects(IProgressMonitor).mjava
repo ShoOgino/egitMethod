@@ -11,6 +11,7 @@
 					IWorkingSet[] workingSetArray = myProjectsImportPage
 							.getSelectedWorkingSets();
 					workingSets.addAll(Arrays.asList(workingSetArray));
+					myProjectsImportPage.saveWidgetValues();
 				}
 			});
 			ProjectUtils.createProjects(projectsToCreate, myRepository,

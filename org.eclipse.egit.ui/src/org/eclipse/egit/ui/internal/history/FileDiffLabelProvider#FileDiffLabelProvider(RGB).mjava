@@ -1,0 +1,4 @@
+	public FileDiffLabelProvider(RGB dimmedForegroundRgb) {
+		dimmedForegroundColor = resourceManager.createColor(dimmedForegroundRgb);
+	}
+

@@ -1,0 +1,8 @@
+	private static final boolean hasDebugUiBundle() {
+		try {
+			return Class
+					.forName("org.eclipse.debug.ui.StringVariableSelectionDialog") != null; 		} catch (ClassNotFoundException e) {
+			return false;
+		}
+	}
+

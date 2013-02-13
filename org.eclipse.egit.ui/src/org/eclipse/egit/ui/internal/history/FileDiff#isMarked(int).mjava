@@ -1,0 +1,4 @@
+	public boolean isMarked(int index) {
+		return diffEntry != null && diffEntry.isMarked(index);
+	}
+

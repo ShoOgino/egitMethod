@@ -11,6 +11,11 @@
 		File repoRoot = new File(testDirectory, "RepositoryRoot");
 		if (!repoRoot.exists())
 			FileUtils.mkdir(repoRoot, true);
+		IEclipsePreferences corePrefs = InstanceScope.INSTANCE
+				.getNode(org.eclipse.egit.core.Activator.getPluginId());
+		corePrefs.putBoolean(
+				GitCorePreferences.core_autoIgnoreDerivedResources, false);
+		corePrefs.putBoolean(GitCorePreferences.core_autoShareProjects, false);
 		org.eclipse.egit.ui.Activator.getDefault().getPreferenceStore()
 				.setValue(UIPreferences.DEFAULT_REPO_DIR, repoRoot.getPath());
 		org.eclipse.egit.ui.Activator.getDefault().getPreferenceStore()

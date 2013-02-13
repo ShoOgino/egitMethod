@@ -20,7 +20,7 @@
 		button.click();
 		shell.bot().text(UIText.WizardProjectsImportPage_ImportProjectsDescription);
 		shell.bot().tree().getAllItems()[0].check();
-		shell.bot().checkBox().select();
+		shell.bot().checkBox("Add project to working sets").select();
 		shell.bot().button("Select...").click();
 		SWTBotShell workingSetDialog = bot.shell("Select Working Sets");
 		workingSetDialog.bot().button("New...").click();
