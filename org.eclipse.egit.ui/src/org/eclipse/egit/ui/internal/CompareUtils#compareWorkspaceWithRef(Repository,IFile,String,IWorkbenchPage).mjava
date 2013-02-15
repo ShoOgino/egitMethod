@@ -1,0 +1,16 @@
+	public static void compareWorkspaceWithRef(Repository repository,
+			IFile file, String refName, IWorkbenchPage page) throws IOException {
+		final RepositoryMapping mapping = RepositoryMapping.getMapping(file);
+		final String gitPath = mapping.getRepoRelativePath(file);
+		final ITypedElement base = SaveableCompareEditorInput
+				.createFileElement(file);
+
+		CompareEditorInput in = prepareCompareInput(repository, gitPath, base,
+				refName);
+
+		if (page != null)
+			openInCompare(page, in);
+		else
+			CompareUI.openCompareEditor(in);
+	}
+
