@@ -36,7 +36,7 @@
 
 		Group checkoutGroup = new Group(main, SWT.SHADOW_ETCHED_IN);
 		checkoutGroup.setLayout(new GridLayout(2, false));
-		GridDataFactory.fillDefaults().span(2, 1).grab(true, true)
+		GridDataFactory.fillDefaults().span(2, 1).grab(true, false)
 				.applyTo(checkoutGroup);
 		checkoutGroup.setText(UIText.FetchGerritChangePage_AfterFetchGroup);
 
@@ -137,6 +137,12 @@
 			}
 		});
 
+		runInBackgroud = new Button(main, SWT.CHECK);
+		GridDataFactory.fillDefaults().span(2, 1).align(SWT.BEGINNING, SWT.END)
+				.grab(true, true)
+				.applyTo(runInBackgroud);
+		runInBackgroud.setText(UIText.FetchGerritChangePage_RunInBackground);
+
 		SortedSet<String> uris = new TreeSet<String>();
 		try {
 			for (RemoteConfig rc : RemoteConfig.getAllRemoteConfigs(repository
@@ -157,6 +163,7 @@
 			uriCombo.setText(defaultUri);
 		else
 			selectLastUsedUri();
+		restoreRunInBackgroundSelection();
 		refText.setFocus();
 		Dialog.applyDialogFont(main);
 		setControl(main);
