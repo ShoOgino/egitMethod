@@ -2,6 +2,7 @@
 		gsds = data;
 
 		roots = null;
+		sourceTree = null;
 		baseTree = null;
 		remoteTree = null;
 	}

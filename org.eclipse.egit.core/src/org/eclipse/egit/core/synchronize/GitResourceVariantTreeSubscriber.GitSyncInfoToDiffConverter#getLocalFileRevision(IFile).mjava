@@ -1,0 +1,16 @@
+		protected IFileRevision getLocalFileRevision(IFile local) {
+			final GitSynchronizeData data = gsds.getData(local.getProject());
+			if (data.shouldIncludeLocal())
+				return new WorkspaceFileRevision(local);
+
+			try {
+				return asFileState(getSourceTree().getResourceVariant(local));
+			} catch (TeamException e) {
+				String error = NLS
+						.bind(CoreText.GitResourceVariantTreeSubscriber_CouldNotFindSourceVariant,
+								local.getName());
+				Activator.logError(error, e);
+				return new WorkspaceFileRevision(local);
+			}
+		}
+
