@@ -83,6 +83,15 @@
 		if (property.equals("canAbortRebase")) 			switch (node.getRepository().getRepositoryState()) {
 			case REBASING_INTERACTIVE:
 				return true;
+			case REBASING_REBASING:
+				return true;
+			default:
+				return false;
+			}
+
+		if (property.equals("canContinueRebase")) 			switch (node.getRepository().getRepositoryState()) {
+			case REBASING_INTERACTIVE:
+				return true;
 			default:
 				return false;
 			}
