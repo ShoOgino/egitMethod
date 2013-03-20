@@ -1,4 +1,4 @@
-	RevCommit getCommitId() {
+	public RevCommit getCommitId() {
 		return commitId;
 	}
 
