@@ -1,9 +1,5 @@
 	public PushOperation(final Repository localDb, final String remoteName,
 			final boolean dryRun, int timeout) {
-		this.localDb = localDb;
-		this.specification = null;
-		this.dryRun = dryRun;
-		this.remoteName = remoteName;
-		this.timeout = timeout;
+		this(localDb, remoteName, null, dryRun, timeout);
 	}
 
