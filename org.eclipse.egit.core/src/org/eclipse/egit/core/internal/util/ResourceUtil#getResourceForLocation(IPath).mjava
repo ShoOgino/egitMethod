@@ -5,9 +5,6 @@
 		if (file != null)
 			return file;
 		IContainer[] containers = root.findContainersForLocationURI(uri);
-		for (IContainer container : containers)
-			if (container.exists())
-				return container;
-		return null;
+		return getExistingResourceWithShortestPath(containers);
 	}
 
