@@ -1,5 +1,5 @@
 	public WorkspaceFileRevision(final IResource resource) {
-		super(resource.getName());
+		super(resource.getLocation().toString());
 		rsrc = resource;
 	}
 
