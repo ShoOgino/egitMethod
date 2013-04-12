@@ -1,0 +1,4 @@
+	public StashCreateUI(Repository repo) {
+		this.repo = repo;
+	}
+

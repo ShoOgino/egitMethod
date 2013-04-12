@@ -1,4 +1,4 @@
-	public boolean createStash() {
+	public boolean createStash(Shell shell) {
 		InputDialog commitMessageDialog = new InputDialog(shell,
 				UIText.StashCreateCommand_titleEnterCommitMessage,
 				UIText.StashCreateCommand_messageEnterCommitMessage,
