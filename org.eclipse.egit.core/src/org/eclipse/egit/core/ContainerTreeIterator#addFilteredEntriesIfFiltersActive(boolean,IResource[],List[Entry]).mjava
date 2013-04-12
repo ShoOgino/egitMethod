@@ -1,4 +1,4 @@
-	private boolean addFilteredEntries(
+	private boolean addFilteredEntriesIfFiltersActive(
 			final boolean hasInheritedResourceFilters,
 			final IResource[] memberResources, final List<Entry> entries) {
 		boolean inheritableResourceFilter = hasInheritedResourceFilters;
@@ -26,21 +26,7 @@
 						resourceEntries.add(location.toFile());
 				}
 
-			IPath containerLocation = node.getLocation();
-			if (containerLocation != null) {
-				File folder = containerLocation.toFile();
-				File[] children = folder.listFiles();
-				for (File child : children) {
-					if (resourceEntries.contains(child))
-						continue; 					IPath childLocation = new Path(child.getAbsolutePath());
-					IWorkspaceRoot root = node.getWorkspace().getRoot();
-					IContainer container = root.getContainerForLocation(childLocation);
-					if (container != null && container.isAccessible())
-						entries.add(new ResourceEntry(container, false));
-					else
-						entries.add(new FileEntry(child, FS.DETECTED));
-				}
-			}
+			addFilteredEntries(resourceEntries, entries);
 		}
 		return inheritableResourceFilter;
 	}
