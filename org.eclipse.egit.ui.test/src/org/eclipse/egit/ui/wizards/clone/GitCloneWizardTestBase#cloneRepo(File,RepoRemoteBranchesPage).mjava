@@ -13,8 +13,8 @@
 		workingCopy.assertRemoteName(Constants.DEFAULT_REMOTE_NAME);
 		workingCopy.waitForCreate();
 
-		Repository repository = new FileRepository(new File(destinationRepo,
-				Constants.DOT_GIT));
+		Repository repository = FileRepositoryBuilder.create(new File(
+				destinationRepo, Constants.DOT_GIT));
 		assertNotNull(repository.resolve("origin/master"));
 		assertEquals(repository.resolve("master"), repository
 				.resolve("origin/master"));

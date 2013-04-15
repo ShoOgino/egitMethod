@@ -13,7 +13,7 @@
 		bot.activeEditor().save();
 
 
-		FileRepository repo = lookupRepository(repositoryFile);
+		Repository repo = lookupRepository(repositoryFile);
 		Status status = new Git(repo).status().call();
 		assertThat(Long.valueOf(status.getChanged().size()),
 				is(Long.valueOf(1L)));

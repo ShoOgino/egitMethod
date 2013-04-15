@@ -1,5 +1,5 @@
 	public TestRepository(File gitDir) throws IOException {
-		FileRepository tmpRepository = new FileRepository(gitDir);
+		Repository tmpRepository = FileRepositoryBuilder.create(gitDir);
 		tmpRepository.create();
 		tmpRepository.close();
 		repository = Activator.getDefault().getRepositoryCache().lookupRepository(gitDir);

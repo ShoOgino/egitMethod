@@ -5,7 +5,8 @@
 		final ListRemoteOperation listRemoteOp;
 		try {
 			final URIish uri = newRepoSelection.getURI();
-			final Repository db = new FileRepository(new File("/tmp")); 			int timeout = Activator.getDefault().getPreferenceStore().getInt(
+			final Repository db = FileRepositoryBuilder
+					.create(new File("/tmp")); 			int timeout = Activator.getDefault().getPreferenceStore().getInt(
 					UIPreferences.REMOTE_CONNECTION_TIMEOUT);
 			listRemoteOp = new ListRemoteOperation(db, uri, timeout);
 			if (credentials != null)
