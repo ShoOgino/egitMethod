@@ -3,9 +3,14 @@
 		Set<IProject> ret = new LinkedHashSet<IProject>();
 		for (ResourceMapping mapping : (ResourceMapping[]) getSelectedAdaptables(
 				selection, ResourceMapping.class)) {
-			IProject[] projects = mapping.getProjects();
-			if (projects != null)
-				ret.addAll(Arrays.asList(projects));
+			IProject[] mappedProjects = mapping.getProjects();
+			if (mappedProjects != null && mappedProjects.length != 0) {
+				List<IProject> projects = new ArrayList<IProject>(
+						Arrays.asList(mappedProjects));
+				Collections
+						.sort(projects, CommonUtils.RESOURCE_NAME_COMPARATOR);
+				ret.addAll(projects);
+			}
 		}
 		return ret;
 	}
