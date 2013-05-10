@@ -1,0 +1,5 @@
+		public StagingViewSearchThread(StagingView stagingView) {
+			super("staging_view_filter_thread" + ++globalThreadIndex); 			this.stagingView = stagingView;
+			currentThreadIx = globalThreadIndex;
+		}
+
