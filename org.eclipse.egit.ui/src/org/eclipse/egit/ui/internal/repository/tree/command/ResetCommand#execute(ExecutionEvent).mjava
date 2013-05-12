@@ -8,10 +8,11 @@
 			throw new ExecutionException(e1.getMessage(), e1);
 		}
 		final String targetBranch;
-		if (node.getObject() instanceof Ref)
-			targetBranch = ((Ref) node.getObject()).getName();
-		else
-			targetBranch = currentBranch;
+		if (!(node.getObject() instanceof Ref))
+			return new ResetActionHandler().execute(event);
+
+		targetBranch = ((Ref) node.getObject()).getName();
+
 		final String repoName = Activator.getDefault().getRepositoryUtil()
 				.getRepositoryName(node.getRepository());
 
