@@ -1,0 +1,4 @@
+	public GitScmUrlImportWizardPage() {
+		super("git", UIText.GitScmUrlImportWizardPage_title, null); 		setDescription(UIText.GitScmUrlImportWizardPage_description);
+	}
+
