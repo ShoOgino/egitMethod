@@ -1,0 +1,15 @@
+	private void addBranchItems() {
+		String remote = remoteText.getText();
+		try {
+			if (remote.equals(".") || remote.length() == 0) 				addBranchItemsForLocal();
+			else
+				addBranchItemsForRemote(remote);
+		} catch (IOException e) {
+			Activator.logError(
+					UIText.BranchConfigurationDialog_ExceptionGettingRefs, e);
+		} catch (URISyntaxException e) {
+			Activator.logError(
+					UIText.BranchConfigurationDialog_ExceptionGettingRefs, e);
+		}
+	}
+
