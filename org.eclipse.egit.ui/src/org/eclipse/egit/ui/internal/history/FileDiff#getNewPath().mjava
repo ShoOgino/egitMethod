@@ -1,0 +1,4 @@
+	public String getNewPath() {
+		return diffEntry.getNewPath();
+	}
+

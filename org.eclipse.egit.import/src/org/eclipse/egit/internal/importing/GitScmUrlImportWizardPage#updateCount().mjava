@@ -1,5 +1,0 @@
-	private void updateCount() {
-		counterLabel.setText(NLS.bind(Messages.GitScmUrlImportWizardPage_counter, Integer.valueOf(descriptions.length)));
-		counterLabel.getParent().layout();
-	}
-

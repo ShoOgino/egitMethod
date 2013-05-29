@@ -46,7 +46,7 @@
 					} catch (URISyntaxException e) {
 					}
 				if (EMPTY_STRING.equals(dialog.getFilterPath()))
-					dialog.setFilterPath(Activator.getDefault().getPreferenceStore().getString(UIPreferences.DEFAULT_REPO_DIR));
+					dialog.setFilterPath(UIUtils.getDefaultRepositoryDir());
 				String result = dialog.open();
 				if (result != null)
 					uriText.setText("file:///" + result); 			}

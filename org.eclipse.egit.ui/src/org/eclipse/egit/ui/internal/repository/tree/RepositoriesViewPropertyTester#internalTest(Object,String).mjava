@@ -68,6 +68,9 @@
 								.getURIs().isEmpty());
 			}
 		}
+		if (property.equals("canStash")) { 			Repository rep = node.getRepository();
+			return rep.getRepositoryState().canCommit();
+		}
 		if (property.equals("canMerge")) { 			Repository rep = node.getRepository();
 			if (rep.getRepositoryState() != RepositoryState.SAFE)
 				return false;
