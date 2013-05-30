@@ -1,6 +1,0 @@
-	protected IProject[] getProjectsInRepositoryOfSelectedResources(
-			ExecutionEvent event) throws ExecutionException {
-		IStructuredSelection selection = getSelection(event);
-		return getProjectsInRepositoryOfSelectedResources(selection);
-	}
-
