@@ -1,4 +1,4 @@
-	public static ResourceMapping[] getResourceMappings(IFile file,
+	public static ResourceMapping[] getResourceMappings(IResource resource,
 			ResourceMappingContext context) {
 		final IModelProviderDescriptor[] modelDescriptors = ModelProvider
 				.getModelProviderDescriptors();
@@ -7,11 +7,11 @@
 		for (IModelProviderDescriptor candidate : modelDescriptors) {
 			try {
 				final IResource[] resources = candidate
-						.getMatchingResources(new IResource[] { file, });
+						.getMatchingResources(new IResource[] { resource, });
 				if (resources.length > 0) {
 					final ModelProvider model = candidate.getModelProvider();
 					final ResourceMapping[] modelMappings = model.getMappings(
-							file, context, new NullProgressMonitor());
+							resource, context, new NullProgressMonitor());
 					for (ResourceMapping mapping : modelMappings)
 						mappings.add(mapping);
 				}

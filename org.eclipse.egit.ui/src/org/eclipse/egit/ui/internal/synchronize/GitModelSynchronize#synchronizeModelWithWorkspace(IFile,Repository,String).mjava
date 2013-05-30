@@ -1,6 +1,0 @@
-	public static final void synchronizeModelWithWorkspace(IFile file,
-			Repository repository, String refName) throws IOException {
-		synchronizeModel(file, new GitSynchronizeData(repository,
-				Constants.HEAD, refName, true));
-	}
-

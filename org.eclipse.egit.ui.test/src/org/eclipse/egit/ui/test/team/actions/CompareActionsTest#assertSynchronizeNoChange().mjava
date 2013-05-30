@@ -1,0 +1,9 @@
+	private void assertSynchronizeNoChange() {
+		SWTBotLabel syncViewLabel = bot.viewByTitle("Synchronize").bot()
+				.label(2);
+
+		String noResultLabel = syncViewLabel.getText();
+		assertTrue(noResultLabel.contains("No changes in 'Git (" + PROJ1
+				+ ")'."));
+	}
+

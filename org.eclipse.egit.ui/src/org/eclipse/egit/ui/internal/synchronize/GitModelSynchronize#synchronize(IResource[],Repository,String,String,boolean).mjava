@@ -1,0 +1,40 @@
+	public static final void synchronize(IResource[] resources,
+			Repository repository, String srcRev, String dstRev,
+			boolean includeLocal) throws IOException {
+		final Set<IResource> includedResources = new HashSet<IResource>(
+				Arrays.asList(resources));
+		final Set<ResourceMapping> allMappings = new HashSet<ResourceMapping>();
+
+		Set<IResource> newResources = new HashSet<IResource>(
+				includedResources);
+		do {
+			final Set<IResource> copy = newResources;
+			newResources = new HashSet<IResource>();
+			for (IResource resource : copy) {
+				ResourceMapping[] mappings = ResourceUtil.getResourceMappings(
+						resource, ResourceMappingContext.LOCAL_CONTEXT);
+				allMappings.addAll(Arrays.asList(mappings));
+				newResources.addAll(collectResources(mappings));
+			}
+		} while (includedResources.addAll(newResources));
+
+		if (dstRev == GitFileRevision.INDEX) {
+			final IResource[] resourcesArray = includedResources
+					.toArray(new IResource[includedResources.size()]);
+			openGitTreeCompare(resourcesArray, srcRev,
+					CompareTreeView.INDEX_VERSION, includeLocal);
+		} else if (srcRev == GitFileRevision.INDEX) {
+			final ResourceMapping[] mappings = allMappings
+					.toArray(new ResourceMapping[allMappings.size()]);
+			final GitSynchronizeData data = new GitSynchronizeData(repository,
+					srcRev, dstRev, true, includedResources);
+			launch(new GitSynchronizeDataSet(data), mappings);
+		} else {
+			final ResourceMapping[] mappings = allMappings
+					.toArray(new ResourceMapping[allMappings.size()]);
+			final GitSynchronizeData data = new GitSynchronizeData(repository,
+					srcRev, dstRev, includeLocal, includedResources);
+			launch(new GitSynchronizeDataSet(data), mappings);
+		}
+	}
+

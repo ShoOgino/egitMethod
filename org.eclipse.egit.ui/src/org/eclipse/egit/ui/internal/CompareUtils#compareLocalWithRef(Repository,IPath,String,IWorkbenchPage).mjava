@@ -1,0 +1,15 @@
+	private static void compareLocalWithRef(Repository repository,
+			IPath location, String refName, IWorkbenchPage page)
+			throws IOException {
+		final String gitPath = RepositoryMapping.getMapping(location).getRepoRelativePath(location);
+		final ITypedElement base = new LocalNonWorkspaceTypedElement(location);
+
+		CompareEditorInput in = prepareCompareInput(repository, gitPath, base,
+				refName);
+
+		if (page != null)
+			openInCompare(page, in);
+		else
+			CompareUI.openCompareEditor(in);
+	}
+

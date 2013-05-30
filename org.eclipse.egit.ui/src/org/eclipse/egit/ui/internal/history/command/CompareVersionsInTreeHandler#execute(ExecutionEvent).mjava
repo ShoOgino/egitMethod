@@ -8,6 +8,8 @@
 			Object input = getPage().getInputInternal().getSingleItem();
 			Repository repository = getPage().getInputInternal()
 					.getRepository();
+			IWorkbenchPage workBenchPage = HandlerUtil
+					.getActiveWorkbenchWindowChecked(event).getActivePage();
 			if (input instanceof IFile) {
 				IFile resource = (IFile) input;
 				final RepositoryMapping map = RepositoryMapping
@@ -22,7 +24,7 @@
 								.getRepository());
 				CompareEditorInput in = new GitCompareFileRevisionEditorInput(
 						base, next, null);
-				openInCompare(event, in);
+				CompareUtils.openInCompare(workBenchPage, in);
 			} else if (input instanceof File) {
 				File fileInput = (File) input;
 				Repository repo = getRepository(event);
@@ -34,7 +36,7 @@
 						.getFileRevisionTypedElement(gitPath, commit2, repo);
 				CompareEditorInput in = new GitCompareFileRevisionEditorInput(
 						base, next, null);
-				openInCompare(event, in);
+				CompareUtils.openInCompare(workBenchPage, in);
 			} else if (input instanceof IResource) {
 				CompareTreeView view;
 				try {
