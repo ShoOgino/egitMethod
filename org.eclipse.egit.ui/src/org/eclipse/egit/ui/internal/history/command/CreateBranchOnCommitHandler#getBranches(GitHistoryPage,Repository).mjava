@@ -1,0 +1,9 @@
+	private List<Ref> getBranches(GitHistoryPage page,
+			Repository repo) {
+		try {
+			return getBranchesOfCommit(page, repo, false);
+		} catch (IOException e) {
+			return Collections.<Ref> emptyList();
+		}
+	}
+

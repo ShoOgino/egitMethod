@@ -18,6 +18,9 @@
 							return false;
 
 						final IResource r = delta.getResource();
+						if ((r.getProject() != null)
+								&& (RepositoryMapping.getMapping(r) == null))
+							return false;
 						if (r.isTeamPrivateMember())
 							return false;
 
