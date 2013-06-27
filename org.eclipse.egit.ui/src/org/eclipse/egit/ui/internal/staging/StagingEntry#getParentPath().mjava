@@ -1,0 +1,4 @@
+	public IPath getParentPath() {
+		return new Path(path).removeLastSegments(1);
+	}
+

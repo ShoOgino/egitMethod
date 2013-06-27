@@ -1,0 +1,4 @@
+	public IPath getNodePath() {
+		return nodePath;
+	}
+

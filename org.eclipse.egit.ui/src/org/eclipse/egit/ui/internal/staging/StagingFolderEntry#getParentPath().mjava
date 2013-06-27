@@ -1,0 +1,4 @@
+	public IPath getParentPath() {
+		return repoRelativePath.removeLastSegments(nodePath.segmentCount());
+	}
+

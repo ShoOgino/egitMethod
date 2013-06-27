@@ -28,7 +28,7 @@
 		}
 
 		try {
-			updateDirCache(selection, headRev, edit);
+			processUnstageSelection(selection, headRev, edit);
 
 			try {
 				edit.commit();

@@ -1,0 +1,4 @@
+	public StagingFolderEntry getParent() {
+		return parent;
+	}
+

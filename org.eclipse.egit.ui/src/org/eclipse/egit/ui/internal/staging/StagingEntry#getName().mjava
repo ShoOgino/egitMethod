@@ -1,4 +1,8 @@
 	public String getName() {
-		return null;
+		if (name == null) {
+			IPath parsed = Path.fromOSString(getPath());
+			name = parsed.lastSegment();
+		}
+		return name;
 	}
 

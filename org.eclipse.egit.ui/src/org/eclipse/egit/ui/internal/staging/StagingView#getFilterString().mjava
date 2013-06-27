@@ -1,0 +1,6 @@
+	String getFilterString() {
+		if (filterText != null)
+			return filterText.getText().trim();
+		else
+			return ""; 	}
+
