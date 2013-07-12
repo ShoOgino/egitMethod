@@ -3,5 +3,6 @@
 		this.db = db;
 		this.resources = resources;
 
-		setDialogSettings(getOrCreateSection(Activator.getDefault().getDialogSettings(), "GitCreatePatchWizard")); 	}
+		setDialogSettings(DialogSettings.getOrCreateSection(Activator
+				.getDefault().getDialogSettings(), "GitCreatePatchWizard")); 	}
 
