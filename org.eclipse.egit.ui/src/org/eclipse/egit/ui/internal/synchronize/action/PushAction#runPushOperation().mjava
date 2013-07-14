@@ -1,4 +1,4 @@
-	private void runPushOperation(final int timeout) {
+	private void runPushOperation() {
 		GitSynchronizeDataSet gsds = (GitSynchronizeDataSet) getConfiguration()
 				.getProperty(SYNCHRONIZATION_DATA);
 
@@ -19,7 +19,7 @@
 			}
 
 			if (rc.getPushRefSpecs().isEmpty())
-				rc.addPushRefSpec(new RefSpec(HEAD + ":" + gsd.getDstMerge())); 			PushOperationUI push = new PushOperationUI(repo, rc, timeout, false);
+				rc.addPushRefSpec(new RefSpec(HEAD + ":" + gsd.getDstMerge())); 			PushOperationUI push = new PushOperationUI(repo, rc, false);
 			push.setCredentialsProvider(new EGitCredentialsProvider());
 			push.start();
 		}
