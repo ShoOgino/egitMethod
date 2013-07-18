@@ -5,7 +5,7 @@
 			warningLabel.showMessage(message);
 			needsRedraw = true;
 		} else {
-			needsRedraw = warningLabel.isVisible();
+			needsRedraw = warningLabel.getVisible();
 			warningLabel.hideMessage();
 		}
 		if (needsRedraw)

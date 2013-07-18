@@ -327,6 +327,10 @@
 			public void updateChangeIdToggleSelection(boolean selection) {
 				addChangeIdAction.setChecked(selection);
 			}
+
+			public void statusUpdated() {
+				updateMessage();
+			}
 		};
 		commitMessageComponent = new CommitMessageComponent(listener);
 		commitMessageComponent.attachControls(commitMessageText, authorText,
@@ -353,14 +357,6 @@
 				commitButton.setToolTipText(null);
 			}
 		});
-
-		ModifyListener modifyListener = new ModifyListener() {
-			public void modifyText(ModifyEvent e) {
-				updateMessage();
-			}
-		};
-		authorText.addModifyListener(modifyListener);
-		committerText.addModifyListener(modifyListener);
 
 		IWorkbenchPartSite site = getSite();
 		ISelectionService srv = (ISelectionService) site

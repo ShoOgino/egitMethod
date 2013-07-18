@@ -1,4 +1,6 @@
 	public void enableListeners(boolean enable) {
 		this.listenersEnabled = enable;
+		if (enable)
+			listener.statusUpdated();
 	}
 
