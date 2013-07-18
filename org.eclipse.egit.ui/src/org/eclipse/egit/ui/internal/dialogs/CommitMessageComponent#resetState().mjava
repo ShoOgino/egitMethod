@@ -12,6 +12,6 @@
 		createChangeId = false;
 		filesToCommit = new ArrayList<String>();
 		headCommitId = null;
-		listersEnabled = false;
+		listenersEnabled = false;
 	}
 

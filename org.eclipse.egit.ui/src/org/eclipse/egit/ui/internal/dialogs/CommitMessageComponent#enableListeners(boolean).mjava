@@ -1,0 +1,4 @@
+	public void enableListeners(boolean enable) {
+		this.listenersEnabled = enable;
+	}
+
