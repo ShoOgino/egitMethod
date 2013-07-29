@@ -1,10 +1,11 @@
 		public void decorate(IDecoration decoration,
 				IDecoratableResource resource) {
+			decorateFontAndColour(decoration, resource);
+
 			if (resource.isIgnored())
 				return;
 
 			decorateText(decoration, resource);
 			decorateIcons(decoration, resource);
-			decorateFontAndColour(decoration, resource);
 		}
 
