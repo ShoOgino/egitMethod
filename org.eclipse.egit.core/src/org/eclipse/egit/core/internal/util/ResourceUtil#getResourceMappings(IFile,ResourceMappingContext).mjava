@@ -11,7 +11,7 @@
 				if (resources.length > 0) {
 					final ModelProvider model = candidate.getModelProvider();
 					final ResourceMapping[] modelMappings = model.getMappings(
-							file, context, null);
+							file, context, new NullProgressMonitor());
 					for (ResourceMapping mapping : modelMappings)
 						mappings.add(mapping);
 				}
