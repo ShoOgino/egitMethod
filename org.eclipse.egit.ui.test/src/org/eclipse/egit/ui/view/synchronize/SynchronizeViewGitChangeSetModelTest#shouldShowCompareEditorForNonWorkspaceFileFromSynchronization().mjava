@@ -12,11 +12,11 @@
 
 		launchSynchronization(INITIAL_TAG, HEAD, true);
 
-		SWTBotEditor editor = getCompareEditorForNonWorkspaceFileInGitChangeSet(name);
-		editor.setFocus();
+		CompareEditorTester editor = getCompareEditorForNonWorkspaceFileInGitChangeSet(name);
 
-		SWTBotStyledText left = editor.bot().styledText(content);
-		SWTBotStyledText right = editor.bot().styledText("");
-		assertNotSame(left, right);
+		String left = editor.getLeftEditor().getText();
+		String right = editor.getRightEditor().getText();
+		assertEquals(content, left);
+		assertEquals("", right);
 	}
 

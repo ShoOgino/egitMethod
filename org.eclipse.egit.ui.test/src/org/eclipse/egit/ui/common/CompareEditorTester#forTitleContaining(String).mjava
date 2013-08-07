@@ -1,0 +1,8 @@
+	public static CompareEditorTester forTitleContaining(String title) {
+		SWTWorkbenchBot bot = new SWTWorkbenchBot();
+		SWTBotEditor editor = bot.editor(new CompareEditorTitleMatcher(title));
+		SWTBotStyledText styledText = editor.toTextEditor().getStyledText();
+		bot.waitUntil(Conditions.widgetIsEnabled(styledText));
+		return new CompareEditorTester(editor);
+	}
+
