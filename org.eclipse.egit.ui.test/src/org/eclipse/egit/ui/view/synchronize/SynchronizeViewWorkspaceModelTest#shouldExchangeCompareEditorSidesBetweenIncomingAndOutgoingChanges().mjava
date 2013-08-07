@@ -4,19 +4,17 @@
 		makeChangesAndCommit(PROJ1);
 
 		launchSynchronization(HEAD, INITIAL_TAG, false);
-		SWTBotEditor compEditor = getCompareEditorForFileInWorkspaceModel(
+		CompareEditorTester outgoingCompare = getCompareEditorForFileInWorkspaceModel(
 				FILE1);
-		SWTBot outgoingCompare = compEditor.bot();
-		String outgoingLeft = outgoingCompare.styledText(0).getText();
-		String outgoingRight = outgoingCompare.styledText(1).getText();
-		compEditor.close();
+		String outgoingLeft = outgoingCompare.getLeftEditor().getText();
+		String outgoingRight = outgoingCompare.getRightEditor().getText();
+		outgoingCompare.close();
 
 		launchSynchronization(INITIAL_TAG, HEAD, false);
 
-		SWTBot incomingComp = getCompareEditorForFileInWorkspaceModel(
-				FILE1).bot();
-		String incomingLeft = incomingComp.styledText(0).getText();
-		String incomingRight = incomingComp.styledText(1).getText();
+		CompareEditorTester incomingComp = getCompareEditorForFileInWorkspaceModel(FILE1);
+		String incomingLeft = incomingComp.getLeftEditor().getText();
+		String incomingRight = incomingComp.getRightEditor().getText();
 		assertThat(outgoingLeft, equalTo(incomingRight));
 		assertThat(outgoingRight, equalTo(incomingLeft));
 	}
