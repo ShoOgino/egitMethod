@@ -2,7 +2,9 @@
 			Repository repository, int numberOfProjects) {
 		super(parentShell);
 		setHelpAvailable(false);
-		this.repository = repository;
+		if (repository.isBare())
+			throw new IllegalArgumentException(
+					"DeleteRepositoryConfirmDialog can only be used for non-bare repository."); 		this.repository = repository;
 		this.numberOfProjects = numberOfProjects;
 	}
 
