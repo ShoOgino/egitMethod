@@ -20,18 +20,31 @@
 				return false;
 			RepositoryFinder f = new RepositoryFinder(project);
 			Collection<RepositoryMapping> mappings = f.find(new NullProgressMonitor());
+			if (mappings.size() != 1)
+				return false;
+
+			RepositoryMapping m = mappings.iterator().next();
+			IPath gitDirPath = m.getGitDirAbsolutePath();
+			if (gitDirPath.segmentCount() == 0)
+				return false;
+
+			IPath workingDir = gitDirPath.removeLastSegments(1);
+			if (workingDir.isRoot())
+				return false;
+
+			File userHome = FS.DETECTED.userHome();
+			if (userHome != null) {
+				Path userHomePath = new Path(userHome.getAbsolutePath());
+				if (workingDir.isPrefixOf(userHomePath))
+					return false;
+			}
+
+			final File repositoryDir = gitDirPath.toFile();
+			projects.put(project, repositoryDir);
+
 			try {
-				if (mappings.size() == 1) {
-					RepositoryMapping m = mappings.iterator()
-							.next();
-					final File repositoryDir = m
-							.getGitDirAbsolutePath().toFile();
-
-					projects.put(project, repositoryDir);
-
-					Activator.getDefault().getRepositoryUtil()
-							.addConfiguredRepository(repositoryDir);
-				}
+				Activator.getDefault().getRepositoryUtil()
+						.addConfiguredRepository(repositoryDir);
 			} catch (IllegalArgumentException e) {
 				logError(CoreText.Activator_AutoSharingFailed, e);
 			}
