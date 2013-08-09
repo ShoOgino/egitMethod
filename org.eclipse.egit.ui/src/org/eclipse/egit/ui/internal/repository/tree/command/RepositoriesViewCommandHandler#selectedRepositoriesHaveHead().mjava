@@ -1,0 +1,4 @@
+	protected boolean selectedRepositoriesHaveHead() {
+		return selectionHasHead(true);
+	}
+
