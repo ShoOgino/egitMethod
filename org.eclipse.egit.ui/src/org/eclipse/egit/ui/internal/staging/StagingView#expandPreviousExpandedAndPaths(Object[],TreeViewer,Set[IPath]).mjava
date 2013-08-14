@@ -1,5 +1,8 @@
 	private void expandPreviousExpandedAndPaths(Object[] previous,
 			TreeViewer viewer, Set<IPath> additionalPaths) {
+		if (viewer.getAutoExpandLevel() == AbstractTreeViewer.ALL_LEVELS)
+			return;
+
 		Set<IPath> paths = new HashSet<IPath>(additionalPaths);
 		for (Object element : previous)
 			if (element instanceof StagingFolderEntry)
