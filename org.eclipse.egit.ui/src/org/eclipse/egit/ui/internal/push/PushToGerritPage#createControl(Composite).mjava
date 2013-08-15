@@ -15,7 +15,8 @@
 		branchTextlabel = new Label(main, SWT.NONE);
 
 		prefixCombo = new Combo(main, SWT.READ_ONLY | SWT.DROP_DOWN);
-		prefixCombo.add("refs/for/"); 		prefixCombo.add("refs/drafts/"); 		prefixCombo.select(0);
+		prefixCombo.add(GerritUtil.REFS_FOR);
+		prefixCombo.add("refs/drafts/"); 		prefixCombo.select(0);
 
 		branchTextlabel.setText(UIText.PushToGerritPage_BranchLabel);
 		branchText = new Text(main, SWT.SINGLE | SWT.BORDER);

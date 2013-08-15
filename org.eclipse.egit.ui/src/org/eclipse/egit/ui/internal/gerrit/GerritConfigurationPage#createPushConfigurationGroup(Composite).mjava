@@ -6,7 +6,8 @@
 		branchLabel
 				.setText(UIText.GerritConfigurationPage_labelDestinationBranch);
 		Text prefix = new Text(pushConfigurationGroup, SWT.READ_ONLY);
-		prefix.setText("refs/for/"); 		prefix.setEnabled(false);
+		prefix.setText(GerritUtil.REFS_FOR);
+		prefix.setEnabled(false);
 
 		branch = SWTUtils.createText(pushConfigurationGroup);
 		branch.addModifyListener(new ModifyListener() {
