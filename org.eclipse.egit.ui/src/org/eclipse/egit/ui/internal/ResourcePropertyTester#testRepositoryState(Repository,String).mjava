@@ -1,6 +1,8 @@
 	public static boolean testRepositoryState(Repository repository, String property) {
 		if ("isShared".equals(property)) 			return repository != null;
 		if (repository != null) {
+			if ("hasGerritConfiguration".equals(property)) 				return hasGerritConfiguration(repository);
+
 			RepositoryState state = repository.getRepositoryState();
 			if (property.length() > 3 && property.startsWith("is")) { 				String lookFor = property.substring(2,3) + property.substring(3).replaceAll("([A-Z])","_$1").toUpperCase();  				if (state.toString().equals(lookFor))
 					return true;
