@@ -1,15 +1,15 @@
 	public static IPreviousValueProposalHandler addPreviousValuesContentProposalToText(
 			final Text textField, final String preferenceKey) {
-		KeyStroke stroke;
-		try {
-			stroke = KeyStroke.getInstance("M1+SPACE"); 			addBulbDecorator(textField, NLS.bind(
-					UIText.UIUtils_PressShortcutMessage, stroke.format()));
-		} catch (ParseException e1) {
-			Activator.handleError(e1.getMessage(), e1, false);
-			stroke = null;
+		KeyStroke stroke = UIUtils
+				.getKeystrokeOfBestActiveBindingFor(IWorkbenchCommandConstants.EDIT_CONTENT_ASSIST);
+		if (stroke == null)
 			addBulbDecorator(textField,
 					UIText.UIUtils_StartTypingForPreviousValuesMessage);
-		}
+		else
+			addBulbDecorator(
+					textField,
+					NLS.bind(UIText.UIUtils_PressShortcutMessage,
+							stroke.format()));
 
 		IContentProposalProvider cp = new IContentProposalProvider() {
 
