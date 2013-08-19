@@ -1,0 +1,12 @@
+	private static File customTestDirectory() {
+		final String p = System.getProperty("egit.test.tmpdir"); 		File testDir = null;
+		boolean isDefault = true;
+		if (p == null || p.length() == 0)
+			testDir = new File(FS.DETECTED.userHome(), "egit.test.tmpdir"); 		else {
+			isDefault = false;
+			testDir = new File(p).getAbsoluteFile();
+		}
+		System.out.println("egit.test.tmpdir" 				+ (isDefault ? "[default]: " : ": ") 				+ testDir.getAbsolutePath());
+		return testDir;
+	}
+

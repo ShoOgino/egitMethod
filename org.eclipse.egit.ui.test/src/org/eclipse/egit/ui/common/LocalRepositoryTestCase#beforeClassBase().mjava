@@ -1,8 +1,7 @@
 	@BeforeClass
 	public static void beforeClassBase() throws Exception {
 		deleteAllProjects();
-		File userHome = FS.DETECTED.userHome();
-		testDirectory = new File(userHome, "LocalRepositoriesTests");
+		testDirectory = testUtils.createTempDir("LocalRepositoriesTests");
 		if (testDirectory.exists())
 			FileUtils.delete(testDirectory, FileUtils.RECURSIVE
 					| FileUtils.RETRY);
