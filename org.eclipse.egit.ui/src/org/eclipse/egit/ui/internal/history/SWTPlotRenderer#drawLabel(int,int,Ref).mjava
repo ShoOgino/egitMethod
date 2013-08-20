@@ -46,7 +46,12 @@
 		else
 			maxLength = MAX_LABEL_LENGTH;
 		if (txt.length() > maxLength)
-			txt = txt.substring(0, maxLength) + "\u2026"; 
+			if (Activator.getDefault().getPreferenceStore()
+					.getBoolean(UIPreferences.HISTORY_CUT_AT_START))
+				txt = ELLIPSIS + txt.substring(txt.length() - maxLength);
+			else
+				txt = txt.substring(0, maxLength) + ELLIPSIS;
+
 		Font oldFont = g.getFont();
 		boolean isHead = isHead(name);
 		if (isHead)
