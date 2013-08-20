@@ -1,4 +1,4 @@
 	public File getBaseTempDir() {
-		return rootDir;
+		return baseTempDir;
 	}
 
