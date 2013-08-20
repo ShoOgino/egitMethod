@@ -47,10 +47,11 @@
 					for (RevCommit revCommit : commits)
 						commitCombo.add(revCommit);
 
-					if (tag != null)
-						commitCombo.setSelectedElement(tag.getObject());
+					if (existingTag != null)
+						commitCombo.setSelectedElement(existingTag.getObject());
 				}
 				composite.layout(true);
+				composite.getShell().pack();
 			}
 		});
 	}
