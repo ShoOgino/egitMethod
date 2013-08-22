@@ -2,12 +2,11 @@
 	public void testLinkedResourcesIgnoredByGitResourceDeltaVisitor()
 			throws Exception {
 		IFolder folder = project1.getFolder("link2project2");
-		folder.createLink(project2.getLocation(),
-				IResource.ALLOW_MISSING_LOCAL, null);
+		folder.createLink(project2.getLocation(), 0, null);
 		IFile file = project1.getFile("link2project2folder1file1.txt");
 		file.createLink(
 				project2.getFile("project2folder1/project2folder1file1.txt")
-						.getLocation(), IResource.ALLOW_MISSING_LOCAL, null);
+						.getLocation(), 0, null);
 		testUtils.addFileToProject(project2,
 				"project2folder1/project2folder1file2.txt", "Hello world");
 		resourceDeltaTestHelper1
