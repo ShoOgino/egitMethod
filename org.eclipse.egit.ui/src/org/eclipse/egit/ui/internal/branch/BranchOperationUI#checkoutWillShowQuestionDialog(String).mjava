@@ -1,0 +1,4 @@
+	public static boolean checkoutWillShowQuestionDialog(String refName) {
+		return shouldShowCheckoutRemoteTrackingDialog(refName);
+	}
+
