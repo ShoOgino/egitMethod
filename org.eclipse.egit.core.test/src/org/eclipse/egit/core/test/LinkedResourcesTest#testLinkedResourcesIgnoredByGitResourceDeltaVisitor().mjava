@@ -9,6 +9,8 @@
 						.getLocation(), 0, null);
 		testUtils.addFileToProject(project2,
 				"project2folder1/project2folder1file2.txt", "Hello world");
+		folder.refreshLocal(IResource.DEPTH_INFINITE, null);
+
 		resourceDeltaTestHelper1
 				.assertChangedResources(new String[] { "/project1/.project" });
 		resourceDeltaTestHelper2.assertChangedResources(new String[] {

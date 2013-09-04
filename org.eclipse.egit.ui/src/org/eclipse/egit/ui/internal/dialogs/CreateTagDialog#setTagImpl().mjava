@@ -1,8 +1,0 @@
-	private void setTagImpl() {
-		tagNameText.setText(tag.getTagName());
-		if (commitCombo != null)
-			commitCombo.setSelectedElement(tag.getObject());
-
-		String message = tag.getFullMessage();
-		tagMessageText.setText(null != message ? message : ""); 	}
-

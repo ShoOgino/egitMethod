@@ -4,10 +4,8 @@
 		case CLEAR_ID:
 			tagNameText.setText(""); 			tagMessageText.setText(""); 			if (commitCombo != null) {
 				commitCombo.clearSelection();
-				commitCombo.setEnabled(true);
 			}
-			tagNameText.setEnabled(true);
-			tagMessageText.setEnabled(true);
+			tagMessageText.getTextWidget().setEditable(true);
 			overwriteButton.setEnabled(false);
 			overwriteButton.setSelection(false);
 			break;

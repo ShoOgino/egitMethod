@@ -3,8 +3,7 @@
 			IProgressMonitor monitor) throws TeamException {
 		for (IResource resource : resources) {
 			if (resource.getType() == IResource.ROOT) {
-				GitSyncCache newCache = GitSyncCache.getAllData(gsds, monitor);
-				cache.merge(newCache);
+				cache = GitSyncCache.getAllData(gsds, monitor);
 				super.refresh(resources, depth, monitor);
 				return;
 			}
@@ -32,9 +31,7 @@
 		}
 
 		if (!updateRequests.isEmpty()) {
-			GitSyncCache newCache = GitSyncCache.getAllData(updateRequests,
-					monitor);
-			cache.merge(newCache);
+			GitSyncCache.mergeAllDataIntoCache(updateRequests, monitor, cache);
 		}
 
 		super.refresh(resources, depth, monitor);

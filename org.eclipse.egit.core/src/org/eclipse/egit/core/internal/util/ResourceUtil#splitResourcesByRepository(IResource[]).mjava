@@ -1,14 +1,5 @@
 	public static Map<Repository, Collection<String>> splitResourcesByRepository(
 			IResource[] resources) {
-		Map<Repository, Collection<String>> result = new HashMap<Repository, Collection<String>>();
-		for (IResource resource : resources) {
-			RepositoryMapping repositoryMapping = RepositoryMapping
-					.getMapping(resource);
-			if (repositoryMapping == null)
-				continue;
-			String path = repositoryMapping.getRepoRelativePath(resource);
-			addPathToMap(repositoryMapping, path, result);
-		}
-		return result;
+		return splitResourcesByRepository(Arrays.asList(resources));
 	}
 
