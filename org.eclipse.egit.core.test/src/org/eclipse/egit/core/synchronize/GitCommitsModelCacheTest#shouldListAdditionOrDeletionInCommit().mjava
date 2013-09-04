@@ -10,7 +10,8 @@
 				initialTagId(), null);
 		assertThat(leftResult, notNullValue());
 		assertCommit(leftResult.get(0), c, 1);
-		assertFileDeletion(c, leftResult.get(0).getChildren().get("a.txt"),
+		assertFileAddition(c,
+				leftResult.get(0).getChildren().get("a.txt"),
 				"a.txt", LEFT);
 		assertThat(rightResult, notNullValue());
 		assertCommit(rightResult.get(0), c, 1);

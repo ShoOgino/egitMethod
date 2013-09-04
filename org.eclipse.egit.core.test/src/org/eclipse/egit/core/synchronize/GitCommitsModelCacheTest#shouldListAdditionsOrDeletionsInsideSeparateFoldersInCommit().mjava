@@ -16,10 +16,10 @@
 		assertThat(leftResult.get(0).getShortMessage(), is("first commit"));
 		assertThat(leftResult.get(0).getChildren(), notNullValue());
 		assertThat(leftResult.get(0).getChildren().size(), is(2));
-		assertFileDeletion(c,
+		assertFileAddition(c,
 				leftResult.get(0).getChildren().get("folder/a.txt"), "a.txt",
 				LEFT);
-		assertFileDeletion(c,
+		assertFileAddition(c,
 				leftResult.get(0).getChildren().get("folder2/b.txt"), "b.txt",
 				LEFT);
 		assertThat(rightResult, notNullValue());

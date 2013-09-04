@@ -33,19 +33,15 @@
 			commit.committerName = revCommit.getCommitterIdent().getName();
 			commit.commitDate = revCommit.getAuthorIdent().getWhen();
 
-			RevCommit actualCommit, parentCommit;
-			if (revCommit.has(localFlag)) {
-				actualCommit = revCommit;
-				parentCommit = getParentCommit(revCommit);
+			RevCommit parentCommit = getParentCommit(revCommit);
+			if (revCommit.has(localFlag))
 				commit.direction = RIGHT;
-			} else if (revCommit.has(remoteFlag)) {
-				actualCommit = getParentCommit(revCommit);
-				parentCommit = revCommit;
+			else if (revCommit.has(remoteFlag))
 				commit.direction = LEFT;
-			} else
+			else
 				throw new GitCommitsModelDirectionException();
 
-			commit.children = getChangedObjects(repo, actualCommit,
+			commit.children = getChangedObjects(repo, revCommit,
 					parentCommit, pathFilter, commit.direction);
 
 			if (commit.children != null)
