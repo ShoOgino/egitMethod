@@ -1,0 +1,5 @@
+	protected void rebaseSkip() {
+		doRebaseOperation(currentRepository, Operation.SKIP,
+				UIText.SkipRebaseCommand_JobName);
+	}
+
