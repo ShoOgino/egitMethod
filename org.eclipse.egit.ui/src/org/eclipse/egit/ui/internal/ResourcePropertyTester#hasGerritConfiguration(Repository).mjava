@@ -1,4 +1,4 @@
-	private static boolean hasGerritConfiguration(Repository repository) {
+	public static boolean hasGerritConfiguration(Repository repository) {
 		Config config = repository.getConfig();
 		if (GerritUtil.getCreateChangeId(config))
 			return true;
