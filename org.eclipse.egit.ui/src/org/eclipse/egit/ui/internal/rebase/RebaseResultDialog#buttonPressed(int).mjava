@@ -57,27 +57,29 @@
 				}
 				CompareUI.openCompareEditor(input);
 				return;
-			} else if (skipCommitButton.getSelection())
-				try {
-					final RebaseOperation op = new RebaseOperation(repo,
-							Operation.SKIP);
-					op.execute(null);
-
-					show(op.getResult(), repo);
-				} catch (CoreException e) {
-					Activator.handleError(e.getMessage(), e, true);
-				}
-			else if (abortRebaseButton.getSelection())
-				try {
-					final RebaseOperation op = new RebaseOperation(repo,
-							Operation.ABORT);
-					op.execute(null);
-
-					show(op.getResult(), repo);
-				} catch (CoreException e) {
-					Activator.handleError(e.getMessage(), e, true);
-				}
-			else if (doNothingButton.getSelection()) {
+			} else if (skipCommitButton.getSelection()) {
+				final RebaseOperation op = new RebaseOperation(repo,
+						Operation.SKIP);
+				JobUtil.scheduleUserJob(op,
+						UIText.RebaseResultDialog_JobNameSkipCommit,
+						JobFamilies.REBASE, new JobChangeAdapter() {
+							@Override
+							public void done(IJobChangeEvent event) {
+								show(op.getResult(), repo);
+							}
+						});
+			} else if (abortRebaseButton.getSelection()) {
+				final RebaseOperation op = new RebaseOperation(repo,
+						Operation.ABORT);
+				JobUtil.scheduleUserJob(op,
+						UIText.RebaseResultDialog_JobNameAbortRebase,
+						JobFamilies.REBASE, new JobChangeAdapter() {
+							@Override
+							public void done(IJobChangeEvent event) {
+								show(op.getResult(), repo);
+							}
+						});
+			} else if (doNothingButton.getSelection()) {
 			}
 		}
 		super.buttonPressed(buttonId);

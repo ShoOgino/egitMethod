@@ -12,7 +12,7 @@
 		assertThat(leftResult, notNullValue());
 		assertCommit(leftResult.get(0), c, 1);
 		assertThat(leftResult.get(0).getChildren().size(), is(1));
-		assertFileDeletion(c,
+		assertFileAddition(c,
 				leftResult.get(0).getChildren().get("folder/a.txt"), "a.txt",
 				LEFT);
 		assertThat(rightResult, notNullValue());

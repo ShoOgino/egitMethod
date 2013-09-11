@@ -1,11 +1,12 @@
 		@Override
 		public String toString() {
 			StringBuilder change = new StringBuilder("Change("); 			if ((kind & LEFT) != 0)
-				change.append("OUTGOING "); 			else
-				change.append("INCOMING "); 			if ((kind & ADDITION) != 0)
-				change.append("ADDITION "); 			else if ((kind & DELETION) != 0)
-				change.append("DELETION "); 			else
-				change.append("CHANGE "); 
+				change.append("INCOMING "); 			else
+				change.append("OUTGOING "); 			int changeType = kind & CHANGE_TYPE_MASK;
+			if (changeType == CHANGE)
+				change.append("CHANGE "); 			else if (changeType == ADDITION)
+				change.append("ADDITION "); 			else if (changeType == DELETION)
+				change.append("DELETION "); 
 			change.append(name);
 			change.append(";\n\tcurrent objectId: "); 			change.append(getObjectId(objectId));
 			change.append(";\n\tparent objectId: "); 			change.append(getObjectId(remoteObjectId));
