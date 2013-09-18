@@ -1,0 +1,5 @@
+		public boolean isComment() {
+			return (Action.COMMENT.equals(line.getAction()) && null == line
+					.getCommit());
+		}
+

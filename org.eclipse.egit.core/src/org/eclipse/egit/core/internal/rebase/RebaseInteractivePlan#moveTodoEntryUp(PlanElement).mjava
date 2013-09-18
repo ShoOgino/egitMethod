@@ -1,0 +1,4 @@
+	public void moveTodoEntryUp(PlanElement element) {
+		new MoveHelper(todoList, this).moveTodoEntryUp(element);
+	}
+

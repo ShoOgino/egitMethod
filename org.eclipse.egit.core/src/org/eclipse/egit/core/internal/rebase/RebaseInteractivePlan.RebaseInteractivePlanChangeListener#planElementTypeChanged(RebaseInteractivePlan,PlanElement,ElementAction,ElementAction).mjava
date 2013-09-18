@@ -1,0 +1,4 @@
+		public void planElementTypeChanged(
+				RebaseInteractivePlan rebaseInteractivePlan, PlanElement element,
+				ElementAction oldType, ElementAction newType);
+

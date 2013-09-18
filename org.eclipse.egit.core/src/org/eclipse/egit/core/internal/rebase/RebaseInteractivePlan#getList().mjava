@@ -1,0 +1,4 @@
+	public List<PlanElement> getList() {
+		return planList;
+	}
+

@@ -1,0 +1,6 @@
+	public void onRefsChanged(RefsChangedEvent event) {
+		Repository repo = event.getRepository();
+		if (this.repository == repo)
+			reparsePlan();
+	}
+

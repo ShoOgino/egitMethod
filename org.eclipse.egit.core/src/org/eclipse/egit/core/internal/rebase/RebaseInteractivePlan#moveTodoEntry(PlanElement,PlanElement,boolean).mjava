@@ -1,0 +1,6 @@
+	public void moveTodoEntry(PlanElement sourceElement, PlanElement targetElement,
+			boolean before) {
+		new MoveHelper(todoList, this).moveTodoEntry(sourceElement,
+				targetElement, before);
+	}
+

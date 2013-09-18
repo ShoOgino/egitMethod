@@ -1,0 +1,7 @@
+		@Override
+		public void add(int index, T element) {
+			RelativeIndex<T> rel = mapAbsolutIndex(index);
+			rel.getList().add(rel.getRelativeIndex(), element);
+			modCount++;
+		}
+

@@ -1,0 +1,5 @@
+	public boolean removeRebaseInteractivePlanChangeListener(
+			RebaseInteractivePlanChangeListener listener) {
+		return planChangeListeners.remove(listener);
+	}
+

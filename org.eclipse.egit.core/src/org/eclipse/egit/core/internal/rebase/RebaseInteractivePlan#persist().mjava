@@ -1,0 +1,15 @@
+	public boolean persist() {
+		if (!isRebasingInteractive())
+			return false;
+		List<RebaseTodoLine> todoLines = new LinkedList<RebaseTodoLine>();
+		for (PlanElement element : planList.getSecondList())
+			todoLines.add(element.getRebaseTodoLine());
+		try {
+			repository.writeRebaseTodoFile(REBASE_TODO, todoLines, false);
+		} catch (IOException e) {
+			Activator.logError(CoreText.RebaseInteractivePlan_WriteRebaseTodoFailed, e);
+			throw new RuntimeException(e);
+		}
+		return true;
+	}
+

@@ -1,0 +1,4 @@
+	public boolean isRebasingInteractive() {
+		return repository.getRepositoryState() == RepositoryState.REBASING_INTERACTIVE;
+	}
+

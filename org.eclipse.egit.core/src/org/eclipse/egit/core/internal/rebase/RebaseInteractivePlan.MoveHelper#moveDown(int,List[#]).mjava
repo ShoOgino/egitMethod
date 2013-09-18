@@ -1,0 +1,7 @@
+		private static boolean moveDown(final int index, final List<?> list) {
+			if (index < 0 || index >= list.size() - 1)
+				return false;
+			Collections.swap(list, index, index + 1);
+			return true;
+		}
+

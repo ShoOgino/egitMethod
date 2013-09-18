@@ -1,0 +1,10 @@
+	public void dispose() {
+		reparsePlan();
+		notifyPlanWasUpdatedFromRepository();
+		planRegistry.remove(this.repository.getDirectory());
+		planList.clear();
+		planChangeListeners.clear();
+		unregisterIndexDiffChangeListener();
+		refsChangedListener.remove();
+	}
+

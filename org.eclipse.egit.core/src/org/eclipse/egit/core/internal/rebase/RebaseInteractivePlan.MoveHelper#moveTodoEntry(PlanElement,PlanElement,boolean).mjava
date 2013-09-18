@@ -1,0 +1,31 @@
+		public void moveTodoEntry(PlanElement sourceElement,
+				PlanElement targetElement, boolean before) {
+			if (sourceElement == targetElement)
+				return;
+			Assert.isNotNull(sourceElement);
+			Assert.isNotNull(targetElement);
+			if (ElementType.TODO != sourceElement.getElementType())
+				throw new IllegalArgumentException();
+
+			List<PlanElement> list = todoList;
+
+			int initialSourceIndex = list.indexOf(sourceElement);
+			int targetIndex = list.indexOf(targetElement);
+
+			if (targetIndex == -1 || initialSourceIndex == -1)
+				return;
+			if (targetIndex == initialSourceIndex)
+				return;
+
+			if (targetIndex > initialSourceIndex && before)
+				targetIndex--;
+			if (targetIndex < initialSourceIndex && !before)
+				targetIndex++;
+
+			move(initialSourceIndex, targetIndex, list);
+			int newIndex = list.indexOf(sourceElement);
+			if (initialSourceIndex != newIndex)
+				plan.notifyPlanElementsOrderChange(sourceElement,
+						initialSourceIndex, newIndex);
+		}
+
