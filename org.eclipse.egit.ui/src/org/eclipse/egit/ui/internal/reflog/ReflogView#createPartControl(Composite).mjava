@@ -201,12 +201,8 @@
 				.getService(ISelectionService.class);
 		service.addPostSelectionListener(selectionChangedListener);
 
-		ISelection selection = service.getSelection();
-		if (selection != null && !selection.isEmpty()) {
-			IWorkbenchPart part = site.getPage().getActivePart();
-			if (part != null)
-				selectionChangedListener.selectionChanged(part, selection);
-		}
+		UIUtils.notifySelectionChangedWithCurrentSelection(
+				selectionChangedListener, site);
 
 		site.setSelectionProvider(refLogTableTreeViewer);
 
