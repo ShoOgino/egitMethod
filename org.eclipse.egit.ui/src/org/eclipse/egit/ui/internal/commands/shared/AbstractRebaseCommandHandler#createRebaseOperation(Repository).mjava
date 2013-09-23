@@ -1,0 +1,3 @@
+	protected abstract RebaseOperation createRebaseOperation(
+			Repository repository) throws ExecutionException;
+
