@@ -76,6 +76,7 @@
 				compareWith(event);
 			}
 		});
+		enableAutoExpand(unstagedViewer);
 		addListenerToDisableAutoExpandOnCollapse(unstagedViewer);
 
 		Composite rebaseAndCommitComposite = toolkit.createComposite(horizontalSashForm);
@@ -342,6 +343,7 @@
 				compareWith(event);
 			}
 		});
+		enableAutoExpand(stagedViewer);
 		addListenerToDisableAutoExpandOnCollapse(stagedViewer);
 
 		selectionChangedListener = new ISelectionListener() {
