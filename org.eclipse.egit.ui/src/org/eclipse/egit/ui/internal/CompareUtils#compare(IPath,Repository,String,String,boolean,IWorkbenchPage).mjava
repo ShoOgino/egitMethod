@@ -1,12 +1,12 @@
 	public static void compare(IPath location, Repository repository,
-			String srcRev, String dstRev, boolean includeLocal,
+			String leftRev, String rightRev, boolean includeLocal,
 			IWorkbenchPage page) throws IOException {
 		if (includeLocal)
-			compareLocalWithRef(repository, location, dstRev, page);
+			compareLocalWithRef(repository, location, rightRev, page);
 		else {
 			final String gitPath = RepositoryMapping.getMapping(location)
 					.getRepoRelativePath(location);
-			compareBetween(repository, gitPath, srcRev, dstRev, page);
+			compareBetween(repository, gitPath, leftRev, rightRev, page);
 		}
 	}
 
