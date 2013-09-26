@@ -1,0 +1,4 @@
+	public RebaseInteractivePlan getCurrentPlan() {
+		return currentPlan;
+	}
+

@@ -1,0 +1,19 @@
+	public Object[] getChildren(Object parentElement) {
+		if (parentElement instanceof RebaseInteractivePlan) {
+			RebaseInteractivePlan plan = (RebaseInteractivePlan) parentElement;
+			List<RebaseInteractivePlan.PlanElement> linesToDisplay = new LinkedList<RebaseInteractivePlan.PlanElement>();
+			for (RebaseInteractivePlan.PlanElement line : plan.getList()) {
+				if (line.isComment())
+					continue;
+				linesToDisplay.add(line);
+			}
+			return linesToDisplay.toArray();
+		}
+
+		if (parentElement instanceof RebaseTodoLine) {
+			return new Object[0];
+		}
+
+		return new Object[0];
+	}
+

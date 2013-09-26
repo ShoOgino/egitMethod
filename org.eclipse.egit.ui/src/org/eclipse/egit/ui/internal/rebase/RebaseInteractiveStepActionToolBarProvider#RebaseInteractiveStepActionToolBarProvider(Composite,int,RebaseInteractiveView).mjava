@@ -1,0 +1,13 @@
+	public RebaseInteractiveStepActionToolBarProvider(Composite parent,
+			int style, RebaseInteractiveView view) {
+		this.theToolbar = new ToolBar(parent, style);
+		this.view = view;
+		createToolBarItems();
+		this.theToolbar.addDisposeListener(new DisposeListener() {
+
+			public void widgetDisposed(DisposeEvent e) {
+				dispose();
+			}
+		});
+	}
+

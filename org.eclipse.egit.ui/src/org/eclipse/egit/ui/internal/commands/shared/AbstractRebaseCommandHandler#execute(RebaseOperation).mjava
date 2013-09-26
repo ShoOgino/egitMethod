@@ -19,6 +19,7 @@
 
 					@Override
 					public void done(IJobChangeEvent cevent) {
+						finishRebaseInteractive();
 						IStatus result = cevent.getJob().getResult();
 						if (operation == Operation.BEGIN
 								&& result.getSeverity() == IStatus.ERROR) {
@@ -39,6 +40,13 @@
 						else if (result.isOK())
 							RebaseResultDialog.show(rebase.getResult(),
 									repository);
+					}
+
+					private void finishRebaseInteractive() {
+						RebaseInteractivePlan plan = RebaseInteractivePlan
+								.getPlan(repository);
+						if (plan != null && !plan.isRebasingInteractive())
+							plan.dispose();
 					}
 				});
 	}

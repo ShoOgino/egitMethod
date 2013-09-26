@@ -1,0 +1,4 @@
+	final ToolBar getTheToolbar() {
+		return theToolbar;
+	}
+

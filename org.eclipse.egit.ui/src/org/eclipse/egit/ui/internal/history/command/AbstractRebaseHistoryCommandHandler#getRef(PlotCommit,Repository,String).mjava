@@ -1,4 +1,5 @@
-	private Ref getRef(PlotCommit commit, Repository repository, String currentBranch) {
+	protected Ref getRef(PlotCommit commit, Repository repository,
+			String currentBranch) {
 		int count = commit.getRefCount();
 		if (count == 0)
 			return new ObjectIdRef.Unpeeled(Storage.LOOSE, commit.getName(), commit);
