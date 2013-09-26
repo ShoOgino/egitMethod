@@ -1,0 +1,3 @@
+	public void prepareSteps(List<RebaseTodoLine> steps) {
+	}
+

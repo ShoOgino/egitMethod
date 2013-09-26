@@ -1,6 +1,4 @@
 	public RebaseOperation(Repository repository, Ref ref) {
-		this.repository = repository;
-		this.operation = Operation.BEGIN;
-		this.ref = ref;
+		this(repository, ref, Operation.BEGIN, null);
 	}
 
