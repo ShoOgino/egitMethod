@@ -1,0 +1,4 @@
+	public Composite getContainer() {
+		return container;
+	}
+

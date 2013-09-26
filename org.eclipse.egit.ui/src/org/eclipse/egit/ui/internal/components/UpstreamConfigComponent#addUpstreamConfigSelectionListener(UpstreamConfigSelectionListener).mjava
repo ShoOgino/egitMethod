@@ -1,0 +1,5 @@
+	public void addUpstreamConfigSelectionListener(
+			UpstreamConfigSelectionListener listener) {
+		listeners.add(listener);
+	}
+
