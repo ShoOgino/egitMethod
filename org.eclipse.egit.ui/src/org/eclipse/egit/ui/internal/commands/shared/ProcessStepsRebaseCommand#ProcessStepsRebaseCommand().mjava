@@ -1,0 +1,5 @@
+	public ProcessStepsRebaseCommand() {
+		super(UIText.ProcessStepsRebaseCommand_JobName,
+				UIText.ProcessStepsRebaseCommand_CancelDialogMessage);
+	}
+
