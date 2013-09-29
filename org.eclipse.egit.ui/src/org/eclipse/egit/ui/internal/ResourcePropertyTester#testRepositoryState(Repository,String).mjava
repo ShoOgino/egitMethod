@@ -4,6 +4,23 @@
 			if ("hasGerritConfiguration".equals(property)) 				return hasGerritConfiguration(repository);
 
 			RepositoryState state = repository.getRepositoryState();
+
+			if ("canAbortRebase".equals(property)) 				switch (state) {
+				case REBASING_INTERACTIVE:
+					return true;
+				case REBASING_REBASING:
+					return true;
+				default:
+					return false;
+				}
+
+			if ("canContinueRebase".equals(property)) 				switch (state) {
+				case REBASING_INTERACTIVE:
+					return true;
+				default:
+					return false;
+				}
+
 			if (property.length() > 3 && property.startsWith("is")) { 				String lookFor = property.substring(2,3) + property.substring(3).replaceAll("([A-Z])","_$1").toUpperCase();  				if (state.toString().equals(lookFor))
 					return true;
 			}
