@@ -1,5 +1,5 @@
 	public ContinueRebaseCommand() {
-		super(Operation.CONTINUE, UIText.ContinueRebaseCommand_JobName,
+		super(UIText.ContinueRebaseCommand_JobName,
 				UIText.ContinueRebaseCommand_CancelDialogMessage);
 	}
 

@@ -1,4 +1,5 @@
 	public RebaseCurrentRefCommand() {
-		super(null, null, null);
+		super(UIText.RebaseCurrentRefCommand_RebasingCurrentJobName,
+				UIText.RebaseCurrentRefCommand_RebaseCanceledMessage);
 	}
 

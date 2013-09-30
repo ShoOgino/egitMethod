@@ -1,0 +1,5 @@
+	protected AbstractRebaseCommandHandler(String jobname, String dialogMessage) {
+		this.jobname = jobname;
+		this.dialogMessage = dialogMessage;
+	}
+
