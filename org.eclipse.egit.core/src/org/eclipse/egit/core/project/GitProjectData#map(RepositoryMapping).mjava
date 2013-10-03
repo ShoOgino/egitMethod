@@ -13,15 +13,13 @@
 		}
 
 		if (c == null) {
-			logGoneMappedResource(m);
-			m.clear();
+			logAndUnmapGoneMappedResource(m);
 			return;
 		}
 		m.setContainer(c);
 
 		git = c.getLocation().append(m.getGitDirPath()).toFile();
-		if (!git.isDirectory() || !new File(git, "config").isFile()) { 			logGoneMappedResource(m);
-			m.clear();
+		if (!git.isDirectory() || !new File(git, "config").isFile()) { 			logAndUnmapGoneMappedResource(m);
 			return;
 		}
 
@@ -29,8 +27,7 @@
 			m.setRepository(Activator.getDefault().getRepositoryCache()
 					.lookupRepository(git));
 		} catch (IOException ioe) {
-			logGoneMappedResource(m);
-			m.clear();
+			logAndUnmapGoneMappedResource(m);
 			return;
 		}
 
