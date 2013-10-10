@@ -9,9 +9,12 @@
 			Activator.logError(NLS.bind(UIText.CompareUtils_errorCommonAncestor,
 					commit1.getName(), commit2.getName()), e);
 		}
-		if (commonAncestor != null)
-			ancestor = CompareUtils
-				.getFileRevisionTypedElement(gitPath, commonAncestor, db);
+		if (commonAncestor != null) {
+			ITypedElement ancestorCandidate = CompareUtils
+					.getFileRevisionTypedElement(gitPath, commonAncestor, db);
+			if (!(ancestorCandidate instanceof EmptyTypedElement))
+				ancestor = ancestorCandidate;
+		}
 		return ancestor;
 	}
 
