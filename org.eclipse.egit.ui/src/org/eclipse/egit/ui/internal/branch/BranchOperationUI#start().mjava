@@ -7,6 +7,9 @@
 			return;
 		}
 
+		if (shouldCancelBecauseOfRunningLaunches())
+			return;
+
 		askForTargetIfNecessary();
 		if (target == null)
 			return;
