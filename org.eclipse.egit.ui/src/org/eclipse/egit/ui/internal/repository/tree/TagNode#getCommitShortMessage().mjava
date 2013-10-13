@@ -1,0 +1,4 @@
+	public String getCommitShortMessage() {
+		return shortMessage;
+	}
+

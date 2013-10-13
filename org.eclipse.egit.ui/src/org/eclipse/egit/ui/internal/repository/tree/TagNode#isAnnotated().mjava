@@ -1,0 +1,4 @@
+	public boolean isAnnotated() {
+		return annotated;
+	}
+

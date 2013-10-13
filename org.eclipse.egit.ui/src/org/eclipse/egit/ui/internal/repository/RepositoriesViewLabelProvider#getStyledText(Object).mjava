@@ -47,7 +47,6 @@
 				return dirString;
 
 			case REF:
-			case TAG:
 				StyledString styled = null;
 				String nodeText = getSimpleText(node);
 				if (nodeText != null) {
@@ -64,6 +63,8 @@
 					}
 				}
 				return styled;
+			case TAG:
+				return getStyledTextForTag((TagNode) node);
 			case STASHED_COMMIT:
 				return getStyledTextForCommit((StashedCommitNode) node);
 			case PUSH:
