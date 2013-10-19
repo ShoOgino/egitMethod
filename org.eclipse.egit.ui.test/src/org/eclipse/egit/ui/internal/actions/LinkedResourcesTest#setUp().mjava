@@ -1,6 +1,6 @@
 	@Before
 	public void setUp() throws Exception {
-		gitDir = createProjectAndCommitToRepository();
+		createProjectAndCommitToRepository();
 		project = ResourcesPlugin.getWorkspace().getRoot().getProject(PROJ1);
 		standaloneDirectory = testUtils.createTempDir(STANDALONE_FOLDER);
 		if (standaloneDirectory.exists())

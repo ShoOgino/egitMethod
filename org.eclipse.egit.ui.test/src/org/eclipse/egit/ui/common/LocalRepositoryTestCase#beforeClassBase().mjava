@@ -1,22 +1,10 @@
 	@BeforeClass
 	public static void beforeClassBase() throws Exception {
-		deleteAllProjects();
-		testDirectory = testUtils.createTempDir("LocalRepositoriesTests");
-		if (testDirectory.exists())
-			FileUtils.delete(testDirectory, FileUtils.RECURSIVE
-					| FileUtils.RETRY);
-		if (!testDirectory.exists())
-			FileUtils.mkdir(testDirectory, true);
-		File repoRoot = new File(testDirectory, "RepositoryRoot");
-		if (!repoRoot.exists())
-			FileUtils.mkdir(repoRoot, true);
 		IEclipsePreferences corePrefs = InstanceScope.INSTANCE
 				.getNode(org.eclipse.egit.core.Activator.getPluginId());
 		corePrefs.putBoolean(
 				GitCorePreferences.core_autoIgnoreDerivedResources, false);
 		corePrefs.putBoolean(GitCorePreferences.core_autoShareProjects, false);
-		org.eclipse.egit.ui.Activator.getDefault().getPreferenceStore()
-				.setValue(UIPreferences.DEFAULT_REPO_DIR, repoRoot.getPath());
 		org.eclipse.egit.ui.Activator.getDefault().getPreferenceStore()
 				.setValue(UIPreferences.SHOW_INITIAL_CONFIG_DIALOG, false);
 		org.eclipse.egit.ui.Activator

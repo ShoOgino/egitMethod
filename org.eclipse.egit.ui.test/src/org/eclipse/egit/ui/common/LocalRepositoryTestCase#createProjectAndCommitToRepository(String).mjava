@@ -1,4 +1,4 @@
-	protected static File createProjectAndCommitToRepository(String repoName)
+	protected File createProjectAndCommitToRepository(String repoName)
 			throws Exception {
 
 		File gitDir = new File(new File(testDirectory, repoName),
@@ -64,6 +64,10 @@
 
 		createStableBranch(myRepository);
 		touchAndSubmit(null);
+
+		IndexDiffCache cache = Activator.getDefault().getIndexDiffCache();
+		cache.getIndexDiffCacheEntry(lookupRepository(gitDir));
+
 		return gitDir;
 	}
 

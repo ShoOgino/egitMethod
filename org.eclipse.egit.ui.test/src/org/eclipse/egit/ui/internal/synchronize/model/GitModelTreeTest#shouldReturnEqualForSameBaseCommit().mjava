@@ -1,9 +1,9 @@
 	@Test public void shouldReturnEqualForSameBaseCommit() throws Exception {
 		GitModelTree left = createModelTree(getTreeLocation());
 		GitModelTree right = createModelTree(getTreeLocation());
-		
+
 		boolean actual = left.equals(right);
-		
+
 		assertTrue(actual);
 	}
 
