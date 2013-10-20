@@ -3,6 +3,7 @@
 		if (repo != null)
 			input.add(new WorkingDirNode(null, repo));
 		tv.setInput(input);
+		tv.expandToLevel(2);
 		tv.setSelection(new StructuredSelection(input.get(0)));
 	}
 
