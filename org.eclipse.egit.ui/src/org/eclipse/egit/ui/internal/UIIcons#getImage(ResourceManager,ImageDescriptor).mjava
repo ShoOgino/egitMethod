@@ -1,0 +1,5 @@
+	public static Image getImage(ResourceManager resourceManager,
+			ImageDescriptor descriptor) {
+		return (Image) resourceManager.get(descriptor);
+	}
+
