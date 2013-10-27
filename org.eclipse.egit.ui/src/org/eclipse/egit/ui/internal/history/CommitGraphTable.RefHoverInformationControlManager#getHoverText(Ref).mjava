@@ -1,6 +1,14 @@
 		private String getHoverText(Ref r) {
+			StringBuilder sb = new StringBuilder();
 			String name = r.getName();
-			if (r.isSymbolic())
-				name += ": " + r.getLeaf().getName(); 			return name;
+			sb.append(name);
+			if (r.isSymbolic()) {
+				sb.append(": "); 				sb.append(r.getLeaf().getName());
+			}
+			String description = GitLabelProvider.getRefDescription(r);
+			if (description != null) {
+				sb.append("\n"); 				sb.append(description);
+			}
+			return sb.toString();
 		}
 
