@@ -3,14 +3,22 @@
 		Repository repo = lookupRepository(repositoryFile);
 		Git git = new Git(repo);
 
+		Calendar cal = Calendar.getInstance();
+		PersonIdent sideCommitter = new PersonIdent("Side Committer",
+				"side@example.org", cal.getTime().getTime(), 0);
+		cal.roll(Calendar.SECOND, 2);
+		PersonIdent masterCommitter = new PersonIdent("Master Committer",
+				"master@example.org", cal.getTime().getTime(), 0);
+
 		git.checkout().setCreateBranch(true).setName("side").call();
 		touch(PROJ1, "folder/test.txt", "side");
 		RevCommit sideCommit = git.commit().setAll(true)
-				.setMessage("Side commit").call();
+				.setMessage("Side commit").setCommitter(sideCommitter).call();
 
 		git.checkout().setName("master").call();
 		touch(PROJ1, "folder/test2.txt", "master");
-		git.commit().setAll(true).setMessage("Master commit").call();
+		git.commit().setAll(true).setMessage("Master commit")
+				.setCommitter(masterCommitter).call();
 
 		git.merge().include(sideCommit).call();
 
@@ -33,7 +41,9 @@
 		bot.shell(UIText.DiscardChangesAction_confirmActionTitle).bot()
 				.button(IDialogConstants.OK_LABEL).click();
 		selectDialog = bot.shell(UIText.CommitSelectDialog_WindowTitle);
-		selectDialog.bot().table().select(0);
+		SWTBotTable table = selectDialog.bot().table();
+		assertEquals("Master commit", table.cell(0, 1));
+		table.select(0);
 		executeReplace(selectDialog);
 
 		String replacedContent = getTestFileContent();
