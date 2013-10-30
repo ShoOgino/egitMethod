@@ -3,8 +3,8 @@
 			return;
 
 		final ListRemoteOperation listRemoteOp;
+		final URIish uri = newRepoSelection.getURI();
 		try {
-			final URIish uri = newRepoSelection.getURI();
 			final Repository db = FileRepositoryBuilder
 					.create(new File("/tmp")); 			int timeout = Activator.getDefault().getPreferenceStore().getInt(
 					UIPreferences.REMOTE_CONNECTION_TIMEOUT);
@@ -24,7 +24,7 @@
 			Throwable why = e.getCause();
 			transportError(why);
 			if (showDetailedFailureDialog())
-				SourceBranchFailureDialog.show(getShell(), transportError);
+				SourceBranchFailureDialog.show(getShell(), uri);
 			return;
 		} catch (IOException e) {
 			transportError(UIText.SourceBranchPage_cannotCreateTemp);
