@@ -1,0 +1,4 @@
+	protected boolean isOkButtonEnabled() {
+		return getButton(Window.OK) != null && getButton(Window.OK).isEnabled();
+	}
+

@@ -1,0 +1,5 @@
+	BranchSelectionAndEditDialog(Shell parentShell, Repository repo,
+			int settings) {
+		this(parentShell, repo, null, settings);
+	}
+

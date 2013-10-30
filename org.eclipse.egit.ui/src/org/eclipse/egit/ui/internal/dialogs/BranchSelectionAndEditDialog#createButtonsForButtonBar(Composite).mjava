@@ -1,0 +1,11 @@
+	@Override
+	protected void createButtonsForButtonBar(Composite parent) {
+		createNewButton(parent);
+		createRenameButton(parent);
+		createDeleteButton(parent);
+
+		super.createButtonsForButtonBar(parent);
+
+		getButton(Window.OK).setEnabled(!branchTree.getSelection().isEmpty());
+	}
+

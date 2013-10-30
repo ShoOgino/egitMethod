@@ -2,7 +2,7 @@
 	public void create() {
 		super.create();
 
-		getButton(Window.OK).setEnabled(false);
+		setOkButtonEnabled(false);
 
 		List<RepositoryTreeNode> roots = new ArrayList<RepositoryTreeNode>();
 		if ((settings & SHOW_LOCAL_BRANCHES) != 0)

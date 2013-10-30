@@ -34,14 +34,14 @@
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(refText);
 		addRefContentProposalToText(refText);
 
-		Group checkoutGroup = new Group(main, SWT.SHADOW_ETCHED_IN);
-		checkoutGroup.setLayout(new GridLayout(2, false));
-		GridDataFactory.fillDefaults().span(2, 1).grab(true, false)
+		final Group checkoutGroup = new Group(main, SWT.SHADOW_ETCHED_IN);
+		checkoutGroup.setLayout(new GridLayout(3, false));
+		GridDataFactory.fillDefaults().span(3, 1).grab(true, false)
 				.applyTo(checkoutGroup);
 		checkoutGroup.setText(UIText.FetchGerritChangePage_AfterFetchGroup);
 
 		createBranch = new Button(checkoutGroup, SWT.RADIO);
-		GridDataFactory.fillDefaults().span(2, 1).applyTo(createBranch);
+		GridDataFactory.fillDefaults().span(3, 1).applyTo(createBranch);
 		createBranch.setText(UIText.FetchGerritChangePage_LocalBranchRadio);
 		createBranch.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -62,8 +62,28 @@
 			}
 		});
 
+		branchEditButton = new Button(checkoutGroup, SWT.PUSH);
+		branchEditButton.setFont(JFaceResources.getDialogFont());
+		branchEditButton.setText(UIText.FetchGerritChangePage_BranchEditButton);
+		branchEditButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent selectionEvent) {
+				String txt = branchText.getText();
+				String refToMark = "".equals(txt) ? null : Constants.R_HEADS + txt; 				AbstractBranchSelectionDialog dlg = new BranchEditDialog(
+						checkoutGroup.getShell(), repository, refToMark);
+				if (dlg.open() == Window.OK) {
+					branchText.setText(Repository.shortenRefName(dlg
+							.getRefName()));
+				} else {
+					branchText.setText(branchText.getText());
+				}
+			}
+		});
+		GridDataFactory.defaultsFor(branchEditButton).exclude(false)
+				.applyTo(branchEditButton);
+
 		createTag = new Button(checkoutGroup, SWT.RADIO);
-		GridDataFactory.fillDefaults().span(2, 1).applyTo(createTag);
+		GridDataFactory.fillDefaults().span(3, 1).applyTo(createTag);
 		createTag.setText(UIText.FetchGerritChangePage_TagRadio);
 		createTag.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -86,7 +106,7 @@
 		});
 
 		checkout = new Button(checkoutGroup, SWT.RADIO);
-		GridDataFactory.fillDefaults().span(2, 1).applyTo(checkout);
+		GridDataFactory.fillDefaults().span(3, 1).applyTo(checkout);
 		checkout.setText(UIText.FetchGerritChangePage_CheckoutRadio);
 		checkout.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -96,7 +116,7 @@
 		});
 
 		dontCheckout = new Button(checkoutGroup, SWT.RADIO);
-		GridDataFactory.fillDefaults().span(2, 1).applyTo(checkout);
+		GridDataFactory.fillDefaults().span(3, 1).applyTo(checkout);
 		dontCheckout.setText(UIText.FetchGerritChangePage_UpdateRadio);
 		dontCheckout.addSelectionListener(new SelectionAdapter() {
 			@Override
