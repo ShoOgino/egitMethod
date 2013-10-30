@@ -14,19 +14,12 @@
 		fileiItem.doubleClick();
 		assertTrue(bot.activeEditor().getTitle().equals(FILE1));
 		bot.activeEditor().close();
-		item = myRepoViewUtil.getLocalBranchesItem(tree, repositoryFile)
-				.expand().getNode("master").doubleClick();
-		refreshAndWait();
+		checkoutWithDoubleClick(tree, "master");
 		String contentMaster = getTestFileContent();
-		item = myRepoViewUtil.getLocalBranchesItem(tree, repositoryFile)
-				.expand().getNode("stable").doubleClick();
-		refreshAndWait();
+		checkoutWithDoubleClick(tree, "stable");
 		TestUtil.joinJobs(JobFamilies.CHECKOUT);
 		String contentStable = getTestFileContent();
 		assertTrue("Content of master and stable should differ", !contentMaster
 				.equals(contentStable));
-
-		myRepoViewUtil.getLocalBranchesItem(tree, repositoryFile).expand()
-				.getNode("master").doubleClick();
 	}
 
