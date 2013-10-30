@@ -1,4 +1,4 @@
-	private void reload(final Repository repository) {
+	public void reload(final Repository repository) {
 		if (form.isDisposed())
 			return;
 		if (repository == null) {
