@@ -121,7 +121,8 @@
 		}
 		int h0 = d.length();
 		d.append(msg);
-		d.append(LF);
+		if (!msg.endsWith(LF))
+			d.append(LF);
 
 		Matcher matcher = p.matcher(msg);
 		while (matcher.find()) {
