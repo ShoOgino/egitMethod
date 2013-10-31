@@ -57,7 +57,13 @@
 						parsedCommitish = null;
 						sha1.setText(""); 						subject.setText(""); 						author.setText(""); 						committer.setText(""); 						return;
 					} else {
-						setMessage(""); 						parsedCommitish = text;
+						if (RepositoryUtil.isDetachedHead(repo)) {
+							setMessage(
+									UIText.ResetTargetSelectionDialog_DetachedHeadState,
+									IMessageProvider.INFORMATION);
+						} else {
+							setMessage(""); 						}
+						parsedCommitish = text;
 						getButton(OK).setEnabled(true);
 						RevWalk rw = new RevWalk(repo);
 						RevCommit commit = rw.parseCommit(resolved);
