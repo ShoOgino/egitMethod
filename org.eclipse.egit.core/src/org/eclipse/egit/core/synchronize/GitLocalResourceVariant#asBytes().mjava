@@ -1,4 +1,7 @@
 	public byte[] asBytes() {
-		return getContentIdentifier().getBytes();
+		try {
+			return getContentIdentifier().getBytes("UTF-8"); 		} catch (UnsupportedEncodingException e) {
+			throw new RuntimeException(e);
+		}
 	}
 

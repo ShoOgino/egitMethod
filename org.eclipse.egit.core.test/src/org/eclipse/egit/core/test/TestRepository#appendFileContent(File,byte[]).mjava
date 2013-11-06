@@ -1,4 +1,4 @@
 	public void appendFileContent(File file, byte[] content) throws IOException {
-		appendFileContent(file, new String(content), true);
+		appendFileContent(file, new String(content, "UTF-8"), true);
 	}
 
