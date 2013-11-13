@@ -82,6 +82,7 @@
 								fileSelection, false));
 					else
 						menuMgr.add(createItem(
+								UIText.StagingView_replaceWithFileInGitIndex,
 								ActionCommands.DISCARD_CHANGES_ACTION,
 								fileSelection)); 				if (addReplaceWithHeadRevision)
 					if (selectionIncludesNonWorkspaceResources)
@@ -90,6 +91,7 @@
 								fileSelection, true));
 					else
 						menuMgr.add(createItem(
+								UIText.StagingView_replaceWithHeadRevision,
 								ActionCommands.REPLACE_WITH_HEAD_ACTION,
 								fileSelection));
 				if (addIgnore)
@@ -97,7 +99,8 @@
 				if (addDelete)
 					menuMgr.add(new DeleteAction(fileSelection));
 				if (addLaunchMergeTool)
-					menuMgr.add(createItem(ActionCommands.MERGE_TOOL_ACTION,
+					menuMgr.add(createItem(UIText.StagingView_MergeTool,
+							ActionCommands.MERGE_TOOL_ACTION,
 							fileSelection));
 				menuMgr.add(new Separator());
 				menuMgr.add(createShowInMenu());
