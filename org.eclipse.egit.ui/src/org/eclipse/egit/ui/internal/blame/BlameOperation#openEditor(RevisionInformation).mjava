@@ -31,8 +31,28 @@
 			Activator.handleError("Error displaying blame annotations", e, 					false);
 		}
 
+		IVerticalRulerInfo rulerInfo = AdapterUtils.adapt(editor,
+				IVerticalRulerInfo.class);
+
+		BlameInformationControlCreator creator = new BlameInformationControlCreator(
+				rulerInfo);
+		info.setHoverControlCreator(creator);
+		info.setInformationPresenterControlCreator(creator);
+
 		editor.showRevisionInformation(info,
 				"org.eclipse.egit.ui.internal.decorators.GitQuickDiffProvider"); 
+		if (lineNumberToReveal >= 0) {
+			IDocument document = editor.getDocumentProvider().getDocument(
+					editor.getEditorInput());
+			int offset;
+			try {
+				offset = document.getLineOffset(lineNumberToReveal);
+				editor.selectAndReveal(offset, 0);
+			} catch (BadLocationException e) {
+				Activator.logError(
+						"Error revealing line " + lineNumberToReveal, e); 			}
+		}
+
 		IRevisionRulerColumn revisionRuler = AdapterUtils.adapt(editor,
 				IRevisionRulerColumn.class);
 		if (revisionRuler instanceof IRevisionRulerColumnExtension)

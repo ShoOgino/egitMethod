@@ -1,0 +1,4 @@
+	public BlameInformationControlCreator(IVerticalRulerInfo rulerInfo) {
+		this.rulerInfo = rulerInfo;
+	}
+

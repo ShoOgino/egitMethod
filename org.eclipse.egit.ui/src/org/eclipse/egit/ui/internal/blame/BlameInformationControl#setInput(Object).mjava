@@ -1,6 +1,10 @@
 	public void setInput(Object input) {
 		this.revision = (BlameRevision) input;
 
+		if (rulerInfo != null)
+			revisionRulerLineNumber = rulerInfo
+					.getLineOfLastMouseButtonActivity();
+
 		RevCommit commit = this.revision.getCommit();
 
 		String linkText = MessageFormat.format(
@@ -32,6 +36,9 @@
 
 		messageText.setText(commit.getFullMessage());
 
+		createDiffs();
+
+		displayArea.layout();
 		scrolls.setMinSize(displayArea.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 	}
 

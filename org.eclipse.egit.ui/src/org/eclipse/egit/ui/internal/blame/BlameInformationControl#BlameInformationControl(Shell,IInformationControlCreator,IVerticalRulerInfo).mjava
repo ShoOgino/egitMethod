@@ -1,0 +1,8 @@
+	public BlameInformationControl(Shell parentShell,
+			IInformationControlCreator creator, IVerticalRulerInfo rulerInfo) {
+		super(parentShell, false);
+		this.creator = creator;
+		this.rulerInfo = rulerInfo;
+		create();
+	}
+

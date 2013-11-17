@@ -1,0 +1,4 @@
+		public EditList getEditList() {
+			return editList;
+		}
+

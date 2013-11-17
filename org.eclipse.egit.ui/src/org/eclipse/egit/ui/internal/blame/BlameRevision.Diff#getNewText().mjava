@@ -1,0 +1,4 @@
+		public RawText getNewText() {
+			return newText;
+		}
+
