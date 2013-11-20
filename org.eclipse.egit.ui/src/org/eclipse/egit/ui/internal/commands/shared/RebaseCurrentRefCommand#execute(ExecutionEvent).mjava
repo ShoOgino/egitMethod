@@ -1,6 +1,6 @@
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		ref = setRef(event);
+		setRef(event);
 		if (ref == null)
 			return null;
 		return super.execute(event);
