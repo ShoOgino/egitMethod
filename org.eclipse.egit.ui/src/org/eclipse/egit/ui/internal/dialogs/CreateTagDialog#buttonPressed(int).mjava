@@ -1,21 +1,22 @@
 	@Override
 	protected void buttonPressed(int buttonId) {
-		switch (buttonId) {
-		case CLEAR_ID:
+		if (buttonId == CLEAR_ID) {
 			tagNameText.setText(""); 			tagMessageText.setText(""); 			if (commitCombo != null) {
 				commitCombo.clearSelection();
 			}
 			tagMessageText.getTextWidget().setEditable(true);
 			overwriteButton.setEnabled(false);
 			overwriteButton.setSelection(false);
-			break;
-		case IDialogConstants.OK_ID:
+		} else if (buttonId == IDialogConstants.OK_ID
+				|| buttonId == CREATE_AND_START_PUSH_ID) {
+			shouldStartPushWizard = (buttonId == CREATE_AND_START_PUSH_ID);
 			tagName = tagNameText.getText();
 			if (commitCombo != null)
 				tagCommit = commitCombo.getValue();
 			tagMessage = tagMessageText.getCommitMessage();
 			overwriteTag = overwriteButton.getSelection();
-		default:
+			okPressed();
+		} else {
 			super.buttonPressed(buttonId);
 		}
 	}
