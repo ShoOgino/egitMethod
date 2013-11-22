@@ -1,7 +1,6 @@
 		public void write(byte[] b, int off, int len) throws IOException {
 			if (charset == null)
-				lineBuffer.append(new String(b, off, len));
-			else
+				lineBuffer.append(new String(b, off, len, "UTF-8")); 			else
 				lineBuffer.append(new String(b, off, len, charset));
 		}
 
