@@ -4,5 +4,6 @@
 		this.pushMode = pushMode;
 		this.config = config;
 		page = new RefSpecPage(repository, pushMode);
+		setWindowTitle(pushMode);
 	}
 
