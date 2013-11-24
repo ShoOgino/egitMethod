@@ -1,4 +1,4 @@
-	public FileEditableRevision(IFileRevision fileRevision, IFile file,
+	public ResourceEditableRevision(IFileRevision fileRevision, IFile file,
 			IRunnableContext runnableContext) {
 		super(fileRevision, CompareCoreUtils.getResourceEncoding(file));
 		this.file = file;

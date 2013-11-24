@@ -1,7 +1,7 @@
-	public GitMergeEditorInput(boolean useWorkspace, IResource... resources) {
+	public GitMergeEditorInput(boolean useWorkspace, IPath... locations) {
 		super(new CompareConfiguration());
 		this.useWorkspace = useWorkspace;
-		this.resources = resources;
+		this.locations = locations;
 		CompareConfiguration config = getCompareConfiguration();
 		config.setLeftEditable(true);
 	}
