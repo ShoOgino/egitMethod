@@ -1,0 +1,4 @@
+	public boolean shouldContinue() {
+		return shouldContinue;
+	}
+
