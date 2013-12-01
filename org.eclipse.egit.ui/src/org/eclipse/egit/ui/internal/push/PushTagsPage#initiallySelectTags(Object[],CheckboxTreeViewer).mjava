@@ -13,9 +13,10 @@
 		TagNode[] checkedTagsArray = checkedTags
 				.toArray(new TagNode[checkedTags.size()]);
 		viewer.setCheckedElements(checkedTagsArray);
-		viewer.setSelection(StructuredSelection.EMPTY);
-		if (checkedTagsArray.length > 0)
-			viewer.reveal(checkedTagsArray[0]);
+		if (checkedTagsArray.length > 0) {
+			viewer.setSelection(new StructuredSelection(checkedTagsArray), true);
+			viewer.setSelection(StructuredSelection.EMPTY);
+		}
 		setSelectedTags(checkedTagsArray);
 	}
 
