@@ -1,0 +1,13 @@
+	public void refreshViewersPreservingExpandedElements() {
+		Display.getDefault().syncExec(new Runnable() {
+			public void run() {
+				Object[] unstagedExpanded = unstagedViewer
+						.getExpandedElements();
+				Object[] stagedExpanded = stagedViewer.getExpandedElements();
+				refreshViewersInternal();
+				unstagedViewer.setExpandedElements(unstagedExpanded);
+				stagedViewer.setExpandedElements(stagedExpanded);
+			}
+		});
+	}
+
