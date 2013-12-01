@@ -1,6 +1,7 @@
-	public StagingEntry(Repository repository, State modified, String file) {
+	public StagingEntry(Repository repository, State state, String path) {
 		this.repository = repository;
-		this.state = modified;
-		this.path = file;
+		this.state = state;
+		this.path = path;
+		this.file = ResourceUtil.getFileForLocation(repository, path);
 	}
 
