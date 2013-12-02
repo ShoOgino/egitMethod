@@ -20,6 +20,8 @@
 			return UIText.RebaseResultDialog_InteractivePrepared;
 		case UNCOMMITTED_CHANGES:
 			return UIText.RebaseResultDialog_UncommittedChanges;
+		case STASH_APPLY_CONFLICTS:
+			return UIText.RebaseResultDialog_SuccessfullyFinished + ".\n" + 					UIText.RebaseResultDialog_stashApplyConflicts;
 		default:
 			throw new IllegalStateException(status.name());
 		}
