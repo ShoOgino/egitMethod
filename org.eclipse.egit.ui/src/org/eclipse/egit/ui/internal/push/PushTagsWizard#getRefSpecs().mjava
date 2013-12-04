@@ -1,0 +1,13 @@
+	private List<RefSpec> getRefSpecs() {
+		List<RefSpec> specs = new ArrayList<RefSpec>();
+		String prefix;
+		if (pushTagsPage.isForceUpdateSelected())
+			prefix = "+"; 		else
+			prefix = ""; 		for (TagNode tag : pushTagsPage.getSelectedTags()) {
+			String refName = tag.getObject().getName();
+			RefSpec spec = new RefSpec(prefix + refName);
+			specs.add(spec);
+		}
+		return specs;
+	}
+

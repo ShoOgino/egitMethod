@@ -1,0 +1,7 @@
+	private int getHoverLineNumber() {
+		if (hoverInformationControl != null)
+			return hoverInformationControl.getHoverLineNumber();
+		else
+			return revisionRulerLineNumber;
+	}
+

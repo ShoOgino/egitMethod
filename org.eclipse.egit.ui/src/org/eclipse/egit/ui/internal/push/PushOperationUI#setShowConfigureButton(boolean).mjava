@@ -1,0 +1,4 @@
+	public void setShowConfigureButton(boolean showConfigureButton) {
+		this.showConfigureButton = showConfigureButton;
+	}
+

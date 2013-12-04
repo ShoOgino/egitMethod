@@ -6,6 +6,8 @@
 				TreeSelection sel = (TreeSelection) event.getSelection();
 				RepositoryTreeNode element = (RepositoryTreeNode) sel
 						.getFirstElement();
+				if (element.getRepository().isBare())
+					return;
 				if (element instanceof RefNode)
 					executeOpenCommandWithConfirmation(((RefNode) element)
 							.getObject().getName());

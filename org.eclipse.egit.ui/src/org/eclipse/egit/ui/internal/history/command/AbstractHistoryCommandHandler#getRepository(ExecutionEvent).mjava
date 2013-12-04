@@ -8,10 +8,14 @@
 		if (input instanceof RepositoryTreeNode)
 			return ((RepositoryTreeNode) input).getRepository();
 		if (input instanceof IResource) {
-			RepositoryMapping mapping = RepositoryMapping
-					.getMapping((IResource) input);
+			IResource resource = (IResource) input;
+			RepositoryMapping mapping = RepositoryMapping.getMapping(resource);
 			if (mapping != null)
 				return mapping.getRepository();
+			Repository repository = Activator.getDefault().getRepositoryCache()
+					.getRepository(resource);
+			if (repository != null)
+				return repository;
 		}
 		if (input instanceof IAdaptable) {
 			IResource resource = (IResource) ((IAdaptable) input)

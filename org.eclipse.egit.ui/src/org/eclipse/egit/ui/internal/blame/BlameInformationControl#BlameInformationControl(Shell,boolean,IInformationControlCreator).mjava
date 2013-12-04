@@ -1,7 +1,0 @@
-	public BlameInformationControl(Shell parentShell, boolean isResizable,
-			IInformationControlCreator creator) {
-		super(parentShell, isResizable);
-		this.creator = creator;
-		create();
-	}
-

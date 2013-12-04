@@ -1,4 +1,8 @@
 		public void selectionChanged(SelectionChangedEvent event) {
+			if (firstSelectionChange) {
+				firstSelectionChange = false;
+				return;
+			}
 			ISelection selection = event.getSelection();
 			if (selection.isEmpty()
 					|| !(selection instanceof IStructuredSelection))

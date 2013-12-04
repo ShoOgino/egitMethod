@@ -1,0 +1,4 @@
+	public Integer getSourceLine(int currentLine) {
+		return sourceLines.get(Integer.valueOf(currentLine));
+	}
+
