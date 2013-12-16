@@ -1,18 +1,18 @@
 	public String getRepositoryName(final Repository repository) {
-		File gitDir = repository.getDirectory();
-		if (gitDir == null)
-			return ""; 
-		if (!repository.isBare()) {
-			gitDir = gitDir.getParentFile();
-			if (gitDir == null)
-				return ""; 		}
+		File dir;
+		if (!repository.isBare())
+			dir = repository.getWorkTree();
+		else
+			dir = repository.getDirectory();
 
+		if (dir == null)
+			return ""; 
 		synchronized (repositoryNameCache) {
-			final String path = gitDir.getPath().toString();
+			final String path = dir.getPath().toString();
 			String name = repositoryNameCache.get(path);
 			if (name != null)
 				return name;
-			name = gitDir.getName();
+			name = dir.getName();
 			repositoryNameCache.put(path, name);
 			return name;
 		}
