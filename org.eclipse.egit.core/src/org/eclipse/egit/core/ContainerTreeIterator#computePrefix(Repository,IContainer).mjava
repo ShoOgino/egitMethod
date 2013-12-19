@@ -1,0 +1,11 @@
+	private static String computePrefix(final Repository repository,
+			final IContainer base) {
+		File workTree = repository.getWorkTree();
+		IPath location = base.getLocation();
+		if (location == null)
+			throw new IllegalArgumentException(
+					"Location of container not found: " + base); 		Path workTreePath = new Path(workTree.getAbsolutePath());
+		IPath relativePath = location.makeRelativeTo(workTreePath);
+		return relativePath.toString();
+	}
+
