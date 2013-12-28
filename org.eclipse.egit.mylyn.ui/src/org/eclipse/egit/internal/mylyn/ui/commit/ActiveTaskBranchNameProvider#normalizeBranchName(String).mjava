@@ -1,0 +1,7 @@
+	private String normalizeBranchName(String name) {
+		String normalized = name.trim()
+				.replaceAll("\\s+", "_").replaceAll("[^\\w-]", ""); 		if (normalized.length() > 30)
+			normalized = normalized.substring(0, 30);
+		return normalized;
+	}
+
