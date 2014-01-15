@@ -1,0 +1,19 @@
+	private void handlePullResults(final Map<Repository, Object> resultsMap,
+			Shell shell) {
+		for (Entry<Repository, Object> entry : resultsMap.entrySet()) {
+			Object result = entry.getValue();
+			if (result instanceof PullResult) {
+				PullResult pullResult = (PullResult) result;
+				if (pullResult.getRebaseResult() != null
+						&& RebaseResult.Status.UNCOMMITTED_CHANGES == pullResult
+								.getRebaseResult().getStatus()) {
+					handleUncommittedChanges(entry.getKey(), pullResult
+							.getRebaseResult().getUncommittedChanges(), shell);
+				}
+			}
+		}
+
+		if (tasksToWaitFor.decrementAndGet() == 0 && !results.isEmpty())
+			showResults(shell);
+	}
+
