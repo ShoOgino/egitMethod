@@ -1,4 +1,4 @@
 	public void setCommit(boolean commit) {
-		this.commit = commit;
+		this.commit = Boolean.valueOf(commit);
 	}
 
