@@ -1,0 +1,6 @@
+		public String getCommittedDate(GitDateFormatter dateFormatter) {
+			if (committer == null)
+				return ""; 			else
+				return dateFormatter.formatDate(committer);
+		}
+

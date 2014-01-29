@@ -1,0 +1,6 @@
+		public String getCommitter() {
+			if (committer == null)
+				return ""; 			else
+				return committer.getName();
+		}
+

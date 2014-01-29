@@ -1,0 +1,6 @@
+		public String getAuthoredDate(GitDateFormatter dateFormatter) {
+			if (author == null)
+				return ""; 			else
+				return dateFormatter.formatDate(author);
+		}
+

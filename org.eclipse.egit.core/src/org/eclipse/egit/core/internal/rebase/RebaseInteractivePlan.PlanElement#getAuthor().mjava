@@ -1,0 +1,6 @@
+		public String getAuthor() {
+			if (author == null)
+				return ""; 			else
+				return author.getName();
+		}
+
