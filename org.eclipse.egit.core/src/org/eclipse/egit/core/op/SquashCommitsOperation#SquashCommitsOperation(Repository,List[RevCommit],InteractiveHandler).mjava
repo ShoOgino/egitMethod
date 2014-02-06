@@ -1,0 +1,7 @@
+	public SquashCommitsOperation(Repository repository,
+			List<RevCommit> commits, InteractiveHandler messageHandler) {
+		this.repository = repository;
+		this.commits = CommitUtil.sortCommits(commits);
+		this.messageHandler = messageHandler;
+	}
+

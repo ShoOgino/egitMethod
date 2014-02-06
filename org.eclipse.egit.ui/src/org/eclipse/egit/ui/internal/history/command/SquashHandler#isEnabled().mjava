@@ -1,0 +1,35 @@
+	@Override
+	public boolean isEnabled() {
+		GitHistoryPage page = getPage();
+		if (page == null)
+			return false;
+		IStructuredSelection selection = getSelection(page);
+		if (selection.isEmpty())
+			return false;
+
+		Repository repository = getRepository(page);
+		if (repository.getRepositoryState() != RepositoryState.SAFE)
+			return false;
+
+		List elements = selection.toList();
+		int parentsNotSelected = 0;
+		for (Object element : elements) {
+			RevCommit commit = (RevCommit) element;
+
+			if (commit.getParentCount() != 1)
+				return false;
+
+			RevCommit parentCommit = commit.getParent(0);
+			if (!elements.contains(parentCommit))
+				parentsNotSelected++;
+
+			if (parentsNotSelected > 1)
+				return false;
+		}
+
+		if (parentsNotSelected != 1)
+			return false;
+
+		return true;
+	}
+
