@@ -1,0 +1,5 @@
+	public static void scheduleUserWorkspaceJob(final IEGitOperation op,
+			String jobName, final Object jobFamily) {
+		scheduleUserWorkspaceJob(op, jobName, jobFamily, null);
+	}
+

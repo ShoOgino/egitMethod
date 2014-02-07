@@ -1,8 +1,10 @@
 	public void start() {
-		Job job = new Job(NLS.bind(UIText.FetchOperationUI_FetchJobName,
+		Job job = new WorkspaceJob(NLS.bind(
+				UIText.FetchOperationUI_FetchJobName,
 				sourceString)) {
+
 			@Override
-			protected IStatus run(IProgressMonitor monitor) {
+			public IStatus runInWorkspace(IProgressMonitor monitor) {
 				try {
 					execute(monitor);
 				} catch (CoreException e) {

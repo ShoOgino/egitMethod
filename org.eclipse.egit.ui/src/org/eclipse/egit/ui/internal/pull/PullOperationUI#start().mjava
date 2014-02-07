@@ -12,9 +12,10 @@
 					shortBranchName, repoName);
 		} else
 			jobName = UIText.PullOperationUI_PullingMultipleTaskName;
-		Job job = new Job(jobName) {
+		Job job = new WorkspaceJob(jobName) {
+
 			@Override
-			protected IStatus run(IProgressMonitor monitor) {
+			public IStatus runInWorkspace(IProgressMonitor monitor) {
 				execute(monitor);
 				return Status.OK_STATUS;
 			}
