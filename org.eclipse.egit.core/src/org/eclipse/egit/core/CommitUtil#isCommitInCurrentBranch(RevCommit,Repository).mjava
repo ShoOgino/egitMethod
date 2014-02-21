@@ -1,0 +1,6 @@
+	public static boolean isCommitInCurrentBranch(RevCommit commit,
+			Repository repository) throws IOException {
+		return areCommitsInCurrentBranch(Collections.singleton(commit),
+				repository);
+	}
+
