@@ -1,4 +1,6 @@
 	public static IContainer findContainer(IWorkspaceRoot root, File file) {
+		if (!file.exists())
+			return null;
 		if (!file.isDirectory())
 			throw new IllegalArgumentException(
 					"file " + file.getAbsolutePath() + " is no directory"); 
