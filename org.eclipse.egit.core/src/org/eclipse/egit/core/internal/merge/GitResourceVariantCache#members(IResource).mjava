@@ -1,0 +1,5 @@
+	public IResource[] members(IResource resource) {
+		final Set<IResource> children = members.get(resource);
+		return children.toArray(new IResource[children.size()]);
+	}
+

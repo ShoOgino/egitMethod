@@ -1,0 +1,5 @@
+	public IResource[] refresh(IResource[] resources, int depth,
+			IProgressMonitor monitor) throws TeamException {
+		return new IResource[0];
+	}
+

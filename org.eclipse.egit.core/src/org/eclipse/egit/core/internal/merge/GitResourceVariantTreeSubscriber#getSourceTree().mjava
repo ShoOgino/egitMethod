@@ -1,0 +1,4 @@
+	protected IResourceVariantTree getSourceTree() {
+		return variantTreeProvider.getSourceTree();
+	}
+
