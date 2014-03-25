@@ -1,0 +1,8 @@
+	public EditCommitOperation(Repository repository, RevCommit commit) {
+		if (commit.getParentCount() != 1)
+			throw new UnsupportedOperationException(
+					"commit is expected to have exactly one parent"); 
+		this.repository = repository;
+		this.commit = commit;
+	}
+
