@@ -1,0 +1,18 @@
+	public static boolean handleUncommittedFiles(Repository repo, Shell shell)
+			throws GitAPIException {
+		Status status = new Git(repo).status().call();
+		if (status.hasUncommittedChanges()) {
+			List<String> files = new ArrayList<String>(status.getModified());
+			Collections.sort(files);
+
+			CleanupUncomittedChangesDialog cleanupUncomittedChangesDialog = new CleanupUncomittedChangesDialog(
+					shell,
+					UIText.AbstractRebaseCommandHandler_cleanupDialog_title,
+					UIText.AbstractRebaseCommandHandler_cleanupDialog_text,
+					repo, files);
+			cleanupUncomittedChangesDialog.open();
+			return cleanupUncomittedChangesDialog.shouldContinue();
+		} else
+			return false;
+	}
+
