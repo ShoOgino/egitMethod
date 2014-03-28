@@ -9,27 +9,27 @@
 			if (!(obj instanceof PlanElement))
 				return;
 			PlanElement firstSelectedEntry = (PlanElement) obj;
+			PlanElement lastSelectedEntry = firstSelectedEntry;
 
 			if (structured.size() > 1) {
-				setMoveItemsEnabled(false);
 				ElementAction type = firstSelectedEntry.getPlanElementAction();
 				for (Iterator iterator = structured.iterator(); iterator
 						.hasNext();) {
 					Object selectedObj = iterator.next();
 					if (!(selectedObj instanceof PlanElement))
 						continue;
-					PlanElement entry = (PlanElement) selectedObj;
+					PlanElement entry = lastSelectedEntry = (PlanElement) selectedObj;
 					if (type != entry.getPlanElementAction()) {
 						unselectAllActionItemsExecpt(null);
-						break;
 					}
 				}
-				return;
+			} else {
+				unselectAllActionItemsExecpt(getItemFor(firstSelectedEntry
+						.getPlanElementAction()));
 			}
 
-			setMoveItemsEnabled(true);
-			unselectAllActionItemsExecpt(getItemFor(firstSelectedEntry
-					.getPlanElementAction()));
+			enableMoveButtons(firstSelectedEntry, lastSelectedEntry);
+
 		}
 	}
 
