@@ -5,6 +5,14 @@
 				.setFollowFileRenames(true).setFilePath(path);
 		if (startCommit != null)
 			command.setStartCommit(startCommit);
+		else {
+			try {
+				command.setStartCommit(repository.resolve(Constants.HEAD));
+			} catch (IOException e) {
+				Activator
+						.error("Error resolving HEAD for showing annotations in repository: " + repository, e); 				return;
+			}
+		}
 		if (Activator.getDefault().getPreferenceStore()
 				.getBoolean(UIPreferences.BLAME_IGNORE_WHITESPACE))
 			command.setTextComparator(RawTextComparator.WS_IGNORE_ALL);
