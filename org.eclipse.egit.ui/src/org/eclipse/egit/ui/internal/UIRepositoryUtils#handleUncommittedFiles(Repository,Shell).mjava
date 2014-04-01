@@ -13,6 +13,6 @@
 			cleanupUncomittedChangesDialog.open();
 			return cleanupUncomittedChangesDialog.shouldContinue();
 		} else
-			return false;
+			return true;
 	}
 
