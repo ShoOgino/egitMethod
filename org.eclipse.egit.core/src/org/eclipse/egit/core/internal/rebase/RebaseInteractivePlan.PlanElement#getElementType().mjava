@@ -8,6 +8,6 @@
 					return ElementType.DONE_CURRENT;
 				return ElementType.DONE;
 			}
-			throw new IllegalStateException();
+			return null;
 		}
 
