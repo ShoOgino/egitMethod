@@ -1,5 +1,5 @@
 	public String getToolTipText() {
 		return MessageFormat.format(UIText.CommitEditorInput_ToolTip, commit
-				.getRevCommit().name(), commit.getRepositoryName());
+				.getRevCommit().getShortMessage(), commit.getRepositoryName());
 	}
 
