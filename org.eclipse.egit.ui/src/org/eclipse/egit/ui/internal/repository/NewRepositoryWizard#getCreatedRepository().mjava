@@ -1,4 +1,4 @@
 	public Repository getCreatedRepository() {
-		return newRepo;
+		return repository;
 	}
 

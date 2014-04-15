@@ -1,5 +1,5 @@
 	public String getDirectory() {
-		IPath path = new Path(directoryText.getText()).append(nameText.getText());
+		IPath path = new Path(directoryText.getText().trim());
 		return path.toOSString();
 	}
 
