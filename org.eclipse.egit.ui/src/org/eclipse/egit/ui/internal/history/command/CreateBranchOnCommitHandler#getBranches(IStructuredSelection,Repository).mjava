@@ -1,0 +1,9 @@
+	private List<Ref> getBranches(IStructuredSelection selection,
+			Repository repo) {
+		try {
+			return getBranchesOfCommit(selection, repo, false);
+		} catch (IOException e) {
+			return Collections.<Ref> emptyList();
+		}
+	}
+

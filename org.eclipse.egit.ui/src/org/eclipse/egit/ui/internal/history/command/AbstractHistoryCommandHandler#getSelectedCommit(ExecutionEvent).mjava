@@ -1,0 +1,9 @@
+	protected RevCommit getSelectedCommit(ExecutionEvent event)
+			throws ExecutionException {
+		List<RevCommit> commits = getSelectedCommits(event);
+		if (commits.size() != 1)
+			throw new ExecutionException(
+					UIText.AbstractHistoryCommandHandler_ActionRequiresOneSelectedCommitMessage);
+		return commits.get(0);
+	}
+

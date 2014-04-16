@@ -1,5 +1,5 @@
 	public static void performReset(ExecutionEvent event,
-			final Repository repo, final RevCommit commit, String resetMode)
+			final Repository repo, final ObjectId commitId, String resetMode)
 			throws ExecutionException {
 		final ResetType resetType = ResetType.valueOf(resetMode);
 
@@ -23,7 +23,7 @@
 		default:
 			return; 		}
 
-		ResetOperation operation = new ResetOperation(repo, commit.getName(),
+		ResetOperation operation = new ResetOperation(repo, commitId.getName(),
 				resetType);
 		JobUtil.scheduleUserWorkspaceJob(operation, jobName, JobFamilies.RESET);
 	}
