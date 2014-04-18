@@ -1,4 +1,5 @@
+	@Deprecated
 	public String getSrcMerge() {
-		return srcMerge;
+		return null;
 	}
 
