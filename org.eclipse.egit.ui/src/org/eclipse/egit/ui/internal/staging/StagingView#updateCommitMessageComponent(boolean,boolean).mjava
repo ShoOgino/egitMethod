@@ -1,11 +1,15 @@
 	void updateCommitMessageComponent(boolean repositoryChanged, boolean indexDiffAvailable) {
-		CommitHelper helper = new CommitHelper(currentRepository);
-		CommitMessageComponentState oldState = null;
-		if (repositoryChanged) {
+		if (repositoryChanged)
 			if (userEnteredCommmitMessage())
 				saveCommitMessageComponentState();
 			else
 				deleteCommitMessageComponentState();
+		if (!indexDiffAvailable)
+			return; 
+		CommitHelper helper = new CommitHelper(currentRepository);
+		CommitMessageComponentState oldState = null;
+		if (repositoryChanged
+				|| commitMessageComponent.getRepository() != currentRepository) {
 			oldState = loadCommitMessageComponentState();
 			commitMessageComponent.setRepository(currentRepository);
 			if (oldState == null)
@@ -21,7 +25,7 @@
 				loadInitialState(helper);
 		amendPreviousCommitAction.setChecked(commitMessageComponent
 				.isAmending());
-		amendPreviousCommitAction.setEnabled(indexDiffAvailable && helper.amendAllowed());
+		amendPreviousCommitAction.setEnabled(helper.amendAllowed());
 		updateMessage();
 	}
 
