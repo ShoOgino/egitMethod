@@ -1,0 +1,4 @@
+	public void setFindInChildren(boolean findInChildren) {
+		this.findInChildren = findInChildren;
+	}
+
