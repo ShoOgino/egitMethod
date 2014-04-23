@@ -1,4 +1,4 @@
-	public Point getRefHSpan(Ref ref) {
+	Point getRefHSpan(Ref ref) {
 		return labelCoordinates.get(ref.getName());
 	}
 
