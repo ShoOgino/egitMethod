@@ -1,4 +1,4 @@
 	public StashCreateOperation(final Repository repository) {
-		this(repository, null);
+		this(repository, null, false);
 	}
 

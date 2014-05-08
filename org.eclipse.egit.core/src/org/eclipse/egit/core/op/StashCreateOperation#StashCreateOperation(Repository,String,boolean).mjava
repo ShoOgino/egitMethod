@@ -1,0 +1,7 @@
+	public StashCreateOperation(final Repository repository,
+			final String message, final boolean includeUntracked) {
+		this.repository = repository;
+		this.message = message;
+		this.includeUntracked = includeUntracked;
+	}
+
