@@ -2,7 +2,8 @@
 		String repoRelativePath = makeRepoRelative(resource) + "/"; 
 		Set<String> ignoredFiles = indexDiffData.getIgnoredNotInIndex();
 		Set<String> untrackedFolders = indexDiffData.getUntrackedFolders();
-		ignored = containsPrefixPath(ignoredFiles, repoRelativePath);
+		ignored = containsPrefixPath(ignoredFiles, repoRelativePath)
+				|| !hasContainerAnyFiles(resource);
 
 		if (ignored)
 			tracked = false;
