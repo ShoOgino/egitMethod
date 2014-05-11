@@ -20,7 +20,7 @@
 				}
 			}
 		});
-		new MenuItem(menu, SWT.SEPARATOR);
+		createSeparator(menu);
 		try {
 			String currentBranch = repository.getFullBranch();
 			Map<String, Ref> localBranches = repository.getRefDatabase().getRefs(
@@ -55,7 +55,7 @@
 
 			if (itemCount < MAX_NUM_MENU_ENTRIES) {
 				if (itemCount > 0 && localBranches.size() > 0)
-					new MenuItem(menu, SWT.SEPARATOR);
+					createSeparator(menu);
 
 				sortedRefs.clear();
 				sortedRefs.putAll(localBranches);
@@ -69,7 +69,7 @@
 				}
 			}
 			if (itemCount > 0)
-				new MenuItem(menu, SWT.SEPARATOR);
+				createSeparator(menu);
 			MenuItem others = new MenuItem(menu, SWT.PUSH);
 			others.setText(UIText.SwitchToMenu_OtherMenuLabel);
 			others.addSelectionListener(new SelectionAdapter() {
