@@ -20,7 +20,7 @@
 				scheme.notifyListeners(SWT.Selection, new Event());
 			}
 
-			updateAuthGroup();
+			updateGroups();
 			uri = u;
 		} catch (URISyntaxException err) {
 			uri = new URIish();
