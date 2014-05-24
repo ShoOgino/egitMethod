@@ -1,0 +1,4 @@
+	public boolean isPreserveMerges() {
+		return preserveMerges;
+	}
+

@@ -1,0 +1,4 @@
+	public void setPreserveMerges(boolean preserveMerges) {
+		this.preserveMerges = preserveMerges;
+	}
+
