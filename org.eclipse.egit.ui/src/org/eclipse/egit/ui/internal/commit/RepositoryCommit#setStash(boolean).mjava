@@ -1,0 +1,4 @@
+	public void setStash(boolean stash) {
+		this.stash = stash;
+	}
+

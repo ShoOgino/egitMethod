@@ -1,5 +1,8 @@
 	public FileDiff[] getDiffs() {
 		if (diffs == null) {
+			RevCommit[] parents = commit.getParents();
+			if (isStash() && commit.getParentCount() > 0)
+				parents = new RevCommit[] { commit.getParent(0) };
 			RevWalk revWalk = new RevWalk(repository);
 			TreeWalk treewalk = new TreeWalk(revWalk.getObjectReader());
 			treewalk.setRecursive(true);
@@ -7,7 +10,7 @@
 			try {
 				for (RevCommit parent : commit.getParents())
 					revWalk.parseBody(parent);
-				diffs = FileDiff.compute(repository, treewalk, commit,
+				diffs = FileDiff.compute(repository, treewalk, commit, parents,
 						TreeFilter.ALL);
 			} catch (IOException e) {
 				diffs = new FileDiff[0];

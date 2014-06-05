@@ -1,0 +1,3 @@
+	public StashEditorPage(FormEditor editor) {
+		super(editor, "stashPage", UIText.CommitEditorPage_Title); 	}
+

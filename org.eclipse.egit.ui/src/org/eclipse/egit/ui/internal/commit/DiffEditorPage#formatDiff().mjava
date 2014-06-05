@@ -8,17 +8,16 @@
 			protected IStatus run(IProgressMonitor monitor) {
 				RepositoryCommit commit = (RepositoryCommit) getEditor()
 						.getAdapter(RepositoryCommit.class);
-				FileDiff diffs[] = commit.getDiffs();
+				FileDiff diffs[] = getDiffs(commit);
 				monitor.beginTask("", diffs.length); 				Repository repository = commit.getRepository();
 				for (FileDiff diff : diffs) {
 					if (monitor.isCanceled())
 						break;
 					monitor.setTaskName(diff.getPath());
-					if (diff.getBlobs().length == 2)
-						try {
-							formatter.write(repository, diff);
-						} catch (IOException ignore) {
-						}
+					try {
+						formatter.write(repository, diff);
+					} catch (IOException ignore) {
+					}
 					monitor.worked(1);
 				}
 				monitor.done();

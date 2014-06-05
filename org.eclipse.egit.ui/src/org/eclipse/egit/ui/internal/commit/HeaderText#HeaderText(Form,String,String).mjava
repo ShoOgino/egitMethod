@@ -1,5 +1,4 @@
-	public HeaderText(Form form, String sha1String) {
-		String text= MessageFormat.format(UIText.CommitEditor_TitleHeader, sha1String);
+	public HeaderText(Form form, String text, String sha1String) {
 		try {
 			FormHeading heading = (FormHeading) form.getHead();
 			heading.setBusy(true);

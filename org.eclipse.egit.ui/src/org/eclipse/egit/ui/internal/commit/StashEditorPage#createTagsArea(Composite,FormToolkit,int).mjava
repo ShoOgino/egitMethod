@@ -1,0 +1,5 @@
+	@Override
+	void createTagsArea(Composite parent, FormToolkit toolkit,
+			int span) {
+	}
+
