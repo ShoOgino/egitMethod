@@ -1,9 +1,10 @@
-	public PushBranchPage(Repository repository, Ref ref) {
+	public PushBranchPage(Repository repository, ObjectId commitToPush, Ref ref) {
 		super(UIText.PushBranchPage_PageName);
 		setTitle(UIText.PushBranchPage_PageTitle);
 		setMessage(UIText.PushBranchPage_PageMessage);
 
 		this.repository = repository;
+		this.commitToPush = commitToPush;
 		this.ref = ref;
 	}
 

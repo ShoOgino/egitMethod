@@ -1,0 +1,4 @@
+	public PushMenu() {
+		this(null);
+	}
+
