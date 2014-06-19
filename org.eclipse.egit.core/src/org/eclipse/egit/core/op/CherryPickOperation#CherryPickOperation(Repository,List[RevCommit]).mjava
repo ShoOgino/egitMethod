@@ -1,0 +1,5 @@
+	public CherryPickOperation(Repository repository, List<RevCommit> commits) {
+		this.repo = repository;
+		this.commits = commits;
+	}
+
