@@ -1,4 +1,4 @@
-	private Repository getRepository(boolean warn,
+	private static Repository getRepository(boolean warn,
 			IStructuredSelection selection, Shell shell) {
 		RepositoryMapping mapping = null;
 		for (IPath location : getSelectedLocations(selection)) {

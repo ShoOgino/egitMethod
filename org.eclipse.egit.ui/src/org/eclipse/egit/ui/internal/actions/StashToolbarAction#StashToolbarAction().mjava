@@ -1,0 +1,9 @@
+	public StashToolbarAction() {
+		super(ActionCommands.STASH_CREATE, new StashCreateHandler() {
+			@Override
+			public boolean isEnabled() {
+				return getRepository() != null;
+			}
+		});
+	}
+
