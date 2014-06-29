@@ -2,6 +2,9 @@
 		for (Control child : tagLabelArea.getChildren())
 			child.dispose();
 
+		((GridData) tagLabelArea.getParent().getLayoutData()).exclude = tags
+				.isEmpty();
+
 		GridLayoutFactory.fillDefaults().spacing(1, 1).numColumns(tags.size())
 				.applyTo(tagLabelArea);
 
