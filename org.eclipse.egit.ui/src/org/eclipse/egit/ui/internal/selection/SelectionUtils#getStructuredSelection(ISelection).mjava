@@ -1,4 +1,5 @@
-	private static IStructuredSelection convertSelection(ISelection selection) {
+	public static IStructuredSelection getStructuredSelection(
+			ISelection selection) {
 		if (selection instanceof IStructuredSelection)
 			return (IStructuredSelection) selection;
 		else if (selection instanceof ITextSelection)

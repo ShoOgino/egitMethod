@@ -1,0 +1,5 @@
+	public static Repository getRepositoryOrWarn(
+			IStructuredSelection selection, Shell shell) {
+		return getRepository(true, selection, shell);
+	}
+

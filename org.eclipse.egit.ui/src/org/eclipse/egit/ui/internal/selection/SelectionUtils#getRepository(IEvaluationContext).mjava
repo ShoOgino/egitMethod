@@ -1,0 +1,4 @@
+	public static Repository getRepository(IEvaluationContext evaluationContext) {
+		return getRepository(false, getSelection(evaluationContext), null);
+	}
+

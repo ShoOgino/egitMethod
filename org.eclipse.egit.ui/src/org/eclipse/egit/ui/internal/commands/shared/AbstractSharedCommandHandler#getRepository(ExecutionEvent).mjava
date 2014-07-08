@@ -1,6 +1,7 @@
 	public static Repository getRepository(ExecutionEvent event) {
-		ISelection selection = HandlerUtil.getCurrentSelection(event);
-		IEditorInput editorInput = getActiveEditorInput(event);
-		return getRepository(selection, editorInput);
+		Object ctx = event.getApplicationContext();
+		if (ctx instanceof IEvaluationContext)
+			return SelectionUtils.getRepository((IEvaluationContext) ctx);
+		return null;
 	}
 

@@ -1,6 +1,6 @@
 	protected IStructuredSelection getSelection() {
 		if (mySelection != null)
 			return mySelection;
-		return getSelection(evaluationContext);
+		return SelectionUtils.getSelection(evaluationContext);
 	}
 

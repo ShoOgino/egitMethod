@@ -1,5 +1,5 @@
 	protected IPath[] getSelectedLocations() {
 		IStructuredSelection selection = getSelection();
-		return getSelectedLocations(selection);
+		return SelectionUtils.getSelectedLocations(selection);
 	}
 

@@ -1,0 +1,4 @@
+	public static Repository getRepository(IStructuredSelection selection) {
+		return getRepository(false, selection, null);
+	}
+

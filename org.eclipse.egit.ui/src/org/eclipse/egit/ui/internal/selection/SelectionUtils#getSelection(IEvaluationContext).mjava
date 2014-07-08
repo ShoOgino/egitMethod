@@ -1,4 +1,4 @@
-	private static IStructuredSelection getSelection(IEvaluationContext context) {
+	public static IStructuredSelection getSelection(IEvaluationContext context) {
 		if (context == null)
 			return StructuredSelection.EMPTY;
 
