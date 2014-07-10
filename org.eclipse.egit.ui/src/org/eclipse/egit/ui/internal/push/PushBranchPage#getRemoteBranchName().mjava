@@ -1,4 +1,0 @@
-	String getRemoteBranchName() {
-		return remoteBranchNameText.getText();
-	}
-
