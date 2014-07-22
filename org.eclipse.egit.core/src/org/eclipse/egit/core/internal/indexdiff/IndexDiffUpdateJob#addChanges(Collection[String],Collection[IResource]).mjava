@@ -1,0 +1,10 @@
+	void addChanges(Collection<String> filesToUpdate,
+			Collection<IResource> resourcesToUpdate) {
+		synchronized (lock) {
+			files.addAll(filesToUpdate);
+			resources.addAll(resourcesToUpdate);
+		}
+		if (!filesToUpdate.isEmpty())
+			schedule(defaultDelay);
+	}
+
