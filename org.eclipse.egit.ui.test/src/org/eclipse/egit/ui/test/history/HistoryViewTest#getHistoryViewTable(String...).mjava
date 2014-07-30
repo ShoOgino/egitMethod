@@ -12,14 +12,14 @@
 			explorerItem = TestUtil.getChildNode(childItem.expand(), path[2]);
 		}
 		explorerItem.select();
-		ContextMenuHelper.clickContextMenuSync(projectExplorerTree, "Show In",
-				"History");
+		ContextMenuHelper.clickContextMenuSync(projectExplorerTree, "Team",
+				"Show in History");
 		Job.getJobManager().join(JobFamilies.GENERATE_HISTORY, null);
 		projectExplorerTree.widget.getDisplay().syncExec(new Runnable() {
-
 			public void run() {
 			}
 		});
+
 		return getHistoryViewBot().table();
 	}
 
