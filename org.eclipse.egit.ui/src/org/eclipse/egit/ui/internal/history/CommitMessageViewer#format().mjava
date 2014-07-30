@@ -1,5 +1,5 @@
 	private void format() {
-		if (commit == null) {
+		if (db == null || commit == null) {
 			setDocument(new Document("")); 			return;
 		}
 		if (formatJob != null && formatJob.getState() != Job.NONE)
