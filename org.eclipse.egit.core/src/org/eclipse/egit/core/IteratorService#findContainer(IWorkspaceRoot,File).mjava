@@ -1,12 +1,20 @@
 	public static IContainer findContainer(IWorkspaceRoot root, File file) {
 		if (!file.isDirectory())
 			throw new IllegalArgumentException(
-					"file " + file.getAbsolutePath() + " is no directory"); 		final IContainer[] containers = root.findContainersForLocationURI(file
+					"file " + file.getAbsolutePath() + " is no directory"); 
+		IContainer resource = root.getContainerForLocation(new Path(file
+				.getAbsolutePath()));
+
+		if (resource == null)
+			return null;
+
+		if (isValid(resource))
+			return resource;
+
+		final IContainer[] containers = root.findContainersForLocationURI(file
 				.toURI());
 		for (IContainer container : containers)
-			if (container.isAccessible()
-					&& !container.isLinked(IResource.CHECK_ANCESTORS)
-					&& isProjectSharedWithGit(container))
+			if (isValid(container))
 				return container;
 		return null;
 	}
