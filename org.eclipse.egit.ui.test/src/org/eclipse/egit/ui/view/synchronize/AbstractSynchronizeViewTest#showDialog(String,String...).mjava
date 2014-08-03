@@ -1,6 +1,5 @@
 	private static void showDialog(String projectName, String... cmd) {
-		SWTBot packageExplorerBot = bot.viewByTitle("Package Explorer").bot();
-		SWTBotTree tree = packageExplorerBot.tree();
+		SWTBotTree tree = TestUtil.getExplorerTree();
 
 		selectProject(projectName, tree);
 
