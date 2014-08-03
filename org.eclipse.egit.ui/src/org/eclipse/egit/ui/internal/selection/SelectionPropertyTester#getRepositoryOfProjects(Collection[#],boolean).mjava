@@ -1,4 +1,4 @@
-	private static Repository getRepository(Collection<?> collection,
+	private static Repository getRepositoryOfProjects(Collection<?> collection,
 			boolean single) {
 		Repository repo = null;
 		for (Object element : collection) {

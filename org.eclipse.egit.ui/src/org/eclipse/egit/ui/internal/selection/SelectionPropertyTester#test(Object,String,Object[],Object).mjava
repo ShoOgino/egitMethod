@@ -4,7 +4,7 @@
 		if ("projectSingleRepository".equals(property)) { 			if (collection.size() != 1)
 				return false;
 
-			Repository repository = getRepository(collection, true);
+			Repository repository = getRepositoryOfProjects(collection, true);
 			if (repository == null)
 				return false;
 
@@ -15,7 +15,24 @@
 			}
 			return true;
 
-		} else if ("projectsWithRepositories".equals(property)) { 			Repository repository = getRepository(collection, false);
+		} else if ("projectsWithRepositories".equals(property)) { 			Repository repository = getRepositoryOfProjects(collection, false);
+			return repository != null;
+
+		} else if ("resourcesSingleRepository".equals(property)) { 			if (collection.isEmpty())
+				return false;
+
+			Object firstElement = collection.iterator().next();
+			IStructuredSelection selection;
+			if (collection.size() == 1 && firstElement instanceof ITextSelection) {
+				selection = SelectionUtils.getStructuredSelection((ITextSelection) firstElement);
+			} else {
+				selection = new StructuredSelection(new ArrayList<Object>(
+						collection));
+			}
+
+			IResource[] resources = SelectionUtils
+					.getSelectedResources(selection);
+			Repository repository = getRepositoryOfResources(resources);
 			return repository != null;
 		}
 		return false;
