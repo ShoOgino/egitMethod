@@ -1,5 +1,7 @@
 	public void commit() throws Exception {
+		JobJoiner jobJoiner = JobJoiner.startListening(JobFamilies.COMMIT, 30,
+				TimeUnit.SECONDS);
 		stagingView.bot().button(UIText.StagingView_Commit).click();
-		Job.getJobManager().join(JobFamilies.COMMIT, null);
+		jobJoiner.join();
 	}
 

@@ -1,8 +1,9 @@
 	private void commitOneFileChange(String fileContent) throws Exception {
-		setTestFileContent(fileContent);
-		new Git(repository).add().addFilepattern(".").call();
-		selectRepositoryNode(); 		StagingViewTester stagingViewTester = StagingViewTester
+		setContent(fileContent);
+
+		StagingViewTester stagingViewTester = StagingViewTester
 				.openStagingView();
+		stagingViewTester.stageFile(FILE1_PATH);
 		stagingViewTester.setAuthor(TestUtil.TESTAUTHOR);
 		stagingViewTester.setCommitter(TestUtil.TESTCOMMITTER);
 		stagingViewTester.setCommitMessage("Commit message");
