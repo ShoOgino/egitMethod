@@ -1,0 +1,4 @@
+	public RenameCallback getCallback() {
+		return callback;
+	}
+

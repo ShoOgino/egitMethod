@@ -1,0 +1,7 @@
+	public String getPath(final ObjectId target, final String startingPath) {
+		if (!startingPath.equals(initialPath))
+			return startingPath;
+		String renamed = renames.get(target);
+		return renamed != null ? renamed : startingPath;
+	}
+

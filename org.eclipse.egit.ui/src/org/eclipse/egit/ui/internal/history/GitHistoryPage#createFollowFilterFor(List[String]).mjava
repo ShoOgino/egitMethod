@@ -7,8 +7,11 @@
 		for (String path : paths)
 			followFilters.add(createFollowFilter(path, diffConfig));
 
-		if (followFilters.size() == 1)
+		if (followFilters.size() == 1) {
+			FollowFilter followFilter = (FollowFilter) followFilters.get(0);
+			renameTracker.reset(followFilter.getPath());
 			return followFilters.get(0);
+		}
 
 		return OrTreeFilter.create(followFilters);
 	}

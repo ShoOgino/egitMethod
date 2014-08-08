@@ -1,0 +1,4 @@
+	public RevFilter getFilter() {
+		return filter;
+	}
+
