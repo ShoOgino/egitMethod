@@ -2,7 +2,6 @@
 	public void setInput(final Object input) {
 		if (input == commit)
 			return;
-		currentDiffs.clear();
 		commit = (PlotCommit<?>) input;
 		if (refsChangedListener != null) {
 			refsChangedListener.remove();

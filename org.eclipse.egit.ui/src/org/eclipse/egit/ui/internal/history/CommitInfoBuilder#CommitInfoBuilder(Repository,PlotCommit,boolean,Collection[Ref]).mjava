@@ -1,0 +1,8 @@
+	public CommitInfoBuilder(Repository db, PlotCommit commit, boolean fill,
+			Collection<Ref> allRefs) {
+		this.db = db;
+		this.commit = commit;
+		this.fill = fill;
+		this.allRefs = allRefs;
+	}
+
