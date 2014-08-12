@@ -46,8 +46,7 @@
 		addLink.setForeground(linkColor);
 		addLink.addHyperlinkListener(new HyperlinkAdapter() {
 			public void linkActivated(HyperlinkEvent e) {
-				IHandlerService service = (IHandlerService) getViewSite()
-						.getService(IHandlerService.class);
+				IHandlerService service = CommonUtils.getService(getViewSite(), IHandlerService.class);
 				UIUtils.executeCommand(service,
 						"org.eclipse.egit.ui.RepositoriesViewAddRepository"); 			}
 		});
@@ -63,8 +62,7 @@
 		cloneLink.setForeground(linkColor);
 		cloneLink.addHyperlinkListener(new HyperlinkAdapter() {
 			public void linkActivated(HyperlinkEvent e) {
-				IHandlerService service = (IHandlerService) getViewSite()
-						.getService(IHandlerService.class);
+				IHandlerService service = CommonUtils.getService(getViewSite(), IHandlerService.class);
 				UIUtils.executeCommand(service,
 						"org.eclipse.egit.ui.RepositoriesViewClone"); 			}
 		});
@@ -81,8 +79,7 @@
 		createLink.setText(UIText.RepositoriesView_linkCreate);
 		createLink.addHyperlinkListener(new HyperlinkAdapter() {
 			public void linkActivated(HyperlinkEvent e) {
-				IHandlerService service = (IHandlerService) getViewSite()
-						.getService(IHandlerService.class);
+				IHandlerService service = CommonUtils.getService(getViewSite(), IHandlerService.class);
 				UIUtils.executeCommand(service,
 						"org.eclipse.egit.ui.RepositoriesViewCreateRepository"); 			}
 		});

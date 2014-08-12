@@ -1,6 +1,5 @@
 	public RepositoriesViewContentProvider() {
-		ICommandService srv = (ICommandService) PlatformUI.getWorkbench()
-				.getService(ICommandService.class);
+		ICommandService srv = CommonUtils.getService(PlatformUI.getWorkbench(), ICommandService.class);
 		commandState = srv.getCommand(
 				ToggleBranchHierarchyCommand.ID)
 				.getState(ToggleBranchHierarchyCommand.TOGGLE_STATE);

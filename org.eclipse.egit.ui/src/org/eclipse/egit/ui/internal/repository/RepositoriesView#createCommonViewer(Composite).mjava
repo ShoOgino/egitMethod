@@ -26,8 +26,7 @@
 					executeOpenCommand();
 			}
 		});
-		ISelectionService srv = (ISelectionService) getSite().getService(
-				ISelectionService.class);
+		ISelectionService srv = CommonUtils.getService(getSite(), ISelectionService.class);
 		srv.addPostSelectionListener(selectionChangedListener);
 		repositoryUtil.getPreferences().addPreferenceChangeListener(
 				configurationListener);

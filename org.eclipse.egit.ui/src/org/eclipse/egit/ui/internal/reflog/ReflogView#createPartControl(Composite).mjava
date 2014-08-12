@@ -197,8 +197,7 @@
 		};
 
 		IWorkbenchPartSite site = getSite();
-		ISelectionService service = (ISelectionService) site
-				.getService(ISelectionService.class);
+		ISelectionService service = CommonUtils.getService(site, ISelectionService.class);
 		service.addPostSelectionListener(selectionChangedListener);
 
 		UIUtils.notifySelectionChangedWithCurrentSelection(
