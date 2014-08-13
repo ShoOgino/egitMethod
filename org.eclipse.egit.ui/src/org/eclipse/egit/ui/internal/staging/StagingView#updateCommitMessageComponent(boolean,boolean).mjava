@@ -1,6 +1,7 @@
 	void updateCommitMessageComponent(boolean repositoryChanged, boolean indexDiffAvailable) {
 		if (repositoryChanged)
-			if (userEnteredCommmitMessage())
+			if (commitMessageComponent.isAmending()
+					|| userEnteredCommitMessage())
 				saveCommitMessageComponentState();
 			else
 				deleteCommitMessageComponentState();
@@ -16,13 +17,15 @@
 				loadInitialState(helper);
 			else
 				loadExistingState(helper, oldState);
-		} else 			if (userEnteredCommmitMessage()) {
+		} else { 			if (!commitMessageComponent.isAmending()
+					&& userEnteredCommitMessage()) {
 				if (!commitMessageComponent.getHeadCommit().equals(
 						helper.getPreviousCommit()))
 					addHeadChangedWarning(commitMessageComponent
 							.getCommitMessage());
 			} else
 				loadInitialState(helper);
+		}
 		amendPreviousCommitAction.setChecked(commitMessageComponent
 				.isAmending());
 		amendPreviousCommitAction.setEnabled(helper.amendAllowed());
