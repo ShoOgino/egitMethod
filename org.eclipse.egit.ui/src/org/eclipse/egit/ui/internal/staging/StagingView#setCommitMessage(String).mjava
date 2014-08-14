@@ -1,0 +1,4 @@
+	public void setCommitMessage(String message) {
+		commitMessageText.setText(message);
+	}
+
