@@ -1,0 +1,4 @@
+	public DiscardChangesOperation(Collection<IPath> paths) {
+		this(ResourceUtil.splitPathsByRepository(paths));
+	}
+
