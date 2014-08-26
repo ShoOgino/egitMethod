@@ -3,7 +3,7 @@
 		String compareWithHeadMenuLabel = util
 				.getPluginLocalizedValue("CompareWithHeadAction_label");
 		clickCompareWithAndWaitForSync(compareWithHeadMenuLabel);
-
+		closeFirstEmptySynchronizeDialog();
 		assertSynchronizeNoChange();
 
 		setTestFileContent("Hello there");
