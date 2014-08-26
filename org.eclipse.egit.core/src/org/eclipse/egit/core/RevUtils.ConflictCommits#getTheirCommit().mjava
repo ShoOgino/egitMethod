@@ -1,0 +1,4 @@
+		public RevCommit getTheirCommit() {
+			return theirCommit;
+		}
+
