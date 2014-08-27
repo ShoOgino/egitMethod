@@ -1,0 +1,5 @@
+	public static boolean isOrderReversed() {
+		return getPreferencesStore().getBoolean(
+				UIPreferences.REBASE_INTERACTIVE_ORDER_REVERSE);
+	}
+

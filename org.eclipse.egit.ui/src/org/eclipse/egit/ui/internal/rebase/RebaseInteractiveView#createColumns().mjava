@@ -1,5 +1,6 @@
 	private void createColumns() {
 		String[] headings = { UIText.RebaseInteractiveView_HeadingStatus,
+				UIText.RebaseInteractiveView_HeadingStep,
 				UIText.RebaseInteractiveView_HeadingAction,
 				UIText.RebaseInteractiveView_HeadingCommitId,
 				UIText.RebaseInteractiveView_HeadingMessage,
@@ -53,7 +54,43 @@
 				return ""; 			}
 		});
 
-		TreeViewerColumn actionColumn = createColumn(headings[1], 90);
+		TreeViewerColumn stepColumn = createColumn(headings[1], 55);
+		stepColumn.setLabelProvider(new HighlightingColumnLabelProvider() {
+			@Override
+			public String getText(Object element) {
+				if (element instanceof PlanElement) {
+					PlanElement planLine = (PlanElement) element;
+					return (planIndexer.indexOf(planLine) + 1) + "."; 				}
+				return super.getText(element);
+			}
+		});
+		stepColumn.getColumn().addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				Tree tree = planTreeViewer.getTree();
+
+				boolean orderReversed = tree.getSortDirection() == SWT.DOWN;
+
+				RebaseInteractivePreferences.setOrderReversed(!orderReversed);
+
+				int newDirection = (orderReversed ? SWT.UP : SWT.DOWN);
+				tree.setSortDirection(newDirection);
+
+				TreeItem topmostVisibleItem = tree.getTopItem();
+				refreshUI();
+				if (topmostVisibleItem != null)
+					tree.showItem(topmostVisibleItem);
+			}
+		});
+
+		boolean orderReversed = RebaseInteractivePreferences.isOrderReversed();
+		int direction = (orderReversed ? SWT.DOWN : SWT.UP);
+
+		Tree planTree = planTreeViewer.getTree();
+		planTree.setSortColumn(stepColumn.getColumn());
+		planTree.setSortDirection(direction);
+
+		TreeViewerColumn actionColumn = createColumn(headings[2], 90);
 		actionColumn.setLabelProvider(new HighlightingColumnLabelProvider() {
 
 			@Override
@@ -94,7 +131,7 @@
 			}
 		});
 
-		TreeViewerColumn commitIDColumn = createColumn(headings[2], 70);
+		TreeViewerColumn commitIDColumn = createColumn(headings[3], 70);
 		commitIDColumn.setLabelProvider(new HighlightingColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
@@ -106,7 +143,7 @@
 			}
 		});
 
-		TreeViewerColumn commitMessageColumn = createColumn(headings[3], 200);
+		TreeViewerColumn commitMessageColumn = createColumn(headings[4], 200);
 		commitMessageColumn
 				.setLabelProvider(new HighlightingColumnLabelProvider() {
 					@Override
@@ -119,7 +156,7 @@
 					}
 				});
 
-		TreeViewerColumn authorColumn = createColumn(headings[4], 120);
+		TreeViewerColumn authorColumn = createColumn(headings[5], 120);
 		authorColumn.setLabelProvider(new HighlightingColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
@@ -131,7 +168,7 @@
 			}
 		});
 
-		TreeViewerColumn authoredDateColumn = createColumn(headings[5], 80);
+		TreeViewerColumn authoredDateColumn = createColumn(headings[6], 80);
 		authoredDateColumn
 				.setLabelProvider(new HighlightingColumnLabelProvider() {
 					@Override
@@ -144,7 +181,7 @@
 					}
 				});
 
-		TreeViewerColumn committerColumn = createColumn(headings[6], 120);
+		TreeViewerColumn committerColumn = createColumn(headings[7], 120);
 		committerColumn.setLabelProvider(new HighlightingColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
@@ -156,7 +193,7 @@
 			}
 		});
 
-		TreeViewerColumn commitDateColumn = createColumn(headings[7], 80);
+		TreeViewerColumn commitDateColumn = createColumn(headings[8], 80);
 		commitDateColumn
 				.setLabelProvider(new HighlightingColumnLabelProvider() {
 					@Override

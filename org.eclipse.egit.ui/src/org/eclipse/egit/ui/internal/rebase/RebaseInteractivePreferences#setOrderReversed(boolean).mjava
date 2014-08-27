@@ -1,0 +1,5 @@
+	public static void setOrderReversed(boolean reversed) {
+		getPreferencesStore().setValue(
+				UIPreferences.REBASE_INTERACTIVE_ORDER_REVERSE, reversed);
+	}
+
