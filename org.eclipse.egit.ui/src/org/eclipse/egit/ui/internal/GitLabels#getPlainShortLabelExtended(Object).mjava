@@ -1,0 +1,4 @@
+	public static String getPlainShortLabelExtended(Object element) {
+		return getPlainShortLabel(element) + getLabelExtension(element);
+	}
+

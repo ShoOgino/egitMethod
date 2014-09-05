@@ -1,0 +1,9 @@
+	public static StyledString getStyledLabelSafe(Repository repository) {
+		try {
+			return getStyledLabel(repository);
+		} catch (IOException e) {
+			logLabelRetrievalFailure(repository, e);
+		}
+		return new StyledString(getPlainShortLabel(repository));
+	}
+

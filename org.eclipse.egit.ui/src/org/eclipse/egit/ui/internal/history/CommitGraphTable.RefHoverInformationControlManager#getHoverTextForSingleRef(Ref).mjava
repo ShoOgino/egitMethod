@@ -5,7 +5,7 @@
 			if (r.isSymbolic()) {
 				sb.append(": "); 				sb.append(r.getLeaf().getName());
 			}
-			String description = GitLabelProvider.getRefDescription(r);
+			String description = GitLabels.getRefDescription(r);
 			if (description != null) {
 				sb.append("\n"); 				sb.append(description);
 			}

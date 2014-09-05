@@ -1,0 +1,16 @@
+	public static StyledString getStyledLabelExtendedSafe(Object element) {
+		Repository repo = asRepository(element);
+
+		if (repo != null) {
+			try {
+				StyledString text = getStyledLabel(repo);
+				text.append(getLabelExtension(repo),
+						StyledString.QUALIFIER_STYLER);
+				return text;
+			} catch (IOException e) {
+				logLabelRetrievalFailure(element, e);
+			}
+		}
+		return new StyledString(getPlainShortLabelExtended(element));
+	}
+
