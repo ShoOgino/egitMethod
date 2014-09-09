@@ -1,0 +1,4 @@
+	public boolean isSymlink() {
+		return symlink;
+	}
+

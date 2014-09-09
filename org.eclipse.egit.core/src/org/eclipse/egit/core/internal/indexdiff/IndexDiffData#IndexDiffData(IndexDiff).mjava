@@ -16,6 +16,8 @@
 				.getConflicting()));
 		ignored = Collections.unmodifiableSet(new HashSet<String>(indexDiff
 				.getIgnoredNotInIndex()));
+		symlinks = Collections.unmodifiableSet(new HashSet<String>(indexDiff
+				.getPathsWithIndexMode(FileMode.SYMLINK)));
 		changedResources = null;
 	}
 

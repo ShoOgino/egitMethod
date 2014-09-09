@@ -1,0 +1,4 @@
+	public void setSymlink(boolean symlink) {
+		this.symlink = symlink;
+	}
+
