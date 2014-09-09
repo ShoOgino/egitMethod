@@ -1,4 +1,4 @@
-	public String getFullPath() {
+	private String getFullPath() {
 		return this.fullPath;
 	}
 

@@ -1,7 +1,13 @@
 	private static Repository getRepository(boolean warn,
 			IStructuredSelection selection, Shell shell) {
 		RepositoryMapping mapping = null;
-		for (IPath location : getSelectedLocations(selection)) {
+
+		IPath[] locations = getSelectedLocations(selection);
+		if (GitTraceLocation.SELECTION.isActive())
+			GitTraceLocation.getTrace().trace(
+					GitTraceLocation.SELECTION.getLocation(), "selection=" 							+ selection + ", locations=" 							+ Arrays.toString(locations));
+
+		for (IPath location : locations) {
 			RepositoryMapping repositoryMapping = RepositoryMapping
 					.getMapping(location);
 			if (mapping == null)
