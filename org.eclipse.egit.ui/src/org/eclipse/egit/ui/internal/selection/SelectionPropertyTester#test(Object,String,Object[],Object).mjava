@@ -1,39 +1,39 @@
 	public boolean test(Object receiver, String property, Object[] args,
 			Object expectedValue) {
 		Collection<?> collection = (Collection<?>) receiver;
+		if (collection.isEmpty())
+			return false;
 		if ("projectSingleRepository".equals(property)) { 			if (collection.size() != 1)
 				return false;
 
 			Repository repository = getRepositoryOfProjects(collection, true);
-			if (repository == null)
-				return false;
-
-			for (Object arg : args) {
-				String s = (String) arg;
-				if (!ResourcePropertyTester.testRepositoryState(repository, s))
-					return false;
-			}
-			return true;
+			return testRepositoryProperties(repository, args);
 
 		} else if ("projectsWithRepositories".equals(property)) { 			Repository repository = getRepositoryOfProjects(collection, false);
 			return repository != null;
 
-		} else if ("resourcesSingleRepository".equals(property)) { 			if (collection.isEmpty())
-				return false;
-
-			Object firstElement = collection.iterator().next();
-			IStructuredSelection selection;
-			if (collection.size() == 1 && firstElement instanceof ITextSelection) {
-				selection = SelectionUtils.getStructuredSelection((ITextSelection) firstElement);
-			} else {
-				selection = new StructuredSelection(new ArrayList<Object>(
-						collection));
-			}
+		} else if ("resourcesSingleRepository".equals(property)) { 			IStructuredSelection selection = getStructuredSelection(collection);
 
 			IResource[] resources = SelectionUtils
 					.getSelectedResources(selection);
 			Repository repository = getRepositoryOfResources(resources);
-			return repository != null;
+			return testRepositoryProperties(repository, args);
+
+		} else if ("fileOrFolderInRepository".equals(property)) { 			if (collection.size() != 1)
+				return false;
+
+			IStructuredSelection selection = getStructuredSelection(collection);
+			if (selection.size() != 1)
+				return false;
+
+			Object firstElement = selection.getFirstElement();
+			IResource resource = AdapterUtils.adapt(firstElement,
+					IResource.class);
+			if (resource instanceof IFile || resource instanceof IFolder) {
+				RepositoryMapping m = RepositoryMapping.getMapping(resource);
+				if (m != null)
+					return testRepositoryProperties(m.getRepository(), args);
+			}
 		}
 		return false;
 	}
