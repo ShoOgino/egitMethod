@@ -13,7 +13,7 @@
 				super.setVisible(visible);
 			}
 		};
-		setDefaultPageImageDescriptor(UIIcons.WIZBAN_IMPORT_REPO);
+		setDefaultPageImageDescriptor(UIIcons.WIZBAN_FETCH);
 		setNeedsProgressMonitor(true);
 	}
 
