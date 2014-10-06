@@ -1,0 +1,32 @@
+	@Before
+	public void setUp() throws Exception {
+		testUtils = new TestUtils();
+
+		childProject = testUtils.createProjectInLocalFileSystem("child");
+		childProjectDir = childProject.getRawLocation().toFile();
+		childRepository = new TestRepository(new File(childProjectDir,
+				Constants.DOT_GIT));
+		testUtils.addFileToProject(childProject, "child.txt", "Hello world");
+		childRepository.connect(childProject);
+		RepositoryTestCase.fsTick(null);
+		childRepository.trackAllFiles(childProject);
+		childRepository.commit("Initial commit");
+		parentProject = testUtils.createProjectInLocalFileSystem("parent");
+		parentProjectDir = parentProject.getRawLocation().toFile();
+		parentRepository = new TestRepository(new File(parentProjectDir,
+				Constants.DOT_GIT));
+		parentFile = testUtils.addFileToProject(parentProject, "parent.txt",
+				"Hello world");
+		Git.wrap(parentRepository.getRepository()).submoduleAdd()
+				.setPath("children/child")
+				.setURI(childProjectDir.toURI().toString()).call();
+		parentRepository.connect(parentProject);
+		RepositoryTestCase.fsTick(null);
+		parentRepository.trackAllFiles(parentProject);
+		parentRepository.commit("Initial commit");
+
+		treeIt = new AdaptableFileTreeIterator(
+				parentRepository.getRepository(), parentFile.getWorkspace()
+						.getRoot());
+	}
+
