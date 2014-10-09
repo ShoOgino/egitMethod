@@ -1,8 +1,8 @@
 	private BranchOperationUI(Repository repository, String target,
-			boolean showQuestionAboutTarget) {
+			boolean showQuestionsBeforeCheckout) {
 		this.repository = repository;
 		this.target = target;
-		this.showQuestionAboutTarget = showQuestionAboutTarget;
+		this.showQuestionsBeforeCheckout = showQuestionsBeforeCheckout;
 		this.mode = 0;
 	}
 
