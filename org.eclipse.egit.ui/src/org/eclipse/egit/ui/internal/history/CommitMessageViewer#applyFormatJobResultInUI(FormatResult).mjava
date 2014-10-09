@@ -7,11 +7,7 @@
 
 		text.setStyleRanges(formatResult.getStyleRange());
 
-		StyleRange[] hyperlinkStyleRanges = UIUtils
-				.getHyperlinkDetectorStyleRanges(CommitMessageViewer.this,
-						fHyperlinkDetectors);
-
-		for (StyleRange styleRange : hyperlinkStyleRanges)
-			text.setStyleRange(styleRange);
+		UIUtils.applyHyperlinkDetectorStyleRanges(CommitMessageViewer.this,
+				fHyperlinkDetectors);
 	}
 
