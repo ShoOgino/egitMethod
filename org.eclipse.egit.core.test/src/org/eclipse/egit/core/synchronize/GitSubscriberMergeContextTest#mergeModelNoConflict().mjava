@@ -34,6 +34,8 @@
 				"master commit");
 		setContentsAndCommit(iFile2, initialContent2 + masterChanges,
 				"master commit");
+		iProject.refreshLocal(IResource.DEPTH_INFINITE,
+				new NullProgressMonitor());
 
 		IMergeContext mergeContext = prepareModelContext(iFile1, MASTER, BRANCH);
 		IDiff node = mergeContext.getDiffTree().getDiff(iFile1);
