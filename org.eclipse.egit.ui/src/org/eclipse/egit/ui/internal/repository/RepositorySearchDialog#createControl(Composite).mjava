@@ -94,11 +94,15 @@
 
 			@Override
 			public boolean isElementVisible(Viewer viewer, Object element) {
-
-				if (getCheckedItems().contains(element))
-					return true;
-
-				return super.isElementVisible(viewer, element);
+				boolean elementVisible = super
+						.isElementVisible(viewer, element);
+				if (getCheckedItems().contains(element)) {
+					if (!isUserModifiedTreeSelection)
+						fTreeViewer.setChecked(element, elementVisible);
+					else
+						return true;
+				}
+				return elementVisible;
 			}
 		};
 
@@ -108,6 +112,7 @@
 		fTreeViewer.addCheckStateListener(new ICheckStateListener() {
 
 			public void checkStateChanged(CheckStateChangedEvent event) {
+				isUserModifiedTreeSelection = true;
 				enableOk();
 			}
 		});
