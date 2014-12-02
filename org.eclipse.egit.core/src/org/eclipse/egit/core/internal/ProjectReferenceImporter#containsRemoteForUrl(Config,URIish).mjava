@@ -10,9 +10,9 @@
 			if (existingUrl.equals(url))
 				return true;
 
-			URIish anonExistingUrl = existingUrl.setUser(null);
-			URIish anonUrl = url.setUser(null);
-			if (anonExistingUrl.equals(anonUrl))
+			URIish canonExistingUrl = canonicalizeURL(existingUrl);
+			URIish canonUrl = canonicalizeURL(url);
+			if (canonExistingUrl.equals(canonUrl))
 				return true;
 		}
 		return false;
