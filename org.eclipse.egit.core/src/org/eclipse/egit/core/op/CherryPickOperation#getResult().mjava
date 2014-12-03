@@ -1,4 +1,0 @@
-	public RebaseResult getResult() {
-		return result;
-	}
-
