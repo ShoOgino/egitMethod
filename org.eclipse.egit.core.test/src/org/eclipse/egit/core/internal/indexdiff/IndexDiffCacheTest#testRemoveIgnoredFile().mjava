@@ -6,7 +6,7 @@
 		IFile file = project.createFile("sub/ignore", new byte[] {});
 		testRepository.addToIndex(project.project);
 		testRepository.createInitialCommit("testRemoveIgnoredFile\n\nfirst commit\n");
-		prepareCacheEntry();
+		IndexDiffCacheEntry entry = prepareCacheEntry();
 
 		IndexDiffData data1 = waitForListenerCalled();
 		assertThat(data1.getIgnoredNotInIndex(), hasItem("Project-1/sub/ignore"));
@@ -18,7 +18,8 @@
 
 		file.delete(false, null);
 
-		IndexDiffData data3 = waitForListenerCalled();
+		waitForListenerNotCalled();
+		entry.refresh(); 		IndexDiffData data3 = waitForListenerCalled();
 		assertThat(data3.getIgnoredNotInIndex(), not(hasItem("Project-1/sub/ignore")));
 	}
 
