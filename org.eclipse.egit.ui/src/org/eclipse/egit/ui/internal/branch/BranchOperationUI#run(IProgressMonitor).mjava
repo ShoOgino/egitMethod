@@ -12,7 +12,7 @@
 			return;
 		}
 
-		if (shouldCancelBecauseOfRunningLaunches())
+		if (shouldCancelBecauseOfRunningLaunches(monitor))
 			return;
 
 		askForTargetIfNecessary();
