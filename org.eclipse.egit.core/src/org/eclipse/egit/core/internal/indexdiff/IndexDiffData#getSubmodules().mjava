@@ -1,0 +1,4 @@
+	public Set<String> getSubmodules() {
+		return submodules;
+	}
+

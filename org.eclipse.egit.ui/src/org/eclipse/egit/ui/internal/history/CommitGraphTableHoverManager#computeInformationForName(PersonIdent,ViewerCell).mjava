@@ -1,0 +1,6 @@
+	private Information computeInformationForName(PersonIdent ident,
+			ViewerCell cell) {
+		String nameWithEmail = ident.getName()
+				+ " <" + ident.getEmailAddress() + ">"; 		return new Information(nameWithEmail, cell.getBounds());
+	}
+

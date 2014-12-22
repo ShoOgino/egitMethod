@@ -1,4 +1,4 @@
-	public RebaseResult getResult() {
+	public CherryPickResult getResult() {
 		return result;
 	}
 
