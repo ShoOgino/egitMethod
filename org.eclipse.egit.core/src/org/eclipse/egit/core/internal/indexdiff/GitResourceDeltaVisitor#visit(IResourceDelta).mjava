@@ -5,9 +5,19 @@
 		if (mapping == null || mapping.getRepository() != repository)
 			return true;
 
+		IndexDiffCache cache = Activator.getDefault().getIndexDiffCache();
+		IndexDiffCacheEntry entry = null;
+
+		if (cache != null)
+			entry = cache.getIndexDiffCacheEntry(mapping.getRepository());
+
 		if (resource instanceof IFolder
 				&& delta.getKind() == IResourceDelta.ADDED) {
-			filesToUpdate.add(mapping.getRepoRelativePath(resource) + "/"); 			resourcesToUpdate.add(resource);
+			String path = mapping.getRepoRelativePath(resource) + "/"; 
+			if (isIgnoredInOldIndex(entry, path))
+				return true; 
+			filesToUpdate.add(path);
+			resourcesToUpdate.add(resource);
 			return true;
 		}
 
@@ -24,8 +34,15 @@
 		}
 
 		String repoRelativePath = mapping.getRepoRelativePath(resource);
-		if (repoRelativePath!= null)
-			filesToUpdate.add(repoRelativePath);
+		if (repoRelativePath == null) {
+			resourcesToUpdate.add(resource);
+			return true;
+		}
+
+		if (isIgnoredInOldIndex(entry, repoRelativePath)) {
+			return false;
+		}
+		filesToUpdate.add(repoRelativePath);
 		resourcesToUpdate.add(resource);
 
 		return true;

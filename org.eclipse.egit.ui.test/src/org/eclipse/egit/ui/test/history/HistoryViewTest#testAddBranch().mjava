@@ -12,6 +12,7 @@
 		dialog.bot().textWithId("BranchName").setText("NewBranch");
 		dialog.bot().checkBox().deselect();
 		dialog.bot().button(IDialogConstants.FINISH_LABEL).click();
+		TestUtil.joinJobs(JobFamilies.CHECKOUT);
 		assertNotNull(repo.resolve(Constants.R_HEADS + "NewBranch"));
 	}
 
