@@ -20,7 +20,7 @@
 			}
 
 		};
-		job.setRule(ResourcesPlugin.getWorkspace().getRoot());
+		job.setRule(RuleUtil.getRule(repository));
 		job.schedule();
 	}
 
