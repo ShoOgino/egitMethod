@@ -1,5 +1,6 @@
 	public void indexDiffChanged(Repository repository,
 			IndexDiffData indexDiffData) {
+		DecoratableResourceHelper.clearState(repository);
 		postLabelEvent();
 	}
 
