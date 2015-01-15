@@ -439,5 +439,10 @@
 		};
 		unstagedViewer.addFilter(filter);
 		stagedViewer.addFilter(filter);
+
+		IWorkbenchSiteProgressService service = CommonUtils.getService(
+				getSite(), IWorkbenchSiteProgressService.class);
+		if (service != null && reactOnSelection)
+			service.showBusyForFamily(org.eclipse.egit.core.JobFamilies.INDEX_DIFF_CACHE_UPDATE);
 	}
 
