@@ -1,4 +1,4 @@
-	public void refreshResourcesAndIndexDiff() {
+	public Job createRefreshResourcesAndIndexDiffJob() {
 		String repositoryName = Activator.getDefault().getRepositoryUtil()
 				.getRepositoryName(repository);
 		String jobName = MessageFormat
@@ -21,6 +21,6 @@
 
 		};
 		job.setRule(RuleUtil.getRule(repository));
-		job.schedule();
+		return job;
 	}
 
