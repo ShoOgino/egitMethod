@@ -1,5 +1,5 @@
 	public void refreshViewersPreservingExpandedElements() {
-		Display.getDefault().syncExec(new Runnable() {
+		syncExec(new Runnable() {
 			public void run() {
 				Object[] unstagedExpanded = unstagedViewer
 						.getExpandedElements();

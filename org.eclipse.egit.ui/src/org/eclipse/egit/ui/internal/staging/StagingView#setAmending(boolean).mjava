@@ -1,4 +1,6 @@
 	public void setAmending(boolean isAmending) {
+		if (isDisposed())
+			return;
 		if (amendPreviousCommitAction.isChecked() != isAmending) {
 			amendPreviousCommitAction.setChecked(isAmending);
 			amendPreviousCommitAction.run();
