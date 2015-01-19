@@ -1,0 +1,5 @@
+	void cleanupAndCancel() {
+		cleanup();
+		cancel();
+	}
+

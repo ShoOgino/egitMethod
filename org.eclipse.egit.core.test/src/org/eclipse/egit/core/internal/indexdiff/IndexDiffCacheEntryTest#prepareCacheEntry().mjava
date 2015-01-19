@@ -1,0 +1,10 @@
+	private IndexDiffCacheEntry2 prepareCacheEntry() throws Exception {
+		entry = new IndexDiffCacheEntry2(repository);
+		waitForJobs(MAX_WAIT_TIME, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
+
+		assertTrue(entry.reloadScheduled);
+		assertFalse(entry.updateScheduled);
+		cleanEntryFlags();
+		return entry;
+	}
+
