@@ -1,6 +1,6 @@
 	public static void compare(IPath location, Repository repository,
 			String leftRev, String rightRev, boolean includeLocal,
-			IWorkbenchPage page) throws IOException {
+			IWorkbenchPage page) {
 		if (includeLocal)
 			compareLocalWithRef(repository, location, rightRev, page);
 		else {
