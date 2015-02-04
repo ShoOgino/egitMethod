@@ -1,11 +1,17 @@
-	private boolean isStaged(Repository repository,
-			IPath location) {
+	private boolean isStaged(Repository repository, IPath location,
+			boolean checkIndex) {
+		if (location == null || location.toFile().isDirectory()) {
+			return false;
+		}
 		String resRelPath = RepositoryMapping.getMapping(location).getRepoRelativePath(location);
 
 		if (resRelPath == null || resRelPath.length() == 0) {
 			return false;
 		}
 
+		if (!checkIndex) {
+			return true;
+		}
 		try {
 			FileTreeIterator fileTreeIterator = new FileTreeIterator(repository);
 			IndexDiff indexDiff = new IndexDiff(repository, Constants.HEAD,

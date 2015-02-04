@@ -100,11 +100,19 @@
 			}
 
 			public Object[] getChildren(Object element) {
-				if (element instanceof RepositoryCommit)
+				if (element instanceof RepositoryCommit) {
 					return ((RepositoryCommit) element).getDiffs();
+				}
 				return super.getChildren(element);
 			}
 
+			@Override
+			public boolean hasChildren(Object element) {
+				if (element instanceof RepositoryCommit) {
+					return true;
+				}
+				return super.hasChildren(element);
+			}
 		});
 
 		new OpenAndLinkWithEditorHelper(treeViewer) {
