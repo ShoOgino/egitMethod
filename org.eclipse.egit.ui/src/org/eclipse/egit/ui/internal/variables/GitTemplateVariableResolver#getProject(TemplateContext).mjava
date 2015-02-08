@@ -1,0 +1,10 @@
+	protected static IProject getProject(TemplateContext context) {
+		IProject project = null;
+		if (Activator.hasJavaPlugin()
+				&& (context instanceof CodeTemplateContext)) {
+			project = ((CodeTemplateContext) context).getJavaProject()
+					.getProject();
+		}
+		return project;
+	}
+

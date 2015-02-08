@@ -1,0 +1,8 @@
+	protected static void resolveVariable(TemplateVariable variable,
+			TemplateContext context) {
+		IProject project = getProject(context);
+		if (project != null) {
+			resolveVariable(variable, project);
+		}
+	}
+

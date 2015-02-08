@@ -14,5 +14,7 @@
 		setupFocusHandling();
 		setupCredentialsProvider();
 		ConfigurationChecker.checkConfiguration();
+
+		registerTemplateVariableResolvers();
 	}
 
