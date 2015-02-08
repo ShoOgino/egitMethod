@@ -1,7 +1,7 @@
 	void fireLabelEvent() {
 		final LabelProviderChangedEvent event = new LabelProviderChangedEvent(
 				this);
-		Display.getDefault().asyncExec(new Runnable() {
+		PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
 			public void run() {
 				fireLabelProviderChanged(event);
 			}
