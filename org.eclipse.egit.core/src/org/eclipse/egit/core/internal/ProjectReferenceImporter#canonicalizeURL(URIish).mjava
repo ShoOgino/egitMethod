@@ -2,7 +2,8 @@
 		URIish newURL = existingUrl.setUser(null);
 
 		String path = existingUrl.getPath();
-		if (path.endsWith(".git")) { 			newURL = existingUrl.setPath(path.substring(0,
+		if (path.endsWith(".git")) { 			newURL = newURL
+					.setPath(path.substring(0,
 					path.lastIndexOf(".git"))); 		}
 
 		return newURL;
