@@ -1,4 +1,4 @@
 	public GitTemplateVariableResolver() {
-		super("git_config", 				UIText.GitTemplateVariableResolver_GitConfigDescription);
+		super();
 	}
 
