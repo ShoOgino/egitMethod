@@ -3,11 +3,7 @@
 		tmpRepository.create();
 		tmpRepository.close();
 		repository = Activator.getDefault().getRepositoryCache().lookupRepository(gitDir);
-		try {
-			workdirPrefix = repository.getWorkTree().getCanonicalPath();
-		} catch (IOException err) {
-			workdirPrefix = repository.getWorkTree().getAbsolutePath();
-		}
+		workdirPrefix = repository.getWorkTree().getAbsolutePath();
 		workdirPrefix = workdirPrefix.replace('\\', '/');
 		if (!workdirPrefix.endsWith("/")) 			workdirPrefix += "/"; 	}
 

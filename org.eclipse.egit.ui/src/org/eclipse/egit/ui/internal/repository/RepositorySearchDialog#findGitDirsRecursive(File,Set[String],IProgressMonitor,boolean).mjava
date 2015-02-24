@@ -15,20 +15,14 @@
 				continue;
 
 			if (FileKey.isGitRepository(child, FS.DETECTED)) {
-				try {
-					strings.add(child.getCanonicalPath());
-				} catch (IOException e) {
-				}
+				strings.add(child.getAbsolutePath());
 				monitor.setTaskName(NLS
 						.bind(UIText.RepositorySearchDialog_RepositoriesFound_message,
 								Integer.valueOf(strings.size())));
 			} else if (FileKey.isGitRepository(new File(child,
 					Constants.DOT_GIT), FS.DETECTED)) {
-				try {
-					strings.add(new File(child, Constants.DOT_GIT)
-							.getCanonicalPath());
-				} catch (IOException e) {
-				}
+				strings.add(new File(child, Constants.DOT_GIT)
+						.getAbsolutePath());
 				monitor.setTaskName(NLS
 						.bind(UIText.RepositorySearchDialog_RepositoriesFound_message,
 								Integer.valueOf(strings.size())));
