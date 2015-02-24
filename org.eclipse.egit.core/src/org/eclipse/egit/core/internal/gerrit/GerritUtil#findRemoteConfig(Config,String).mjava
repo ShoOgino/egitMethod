@@ -1,0 +1,14 @@
+	public static RemoteConfig findRemoteConfig(Config config, String remoteName)
+			throws URISyntaxException {
+		RemoteConfig remoteConfig = null;
+		List<RemoteConfig> allRemoteConfigs = RemoteConfig
+				.getAllRemoteConfigs(config);
+		for (RemoteConfig rc : allRemoteConfigs) {
+			if (rc.getName().equals(remoteName)) {
+				remoteConfig = rc;
+				break;
+			}
+		}
+		return remoteConfig;
+	}
+
