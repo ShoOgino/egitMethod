@@ -21,7 +21,7 @@
 					walk.enterSubtree();
 			}
 		} finally {
-			walk.release();
+			walk.close();
 		}
 		return false;
 	}
