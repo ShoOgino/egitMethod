@@ -1,5 +1,4 @@
 	protected RepositoryCommit getCommit() {
-		return (RepositoryCommit) getEditor()
-				.getAdapter(RepositoryCommit.class);
+		return CommonUtils.getAdapter(getEditor(), RepositoryCommit.class);
 	}
 

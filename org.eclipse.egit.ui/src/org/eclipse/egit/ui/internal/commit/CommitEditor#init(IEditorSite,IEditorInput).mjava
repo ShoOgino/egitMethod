@@ -1,6 +1,6 @@
 	public void init(IEditorSite site, IEditorInput input)
 			throws PartInitException {
-		if (input.getAdapter(RepositoryCommit.class) == null)
+		if (CommonUtils.getAdapter(input, RepositoryCommit.class) == null)
 			throw new PartInitException(
 					"Input could not be adapted to commit object"); 		super.init(site, input);
 		setPartName(input.getName());
