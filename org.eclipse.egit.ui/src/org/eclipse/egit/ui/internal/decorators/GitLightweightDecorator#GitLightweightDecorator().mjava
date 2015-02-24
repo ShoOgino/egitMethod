@@ -1,10 +1,10 @@
 	public GitLightweightDecorator() {
+		ensureFontAndColorsCreated(FONT_IDS, COLOR_IDS);
 		TeamUI.addPropertyChangeListener(this);
 		Activator.addPropertyChangeListener(this);
 		PlatformUI.getWorkbench().getThemeManager().getCurrentTheme()
 				.addPropertyChangeListener(this);
 
 		org.eclipse.egit.core.Activator.getDefault().getIndexDiffCache().addIndexDiffChangedListener(this);
-		ensureFontAndColorsCreated(fonts, colors);
 	}
 

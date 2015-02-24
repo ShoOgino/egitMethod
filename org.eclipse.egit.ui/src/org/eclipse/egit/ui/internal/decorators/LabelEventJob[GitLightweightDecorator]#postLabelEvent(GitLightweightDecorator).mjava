@@ -1,6 +1,6 @@
 	void postLabelEvent(final GitLightweightDecorator decorator) {
-		if (this.glwDecorator == null)
-			this.glwDecorator = decorator;
+		if (glwDecorator == null)
+			glwDecorator = decorator;
 		if (getState() == SLEEPING || getState() == WAITING)
 			cancel();
 		schedule(DELAY);
