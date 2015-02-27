@@ -1,6 +1,7 @@
-	private void configurePushRefSpec() {
-		String gerritBranch = gerritConfiguration.getBranch();
-		List<RefSpec> pushRefSpecs = new ArrayList<RefSpec>(remoteConfig.getPushRefSpecs());
+	public static void configurePushRefSpec(RemoteConfig remoteConfig,
+			String gerritBranch) {
+		List<RefSpec> pushRefSpecs = new ArrayList<RefSpec>(
+				remoteConfig.getPushRefSpecs());
 		for (RefSpec refSpec : pushRefSpecs) {
 			remoteConfig.removePushRefSpec(refSpec);
 		}
