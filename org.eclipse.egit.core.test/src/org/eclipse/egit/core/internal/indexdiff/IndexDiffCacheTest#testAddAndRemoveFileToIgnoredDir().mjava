@@ -12,7 +12,7 @@
 		IndexDiffData data1 = waitForListenerCalled();
 		assertThat(data1.getIgnoredNotInIndex(), hasItem("Project-1/sub"));
 
-		project.createFile("sub/ignored", "Ignored".getBytes());
+		project.createFile("sub/ignored", "Ignored".getBytes("UTF-8"));
 		waitForListenerNotCalled();
 
 		project.getProject().getFile("sub/ignored").delete(true, null);
