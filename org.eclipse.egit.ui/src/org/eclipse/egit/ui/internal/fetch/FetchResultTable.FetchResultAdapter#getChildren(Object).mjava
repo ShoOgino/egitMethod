@@ -7,8 +7,7 @@
 				if (isPruned())
 					return NO_CHILDREN;
 			case FAST_FORWARD:
-				RevWalk walk = new RevWalk(reader);
-				try {
+				try (RevWalk walk = new RevWalk(reader)) {
 					walk.setRetainBody(true);
 					walk.markStart(walk.parseCommit(update.getNewObjectId()));
 					walk.markUninteresting(walk.parseCommit(update
@@ -20,9 +19,7 @@
 					break;
 				} catch (IOException e) {
 					Activator.logError(
-							"Error parsing commits from fetch result", e); 				} finally {
-					walk.release();
-				}
+							"Error parsing commits from fetch result", e); 				}
 			default:
 				children = super.getChildren(object);
 			}

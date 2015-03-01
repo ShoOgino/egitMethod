@@ -4,8 +4,7 @@
 			if (head == null || head.getObjectId() == null)
 				return new EmptyTypedElement(""); 
 			RevCommit latestFileCommit;
-			RevWalk rw = new RevWalk(repository);
-			try {
+			try (RevWalk rw = new RevWalk(repository)) {
 				RevCommit headCommit = rw.parseCommit(head.getObjectId());
 				rw.markStart(headCommit);
 				rw.setTreeFilter(AndTreeFilter.create(
@@ -14,8 +13,6 @@
 				latestFileCommit = rw.next();
 				if (latestFileCommit == null)
 					latestFileCommit = headCommit;
-			} finally {
-				rw.release();
 			}
 
 			return CompareUtils.getFileRevisionTypedElement(repoRelativePath, latestFileCommit, repository);
