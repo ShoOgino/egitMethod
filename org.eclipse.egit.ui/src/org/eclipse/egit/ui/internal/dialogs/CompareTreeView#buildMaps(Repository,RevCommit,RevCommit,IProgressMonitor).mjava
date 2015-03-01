@@ -8,8 +8,7 @@
 		fileNodes.clear();
 		containerNodes.clear();
 		boolean checkIgnored = false;
-		TreeWalk tw = new TreeWalk(repository);
-		try {
+		try (TreeWalk tw = new TreeWalk(repository)) {
 			int baseTreeIndex;
 			if (baseCommit == null) {
 				checkIgnored = true;
@@ -160,7 +159,6 @@
 				}
 			}
 		} finally {
-			tw.release();
 			monitor.done();
 		}
 	}
