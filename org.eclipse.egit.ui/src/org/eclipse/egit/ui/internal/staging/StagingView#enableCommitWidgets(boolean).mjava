@@ -10,8 +10,5 @@
 		addChangeIdAction.setEnabled(enabled);
 		commitButton.setEnabled(enabled);
 		commitAndPushButton.setEnabled(enabled);
-
-		if (!enabled) {
-			commitMessageText.setText(""); 			committerText.setText(""); 			authorText.setText(""); 		}
 	}
 
