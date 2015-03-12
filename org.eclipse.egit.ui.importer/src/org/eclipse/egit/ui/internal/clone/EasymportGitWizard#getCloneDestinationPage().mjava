@@ -1,0 +1,4 @@
+	public CloneDestinationPage getCloneDestinationPage() {
+		return this.cloneDestination;
+	}
+

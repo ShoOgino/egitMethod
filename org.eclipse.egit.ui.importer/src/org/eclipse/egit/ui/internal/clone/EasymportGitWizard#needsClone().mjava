@@ -1,0 +1,4 @@
+	public boolean needsClone() {
+		return this.cloneDestination.cloneSettingsChanged();
+	}
+
