@@ -15,7 +15,7 @@
 
 		project.createFile("sub/ignored", "Ignored".getBytes("UTF-8"));
 
-		project.createFile("sub/.gitignore", "ignored\n".getBytes());
+		project.createFile("sub/.gitignore", "ignored\n".getBytes("UTF-8"));
 
 		IndexDiffData data2 = waitForListenerCalled();
 		assertThat(data2.getIgnoredNotInIndex(),
