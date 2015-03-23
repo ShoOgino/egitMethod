@@ -10,6 +10,7 @@
 				boolean marked = fileDiff.isMarked(FileDiffContentProvider.INTERESTING_MARK_TREE_FILTER_INDEX);
 				if (marked) {
 					getTable().getDisplay().asyncExec(new Runnable() {
+						@Override
 						public void run() {
 							reveal(element);
 						}

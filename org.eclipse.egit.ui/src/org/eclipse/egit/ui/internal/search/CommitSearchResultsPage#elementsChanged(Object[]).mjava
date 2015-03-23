@@ -1,3 +1,4 @@
+	@Override
 	protected void elementsChanged(Object[] objects) {
 		getViewer().refresh();
 	}

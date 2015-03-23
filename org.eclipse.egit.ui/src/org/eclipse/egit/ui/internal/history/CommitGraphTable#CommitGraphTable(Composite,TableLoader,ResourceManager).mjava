@@ -10,6 +10,7 @@
 		rawTable.setLinesVisible(false);
 		rawTable.setFont(nFont);
 		rawTable.addListener(SWT.SetData, new Listener() {
+			@Override
 			public void handleEvent(Event event) {
 				if (tableLoader != null) {
 					TableItem item = (TableItem) event.item;
@@ -29,10 +30,12 @@
 		createPaintListener(rawTable);
 
 		table = new TableViewer(rawTable) {
+			@Override
 			protected Widget doFindItem(final Object element) {
 				return element != null ? ((SWTCommit) element).widget : null;
 			}
 
+			@Override
 			protected void mapElement(final Object element, final Widget item) {
 				((SWTCommit) element).widget = item;
 			}
@@ -46,6 +49,7 @@
 
 		clipboard = new Clipboard(rawTable.getDisplay());
 		rawTable.addDisposeListener(new DisposeListener() {
+			@Override
 			public void widgetDisposed(final DisposeEvent e) {
 				clipboard.dispose();
 			}
@@ -56,6 +60,7 @@
 		table.setUseHashlookup(true);
 
 		table.addSelectionChangedListener(new ISelectionChangedListener() {
+			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				ISelection s = event.getSelection();
 				if (s.isEmpty() || !(s instanceof IStructuredSelection))
@@ -73,6 +78,7 @@
 
 		table.getTable().addDisposeListener(new DisposeListener() {
 
+			@Override
 			public void widgetDisposed(DisposeEvent e) {
 				if (allCommits != null)
 					allCommits.dispose();

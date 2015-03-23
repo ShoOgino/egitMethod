@@ -65,6 +65,7 @@
 		});
 
 		tv.addCheckStateListener(new ICheckStateListener() {
+			@Override
 			public void checkStateChanged(CheckStateChangedEvent event) {
 				setDirty(true);
 			}

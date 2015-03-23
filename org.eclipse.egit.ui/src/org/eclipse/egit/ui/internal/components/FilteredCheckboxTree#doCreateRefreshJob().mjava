@@ -1,9 +1,12 @@
+	@Override
 	protected WorkbenchJob doCreateRefreshJob() {
 		WorkbenchJob filterJob = super.doCreateRefreshJob();
 		filterJob.addJobChangeListener(new JobChangeAdapter() {
+			@Override
 			public void done(IJobChangeEvent event) {
 				if (event.getResult().isOK()) {
 					getDisplay().asyncExec(new Runnable() {
+						@Override
 						public void run() {
 							if (checkboxViewer.getTree().isDisposed())
 								return;

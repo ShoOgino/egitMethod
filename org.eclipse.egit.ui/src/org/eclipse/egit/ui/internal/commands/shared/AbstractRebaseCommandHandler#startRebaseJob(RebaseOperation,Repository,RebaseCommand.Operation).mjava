@@ -21,6 +21,7 @@
 							handleBeginError(repository, result);
 						} else if (result.getSeverity() == IStatus.CANCEL)
 							Display.getDefault().asyncExec(new Runnable() {
+								@Override
 								public void run() {
 									Shell shell = PlatformUI.getWorkbench()
 											.getActiveWorkbenchWindow()
@@ -51,6 +52,7 @@
 					private void setAmending(final boolean amending,
 							final boolean openStagingView) {
 						Display.getDefault().asyncExec(new Runnable() {
+							@Override
 							public void run() {
 								try {
 									IViewPart view;
@@ -70,6 +72,7 @@
 										sv.reload(repository);
 										Display.getDefault().asyncExec(
 												new Runnable() {
+													@Override
 													public void run() {
 														sv.setAmending(amending);
 													}

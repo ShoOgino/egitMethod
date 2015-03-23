@@ -11,12 +11,14 @@
 
 		branch = SWTUtils.createText(pushConfigurationGroup);
 		branch.addModifyListener(new ModifyListener() {
+			@Override
 			public void modifyText(final ModifyEvent e) {
 				checkPage();
 			}
 		});
 
 		branchLabel.addTraverseListener(new TraverseListener() {
+			@Override
 			public void keyTraversed(TraverseEvent e) {
 				branch.setFocus();
 				branch.selectAll();

@@ -63,13 +63,16 @@
 		TableViewer viewer = new TableViewer(composite);
 		viewer.setContentProvider(new IStructuredContentProvider() {
 
+			@Override
 			public void dispose() {
 			}
 
+			@Override
 			public void inputChanged(Viewer theViewer, Object oldInput,
 					Object newInput) {
 			}
 
+			@Override
 			public Object[] getElements(Object inputElement) {
 				return getCommits(mergeResult.getMergedCommits());
 			}
@@ -78,20 +81,25 @@
 
 			private final WorkbenchLabelProvider wrapped = new WorkbenchLabelProvider();
 
+			@Override
 			public void removeListener(ILabelProviderListener listener) {
 			}
 
+			@Override
 			public boolean isLabelProperty(Object element, String property) {
 				return false;
 			}
 
+			@Override
 			public void dispose() {
 				wrapped.dispose();
 			}
 
+			@Override
 			public void addListener(ILabelProviderListener listener) {
 			}
 
+			@Override
 			public StyledString getStyledText(Object element) {
 				if (element instanceof RepositoryCommit)
 					return ((RepositoryCommit) element).getStyledText(element);
@@ -99,6 +107,7 @@
 				return new StyledString(wrapped.getText(element));
 			}
 
+			@Override
 			public Image getImage(Object element) {
 				return wrapped.getImage(element);
 			}

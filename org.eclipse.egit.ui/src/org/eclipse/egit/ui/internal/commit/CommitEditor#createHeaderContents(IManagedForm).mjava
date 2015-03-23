@@ -1,3 +1,4 @@
+	@Override
 	protected void createHeaderContents(IManagedForm headerForm) {
 		RepositoryCommit commit = getCommit();
 		ScrolledForm form = headerForm.getForm();
@@ -61,17 +62,21 @@
 		toolbar.update(true);
 		getSite().setSelectionProvider(new ISelectionProvider() {
 
+			@Override
 			public void setSelection(ISelection selection) {
 			}
 
+			@Override
 			public void removeSelectionChangedListener(
 					ISelectionChangedListener listener) {
 			}
 
+			@Override
 			public ISelection getSelection() {
 				return new StructuredSelection(getCommit());
 			}
 
+			@Override
 			public void addSelectionChangedListener(
 					ISelectionChangedListener listener) {
 			}

@@ -22,6 +22,7 @@
 			titleLabel.setForeground(heading.getForeground());
 			titleLabel.setFont(heading.getFont());
 			titleLabel.addFocusListener(new FocusAdapter() {
+				@Override
 				public void focusLost(FocusEvent e) {
 					titleLabel.setSelection(0);
 					Event selectionEvent= new Event();
@@ -38,12 +39,14 @@
 			busyLabel.setImage(emptyImage);
 
 			busyLabel.addControlListener(new ControlAdapter() {
+				@Override
 				public void controlMoved(ControlEvent e) {
 					updateSizeAndLocations();
 				}
 			});
 			titleLabel.moveAbove(busyLabel);
 			titleRegion.addControlListener(new ControlAdapter() {
+				@Override
 				public void controlResized(ControlEvent e) {
 					updateSizeAndLocations();
 				}

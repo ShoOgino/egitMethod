@@ -1,5 +1,6 @@
 	public void refreshViewers() {
 		syncExec(new Runnable() {
+			@Override
 			public void run() {
 				refreshViewersInternal();
 			}

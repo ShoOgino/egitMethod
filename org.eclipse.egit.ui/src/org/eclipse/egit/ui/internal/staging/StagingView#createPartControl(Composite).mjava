@@ -5,6 +5,7 @@
 		toolkit = new FormToolkit(parent.getDisplay());
 		parent.addDisposeListener(new DisposeListener() {
 
+			@Override
 			public void widgetDisposed(DisposeEvent e) {
 				if (commitMessageComponent.isAmending()
 						|| userEnteredCommitMessage())
@@ -62,6 +63,7 @@
 		unstagedViewer.addDropSupport(DND.DROP_MOVE,
 				new Transfer[] { LocalSelectionTransfer.getTransfer() },
 				new DropTargetAdapter() {
+					@Override
 					public void drop(DropTargetEvent event) {
 						event.detail = DND.DROP_COPY;
 						if (event.data instanceof IStructuredSelection) {
@@ -70,11 +72,13 @@
 						}
 					}
 
+					@Override
 					public void dragOver(DropTargetEvent event) {
 						event.detail = DND.DROP_MOVE;
 					}
 				});
 		unstagedViewer.addOpenListener(new IOpenListener() {
+			@Override
 			public void open(OpenEvent event) {
 				compareWith(event);
 			}
@@ -151,6 +155,7 @@
 		amendPreviousCommitAction = new Action(
 				UIText.StagingView_Ammend_Previous_Commit, IAction.AS_CHECK_BOX) {
 
+			@Override
 			public void run() {
 				commitMessageComponent.setAmendingButtonSelection(isChecked());
 				updateMessage();
@@ -162,6 +167,7 @@
 		signedOffByAction = new Action(UIText.StagingView_Add_Signed_Off_By,
 				IAction.AS_CHECK_BOX) {
 
+			@Override
 			public void run() {
 				commitMessageComponent.setSignedOffButtonSelection(isChecked());
 			}
@@ -172,6 +178,7 @@
 		addChangeIdAction = new Action(UIText.StagingView_Add_Change_ID,
 				IAction.AS_CHECK_BOX) {
 
+			@Override
 			public void run() {
 				commitMessageComponent.setChangeIdButtonSelection(isChecked());
 			}
@@ -320,6 +327,7 @@
 		stagedViewer.addDropSupport(DND.DROP_MOVE,
 				new Transfer[] { LocalSelectionTransfer.getTransfer() },
 				new DropTargetAdapter() {
+					@Override
 					public void drop(DropTargetEvent event) {
 						event.detail = DND.DROP_COPY;
 						if (event.data instanceof IStructuredSelection) {
@@ -328,11 +336,13 @@
 						}
 					}
 
+					@Override
 					public void dragOver(DropTargetEvent event) {
 						event.detail = DND.DROP_MOVE;
 					}
 				});
 		stagedViewer.addOpenListener(new IOpenListener() {
+			@Override
 			public void open(OpenEvent event) {
 				compareWith(event);
 			}
@@ -341,6 +351,7 @@
 		addListenerToDisableAutoExpandOnCollapse(stagedViewer);
 
 		selectionChangedListener = new ISelectionListener() {
+			@Override
 			public void selectionChanged(IWorkbenchPart part,
 					ISelection selection) {
 				if (part == getSite().getPart()) {
@@ -375,14 +386,17 @@
 
 		final ICommitMessageComponentNotifications listener = new ICommitMessageComponentNotifications() {
 
+			@Override
 			public void updateSignedOffToggleSelection(boolean selection) {
 				signedOffByAction.setChecked(selection);
 			}
 
+			@Override
 			public void updateChangeIdToggleSelection(boolean selection) {
 				addChangeIdAction.setChecked(selection);
 			}
 
+			@Override
 			public void statusUpdated() {
 				updateMessage();
 			}
@@ -392,6 +406,7 @@
 				committerText);
 
 		commitMessageText.getTextWidget().addVerifyKeyListener(new VerifyKeyListener() {
+			@Override
 			public void verifyKey(VerifyEvent event) {
 				if (UIUtils.isSubmitKeyEvent(event)) {
 					event.doit = false;
@@ -401,6 +416,7 @@
 		});
 
 		commitMessageText.getTextWidget().addFocusListener(new FocusListener() {
+			@Override
 			public void focusGained(FocusEvent e) {
 				String commitButtonTooltip = MessageFormat.format(
 						UIText.StagingView_CommitToolTip,
@@ -408,6 +424,7 @@
 				commitButton.setToolTipText(commitButtonTooltip);
 			}
 
+			@Override
 			public void focusLost(FocusEvent e) {
 				commitButton.setToolTipText(null);
 			}

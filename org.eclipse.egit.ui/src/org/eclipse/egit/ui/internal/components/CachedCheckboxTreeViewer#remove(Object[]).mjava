@@ -1,3 +1,4 @@
+	@Override
 	public void remove(Object[] elementsOrTreePaths) {
 		for (Object elementsOrTreePath : elementsOrTreePaths) {
 			updateCheckState(elementsOrTreePath, false);

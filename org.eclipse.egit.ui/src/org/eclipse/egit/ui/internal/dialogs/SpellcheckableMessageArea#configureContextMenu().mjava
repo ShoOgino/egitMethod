@@ -147,6 +147,7 @@
 			final SubMenuManager quickFixMenu = new SubMenuManager(contextMenu);
 			quickFixMenu.setVisible(true);
 			quickFixMenu.addMenuListener(new IMenuListener() {
+				@Override
 				public void menuAboutToShow(IMenuManager manager) {
 					quickFixMenu.removeAll();
 					addProposals(quickFixMenu);
@@ -168,6 +169,7 @@
 			private IHandlerActivation quickFixHandlerActivation;
 			private IHandlerActivation contentAssistHandlerActivation;
 
+			@Override
 			public void focusGained(FocusEvent e) {
 				IHandlerService service = getHandlerService();
 				if (service == null)
@@ -217,6 +219,7 @@
 							new ActiveShellExpression(getParent().getShell()));
 			}
 
+			@Override
 			public void focusLost(FocusEvent e) {
 				IHandlerService service = getHandlerService();
 				if (service == null)
@@ -251,6 +254,7 @@
 
         sourceViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
+					@Override
 					public void selectionChanged(SelectionChangedEvent event) {
 						if (cutAction != null)
 							cutAction.update();
@@ -262,6 +266,7 @@
 		if (editable)
 			sourceViewer.addTextListener(new ITextListener() {
 
+				@Override
 				public void textChanged(TextEvent event) {
 					textWidget.setStyleRanges(
 							new StyleRange[0]);
@@ -275,6 +280,7 @@
 			});
 
 		textWidget.addListener(SWT.MouseMove, new Listener() {
+			@Override
 			public void handleEvent(final Event e) {
 				StyleRange styleRange = getStyleRange(e.x, e.y);
 				if (styleRange != null && styleRange.underline)
@@ -285,6 +291,7 @@
 		});
 
 		textWidget.addDisposeListener(new DisposeListener() {
+			@Override
 			public void widgetDisposed(DisposeEvent disposeEvent) {
 				showWhitespaceAction.dispose();
 			}

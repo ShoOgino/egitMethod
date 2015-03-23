@@ -3,6 +3,7 @@
 			final CompareEditorInput in) {
 		if (Display.getCurrent() == null) {
 			PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
+				@Override
 				public void run() {
 					openCompareEditorRunnable(page, in);
 				}

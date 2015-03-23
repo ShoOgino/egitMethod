@@ -6,6 +6,7 @@
 		setErrorMessage(null);
 		setPageComplete(false);
 		getControl().getDisplay().asyncExec(new Runnable() {
+			@Override
 			public void run() {
 				revalidateImpl();
 			}

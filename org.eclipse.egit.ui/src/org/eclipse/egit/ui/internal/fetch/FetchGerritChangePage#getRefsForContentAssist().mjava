@@ -4,6 +4,7 @@
 			final String uriText = uriCombo.getText();
 			getWizard().getContainer().run(true, true,
 					new IRunnableWithProgress() {
+						@Override
 						public void run(IProgressMonitor monitor)
 								throws InvocationTargetException,
 								InterruptedException {
@@ -29,6 +30,7 @@
 							}
 							Collections.sort(changeRefs,
 									new Comparator<Change>() {
+										@Override
 										public int compare(Change o1, Change o2) {
 											int changeDiff = o2.changeNumber
 													.compareTo(o1.changeNumber);

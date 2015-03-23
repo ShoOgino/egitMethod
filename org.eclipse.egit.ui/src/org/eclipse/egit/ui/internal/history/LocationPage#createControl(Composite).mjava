@@ -1,3 +1,4 @@
+	@Override
 	public void createControl(Composite parent) {
 		final Composite composite = new Composite(parent, SWT.NULL);
 		GridLayout gridLayout = new GridLayout();
@@ -48,6 +49,7 @@
 		wsBrowseButton.setEnabled(isWorkspaceSelected);
 
 		cpRadio.addListener(SWT.Selection, new Listener() {
+			@Override
 			public void handleEvent(Event event) {
 				if (((Button) event.widget).getSelection()) {
 					fsPathText.setEnabled(false);
@@ -62,6 +64,7 @@
 
 		fsRadio.addListener(SWT.Selection, new Listener() {
 
+			@Override
 			public void handleEvent(Event event) {
 				if (((Button) event.widget).getSelection()) {
 					fsPathText.setEnabled(true);
@@ -77,6 +80,7 @@
 
 		fsPathText.addModifyListener(new ModifyListener() {
 
+			@Override
 			public void modifyText(ModifyEvent e) {
 				if (validatePage()) {
 					IPath filePath= Path.fromOSString(fsPathText.getText()).removeLastSegments(1);
@@ -86,6 +90,7 @@
 		});
 
 		fsBrowseButton.addListener(SWT.Selection, new Listener() {
+			@Override
 			public void handleEvent(Event event) {
 				final FileDialog dialog = new FileDialog(getShell(),
 						SWT.PRIMARY_MODAL | SWT.SAVE);
@@ -103,6 +108,7 @@
 
 		wsRadio.addListener(SWT.Selection, new Listener() {
 
+			@Override
 			public void handleEvent(Event event) {
 				if (((Button) event.widget).getSelection()) {
 					fsPathText.setEnabled(false);
@@ -118,6 +124,7 @@
 
 		wsPathText.addModifyListener(new ModifyListener() {
 
+			@Override
 			public void modifyText(ModifyEvent e) {
 				if (validatePage()) {
 					IPath filePath= Path.fromOSString(wsPathText.getText()).removeLastSegments(1);
@@ -127,6 +134,7 @@
 		});
 
 		wsBrowseButton.addListener(SWT.Selection, new Listener() {
+			@Override
 			public void handleEvent(Event event) {
 				final WorkspaceDialog dialog = new WorkspaceDialog(getShell());
 				wsBrowsed = true;

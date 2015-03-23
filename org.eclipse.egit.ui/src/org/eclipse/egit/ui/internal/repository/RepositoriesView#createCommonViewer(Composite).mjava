@@ -2,6 +2,7 @@
 	protected CommonViewer createCommonViewer(Composite aParent) {
 		CommonViewer viewer = super.createCommonViewer(aParent);
 		viewer.addDoubleClickListener(new IDoubleClickListener() {
+			@Override
 			public void doubleClick(DoubleClickEvent event) {
 				TreeSelection sel = (TreeSelection) event.getSelection();
 				RepositoryTreeNode element = (RepositoryTreeNode) sel
@@ -17,6 +18,7 @@
 			}
 		});
 		viewer.addOpenListener(new IOpenListener() {
+			@Override
 			public void open(OpenEvent event) {
 				TreeSelection sel = (TreeSelection) event.getSelection();
 				RepositoryTreeNode element = (RepositoryTreeNode) sel

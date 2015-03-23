@@ -1,3 +1,4 @@
+	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final Repository repository = getRepository(event);
 		if (repository == null)
@@ -36,6 +37,7 @@
 		try {
 			new ProgressMonitorDialog(shell).run(true, false,
 					new IRunnableWithProgress() {
+						@Override
 						public void run(final IProgressMonitor monitor)
 								throws InvocationTargetException,
 								InterruptedException {
@@ -78,6 +80,7 @@
 				try {
 					new ProgressMonitorDialog(shell).run(true, false,
 							new IRunnableWithProgress() {
+								@Override
 								public void run(final IProgressMonitor monitor)
 										throws InvocationTargetException,
 										InterruptedException {

@@ -1,5 +1,6 @@
 	protected void updateRebaseButtonVisibility(final boolean isRebasing) {
 		asyncExec(new Runnable() {
+			@Override
 			public void run() {
 				if (isDisposed())
 					return;

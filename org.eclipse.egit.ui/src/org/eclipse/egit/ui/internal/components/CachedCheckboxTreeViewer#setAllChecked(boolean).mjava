@@ -1,3 +1,4 @@
+	@Override
 	public void setAllChecked(boolean state) {
 		for (TreeItem item: super.getTree().getItems())
 			item.setChecked(state);
