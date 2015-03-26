@@ -1,4 +1,5 @@
-	private boolean isGerrit() throws MalformedURLException, IOException,
+	private boolean isGerrit(Repository repo) throws MalformedURLException,
+			IOException,
 			URISyntaxException {
 		URIish u = new URIish(uri);
 		final String s = u.getScheme();
@@ -25,6 +26,7 @@
 						httpConnection = (HttpURLConnection) new URL(baseURL
 								+ tmpPath + GERRIT_CONFIG_SERVER_VERSION_API)
 								.openConnection();
+						NetUtil.setSslVerification(repo, httpConnection);
 						httpConnection.setRequestMethod("GET"); 						httpConnection.setReadTimeout(1000 * timeout);
 						int responseCode = httpConnection.getResponseCode();
 						switch (responseCode) {
