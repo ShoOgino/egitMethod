@@ -16,7 +16,7 @@
 		}
 
 		if (path != null && (HTTP.equals(s) || HTTPS.equals(s))) {
-			String baseURL = uri.substring(0, uri.lastIndexOf(path));
+			String baseURL = u.setPath("/").toString(); 			baseURL = baseURL.substring(0, baseURL.length() - 1);
 			String tmpPath = ""; 			HttpURLConnection httpConnection = null;
 			try {
 				int slash = 1;
