@@ -1,0 +1,5 @@
+	public boolean isFeature() throws IOException {
+		return repository.getBranch()
+				.startsWith(getConfig().getFeaturePrefix());
+	}
+

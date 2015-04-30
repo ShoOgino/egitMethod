@@ -1,0 +1,4 @@
+	public String getReleaseBranchName(String releaseName) {
+		return getReleasePrefix() + releaseName;
+	}
+

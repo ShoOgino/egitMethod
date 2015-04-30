@@ -1,0 +1,6 @@
+	public ReleaseStartOperation(GitFlowRepository repository,
+			String releaseName) throws WrongGitFlowStateException {
+		super(repository, releaseName);
+		this.startCommitSha1 = repository.findHead().getName();
+	}
+

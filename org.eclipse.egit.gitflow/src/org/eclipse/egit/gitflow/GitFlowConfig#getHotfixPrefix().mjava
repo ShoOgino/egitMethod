@@ -1,0 +1,4 @@
+	public String getHotfixPrefix() {
+		return getPrefix(HOTFIX_KEY, HOTFIX_PREFIX);
+	}
+

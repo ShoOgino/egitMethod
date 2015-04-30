@@ -1,0 +1,4 @@
+	public String getFullHotfixBranchName(String hotfixName) {
+		return R_HEADS + getHotfixBranchName(hotfixName);
+	}
+

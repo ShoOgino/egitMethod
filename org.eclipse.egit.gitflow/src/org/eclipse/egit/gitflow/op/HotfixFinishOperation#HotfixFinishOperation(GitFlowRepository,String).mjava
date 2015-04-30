@@ -1,0 +1,4 @@
+	public HotfixFinishOperation(GitFlowRepository repository, String hotfixName) {
+		super(repository, hotfixName);
+	}
+

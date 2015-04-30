@@ -1,0 +1,5 @@
+	public FeatureStartOperation(GitFlowRepository repository,
+			String featureName) {
+		super(repository, featureName);
+	}
+

@@ -1,0 +1,4 @@
+	public boolean isRelease() throws IOException {
+		return repository.getBranch().startsWith(getConfig().getReleasePrefix());
+	}
+

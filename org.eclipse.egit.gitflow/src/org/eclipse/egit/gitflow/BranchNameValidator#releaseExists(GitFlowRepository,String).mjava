@@ -1,0 +1,6 @@
+	public static boolean releaseExists(GitFlowRepository repository,
+			String releaseName) throws CoreException {
+		return branchExists(repository,
+				repository.getConfig().getFullReleaseBranchName(releaseName));
+	}
+

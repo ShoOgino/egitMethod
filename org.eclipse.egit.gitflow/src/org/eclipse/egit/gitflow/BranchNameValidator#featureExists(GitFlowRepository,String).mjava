@@ -1,0 +1,6 @@
+	public static boolean featureExists(GitFlowRepository repository,
+			String featureName) throws CoreException {
+		return branchExists(repository,
+				repository.getConfig().getFullFeatureBranchName(featureName));
+	}
+

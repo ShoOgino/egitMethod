@@ -1,0 +1,4 @@
+	public boolean isDevelop() throws IOException {
+		return repository.getBranch().equals(getConfig().getDevelop());
+	}
+

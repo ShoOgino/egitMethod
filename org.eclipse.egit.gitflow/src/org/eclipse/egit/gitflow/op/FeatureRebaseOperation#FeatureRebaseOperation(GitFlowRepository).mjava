@@ -1,0 +1,4 @@
+	public FeatureRebaseOperation(GitFlowRepository repository) {
+		super(repository);
+	}
+

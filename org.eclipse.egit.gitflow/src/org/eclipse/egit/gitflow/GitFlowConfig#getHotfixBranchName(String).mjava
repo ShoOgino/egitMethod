@@ -1,0 +1,4 @@
+	public String getHotfixBranchName(String hotfixName) {
+		return getHotfixPrefix() + hotfixName;
+	}
+

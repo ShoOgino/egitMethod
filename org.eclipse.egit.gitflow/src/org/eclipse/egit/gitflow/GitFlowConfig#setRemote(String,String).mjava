@@ -1,0 +1,4 @@
+	public void setRemote(String featureName, String value) throws IOException {
+		setBranchValue(featureName, value, REMOTE_KEY);
+	}
+

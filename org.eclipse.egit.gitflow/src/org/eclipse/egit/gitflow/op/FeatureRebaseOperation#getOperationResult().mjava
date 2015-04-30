@@ -1,0 +1,4 @@
+	public RebaseResult getOperationResult() {
+		return operationResult;
+	}
+

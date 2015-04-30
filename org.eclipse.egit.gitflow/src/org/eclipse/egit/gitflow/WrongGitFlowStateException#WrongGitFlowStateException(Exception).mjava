@@ -1,0 +1,4 @@
+	public WrongGitFlowStateException(Exception e) {
+		super(e);
+	}
+

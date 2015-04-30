@@ -1,0 +1,6 @@
+	protected CreateLocalBranchOperation createBranchFromHead(
+			String branchName, RevCommit sourceCommit) {
+		return new CreateLocalBranchOperation(repository.getRepository(),
+				branchName, sourceCommit);
+	}
+

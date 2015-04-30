@@ -1,0 +1,4 @@
+	public boolean isMaster() throws IOException {
+		return repository.getBranch().equals(getConfig().getMaster());
+	}
+

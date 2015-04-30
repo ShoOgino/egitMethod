@@ -1,0 +1,4 @@
+	public GitFlowConfig getConfig() {
+		return this.config;
+	}
+

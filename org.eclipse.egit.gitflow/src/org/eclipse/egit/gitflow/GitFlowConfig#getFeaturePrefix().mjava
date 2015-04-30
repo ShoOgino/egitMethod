@@ -1,0 +1,4 @@
+	public String getFeaturePrefix() {
+		return getPrefix(FEATURE_KEY, FEATURE_PREFIX);
+	}
+

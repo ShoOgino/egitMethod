@@ -1,0 +1,7 @@
+	public boolean releaseExists()
+			throws RevisionSyntaxException, AmbiguousObjectException,
+			IncorrectObjectTypeException, IOException {
+		return null != repository.getRepository().resolve(
+				R_TAGS + repository.getConfig().getVersionTagPrefix() + versionName);
+	}
+

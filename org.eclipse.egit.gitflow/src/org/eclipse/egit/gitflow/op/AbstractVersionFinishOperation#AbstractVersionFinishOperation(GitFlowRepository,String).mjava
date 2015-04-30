@@ -1,0 +1,6 @@
+	public AbstractVersionFinishOperation(GitFlowRepository repository,
+			String versionName) {
+		super(repository);
+		this.versionName = versionName;
+	}
+

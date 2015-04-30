@@ -1,0 +1,5 @@
+	public GitFlowConfig(Repository repository) {
+		Assert.isNotNull(repository);
+		this.repository = repository;
+	}
+

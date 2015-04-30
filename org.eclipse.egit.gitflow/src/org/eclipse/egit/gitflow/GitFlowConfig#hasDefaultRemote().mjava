@@ -1,0 +1,5 @@
+	public boolean hasDefaultRemote() {
+		RemoteConfig config = getDefaultRemoteConfig();
+		return !config.getURIs().isEmpty();
+	}
+

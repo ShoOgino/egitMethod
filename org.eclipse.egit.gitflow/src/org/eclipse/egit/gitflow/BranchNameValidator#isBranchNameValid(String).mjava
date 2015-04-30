@@ -1,0 +1,4 @@
+	public static boolean isBranchNameValid(String name) {
+		return Repository.isValidRefName(Constants.R_HEADS + name);
+	}
+

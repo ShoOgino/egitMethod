@@ -1,0 +1,4 @@
+	public String getMaster() {
+		return getBranch(MASTER_KEY, GitFlowDefaults.MASTER);
+	}
+

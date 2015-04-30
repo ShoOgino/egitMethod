@@ -1,0 +1,10 @@
+	public boolean hasBranches() {
+		List<Ref> branches;
+		try {
+			branches = Git.wrap(repository).branchList().call();
+			return !branches.isEmpty();
+		} catch (GitAPIException e) {
+			throw new RuntimeException(e);
+		}
+	}
+

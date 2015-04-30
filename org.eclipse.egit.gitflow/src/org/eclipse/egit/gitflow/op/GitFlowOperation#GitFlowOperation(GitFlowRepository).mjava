@@ -1,0 +1,4 @@
+	public GitFlowOperation(GitFlowRepository repository) {
+		this.repository = repository;
+	}
+
