@@ -1,3 +1,4 @@
+	@Override
 	public void createControl(Composite parent) {
 		final RepositoryUtil util = Activator.getDefault().getRepositoryUtil();
 		Composite main = new Composite(parent, SWT.NONE);
@@ -70,6 +71,7 @@
 				.setText(UIText.ExistingOrNewPage_RelativePathLabel);
 		relPath = new Text(externalComposite, SWT.BORDER);
 		relPath.addModifyListener(new ModifyListener() {
+			@Override
 			public void modifyText(ModifyEvent e) {
 				updateControls();
 			}
@@ -118,6 +120,7 @@
 		projectMoveViewer.setLabelProvider(moveProjectsLabelProvider);
 		projectMoveViewer.setInput(myWizard.projects);
 		projectMoveViewer.addCheckStateListener(new ICheckStateListener() {
+			@Override
 			public void checkStateChanged(CheckStateChangedEvent event) {
 				updateControls();
 			}
@@ -152,6 +155,7 @@
 				.span(3, 1).create());
 		viewer.addCheckStateListener(new ICheckStateListener() {
 
+			@Override
 			public void checkStateChanged(CheckStateChangedEvent event) {
 				if (event.getChecked()) {
 					ProjectAndRepo checkable = (ProjectAndRepo) event
@@ -236,6 +240,7 @@
 		createRepo.setLayoutData(GridDataFactory.fillDefaults().create());
 		createRepo.setText(UIText.ExistingOrNewPage_CreateButton);
 		createRepo.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				File gitDir = new File(repositoryToCreate.getText(),
 						Constants.DOT_GIT);
@@ -275,6 +280,7 @@
 		repositoryToCreate.setLayoutData(GridDataFactory.fillDefaults()
 				.grab(true, false).span(1, 1).create());
 		repositoryToCreate.addListener(SWT.Modify, new Listener() {
+			@Override
 			public void handleEvent(Event e) {
 				if (repositoryToCreate.getText().equals("")) { 					createRepo.setEnabled(false);
 					return;
@@ -293,6 +299,7 @@
 				.align(SWT.LEFT, SWT.CENTER).create());
 
 		tree.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				tree.select((TreeItem) e.item);
 				updateControls();

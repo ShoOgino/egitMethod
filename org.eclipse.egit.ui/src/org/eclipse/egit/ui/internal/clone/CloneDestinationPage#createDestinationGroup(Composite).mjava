@@ -13,6 +13,7 @@
 		directoryText = new Text(p, SWT.BORDER);
 		directoryText.setLayoutData(createFieldGridData());
 		directoryText.addModifyListener(new ModifyListener() {
+			@Override
 			public void modifyText(final ModifyEvent e) {
 				checkPage();
 			}
@@ -20,6 +21,7 @@
 		final Button b = new Button(p, SWT.PUSH);
 		b.setText(UIText.CloneDestinationPage_browseButton);
 		b.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(final SelectionEvent e) {
 				final FileDialog d;
 

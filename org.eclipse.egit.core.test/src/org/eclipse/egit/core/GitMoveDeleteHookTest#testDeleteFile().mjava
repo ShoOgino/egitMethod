@@ -5,8 +5,9 @@
 				"some text");
 		testUtils.addFileToProject(project.getProject(), "file2.txt",
 				"some  more text");
+		IFile file = project.getProject().getFile("file.txt");
 		AddToIndexOperation addToIndexOperation = new AddToIndexOperation(
-				new IResource[] { project.getProject().getFile("file.txt"),
+				new IResource[] { file,
 						project.getProject().getFile("file2.txt") });
 		addToIndexOperation.execute(null);
 
@@ -15,15 +16,18 @@
 		assertEquals(2, dirCache.getEntryCount());
 		assertNotNull(dirCache.getEntry("file.txt"));
 		assertNotNull(dirCache.getEntry("file2.txt"));
-		testUtils.changeContentOfFile(project.getProject(), project
-				.getProject().getFile("file.txt"), "other text");
-		project.getProject().getFile("file.txt").delete(true, null);
+		testUtils.changeContentOfFile(project.getProject(), file, "other text");
+		testUtils.waitForJobs(10000, 1000, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
+
+		file.delete(true, null);
+
+		testUtils.waitForJobs(10000, 1000, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
 
 		dirCache.read();
 		assertEquals(1, dirCache.getEntryCount());
 		assertNull(dirCache.getEntry("file.txt"));
 		assertNotNull(dirCache.getEntry("file2.txt"));
-		assertFalse(project.getProject().getFile("file.txt").exists());
+		assertFalse(file.exists());
 		assertTrue(project.getProject().getFile("file2.txt").exists());
 	}
 

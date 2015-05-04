@@ -1,0 +1,4 @@
+	public IResourceVariant getVariant(IResource resource) {
+		return cache.get(resource);
+	}
+

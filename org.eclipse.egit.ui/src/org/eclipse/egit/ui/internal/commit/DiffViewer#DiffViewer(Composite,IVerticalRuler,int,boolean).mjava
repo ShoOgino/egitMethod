@@ -18,6 +18,7 @@
 		initListeners();
 		getControl().addDisposeListener(new DisposeListener() {
 
+			@Override
 			public void widgetDisposed(DisposeEvent e) {
 				EditorsUI.getPreferenceStore().removePropertyChangeListener(
 						editorPrefListener);

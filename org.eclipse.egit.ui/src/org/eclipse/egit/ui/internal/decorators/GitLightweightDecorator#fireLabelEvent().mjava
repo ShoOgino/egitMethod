@@ -2,6 +2,7 @@
 		final LabelProviderChangedEvent event = new LabelProviderChangedEvent(
 				this);
 		PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
+			@Override
 			public void run() {
 				fireLabelProviderChanged(event);
 			}

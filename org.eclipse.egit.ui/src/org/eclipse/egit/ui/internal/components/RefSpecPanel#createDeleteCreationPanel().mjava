@@ -38,6 +38,7 @@
 		validateDeleteCreationPanel();
 
 		deleteRefCombo.addModifyListener(new ModifyListener() {
+			@Override
 			public void modifyText(final ModifyEvent e) {
 				validateDeleteCreationPanel();
 			}

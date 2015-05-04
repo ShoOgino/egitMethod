@@ -1,3 +1,4 @@
+	@Override
 	public String getTitle() {
 		Object[] titleObject = new Object[3];
 		titleObject[0] = getShortName(left);

@@ -5,6 +5,7 @@
 				.getImage("IMG_LCL_RENDERED_VIEW_MENU")); 		final Menu menu = new Menu(dropDownBar);
 		dropDownItem.addDisposeListener(new DisposeListener() {
 
+			@Override
 			public void widgetDisposed(DisposeEvent e) {
 				menu.dispose();
 			}
@@ -13,6 +14,7 @@
 		preferencesItem.setText(UIText.CommitDialog_ConfigureLink);
 		preferencesItem.addSelectionListener(new SelectionAdapter() {
 
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				String[] pages = new String[] { UIPreferences.PAGE_COMMIT_PREFERENCES };
 				PreferencesUtil.createPreferenceDialogOn(getShell(), pages[0],
@@ -22,6 +24,7 @@
 		});
 		dropDownItem.addSelectionListener(new SelectionAdapter() {
 
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				Rectangle b = dropDownItem.getBounds();
 				Point p = dropDownItem.getParent().toDisplay(

@@ -13,6 +13,7 @@
 
 		IContentProposalProvider cp = new IContentProposalProvider() {
 
+			@Override
 			public IContentProposal[] getProposals(String contents, int position) {
 
 				List<IContentProposal> resultList = new ArrayList<IContentProposal>();
@@ -48,18 +49,22 @@
 
 						IContentProposal propsal = new IContentProposal() {
 
+							@Override
 							public String getLabel() {
 								return null;
 							}
 
+							@Override
 							public String getDescription() {
 								return null;
 							}
 
+							@Override
 							public int getCursorPosition() {
 								return 0;
 							}
 
+							@Override
 							public String getContent() {
 								return uriString;
 							}
@@ -79,6 +84,7 @@
 				.setProposalAcceptanceStyle(ContentProposalAdapter.PROPOSAL_REPLACE);
 
 		return new IPreviousValueProposalHandler() {
+			@Override
 			public void updateProposals() {
 				String value = textField.getText();
 				if (value.length() > 0) {

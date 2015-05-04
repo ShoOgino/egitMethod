@@ -1,50 +1,60 @@
 	public boolean visit(IResourceDelta delta) throws CoreException {
 		final IResource resource = delta.getResource();
-		final RepositoryMapping mapping = RepositoryMapping
-				.getMapping(resource);
-		if (mapping == null || mapping.getRepository() != repository)
+		if (resource.getType() == IResource.ROOT) {
 			return true;
+		}
 
-		IndexDiffCache cache = Activator.getDefault().getIndexDiffCache();
-		IndexDiffCacheEntry entry = null;
+		if (resource.getType() == IResource.PROJECT) {
+			final RepositoryMapping mapping = RepositoryMapping
+					.getMapping((IProject) resource);
+			if (mapping == null || mapping.getRepository() != repository) {
+				return false;
+			}
 
-		if (cache != null)
-			entry = cache.getIndexDiffCacheEntry(mapping.getRepository());
+			return true;
+		}
 
-		if (resource instanceof IFolder
-				&& delta.getKind() == IResourceDelta.ADDED) {
-			String path = mapping.getRepoRelativePath(resource) + "/"; 
-			if (isIgnoredInOldIndex(entry, path))
-				return true; 
-			filesToUpdate.add(path);
-			resourcesToUpdate.add(resource);
+		if (resource.isLinked()) {
+			return false;
+		}
+
+		if (resource.getType() == IResource.FOLDER) {
+			if (delta.getKind() == IResourceDelta.ADDED) {
+				String repoRelativePath = getRepoRelativePath(resource);
+				if (repoRelativePath == null) {
+					return false;
+				}
+				String path = repoRelativePath + "/"; 				if (isIgnoredInOldIndex(path)) {
+					return true; 				}
+				filesToUpdate.add(path);
+				resourcesToUpdate.add(resource);
+			}
+
 			return true;
 		}
 
 		if (delta.getKind() == IResourceDelta.CHANGED
-				&& (delta.getFlags() & INTERESTING_CHANGES) == 0)
-			return true;
-
-		if (resource.getType() != IResource.FILE)
-			return true;
+				&& (delta.getFlags() & INTERESTING_CHANGES) == 0) {
+			return false;
+		}
 
 		if (resource.getName().equals(GITIGNORE_NAME)) {
 			gitIgnoreChanged = true;
 			return false;
 		}
 
-		String repoRelativePath = mapping.getRepoRelativePath(resource);
+		String repoRelativePath = getRepoRelativePath(resource);
 		if (repoRelativePath == null) {
 			resourcesToUpdate.add(resource);
 			return true;
 		}
 
-		if (isIgnoredInOldIndex(entry, repoRelativePath)) {
+		if (isIgnoredInOldIndex(repoRelativePath)) {
 			return false;
 		}
+
 		filesToUpdate.add(repoRelativePath);
 		resourcesToUpdate.add(resource);
-
 		return true;
 	}
 

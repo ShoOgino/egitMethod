@@ -1,0 +1,4 @@
+	public int getRawMode() {
+		return rawMode;
+	}
+

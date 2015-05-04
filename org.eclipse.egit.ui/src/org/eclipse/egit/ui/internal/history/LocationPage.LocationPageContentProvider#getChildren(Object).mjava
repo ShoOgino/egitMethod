@@ -1,3 +1,4 @@
+		@Override
 		public Object[] getChildren(Object element) {
 			if (element instanceof IWorkspace) {
 				IProject[] allProjects = ((IWorkspace) element).getRoot().getProjects();

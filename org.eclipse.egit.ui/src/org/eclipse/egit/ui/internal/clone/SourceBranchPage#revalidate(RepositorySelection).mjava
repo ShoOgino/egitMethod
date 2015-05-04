@@ -17,6 +17,7 @@
 		setErrorMessage(null);
 		setMessage(null);
 		label.getDisplay().asyncExec(new Runnable() {
+			@Override
 			public void run() {
 				revalidateImpl(newRepoSelection);
 			}

@@ -8,13 +8,14 @@
 				project2.getFile("project2folder1/project2folder1file1.txt")
 						.getLocation(), 0, null);
 		folder.refreshLocal(IResource.DEPTH_INFINITE, null);
+		project2.getFile("project2folder1/project2folder1file1.txt")
+				.touch(null);
 
 		resourceDeltaTestHelper1
 				.assertChangedResources(new String[] { "/project1/.project" });
+
+
 		resourceDeltaTestHelper2.assertChangedResources(new String[] {
-						"/project1/link2project2/project2folder1",
-						"/project1/link2project2/.project",
-						"/project1/link2project2/project2folder1/project2folder1file1.txt",
-						"/project1/link2project2" });
+				"/project2/project2folder1/project2folder1file1.txt" });
 	}
 

@@ -6,6 +6,7 @@
 		for (Protocol p : Protocol.values())
 			scheme.add(p.getDefaultScheme());
 		scheme.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(final SelectionEvent e) {
 				final int idx = scheme.getSelectionIndex();
 				if (idx < 0) {
@@ -22,6 +23,7 @@
 		newLabel(g, UIText.RepositorySelectionPage_promptPort + ":"); 		portText = new Text(g, SWT.BORDER);
 		portText.addVerifyListener(new VerifyListener() {
 			final Pattern p = Pattern.compile("^(?:[1-9][0-9]*)?$"); 
+			@Override
 			public void verifyText(final VerifyEvent e) {
 				final String v = portText.getText();
 				e.doit = p.matcher(
@@ -30,6 +32,7 @@
 			}
 		});
 		portText.addModifyListener(new ModifyListener() {
+			@Override
 			public void modifyText(final ModifyEvent e) {
 				final String val = nullString(portText.getText());
 				if (val == null)

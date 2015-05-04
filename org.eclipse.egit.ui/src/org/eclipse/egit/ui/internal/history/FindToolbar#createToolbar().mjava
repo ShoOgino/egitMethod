@@ -63,6 +63,7 @@
 		referenceItem.setImage(branchesIcon);
 
 		prefsDropDown.addListener(SWT.Selection, new Listener() {
+			@Override
 			public void handleEvent(Event event) {
 				if (event.detail == SWT.ARROW) {
 					Rectangle itemBounds = prefsDropDown.getBounds();
@@ -103,9 +104,11 @@
 		progressBar.setMaximum(100);
 
 		patternField.addModifyListener(new ModifyListener() {
+			@Override
 			public void modifyText(ModifyEvent e) {
 				final FindToolbarThread finder = createFinder();
 				getDisplay().timerExec(200, new Runnable() {
+					@Override
 					public void run() {
 						finder.start();
 					}
@@ -114,6 +117,7 @@
 		});
 
 		final Listener findButtonsListener = new Listener() {
+			@Override
 			public void handleEvent(Event event) {
 				if (patternField.getText().length() > 0
 						&& findResults.size() == 0) {
@@ -169,6 +173,7 @@
 		});
 
 		caseItem.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				store.setValue(UIPreferences.FINDTOOLBAR_IGNORE_CASE,
 						caseItem.getSelection());

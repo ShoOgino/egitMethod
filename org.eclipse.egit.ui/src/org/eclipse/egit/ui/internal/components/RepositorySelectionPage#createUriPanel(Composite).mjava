@@ -2,6 +2,7 @@
 		if (configuredRemotes != null) {
 			uriButton = new Button(parent, SWT.RADIO);
 			uriButton.setText(UIText.RepositorySelectionPage_uriChoice + ":"); 			uriButton.addSelectionListener(new SelectionAdapter() {
+				@Override
 				public void widgetSelected(SelectionEvent e) {
 					updateRemoteAndURIPanels();
 					checkPage();

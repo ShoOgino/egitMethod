@@ -1,0 +1,7 @@
+	public GitBlobStorage(final Repository repository, final String path,
+			final ObjectId blob) {
+		this.db = repository;
+		this.path = path;
+		this.blobId = blob;
+	}
+

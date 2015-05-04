@@ -1,0 +1,8 @@
+	public GitResourceVariantTreeSubscriber(
+			GitResourceVariantTreeProvider variantTreeProvider) {
+		this.variantTreeProvider = variantTreeProvider;
+		syncInfoConverter = new GitSyncInfoToDiffConverter(variantTreeProvider);
+		comparator = new GitVariantComparator(
+				variantTreeProvider.getSourceTree());
+	}
+

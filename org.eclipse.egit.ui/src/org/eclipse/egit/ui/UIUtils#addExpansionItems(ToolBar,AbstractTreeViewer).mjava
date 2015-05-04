@@ -7,6 +7,7 @@
 		collapseItem.setToolTipText(UIText.UIUtils_CollapseAll);
 		collapseItem.addSelectionListener(new SelectionAdapter() {
 
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				viewer.collapseAll();
 			}
@@ -20,6 +21,7 @@
 		expandItem.setToolTipText(UIText.UIUtils_ExpandAll);
 		expandItem.addSelectionListener(new SelectionAdapter() {
 
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				viewer.expandAll();
 			}

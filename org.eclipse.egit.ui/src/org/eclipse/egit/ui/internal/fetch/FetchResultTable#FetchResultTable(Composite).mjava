@@ -8,6 +8,7 @@
 
 		final IStyledLabelProvider styleProvider = new WorkbenchStyledLabelProvider() {
 
+			@Override
 			public StyledString getStyledText(Object element) {
 				if (element instanceof FetchResultAdapter)
 					return ((FetchResultAdapter) element)
@@ -44,6 +45,7 @@
 		});
 		treeViewer.setSorter(new ViewerSorter() {
 
+			@Override
 			public int compare(Viewer viewer, Object e1, Object e2) {
 				if (e1 instanceof FetchResultAdapter
 						&& e2 instanceof FetchResultAdapter) {
@@ -78,6 +80,7 @@
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(tree);
 
 		treePanel.addDisposeListener(new DisposeListener() {
+			@Override
 			public void widgetDisposed(DisposeEvent e) {
 				if (reader != null)
 					reader.close();
@@ -86,6 +89,7 @@
 
 		treeViewer.setContentProvider(new WorkbenchContentProvider() {
 
+			@Override
 			public Object[] getElements(Object inputElement) {
 				if (inputElement == null)
 					return new FetchResultAdapter[0];
@@ -99,6 +103,7 @@
 				return elements;
 			}
 
+			@Override
 			public Object[] getChildren(Object element) {
 				if (element instanceof RepositoryCommit) {
 					return ((RepositoryCommit) element).getDiffs();

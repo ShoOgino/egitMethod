@@ -19,10 +19,12 @@
 		tableViewer.setInput(specs);
 
 		tableViewer.setComparer(new IElementComparer() {
+			@Override
 			public boolean equals(Object a, Object b) {
 				return a == b;
 			}
 
+			@Override
 			public int hashCode(Object element) {
 				return element.hashCode();
 			}

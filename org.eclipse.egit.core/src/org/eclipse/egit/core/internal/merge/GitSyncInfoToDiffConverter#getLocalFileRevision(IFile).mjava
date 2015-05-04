@@ -1,0 +1,13 @@
+	public IFileRevision getLocalFileRevision(IFile local) {
+		try {
+			return asFileState(variantTreeProvider.getSourceTree()
+					.getResourceVariant(local));
+		} catch (TeamException e) {
+			String error = NLS
+					.bind(CoreText.GitResourceVariantTreeSubscriber_CouldNotFindSourceVariant,
+							local.getName());
+			Activator.logError(error, e);
+			return new WorkspaceFileRevision(local);
+		}
+	}
+

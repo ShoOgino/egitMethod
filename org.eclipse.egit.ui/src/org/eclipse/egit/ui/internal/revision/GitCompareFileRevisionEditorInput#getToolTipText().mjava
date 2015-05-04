@@ -1,3 +1,4 @@
+	@Override
 	public String getToolTipText() {
 		Object[] titleObject = new Object[3];
 		titleObject[0] = getLongName(left);

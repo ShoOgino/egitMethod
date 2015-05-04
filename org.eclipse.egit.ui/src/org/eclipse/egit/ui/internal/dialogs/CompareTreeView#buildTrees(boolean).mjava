@@ -45,6 +45,7 @@
 		try {
 			new ProgressMonitorDialog(getViewSite().getShell()).run(true, true,
 					new IRunnableWithProgress() {
+						@Override
 						public void run(IProgressMonitor monitor)
 								throws InvocationTargetException,
 								InterruptedException {
@@ -54,6 +55,7 @@
 											monitor);
 								PlatformUI.getWorkbench().getDisplay()
 										.asyncExec(new Runnable() {
+											@Override
 											public void run() {
 												tree.setInput(input);
 												tree

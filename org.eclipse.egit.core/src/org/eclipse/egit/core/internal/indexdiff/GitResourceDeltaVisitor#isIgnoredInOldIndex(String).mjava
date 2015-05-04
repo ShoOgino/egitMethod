@@ -1,0 +1,31 @@
+	private boolean isIgnoredInOldIndex(String path) {
+		if (gitIgnoreChanged) {
+			return false;
+		}
+		IndexDiffCacheEntry entry = null;
+		IndexDiffCache cache = Activator.getDefault().getIndexDiffCache();
+		if (cache != null) {
+			entry = cache.getIndexDiffCacheEntry(repository);
+		}
+		if (entry == null) {
+			return false;
+		}
+
+		IndexDiffData indexDiff = entry.getIndexDiff();
+		if (indexDiff == null) {
+			return false;
+		}
+
+		String p = path;
+		Set<String> ignored = indexDiff.getIgnoredNotInIndex();
+		while (p != null) {
+			if (ignored.contains(p)) {
+				return true;
+			}
+
+			p = skipLastSegment(p);
+		}
+
+		return false;
+	}
+

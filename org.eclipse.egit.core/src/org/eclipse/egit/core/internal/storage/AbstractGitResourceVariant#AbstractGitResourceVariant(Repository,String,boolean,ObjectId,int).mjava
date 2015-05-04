@@ -1,0 +1,9 @@
+	protected AbstractGitResourceVariant(Repository repository, String path,
+			boolean isContainer, ObjectId objectId, int rawMode) {
+		this.repository = repository;
+		this.path = path;
+		this.isContainer = isContainer;
+		this.objectId = objectId;
+		this.rawMode = rawMode;
+	}
+

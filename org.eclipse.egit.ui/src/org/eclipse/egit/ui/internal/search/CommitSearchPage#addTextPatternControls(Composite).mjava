@@ -7,12 +7,14 @@
 
 		patternCombo = new Combo(group, SWT.SINGLE | SWT.BORDER);
 		patternCombo.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				handleWidgetSelected();
 				updateOKStatus();
 			}
 		});
 		patternCombo.addModifyListener(new ModifyListener() {
+			@Override
 			public void modifyText(ModifyEvent e) {
 				updateOKStatus();
 			}
@@ -48,6 +50,7 @@
 		isRegExButton = new Button(group, SWT.CHECK);
 		isRegExButton.setText(UIText.CommitSearchPage_RegularExpression);
 		isRegExButton.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				updateOKStatus();
 

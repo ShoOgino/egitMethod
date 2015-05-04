@@ -1,3 +1,4 @@
+	@Override
 	public void createControl(final Composite parent) {
 		final Composite panel = new Composite(parent, SWT.NULL);
 		final GridLayout layout = new GridLayout();
@@ -9,12 +10,15 @@
 
 		FilteredCheckboxTree fTree = new FilteredCheckboxTree(panel, null,
 				SWT.NONE, new PatternFilter()) {
+			@Override
 			protected WorkbenchJob doCreateRefreshJob() {
 				WorkbenchJob refreshJob = super.doCreateRefreshJob();
 				refreshJob.addJobChangeListener(new JobChangeAdapter() {
+					@Override
 					public void done(IJobChangeEvent event) {
 						if (event.getResult().isOK()) {
 							getDisplay().asyncExec(new Runnable() {
+								@Override
 								public void run() {
 									checkPage();
 								}
@@ -29,24 +33,30 @@
 
 		ITreeContentProvider provider = new ITreeContentProvider() {
 
+			@Override
 			public void inputChanged(Viewer arg0, Object arg1, Object arg2) {
 			}
 
+			@Override
 			public void dispose() {
 			}
 
+			@Override
 			public Object[] getElements(Object input) {
 				return ((List) input).toArray();
 			}
 
+			@Override
 			public boolean hasChildren(Object element) {
 				return false;
 			}
 
+			@Override
 			public Object getParent(Object element) {
 				return null;
 			}
 
+			@Override
 			public Object[] getChildren(Object parentElement) {
 				return null;
 			}
@@ -67,6 +77,7 @@
 		});
 
 		refsViewer.addCheckStateListener(new ICheckStateListener() {
+			@Override
 			public void checkStateChanged(CheckStateChangedEvent event) {
 				checkPage();
 			}
@@ -76,6 +87,7 @@
 		selectB = new Button(bPanel, SWT.PUSH);
 		selectB.setText(UIText.SourceBranchPage_selectAll);
 		selectB.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(final SelectionEvent e) {
 				refsViewer.setAllChecked(true);
 				checkPage();
@@ -84,6 +96,7 @@
 		unselectB = new Button(bPanel, SWT.PUSH);
 		unselectB.setText(UIText.SourceBranchPage_selectNone);
 		unselectB.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(final SelectionEvent e) {
 				refsViewer.setAllChecked(false);
 				checkPage();

@@ -30,9 +30,11 @@
 			protected WorkbenchJob doCreateRefreshJob() {
 				WorkbenchJob filterJob = super.doCreateRefreshJob();
 				filterJob.addJobChangeListener(new JobChangeAdapter() {
+					@Override
 					public void done(IJobChangeEvent event) {
 						if (event.getResult().isOK()) {
 							getDisplay().asyncExec(new Runnable() {
+								@Override
 								public void run() {
 									updateFileSectionText();
 								}
@@ -90,6 +92,7 @@
 				menuManager.createContextMenu(filesViewer.getTree()));
 		filesViewer.addCheckStateListener(new ICheckStateListener() {
 
+			@Override
 			public void checkStateChanged(CheckStateChangedEvent event) {
 				updateFileSectionText();
 			}
@@ -104,6 +107,7 @@
 		showUntrackedItem.setSelection(showUntracked);
 		showUntrackedItem.addSelectionListener(new SelectionAdapter() {
 
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				showUntracked = showUntrackedItem.getSelection();
 				filesViewer.refresh(true);
@@ -120,6 +124,7 @@
 		checkAllItem.setToolTipText(UIText.CommitDialog_SelectAll);
 		checkAllItem.addSelectionListener(new SelectionAdapter() {
 
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				filesViewer.setAllChecked(true);
 				updateFileSectionText();
@@ -135,6 +140,7 @@
 		uncheckAllItem.setToolTipText(UIText.CommitDialog_DeselectAll);
 		uncheckAllItem.addSelectionListener(new SelectionAdapter() {
 
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				filesViewer.setAllChecked(false);
 				updateFileSectionText();
@@ -153,6 +159,7 @@
 
 			filesViewer.addCheckStateListener(new ICheckStateListener() {
 
+				@Override
 				public void checkStateChanged(CheckStateChangedEvent event) {
 					if (!event.getChecked())
 						filesViewer.setAllChecked(true);

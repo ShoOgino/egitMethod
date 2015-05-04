@@ -1,0 +1,18 @@
+	public static RepositoryMapping getMapping(final IProject project) {
+		if (project == null || isNonWorkspace(project)) {
+			return null;
+		}
+		final RepositoryProvider rp = RepositoryProvider.getProvider(project,
+				GitProvider.ID);
+		if (rp == null) {
+			return null;
+		}
+
+		GitProjectData data = ((GitProvider) rp).getData();
+		if (data == null) {
+			return null;
+		}
+
+		return data.getRepositoryMapping(project);
+	}
+

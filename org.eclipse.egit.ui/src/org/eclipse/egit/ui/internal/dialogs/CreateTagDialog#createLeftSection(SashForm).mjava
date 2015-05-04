@@ -19,6 +19,7 @@
 				| GridData.HORIZONTAL_ALIGN_FILL));
 		tagNameText.addModifyListener(new ModifyListener() {
 
+			@Override
 			public void modifyText(ModifyEvent e) {
 				String tagNameValue = tagNameText.getText();
 				tagNamePattern = Pattern.compile(Pattern.quote(tagNameValue),
@@ -43,6 +44,7 @@
 				.grab(true, true).create());
 
 		tagMessageText.addKeyListener(new KeyAdapter() {
+			@Override
 			public void keyPressed(KeyEvent e) {
 				if (UIUtils.isSubmitKeyEvent(e)) {
 					Control button = getButton(IDialogConstants.OK_ID);
@@ -53,6 +55,7 @@
 		});
 
 		tagMessageText.getTextWidget().addModifyListener(new ModifyListener() {
+			@Override
 			public void modifyText(ModifyEvent e) {
 				validateInput();
 			}

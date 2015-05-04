@@ -1,0 +1,6 @@
+	private static boolean isValid(IResource resource) {
+		return resource.isAccessible()
+				&& !resource.isLinked(IResource.CHECK_ANCESTORS)
+				&& isSharedWithGit(resource);
+	}
+

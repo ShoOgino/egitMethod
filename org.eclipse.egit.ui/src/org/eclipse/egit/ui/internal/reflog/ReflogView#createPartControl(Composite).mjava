@@ -4,6 +4,7 @@
 
 		toolkit = new FormToolkit(parent.getDisplay());
 		parent.addDisposeListener(new DisposeListener() {
+			@Override
 			public void widgetDisposed(DisposeEvent e) {
 				toolkit.dispose();
 			}
@@ -120,6 +121,7 @@
 				return entry.getComment();
 			}
 
+			@Override
 			public Image getImage(Object element) {
 				String comment = ((ReflogEntry) element).getComment();
 				if (comment.startsWith("commit:") || comment.startsWith("commit (initial):")) 					return (Image) resourceManager.get(UIIcons.COMMIT);
@@ -134,6 +136,7 @@
 				return null;
 			}
 
+			@Override
 			public void dispose() {
 				resourceManager.dispose();
 				super.dispose();
@@ -177,6 +180,7 @@
 		};
 
 		selectionChangedListener = new ISelectionListener() {
+			@Override
 			public void selectionChanged(IWorkbenchPart part,
 					ISelection selection) {
 				if (part instanceof IEditorPart) {

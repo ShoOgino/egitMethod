@@ -1,3 +1,4 @@
+	@Override
 	public void decorate(Object element, IDecoration decoration) {
 		if (Activator.getDefault() == null)
 			return;

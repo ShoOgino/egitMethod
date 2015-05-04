@@ -111,14 +111,17 @@
 
 		final ICommitMessageComponentNotifications listener = new ICommitMessageComponentNotifications() {
 
+			@Override
 			public void updateSignedOffToggleSelection(boolean selection) {
 				signedOffItem.setSelection(selection);
 			}
 
+			@Override
 			public void updateChangeIdToggleSelection(boolean selection) {
 				changeIdItem.setSelection(selection);
 			}
 
+			@Override
 			public void statusUpdated() {
 				updateMessage();
 			}
@@ -137,6 +140,7 @@
 		commitMessageComponent.setFilesToCommit(getFileList());
 
 		amendingItem.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				commitMessageComponent.setAmendingButtonSelection(amendingItem
 						.getSelection());
@@ -144,6 +148,7 @@
 		});
 
 		changeIdItem.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				commitMessageComponent.setChangeIdButtonSelection(changeIdItem
 						.getSelection());
@@ -151,6 +156,7 @@
 		});
 
 		signedOffItem.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				commitMessageComponent
 						.setSignedOffButtonSelection(signedOffItem
