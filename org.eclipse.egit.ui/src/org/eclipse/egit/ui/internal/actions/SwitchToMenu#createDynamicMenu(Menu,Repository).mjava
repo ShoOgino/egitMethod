@@ -28,8 +28,14 @@
 			TreeMap<String, Ref> sortedRefs = new TreeMap<String, Ref>(
 					CommonUtils.STRING_ASCENDING_COMPARATOR);
 
-			List<ReflogEntry> reflogEntries = repository.getReflogReader(
-					Constants.HEAD).getReverseEntries();
+			ReflogReader reflogReader = repository.getReflogReader(
+					Constants.HEAD);
+			List<ReflogEntry> reflogEntries;
+			if (reflogReader == null) {
+				reflogEntries = Collections.emptyList();
+			} else {
+				reflogEntries = reflogReader.getReverseEntries();
+			}
 			for (ReflogEntry entry : reflogEntries) {
 				CheckoutEntry checkout = entry.parseCheckout();
 				if (checkout != null) {
