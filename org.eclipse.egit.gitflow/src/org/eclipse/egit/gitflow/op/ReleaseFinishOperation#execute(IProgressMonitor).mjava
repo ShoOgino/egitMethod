@@ -1,7 +1,12 @@
 	@Override
 	public void execute(IProgressMonitor monitor) throws CoreException {
 		String releaseBranchName = repository.getConfig().getReleaseBranchName(versionName);
-		mergeTo(monitor, releaseBranchName, repository.getConfig().getMaster());
+		String master = repository.getConfig().getMaster();
+		mergeResult = mergeTo(monitor, releaseBranchName, master);
+		if (!mergeResult.getMergeStatus().isSuccessful()) {
+			return;
+		}
+
 		finish(monitor, releaseBranchName);
 		safeCreateTag(monitor, repository.getConfig().getVersionTagPrefix() + versionName,
 				NLS.bind(CoreText.ReleaseFinishOperation_releaseOf, versionName));

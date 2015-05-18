@@ -39,7 +39,7 @@
 		RevCommit developHead = gfRepo.findHead(DEVELOP);
 		assertEquals(developCommit, developHead);
 		assertEquals(MergeResult.MergeStatus.CONFLICTING, hotfixFinishOperation
-				.getOperationResult().getMergeStatus());
+				.getMergeResult().getMergeStatus());
 
 		RevCommit masterHead = gfRepo.findHead(MY_MASTER);
 		assertEquals(hotfixCommit, masterHead);
