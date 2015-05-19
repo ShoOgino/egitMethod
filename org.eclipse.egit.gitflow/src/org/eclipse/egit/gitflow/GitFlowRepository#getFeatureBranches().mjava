@@ -1,0 +1,4 @@
+	public List<Ref> getFeatureBranches() {
+		return getPrefixBranches(R_HEADS + getConfig().getFeaturePrefix());
+	}
+

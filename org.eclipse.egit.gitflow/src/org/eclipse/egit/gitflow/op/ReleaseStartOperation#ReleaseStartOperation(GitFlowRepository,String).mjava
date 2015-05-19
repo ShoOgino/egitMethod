@@ -1,0 +1,5 @@
+	public ReleaseStartOperation(GitFlowRepository repository,
+			String releaseName) {
+		this(repository, findHead(repository), releaseName, true);
+	}
+

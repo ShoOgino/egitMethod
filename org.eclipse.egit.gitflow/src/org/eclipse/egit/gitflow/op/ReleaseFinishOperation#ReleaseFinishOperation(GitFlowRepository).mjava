@@ -1,0 +1,5 @@
+	public ReleaseFinishOperation(GitFlowRepository repository)
+			throws WrongGitFlowStateException, CoreException, IOException {
+		this(repository, getReleaseName(repository));
+	}
+

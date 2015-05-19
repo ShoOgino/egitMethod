@@ -1,0 +1,5 @@
+	public ReleaseFinishOperation(GitFlowRepository repository,
+			String releaseName) {
+		super(repository, releaseName);
+	}
+

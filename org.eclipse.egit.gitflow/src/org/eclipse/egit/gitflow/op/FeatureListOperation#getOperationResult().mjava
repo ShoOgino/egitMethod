@@ -1,0 +1,4 @@
+	public FetchResult getOperationResult() {
+		return operationResult;
+	}
+

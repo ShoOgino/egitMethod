@@ -1,0 +1,4 @@
+	public String getVersionTagPrefix() {
+		return getPrefix(VERSION_TAG_KEY, VERSION_TAG);
+	}
+

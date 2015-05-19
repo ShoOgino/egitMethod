@@ -1,0 +1,4 @@
+	public Ref findBranch(String branchName) throws IOException {
+		return repository.getRef(R_HEADS + branchName);
+	}
+

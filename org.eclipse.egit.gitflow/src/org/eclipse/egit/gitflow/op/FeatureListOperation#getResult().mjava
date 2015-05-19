@@ -1,0 +1,4 @@
+	public List<Ref> getResult() {
+		return result;
+	}
+

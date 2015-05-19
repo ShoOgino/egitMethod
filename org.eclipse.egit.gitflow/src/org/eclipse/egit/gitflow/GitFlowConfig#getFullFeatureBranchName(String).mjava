@@ -1,0 +1,4 @@
+	public String getFullFeatureBranchName(String featureName) {
+		return R_HEADS + getFeatureBranchName(featureName);
+	}
+

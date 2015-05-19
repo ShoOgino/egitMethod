@@ -1,0 +1,4 @@
+	public List<Ref> getHotfixBranches() {
+		return getPrefixBranches(R_HEADS + getConfig().getHotfixPrefix());
+	}
+

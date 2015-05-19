@@ -1,0 +1,5 @@
+	public static void handleError(String message, Throwable throwable,
+			boolean show) {
+		handleIssue(IStatus.ERROR, message, throwable, show);
+	}
+

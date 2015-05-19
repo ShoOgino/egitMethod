@@ -1,0 +1,4 @@
+	public PushOperationResult getOperationResult() {
+		return operationResult;
+	}
+

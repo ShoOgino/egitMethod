@@ -1,0 +1,6 @@
+	public FeatureTrackOperation(GitFlowRepository repository, Ref ref,
+			String newLocalBranch) {
+		super(repository, newLocalBranch);
+		this.remoteFeature = ref;
+	}
+

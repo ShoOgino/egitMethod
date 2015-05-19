@@ -1,0 +1,4 @@
+	public void setUpstreamBranchName(String featureName, String value) throws IOException {
+		setBranchValue(featureName, value, MERGE_KEY);
+	}
+

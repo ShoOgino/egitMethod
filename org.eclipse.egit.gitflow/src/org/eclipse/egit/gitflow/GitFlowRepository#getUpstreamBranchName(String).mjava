@@ -1,0 +1,4 @@
+	public String getUpstreamBranchName(String featureName) {
+		return getConfig().getUpstreamBranchName(featureName);
+	}
+

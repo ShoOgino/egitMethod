@@ -1,0 +1,4 @@
+	public static Plugin getDefault() {
+		return instance;
+	}
+

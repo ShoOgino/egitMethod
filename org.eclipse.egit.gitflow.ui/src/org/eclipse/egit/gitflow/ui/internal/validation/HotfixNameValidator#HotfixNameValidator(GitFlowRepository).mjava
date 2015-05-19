@@ -1,0 +1,4 @@
+	public HotfixNameValidator(GitFlowRepository repository) {
+		this.repository = repository;
+	}
+

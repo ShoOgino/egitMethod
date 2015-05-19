@@ -1,0 +1,5 @@
+	public String getFeatureBranchName(Ref ref) {
+		return ref.getName().substring(
+				(R_HEADS + getConfig().getFeaturePrefix()).length());
+	}
+
