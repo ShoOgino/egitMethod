@@ -1,0 +1,8 @@
+	protected void editorActivated(IEditorPart editor) {
+		IEditorInput editorInput = editor.getEditorInput();
+		IResource resource = ResourceUtil.getResource(editorInput);
+		if (resource != null) {
+			setSelection(new StructuredSelection(resource));
+		}
+	}
+

@@ -1,0 +1,4 @@
+	@Override
+	public void partBroughtToTop(IWorkbenchPart part) {
+	}
+

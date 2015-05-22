@@ -1,0 +1,6 @@
+	private void detachSelectionTracker() {
+		if (selectionTracker != null) {
+			selectionTracker.detach(getSite().getPage());
+		}
+	}
+

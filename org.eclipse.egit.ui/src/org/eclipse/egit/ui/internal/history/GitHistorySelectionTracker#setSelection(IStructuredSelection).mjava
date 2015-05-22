@@ -1,0 +1,4 @@
+	private void setSelection(IStructuredSelection selection) {
+		this.selection = selection;
+	}
+

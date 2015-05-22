@@ -1,0 +1,7 @@
+	@Override
+	public void pageChanged(PageChangedEvent event) {
+		if (event.getSelectedPage() instanceof IEditorPart) {
+			editorActivated((IEditorPart) event.getSelectedPage());
+		}
+	}
+

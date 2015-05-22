@@ -1,0 +1,7 @@
+	public void attach(IWorkbenchPage page) {
+		if (page != null) {
+			page.addPartListener((IPartListener2) this);
+			page.addSelectionListener(this);
+		}
+	}
+

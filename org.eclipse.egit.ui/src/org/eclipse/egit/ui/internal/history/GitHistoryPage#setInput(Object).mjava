@@ -1,16 +1,20 @@
 	@Override
 	public boolean setInput(Object object) {
 		try {
+			Object useAsInput = getMostFittingInput(object);
+			if (selectionTracker != null) {
+				selectionTracker.clearSelection();
+			}
 			setWarningText(null);
 			trace = GitTraceLocation.HISTORYVIEW.isActive();
 			if (trace)
 				GitTraceLocation.getTrace().traceEntry(
-						GitTraceLocation.HISTORYVIEW.getLocation(), object);
+						GitTraceLocation.HISTORYVIEW.getLocation(), useAsInput);
 
-			if (object == getInput())
+			if (useAsInput == getInput())
 				return true;
 			this.input = null;
-			return super.setInput(object);
+			return super.setInput(useAsInput);
 		} finally {
 			if (trace)
 				GitTraceLocation.getTrace().traceExit(

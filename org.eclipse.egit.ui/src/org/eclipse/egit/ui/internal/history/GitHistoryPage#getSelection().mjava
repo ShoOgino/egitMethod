@@ -1,0 +1,12 @@
+	private IStructuredSelection getSelection() {
+		if (selectionTracker != null
+				&& selectionTracker.getSelection() != null) {
+			return selectionTracker.getSelection();
+		}
+		ISelection selection = getSite().getPage().getSelection();
+		if (selection != null) {
+			return SelectionUtils.getStructuredSelection(selection);
+		}
+		return null;
+	}
+
