@@ -5,8 +5,7 @@
 				return true;
 
 		final int skew = 24 * 60 * 60; 
-		RevWalk walk = new RevWalk(repo);
-		try {
+		try (RevWalk walk = new RevWalk(repo)) {
 			RevCommit commit = walk.parseCommit(commitId);
 			for (Ref ref : refs) {
 				RevCommit refCommit = walk.parseCommit(ref.getObjectId());
@@ -18,7 +17,6 @@
 				if (contained)
 					return true;
 			}
-		} finally {
 			walk.dispose();
 		}
 		return false;

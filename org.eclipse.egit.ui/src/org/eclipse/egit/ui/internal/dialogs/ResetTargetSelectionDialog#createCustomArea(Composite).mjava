@@ -68,16 +68,22 @@
 							setMessage(""); 						}
 						parsedCommitish = text;
 						getButton(OK).setEnabled(true);
-						RevWalk rw = new RevWalk(repo);
-						RevCommit commit = rw.parseCommit(resolved);
-						sha1.setText(AbbreviatedObjectId.fromObjectId(commit)
-								.name());
-						subject.setText(commit.getShortMessage());
-						author.setText(commit.getAuthorIdent().getName()
-								+ " <" 								+ commit.getAuthorIdent().getEmailAddress()
-								+ "> " + gitDateFormatter.formatDate(commit.getAuthorIdent())); 						committer.setText(commit.getCommitterIdent().getName()
-								+ " <" 								+ commit.getCommitterIdent().getEmailAddress()
-								+ "> " + gitDateFormatter.formatDate(commit.getCommitterIdent())); 						rw.dispose();
+						try (RevWalk rw = new RevWalk(repo)) {
+							RevCommit commit = rw.parseCommit(resolved);
+							sha1.setText(AbbreviatedObjectId
+									.fromObjectId(commit).name());
+							subject.setText(commit.getShortMessage());
+							author.setText(
+									commit.getAuthorIdent().getName() + " <" 											+ commit.getAuthorIdent()
+													.getEmailAddress()
+											+ "> " 											+ gitDateFormatter.formatDate(
+													commit.getAuthorIdent()));
+							committer.setText(commit.getCommitterIdent()
+									.getName()
+									+ " <" 									+ commit.getCommitterIdent()
+											.getEmailAddress()
+									+ "> " + gitDateFormatter.formatDate( 											commit.getCommitterIdent()));
+						}
 					}
 				} catch (IOException e1) {
 					setMessage(e1.getMessage(), IMessageProvider.ERROR);

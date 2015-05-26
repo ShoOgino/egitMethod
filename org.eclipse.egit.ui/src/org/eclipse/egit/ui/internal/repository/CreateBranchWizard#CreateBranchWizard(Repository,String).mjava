@@ -1,9 +1,9 @@
 	public CreateBranchWizard(Repository repository, String base) {
-		try {
+		try (RevWalk rw = new RevWalk(repository)) {
 			if (base == null) {
 				myPage = new CreateBranchPage(repository, (Ref) null);
 			} else if (ObjectId.isId(base)) {
-				RevCommit commit = new RevWalk(repository).parseCommit(ObjectId
+				RevCommit commit = rw.parseCommit(ObjectId
 						.fromString(base));
 				myPage = new CreateBranchPage(repository, commit);
 			} else {
@@ -13,8 +13,8 @@
 					Ref currentBranch = repository.getRef(base);
 					myPage = new CreateBranchPage(repository, currentBranch);
 				} else {
-					RevCommit commit = new RevWalk(repository)
-							.parseCommit(repository.resolve(base + "^{commit}")); 					myPage = new CreateBranchPage(repository, commit);
+					RevCommit commit = rw.parseCommit(
+							repository.resolve(base + "^{commit}")); 					myPage = new CreateBranchPage(repository, commit);
 				}
 			}
 		} catch (IOException e) {
