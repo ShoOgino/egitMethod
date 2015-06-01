@@ -1,0 +1,4 @@
+	public MergeResult getMergeResult() {
+		return mergeResult;
+	}
+
