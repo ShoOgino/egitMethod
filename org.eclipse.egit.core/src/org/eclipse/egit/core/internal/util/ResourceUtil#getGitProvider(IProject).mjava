@@ -1,12 +1,12 @@
-	public static boolean isSharedWithGit(@NonNull IResource resource) {
-		IProject project = resource.getProject();
+	@Nullable
+	final public static GitProvider getGitProvider(@NonNull IProject project) {
 		if (!project.isAccessible()) {
-			return false;
+			return null;
 		}
 		try {
 			GitProvider provider = lookupProviderProp(project);
 			if (provider != null) {
-				return true;
+				return provider;
 			}
 			String existingID = project
 					.getPersistentProperty(PROVIDER_PROP_KEY);
@@ -14,10 +14,10 @@
 			if (isGitProvider) {
 				MappingJob.initProviderAsynchronously(project);
 			}
-			return isGitProvider;
+			return null;
 		} catch (CoreException e) {
 			Activator.getDefault().getLog().log(e.getStatus());
-			return false;
 		}
+		return null;
 	}
 

@@ -4,7 +4,11 @@
 			return null;
 		}
 		if (resource.isLinked(IResource.CHECK_ANCESTORS)) {
-			return getMapping(resource.getLocation());
+			IPath location = resource.getLocation();
+			if (location == null) {
+				return null;
+			}
+			return getMapping(location);
 		}
 		return getMapping(resource.getProject());
 	}

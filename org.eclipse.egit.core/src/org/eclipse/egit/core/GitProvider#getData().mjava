@@ -1,3 +1,4 @@
+	@Nullable
 	public synchronized GitProjectData getData() {
 		if (data == null) {
 			data = GitProjectData.get(getProject());

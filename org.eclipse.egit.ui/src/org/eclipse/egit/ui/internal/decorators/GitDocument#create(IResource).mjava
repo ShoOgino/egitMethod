@@ -3,8 +3,7 @@
 			GitTraceLocation.getTrace().trace(
 					GitTraceLocation.QUICKDIFF.getLocation(),
 					"(GitDocument) create: " + resource); 		GitDocument ret = null;
-		if (RepositoryProvider.getProvider(resource.getProject(),
-				GitProvider.ID) != null) {
+		if (ResourceUtil.isSharedWithGit(resource.getProject())) {
 			ret = new GitDocument(resource);
 			ret.populate();
 			final Repository repository = ret.getRepository();

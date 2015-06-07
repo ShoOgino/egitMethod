@@ -17,8 +17,7 @@
 			if (path == null) {
 				continue;
 			}
-			if (RepositoryProvider.getProvider(project,
-					GitProvider.ID) == null) {
+			if (!ResourceUtil.isSharedWithGit(project)) {
 				continue;
 			}
 			String fullPath = path.toOSString();

@@ -3,17 +3,19 @@
 		if (project == null || isNonWorkspace(project)) {
 			return null;
 		}
-		final RepositoryProvider rp = RepositoryProvider.getProvider(project,
-				GitProvider.ID);
+		final GitProvider rp = ResourceUtil.getGitProvider(project);
+		GitProjectData data;
 		if (rp == null) {
-			return null;
+			data = GitProjectData.get(project);
+			if (data == null) {
+				return null;
+			}
+		} else {
+			data = rp.getData();
 		}
-
-		GitProjectData data = ((GitProvider) rp).getData();
 		if (data == null) {
 			return null;
 		}
-
 		return data.getRepositoryMapping(project);
 	}
 
