@@ -69,8 +69,6 @@
 		uncheckAllItem.setEnabled(!validDirs.isEmpty());
 		fTree.clearFilter();
 		fTreeViewer.setInput(validDirs);
-		fTreeViewer.setAllChecked(true);
-		isUserModifiedTreeSelection = false;
 		enableOk();
 	}
 
