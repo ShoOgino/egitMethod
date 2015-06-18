@@ -1,0 +1,6 @@
+	private MultiStatus createMergeConflictWarning(MergeResult mergeResult) {
+		Iterable<String> paths = mergeResult.getConflicts().keySet();
+		return docreateConflictWarning(paths,
+				UIText.AbstractGitFlowHandler_finishConflicts);
+	}
+

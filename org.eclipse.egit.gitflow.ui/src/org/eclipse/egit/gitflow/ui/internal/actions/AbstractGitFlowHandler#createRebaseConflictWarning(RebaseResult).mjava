@@ -1,0 +1,6 @@
+	protected MultiStatus createRebaseConflictWarning(RebaseResult rebaseResult) {
+		Iterable<String> paths = rebaseResult.getConflicts();
+		return docreateConflictWarning(paths,
+				UIText.AbstractGitFlowHandler_rebaseConflicts);
+	}
+
