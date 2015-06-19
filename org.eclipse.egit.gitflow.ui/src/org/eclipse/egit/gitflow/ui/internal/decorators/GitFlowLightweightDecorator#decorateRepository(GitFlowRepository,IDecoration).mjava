@@ -1,0 +1,6 @@
+	private void decorateRepository(GitFlowRepository repository,
+			IDecoration decoration) throws IOException {
+		final DecorationHelper helper = new DecorationHelper();
+		helper.decorate(decoration, repository);
+	}
+

@@ -1,0 +1,4 @@
+	public GitFlowLightweightDecorator() {
+		log = Activator.getDefault().getLog();
+	}
+

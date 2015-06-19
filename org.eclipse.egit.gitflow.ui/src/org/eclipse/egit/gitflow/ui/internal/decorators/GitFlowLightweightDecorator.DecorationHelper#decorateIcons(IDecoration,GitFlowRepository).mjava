@@ -1,0 +1,12 @@
+		private void decorateIcons(IDecoration decoration,
+				GitFlowRepository repository) throws IOException {
+			ImageDescriptor overlay = null;
+
+			if (repository.getConfig().isInitialized()) {
+				overlay = INITIALIZED_IMAGE;
+			}
+
+
+			decoration.addOverlay(overlay);
+		}
+

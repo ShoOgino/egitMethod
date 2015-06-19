@@ -1,0 +1,8 @@
+	private static URL init() {
+		try {
+			return new URL(Activator.getDefault().getBundle().getEntry("/"), 					"icons/"); 		} catch (MalformedURLException mux) {
+			Activator.logError(UIText.UIIcons_errorDeterminingIconBase, mux);
+			return null;
+		}
+	}
+

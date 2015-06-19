@@ -1,0 +1,6 @@
+	private void handleException(GitFlowRepository repository, Exception e) {
+		if (repository != null) {
+			log.log(Activator.error(e.getMessage(), e));
+		 }
+	}
+

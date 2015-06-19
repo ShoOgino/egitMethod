@@ -1,0 +1,21 @@
+	@Override
+	public void decorate(Object element, IDecoration decoration) {
+		if (Activator.getDefault() == null) {
+			return;
+		}
+
+		if (!PlatformUI.isWorkbenchRunning()) {
+			return;
+		}
+
+
+		final GitFlowRepository repository = getRepository(element);
+		try {
+			if (repository != null) {
+				decorateRepository(repository, decoration);
+			}
+		} catch (Exception e) {
+			handleException(repository, e);
+		}
+	}
+
