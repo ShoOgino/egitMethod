@@ -1,4 +1,5 @@
-	public static ResourceMapping[] getResourceMappings(IResource resource,
+	public static ResourceMapping[] getResourceMappings(
+			@NonNull IResource resource,
 			ResourceMappingContext context) {
 		final IModelProviderDescriptor[] modelDescriptors = ModelProvider
 				.getModelProviderDescriptors();

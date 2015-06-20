@@ -1,5 +1,6 @@
+	@NonNull
 	public static IResource[] getSelectedResources(
-			IStructuredSelection selection) {
+			@NonNull IStructuredSelection selection) {
 		Set<IResource> result = new LinkedHashSet<IResource>();
 		for (Object o : selection.toList()) {
 			IResource resource = AdapterUtils.adapt(o, IResource.class);

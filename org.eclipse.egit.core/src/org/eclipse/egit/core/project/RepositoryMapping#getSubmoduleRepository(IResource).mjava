@@ -1,4 +1,5 @@
-	public synchronized Repository getSubmoduleRepository(IResource res) {
+	@Nullable
+	public synchronized Repository getSubmoduleRepository(@NonNull IResource res) {
 		IPath projectRelativePath = res.getProjectRelativePath();
 		if (projectRelativePath == null)
 			return null;

@@ -1,4 +1,5 @@
-	public String getRepoRelativePath(final IResource rsrc) {
+	@Nullable
+	public String getRepoRelativePath(@NonNull final IResource rsrc) {
 		IPath location = rsrc.getLocation();
 		if (location == null)
 			return null;

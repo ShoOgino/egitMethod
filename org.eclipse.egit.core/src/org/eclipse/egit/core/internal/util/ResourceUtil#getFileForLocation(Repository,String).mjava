@@ -1,5 +1,6 @@
-	public static IFile getFileForLocation(Repository repository,
-			String repoRelativePath) {
+	@Nullable
+	public static IFile getFileForLocation(@NonNull Repository repository,
+			@NonNull String repoRelativePath) {
 		IPath path = new Path(repository.getWorkTree().getAbsolutePath()).append(repoRelativePath);
 		return getFileForLocation(path);
 	}

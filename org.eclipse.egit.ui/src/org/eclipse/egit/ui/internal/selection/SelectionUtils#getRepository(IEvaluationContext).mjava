@@ -1,4 +1,6 @@
-	public static Repository getRepository(IEvaluationContext evaluationContext) {
+	@Nullable
+	public static Repository getRepository(
+			@Nullable IEvaluationContext evaluationContext) {
 		return getRepository(false, getSelection(evaluationContext), null);
 	}
 

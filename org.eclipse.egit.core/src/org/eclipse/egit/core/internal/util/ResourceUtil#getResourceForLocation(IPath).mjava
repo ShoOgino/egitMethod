@@ -1,4 +1,5 @@
-	public static IResource getResourceForLocation(IPath location) {
+	@Nullable
+	public static IResource getResourceForLocation(@NonNull IPath location) {
 		IFile file = getFileForLocation(location);
 		if (file != null) {
 			return file;

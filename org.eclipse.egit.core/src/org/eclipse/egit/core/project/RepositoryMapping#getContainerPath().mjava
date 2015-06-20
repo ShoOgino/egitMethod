@@ -1,3 +1,4 @@
+	@NonNull
 	public IPath getContainerPath() {
 		if (containerPath == null)
 			containerPath = Path.fromPortableString(containerPathString);

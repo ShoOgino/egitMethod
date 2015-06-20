@@ -1,5 +1,5 @@
-	public static boolean isSymbolicLink(Repository repository,
-			String repoRelativePath) {
+	public static boolean isSymbolicLink(@NonNull Repository repository,
+			@NonNull String repoRelativePath) {
 		try {
 			File f = new Path(repository.getWorkTree().getAbsolutePath())
 					.append((repoRelativePath)).toFile();

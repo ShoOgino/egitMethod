@@ -3,6 +3,8 @@
 		RepositoryMapping mapping = RepositoryMapping.getMapping(res);
 		if (mapping != null) {
 			String repoRelativePath = mapping.getRepoRelativePath(res);
+			if (repoRelativePath == null) {
+				return ""; 			}
 			if (repoRelativePath.equals("")) 				return "."; 			else
 				return repoRelativePath;
 		}

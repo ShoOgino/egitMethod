@@ -1,5 +1,6 @@
+	@NonNull
 	public static IStructuredSelection getStructuredSelection(
-			ISelection selection) {
+			@NonNull ISelection selection) {
 		if (selection instanceof ITextSelection)
 			return getSelectionFromEditorInput(getEvaluationContext());
 		else if (selection instanceof IStructuredSelection)

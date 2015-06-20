@@ -1,4 +1,6 @@
-	public static Repository getRepository(IStructuredSelection selection) {
+	@Nullable
+	public static Repository getRepository(
+			@NonNull IStructuredSelection selection) {
 		return getRepository(false, selection, null);
 	}
 

@@ -1,4 +1,5 @@
-	public static IFile getFileForLocation(IPath location) {
+	@Nullable
+	public static IFile getFileForLocation(@NonNull IPath location) {
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		IFile file = root.getFileForLocation(location);
 		if (file == null) {

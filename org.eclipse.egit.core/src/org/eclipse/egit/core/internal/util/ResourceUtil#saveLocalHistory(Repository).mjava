@@ -1,4 +1,4 @@
-	public static void saveLocalHistory(Repository repository) {
+	public static void saveLocalHistory(@NonNull Repository repository) {
 		IndexDiffCacheEntry indexDiffCacheEntry = org.eclipse.egit.core.Activator
 				.getDefault().getIndexDiffCache()
 				.getIndexDiffCacheEntry(repository);
