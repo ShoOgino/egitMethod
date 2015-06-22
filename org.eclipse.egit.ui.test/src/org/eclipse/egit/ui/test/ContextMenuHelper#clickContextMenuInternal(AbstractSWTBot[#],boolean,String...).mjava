@@ -1,5 +1,8 @@
 	private static void clickContextMenuInternal(final AbstractSWTBot<?> bot,
 			final boolean sync, final String... texts) {
+		bot.setFocus();
+		TestUtil.processUIEvents();
+
 		final MenuItem menuItem = UIThreadRunnable
 				.syncExec(new WidgetResult<MenuItem>() {
 					public MenuItem run() {
