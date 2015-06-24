@@ -17,6 +17,7 @@
 		}
 
 		final boolean repositoryChanged = currentRepository != repository;
+		currentRepository = repository;
 
 		asyncExec(new Runnable() {
 
@@ -52,7 +53,7 @@
 
 							});
 				}
-				final StagingViewUpdate update = new StagingViewUpdate(currentRepository, indexDiff, null);
+				final StagingViewUpdate update = new StagingViewUpdate(repository, indexDiff, null);
 				Object[] unstagedExpanded = unstagedViewer
 						.getExpandedElements();
 				Object[] stagedExpanded = stagedViewer
