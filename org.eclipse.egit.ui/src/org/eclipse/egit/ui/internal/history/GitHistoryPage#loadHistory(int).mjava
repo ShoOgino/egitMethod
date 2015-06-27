@@ -1,0 +1,11 @@
+	private void loadHistory(final int itemToLoad) {
+		if (job == null) {
+			return;
+		}
+		job.setLoadHint(itemToLoad);
+		if (trace)
+			GitTraceLocation.getTrace().trace(
+					GitTraceLocation.HISTORYVIEW.getLocation(),
+					"Scheduling incremental GenerateHistoryJob"); 		schedule(job);
+	}
+
