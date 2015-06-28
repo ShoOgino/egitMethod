@@ -46,7 +46,6 @@
 				.getPath()));
 		secondProject.create(desc, null);
 		secondProject.open(null);
-		TestUtil.waitForJobs(100, 5000);
 
 		IFolder secondfolder = secondProject.getFolder(FOLDER);
 		secondfolder.create(false, true, null);
@@ -56,6 +55,9 @@
 		IFile secondtextFile2 = secondfolder.getFile(FILE2);
 		secondtextFile2.create(new ByteArrayInputStream("Some more content"
 				.getBytes(firstProject.getDefaultCharset())), false, null);
+
+		TestUtil.waitForJobs(100, 5000);
+
 
 		new ConnectProviderOperation(secondProject, gitDir).execute(null);
 
