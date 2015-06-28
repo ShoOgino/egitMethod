@@ -1,16 +1,16 @@
-	public static boolean isIgnored(IPath path) throws IOException {
+	public static boolean canBeAutoIgnored(IPath path) throws IOException {
 		RepositoryMapping mapping = RepositoryMapping.getMapping(path);
 		if (mapping == null) {
-			return true; 		}
+			return false; 		}
 		Repository repository = mapping.getRepository();
 		WorkingTreeIterator treeIterator = IteratorService
 				.createInitialIterator(repository);
 		if (treeIterator == null) {
-			return true;
+			return false;
 		}
 		String repoRelativePath = mapping.getRepoRelativePath(path);
 		if (repoRelativePath == null || repoRelativePath.isEmpty()) {
-			return true;
+			return false;
 		}
 		try (TreeWalk walk = new TreeWalk(repository)) {
 			walk.addTree(treeIterator);
@@ -19,7 +19,7 @@
 				WorkingTreeIterator workingTreeIterator = walk.getTree(0,
 						WorkingTreeIterator.class);
 				if (walk.getPathString().equals(repoRelativePath)) {
-					return workingTreeIterator.isEntryIgnored();
+					return !workingTreeIterator.isEntryIgnored();
 				}
 				if (workingTreeIterator.getEntryFileMode()
 						.equals(FileMode.TREE)) {

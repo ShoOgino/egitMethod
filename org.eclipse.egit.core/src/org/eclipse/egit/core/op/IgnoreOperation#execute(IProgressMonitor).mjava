@@ -2,11 +2,13 @@
 		monitor.beginTask(CoreText.IgnoreOperation_taskName, paths.size());
 		try {
 			for (IPath path : paths) {
-				if (monitor.isCanceled())
+				if (monitor.isCanceled()) {
 					break;
+				}
 
-				if (!RepositoryUtil.isIgnored(path))
+				if (RepositoryUtil.canBeAutoIgnored(path)) {
 					addIgnore(monitor, path);
+				}
 				monitor.worked(1);
 			}
 			monitor.done();
