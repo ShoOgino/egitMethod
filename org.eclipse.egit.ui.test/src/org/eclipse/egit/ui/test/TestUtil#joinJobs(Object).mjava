@@ -1,4 +1,6 @@
 	public static void joinJobs(Object family) throws InterruptedException  {
+		TestUtil.waitForJobs(50, 1000);
 		Job.getJobManager().join(family, null);
+		TestUtil.processUIEvents();
 	}
 

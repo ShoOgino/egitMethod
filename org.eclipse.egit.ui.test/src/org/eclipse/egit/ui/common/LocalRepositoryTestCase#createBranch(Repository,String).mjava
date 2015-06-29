@@ -7,5 +7,6 @@
 		updateRef.setNewObjectId(startAt);
 		updateRef
 				.setRefLogMessage("branch: Created from " + startBranch, false); 		updateRef.update();
+		TestUtil.waitForJobs(50, 5000);
 	}
 
