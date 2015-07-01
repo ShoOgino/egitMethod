@@ -1,9 +1,12 @@
 	@After
 	public void resetWorkspace() throws Exception {
+		TestUtil.processUIEvents();
 		new Eclipse().reset();
+		TestUtil.processUIEvents();
 		for (IProject project : ResourcesPlugin.getWorkspace().getRoot()
-				.getProjects())
+				.getProjects()) {
 			project.delete(false, false, null);
+		}
 		shutDownRepositories();
 		TestUtil.waitForJobs(50, 5000);
 	}
