@@ -5,7 +5,7 @@
 
 		launchSynchronization(INITIAL_TAG, R_TAGS + "v0.1", false);
 
-		SWTBotTree syncViewTree = bot.viewByTitle("Synchronize").bot().tree();
+		SWTBotTree syncViewTree = bot.viewById(ISynchronizeView.VIEW_ID).bot().tree();
 		assertEquals(1, syncViewTree.getAllItems().length);
 	}
 
