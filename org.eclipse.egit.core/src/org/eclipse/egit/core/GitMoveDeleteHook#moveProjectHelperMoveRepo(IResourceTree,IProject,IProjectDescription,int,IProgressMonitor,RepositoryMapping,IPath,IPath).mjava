@@ -3,10 +3,12 @@
 			final IProgressMonitor monitor, final RepositoryMapping srcm,
 			IPath newLocation, IPath sourceLocation) {
 		IPath gitDir = srcm.getGitDirAbsolutePath();
-		if (unmapProject(tree, source))
-			return true; 
-		monitor.worked(100);
+		if (unmapProject(tree, source)) {
+			return true; 		}
 
+		monitor.worked(100);
+		if (gitDir == null) {
+			return true; 		}
 		IPath relativeGitDir = gitDir.makeRelativeTo(sourceLocation);
 		tree.standardMoveProject(source, description, updateFlags,
 				monitor);
