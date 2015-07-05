@@ -1,0 +1,4 @@
+	public void setSquash(boolean squash) {
+		this.squash = squash;
+	}
+
