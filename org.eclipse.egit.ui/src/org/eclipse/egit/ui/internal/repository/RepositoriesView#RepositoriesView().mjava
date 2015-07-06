@@ -14,7 +14,6 @@
 		myRefsChangedListener = new RefsChangedListener() {
 			@Override
 			public void onRefsChanged(RefsChangedEvent e) {
-				lastRepositoryChange = System.currentTimeMillis();
 				scheduleRefresh(DEFAULT_REFRESH_DELAY);
 			}
 		};
@@ -22,7 +21,6 @@
 		myIndexChangedListener = new IndexChangedListener() {
 			@Override
 			public void onIndexChanged(IndexChangedEvent event) {
-				lastRepositoryChange = System.currentTimeMillis();
 				scheduleRefresh(DEFAULT_REFRESH_DELAY);
 
 			}
@@ -31,7 +29,6 @@
 		myConfigChangeListener = new ConfigChangedListener() {
 			@Override
 			public void onConfigChanged(ConfigChangedEvent event) {
-				lastRepositoryChange = System.currentTimeMillis();
 				scheduleRefresh(DEFAULT_REFRESH_DELAY);
 			}
 		};
