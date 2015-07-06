@@ -1,6 +1,7 @@
 	public GitCompareEditorInput(String compareVersion, String baseVersion,
-			IResource... resources) {
+			Repository repository, IResource... resources) {
 		super(new CompareConfiguration());
+		this.repository = repository;
 		this.resources = convertResourceInput(resources);
 		this.baseVersion = baseVersion;
 		this.compareVersion = compareVersion;
