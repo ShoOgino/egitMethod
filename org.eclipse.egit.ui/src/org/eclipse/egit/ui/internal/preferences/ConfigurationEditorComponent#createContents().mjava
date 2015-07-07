@@ -150,7 +150,11 @@
 				AddConfigEntryDialog dlg = new AddConfigEntryDialog(getShell(),
 						suggestedKey);
 				if (dlg.open() == Window.OK) {
-					StringTokenizer st = new StringTokenizer(dlg.getKey(), DOT);
+					String result = dlg.getKey();
+					if (result == null) {
+						return;
+					}
+					StringTokenizer st = new StringTokenizer(result, DOT);
 					if (st.countTokens() == 2) {
 						String sectionName = st.nextToken();
 						String entryName = st.nextToken();
