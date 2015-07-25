@@ -8,10 +8,21 @@
 		GridDataFactory.fillDefaults().grab(true, false).span(GROUP_SPAN, 1)
 				.applyTo(cloningGroup);
 		DirectoryFieldEditor editor = new DirectoryFieldEditor(
-				UIPreferences.DEFAULT_REPO_DIR,
+				GitCorePreferences.core_defaultRepositoryDir,
 				UIText.GitPreferenceRoot_DefaultRepoFolderLabel, cloningGroup) {
 
 			private static final int NUMBER_OF_OWN_CONTROLS = 1;
+
+			@Override
+			public void setPreferenceStore(IPreferenceStore store) {
+				if (store == null) {
+					super.setPreferenceStore(store);
+				} else if (getPreferenceStore() == null) {
+					super.setPreferenceStore(new ScopedPreferenceStore(
+							InstanceScope.INSTANCE,
+							org.eclipse.egit.core.Activator.getPluginId()));
+				}
+			}
 
 			@Override
 			protected boolean doCheckState() {
