@@ -32,7 +32,7 @@
 				gfRepo);
 		hotfixFinishOperation.execute(null);
 
-		assertNotEquals(hotfixCommit, gfRepo.findCommitForTag(MY_HOTFIX));
+		assertEquals(hotfixCommit, gfRepo.findCommitForTag(MY_HOTFIX));
 
 		assertNotEquals(findBranch(repository, branchName), null);
 

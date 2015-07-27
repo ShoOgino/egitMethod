@@ -25,7 +25,7 @@
 				gfRepo.findCommitForTag(MY_VERSION_TAG + MY_RELEASE));
 		assertEquals(findBranch(repository, branchName), null);
 
-		RevCommit developHead = gfRepo.findHead();
+		RevCommit developHead = gfRepo.findHead(DEVELOP);
 		assertEquals(branchCommit, developHead);
 
 		RevCommit masterHead = gfRepo.findHead(MY_MASTER);

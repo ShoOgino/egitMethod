@@ -7,8 +7,9 @@
 			return;
 		}
 
-		finish(monitor, hotfixBranchName);
 		safeCreateTag(monitor, versionName,
 				NLS.bind(CoreText.HotfixFinishOperation_hotfix, versionName));
+
+		finish(monitor, hotfixBranchName);
 	}
 

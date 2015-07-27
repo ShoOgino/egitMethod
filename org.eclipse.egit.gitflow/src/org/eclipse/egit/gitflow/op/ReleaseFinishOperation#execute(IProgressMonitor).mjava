@@ -7,8 +7,9 @@
 			return;
 		}
 
-		finish(monitor, releaseBranchName, false );
 		safeCreateTag(monitor, repository.getConfig().getVersionTagPrefix() + versionName,
 				NLS.bind(CoreText.ReleaseFinishOperation_releaseOf, versionName));
+
+		finish(monitor, releaseBranchName, false );
 	}
 
