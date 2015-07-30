@@ -1,0 +1,8 @@
+		private String getStagingEntryName(Object element) {
+			String name = ""; 			StagingEntry stagingEntry = getStagingEntry(element);
+			if (stagingEntry != null) {
+				name = stagingEntry.getName();
+			}
+			return name;
+		}
+

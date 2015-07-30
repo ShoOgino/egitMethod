@@ -6,7 +6,11 @@
 			return stagingFolderEntry.getNodePath().toString();
 		}
 
-		StagingEntry stagingEntry = (StagingEntry) element;
+		StagingEntry stagingEntry = getStagingEntry(element);
+
+		if (stagingEntry == null) {
+			return ""; 		}
+
 		final DecorationResult decoration = new DecorationResult();
 		decorationHelper.decorate(decoration, stagingEntry);
 		final StyledString styled = new StyledString();
