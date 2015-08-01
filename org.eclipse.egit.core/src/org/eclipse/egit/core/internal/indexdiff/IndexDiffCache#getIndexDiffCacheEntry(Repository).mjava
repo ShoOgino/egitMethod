@@ -1,3 +1,4 @@
+	@Nullable
 	public IndexDiffCacheEntry getIndexDiffCacheEntry(Repository repository) {
 		IndexDiffCacheEntry entry;
 		synchronized (entries) {
