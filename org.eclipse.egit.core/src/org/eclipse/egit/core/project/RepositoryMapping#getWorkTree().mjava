@@ -1,4 +1,9 @@
+	@Nullable
 	public File getWorkTree() {
-		return getRepository().getWorkTree();
+		Repository repo = getRepository();
+		if (repo.isBare()) {
+			return null;
+		}
+		return repo.getWorkTree();
 	}
 

@@ -1,7 +1,11 @@
 	synchronized void setRepository(final Repository r) {
 		db = r;
-
-		workdirPrefix = getWorkTree().getAbsolutePath();
+		File workTree = getWorkTree();
+		if (workTree == null) {
+			return;
+		}
+		workdirPrefix = workTree.getAbsolutePath();
 		workdirPrefix = workdirPrefix.replace('\\', '/');
-		if (!workdirPrefix.endsWith("/"))  			workdirPrefix += "/";  	}
+		if (!workdirPrefix.endsWith("/")) {  			workdirPrefix += "/";  		}
+	}
 
