@@ -1,19 +1,25 @@
 	@Override
 	public void decorate(Object element, IDecoration decoration) {
-		if (Activator.getDefault() == null)
+		if (Activator.getDefault() == null) {
 			return;
+		}
 
-		if (!PlatformUI.isWorkbenchRunning())
+		if (!PlatformUI.isWorkbenchRunning()) {
 			return;
+		}
 
 		final IResource resource = getResource(element);
 		try {
-			if (resource == null)
+			if (resource == null) {
 				decorateResourceMapping(element, decoration);
-			else
+			} else {
 				decorateResource(resource, decoration);
+			}
 		} catch (CoreException e) {
 			handleException(resource, e);
+		} catch (Exception e) {
+			handleException(resource, new CoreException(Activator
+					.createErrorStatus(NLS.bind(UIText.Decorator_exceptionMessage, resource), e)));
 		}
 	}
 
