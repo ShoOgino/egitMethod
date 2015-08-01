@@ -1,3 +1,4 @@
+	@NonNull
 	public Set<String> getUntrackedFolders() {
 		return untrackedFolders;
 	}

@@ -1,3 +1,4 @@
+	@NonNull
 	public Collection<IResource> getChangedResources() {
 		return changedResources;
 	}
