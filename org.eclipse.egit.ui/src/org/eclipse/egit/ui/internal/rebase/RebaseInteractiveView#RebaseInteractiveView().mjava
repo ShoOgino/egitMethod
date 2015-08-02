@@ -1,4 +1,0 @@
-	public RebaseInteractiveView() {
-		setPartName(UIText.InteractiveRebaseView_this_partName);
-	}
-

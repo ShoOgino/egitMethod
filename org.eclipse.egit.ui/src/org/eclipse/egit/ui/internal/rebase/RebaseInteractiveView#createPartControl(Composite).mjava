@@ -105,5 +105,7 @@
 		};
 		linkSelectionAction.setImageDescriptor(UIIcons.ELCL16_SYNCED);
 		toolbar.add(linkSelectionAction);
+
+		reactOnInitalSelection();
 	}
 
