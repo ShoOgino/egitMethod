@@ -1,0 +1,4 @@
+	@Override
+	public String toString() {
+		return "GitFlowInitParameters [master=" + master + ", develop=" 				+ develop + ", feature=" + feature 				+ ", release=" + release + ", hotfix=" 				+ hotfix + ", versionTag=" + versionTag + "]"; 	}
+

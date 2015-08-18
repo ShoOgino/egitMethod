@@ -1,0 +1,4 @@
+	public void setVersionTag(String versionTag) {
+		this.versionTag = versionTag;
+	}
+

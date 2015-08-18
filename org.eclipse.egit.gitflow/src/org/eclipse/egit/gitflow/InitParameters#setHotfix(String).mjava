@@ -1,0 +1,4 @@
+	public void setHotfix(String hotfix) {
+		this.hotfix = hotfix;
+	}
+

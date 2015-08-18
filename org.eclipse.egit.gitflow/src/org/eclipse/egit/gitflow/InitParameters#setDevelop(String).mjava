@@ -1,0 +1,4 @@
+	public void setDevelop(String develop) {
+		this.develop = develop;
+	}
+

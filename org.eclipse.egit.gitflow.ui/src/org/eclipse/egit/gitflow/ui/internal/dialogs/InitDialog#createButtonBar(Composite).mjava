@@ -1,0 +1,5 @@
+	@Override
+	protected Control createButtonBar(Composite parent) {
+		return super.createButtonBar(parent);
+	}
+

@@ -1,0 +1,4 @@
+	public String getFeature() {
+		return feature;
+	}
+

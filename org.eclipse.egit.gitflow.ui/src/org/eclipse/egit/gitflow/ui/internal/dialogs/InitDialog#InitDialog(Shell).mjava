@@ -1,0 +1,4 @@
+	public InitDialog(Shell parentShell) {
+		super(parentShell);
+	}
+

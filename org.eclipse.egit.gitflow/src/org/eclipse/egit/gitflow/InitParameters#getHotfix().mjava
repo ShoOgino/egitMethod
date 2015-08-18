@@ -1,0 +1,4 @@
+	public String getHotfix() {
+		return hotfix;
+	}
+
