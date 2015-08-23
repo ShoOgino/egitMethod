@@ -14,6 +14,8 @@
 		fileiItem.doubleClick();
 		assertTrue(bot.activeEditor().getTitle().equals(FILE1));
 		bot.activeEditor().close();
+		TestUtil.processUIEvents();
+
 		checkoutWithDoubleClick(tree, "master");
 		String contentMaster = getTestFileContent();
 		checkoutWithDoubleClick(tree, "stable");
