@@ -10,7 +10,8 @@
 			if (HTTPS.equals(s) && (u.getPort() == 443 || u.getPort() == -1)
 					&& path != null && path.startsWith(GERRIT_CONTEXT_ROOT)) {
 				return true;
-			} else if (SSH.equals(s) && (u.getPort() == 29418)) {
+			} else
+				if (SSH.equals(s) && u.getPort() == GERRIT_SSHD_DEFAULT_PORT) {
 				return true;
 			}
 		}
@@ -61,6 +62,19 @@
 				if (httpConnection != null) {
 					httpConnection.disconnect();
 				}
+			}
+		} else if (SSH.equals(s)) {
+			if (u.getPort() < 0 || u.getUser() == null
+					|| credentialsProvider == null) {
+				return false;
+			}
+			URIish sshUri = u.setPath(""); 			try {
+				String result = runSshCommand(sshUri, credentialsProvider,
+						repo.getFS(), GERRIT_SSHD_VERSION_API);
+				return result != null
+						&& GERRIT_SSHD_REPLY.matcher(result).matches();
+			} catch (IOException e) {
+				return false;
 			}
 		}
 		return false;
