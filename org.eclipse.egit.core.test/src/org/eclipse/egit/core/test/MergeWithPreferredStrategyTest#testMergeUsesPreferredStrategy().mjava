@@ -1,0 +1,13 @@
+	@Test
+	public void testMergeUsesPreferredStrategy() throws Exception {
+		MergeOperation operation = new MergeOperation(
+				testRepository.getRepository(), SIDE);
+		operation.execute(new NullProgressMonitor());
+
+		assertEquals(4, countCommitsInHead());
+		assertTrue(testRepository.getIFile(project.getProject(), file2)
+				.exists());
+		assertFalse(testRepository.getIFile(project.getProject(), file3)
+				.exists());
+	}
+

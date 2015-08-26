@@ -1,0 +1,7 @@
+		public MergeStrategyDescriptor(String name, String label,
+				Class<?> implementedBy) {
+			this.name = name;
+			this.label = label;
+			this.implementedBy = implementedBy;
+		}
+

@@ -1,0 +1,4 @@
+		@Override
+		public void added(IExtensionPoint[] extensionPoints) {
+		}
+

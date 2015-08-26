@@ -1,0 +1,7 @@
+	@After
+	public void tearDown() throws Exception {
+		super.tearDown();
+		InstanceScope.INSTANCE.getNode(Activator.getPluginId()).remove(
+				GitCorePreferences.core_preferredMergeStrategy);
+	}
+

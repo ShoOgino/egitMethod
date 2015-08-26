@@ -1,0 +1,4 @@
+	public Collection<MergeStrategyDescriptor> getRegisteredMergeStrategies() {
+		return mergeStrategyRegistryListener.getStrategies();
+	}
+

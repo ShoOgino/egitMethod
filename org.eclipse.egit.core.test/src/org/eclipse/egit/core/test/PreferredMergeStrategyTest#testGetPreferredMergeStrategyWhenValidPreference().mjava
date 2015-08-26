@@ -1,0 +1,8 @@
+	@Test
+	public void testGetPreferredMergeStrategyWhenValidPreference() {
+		InstanceScope.INSTANCE.getNode(Activator.getPluginId()).put(
+				GitCorePreferences.core_preferredMergeStrategy, "resolve");
+
+		assertSame(MergeStrategy.RESOLVE, a.getPreferredMergeStrategy());
+	}
+

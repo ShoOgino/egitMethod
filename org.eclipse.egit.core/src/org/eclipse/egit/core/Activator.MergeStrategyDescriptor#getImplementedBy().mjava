@@ -1,0 +1,4 @@
+		public Class<?> getImplementedBy() {
+			return implementedBy;
+		}
+

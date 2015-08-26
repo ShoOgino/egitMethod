@@ -1,0 +1,13 @@
+	@Test
+	public void testStrategyCanBeOverridden() throws Exception {
+		MergeOperation operation = new MergeOperation(
+				testRepository.getRepository(), SIDE, "recursive");
+		operation.execute(new NullProgressMonitor());
+
+		assertEquals(4, countCommitsInHead());
+		assertTrue(testRepository.getIFile(project.getProject(), file2)
+				.exists());
+		assertTrue(
+				testRepository.getIFile(project.getProject(), file3).exists());
+	}
+

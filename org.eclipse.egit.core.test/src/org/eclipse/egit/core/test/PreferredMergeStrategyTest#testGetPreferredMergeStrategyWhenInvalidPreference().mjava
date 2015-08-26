@@ -1,0 +1,9 @@
+	@Test
+	public void testGetPreferredMergeStrategyWhenInvalidPreference() {
+		InstanceScope.INSTANCE.getNode(Activator.getPluginId())
+				.put(GitCorePreferences.core_preferredMergeStrategy,
+						"invalid value");
+
+		assertNull(a.getPreferredMergeStrategy());
+	}
+

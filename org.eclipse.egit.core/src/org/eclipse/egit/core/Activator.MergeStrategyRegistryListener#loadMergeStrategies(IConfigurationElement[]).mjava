@@ -1,0 +1,25 @@
+		private void loadMergeStrategies(IConfigurationElement[] elements) {
+			for (IConfigurationElement element : elements) {
+				try {
+					Object ext = element.createExecutableExtension("class"); 					if (ext instanceof MergeStrategy) {
+						MergeStrategy strategy = (MergeStrategy) ext;
+						String name = element.getAttribute("name"); 						if (name == null || name.isEmpty()) {
+							name = strategy.getName();
+						}
+						if (canRegister(name, strategy)) {
+							if (MergeStrategy.get(name) == null) {
+								MergeStrategy.register(name, strategy);
+							}
+							strategies
+									.put(name,
+											new MergeStrategyDescriptor(
+													name,
+													element.getAttribute("label"), 													strategy.getClass()));
+						}
+					}
+				} catch (CoreException e) {
+					Activator.logError(CoreText.MergeStrategy_LoadError, e);
+				}
+			}
+		}
+

@@ -1,8 +1,11 @@
-	public MergeOperation(Repository repository, String refName,
-		String mergeStrategy) {
+	public MergeOperation(@NonNull Repository repository,
+			@NonNull String refName,
+			@NonNull String mergeStrategyName) {
 		this.repository = repository;
 		this.refName = refName;
-		if (mergeStrategy != null)
-			this.mergeStrategy = MergeStrategy.get(mergeStrategy);
+		MergeStrategy strategy = null;
+		strategy = MergeStrategy.get(mergeStrategyName);
+		this.mergeStrategy = strategy != null ? strategy : Activator.getDefault()
+				.getPreferredMergeStrategy();
 	}
 
