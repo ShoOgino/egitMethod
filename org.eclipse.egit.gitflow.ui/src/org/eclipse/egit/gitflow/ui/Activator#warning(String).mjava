@@ -1,0 +1,4 @@
+	public static IStatus warning(String message) {
+		return new Status(IStatus.WARNING, getPluginId(), message);
+	}
+
