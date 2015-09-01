@@ -1,0 +1,5 @@
+		public HyperlinkTextAttribute(Color foreground, Color background,
+				int style) {
+			this(foreground, background, style, null);
+		}
+

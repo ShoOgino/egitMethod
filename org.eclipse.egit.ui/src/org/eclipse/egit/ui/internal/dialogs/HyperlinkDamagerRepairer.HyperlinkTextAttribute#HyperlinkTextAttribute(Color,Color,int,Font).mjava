@@ -1,0 +1,5 @@
+		public HyperlinkTextAttribute(Color foreground, Color background,
+				int style, Font font) {
+			super(foreground, background, style | SWT.UNDERLINE_LINK, font);
+		}
+

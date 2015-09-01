@@ -1,0 +1,6 @@
+	public HyperlinkTokenScanner(IHyperlinkDetector[] hyperlinkDetectors,
+			ISourceViewer viewer) {
+		this.hyperlinkDetectors = hyperlinkDetectors;
+		this.viewer = viewer;
+	}
+
