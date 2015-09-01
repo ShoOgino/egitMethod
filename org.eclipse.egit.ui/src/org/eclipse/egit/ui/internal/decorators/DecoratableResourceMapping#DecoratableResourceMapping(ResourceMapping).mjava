@@ -20,7 +20,11 @@
 			tracked = true;
 
 			Repository repository = repoMapping.getRepository();
-			String repoRelative = makeRepoRelative(repository, prj) + "/"; 
+			String repoRelative = makeRepoRelative(repository, prj);
+			if (repoRelative == null) {
+				continue;
+			}
+			repoRelative += "/"; 
 			Set<String> modified = diffData.getModified();
 			Set<String> conflicting = diffData.getConflicting();
 
