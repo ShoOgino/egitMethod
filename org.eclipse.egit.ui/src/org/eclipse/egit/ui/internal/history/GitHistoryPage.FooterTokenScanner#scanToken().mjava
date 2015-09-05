@@ -1,0 +1,20 @@
+		@Override
+		protected IToken scanToken() {
+			try {
+				IRegion region = document
+						.getLineInformationOfOffset(currentOffset);
+				if (currentOffset == region.getOffset()) {
+					String line = document.get(currentOffset,
+							region.getLength());
+					Matcher m = ITALIC_LINE.matcher(line);
+					if (m.find()) {
+						currentOffset = Math.min(endOfRange,
+								currentOffset + region.getLength());
+						return italicToken;
+					}
+				}
+			} catch (BadLocationException e) {
+			}
+			return null;
+		}
+

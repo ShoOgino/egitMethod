@@ -1,5 +1,4 @@
-	public String format(final List<StyleRange> styles,
-			IProgressMonitor monitor) throws IOException {
+	public FormatResult format(IProgressMonitor monitor) throws IOException {
 		boolean trace = GitTraceLocation.HISTORYVIEW.isActive();
 		if (trace)
 			GitTraceLocation.getTrace().traceEntry(
@@ -8,6 +7,7 @@
 		final StringBuilder d = new StringBuilder();
 		final PersonIdent author = commit.getAuthorIdent();
 		final PersonIdent committer = commit.getCommitterIdent();
+		List<ObjectLink> hyperlinks = new ArrayList<>();
 		d.append(UIText.CommitMessageViewer_commit);
 		d.append(SPACE);
 		d.append(commit.getId().name());
@@ -33,7 +33,7 @@
 			final SWTCommit p = (SWTCommit)commit.getParent(i);
 			p.parseBody();
 			d.append(UIText.CommitMessageViewer_parent);
-			d.append(": "); 			addLink(d, styles, p);
+			d.append(": "); 			addLink(d, hyperlinks, p);
 			d.append(" ("); 			d.append(p.getShortMessage());
 			d.append(")"); 			d.append(LF);
 		}
@@ -42,7 +42,7 @@
 			final SWTCommit p = (SWTCommit)commit.getChild(i);
 			p.parseBody();
 			d.append(UIText.CommitMessageViewer_child);
-			d.append(": "); 			addLink(d, styles, p);
+			d.append(": "); 			addLink(d, hyperlinks, p);
 			d.append(" ("); 			d.append(p.getShortMessage());
 			d.append(")"); 			d.append(LF);
 		}
@@ -58,7 +58,7 @@
 						Ref head = i.next();
 						RevCommit p;
 						p = rw.parseCommit(head.getObjectId());
-						addLink(d, formatHeadRef(head), styles, p);
+						addLink(d, formatHeadRef(head), hyperlinks, p);
 						if (i.hasNext()) {
 							if (count++ <= MAXBRANCHES) {
 								d.append(", "); 							} else {
@@ -90,7 +90,7 @@
 					d.append(UIText.CommitMessageViewer_follows);
 					d.append(": "); 					RevCommit p = rw.parseCommit(followingTag
 							.getObjectId());
-					addLink(d, formatTagRef(followingTag), styles, p);
+					addLink(d, formatTagRef(followingTag), hyperlinks, p);
 					d.append(LF);
 				}
 			} catch (IOException e) {
@@ -104,7 +104,7 @@
 					d.append(UIText.CommitMessageViewer_precedes);
 					d.append(": "); 					RevCommit p = rw.parseCommit(precedingTag
 							.getObjectId());
-					addLink(d, formatTagRef(precedingTag), styles, p);
+					addLink(d, formatTagRef(precedingTag), hyperlinks, p);
 					d.append(LF);
 				}
 			} catch (IOException e) {
@@ -112,30 +112,31 @@
 			}
 		}
 
-		makeGrayText(d, styles);
 		d.append(LF);
-		String msg = commit.getFullMessage();
-		Pattern p = Pattern.compile("\n([A-Z](?:[A-Za-z]+-)+by: [^\n]+)"); 		if (fill) {
-			Matcher spm = p.matcher(msg);
-			if (spm.find()) {
-				String subMsg = msg.substring(0, spm.end());
-				msg = subMsg.replaceAll("([\\w.,; \t])\n(\\w)", "$1 $2") 						+ msg.substring(spm.end());
+		int headerEnd = d.length();
+		String msg = commit.getFullMessage().trim();
+		Matcher spm = FOOTER_PATTERN.matcher(msg);
+		int footerStart = -1;
+		if (spm.find()) {
+			if (fill) {
+				String footer = msg.substring(spm.start());
+				msg = msg.substring(0, spm.start());
+				msg = msg.replaceAll("([\\w.,; \t])\n(\\w)", "$1 $2") 						+ footer;
+				footerStart = headerEnd + msg.length() - footer.length();
+			} else {
+				footerStart = headerEnd + spm.start();
 			}
-		}
-		int h0 = d.length();
+		} else if (fill) {
+			msg = msg.replaceAll("([\\w.,; \t])\n(\\w)", "$1 $2"); 		}
+
 		d.append(msg);
 		if (!msg.endsWith(LF))
 			d.append(LF);
 
-		Matcher matcher = p.matcher(msg);
-		while (matcher.find()) {
-			styles.add(new StyleRange(h0 + matcher.start(), matcher.end()
-					- matcher.start(), null, null, SWT.ITALIC));
-		}
-
 		if (trace)
 			GitTraceLocation.getTrace().traceExit(
 					GitTraceLocation.HISTORYVIEW.getLocation());
-		return d.toString();
+		return new FormatResult(d.toString(), hyperlinks, headerEnd,
+				footerStart >= 0 ? footerStart : d.length());
 	}
 

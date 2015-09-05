@@ -1,0 +1,7 @@
+	public HyperlinkTokenScanner(IHyperlinkDetector[] hyperlinkDetectors,
+			ISourceViewer viewer, @Nullable TextAttribute defaultAttribute) {
+		this.hyperlinkDetectors = hyperlinkDetectors;
+		this.viewer = viewer;
+		this.defaultToken = new Token(defaultAttribute);
+	}
+

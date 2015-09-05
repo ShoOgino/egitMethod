@@ -3,11 +3,6 @@
 		if (!UIUtils.isUsable(text))
 			return;
 
-		setDocument(new Document(formatResult.getCommitInfo()));
-
-		text.setStyleRanges(formatResult.getStyleRange());
-
-		UIUtils.applyHyperlinkDetectorStyleRanges(CommitMessageViewer.this,
-				fHyperlinkDetectors);
+		setDocument(new CommitDocument(formatResult));
 	}
 

@@ -1,0 +1,4 @@
+	protected IToken scanToken() {
+		return null;
+	}
+
