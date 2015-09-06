@@ -1,4 +1,4 @@
 	public String getText() {
-		return getTextWidget().getText();
+		return getDocument().get();
 	}
 
