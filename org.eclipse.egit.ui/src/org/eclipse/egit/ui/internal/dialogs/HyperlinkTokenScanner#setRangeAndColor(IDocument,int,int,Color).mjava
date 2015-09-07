@@ -4,7 +4,7 @@
 		this.endOfRange = offset + length;
 		this.currentOffset = offset;
 		this.tokenStart = -1;
-		hyperlinkToken = new Token(
-				new HyperlinkDamagerRepairer.HyperlinkTextAttribute(color));
+		this.hyperlinkToken = new Token(
+				new TextAttribute(color, null, TextAttribute.UNDERLINE));
 	}
 
