@@ -1,5 +1,5 @@
 	protected MergeResult mergeTo(IProgressMonitor monitor, String branchName,
 			String targetBranchName) throws CoreException {
-		return mergeTo(monitor, branchName, targetBranchName, false);
+		return mergeTo(monitor, branchName, targetBranchName, false, false);
 	}
 

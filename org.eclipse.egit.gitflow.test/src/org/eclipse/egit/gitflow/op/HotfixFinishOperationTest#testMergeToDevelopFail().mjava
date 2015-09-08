@@ -14,11 +14,13 @@
 
 		testRepository.appendContentAndCommit(project.getProject(), file,
 				"Hello Release", "Release Commit");
+		testRepository.appendContentAndCommit(project.getProject(), file,
+				"Hello Merge Commit", "Release Commit 2");
 
 		new ReleaseFinishOperation(gfRepo).execute(null);
 
 		new HotfixStartOperation(gfRepo, MY_HOTFIX).execute(null);
-		RevCommit hotfixCommit = testRepository.appendContentAndCommit(
+		testRepository.appendContentAndCommit(
 				project.getProject(), file, "Hello Hotfix", "Hotfix Commit");
 		new BranchOperation(repository, gfRepo.getConfig().getDevelop()).execute(null);
 		assertEquals(gfRepo.getConfig().getDevelopFull(), repository.getFullBranch());
@@ -32,7 +34,7 @@
 				gfRepo);
 		hotfixFinishOperation.execute(null);
 
-		assertEquals(hotfixCommit, gfRepo.findCommitForTag(MY_HOTFIX));
+		assertNotNull(gfRepo.findCommitForTag(MY_HOTFIX));
 
 		assertNotEquals(findBranch(repository, branchName), null);
 
@@ -42,7 +44,7 @@
 				.getMergeResult().getMergeStatus());
 
 		RevCommit masterHead = gfRepo.findHead(MY_MASTER);
-		assertEquals(hotfixCommit, masterHead);
+		assertEquals(String.format("Merge branch '%s'", branchName), masterHead.getFullMessage());
 
 		assertEquals(gfRepo.getConfig().getDevelopFull(), repository.getFullBranch());
 	}

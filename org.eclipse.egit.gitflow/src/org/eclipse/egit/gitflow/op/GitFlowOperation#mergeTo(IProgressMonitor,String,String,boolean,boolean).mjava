@@ -1,5 +1,5 @@
 	protected MergeResult mergeTo(IProgressMonitor monitor, String branchName,
-			String targetBranchName, boolean squash) throws CoreException {
+			String targetBranchName, boolean squash, boolean fastForwardSingleCommit) throws CoreException {
 		try {
 			if (!repository.hasBranch(targetBranchName)) {
 				throw new RuntimeException(String.format(
@@ -23,10 +23,13 @@
 			if (squash) {
 				mergeOperation.setCommit(true);
 			}
+			if (!squash && (!fastForwardSingleCommit || hasMultipleCommits(branchName))) {
+				mergeOperation.setFastForwardMode(NO_FF);
+			}
 			mergeOperation.execute(monitor);
 
 			return mergeOperation.getResult();
-		} catch (GitAPIException e) {
+		} catch (GitAPIException | IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
