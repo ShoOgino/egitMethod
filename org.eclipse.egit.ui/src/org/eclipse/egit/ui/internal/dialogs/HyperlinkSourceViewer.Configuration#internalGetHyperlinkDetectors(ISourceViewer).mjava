@@ -1,0 +1,5 @@
+		protected @Nullable IHyperlinkDetector[] internalGetHyperlinkDetectors(
+				ISourceViewer sourceViewer) {
+			return super.getHyperlinkDetectors(sourceViewer);
+		}
+

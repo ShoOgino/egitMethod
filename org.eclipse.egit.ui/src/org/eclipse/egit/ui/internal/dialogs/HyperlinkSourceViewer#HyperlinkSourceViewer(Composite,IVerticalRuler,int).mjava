@@ -1,0 +1,5 @@
+	public HyperlinkSourceViewer(Composite parent, IVerticalRuler ruler,
+			int styles) {
+		super(parent, ruler, styles);
+	}
+

@@ -1,0 +1,5 @@
+		@Override
+		protected Map getHyperlinkDetectorTargets(ISourceViewer sourceViewer) {
+			return super.getHyperlinkDetectorTargets(sourceViewer);
+		}
+

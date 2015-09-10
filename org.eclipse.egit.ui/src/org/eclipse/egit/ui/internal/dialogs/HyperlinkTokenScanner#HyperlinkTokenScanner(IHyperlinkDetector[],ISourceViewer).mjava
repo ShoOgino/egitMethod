@@ -1,5 +1,0 @@
-	public HyperlinkTokenScanner(IHyperlinkDetector[] hyperlinkDetectors,
-			ISourceViewer viewer) {
-		this(hyperlinkDetectors, viewer, null);
-	}
-

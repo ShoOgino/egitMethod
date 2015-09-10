@@ -1,0 +1,10 @@
+	protected HyperlinkTokenScanner(SourceViewerConfiguration configuration,
+			ISourceViewer viewer, @Nullable IPreferenceStore preferenceStore,
+			@Nullable TextAttribute defaultAttribute) {
+		this.viewer = viewer;
+		this.defaultToken = new Token(defaultAttribute);
+		this.configuration = configuration;
+		this.preferenceStore = preferenceStore == null
+				? EditorsUI.getPreferenceStore() : preferenceStore;
+	}
+

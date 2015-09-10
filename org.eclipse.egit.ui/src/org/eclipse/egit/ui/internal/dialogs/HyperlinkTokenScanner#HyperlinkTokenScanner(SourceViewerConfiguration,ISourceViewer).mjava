@@ -1,0 +1,5 @@
+	public HyperlinkTokenScanner(SourceViewerConfiguration configuration,
+			ISourceViewer viewer) {
+		this(configuration, viewer, null);
+	}
+

@@ -1,0 +1,4 @@
+		public Configuration(IPreferenceStore preferenceStore) {
+			super(preferenceStore);
+		}
+
