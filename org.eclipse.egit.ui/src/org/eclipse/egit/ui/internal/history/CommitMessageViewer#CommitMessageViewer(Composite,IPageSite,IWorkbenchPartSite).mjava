@@ -36,7 +36,16 @@
 			public void propertyChange(PropertyChangeEvent event) {
 				if (JFacePreferences.HYPERLINK_COLOR
 						.equals(event.getProperty())) {
-					format();
+					if (!t.isDisposed()) {
+						t.getDisplay().asyncExec(new Runnable() {
+							@Override
+							public void run() {
+								if (!t.isDisposed()) {
+									refresh();
+								}
+							}
+						});
+					}
 				}
 			}
 		};

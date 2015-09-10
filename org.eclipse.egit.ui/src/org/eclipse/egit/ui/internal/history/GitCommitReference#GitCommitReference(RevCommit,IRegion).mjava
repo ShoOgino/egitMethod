@@ -1,0 +1,5 @@
+	public GitCommitReference(@NonNull RevCommit target, @NonNull IRegion region) {
+		this.target = target;
+		this.region = region;
+	}
+
