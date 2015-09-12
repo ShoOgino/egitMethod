@@ -1,0 +1,5 @@
+	@BeforeClass
+	public static void setupAutobuildOff() throws CoreException {
+		initialAutobuild = setAutobuild(false);
+	}
+
