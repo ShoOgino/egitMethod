@@ -5,8 +5,8 @@
 				UIText.StagingView_headCommitChanged, ""); 		if (message == null || message.trim().length() == 0)
 			return false;
 
-		String chIdLine = "Change-Id: I" + ObjectId.zeroId().name(); 
-		if (GerritUtil.getCreateChangeId(currentRepository.getConfig())
+		String chIdLine = "Change-Id: I" + ObjectId.zeroId().name(); 		Repository repo = currentRepository;
+		if (repo != null && GerritUtil.getCreateChangeId(repo.getConfig())
 				&& commitMessageComponent.getCreateChangeId()) {
 			if (message.trim().equals(chIdLine))
 				return false;
