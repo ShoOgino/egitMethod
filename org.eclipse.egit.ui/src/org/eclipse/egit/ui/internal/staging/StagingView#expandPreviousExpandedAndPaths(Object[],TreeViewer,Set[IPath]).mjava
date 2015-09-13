@@ -1,7 +1,14 @@
 	private void expandPreviousExpandedAndPaths(Object[] previous,
 			TreeViewer viewer, Set<IPath> additionalPaths) {
-		if (viewer.getAutoExpandLevel() == AbstractTreeViewer.ALL_LEVELS)
+
+		StagingViewContentProvider stagedContentProvider = getContentProvider(
+				viewer);
+		int count = stagedContentProvider.getCount();
+		updateAutoExpand(viewer, count);
+
+		if (viewer.getAutoExpandLevel() == AbstractTreeViewer.ALL_LEVELS) {
 			return;
+		}
 
 		if (getPresentation() == Presentation.LIST)
 			return;
@@ -11,7 +18,7 @@
 			if (element instanceof StagingFolderEntry)
 				addPathAndParentPaths(((StagingFolderEntry) element).getPath(), paths);
 		List<StagingFolderEntry> expand = new ArrayList<StagingFolderEntry>();
-		StagingViewContentProvider stagedContentProvider = getContentProvider(viewer);
+
 		calculateNodesToExpand(paths, stagedContentProvider.getElements(null),
 				expand);
 		viewer.setExpandedElements(expand.toArray());

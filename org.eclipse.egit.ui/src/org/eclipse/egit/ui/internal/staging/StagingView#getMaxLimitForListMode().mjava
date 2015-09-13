@@ -1,0 +1,5 @@
+	private int getMaxLimitForListMode() {
+		return Activator.getDefault().getPreferenceStore()
+				.getInt(UIPreferences.STAGING_VIEW_MAX_LIMIT_LIST_MODE);
+	}
+

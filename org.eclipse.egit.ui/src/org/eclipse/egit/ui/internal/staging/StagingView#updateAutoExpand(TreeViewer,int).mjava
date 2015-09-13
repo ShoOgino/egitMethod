@@ -1,0 +1,7 @@
+	private int updateAutoExpand(TreeViewer viewer, int newSize) {
+		if (newSize > getMaxLimitForListMode()) {
+			disableAutoExpand(viewer);
+		}
+		return newSize;
+	}
+
