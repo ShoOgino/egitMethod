@@ -1,0 +1,15 @@
+	private Set<File> determineChangedFilesOfCommit(
+			RepositoryCommit repoCommit) {
+		Set<File> changedFilesOfCommit = new HashSet<File>();
+		File rootOfWorkingDirectory = repoCommit.getRepository().getWorkTree();
+
+		FileDiff[] fileDiffs = repoCommit.getDiffs();
+		for (FileDiff fileDiff : fileDiffs) {
+			addIfNotDevNull(changedFilesOfCommit, rootOfWorkingDirectory,
+					fileDiff.getNewPath());
+			addIfNotDevNull(changedFilesOfCommit, rootOfWorkingDirectory,
+					fileDiff.getOldPath());
+		}
+		return changedFilesOfCommit;
+	}
+

@@ -1,0 +1,7 @@
+	private void addIfNotDevNull(Set<File> changedFilesOfCommit,
+			File rootOfWorkingDirectory, String relativePathOfChangedFile) {
+		if (!relativePathOfChangedFile.contains("/dev/null")) { 			changedFilesOfCommit.add(new File(rootOfWorkingDirectory,
+					relativePathOfChangedFile));
+		}
+	}
+
