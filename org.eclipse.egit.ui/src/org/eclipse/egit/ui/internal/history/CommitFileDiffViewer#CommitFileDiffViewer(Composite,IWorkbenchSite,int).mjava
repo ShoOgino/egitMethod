@@ -167,6 +167,12 @@
 		mgr.add(selectAll = createStandardAction(ActionFactory.SELECT_ALL));
 		mgr.add(copy = createStandardAction(ActionFactory.COPY));
 
+		mgr.addMenuListener(new IMenuListener() {
+			@Override
+			public void menuAboutToShow(IMenuManager manager) {
+				getControl().setFocus();
+			}
+		});
 		if (site instanceof IPageSite) {
 			final IPageSite pageSite = (IPageSite) site;
 			getControl().addFocusListener(new FocusListener() {
