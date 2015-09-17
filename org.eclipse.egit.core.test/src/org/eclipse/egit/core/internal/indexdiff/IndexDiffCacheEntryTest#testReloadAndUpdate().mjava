@@ -24,6 +24,7 @@
 		cleanEntryFlags();
 
 		ResourcesPlugin.getWorkspace().run(new IWorkspaceRunnable() {
+			@Override
 			public void run(IProgressMonitor monitor) throws CoreException {
 				try {
 					project.createFile("bla", "bla\n".getBytes("UTF-8"));
@@ -41,6 +42,7 @@
 		cleanEntryFlags();
 
 		ResourcesPlugin.getWorkspace().run(new IWorkspaceRunnable() {
+			@Override
 			public void run(IProgressMonitor monitor) throws CoreException {
 				try {
 					project.createFile("blip", "blip\n".getBytes("UTF-8"));
@@ -57,6 +59,7 @@
 		cleanEntryFlags();
 
 		ResourcesPlugin.getWorkspace().run(new IWorkspaceRunnable() {
+			@Override
 			public void run(IProgressMonitor monitor) throws CoreException {
 				try {
 					project.createFile(".gitignore", "\n".getBytes("UTF-8"));

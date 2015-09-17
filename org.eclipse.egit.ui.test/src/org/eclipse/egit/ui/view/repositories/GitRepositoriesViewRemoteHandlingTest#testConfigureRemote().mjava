@@ -61,6 +61,7 @@
 				UIText.RefSpecDialog_DestinationPushLabel).widget;
 		shell.display.syncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				text.setFocus();
 				text.notifyListeners(SWT.Modify, new Event());
@@ -162,6 +163,7 @@
 				UIText.RefSpecDialog_DestinationPushLabel).widget;
 		shell.display.syncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				text2.setFocus();
 				text2.notifyListeners(SWT.Modify, new Event());

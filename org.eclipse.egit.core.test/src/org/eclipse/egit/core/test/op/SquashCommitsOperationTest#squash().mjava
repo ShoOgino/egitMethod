@@ -1,9 +1,11 @@
 	@Test
 	public void squash() throws Exception {
 		InteractiveHandler messageHandler = new InteractiveHandler() {
+			@Override
 			public void prepareSteps(List<RebaseTodoLine> steps) {
 			}
 
+			@Override
 			public String modifyCommitMessage(String commit) {
 				return "squashed";
 			}

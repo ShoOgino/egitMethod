@@ -1,3 +1,4 @@
+	@Override
 	public String getMessage(IResource[] resources) {
 		String message = ""; 		if (resources == null)
 			return message;

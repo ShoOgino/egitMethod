@@ -5,6 +5,7 @@
 
 		final MenuItem menuItem = UIThreadRunnable
 				.syncExec(new WidgetResult<MenuItem>() {
+					@Override
 					public MenuItem run() {
 						MenuItem theItem = getMenuItem(bot, texts);
 						if (theItem != null && !theItem.isEnabled())
@@ -21,6 +22,7 @@
 		click(menuItem, sync);
 
 		UIThreadRunnable.syncExec(new VoidResult() {
+			@Override
 			public void run() {
 				if (menuItem.isDisposed())
 					return; 				hide(menuItem.getParent());

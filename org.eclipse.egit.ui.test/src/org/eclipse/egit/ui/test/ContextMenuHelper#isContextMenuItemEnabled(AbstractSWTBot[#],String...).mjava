@@ -4,6 +4,7 @@
 		final AtomicBoolean enabled = new AtomicBoolean(false);
 		final MenuItem menuItem = UIThreadRunnable
 				.syncExec(new WidgetResult<MenuItem>() {
+					@Override
 					public MenuItem run() {
 						MenuItem theItem = getMenuItem(bot, texts);
 						if (theItem != null && theItem.isEnabled())
@@ -15,6 +16,7 @@
 			throw new WidgetNotFoundException("Could not find menu: "
 					+ Arrays.asList(texts));
 		UIThreadRunnable.syncExec(new VoidResult() {
+			@Override
 			public void run() {
 				if (menuItem.isDisposed())
 					return; 				hide(menuItem.getParent());
