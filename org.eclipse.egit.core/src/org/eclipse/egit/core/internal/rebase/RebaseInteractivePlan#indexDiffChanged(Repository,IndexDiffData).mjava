@@ -1,3 +1,4 @@
+	@Override
 	public void indexDiffChanged(Repository repo, IndexDiffData indexDiffData) {
 		if (RebaseInteractivePlan.this.repository == repo)
 			reparsePlan();

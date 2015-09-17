@@ -2,15 +2,18 @@
 			final String text, long timeout) throws TimeoutException {
 		bot.waitUntil(new ICondition() {
 
+			@Override
 			public boolean test() throws Exception {
 				if (table.indexOf(text)<0)
 					return false;
 				return true;
 			}
 
+			@Override
 			public void init(SWTBot bot2) {
 			}
 
+			@Override
 			public String getFailureMessage() {
 				return null;
 			}
