@@ -1,5 +1,5 @@
 	protected void finish(IProgressMonitor monitor, String branchName)
 			throws CoreException {
-		finish(monitor, branchName, false, false);
+		finish(monitor, branchName, false, false, false);
 	}
 

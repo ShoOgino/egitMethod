@@ -10,6 +10,6 @@
 		safeCreateTag(monitor, repository.getConfig().getVersionTagPrefix() + versionName,
 				NLS.bind(CoreText.ReleaseFinishOperation_releaseOf, versionName));
 
-		finish(monitor, releaseBranchName, false , false);
+		finish(monitor, releaseBranchName, false 				, false , false);
 	}
 

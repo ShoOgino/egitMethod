@@ -1,5 +1,5 @@
 	protected void finish(IProgressMonitor monitor, String branchName,
-			boolean squash, boolean fastForwardSingleCommit)
+			boolean squash, boolean keepBranch, boolean fastForwardSingleCommit)
 			throws CoreException {
 		try {
 			mergeResult = mergeTo(monitor, branchName, repository.getConfig()
@@ -14,8 +14,11 @@
 						CoreText.GitFlowOperation_branchMissing, branchName));
 			}
 			boolean forceDelete = squash;
-			new DeleteBranchOperation(repository.getRepository(), branch, forceDelete)
-					.execute(monitor);
+
+			if (!keepBranch) {
+				new DeleteBranchOperation(repository.getRepository(), branch,
+						forceDelete).execute(monitor);
+			}
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}

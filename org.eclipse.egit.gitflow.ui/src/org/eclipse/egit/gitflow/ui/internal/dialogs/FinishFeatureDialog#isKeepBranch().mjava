@@ -1,0 +1,4 @@
+	public boolean isKeepBranch() {
+		return keepBranch;
+	}
+
