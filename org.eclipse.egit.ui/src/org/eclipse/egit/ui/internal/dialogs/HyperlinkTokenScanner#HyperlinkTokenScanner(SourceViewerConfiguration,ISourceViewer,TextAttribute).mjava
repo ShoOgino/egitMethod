@@ -1,0 +1,5 @@
+	public HyperlinkTokenScanner(SourceViewerConfiguration configuration,
+			ISourceViewer viewer, @Nullable TextAttribute defaultAttribute) {
+		this(configuration, viewer, null, defaultAttribute);
+	}
+

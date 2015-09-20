@@ -1,0 +1,4 @@
+		private NoMaskHyperlinkDetector(IHyperlinkDetector delegate) {
+			super(delegate, SWT.NONE);
+		}
+

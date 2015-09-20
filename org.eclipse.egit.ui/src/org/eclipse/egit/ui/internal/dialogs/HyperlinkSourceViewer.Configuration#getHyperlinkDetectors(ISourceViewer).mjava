@@ -1,0 +1,40 @@
+		@Override
+		public final IHyperlinkDetector[] getHyperlinkDetectors(
+				ISourceViewer sourceViewer) {
+			IHyperlinkDetector[] detectors = internalGetHyperlinkDetectors(
+					sourceViewer);
+			if (detectors != null && detectors.length > 0
+					&& getHyperlinkStateMask(sourceViewer) == SWT.NONE) {
+				int defaultMask = getConfiguredDefaultMask();
+				IHyperlinkDetector[] newDetectors = new IHyperlinkDetector[detectors.length
+						* 2];
+				int j = 0;
+				for (IHyperlinkDetector original : detectors) {
+					if (original instanceof IHyperlinkDetectorExtension2) {
+						int mask = ((IHyperlinkDetectorExtension2) original)
+								.getStateMask();
+						if (mask == -1) {
+							newDetectors[j++] = new FixedMaskHyperlinkDetector(
+									original, defaultMask);
+							if (defaultMask != SWT.NONE) {
+								newDetectors[j++] = new NoMaskHyperlinkDetector(
+										original);
+							}
+						} else {
+							newDetectors[j++] = original;
+							if (mask != SWT.NONE) {
+								newDetectors[j++] = new NoMaskHyperlinkDetector(
+										original);
+							}
+						}
+					} else {
+						newDetectors[j++] = original;
+					}
+				}
+				IHyperlinkDetector[] result = new IHyperlinkDetector[j];
+				System.arraycopy(newDetectors, 0, result, 0, j);
+				return result;
+			}
+			return detectors;
+		}
+
