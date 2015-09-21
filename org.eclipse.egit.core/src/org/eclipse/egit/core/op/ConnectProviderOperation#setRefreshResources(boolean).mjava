@@ -1,0 +1,4 @@
+	public void setRefreshResources(boolean refresh) {
+		this.refreshResources = refresh;
+	}
+
