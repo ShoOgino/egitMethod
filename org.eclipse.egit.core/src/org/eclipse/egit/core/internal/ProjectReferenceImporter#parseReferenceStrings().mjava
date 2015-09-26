@@ -3,6 +3,9 @@
 		final Map<URIish, Map<String, Set<ProjectReference>>> repositories = new LinkedHashMap<URIish, Map<String, Set<ProjectReference>>>();
 
 		for (final String reference : referenceStrings) {
+			if (reference == null) {
+				continue;
+			}
 			try {
 				final ProjectReference projectReference = new ProjectReference(
 						reference);
