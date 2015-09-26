@@ -11,7 +11,10 @@
 			branchesOfCommit = getBranchesOfCommit(getSelection(page),
 					repository, true);
 		} catch (IOException e) {
-			Activator.logError("Could not calculate Enablement", e); 			return false;
+			Activator.logError(
+					UIText.AbstractHistoryCommitHandler_cantGetBranches,
+					e);
+			return false;
 		}
 		return !branchesOfCommit.isEmpty();
 	}
