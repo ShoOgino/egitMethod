@@ -1,5 +1,6 @@
 	@Override
 	public void createPartControl(Composite parent) {
+		dateFormatter.set(PreferenceBasedDateFormatter.create());
 		GridLayoutFactory.fillDefaults().applyTo(parent);
 
 		toolkit = new FormToolkit(parent.getDisplay());
@@ -98,7 +99,7 @@
 			public String getText(Object element) {
 				final ReflogEntry entry = (ReflogEntry) element;
 				final PersonIdent who = entry.getWho();
-				return absoluteFormatter.format(who.getWhen());
+				return dateFormatter.get().formatDate(who);
 			}
 
 			@Override
@@ -179,6 +180,19 @@
 			}
 		};
 
+		uiPrefsListener = new IPropertyChangeListener() {
+			@Override
+			public void propertyChange(PropertyChangeEvent event) {
+				String property = event.getProperty();
+				if (UIPreferences.DATE_FORMAT.equals(property)
+						|| UIPreferences.DATE_FORMAT_CHOICE.equals(property)) {
+					dateFormatter.set(PreferenceBasedDateFormatter.create());
+					refLogTableTreeViewer.refresh();
+				}
+			}
+		};
+		Activator.getDefault().getPreferenceStore()
+				.addPropertyChangeListener(uiPrefsListener);
 		selectionChangedListener = new ISelectionListener() {
 			@Override
 			public void selectionChanged(IWorkbenchPart part,
