@@ -1,0 +1,10 @@
+	@Override
+	public String formatDate(PersonIdent ident) {
+		if (ident == null) {
+			return ""; 		}
+		if (customFormat == null) {
+			return super.formatDate(ident);
+		}
+		return customFormat.format(ident.getWhen());
+	}
+

@@ -1,0 +1,8 @@
+	public String formatDate(Date date) {
+		if (date == null) {
+			return ""; 		}
+		TimeZone timeZone = TimeZone.getDefault();
+		Assert.isNotNull(timeZone);
+		return formatDate(date, timeZone);
+	}
+

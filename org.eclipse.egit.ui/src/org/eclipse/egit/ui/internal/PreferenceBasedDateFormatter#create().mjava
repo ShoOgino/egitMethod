@@ -1,0 +1,11 @@
+	public static @NonNull PreferenceBasedDateFormatter create() {
+		String choice = Activator.getDefault().getPreferenceStore()
+				.getString(UIPreferences.DATE_FORMAT_CHOICE);
+		GitDateFormatter.Format format = null;
+		try {
+			format = GitDateFormatter.Format.valueOf(choice);
+		} catch (IllegalArgumentException | NullPointerException e) {
+		}
+		return new PreferenceBasedDateFormatter(format);
+	}
+

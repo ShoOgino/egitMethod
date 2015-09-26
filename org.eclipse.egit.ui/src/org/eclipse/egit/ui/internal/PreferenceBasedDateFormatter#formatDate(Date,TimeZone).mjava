@@ -1,0 +1,3 @@
+	public String formatDate(@NonNull Date date, @NonNull TimeZone timeZone) {
+		return formatDate(new PersonIdent("", "", date, timeZone)); 	}
+

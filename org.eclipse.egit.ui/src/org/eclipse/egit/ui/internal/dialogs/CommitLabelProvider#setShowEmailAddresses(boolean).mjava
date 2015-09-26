@@ -1,4 +1,7 @@
-	public void setShowEmailAddresses(boolean showEmail) {
-		this.showEmail = showEmail;
+	private void setShowEmailAddresses(boolean showEmail) {
+		if (showEmail != this.showEmail) {
+			this.showEmail = showEmail;
+			fireLabelProviderChanged(new LabelProviderChangedEvent(this));
+		}
 	}
 
