@@ -1,9 +1,0 @@
-	@Nullable
-	public static IResource getResourceForLocation(@NonNull IPath location) {
-		IFile file = getFileForLocation(location);
-		if (file != null) {
-			return file;
-		}
-		return getContainerForLocation(location);
-	}
-

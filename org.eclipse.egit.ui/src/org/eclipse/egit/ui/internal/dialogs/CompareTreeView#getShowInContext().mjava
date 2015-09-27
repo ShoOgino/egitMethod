@@ -11,7 +11,7 @@
 				PathNode pathNode = (PathNode) obj;
 				IResource resource = ResourceUtil
 						.getResourceForLocation(repoPath.append(pathNode
-								.getRepoRelativePath()));
+								.getRepoRelativePath()), false);
 				if (resource != null)
 					resources.add(resource);
 			}

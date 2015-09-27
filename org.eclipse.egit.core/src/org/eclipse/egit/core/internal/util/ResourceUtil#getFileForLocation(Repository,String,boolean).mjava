@@ -1,7 +1,7 @@
 	@Nullable
 	public static IFile getFileForLocation(@NonNull Repository repository,
-			@NonNull String repoRelativePath) {
+			@NonNull String repoRelativePath, boolean innerMost) {
 		IPath path = new Path(repository.getWorkTree().getAbsolutePath()).append(repoRelativePath);
-		return getFileForLocation(path);
+		return getFileForLocation(path, innerMost);
 	}
 

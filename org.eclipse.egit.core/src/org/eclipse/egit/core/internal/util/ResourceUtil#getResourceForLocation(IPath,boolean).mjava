@@ -1,0 +1,9 @@
+	@Nullable
+	public static IResource getResourceForLocation(@NonNull IPath location, boolean innerMost) {
+		IFile file = getFileForLocation(location, innerMost);
+		if (file != null) {
+			return file;
+		}
+		return getContainerForLocation(location, innerMost);
+	}
+

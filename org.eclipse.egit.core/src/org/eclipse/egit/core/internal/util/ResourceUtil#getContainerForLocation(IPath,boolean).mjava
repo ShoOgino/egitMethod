@@ -1,0 +1,19 @@
+	@Nullable
+	public static IContainer getContainerForLocation(@NonNull IPath location,
+			boolean innerMost) {
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		IContainer dir = root.getContainerForLocation(location);
+		if (dir == null) {
+			return null;
+		}
+		if (!innerMost && isValid(dir)) {
+			return dir;
+		}
+		URI uri = URIUtil.toURI(location);
+		IContainer dir2 = getContainerForLocationURI(root, uri);
+		if (dir2 == null && isValid(dir)) {
+			return dir;
+		}
+		return dir2;
+	}
+
