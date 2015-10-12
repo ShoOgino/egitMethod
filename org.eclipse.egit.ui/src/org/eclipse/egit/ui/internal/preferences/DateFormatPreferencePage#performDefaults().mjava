@@ -1,0 +1,9 @@
+	@Override
+	protected void performDefaults() {
+		super.performDefaults();
+		lastCustomValue = getPreferenceStore()
+				.getDefaultString(UIPreferences.DATE_FORMAT);
+		updateFields(getPreferenceStore()
+				.getDefaultString(UIPreferences.DATE_FORMAT_CHOICE));
+	}
+
