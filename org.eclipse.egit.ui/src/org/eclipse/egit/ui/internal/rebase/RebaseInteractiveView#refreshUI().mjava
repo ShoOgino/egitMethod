@@ -2,8 +2,15 @@
 		dateFormatter = getNewDateFormatter();
 		if (planTreeViewer != null) {
 			planTreeViewer.refresh(true);
-			for (TreeViewerColumn col : dynamicColumns)
+			for (TreeViewerColumn col : dynamicColumns) {
 				col.getColumn().pack();
+			}
+			for (TreeViewerColumn col : dynamicColumns) {
+				int width = col.getColumn().getWidth();
+				planLayout.setColumnData(col.getColumn(),
+						new ColumnWeightData(width, width));
+			}
+			planLayout.layout(planTreeViewer.getTree().getParent(), true);
 		}
 
 		startItem.setEnabled(false);
