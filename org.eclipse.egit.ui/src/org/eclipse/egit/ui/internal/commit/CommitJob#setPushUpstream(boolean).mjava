@@ -1,5 +1,0 @@
-	public CommitJob setPushUpstream(boolean pushUpstream) {
-		this.pushUpstream = pushUpstream;
-		return this;
-	}
-

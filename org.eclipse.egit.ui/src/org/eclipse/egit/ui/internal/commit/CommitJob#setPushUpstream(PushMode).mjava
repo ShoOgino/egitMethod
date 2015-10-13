@@ -1,0 +1,5 @@
+	public CommitJob setPushUpstream(final PushMode pushMode) {
+		this.pushMode = pushMode;
+		return this;
+	}
+
