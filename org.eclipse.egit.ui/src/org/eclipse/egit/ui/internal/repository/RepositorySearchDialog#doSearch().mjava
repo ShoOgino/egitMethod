@@ -65,6 +65,7 @@
 		checkAllItem.setEnabled(!validDirs.isEmpty());
 		uncheckAllItem.setEnabled(!validDirs.isEmpty());
 		fTree.clearFilter();
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(fTree);
 		fTreeViewer.setInput(validDirs);
 		enableOk();
 	}
