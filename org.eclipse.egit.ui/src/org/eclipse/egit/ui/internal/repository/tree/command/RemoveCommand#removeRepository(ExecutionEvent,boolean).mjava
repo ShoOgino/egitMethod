@@ -70,7 +70,7 @@
 				monitor.setTaskName(UIText.RepositoriesView_DeleteRepoDeterminProjectsMessage);
 
 				if (removeProj) {
-					deleteProjects(delete, projectsToDelete,
+					deleteProjects(deleteWorkDir, projectsToDelete,
 							monitor);
 				}
 				for (RepositoryNode node : selectedNodes) {
