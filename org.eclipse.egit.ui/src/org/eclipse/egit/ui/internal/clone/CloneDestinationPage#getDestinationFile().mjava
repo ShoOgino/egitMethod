@@ -1,4 +1,4 @@
 	public File getDestinationFile() {
-		return new File(directoryText.getText());
+		return FileUtils.canonicalize(new File(directoryText.getText()));
 	}
 
