@@ -67,6 +67,11 @@
 		fTree.clearFilter();
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(fTree);
 		fTreeViewer.setInput(validDirs);
+
+		if (!validDirs.isEmpty()) {
+			fTree.getFilterControl().setFocus();
+		}
+
 		enableOk();
 	}
 
