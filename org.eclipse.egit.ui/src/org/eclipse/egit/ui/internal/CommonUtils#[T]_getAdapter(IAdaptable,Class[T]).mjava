@@ -1,6 +1,0 @@
-	public static <T> T getAdapter(IAdaptable adaptable,
-			Class<T> adapterClass) {
-		Object adapter = adaptable.getAdapter(adapterClass);
-		return adapterClass.cast(adapter);
-	}
-

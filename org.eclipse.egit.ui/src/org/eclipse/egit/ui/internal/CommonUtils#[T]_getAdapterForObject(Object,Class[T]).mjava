@@ -1,5 +1,0 @@
-	@Nullable
-	public static <T> T getAdapterForObject(Object element, Class<T> adapterType) {
-		return AdapterUtils.adapt(element, adapterType);
-	}
-
