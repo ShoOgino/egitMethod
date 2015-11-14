@@ -1,0 +1,4 @@
+		@Override
+		public void stateChangeFailed(IFileBuffer buffer) {
+		}
+
