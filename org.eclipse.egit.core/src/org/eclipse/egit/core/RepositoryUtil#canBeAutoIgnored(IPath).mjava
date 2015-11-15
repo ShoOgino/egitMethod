@@ -1,15 +1,19 @@
 	public static boolean canBeAutoIgnored(IPath path) throws IOException {
-		RepositoryMapping mapping = RepositoryMapping.getMapping(path);
-		if (mapping == null) {
-			return false; 		}
-		Repository repository = mapping.getRepository();
+		Repository repository = Activator.getDefault().getRepositoryCache()
+				.getRepository(path);
+		if (repository == null || repository.isBare()) {
+			return false;
+		}
 		WorkingTreeIterator treeIterator = IteratorService
 				.createInitialIterator(repository);
 		if (treeIterator == null) {
 			return false;
 		}
-		String repoRelativePath = mapping.getRepoRelativePath(path);
-		if (repoRelativePath == null || repoRelativePath.isEmpty()) {
+		String repoRelativePath = path
+				.makeRelativeTo(
+						new Path(repository.getWorkTree().getAbsolutePath()))
+				.toString();
+		if (repoRelativePath.length() == 0 || repoRelativePath.equals(path)) {
 			return false;
 		}
 		try (TreeWalk walk = new TreeWalk(repository)) {
