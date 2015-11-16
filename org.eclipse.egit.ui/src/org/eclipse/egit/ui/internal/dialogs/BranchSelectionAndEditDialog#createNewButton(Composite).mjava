@@ -24,7 +24,7 @@
 					try {
 						branchTree.refresh();
 						markRef(Constants.R_HEADS + newRefName);
-						if (repo.getBranch().equals(newRefName))
+						if (newRefName.equals(repo.getBranch()))
 							BranchSelectionAndEditDialog.this.okPressed();
 					} catch (Throwable e1) {
 						reportError(
