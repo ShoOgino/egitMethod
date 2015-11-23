@@ -1,6 +1,6 @@
 	@Nullable
-	static IndexDiffData getIndexDiffDataOrNull(IResource resource) {
-		if (resource.getType() == IResource.ROOT) {
+	public IndexDiffData getIndexDiffDataOrNull(@Nullable IResource resource) {
+		if (resource == null || resource.getType() == IResource.ROOT) {
 			return null;
 		}
 
@@ -15,24 +15,24 @@
 		}
 
 		Repository repo = mapping.getRepository();
-		if(repo == null){
+		if (repo == null) {
 			return null;
 		}
 
 		if (repo.isBare()) {
 			return new IndexDiffData();
 		}
-		
+
 		if (mapping.getRepoRelativePath(resource) == null) {
 			return null;
 		}
 
 		IndexDiffCacheEntry diffCacheEntry = org.eclipse.egit.core.Activator
-				.getDefault().getIndexDiffCache()
-				.getIndexDiffCacheEntry(repo);
+				.getDefault().getIndexDiffCache().getIndexDiffCacheEntry(repo);
 		if (diffCacheEntry == null) {
 			return null;
 		}
 		return diffCacheEntry.getIndexDiff();
+
 	}
 

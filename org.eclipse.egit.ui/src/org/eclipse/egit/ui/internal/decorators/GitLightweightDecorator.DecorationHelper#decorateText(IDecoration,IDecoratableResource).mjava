@@ -30,8 +30,7 @@
 			bindings.put(BINDING_REPOSITORY_NAME, resource.getRepositoryName());
 			bindings.put(BINDING_BRANCH_NAME, resource.getBranch());
 			bindings.put(BINDING_BRANCH_STATUS, resource.getBranchStatus());
-			bindings.put(BINDING_DIRTY_FLAG, resource.isDirty() ? ">" : null); 			bindings.put(BINDING_STAGED_FLAG,
-					resource.staged() != Staged.NOT_STAGED ? "*" : null); 
+			bindings.put(BINDING_DIRTY_FLAG, resource.isDirty() ? ">" : null); 			bindings.put(BINDING_STAGED_FLAG, resource.isStaged() ? "*" : null); 
 			decorate(decoration, format, bindings);
 		}
 

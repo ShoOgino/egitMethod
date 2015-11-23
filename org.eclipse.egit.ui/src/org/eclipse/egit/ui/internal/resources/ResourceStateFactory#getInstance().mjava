@@ -1,0 +1,5 @@
+	@NonNull
+	public static ResourceStateFactory getInstance() {
+		return INSTANCE;
+	}
+

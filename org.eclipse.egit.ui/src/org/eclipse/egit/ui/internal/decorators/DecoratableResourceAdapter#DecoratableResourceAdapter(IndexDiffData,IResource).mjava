@@ -1,8 +1,8 @@
-	public DecoratableResourceAdapter(IndexDiffData indexDiffData, IResource resourceToWrap)
+	public DecoratableResourceAdapter(@NonNull IndexDiffData indexDiffData,
+			@NonNull IResource resourceToWrap)
 			throws IOException {
 		super(resourceToWrap);
-		this.indexDiffData = indexDiffData;
-		trace = GitTraceLocation.DECORATION.isActive();
+		boolean trace = GitTraceLocation.DECORATION.isActive();
 		long start = 0;
 		if (trace) {
 			GitTraceLocation.getTrace().trace(
@@ -10,28 +10,28 @@
 					"Decorate " + resource.getFullPath()); 			start = System.currentTimeMillis();
 		}
 		try {
-			mapping = RepositoryMapping.getMapping(resource);
+			RepositoryMapping mapping = RepositoryMapping
+					.getMapping(resourceToWrap);
 			if (mapping == null) {
-				repository = null;
 				return;
 			}
-			repository = mapping.getRepository();
-			if (repository == null)
+			Repository repository = mapping.getRepository();
+			if (repository == null) {
 				return;
-
-			switch (resource.getType()) {
-			case IResource.FILE:
-				extractResourceProperties();
-				break;
-			case IResource.PROJECT:
+			}
+			IResourceState baseState = ResourceStateFactory.getInstance()
+					.get(indexDiffData, resourceToWrap);
+			setTracked(baseState.isTracked());
+			setIgnored(baseState.isIgnored());
+			setDirty(baseState.isDirty());
+			setConflicts(baseState.hasConflicts());
+			setAssumeValid(baseState.isAssumeValid());
+			setStagingState(baseState.getStagingState());
+			if (resource.getType() == IResource.PROJECT) {
 				repositoryName = DecoratableResourceHelper
 						.getRepositoryName(repository);
 				branch = DecoratableResourceHelper.getShortBranch(repository);
 				branchStatus = DecoratableResourceHelper.getBranchStatus(repository);
-				tracked = true;
-			case IResource.FOLDER:
-				extractContainerProperties();
-				break;
 			}
 		} finally {
 			if (trace)

@@ -1,0 +1,4 @@
+	protected void setTracked(boolean tracked) {
+		this.tracked = tracked;
+	}
+

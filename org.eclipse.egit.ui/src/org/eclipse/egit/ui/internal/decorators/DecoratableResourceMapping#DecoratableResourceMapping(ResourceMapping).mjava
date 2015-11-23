@@ -13,11 +13,12 @@
 			if(repoMapping == null)
 				continue;
 
-			IndexDiffData diffData = GitLightweightDecorator.getIndexDiffDataOrNull(prj);
+			IndexDiffData diffData = ResourceStateFactory.getInstance()
+					.getIndexDiffDataOrNull(prj);
 			if(diffData == null)
 				continue;
 
-			tracked = true;
+			setTracked(true);
 
 			Repository repository = repoMapping.getRepository();
 			String repoRelative = makeRepoRelative(repository, prj);
@@ -29,10 +30,10 @@
 			Set<String> conflicting = diffData.getConflicting();
 
 			if(containsPrefix(modified, repoRelative))
-				dirty = true;
+				setDirty(true);
 
 			if(containsPrefix(conflicting, repoRelative))
-				conflicts = true;
+				setConflicts(true);
 
 			repositories.add(repository);
 		}

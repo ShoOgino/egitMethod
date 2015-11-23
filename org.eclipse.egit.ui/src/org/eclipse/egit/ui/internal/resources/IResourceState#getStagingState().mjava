@@ -1,0 +1,3 @@
+	@NonNull
+	StagingState getStagingState();
+

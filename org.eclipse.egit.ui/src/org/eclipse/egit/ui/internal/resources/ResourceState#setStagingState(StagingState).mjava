@@ -1,0 +1,4 @@
+	protected void setStagingState(@NonNull StagingState staged) {
+		this.staged = staged;
+	}
+

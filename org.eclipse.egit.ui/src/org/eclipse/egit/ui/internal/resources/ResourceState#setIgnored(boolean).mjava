@@ -1,0 +1,4 @@
+	protected void setIgnored(boolean ignored) {
+		this.ignored = ignored;
+	}
+
