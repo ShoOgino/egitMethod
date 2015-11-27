@@ -32,11 +32,13 @@
 						styled.append(UIText.PushResultTable_statusOkNewBranch,
 								StyledString.DECORATIONS_STYLER);
 				} else {
-					String separator = update.isFastForward() ? ".." : "..."; 					styled.append(MessageFormat.format(
+					String separator = update.isFastForward() ? ".." : "..."; 					ObjectId objectId = oldRef.getObjectId();
+					Object oldName = objectId != null
+							? objectId.abbreviate(7).name() : "?"; 					styled.append(MessageFormat.format(
 							UIText.RefUpdateElement_CommitRangeDecoration,
 							update.getNewObjectId().abbreviate(7).name(),
-							separator, oldRef.getObjectId().abbreviate(7)
-									.name()), StyledString.DECORATIONS_STYLER);
+									separator, oldName),
+							StyledString.DECORATIONS_STYLER);
 					styled.append(' ');
 					styled.append(MessageFormat.format(
 							UIText.RefUpdateElement_CommitCountDecoration,
