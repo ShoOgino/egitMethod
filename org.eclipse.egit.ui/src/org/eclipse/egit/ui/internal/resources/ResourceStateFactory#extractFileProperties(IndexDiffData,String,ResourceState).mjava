@@ -1,14 +1,5 @@
-	private void extractResourceProperties(@NonNull IndexDiffData indexDiffData,
-			@NonNull IResource resource, @NonNull ResourceState state) {
-		final RepositoryMapping mapping = RepositoryMapping.getMapping(resource);
-		if (mapping == null) {
-			return;
-		}
-		Repository repository = mapping.getRepository();
-		String repoRelativePath = makeRepositoryRelative(repository, resource);
-		if (repoRelativePath == null) {
-			return;
-		}
+	private void extractFileProperties(@NonNull IndexDiffData indexDiffData,
+			@NonNull String repoRelativePath, @NonNull ResourceState state) {
 		Set<String> ignoredFiles = indexDiffData.getIgnoredNotInIndex();
 		boolean ignored = ignoredFiles.contains(repoRelativePath)
 				|| containsPrefixPath(ignoredFiles, repoRelativePath);
@@ -34,5 +25,8 @@
 
 		Set<String> modified = indexDiffData.getModified();
 		state.setDirty(modified.contains(repoRelativePath));
+
+		Set<String> missing = indexDiffData.getMissing();
+		state.setMissing(missing.contains(repoRelativePath));
 	}
 
