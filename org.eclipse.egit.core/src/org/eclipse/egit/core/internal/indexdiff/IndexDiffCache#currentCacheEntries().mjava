@@ -1,0 +1,9 @@
+	@NonNull
+	public Set<Repository> currentCacheEntries() {
+		Set<Repository> result = null;
+		synchronized (entries) {
+			result = new HashSet<>(entries.keySet());
+		}
+		return result;
+	}
+
