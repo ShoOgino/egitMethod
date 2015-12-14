@@ -21,9 +21,6 @@
 		}
 
 		StoredConfig config = repository.getConfig();
-		if (config == null) {
-			variable.setValue(""); 			return;
-		}
 
 		final String[] splits = gitKey.split("\\."); 		String section = null;
 		String subSection = null;

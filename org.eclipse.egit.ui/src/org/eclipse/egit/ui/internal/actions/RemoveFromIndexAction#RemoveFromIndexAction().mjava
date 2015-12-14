@@ -1,4 +1,0 @@
-	public RemoveFromIndexAction() {
-		super(REMOVE_FROM_INDEX, new RemoveFromIndexActionHandler());
-	}
-

@@ -1,0 +1,12 @@
+	public LocalNonWorkspaceTypedElement(Repository repository, IPath path) {
+		super(ROOT.getFile(path));
+		this.path = path;
+		this.repository = repository;
+
+		File file = path.toFile();
+		exists = file.exists();
+		if (exists) {
+			timestamp = file.lastModified();
+		}
+	}
+

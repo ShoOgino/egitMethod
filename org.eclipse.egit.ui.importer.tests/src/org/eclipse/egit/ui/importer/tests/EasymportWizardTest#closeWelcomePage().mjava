@@ -1,0 +1,11 @@
+	private static void closeWelcomePage() {
+		if (welcomePageClosed)
+			return;
+		try {
+			bot.viewByTitle("Welcome").close();
+		} catch (WidgetNotFoundException e) {
+		} finally {
+			welcomePageClosed = true;
+		}
+	}
+

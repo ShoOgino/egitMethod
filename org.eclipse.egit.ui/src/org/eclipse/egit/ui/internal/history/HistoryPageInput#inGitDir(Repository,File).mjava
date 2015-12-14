@@ -1,0 +1,5 @@
+	private boolean inGitDir(Repository repository, File file) {
+		return file.getAbsoluteFile().toPath().startsWith(
+				repository.getDirectory().getAbsoluteFile().toPath());
+	}
+

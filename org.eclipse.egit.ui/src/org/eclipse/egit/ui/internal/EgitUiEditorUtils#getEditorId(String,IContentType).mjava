@@ -5,7 +5,8 @@
 				.getDefaultEditor(fileName, type);
 		String id;
 		if (descriptor == null || descriptor.isOpenExternal()) {
-			id = "org.eclipse.ui.DefaultTextEditor"; 		} else {
+			id = EditorsUI.DEFAULT_TEXT_EDITOR_ID;
+		} else {
 			id = descriptor.getId();
 		}
 		return id;

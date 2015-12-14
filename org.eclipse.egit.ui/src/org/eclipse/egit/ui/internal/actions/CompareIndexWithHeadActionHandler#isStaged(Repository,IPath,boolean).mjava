@@ -1,15 +1,13 @@
 	private boolean isStaged(Repository repository, IPath location,
 			boolean checkIndex) {
-		if (location == null || location.toFile().isDirectory()) {
+		if (location == null || location.toFile().isDirectory()
+				|| repository.isBare()) {
 			return false;
 		}
-		RepositoryMapping mapping = RepositoryMapping.getMapping(location);
-		if (mapping == null) {
-			return false;
-		}
-		String resRelPath = mapping.getRepoRelativePath(location);
-
-		if (resRelPath == null || resRelPath.length() == 0) {
+		IPath workDir = new Path(repository.getWorkTree().getAbsolutePath());
+		String resRelPath = location.makeRelativeTo(workDir).toString();
+		if (resRelPath.length() == 0
+				|| resRelPath.equals(location.toString())) {
 			return false;
 		}
 

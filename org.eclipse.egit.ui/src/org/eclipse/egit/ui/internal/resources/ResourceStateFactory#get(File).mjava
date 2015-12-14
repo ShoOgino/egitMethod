@@ -1,0 +1,9 @@
+	@NonNull
+	public IResourceState get(@Nullable File file) {
+		IndexDiffData indexDiffData = getIndexDiffDataOrNull(file);
+		if (indexDiffData == null || file == null) {
+			return UNKNOWN_STATE;
+		}
+		return get(indexDiffData, file);
+	}
+

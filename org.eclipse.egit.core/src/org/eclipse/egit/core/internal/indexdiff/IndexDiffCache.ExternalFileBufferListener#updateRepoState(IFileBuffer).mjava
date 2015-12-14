@@ -1,0 +1,27 @@
+		private void updateRepoState(IFileBuffer buffer) {
+			IFile file = getResource(buffer);
+			if (file != null) {
+				return;
+			}
+
+			Repository repo = getRepository(buffer);
+			if (repo == null || repo.isBare()) {
+				return;
+			}
+			IPath relativePath = getRelativePath(repo, buffer);
+			if (relativePath == null || relativePath.isEmpty()) {
+				return;
+			}
+
+			IndexDiffCacheEntry diffEntry = getIndexDiffCacheEntry(repo);
+			if (diffEntry != null) {
+				if (Constants.DOT_GIT_IGNORE
+						.equals(relativePath.lastSegment())) {
+					diffEntry.refresh();
+				} else {
+					diffEntry.refreshFiles(
+						Collections.singleton(relativePath.toString()));
+				}
+			}
+		}
+

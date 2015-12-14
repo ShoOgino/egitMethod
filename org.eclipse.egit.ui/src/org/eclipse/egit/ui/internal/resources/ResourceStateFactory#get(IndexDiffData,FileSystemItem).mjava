@@ -1,0 +1,41 @@
+	@NonNull
+	private IResourceState get(@NonNull IndexDiffData indexDiffData,
+			@NonNull FileSystemItem file) {
+		IPath path = file.getAbsolutePath();
+		if (path == null) {
+			return UNKNOWN_STATE;
+		}
+		Repository repository = null;
+		RepositoryMapping mapping = RepositoryMapping.getMapping(path);
+		if (mapping != null) {
+			repository = mapping.getRepository();
+		} else {
+			repository = Activator.getDefault().getRepositoryCache()
+					.getRepository(path);
+		}
+		if (repository == null || repository.isBare()) {
+			return UNKNOWN_STATE;
+		}
+		File workTree = repository.getWorkTree();
+		String repoRelativePath = path.makeRelativeTo(
+				new org.eclipse.core.runtime.Path(workTree.getAbsolutePath()))
+				.toString();
+		if (repoRelativePath.equals(path.toString())) {
+			return UNKNOWN_STATE;
+		}
+		ResourceState result = new ResourceState();
+		if (file.isContainer()) {
+			if (!repoRelativePath.endsWith("/")) { 				repoRelativePath += '/';
+			}
+			if (ResourceUtil.isSymbolicLink(repository, repoRelativePath)) {
+				extractFileProperties(indexDiffData, repoRelativePath, result);
+			} else {
+				extractContainerProperties(indexDiffData, repoRelativePath,
+						file, result);
+			}
+		} else {
+			extractFileProperties(indexDiffData, repoRelativePath, result);
+		}
+		return result;
+	}
+

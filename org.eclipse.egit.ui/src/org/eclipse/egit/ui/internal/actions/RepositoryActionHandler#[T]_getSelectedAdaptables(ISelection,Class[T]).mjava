@@ -1,0 +1,18 @@
+	private <T> List<T> getSelectedAdaptables(ISelection selection,
+			Class<T> c) {
+		List<T> result;
+		if (selection != null && !selection.isEmpty()) {
+			result = new ArrayList<>();
+			Iterator elements = ((IStructuredSelection) selection).iterator();
+			while (elements.hasNext()) {
+				T adapter = AdapterUtils.adapt(elements.next(), c);
+				if (adapter != null) {
+					result.add(adapter);
+				}
+			}
+		} else {
+			result = Collections.emptyList();
+		}
+		return result;
+	}
+

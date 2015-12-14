@@ -1,0 +1,4 @@
+	protected void setDirty(boolean dirty) {
+		this.dirty = dirty;
+	}
+

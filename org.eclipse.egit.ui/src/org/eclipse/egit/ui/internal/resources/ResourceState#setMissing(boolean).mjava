@@ -1,0 +1,4 @@
+	protected void setMissing(boolean missing) {
+		this.missing = missing;
+	}
+

@@ -1,0 +1,9 @@
+	@Nullable
+	private Property toProperty(@NonNull String value) {
+		if ("hasStagedChanges".equals(value)) { 			return Property.HAS_STAGED_CHANGES;
+		} else if ("hasUnstagedChanges".equals(value)) { 			return Property.HAS_UNSTAGED_CHANGES;
+		} else if ("hasNotIgnoredResources".equals(value)) { 			return Property.HAS_NOT_IGNORED_RESOURCES;
+		}
+		return null;
+	}
+

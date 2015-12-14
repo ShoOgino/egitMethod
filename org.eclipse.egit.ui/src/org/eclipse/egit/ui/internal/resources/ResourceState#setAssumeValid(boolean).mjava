@@ -1,0 +1,4 @@
+	protected void setAssumeValid(boolean assumeValid) {
+		this.assumeValid = assumeValid;
+	}
+

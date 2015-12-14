@@ -1,5 +1,5 @@
 	private boolean isTextFileBufferInWorkDir(Saveable saveable) {
-		IDocument document = CommonUtils.getAdapter(saveable, IDocument.class);
+		IDocument document = AdapterUtils.adapt(saveable, IDocument.class);
 		if (document == null)
 			return true; 		ITextFileBuffer textFileBuffer = FileBuffers.getTextFileBufferManager()
 				.getTextFileBuffer(document);

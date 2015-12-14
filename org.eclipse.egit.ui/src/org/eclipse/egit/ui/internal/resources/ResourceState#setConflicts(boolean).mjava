@@ -1,0 +1,4 @@
+	protected void setConflicts(boolean conflicts) {
+		this.conflicts = conflicts;
+	}
+
