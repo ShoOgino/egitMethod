@@ -25,7 +25,7 @@
 			setIgnored(baseState.isIgnored());
 			setDirty(baseState.isDirty());
 			setConflicts(baseState.hasConflicts());
-			setAssumeValid(baseState.isAssumeValid());
+			setAssumeUnchanged(baseState.isAssumeUnchanged());
 			setStagingState(baseState.getStagingState());
 			if (resource.getType() == IResource.PROJECT) {
 				repositoryName = DecoratableResourceHelper
