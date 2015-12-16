@@ -1,4 +1,0 @@
-		private File asFile() {
-			return ContainerTreeIterator.asFile(rsrc);
-		}
-

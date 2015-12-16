@@ -1,6 +1,0 @@
-	public AdaptableFileTreeIterator(final Repository repository,
-			final IWorkspaceRoot workspaceRoot) {
-		super(repository);
-		root = workspaceRoot;
-	}
-
