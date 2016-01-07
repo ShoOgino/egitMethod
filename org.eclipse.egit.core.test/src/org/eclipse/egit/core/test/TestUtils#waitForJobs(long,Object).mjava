@@ -1,5 +1,5 @@
-	public void waitForJobs(long maxWaitTime, Object family)
+	public static void waitForJobs(long maxWaitTime, Object family)
 			throws InterruptedException {
-		waitForJobs(50, maxWaitTime, family);
+		waitForJobs(100, maxWaitTime, family);
 	}
 

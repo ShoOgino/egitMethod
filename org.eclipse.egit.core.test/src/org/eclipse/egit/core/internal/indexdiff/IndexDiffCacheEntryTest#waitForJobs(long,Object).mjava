@@ -1,5 +1,5 @@
 	private void waitForJobs(long maxWaitTime, Object family)
 			throws InterruptedException {
-		testUtils.waitForJobs(maxWaitTime, family);
+		TestUtils.waitForJobs(maxWaitTime, family);
 	}
 
