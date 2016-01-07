@@ -1,4 +1,4 @@
-	public void waitForJobs(long maxWaitTime, long minWaitTime, Object family)
+	public void waitForJobs(long minWaitTime, long maxWaitTime, Object family)
 			throws InterruptedException {
 		Thread.sleep(minWaitTime);
 		long start = System.currentTimeMillis();
