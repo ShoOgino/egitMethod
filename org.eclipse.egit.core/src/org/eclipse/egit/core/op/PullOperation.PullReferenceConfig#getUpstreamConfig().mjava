@@ -1,0 +1,5 @@
+		@Nullable
+		public UpstreamConfig getUpstreamConfig() {
+			return this.upstreamConfig;
+		}
+

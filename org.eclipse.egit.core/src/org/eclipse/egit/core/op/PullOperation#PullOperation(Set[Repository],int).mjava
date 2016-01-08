@@ -2,5 +2,6 @@
 		this.timeout = timeout;
 		this.repositories = repositories.toArray(new Repository[repositories
 				.size()]);
+		this.configs = Collections.emptyMap();
 	}
 

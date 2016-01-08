@@ -1,4 +1,4 @@
-	AddRemotePage getAddRemotePage() {
+	public AddRemotePage getAddRemotePage() {
 		return page;
 	}
 

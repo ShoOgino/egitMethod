@@ -1,0 +1,5 @@
+		@Nullable
+		public String getReference() {
+			return this.reference;
+		}
+
