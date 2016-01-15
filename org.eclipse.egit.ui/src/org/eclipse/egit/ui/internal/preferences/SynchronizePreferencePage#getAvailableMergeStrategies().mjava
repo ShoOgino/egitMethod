@@ -2,8 +2,11 @@
 		org.eclipse.egit.core.Activator coreActivator = org.eclipse.egit.core.Activator
 				.getDefault();
 		List<String[]> strategies = new ArrayList<>();
+
 		strategies.add(new String[] {
-				UIText.GitPreferenceRoot_defaultMergeStrategyLabel, "" }); 		for (MergeStrategyDescriptor strategy : coreActivator
+				UIText.GitPreferenceRoot_defaultMergeStrategyLabel,
+				GitCorePreferences.core_preferredMergeStrategy_Default });
+		for (MergeStrategyDescriptor strategy : coreActivator
 				.getRegisteredMergeStrategies()) {
 			strategies.add(new String[] { strategy.getLabel(),
 					strategy.getName() });
