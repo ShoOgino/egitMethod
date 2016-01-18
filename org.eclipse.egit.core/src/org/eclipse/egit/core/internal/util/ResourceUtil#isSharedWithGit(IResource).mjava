@@ -5,11 +5,18 @@
 		}
 		try {
 			GitProvider provider = lookupProviderProp(project);
-			if (provider != null) {
+			if (provider != null || MappingJob.isKnownGitProject(project)) {
 				return true;
+			} else if (isMarkedAsNotSharedWithGit(project)) {
+				return false;
 			}
 			String existingID = project
 					.getPersistentProperty(PROVIDER_PROP_KEY);
+			if (existingID == null) {
+				markAsUnshared(project);
+			} else {
+				markAsShared(project, existingID);
+			}
 			boolean isGitProvider = GitProvider.ID.equals(existingID);
 			if (isGitProvider) {
 				MappingJob.initProviderAsynchronously(project);
