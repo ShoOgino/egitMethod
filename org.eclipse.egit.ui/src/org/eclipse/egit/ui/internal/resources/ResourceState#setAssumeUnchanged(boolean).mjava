@@ -1,0 +1,4 @@
+	protected void setAssumeUnchanged(boolean assumeUnchanged) {
+		this.assumeUnchanged = assumeUnchanged;
+	}
+

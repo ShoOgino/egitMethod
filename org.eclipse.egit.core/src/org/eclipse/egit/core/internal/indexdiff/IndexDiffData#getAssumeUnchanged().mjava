@@ -1,0 +1,5 @@
+	@NonNull
+	public Set<String> getAssumeUnchanged() {
+		return Collections.unmodifiableSet(assumeUnchanged);
+	}
+

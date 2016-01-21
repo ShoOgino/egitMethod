@@ -17,11 +17,11 @@
 		assertNotNull(dirCache.getEntry("file.txt"));
 		assertNotNull(dirCache.getEntry("file2.txt"));
 		testUtils.changeContentOfFile(project.getProject(), file, "other text");
-		testUtils.waitForJobs(10000, 1000, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
+		TestUtils.waitForJobs(500, 10000, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
 
 		file.delete(true, null);
 
-		testUtils.waitForJobs(10000, 1000, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
+		TestUtils.waitForJobs(500, 10000, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
 
 		dirCache.read();
 		assertEquals(1, dirCache.getEntryCount());

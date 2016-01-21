@@ -1,5 +1,0 @@
-	public ContainerTreeIterator(final WorkingTreeIterator p,
-			final IContainer base) {
-		this(p, base, false);
-	}
-

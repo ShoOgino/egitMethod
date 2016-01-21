@@ -1,7 +1,7 @@
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		dumpList(builder, "added", added); 		dumpList(builder, "changed", changed); 		dumpList(builder, "removed", removed); 		dumpList(builder, "missing", missing); 		dumpList(builder, "modified", modified); 		dumpList(builder, "untracked", untracked); 		dumpList(builder, "untrackedFolders", untrackedFolders); 		dumpList(builder, "conflicts", conflicts); 		dumpList(builder, "ignored", ignored); 		dumpList(builder, "symlinks", symlinks); 		dumpList(builder, "submodules", submodules); 		dumpResourceList(builder,
+		dumpList(builder, "added", added); 		dumpList(builder, "assumeUnchanged", assumeUnchanged); 		dumpList(builder, "changed", changed); 		dumpList(builder, "removed", removed); 		dumpList(builder, "missing", missing); 		dumpList(builder, "modified", modified); 		dumpList(builder, "untracked", untracked); 		dumpList(builder, "untrackedFolders", untrackedFolders); 		dumpList(builder, "conflicts", conflicts); 		dumpList(builder, "ignored", ignored); 		dumpList(builder, "symlinks", symlinks); 		dumpList(builder, "submodules", submodules); 		dumpResourceList(builder,
 				"changedResources", changedResources); 		return builder.toString();
 	}
 

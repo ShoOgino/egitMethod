@@ -1,0 +1,8 @@
+	private static void markAsShared(@NonNull IProject project,
+			@Nullable String providerId) {
+		try {
+			project.setSessionProperty(PROVIDER_ID, providerId);
+		} catch (CoreException e) {
+		}
+	}
+

@@ -1,0 +1,58 @@
+	private static void compareWorkspaceWithRef(final Repository repository,
+			final IResource file, final String refName, final IWorkbenchPage page) {
+		if (file == null) {
+			return;
+		}
+		final IPath location = file.getLocation();
+		if(location == null){
+			return;
+		}
+
+		Job job = new Job(UIText.CompareUtils_jobName) {
+
+			@Override
+			public IStatus run(IProgressMonitor monitor) {
+				if (monitor.isCanceled()) {
+					return Status.CANCEL_STATUS;
+				}
+				final RepositoryMapping mapping = RepositoryMapping
+						.getMapping(file);
+				if (mapping == null) {
+					return Activator.createErrorStatus(
+							NLS.bind(UIText.GitHistoryPage_errorLookingUpPath,
+									location, repository));
+				}
+
+				final ITypedElement base;
+				if (Files.isSymbolicLink(location.toFile().toPath())) {
+					base = new LocalNonWorkspaceTypedElement(repository,
+							location);
+				} else if (file instanceof IFile) {
+					base = SaveableCompareEditorInput
+							.createFileElement((IFile) file);
+				} else {
+					return Activator.createErrorStatus(
+							NLS.bind(UIText.CompareUtils_wrongResourceArgument,
+									location, file));
+				}
+
+				final String gitPath = mapping.getRepoRelativePath(file);
+				CompareEditorInput in;
+				try {
+					in = prepareCompareInput(repository, gitPath, base, refName);
+				} catch (IOException e) {
+					return Activator.createErrorStatus(
+							UIText.CompareWithRefAction_errorOnSynchronize, e);
+				}
+
+				if (monitor.isCanceled()) {
+					return Status.CANCEL_STATUS;
+				}
+				openCompareEditorRunnable(page, in);
+				return Status.OK_STATUS;
+			}
+		};
+		job.setUser(true);
+		job.schedule();
+	}
+
