@@ -1,0 +1,9 @@
+	public static void store() {
+		if (modified) {
+			String[] values = new String[knownHosts.size()];
+			Activator.getDefault().getDialogSettings().put(KNOWN_HOSTS_KEY,
+					knownHosts.keySet().toArray(values));
+			modified = false;
+		}
+	}
+

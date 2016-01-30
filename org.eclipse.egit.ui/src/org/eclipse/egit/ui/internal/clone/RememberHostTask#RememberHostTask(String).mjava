@@ -1,0 +1,4 @@
+	public RememberHostTask(@NonNull String hostName) {
+		this.hostName = hostName;
+	}
+

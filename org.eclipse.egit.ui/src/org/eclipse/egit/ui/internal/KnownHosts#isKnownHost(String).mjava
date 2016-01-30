@@ -1,0 +1,4 @@
+	public static boolean isKnownHost(String hostName) {
+		return hostName != null && getKnownHosts().containsKey(hostName);
+	}
+

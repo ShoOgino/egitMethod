@@ -1,0 +1,4 @@
+	public static void addKnownHost(@NonNull String hostName) {
+		getKnownHosts().put(hostName, null);
+		modified = true; 	}
+
