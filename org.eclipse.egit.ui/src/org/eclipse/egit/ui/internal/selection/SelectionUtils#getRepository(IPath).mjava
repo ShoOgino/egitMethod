@@ -1,0 +1,10 @@
+	@Nullable
+	private static Repository getRepository(@NonNull IPath location) {
+		RepositoryMapping mapping = RepositoryMapping.getMapping(location);
+		if (mapping != null) {
+			return mapping.getRepository();
+		}
+		return org.eclipse.egit.core.Activator.getDefault().getRepositoryCache()
+				.getRepository(location);
+	}
+
