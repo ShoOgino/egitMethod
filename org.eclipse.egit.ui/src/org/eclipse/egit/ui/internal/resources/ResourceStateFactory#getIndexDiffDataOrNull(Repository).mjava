@@ -1,0 +1,16 @@
+	@Nullable
+	private IndexDiffData getIndexDiffDataOrNull(
+			@Nullable Repository repository) {
+		if (repository == null) {
+			return null;
+		} else if (repository.isBare()) {
+			return new IndexDiffData();
+		}
+		IndexDiffCacheEntry diffCacheEntry = Activator.getDefault()
+				.getIndexDiffCache().getIndexDiffCacheEntry(repository);
+		if (diffCacheEntry == null) {
+			return null;
+		}
+		return diffCacheEntry.getIndexDiff();
+	}
+

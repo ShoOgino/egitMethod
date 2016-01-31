@@ -9,7 +9,8 @@
 
 		if (object instanceof IEditorInput) {
 			IEditorInput editorInput = (IEditorInput) object;
-			IResource resource = ResourceUtil.getResource(editorInput);
+			IResource resource = org.eclipse.ui.ide.ResourceUtil
+					.getResource(editorInput);
 			if (resource != null)
 				return new StructuredSelection(resource);
 			if (editorInput instanceof FileRevisionEditorInput) {
