@@ -1,0 +1,14 @@
+	private void assertRowCountInHistory(String msg, int expected)
+			throws Exception {
+		SWTBotView historyBot = TestUtil.showHistoryView();
+		Job.getJobManager().join(GENERATE_HISTORY, null);
+		historyBot.getWidget().getDisplay().syncExec(new Runnable() {
+
+			@Override
+			public void run() {
+			}
+		});
+		assertEquals(msg + " should show " + expected + " commits", expected,
+				historyBot.bot().table().rowCount());
+	}
+

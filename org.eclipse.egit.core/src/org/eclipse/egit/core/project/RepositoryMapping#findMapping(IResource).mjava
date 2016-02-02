@@ -1,0 +1,23 @@
+	@Nullable
+	private static RepositoryMapping findMapping(@NonNull
+	final IResource resource) {
+		final IProject project = resource.getProject();
+		if (project == null || isNonWorkspace(project)) {
+			return null;
+		}
+		final GitProvider rp = ResourceUtil.getGitProvider(project);
+		GitProjectData data;
+		if (rp == null) {
+			data = GitProjectData.get(project);
+			if (data == null) {
+				return null;
+			}
+		} else {
+			data = rp.getData();
+		}
+		if (data == null) {
+			return null;
+		}
+		return data.getRepositoryMapping(resource);
+	}
+

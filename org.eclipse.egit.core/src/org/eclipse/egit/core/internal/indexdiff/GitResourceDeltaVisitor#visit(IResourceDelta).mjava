@@ -6,12 +6,18 @@
 		}
 
 		if (resource.getType() == IResource.PROJECT) {
-			final RepositoryMapping mapping = RepositoryMapping
-					.getMapping((IProject) resource);
-			if (mapping == null || mapping.getRepository() != repository) {
+			if (!ResourceUtil.isSharedWithGit(resource)) {
 				return false;
 			}
-
+			GitProjectData gitData = GitProjectData.get((IProject) resource);
+			if (gitData == null) {
+				return false;
+			}
+			RepositoryMapping mapping = gitData.getRepositoryMapping(resource);
+			if (mapping == null || !gitData.hasSubmodules()
+					&& mapping.getRepository() != repository) {
+				return false;
+			}
 			return true;
 		}
 
@@ -20,18 +26,34 @@
 		}
 
 		if (resource.getType() == IResource.FOLDER) {
+			GitProjectData gitData = GitProjectData.get(resource.getProject());
+			if (gitData == null) {
+				return false;
+			}
+			RepositoryMapping mapping = gitData.getRepositoryMapping(resource);
+			if (mapping == null || !gitData.isProtected(resource)
+					&& mapping.getRepository() != repository) {
+				return false;
+			}
 			if (delta.getKind() == IResourceDelta.ADDED) {
-				String repoRelativePath = getRepoRelativePath(resource);
+				String repoRelativePath = mapping.getRepoRelativePath(resource);
 				if (repoRelativePath == null) {
 					return false;
 				}
-				String path = repoRelativePath + "/"; 				if (isIgnoredInOldIndex(path)) {
-					return true; 				}
-				filesToUpdate.add(path);
-				resourcesToUpdate.add(resource);
+				if (!repoRelativePath.isEmpty()) {
+					String path = repoRelativePath + "/"; 					if (isIgnoredInOldIndex(path)) {
+						return true; 					}
+					filesToUpdate.add(path);
+					resourcesToUpdate.add(resource);
+				}
 			}
 
 			return true;
+		}
+
+		RepositoryMapping mapping = RepositoryMapping.getMapping(resource);
+		if (mapping == null || mapping.getRepository() != repository) {
+			return false;
 		}
 
 		if (delta.getKind() == IResourceDelta.CHANGED
@@ -44,7 +66,7 @@
 			return false;
 		}
 
-		String repoRelativePath = getRepoRelativePath(resource);
+		String repoRelativePath = mapping.getRepoRelativePath(resource);
 		if (repoRelativePath == null) {
 			resourcesToUpdate.add(resource);
 			return true;

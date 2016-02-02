@@ -1,5 +1,5 @@
 	public void markTeamPrivateResources() throws CoreException {
-		for (final RepositoryMapping rm : mappings) {
+		for (final RepositoryMapping rm : mappings.values()) {
 			final IContainer c = rm.getContainer();
 			if (c == null)
 				continue; 

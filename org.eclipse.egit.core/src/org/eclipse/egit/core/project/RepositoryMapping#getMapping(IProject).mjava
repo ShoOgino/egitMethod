@@ -1,21 +1,8 @@
 	@Nullable
 	public static RepositoryMapping getMapping(@Nullable final IProject project) {
-		if (project == null || isNonWorkspace(project)) {
+		if (project == null) {
 			return null;
 		}
-		final GitProvider rp = ResourceUtil.getGitProvider(project);
-		GitProjectData data;
-		if (rp == null) {
-			data = GitProjectData.get(project);
-			if (data == null) {
-				return null;
-			}
-		} else {
-			data = rp.getData();
-		}
-		if (data == null) {
-			return null;
-		}
-		return data.getRepositoryMapping(project);
+		return findMapping(project);
 	}
 

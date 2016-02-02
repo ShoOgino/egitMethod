@@ -1,0 +1,18 @@
+	@SuppressWarnings("restriction")
+	@Test
+	public void testHistoryFromProjectExplorerIsFromSubRepository()
+			throws Exception {
+		SWTBotView historyBot = TestUtil.showHistoryView();
+		IViewPart viewPart = historyBot.getViewReference().getView(false);
+		assertTrue(
+				viewPart instanceof org.eclipse.team.internal.ui.history.GenericHistoryView);
+		((org.eclipse.team.internal.ui.history.GenericHistoryView) viewPart)
+				.setLinkingEnabled(true);
+		TestUtil.navigateTo(TestUtil.getExplorerTree(), PROJ1).select();
+		assertRowCountInHistory(PROJ1, 3);
+		TestUtil.navigateTo(TestUtil.getExplorerTree(),
+				childFolder.getFullPath().segments()).select();
+		assertRowCountInHistory(childFolder.getFullPath() + " from submodule",
+				2);
+	}
+

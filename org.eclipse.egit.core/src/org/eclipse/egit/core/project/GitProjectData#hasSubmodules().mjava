@@ -1,0 +1,4 @@
+	public boolean hasSubmodules() {
+		return !protectedResources.isEmpty();
+	}
+
