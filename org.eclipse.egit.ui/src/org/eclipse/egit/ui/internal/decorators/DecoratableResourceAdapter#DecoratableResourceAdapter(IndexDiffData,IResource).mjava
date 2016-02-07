@@ -27,11 +27,17 @@
 			setConflicts(baseState.hasConflicts());
 			setAssumeUnchanged(baseState.isAssumeUnchanged());
 			setStagingState(baseState.getStagingState());
-			if (resource.getType() == IResource.PROJECT) {
+			if (resource.getType() == IResource.PROJECT
+					|| resource.equals(mapping.getContainer())) {
 				repositoryName = DecoratableResourceHelper
 						.getRepositoryName(repository);
 				branch = DecoratableResourceHelper.getShortBranch(repository);
 				branchStatus = DecoratableResourceHelper.getBranchStatus(repository);
+				RevCommit headCommit = DecoratableResourceHelper
+						.getHeadCommit(repository);
+				if (headCommit != null) {
+					commitMessage = headCommit.getShortMessage();
+				}
 			}
 		} finally {
 			if (trace)
