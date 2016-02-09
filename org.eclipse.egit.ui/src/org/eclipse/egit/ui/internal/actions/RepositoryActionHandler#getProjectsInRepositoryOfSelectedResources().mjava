@@ -1,5 +1,0 @@
-	protected IProject[] getProjectsInRepositoryOfSelectedResources() {
-		IStructuredSelection selection = getSelection();
-		return getProjectsInRepositoryOfSelectedResources(selection);
-	}
-
