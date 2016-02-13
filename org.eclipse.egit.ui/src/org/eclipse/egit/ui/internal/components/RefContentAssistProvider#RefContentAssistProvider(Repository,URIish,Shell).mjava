@@ -2,5 +2,6 @@
 		this.repo = repo;
 		this.uri = uri;
 		this.shell = shell;
+		this.container = null;
 	}
 
