@@ -29,7 +29,10 @@
 		if (GitTraceLocation.REPOSITORYCHANGESCANNER.isActive())
 			GitTraceLocation.getTrace().trace(
 					GitTraceLocation.REPOSITORYCHANGESCANNER.getLocation(),
-					"Jobs terminated"); 
+					"Jobs terminated"); 		if (resourceManager != null) {
+			resourceManager.dispose();
+			resourceManager = null;
+		}
 		super.stop(context);
 		plugin = null;
 	}
