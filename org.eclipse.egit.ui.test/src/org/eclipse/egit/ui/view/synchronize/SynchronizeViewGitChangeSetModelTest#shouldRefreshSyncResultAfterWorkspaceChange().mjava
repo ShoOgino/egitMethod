@@ -13,8 +13,9 @@
 		Job.getJobManager().join(ResourcesPlugin.FAMILY_AUTO_BUILD, null);
 
 		SWTBotTreeItem workingTree = getExpandedWorkingTreeItem();
-		assertEquals(GitModelWorkingTree_workingTree, workingTree.getText());
-		assertNotNull(workingTree.getNode(PROJ1).expand());
-		assertNotNull(workingTree.getNode(PROJ1).getNode(newFileName));
+		assertTrue(workingTree.getText()
+				.endsWith(GitModelWorkingTree_workingTree));
+		assertNotNull(TestUtil.getNode(workingTree.getItems(), PROJ1)
+				.getNode(newFileName));
 	}
 
