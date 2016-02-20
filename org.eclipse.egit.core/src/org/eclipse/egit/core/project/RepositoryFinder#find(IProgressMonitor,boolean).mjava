@@ -1,4 +1,5 @@
-	public Collection<RepositoryMapping> find(IProgressMonitor m, boolean searchLinkedFolders)
+	public List<RepositoryMapping> find(IProgressMonitor m,
+			boolean searchLinkedFolders)
 			throws CoreException {
 		find(m, proj, searchLinkedFolders);
 		return results;
