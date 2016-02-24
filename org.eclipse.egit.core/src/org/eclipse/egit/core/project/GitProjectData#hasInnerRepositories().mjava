@@ -1,4 +1,4 @@
-	public boolean hasSubmodules() {
+	public boolean hasInnerRepositories() {
 		return !protectedResources.isEmpty();
 	}
 

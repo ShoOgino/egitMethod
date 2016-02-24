@@ -7,7 +7,7 @@
 		if (trace) {
 			GitTraceLocation.getTrace().trace(
 					GitTraceLocation.DECORATION.getLocation(),
-					"Decorate " + resource.getFullPath()); 			start = System.currentTimeMillis();
+					"Decorate " + resourceToWrap.getFullPath()); 			start = System.currentTimeMillis();
 		}
 		try {
 			RepositoryMapping mapping = RepositoryMapping
@@ -19,6 +19,7 @@
 			if (repository == null) {
 				return;
 			}
+			setIsRepositoryContainer(resourceToWrap.equals(mapping.getContainer()));
 			IResourceState baseState = ResourceStateFactory.getInstance()
 					.get(indexDiffData, resourceToWrap);
 			setTracked(baseState.isTracked());
@@ -27,8 +28,7 @@
 			setConflicts(baseState.hasConflicts());
 			setAssumeUnchanged(baseState.isAssumeUnchanged());
 			setStagingState(baseState.getStagingState());
-			if (resource.getType() == IResource.PROJECT
-					|| resource.equals(mapping.getContainer())) {
+			if (isRepositoryContainer()) {
 				repositoryName = DecoratableResourceHelper
 						.getRepositoryName(repository);
 				branch = DecoratableResourceHelper.getShortBranch(repository);

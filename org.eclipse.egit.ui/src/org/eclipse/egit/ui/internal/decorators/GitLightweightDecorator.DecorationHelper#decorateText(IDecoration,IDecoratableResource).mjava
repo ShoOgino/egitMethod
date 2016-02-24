@@ -7,7 +7,7 @@
 				break;
 			case IResource.FOLDER:
 			case DecoratableResourceMapping.RESOURCE_MAPPING:
-				if (resource.getBranch() != null) {
+				if (resource.isRepositoryContainer()) {
 					format = store.getString(
 							UIPreferences.DECORATOR_SUBMODULETEXT_DECORATION);
 				} else {
