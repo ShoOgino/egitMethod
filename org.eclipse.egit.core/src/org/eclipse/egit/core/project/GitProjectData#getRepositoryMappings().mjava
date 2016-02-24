@@ -1,0 +1,4 @@
+	public final Map<IPath, RepositoryMapping> getRepositoryMappings() {
+		return mappings;
+	}
+

@@ -1,5 +1,6 @@
 	@Nullable
-	public static RepositoryMapping getMapping(@NonNull final IResource resource) {
+	public static RepositoryMapping getMapping(
+			final @NonNull IResource resource) {
 		if (isNonWorkspace(resource)) {
 			return null;
 		}

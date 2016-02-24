@@ -1,5 +1,6 @@
 	@Nullable
-	public static RepositoryMapping getMapping(@Nullable final IProject project) {
+	public static RepositoryMapping getMapping(
+			final @Nullable IProject project) {
 		if (project == null) {
 			return null;
 		}

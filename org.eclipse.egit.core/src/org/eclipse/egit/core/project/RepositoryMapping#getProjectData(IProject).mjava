@@ -1,0 +1,19 @@
+	@Nullable
+	private static GitProjectData getProjectData(
+			final @Nullable IProject project) {
+		if (project == null || isNonWorkspace(project)) {
+			return null;
+		}
+		final GitProvider rp = ResourceUtil.getGitProvider(project);
+		GitProjectData data;
+		if (rp == null) {
+			data = GitProjectData.get(project);
+			if (data == null) {
+				return null;
+			}
+		} else {
+			data = rp.getData();
+		}
+		return data;
+	}
+
