@@ -1,4 +1,5 @@
-	public static StyledString getStyledLabelExtendedSafe(Object element) {
+	public static @NonNull StyledString getStyledLabelExtendedSafe(
+			Object element) {
 		Repository repo = asRepository(element);
 
 		if (repo != null) {
