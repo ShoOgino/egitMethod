@@ -1,0 +1,12 @@
+		private String getStagingEntryText(Object element) {
+			String text = ""; 			StagingEntry stagingEntry = getStagingEntry(element);
+			if (stagingEntry != null) {
+				if (isFileNamesFirst()) {
+					text = stagingEntry.getName();
+				} else {
+					text = stagingEntry.getPath();
+				}
+			}
+			return text;
+		}
+
