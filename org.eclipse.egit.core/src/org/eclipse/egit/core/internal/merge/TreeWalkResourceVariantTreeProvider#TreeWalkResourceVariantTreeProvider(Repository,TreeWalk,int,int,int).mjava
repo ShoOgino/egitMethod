@@ -29,7 +29,8 @@
 			final IPath path = new Path(treeWalk.getPathString());
 			final IResource resource = ResourceUtil
 					.getResourceHandleForLocation(path);
-			if (resource != null && resource.getProject().isAccessible()) {
+			if (resource.getProject() != null
+					&& resource.getProject().isAccessible()) {
 				if (modeBase != 0) {
 					baseCache.setVariant(resource,
 							TreeParserResourceVariant.create(repository, base));

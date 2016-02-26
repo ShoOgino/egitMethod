@@ -4,8 +4,9 @@
 
 		final RepositoryMapping rm = RepositoryMapping.getMapping(resource);
 		if (rm == null) {
-			Activator.logError(NLS.bind(CoreText.GitFileHistory_gitNotAttached,
-					resource.getProject().getName()), null);
+			IProject project = resource.getProject();
+			String projectName = project != null ? project.getName() : ""; 			Activator.logError(NLS.bind(CoreText.GitFileHistory_gitNotAttached,
+					projectName), null);
 			db = null;
 			walk = null;
 		} else {

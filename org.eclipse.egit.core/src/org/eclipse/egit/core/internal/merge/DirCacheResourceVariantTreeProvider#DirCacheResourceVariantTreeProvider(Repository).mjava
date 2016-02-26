@@ -10,7 +10,7 @@
 			final IPath path = new Path(entry.getPathString());
 			final IResource resource = ResourceUtil
 					.getResourceHandleForLocation(path);
-			if (resource == null || resource.getProject() == null
+			if (resource.getProject() == null
 					|| !resource.getProject().isAccessible()) {
 				continue;
 			}
