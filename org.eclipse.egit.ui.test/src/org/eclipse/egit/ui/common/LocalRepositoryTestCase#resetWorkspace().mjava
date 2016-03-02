@@ -2,6 +2,7 @@
 	public void resetWorkspace() throws Exception {
 		TestUtil.processUIEvents();
 		new Eclipse().reset();
+		closeGitViews();
 		TestUtil.processUIEvents();
 		for (IProject project : ResourcesPlugin.getWorkspace().getRoot()
 				.getProjects()) {

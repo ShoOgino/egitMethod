@@ -1,6 +1,8 @@
 	public IndexDiffCacheEntry(Repository repository,
 			@Nullable IndexDiffChangedListener listener) {
-		this.repository = repository;
+		this.repositoryGitDir = repository.getDirectory();
+		this.repositoryName = Activator.getDefault().getRepositoryUtil()
+				.getRepositoryName(repository);
 		if (listener != null) {
 			addIndexDiffChangedListener(listener);
 		}
@@ -22,7 +24,8 @@
 		scheduleReloadJob("IndexDiffCacheEntry construction"); 		createResourceChangeListener();
 		if (!repository.isBare()) {
 			try {
-				lastIndex = repository.readDirCache();
+				lastIndex = DirCache.read(repository.getIndexFile(),
+						repository.getFS());
 			} catch (IOException ex) {
 				Activator
 						.error(MessageFormat

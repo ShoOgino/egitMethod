@@ -1,5 +1,11 @@
 	@Override
 	public Map getCurrentState() {
-		return Collections.singletonMap(REPOSITORY_PROPERTY, repository);
+		@SuppressWarnings("resource")
+		Repository repository = repositoryRef == null ? null
+				: repositoryRef.get();
+		if (repository == null) {
+			return Collections.singletonMap(REPOSITORY_PROPERTY, ""); 		}
+		return Collections.singletonMap(REPOSITORY_PROPERTY,
+				repository.getDirectory().getAbsolutePath());
 	}
 

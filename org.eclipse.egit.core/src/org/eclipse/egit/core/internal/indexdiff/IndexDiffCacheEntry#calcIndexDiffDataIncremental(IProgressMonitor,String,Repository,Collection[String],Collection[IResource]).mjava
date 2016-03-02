@@ -1,8 +1,9 @@
 	private IndexDiffData calcIndexDiffDataIncremental(IProgressMonitor monitor,
-			String jobName, Collection<String> filesToUpdate,
+			String jobName, Repository repository,
+			Collection<String> filesToUpdate,
 			Collection<IResource> resourcesToUpdate) throws IOException {
 		if (indexDiffData == null)
-			return calcIndexDiffDataFull(monitor, jobName);
+			return calcIndexDiffDataFull(monitor, jobName, repository);
 
 		EclipseGitProgressTransformer jgitMonitor = new EclipseGitProgressTransformer(
 				monitor);

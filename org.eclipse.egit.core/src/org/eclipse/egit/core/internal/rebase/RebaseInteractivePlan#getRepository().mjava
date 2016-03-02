@@ -1,4 +1,4 @@
 	public Repository getRepository() {
-		return repository;
+		return repositoryRef.get();
 	}
 

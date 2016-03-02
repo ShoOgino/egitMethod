@@ -9,7 +9,7 @@
 			updateJob.cleanupAndCancel();
 		}
 
-		if (!checkRepository()) {
+		if (getRepository() == null) {
 			return;
 		}
 		reloadJob = new Job(getReloadJobName()) {
@@ -28,7 +28,12 @@
 					}
 					parallelism.acquire();
 					long startTime = System.currentTimeMillis();
-					IndexDiffData result = calcIndexDiffDataFull(monitor, getName());
+					Repository repository = getRepository();
+					if (repository == null) {
+						return Status.CANCEL_STATUS;
+					}
+					IndexDiffData result = calcIndexDiffDataFull(monitor,
+							getName(), repository);
 					if (monitor.isCanceled() || (result == null)) {
 						return Status.CANCEL_STATUS;
 					}
@@ -42,7 +47,7 @@
 								message.append(indexDiffData.toString())
 										.toString());
 					}
-					notifyListeners();
+					notifyListeners(repository);
 					return Status.OK_STATUS;
 				} catch (IndexReadException e) {
 					return Activator.error(CoreText.IndexDiffCacheEntry_cannotReadIndex, e);
@@ -62,7 +67,7 @@
 			private String getTraceMessage(long time) {
 				return NLS
 						.bind("\nUpdated IndexDiffData in {0} ms\nReason: {1}\nRepository: {2}\n", 						new Object[] { Long.valueOf(time), trigger,
-								repository.getWorkTree().getName() });
+								repositoryGitDir });
 			}
 
 			@Override

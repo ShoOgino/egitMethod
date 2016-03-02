@@ -1,6 +1,6 @@
 	public void parse() throws IOException {
 		if (!isRebasingInteractive())
 			return;
-		reparsePlan();
+		reparsePlan(getRepository());
 	}
 

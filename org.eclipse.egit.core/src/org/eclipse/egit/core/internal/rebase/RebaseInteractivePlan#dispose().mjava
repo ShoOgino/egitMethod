@@ -1,7 +1,7 @@
 	public void dispose() {
-		reparsePlan();
+		reparsePlan(getRepository());
 		notifyPlanWasUpdatedFromRepository();
-		planRegistry.remove(this.repository.getDirectory());
+		planRegistry.remove(myGitDir);
 		planList.clear();
 		planChangeListeners.clear();
 		unregisterIndexDiffChangeListener();

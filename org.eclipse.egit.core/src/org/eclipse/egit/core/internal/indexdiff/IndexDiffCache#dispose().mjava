@@ -7,8 +7,6 @@
 				bufferListener = null;
 			}
 		}
-		InstanceScope.INSTANCE.getNode(Activator.getPluginId())
-				.removePreferenceChangeListener(configuredRepositoriesListener);
 		for (IndexDiffCacheEntry entry : entries.values()) {
 			entry.dispose();
 		}

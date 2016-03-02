@@ -1,0 +1,9 @@
+	public void remove(@NonNull File gitDir) {
+		synchronized (entries) {
+			IndexDiffCacheEntry cachedEntry = entries.remove(gitDir);
+			if (cachedEntry != null) {
+				cachedEntry.dispose();
+			}
+		}
+	}
+
