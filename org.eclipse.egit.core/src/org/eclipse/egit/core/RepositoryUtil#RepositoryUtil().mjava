@@ -1,3 +1,5 @@
 	RepositoryUtil() {
+		workspacePath = ResourcesPlugin.getWorkspace().getRoot().getLocation()
+				.toFile().toPath();
 	}
 
