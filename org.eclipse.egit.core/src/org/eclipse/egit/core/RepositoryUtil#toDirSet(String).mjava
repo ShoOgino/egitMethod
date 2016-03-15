@@ -1,0 +1,13 @@
+	private Set<String> toDirSet(String dirs) {
+		if (dirs == null || dirs.isEmpty()) {
+			return Collections.emptySet();
+		}
+		Set<String> configuredStrings = new HashSet<String>();
+		StringTokenizer tok = new StringTokenizer(dirs, File.pathSeparator);
+		while (tok.hasMoreTokens()) {
+			configuredStrings
+					.add(workspacePath.resolve(tok.nextToken()).toString());
+		}
+		return configuredStrings;
+	}
+
