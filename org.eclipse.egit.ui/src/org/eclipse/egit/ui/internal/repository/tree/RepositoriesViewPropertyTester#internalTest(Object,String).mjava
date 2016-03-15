@@ -4,32 +4,38 @@
 			return false;
 		RepositoryTreeNode node = (RepositoryTreeNode) receiver;
 
-		if (property.equals("isBare")) 			return node.getRepository().isBare();
+		Repository repository = node.getRepository();
+		if (repository == null) {
+			return false;
+		}
 
-		if (property.equals("containsHead")) 			return containsHead(node);
+		if (property.equals("isBare")) { 			return repository.isBare();
+		}
 
-		if (ResourcePropertyTester.testRepositoryState(node.getRepository(), property))
+		if (property.equals("containsHead")) {			return containsHead(repository);
+		}
+
+		if (ResourcePropertyTester.testRepositoryState(repository, property)) {
 			return true;
+		}
 
 		if (property.equals("isRefCheckedOut")) { 			if (!(node.getObject() instanceof Ref))
 				return false;
 			Ref ref = (Ref) node.getObject();
 			try {
 				if (ref.getName().startsWith(Constants.R_REFS)) {
-					return ref.getName().equals(
-							node.getRepository().getFullBranch());
+					return ref.getName().equals(repository.getFullBranch());
 				} else if (ref.getName().equals(Constants.HEAD)) {
 					return true;
 				} else {
 					String leafname = ref.getLeaf().getName();
 					if (leafname.startsWith(Constants.R_REFS)
-							&& leafname.equals(node.getRepository()
-									.getFullBranch())) {
+							&& leafname.equals(repository.getFullBranch())) {
 						return true;
 					} else {
 						ObjectId objectId = ref.getLeaf().getObjectId();
-						return objectId != null && objectId.equals(
-								node.getRepository().resolve(Constants.HEAD));
+						return objectId != null && objectId
+								.equals(repository.resolve(Constants.HEAD));
 					}
 				}
 			} catch (IOException e) {
@@ -46,8 +52,8 @@
 
 				RemoteConfig rconfig;
 				try {
-					rconfig = new RemoteConfig(
-							node.getRepository().getConfig(), configName);
+					rconfig = new RemoteConfig(repository.getConfig(),
+							configName);
 				} catch (URISyntaxException e2) {
 					return false;
 				}
@@ -60,8 +66,8 @@
 
 				RemoteConfig rconfig;
 				try {
-					rconfig = new RemoteConfig(
-							node.getRepository().getConfig(), configName);
+					rconfig = new RemoteConfig(repository.getConfig(),
+							configName);
 				} catch (URISyntaxException e2) {
 					return false;
 				}
@@ -70,14 +76,12 @@
 								.getURIs().isEmpty());
 			}
 		}
-		if (property.equals("canStash")) { 			Repository rep = node.getRepository();
-			return rep.getRepositoryState().canCommit();
+		if (property.equals("canStash")) { 			return repository.getRepositoryState().canCommit();
 		}
-		if (property.equals("canMerge")) { 			Repository rep = node.getRepository();
-			if (rep.getRepositoryState() != RepositoryState.SAFE)
+		if (property.equals("canMerge")) { 			if (repository.getRepositoryState() != RepositoryState.SAFE)
 				return false;
 			try {
-				String branch = rep.getFullBranch();
+				String branch = repository.getFullBranch();
 				if (branch == null)
 					return false; 				return branch.startsWith(Constants.R_HEADS);
 			} catch (IOException e) {
