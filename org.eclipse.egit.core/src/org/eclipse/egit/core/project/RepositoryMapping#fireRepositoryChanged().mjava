@@ -1,4 +1,0 @@
-	public void fireRepositoryChanged() {
-		GitProjectData.fireRepositoryChanged(this);
-	}
-

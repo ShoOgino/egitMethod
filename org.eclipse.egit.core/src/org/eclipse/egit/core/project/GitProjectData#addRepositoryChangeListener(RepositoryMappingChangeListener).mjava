@@ -1,5 +1,5 @@
 	public static synchronized void addRepositoryChangeListener(
-			final RepositoryChangeListener objectThatCares) {
+			final RepositoryMappingChangeListener objectThatCares) {
 		if (objectThatCares == null)
 			throw new NullPointerException();
 		repositoryChangeListeners.add(objectThatCares);

@@ -8,7 +8,7 @@
 		SWTBotTree projectExplorerTree = TestUtil.getExplorerTree();
 		SWTBotTreeItem node = TestUtil.navigateTo(projectExplorerTree,
 				file.getFullPath().segments());
-		waitForDecorations();
+		TestUtil.waitForDecorations();
 		assertTrue(node.getText().startsWith("> " + file.getName()));
 		node.select();
 		ContextMenuHelper.clickContextMenuSync(projectExplorerTree, "Team",
@@ -20,7 +20,7 @@
 		IResourceState state = ResourceStateFactory.getInstance()
 				.get(cache.getIndexDiff(), file);
 		assertTrue("File should be staged", state.isStaged());
-		waitForDecorations();
+		TestUtil.waitForDecorations();
 		assertFalse(node.getText().startsWith("> "));
 		ContextMenuHelper.clickContextMenuSync(projectExplorerTree, "Team",
 				util.getPluginLocalizedValue("RemoveFromIndexAction_label"));
@@ -29,7 +29,7 @@
 				file);
 		assertFalse("File should not be staged", state.isStaged());
 		assertTrue("File should be dirty", state.isDirty());
-		waitForDecorations();
+		TestUtil.waitForDecorations();
 		assertTrue(node.getText().startsWith("> " + file.getName()));
 	}
 

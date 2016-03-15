@@ -3,12 +3,12 @@
 
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
-				RepositoryChangeListener[] listeners = getRepositoryChangeListeners();
+				RepositoryMappingChangeListener[] listeners = getRepositoryChangeListeners();
 				monitor.beginTask(
 						CoreText.GitProjectData_repositoryChangedTaskName,
 						listeners.length);
 
-				for (RepositoryChangeListener listener : listeners) {
+				for (RepositoryMappingChangeListener listener : listeners) {
 					listener.repositoryChanged(which);
 					monitor.worked(1);
 				}
