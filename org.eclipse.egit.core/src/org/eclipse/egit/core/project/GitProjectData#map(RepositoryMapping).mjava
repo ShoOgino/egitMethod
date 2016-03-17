@@ -38,8 +38,6 @@
 			return;
 		}
 
-		fireRepositoryChanged(m);
-
 		trace("map "  				+ c
 				+ " -> "  				+ m.getRepository());
 		try {
@@ -48,6 +46,8 @@
 			Activator.logError(
 					CoreText.GitProjectData_failedToCacheRepoMapping, err);
 		}
+
+		fireRepositoryChanged(m);
 
 		dotGit = c.findMember(Constants.DOT_GIT);
 		if (dotGit != null) {
