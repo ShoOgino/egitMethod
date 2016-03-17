@@ -20,10 +20,14 @@
 			RepositoryFinder f = new RepositoryFinder(project);
 			f.setFindInChildren(false);
 			try {
-				Collection<RepositoryMapping> mappings = f
+				List<RepositoryMapping> mappings = f
 						.find(new NullProgressMonitor());
-				if (mappings.size() == 1)
-					connections.put(project, repositoryDir);
+				if (!mappings.isEmpty()) {
+					IPath gitDir = mappings.get(0).getGitDirAbsolutePath();
+					if (gitDir != null) {
+						connections.put(project, gitDir.toFile());
+					}
+				}
 			} catch (CoreException e) {
 				continue;
 			}

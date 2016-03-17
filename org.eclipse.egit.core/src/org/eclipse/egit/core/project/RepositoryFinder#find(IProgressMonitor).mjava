@@ -1,4 +1,4 @@
-	public Collection<RepositoryMapping> find(IProgressMonitor m)
+	public List<RepositoryMapping> find(IProgressMonitor m)
 			throws CoreException {
 		return find(m, false);
 	}

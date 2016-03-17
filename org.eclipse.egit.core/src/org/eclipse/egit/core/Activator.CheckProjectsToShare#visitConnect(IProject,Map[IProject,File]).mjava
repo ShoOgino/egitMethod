@@ -11,12 +11,12 @@
 			}
 			RepositoryFinder f = new RepositoryFinder(project);
 			f.setFindInChildren(false);
-			Collection<RepositoryMapping> mappings = f.find(new NullProgressMonitor());
-			if (mappings.size() != 1) {
+			List<RepositoryMapping> mappings = f
+					.find(new NullProgressMonitor());
+			if (mappings.isEmpty()) {
 				return;
 			}
-
-			RepositoryMapping m = mappings.iterator().next();
+			RepositoryMapping m = mappings.get(0);
 			IPath gitDirPath = m.getGitDirAbsolutePath();
 			if (gitDirPath == null || gitDirPath.segmentCount() == 0) {
 				return;
@@ -35,9 +35,17 @@
 				}
 			}
 
-			final File repositoryDir = gitDirPath.toFile();
+			File repositoryDir = gitDirPath.toFile();
 			projects.put(project, repositoryDir);
 
+			int nofMappings = mappings.size();
+			if (nofMappings > 1) {
+				IPath lastPath = mappings.get(nofMappings - 1)
+						.getGitDirAbsolutePath();
+				if (lastPath != null) {
+					repositoryDir = lastPath.toFile();
+				}
+			}
 			try {
 				Activator.getDefault().getRepositoryUtil()
 						.addConfiguredRepository(repositoryDir);
