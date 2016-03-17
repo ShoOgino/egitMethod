@@ -1,4 +1,4 @@
 	public static IStatus createErrorStatus(String message) {
-		return new Status(IStatus.ERROR, getPluginId(), message);
+		return toStatus(IStatus.ERROR, message, null);
 	}
 

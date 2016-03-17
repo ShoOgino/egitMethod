@@ -1,4 +1,5 @@
-	public static IStatus createErrorStatus(String message, Throwable throwable) {
-		return new Status(IStatus.ERROR, getPluginId(), message, throwable);
+	public static IStatus createErrorStatus(String message,
+			Throwable throwable) {
+		return toStatus(IStatus.ERROR, message, throwable);
 	}
 
