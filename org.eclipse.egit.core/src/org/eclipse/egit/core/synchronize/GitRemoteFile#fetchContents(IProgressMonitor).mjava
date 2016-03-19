@@ -5,6 +5,6 @@
 		try {
 			setContents(content.getContents(), monitor);
 		} catch (CoreException e) {
-			Activator.error("", e); 		}
+			Activator.logError("", e); 		}
 	}
 
