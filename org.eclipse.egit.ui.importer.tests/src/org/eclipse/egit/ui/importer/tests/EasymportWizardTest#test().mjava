@@ -17,19 +17,17 @@
 		bot.button("Next >").click();
 		bot.text().setText("https://git.eclipse.org/r/jgit/jgit");
 		bot.button("Next >").click();
-		waitForNextEnabled(30); 		bot.button("Deselect All").click();
+		waitForButtonEnabled("Next >", 30); 		bot.button("Deselect All").click();
 		bot.tree().getTreeItem("master").check();
 		bot.button("Next >").click();
 		Path tmpDir = Files.createTempDirectory(getClass().getName());
 		try {
 			bot.text().setText(tmpDir.toString());
 			bot.button("Next >").click();
-			waitForNextEnabled(180); 			bot.button("Next >").click();
-			bot.button("Finish").click();
+			waitForButtonEnabled("Finish", 180); 			bot.button("Finish").click();
 
-			bot.shell("Nested Projects");
-			waitForLabel("Completed", 30);
-			bot.button("OK").click();
+			Job.getJobManager().join(SmartImportJob.class,
+					new NullProgressMonitor());
 
 			newProjects = new HashSet<>(Arrays.asList(ResourcesPlugin.getWorkspace().getRoot().getProjects()));
 			newProjects.removeAll(initialProjects);
