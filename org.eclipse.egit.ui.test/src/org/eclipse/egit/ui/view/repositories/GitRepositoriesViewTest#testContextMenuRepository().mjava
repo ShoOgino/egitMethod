@@ -1,5 +1,7 @@
 	@Test
 	public void testContextMenuRepository() throws Exception {
+		Activator.getDefault().getPreferenceStore()
+				.setValue(UIPreferences.ALWAYS_USE_STAGING_VIEW, false);
 		SWTBotTree tree = getOrOpenView().bot().tree();
 		SWTBotTreeItem item = myRepoViewUtil.getRootItem(tree, repositoryFile);
 		item.select();
@@ -10,5 +12,7 @@
 				myUtil.getPluginLocalizedValue("RepoViewImportProjects.label"),
 				NLS.bind(UIText.GitCreateProjectViaWizardWizard_WizardTitle,
 						repositoryFile));
+		Activator.getDefault().getPreferenceStore()
+				.setValue(UIPreferences.ALWAYS_USE_STAGING_VIEW, true);
 	}
 
