@@ -191,22 +191,28 @@
 		try {
 			for (RemoteConfig rc : RemoteConfig.getAllRemoteConfigs(repository
 					.getConfig())) {
-				if (rc.getURIs().size() > 0)
-					uris.add(rc.getURIs().get(0).toPrivateString());
-				for (URIish u : rc.getPushURIs())
-					uris.add(u.toPrivateString());
+				if (GerritUtil.isGerritRemote(rc)) {
+					if (rc.getURIs().size() > 0) {
+						uris.add(rc.getURIs().get(0).toPrivateString());
+					}
+					for (URIish u : rc.getPushURIs()) {
+						uris.add(u.toPrivateString());
+					}
+				}
 
 			}
 		} catch (URISyntaxException e) {
 			Activator.handleError(e.getMessage(), e, false);
 			setErrorMessage(e.getMessage());
 		}
-		for (String aUri : uris)
+		for (String aUri : uris) {
 			uriCombo.add(aUri);
-		if (defaultUri != null)
+		}
+		if (defaultUri != null) {
 			uriCombo.setText(defaultUri);
-		else
+		} else {
 			selectLastUsedUri();
+		}
 		restoreRunInBackgroundSelection();
 		refText.setFocus();
 		Dialog.applyDialogFont(main);
