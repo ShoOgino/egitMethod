@@ -16,7 +16,7 @@
 			@Override
 			public IContentProposal[] getProposals(String contents, int position) {
 
-				List<IContentProposal> resultList = new ArrayList<IContentProposal>();
+				List<IContentProposal> resultList = new ArrayList<>();
 
 				String patternString = contents;
 				while (patternString.length() > 0
@@ -99,7 +99,7 @@
 						settings.put(preferenceKey, existingValues);
 					} else {
 
-						List<String> values = new ArrayList<String>(
+						List<String> values = new ArrayList<>(
 								existingValues.length + 1);
 
 						for (String existingValue : existingValues)

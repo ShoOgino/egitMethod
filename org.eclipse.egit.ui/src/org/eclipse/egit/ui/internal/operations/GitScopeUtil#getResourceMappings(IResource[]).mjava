@@ -1,5 +1,5 @@
 	private static ResourceMapping[] getResourceMappings(IResource[] resources) {
-		List<ResourceMapping> result = new ArrayList<ResourceMapping>();
+		List<ResourceMapping> result = new ArrayList<>();
 		for (IResource resource : resources)
 			result.add(getResourceMapping(resource));
 		return result.toArray(new ResourceMapping[result.size()]);

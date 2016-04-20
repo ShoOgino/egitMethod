@@ -65,7 +65,7 @@
 									.syncExec(new Runnable() {
 										@Override
 										public void run() {
-											Set<File> filesToAdd = new HashSet<File>();
+											Set<File> filesToAdd = new HashSet<>();
 											for (Entry<IProject, File> entry : existingPage
 													.getProjects(true)
 													.entrySet())

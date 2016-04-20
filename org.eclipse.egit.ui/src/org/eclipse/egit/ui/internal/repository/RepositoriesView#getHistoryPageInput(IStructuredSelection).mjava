@@ -1,5 +1,5 @@
 	private static HistoryPageInput getHistoryPageInput(IStructuredSelection selection) {
-		List<File> files = new ArrayList<File>();
+		List<File> files = new ArrayList<>();
 		Repository repo = null;
 		for (Object element : selection.toList()) {
 			Repository nodeRepository;

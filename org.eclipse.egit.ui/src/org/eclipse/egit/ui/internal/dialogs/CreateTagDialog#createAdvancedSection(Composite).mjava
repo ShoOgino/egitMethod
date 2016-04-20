@@ -30,7 +30,7 @@
 			public void expansionStateChanged(ExpansionEvent e) {
 				if (((Boolean) e.data).booleanValue()
 						&& commitCombo.getItemCount() == 0) {
-					final Collection<RevCommit> commits = new ArrayList<RevCommit>();
+					final Collection<RevCommit> commits = new ArrayList<>();
 					try {
 						PlatformUI.getWorkbench().getProgressService()
 								.busyCursorWhile(new IRunnableWithProgress() {

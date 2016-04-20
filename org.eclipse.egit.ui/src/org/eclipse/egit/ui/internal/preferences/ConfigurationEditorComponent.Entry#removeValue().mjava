@@ -10,14 +10,14 @@
 			} else {
 				List<String> entries;
 				if (sectionparent != null) {
-					entries = new ArrayList<String>(Arrays.asList(config
+					entries = new ArrayList<>(Arrays.asList(config
 							.getStringList(sectionparent.name, null, name)));
 
 					entries.remove(index);
 					config.setStringList(sectionparent.name, null, name,
 							entries);
 				} else {
-					entries = new ArrayList<String>(Arrays.asList(config
+					entries = new ArrayList<>(Arrays.asList(config
 							.getStringList(subsectionparent.parent.name,
 									subsectionparent.name, name)));
 					entries.remove(index);

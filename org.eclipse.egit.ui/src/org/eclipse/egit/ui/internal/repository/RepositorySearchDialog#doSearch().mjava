@@ -13,7 +13,7 @@
 		} catch (BackingStoreException e1) {
 		}
 
-		final TreeSet<String> validDirs = new TreeSet<String>(getCheckedItems());
+		final TreeSet<String> validDirs = new TreeSet<>(getCheckedItems());
 
 		IRunnableWithProgress action = new IRunnableWithProgress() {
 

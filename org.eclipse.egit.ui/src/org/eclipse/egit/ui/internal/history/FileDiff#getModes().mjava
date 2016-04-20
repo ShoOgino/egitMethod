@@ -1,5 +1,5 @@
 	public FileMode[] getModes() {
-		List<FileMode> modes = new ArrayList<FileMode>();
+		List<FileMode> modes = new ArrayList<>();
 		if (diffEntry.getOldMode() != null)
 			modes.add(diffEntry.getOldMode());
 		if (diffEntry.getOldMode() != null)

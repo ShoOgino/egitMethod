@@ -1,5 +1,5 @@
 	private Set<String> getSelectedFiles() {
-		Set<String> preselectionCandidates = new LinkedHashSet<String>();
+		Set<String> preselectionCandidates = new LinkedHashSet<>();
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		for (String fileName : files) {
 			URI uri = new File(repo.getWorkTree(), fileName).toURI();

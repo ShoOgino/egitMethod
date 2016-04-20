@@ -1,5 +1,5 @@
 	public void setRepository(Repository repo) {
-		List<WorkingDirNode> input = new ArrayList<WorkingDirNode>();
+		List<WorkingDirNode> input = new ArrayList<>();
 		if (repo != null)
 			input.add(new WorkingDirNode(null, repo));
 		tv.setInput(input);

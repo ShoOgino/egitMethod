@@ -9,7 +9,7 @@
 		try (TreeWalk tw = new TreeWalk(repository)) {
 
 			if (filterPathStrings.size() > 1) {
-				List<TreeFilter> suffixFilters = new ArrayList<TreeFilter>();
+				List<TreeFilter> suffixFilters = new ArrayList<>();
 				for (String filterPath : filterPathStrings)
 					suffixFilters.add(PathFilter.create(filterPath));
 				TreeFilter otf = OrTreeFilter.create(suffixFilters);

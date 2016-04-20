@@ -187,7 +187,7 @@
 				.applyTo(runInBackgroud);
 		runInBackgroud.setText(UIText.FetchGerritChangePage_RunInBackground);
 
-		SortedSet<String> uris = new TreeSet<String>();
+		SortedSet<String> uris = new TreeSet<>();
 		try {
 			for (RemoteConfig rc : RemoteConfig.getAllRemoteConfigs(repository
 					.getConfig())) {

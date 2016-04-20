@@ -1,5 +1,5 @@
 	private void initCommitsMap() {
-		commitsMap = new HashMap<String, PlotCommit>();
+		commitsMap = new HashMap<>();
 		synchronized (allCommits) {
 			for (PlotCommit commit : allCommits)
 				if (commit != null)
