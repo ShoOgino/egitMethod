@@ -4,10 +4,8 @@
 		refreshAndWait();
 		SWTBotTree tree = getOrOpenView().bot().tree();
 		SWTBotTreeItem remotesItem = myRepoViewUtil.getRemotesItem(tree,
-				repositoryFile).expand();
+				repositoryFile);
 
-		remotesItem = myRepoViewUtil.getRemotesItem(tree, repositoryFile)
-				.expand();
 		remotesItem.select();
 		ContextMenuHelper.clickContextMenu(tree, myUtil
 				.getPluginLocalizedValue("NewRemoteCommand"));
@@ -38,8 +36,9 @@
 				.click();
 
 		refreshAndWait();
-		SWTBotTreeItem item = myRepoViewUtil.getRemotesItem(tree,
-				repositoryFile).expand().getNode("testRemote").expand();
+		SWTBotTreeItem item = TestUtil.expandAndWait(
+				myRepoViewUtil.getRemotesItem(tree, repositoryFile));
+		item = TestUtil.expandAndWait(item.getNode("testRemote"));
 		List<String> children = item.getNodes();
 		assertEquals(2, children.size());
 		item.select();
@@ -72,29 +71,31 @@
 		shell.bot().button(UIText.SimpleConfigurePushDialog_SaveButton).click();
 
 		refreshAndWait();
-		item = myRepoViewUtil.getRemotesItem(tree, repositoryFile).expand()
-				.getNode("testRemote").expand();
+		item = TestUtil.expandAndWait(
+				myRepoViewUtil.getRemotesItem(tree, repositoryFile));
+		item = TestUtil.expandAndWait(item.getNode("testRemote"));
 		children = item.getNodes();
 		assertEquals(2, children.size());
 		item.getNode(0).select();
 		ContextMenuHelper.clickContextMenu(tree, myUtil
 				.getPluginLocalizedValue("RemoveFetchCommand"));
 		refreshAndWait();
-		item = myRepoViewUtil.getRemotesItem(tree, repositoryFile).expand()
-				.getNode("testRemote").expand();
+		item = TestUtil.expandAndWait(
+				myRepoViewUtil.getRemotesItem(tree, repositoryFile));
+		item = TestUtil.expandAndWait(item.getNode("testRemote"));
 		children = item.getNodes();
 		assertEquals(1, children.size());
 		item.getNode(0).select();
 		ContextMenuHelper.clickContextMenu(tree, myUtil
 				.getPluginLocalizedValue("RemovePushCommand"));
 		refreshAndWait();
-		item = myRepoViewUtil.getRemotesItem(tree, repositoryFile).expand()
+		item = TestUtil.expandAndWait(
+						myRepoViewUtil.getRemotesItem(tree, repositoryFile))
 				.getNode("testRemote").expand();
 		children = item.getNodes();
 		assertEquals(0, children.size());
 
-		myRepoViewUtil.getRemotesItem(tree, repositoryFile).expand().getNode(
-				"testRemote").select();
+		item.select();
 
 		ContextMenuHelper.clickContextMenu(tree, myUtil
 				.getPluginLocalizedValue("ConfigureFetchCommand"));
@@ -120,13 +121,15 @@
 		shell.bot().button(UIText.SimpleConfigureFetchDialog_SaveButton)
 				.click();
 		refreshAndWait();
-		item = myRepoViewUtil.getRemotesItem(tree, repositoryFile).expand()
-				.getNode("testRemote").expand();
+		item = TestUtil.expandAndWait(
+				myRepoViewUtil.getRemotesItem(tree, repositoryFile));
+		item = TestUtil.expandAndWait(item.getNode("testRemote"));
 		children = item.getNodes();
 		assertEquals(2, children.size());
 
-		item = myRepoViewUtil.getRemotesItem(tree, repositoryFile).expand()
-				.getNode("testRemote").expand();
+		item = TestUtil.expandAndWait(
+				myRepoViewUtil.getRemotesItem(tree, repositoryFile));
+		item = TestUtil.expandAndWait(item.getNode("testRemote"));
 		children = item.getNodes();
 		assertEquals(2, children.size());
 		item.getNode(0).select();
@@ -134,8 +137,9 @@
 				.getPluginLocalizedValue("RemoveFetchCommand"));
 		refreshAndWait();
 
-		myRepoViewUtil.getRemotesItem(tree, repositoryFile).expand().getNode(
-				"testRemote").select();
+		TestUtil.expandAndWait(
+				myRepoViewUtil.getRemotesItem(tree, repositoryFile))
+				.getNode("testRemote").select();
 
 		ContextMenuHelper.clickContextMenu(tree, myUtil
 				.getPluginLocalizedValue("ConfigurePushCommand"));
@@ -175,8 +179,9 @@
 		shell = bot.shell(shellText);
 		shell.bot().button(UIText.SimpleConfigurePushDialog_SaveButton).click();
 		refreshAndWait();
-		item = myRepoViewUtil.getRemotesItem(tree, repositoryFile).expand()
-				.getNode("testRemote").expand();
+		item = TestUtil.expandAndWait(
+				myRepoViewUtil.getRemotesItem(tree, repositoryFile));
+		item = TestUtil.expandAndWait(item.getNode("testRemote"));
 		children = item.getNodes();
 		assertEquals(1, children.size());
 		item.select();
@@ -186,8 +191,9 @@
 		shell.bot().button(IDialogConstants.CANCEL_LABEL).click();
 
 		refreshAndWait();
-		item = myRepoViewUtil.getRemotesItem(tree, repositoryFile).expand()
-				.getNode("testRemote").expand();
+		item = TestUtil.expandAndWait(
+				myRepoViewUtil.getRemotesItem(tree, repositoryFile));
+		item = TestUtil.expandAndWait(item.getNode("testRemote"));
 		children = item.getNodes();
 		assertEquals(1, children.size());
 

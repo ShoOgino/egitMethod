@@ -14,7 +14,7 @@
 		SWTBotTree syncViewTree = bot.viewById(ISynchronizeView.VIEW_ID).bot().tree();
 		SWTBotTreeItem[] syncItems = syncViewTree.getAllItems();
 		assertTrue(syncItems[0].getText().contains(PROJ1));
-		syncItems[0].expand();
+		TestUtil.expandAndWait(syncItems[0]);
 		assertNotNull(syncItems[0].getNode(newFileName));
 	}
 
