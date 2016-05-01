@@ -1,0 +1,23 @@
+	private String setTopicInRef(String ref, String topic) {
+		String baseRef;
+		String options;
+		int i = ref.indexOf('%');
+		if (i >= 0) {
+			baseRef = ref.substring(0, i);
+			options = ref.substring(i + 1);
+			options = options.replaceAll("topic=[^,]*", ""); 		} else {
+			baseRef = ref;
+			options = ""; 		}
+		if (topic.indexOf(',') >= 0) {
+			baseRef += '/' + topic;
+		} else {
+			if (!options.isEmpty()) {
+				options += ',';
+			}
+			options += "topic=" + topic; 		}
+		if (!options.isEmpty()) {
+			return baseRef + '%' + options;
+		}
+		return baseRef;
+	}
+
