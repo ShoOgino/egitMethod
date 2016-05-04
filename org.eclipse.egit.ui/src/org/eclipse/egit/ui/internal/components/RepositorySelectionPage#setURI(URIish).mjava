@@ -3,7 +3,11 @@
 			eventDepth++;
 			if (eventDepth == 1) {
 				uri = u;
-				uriText.setText(uri.toString());
+				String oldUriText = uriText.getText();
+				String newUriText = uri.toString();
+				if (!oldUriText.equals(newUriText)) {
+					uriText.setText(newUriText);
+				}
 				checkPage();
 			}
 		} finally {
