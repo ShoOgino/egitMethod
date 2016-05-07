@@ -17,6 +17,7 @@
 		assertEquals(myRepoViewUtil.getWorkdirItem(tree, repositoryFile)
 				.getText(), wizardNode);
 		shell.close();
+		tree = getOrOpenView().bot().tree();
 		TestUtil.expandAndWait(
 				myRepoViewUtil.getWorkdirItem(tree, repositoryFile))
 				.getNode(Constants.DOT_GIT).select();
