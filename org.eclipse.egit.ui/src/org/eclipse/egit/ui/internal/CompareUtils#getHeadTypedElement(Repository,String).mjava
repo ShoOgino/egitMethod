@@ -1,6 +1,6 @@
 	public static ITypedElement getHeadTypedElement(Repository repository, String repoRelativePath) {
 		try {
-			Ref head = repository.getRef(Constants.HEAD);
+			Ref head = repository.exactRef(Constants.HEAD);
 			if (head == null || head.getObjectId() == null)
 				return new EmptyTypedElement(""); 
 			RevCommit latestFileCommit;

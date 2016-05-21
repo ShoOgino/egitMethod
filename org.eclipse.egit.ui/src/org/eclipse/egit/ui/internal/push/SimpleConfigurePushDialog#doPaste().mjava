@@ -13,7 +13,7 @@
 				RefSpec spec = new RefSpec(content);
 				Ref source;
 				try {
-					source = repository.getRef(spec.getSource());
+					source = repository.findRef(spec.getSource());
 				} catch (IOException e1) {
 					source = null;
 				}

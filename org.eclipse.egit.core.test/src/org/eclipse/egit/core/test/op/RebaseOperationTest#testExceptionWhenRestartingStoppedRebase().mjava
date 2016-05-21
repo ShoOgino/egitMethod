@@ -22,15 +22,15 @@
 
 		assertEquals(first, topicCommit.getParent(0));
 
-		RebaseOperation op = new RebaseOperation(repository, repository
-				.getRef(MASTER));
+		RebaseOperation op = new RebaseOperation(repository,
+				repository.exactRef(MASTER));
 		op.execute(null);
 
 		RebaseResult res = op.getResult();
 		assertEquals(RebaseResult.Status.STOPPED, res.getStatus());
 
 		try {
-			op = new RebaseOperation(repository, repository.getRef(MASTER));
+			op = new RebaseOperation(repository, repository.exactRef(MASTER));
 			op.execute(null);
 			fail("Expected Exception not thrown");
 		} catch (CoreException e) {
