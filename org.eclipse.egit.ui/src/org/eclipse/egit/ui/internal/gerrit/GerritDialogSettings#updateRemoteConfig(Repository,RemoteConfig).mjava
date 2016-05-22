@@ -1,0 +1,13 @@
+	public static void updateRemoteConfig(Repository repository,
+			RemoteConfig config) {
+		if (repository == null || config == null) {
+			return;
+		}
+		if (GerritUtil.isGerritFetch(config)) {
+			updateGerritFetch(repository, config);
+		}
+		if (GerritUtil.isGerritPush(config)) {
+			updateGerritPush(repository, config);
+		}
+	}
+
