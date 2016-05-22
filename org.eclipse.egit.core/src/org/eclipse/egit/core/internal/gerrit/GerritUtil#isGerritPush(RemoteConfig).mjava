@@ -1,4 +1,4 @@
-	public static boolean isGerritRemote(RemoteConfig rc) {
+	public static boolean isGerritPush(RemoteConfig rc) {
 		for (RefSpec pushSpec : rc.getPushRefSpecs()) {
 			String destination = pushSpec.getDestination();
 			if (destination == null) {
