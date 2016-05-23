@@ -16,6 +16,9 @@
 					public void done(IJobChangeEvent cevent) {
 						finishRebaseInteractive();
 						IStatus result = cevent.getJob().getResult();
+						if (result == null) {
+							return;
+						}
 						if (operation == Operation.BEGIN
 								&& result.getSeverity() == IStatus.ERROR) {
 							handleBeginError(repository, result);
