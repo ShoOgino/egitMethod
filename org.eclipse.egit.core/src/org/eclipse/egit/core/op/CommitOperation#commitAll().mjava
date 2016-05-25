@@ -1,7 +1,5 @@
 	private void commitAll() throws TeamException {
-
-		Git git = new Git(repo);
-		try {
+		try (Git git = new Git(repo)) {
 			CommitCommand commitCommand = git.commit();
 			setAuthorAndCommitter(commitCommand);
 			commit = commitCommand.setAll(true).setMessage(message)

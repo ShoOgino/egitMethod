@@ -1,5 +1,6 @@
 	@Override
 	public void createControl(Composite parent) {
+		loadKnownRemoteRefs();
 		Composite main = new Composite(parent, SWT.NONE);
 		main.setLayout(new GridLayout(3, false));
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(main);
@@ -18,7 +19,8 @@
 
 		prefixCombo = new Combo(main, SWT.READ_ONLY | SWT.DROP_DOWN);
 		prefixCombo.add(GerritUtil.REFS_FOR);
-		prefixCombo.add("refs/drafts/"); 		prefixCombo.select(0);
+		prefixCombo.add(GerritUtil.REFS_DRAFTS);
+		prefixCombo.select(0);
 
 		branchTextlabel.setText(UIText.PushToGerritPage_BranchLabel);
 		branchText = new Text(main, SWT.SINGLE | SWT.BORDER);
@@ -38,6 +40,40 @@
 			}
 		});
 		addRefContentProposalToText(branchText);
+
+		useTopic = new Button(main, SWT.CHECK | SWT.LEFT);
+		useTopic.setText(UIText.PushToGerritPage_TopicUseLabel);
+		GridDataFactory.fillDefaults().grab(true, false).span(3, 1)
+				.applyTo(useTopic);
+		topicLabel = new Label(main, SWT.NONE);
+		topicLabel.setText(UIText.PushToGerritPage_TopicLabel);
+		topicText = new Text(main, SWT.SINGLE | SWT.BORDER);
+		GridDataFactory.fillDefaults().grab(true, false).span(2, 1)
+				.applyTo(topicText);
+		topicText.addModifyListener(new ModifyListener() {
+
+			@Override
+			public void modifyText(ModifyEvent e) {
+				checkPage();
+			}
+		});
+		topicLabel.addTraverseListener(new TraverseListener() {
+
+			@Override
+			public void keyTraversed(TraverseEvent e) {
+				topicText.setFocus();
+				topicText.selectAll();
+			}
+		});
+
+		useTopic.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				topicText.setEnabled(useTopic.getSelection());
+				checkPage();
+			}
+		});
 
 		SortedSet<String> uris = new TreeSet<>();
 		try {
@@ -61,6 +97,8 @@
 		}
 		selectLastUsedUri();
 		setLastUsedBranch();
+		initializeTopic(branchText.getText());
+		addTopicProposal(topicText);
 		branchText.setFocus();
 		Dialog.applyDialogFont(main);
 		setControl(main);

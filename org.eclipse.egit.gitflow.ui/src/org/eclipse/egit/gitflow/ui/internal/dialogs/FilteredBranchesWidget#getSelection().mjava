@@ -1,4 +1,4 @@
 	@SuppressWarnings("unchecked") 	List<Ref> getSelection() {
-		return branchesViewer.getStructuredSelection().toList();
+		return ((IStructuredSelection) branchesViewer.getSelection()).toList();
 	}
 

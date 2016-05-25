@@ -1,14 +1,27 @@
 	@Before
 	public void setUp() throws Exception {
 		testUtils = new TestUtils();
-		project1 = testUtils.createProjectInLocalFileSystem(project1Name);
+		File rootDir = testUtils.createTempDir("FirstRepository");
+		project1 = testUtils.createProjectInLocalFileSystem(rootDir,
+				project1Name);
 		project1Dir = project1.getRawLocation().toFile();
-		repository1 = new TestRepository(new File(project1Dir,
+		otherFolder = new File(rootDir, "other_folder");
+		assertTrue(otherFolder.mkdirs());
+		File otherFile = new File(otherFolder, "otherFile.txt");
+		rootFile = new File(rootDir, "rootFile.txt");
+		Files.write(otherFile.toPath(),
+				Arrays.<String> asList("Hello", "otherFile"),
+				Charset.defaultCharset());
+		Files.write(rootFile.toPath(), Arrays.<String> asList("Hi", "rootFile"),
+				Charset.defaultCharset());
+		repository1 = new TestRepository(new File(rootDir,
 				Constants.DOT_GIT));
 		testUtils.addFileToProject(project1,
 				"project1folder1/project1folder1file1.txt", "Hello world");
 		repository1.connect(project1);
 		repository1.trackAllFiles(project1);
+		repository1.track(otherFile);
+		repository1.track(rootFile);
 		repository1.commit("Initial commit");
 		project2 = testUtils.createProjectInLocalFileSystem(project2Name);
 		project2Dir = project2.getRawLocation().toFile();
