@@ -1,3 +1,4 @@
+	@Nullable
 	protected RepositorySelection getRepositorySelection() {
 		try {
 			return (new RepositorySelection(new URIish(currentSearchResult.getGitRepositoryInfo().getCloneUri()), null));

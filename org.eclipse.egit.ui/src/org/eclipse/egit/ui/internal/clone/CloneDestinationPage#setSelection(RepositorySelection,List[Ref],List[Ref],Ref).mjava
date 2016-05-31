@@ -1,7 +1,8 @@
-	public void setSelection(RepositorySelection repositorySelection, List<Ref> availableRefs, List<Ref> branches, Ref head){
+	public void setSelection(@NonNull RepositorySelection repositorySelection,
+			List<Ref> availableRefs, List<Ref> branches, Ref head) {
 		this.availableRefs.clear();
 		this.availableRefs.addAll(availableRefs);
 		checkPreviousPagesSelections(repositorySelection, branches, head);
-		revalidate(repositorySelection,branches, head);
+		revalidate(repositorySelection, branches, head);
 	}
 
