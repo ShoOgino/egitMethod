@@ -1,6 +1,7 @@
 		private void decorateText(IDecoration decoration,
 				IDecoratableResource resource) {
 			String format = ""; 			switch (resource.getType()) {
+			default:
 			case IResource.FILE:
 				format = store
 						.getString(UIPreferences.DECORATOR_FILETEXT_DECORATION);
