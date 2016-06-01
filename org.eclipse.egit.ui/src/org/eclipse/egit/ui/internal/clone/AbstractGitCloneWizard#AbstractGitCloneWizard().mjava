@@ -4,8 +4,9 @@
 
 			@Override
 			public void setVisible(boolean visible) {
-				if (visible) {
-					setSelection(getRepositorySelection());
+				RepositorySelection selection = getRepositorySelection();
+				if (selection != null && visible) {
+					setSelection(selection);
 					setCredentials(getCredentials());
 				}
 				super.setVisible(visible);
@@ -14,11 +15,13 @@
 		cloneDestination = new CloneDestinationPage() {
 			@Override
 			public void setVisible(boolean visible) {
-				if (visible)
-					setSelection(getRepositorySelection(),
+				RepositorySelection selection = getRepositorySelection();
+				if (selection != null && visible) {
+					setSelection(selection,
 							validSource.getAvailableBranches(),
 							validSource.getSelectedBranches(),
 							validSource.getHEAD());
+				}
 				super.setVisible(visible);
 			}
 		};

@@ -1,0 +1,12 @@
+	public static @NonNull IDialogSettings getSection(String id) {
+		IDialogSettings settings = Activator.getDefault().getDialogSettings();
+		IDialogSettings section = settings.getSection(id);
+		if (section == null) {
+			section = settings.addNewSection(id);
+			if (section == null) {
+				throw new NullPointerException(
+						"IDialogSettings section could not be created"); 			}
+		}
+		return section;
+	}
+

@@ -14,6 +14,6 @@
 		};
 		this.config = repository.getConfig();
 		this.remoteName = remoteName;
-
+		this.repository = repository;
 	}
 

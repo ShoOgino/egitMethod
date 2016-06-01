@@ -1,8 +1,12 @@
 	public static boolean testRepositoryState(Repository repository, String property) {
 		if ("isShared".equals(property)) 			return repository != null;
 		if (repository != null) {
-			if ("hasGerritConfiguration".equals(property)) 				return hasGerritConfiguration(repository);
-
+			if ("hasGerritConfiguration".equals(property)) { 				return hasGerritConfiguration(repository);
+			}
+			if ("canFetchFromGerrit".equals(property)) { 				return canFetchFromGerrit(repository);
+			}
+			if ("canPushToGerrit".equals(property)) { 				return canPushToGerrit(repository);
+			}
 			RepositoryState state = repository.getRepositoryState();
 
 			if ("canAbortRebase".equals(property)) 				switch (state) {
