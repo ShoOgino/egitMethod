@@ -1,0 +1,25 @@
+	@Override
+	public final void run() {
+		Repository repo = null;
+		if (!repositoryGone) {
+			RepositoryCache repoCache = org.eclipse.egit.core.Activator
+					.getDefault().getRepositoryCache();
+			repo = repoCache.getRepository(repositoryDir);
+			if (repo == null
+					&& FileKey.isGitRepository(repositoryDir, FS.DETECTED)) {
+				try {
+					repo = repoCache.lookupRepository(repositoryDir);
+				} catch (IOException e) {
+				}
+			}
+			repositoryGone = repo == null;
+		}
+		if (repositoryGone || repo == null) {
+			Activator.showError(MessageFormat.format(
+					UIText.RepositoryJobResultAction_RepositoryGone,
+					repositoryDir), null);
+			return;
+		}
+		showResult(repo);
+	}
+

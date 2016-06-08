@@ -1,0 +1,9 @@
+	public ShowPushResultAction(@NonNull Repository repository,
+			PushOperationResult result, String destination,
+			boolean showConfigureButton) {
+		super(repository, UIText.ShowPushResultAction_name);
+		this.operationResult = result;
+		this.destination = destination;
+		this.showConfigure = showConfigureButton;
+	}
+

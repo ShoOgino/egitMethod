@@ -1,0 +1,2 @@
+	abstract protected void showResult(@NonNull Repository repository);
+

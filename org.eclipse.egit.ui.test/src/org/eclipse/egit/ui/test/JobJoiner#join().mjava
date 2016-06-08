@@ -1,6 +1,7 @@
-	public void join() {
+	public Job join() {
 		try {
 			doJoin();
+			return scheduledJob;
 		} catch (InterruptedException e) {
 			Thread.currentThread().interrupt();
 			throw new RuntimeException("Thread was interrupted.", e);

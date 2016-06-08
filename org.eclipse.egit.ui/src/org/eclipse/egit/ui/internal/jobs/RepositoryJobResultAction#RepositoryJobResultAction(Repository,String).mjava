@@ -1,0 +1,6 @@
+	public RepositoryJobResultAction(@NonNull Repository repository,
+			String title) {
+		super(title);
+		this.repositoryDir = repository.getDirectory();
+	}
+
