@@ -7,8 +7,7 @@
 		TestUtil.getChildNode(localBranches, "stable").select();
 		dialog.bot().button(UIText.RenameBranchDialog_RenameButtonLabel)
 				.click();
-		SWTBotShell newNameDialog = bot
-				.shell(UIText.RenameBranchDialog_RenameBranchDialogNewNameInputWindowTitle);
+		SWTBotShell newNameDialog = bot.shell(UIText.BranchRenameDialog_Title);
 		newNameDialog.bot().text().setText("master");
 		assertFalse(newNameDialog.bot().button(IDialogConstants.OK_LABEL)
 				.isEnabled());
@@ -24,8 +23,7 @@
 		TestUtil.getChildNode(localBranches2, "renamed").select();
 		dialog.bot().button(UIText.RenameBranchDialog_RenameButtonLabel)
 				.click();
-		newNameDialog = bot
-				.shell(UIText.RenameBranchDialog_RenameBranchDialogNewNameInputWindowTitle);
+		newNameDialog = bot.shell(UIText.BranchRenameDialog_Title);
 
 		newNameDialog.bot().text().setText("stable");
 		newNameDialog.bot().button(IDialogConstants.OK_LABEL).click();

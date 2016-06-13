@@ -1,5 +1,0 @@
-	public static BranchOperationUI checkoutWithoutQuestion(
-			Repository repository, String target) {
-		return new BranchOperationUI(repository, target, false);
-	}
-
