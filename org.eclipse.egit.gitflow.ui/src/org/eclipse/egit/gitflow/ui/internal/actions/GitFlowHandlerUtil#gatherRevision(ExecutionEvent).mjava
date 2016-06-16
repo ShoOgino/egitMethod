@@ -5,7 +5,7 @@
 				.exactRef(gfRepo.getConfig().getDevelopFull());
 		if (develop == null) {
 			throw new IllegalStateException(
-					"Gitflow command called on non-Gitflow repository"); 		}
+					"Gitflow command called on Gitflow repository with no develop branch. " 							+ "The Gitflow configuration is either corrupt or incomplete."); 		}
 		return develop.getName();
 	}
 
