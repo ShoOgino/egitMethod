@@ -1,0 +1,4 @@
+	public FindResults(IFindListener listener) {
+		this.listener = listener;
+	}
+

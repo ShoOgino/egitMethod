@@ -1,0 +1,2 @@
+	void itemAdded(int index, RevObject rev);
+
