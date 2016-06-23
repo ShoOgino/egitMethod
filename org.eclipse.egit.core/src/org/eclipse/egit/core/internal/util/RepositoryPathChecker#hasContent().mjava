@@ -1,0 +1,4 @@
+	public boolean hasContent() {
+		return hasContent;
+	}
+

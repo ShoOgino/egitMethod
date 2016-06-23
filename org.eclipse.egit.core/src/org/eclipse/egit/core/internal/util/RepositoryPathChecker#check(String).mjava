@@ -1,0 +1,39 @@
+	public boolean check(String dir) {
+		hasContent = false;
+		errorMessage = null;
+
+		if (dir.length() == 0) {
+			errorMessage = CoreText.RepositoryPathChecker_errAbsoluteRepoPath;
+			return false;
+		}
+
+		if (dir.startsWith("git clone")) { 			errorMessage = CoreText.RepositoryPathChecker_errNoCloneCommand;
+			return false;
+		}
+		if (isURL(dir)) {
+			errorMessage = CoreText.RepositoryPathChecker_errNoURL;
+			return false;
+		}
+		File testFile = new File(dir);
+		IPath path = Path.fromOSString(dir);
+		for (String segment : path.segments()) {
+			IStatus status = ResourcesPlugin.getWorkspace()
+					.validateName(segment, IResource.FOLDER);
+			if (!status.isOK()) {
+				errorMessage = status.getMessage();
+				return false;
+			}
+		}
+		if (!path.isAbsolute()) {
+			errorMessage = NLS.bind(CoreText.RepositoryPathChecker_errNotAbsoluteRepoPath,
+					dir);
+			return false;
+		}
+		if (testFile.exists() && !testFile.isDirectory()) {
+			errorMessage = NLS.bind(CoreText.RepositoryPathChecker_errNoDirectory, dir);
+			return false;
+		}
+		hasContent = testFile.exists() && testFile.list().length > 0;
+		return true;
+	}
+

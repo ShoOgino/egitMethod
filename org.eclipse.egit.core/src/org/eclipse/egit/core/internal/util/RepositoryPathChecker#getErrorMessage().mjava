@@ -1,0 +1,4 @@
+	public @Nullable String getErrorMessage() {
+		return errorMessage;
+	}
+
