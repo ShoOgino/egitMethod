@@ -1,0 +1,7 @@
+		private void beforeHide() {
+			lastText = toolbar.getText();
+			lastSearchContext = searchContext;
+			statusListener.setMessage(toolbar, ""); 			toolbar = null;
+			openCloseToggle.setChecked(false);
+		}
+

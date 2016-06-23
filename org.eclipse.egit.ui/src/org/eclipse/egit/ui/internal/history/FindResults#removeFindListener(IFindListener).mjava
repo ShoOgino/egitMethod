@@ -1,0 +1,4 @@
+	public void removeFindListener(IFindListener listener) {
+		listeners.remove(listener);
+	}
+

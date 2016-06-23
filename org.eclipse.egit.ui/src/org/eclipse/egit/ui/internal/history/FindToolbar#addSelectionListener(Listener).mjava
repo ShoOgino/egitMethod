@@ -1,4 +1,4 @@
-	void addSelectionListener(Listener listener) {
-		eventList.add(listener);
+	public void addSelectionListener(Listener selectionListener) {
+		eventList.add(selectionListener);
 	}
 

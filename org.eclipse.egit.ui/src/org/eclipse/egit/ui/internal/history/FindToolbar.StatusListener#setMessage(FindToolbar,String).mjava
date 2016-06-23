@@ -1,0 +1,2 @@
+		public void setMessage(FindToolbar originator, String text);
+

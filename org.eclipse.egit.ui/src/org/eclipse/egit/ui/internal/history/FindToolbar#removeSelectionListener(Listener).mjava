@@ -1,0 +1,4 @@
+	public void removeSelectionListener(Listener selectionListener) {
+		eventList.remove(selectionListener);
+	}
+

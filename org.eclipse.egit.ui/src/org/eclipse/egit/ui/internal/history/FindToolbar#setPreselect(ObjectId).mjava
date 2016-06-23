@@ -1,0 +1,4 @@
+	public void setPreselect(ObjectId commitId) {
+		preselect = commitId;
+	}
+

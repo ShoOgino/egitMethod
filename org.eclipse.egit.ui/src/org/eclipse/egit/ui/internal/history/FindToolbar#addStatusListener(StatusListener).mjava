@@ -1,0 +1,4 @@
+	public void addStatusListener(StatusListener layoutListener) {
+		layoutListeners.addIfAbsent(layoutListener);
+	}
+

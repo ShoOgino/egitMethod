@@ -1,0 +1,10 @@
+	public void setText(String text, boolean search) {
+		if (!search) {
+			patternField.removeModifyListener(patternModifyListener);
+		}
+		patternField.setText(text);
+		if (!search) {
+			patternField.addModifyListener(patternModifyListener);
+		}
+	}
+

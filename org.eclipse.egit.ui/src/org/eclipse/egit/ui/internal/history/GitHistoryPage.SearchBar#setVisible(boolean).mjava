@@ -1,0 +1,18 @@
+		@Override
+		public void setVisible(boolean visible) {
+			if (visible != isVisible()) {
+				if (!visible) {
+					beforeHide();
+				}
+				super.setVisible(visible);
+				bars.updateActionBars();
+				if (visible && toolbar != null) {
+					openCloseToggle.setChecked(true);
+					graph.getControl().setFocus();
+					toolbar.setFocus();
+				} else if (!visible && !graph.getControl().isDisposed()) {
+					graph.getControl().setFocus();
+				}
+			}
+		}
+
