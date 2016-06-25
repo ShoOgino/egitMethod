@@ -1,0 +1,4 @@
+		protected JobFamily() {
+			this(UIIcons.REPOSITORY);
+		}
+
