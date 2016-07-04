@@ -1,0 +1,12 @@
+	private void registerBuiltinLFS() {
+		Class<?> lfs;
+		try {
+			lfs = Class.forName("org.eclipse.jgit.lfs.BuiltinLFS"); 			if (lfs != null) {
+				lfs.getMethod("register").invoke(null); 			}
+		} catch (ClassNotFoundException | IllegalAccessException
+				| IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException e1) {
+			logWarning(CoreText.Activator_noBuiltinLfsSupportDetected, e1);
+		}
+	}
+
