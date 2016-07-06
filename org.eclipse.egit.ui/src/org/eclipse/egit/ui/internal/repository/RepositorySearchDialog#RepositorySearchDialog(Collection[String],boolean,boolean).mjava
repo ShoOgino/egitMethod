@@ -1,0 +1,8 @@
+	public RepositorySearchDialog(Collection<String> existingDirs,
+			boolean fillSearch, boolean allowBare) {
+		super("searchPage", UIText.RepositorySearchDialog_SearchTitle, 				UIIcons.WIZBAN_IMPORT_REPO);
+		this.fExistingDirectories.addAll(existingDirs);
+		this.fillSearch = fillSearch;
+		this.allowBare = allowBare;
+	}
+
