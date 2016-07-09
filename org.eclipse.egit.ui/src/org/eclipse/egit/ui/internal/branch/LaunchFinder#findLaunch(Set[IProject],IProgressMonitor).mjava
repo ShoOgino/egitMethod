@@ -1,11 +1,10 @@
-	@Nullable
-	public static ILaunchConfiguration findLaunch(Set<IProject> projects,
+	private static ILaunchConfiguration findLaunch(Set<IProject> projects,
 			IProgressMonitor monitor) {
 		ILaunchManager launchManager = DebugPlugin.getDefault()
 				.getLaunchManager();
 		ILaunch[] launches = launchManager.getLaunches();
 		SubMonitor progress = SubMonitor.convert(monitor,
-				UIText.BranchOperationUI_SearchLaunchConfiguration,
+				UIText.LaunchFinder_SearchLaunchConfiguration,
 				launches.length);
 		for (ILaunch launch : launches) {
 			if (progress.isCanceled()) {

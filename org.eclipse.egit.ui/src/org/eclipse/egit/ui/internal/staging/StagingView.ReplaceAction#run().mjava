@@ -1,8 +1,18 @@
 		@Override
 		public void run() {
+			String question = UIText.DiscardChangesAction_confirmActionMessage;
+			ILaunchConfiguration launch = LaunchFinder
+					.getRunningLaunchConfiguration(
+							Collections.singleton(getCurrentRepository()),
+							null);
+			if (launch != null) {
+				question = MessageFormat.format(question,
+						"\n\n" + MessageFormat.format( 								UIText.LaunchFinder_RunningLaunchMessage,
+								launch.getName()));
+			} else {
+				question = MessageFormat.format(question, ""); 			}
 			boolean performAction = MessageDialog.openConfirm(form.getShell(),
-					UIText.DiscardChangesAction_confirmActionTitle,
-					UIText.DiscardChangesAction_confirmActionMessage);
+					UIText.DiscardChangesAction_confirmActionTitle, question);
 			if (!performAction) {
 				return;
 			}

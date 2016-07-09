@@ -1,0 +1,6 @@
+	public static boolean shouldCancelBecauseOfRunningLaunches(
+			Repository repository, IProgressMonitor monitor) {
+		return shouldCancelBecauseOfRunningLaunches(
+				Collections.singleton(repository), monitor);
+	}
+

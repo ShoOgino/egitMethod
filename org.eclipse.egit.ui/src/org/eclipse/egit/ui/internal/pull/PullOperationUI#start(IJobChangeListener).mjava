@@ -1,4 +1,9 @@
 	private void start(IJobChangeListener jobChangeListener) {
+		if (checkForLaunches
+				&& LaunchFinder.shouldCancelBecauseOfRunningLaunches(
+						Arrays.asList(repositories), null)) {
+			return;
+		}
 		String jobName;
 		if (this.repositories.length == 1) {
 			String repoName = Activator.getDefault().getRepositoryUtil()
@@ -16,7 +21,7 @@
 
 			@Override
 			public IStatus runInWorkspace(IProgressMonitor monitor) {
-				execute(monitor);
+				execute(monitor, false);
 				return Status.OK_STATUS;
 			}
 

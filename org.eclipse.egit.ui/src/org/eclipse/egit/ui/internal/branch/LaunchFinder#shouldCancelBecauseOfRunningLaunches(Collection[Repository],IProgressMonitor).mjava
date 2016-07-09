@@ -1,14 +1,15 @@
-	private boolean shouldCancelBecauseOfRunningLaunches(
-			IProgressMonitor monitor) {
-		if (!showQuestionsBeforeCheckout) {
-			return false;
-		}
-		final IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+	public static boolean shouldCancelBecauseOfRunningLaunches(
+			Collection<Repository> repositories, IProgressMonitor monitor) {
+		final IPreferenceStore store = Activator.getDefault()
+				.getPreferenceStore();
 		if (!store.getBoolean(
 				UIPreferences.SHOW_RUNNING_LAUNCH_ON_CHECKOUT_WARNING)) {
 			return false;
 		}
-		final ILaunchConfiguration launchConfiguration = getRunningLaunchConfiguration(monitor);
+		SubMonitor progress = SubMonitor.convert(monitor);
+		final ILaunchConfiguration launchConfiguration = getRunningLaunchConfiguration(
+				repositories,
+				progress);
 		if (launchConfiguration != null) {
 			final boolean[] dialogResult = new boolean[1];
 			PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {

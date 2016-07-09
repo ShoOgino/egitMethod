@@ -2,9 +2,19 @@
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		IWorkbenchPart part = getPart(event);
+		String question = UIText.DiscardChangesAction_confirmActionMessage;
+		ILaunchConfiguration launch = LaunchFinder
+				.getRunningLaunchConfiguration(Arrays.asList(getRepositories()),
+						null);
+		if (launch != null) {
+			question = MessageFormat.format(question,
+					"\n\n" + MessageFormat.format( 							UIText.LaunchFinder_RunningLaunchMessage,
+							launch.getName()));
+		} else {
+			question = MessageFormat.format(question, ""); 		}
 		boolean performAction = MessageDialog.openConfirm(getShell(event),
 				UIText.DiscardChangesAction_confirmActionTitle,
-				UIText.DiscardChangesAction_confirmActionMessage);
+				question);
 		if (!performAction)
 			return null;
 		final DiscardChangesOperation operation = createOperation(part, event);
