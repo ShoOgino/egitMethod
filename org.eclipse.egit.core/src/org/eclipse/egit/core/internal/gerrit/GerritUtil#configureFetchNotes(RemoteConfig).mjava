@@ -1,9 +1,11 @@
-	public static void configureFetchNotes(RemoteConfig remoteConfig) {
+	public static boolean configureFetchNotes(RemoteConfig remoteConfig) {
 		String notesRef = Constants.R_NOTES + "*"; 		List<RefSpec> fetchRefSpecs = remoteConfig.getFetchRefSpecs();
 		for (RefSpec refSpec : fetchRefSpecs) {
 			if (refSpec.matchSource(notesRef)) {
-				return;
+				return false;
 			}
 		}
-		remoteConfig.addFetchRefSpec(new RefSpec(notesRef + ":" + notesRef)); 	}
+		remoteConfig.addFetchRefSpec(new RefSpec(notesRef + ':' + notesRef));
+		return true;
+	}
 

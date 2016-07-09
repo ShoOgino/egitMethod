@@ -1,0 +1,14 @@
+	public static void tryToAutoConfigureForGerrit(
+			@Nullable File repositoryDir) {
+		if (repositoryDir != null) {
+			try {
+				Repository repository = Activator.getDefault()
+						.getRepositoryCache().lookupRepository(repositoryDir);
+				if (repository != null) {
+					tryToAutoConfigureForGerrit(repository);
+				}
+			} catch (IOException ignored) {
+			}
+		}
+	}
+
