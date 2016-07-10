@@ -1,0 +1,5 @@
+	private String textFor(ElementAction action, String base) {
+		int accelerator = getActionAccelerators().get(action).intValue();
+		return base + " (" + SWTKeySupport.getKeyFormatterForPlatform().format( 				SWTKeySupport.convertAcceleratorToKeyStroke(accelerator)) + ')';
+	}
+

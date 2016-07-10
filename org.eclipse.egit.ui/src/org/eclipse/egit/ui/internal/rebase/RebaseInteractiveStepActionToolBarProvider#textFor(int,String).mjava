@@ -1,0 +1,5 @@
+	private String textFor(int idx, String base) {
+		int accelerator = MOVE_ACCELERATORS[idx];
+		return base + " (" + SWTKeySupport.getKeyFormatterForPlatform().format( 				SWTKeySupport.convertAcceleratorToKeyStroke(accelerator)) + ')';
+	}
+
