@@ -1,5 +1,10 @@
 	@AfterClass
 	public static void afterClassBase() throws Exception {
+		File tempDir = testUtils.getBaseTempDir();
+		if (tempDir.toString().startsWith("/home") && tempDir.exists()) {
+			FileUtils.delete(tempDir, FileUtils.IGNORE_ERRORS
+					| FileUtils.RECURSIVE | FileUtils.RETRY);
+		}
 		testUtils.deleteTempDirs();
 	}
 
