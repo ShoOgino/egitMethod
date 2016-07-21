@@ -3,7 +3,8 @@
 		SWTBotTree tree = getOrOpenView().bot().tree();
 		refreshAndWait();
 
-		IProject project1 = ResourcesPlugin.getWorkspace().getRoot().getProject(PROJ1);
+		IProject project1 = ResourcesPlugin.getWorkspace().getRoot()
+				.getProject(PROJ1);
 		project1.refreshLocal(IResource.DEPTH_INFINITE, null);
 
 		SWTBotTreeItem folder = findWorkdirNode(tree, PROJ1, FOLDER);
