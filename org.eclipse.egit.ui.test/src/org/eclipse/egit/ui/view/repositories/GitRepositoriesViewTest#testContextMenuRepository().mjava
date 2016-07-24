@@ -1,5 +1,6 @@
 	@Test
 	public void testContextMenuRepository() throws Exception {
+		removeSmartImportWizardToForceGitImportWizardUsage();
 		Activator.getDefault().getPreferenceStore()
 				.setValue(UIPreferences.ALWAYS_USE_STAGING_VIEW, false);
 		SWTBotTree tree = getOrOpenView().bot().tree();
