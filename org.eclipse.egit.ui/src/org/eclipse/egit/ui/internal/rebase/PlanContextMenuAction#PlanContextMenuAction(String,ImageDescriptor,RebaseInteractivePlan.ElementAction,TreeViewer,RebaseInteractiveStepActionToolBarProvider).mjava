@@ -2,6 +2,15 @@
 			RebaseInteractivePlan.ElementAction action, TreeViewer planViewer,
 			RebaseInteractiveStepActionToolBarProvider actionToolbarProvider) {
 		super(text, image);
+		int accelerator = actionToolbarProvider.getActionAccelerators()
+				.get(action).intValue();
+		if (accelerator == SWT.DEL) {
+			setText(text + '\t'
+					+ SWTKeySupport.getKeyFormatterForPlatform()
+							.format(SWTKeySupport.convertAcceleratorToKeyStroke(
+									accelerator)));
+		}
+		setAccelerator(accelerator);
 		this.action = action;
 		this.planViewer = planViewer;
 		this.actionToolbarProvider = actionToolbarProvider;
