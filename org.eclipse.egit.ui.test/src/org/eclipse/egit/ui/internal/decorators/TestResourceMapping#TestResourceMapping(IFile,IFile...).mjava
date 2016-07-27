@@ -1,0 +1,6 @@
+	public TestResourceMapping(IFile mainFile, IFile... mappedFiles) {
+		this.mainFile = mainFile;
+		this.project = mainFile.getProject();
+		this.mappedFiles = mappedFiles;
+	}
+

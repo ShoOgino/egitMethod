@@ -1,0 +1,5 @@
+	protected static void gitAdd(Git git, IFile file) throws Exception {
+		String filePath = file.getFullPath().toString();
+		git.add().addFilepattern(filePath.substring(1)).call();
+	}
+

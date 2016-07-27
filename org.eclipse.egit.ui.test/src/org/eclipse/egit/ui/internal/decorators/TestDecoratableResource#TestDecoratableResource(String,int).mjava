@@ -1,0 +1,6 @@
+	public TestDecoratableResource(String name, int type) {
+		super(null);
+		this.name = name;
+		this.type = type;
+	}
+

@@ -16,7 +16,7 @@
 							UIPreferences.DECORATOR_FOLDERTEXT_DECORATION);
 				}
 				break;
-			case DecoratableResourceMapping.WORKING_SET:
+			case DecoratableWorkingSet.WORKING_SET:
 				if (resource.getRepositoryName() != null
 						&& resource.getBranch() != null)
 					format = store

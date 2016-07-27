@@ -1,0 +1,39 @@
+	@Test
+	public void testAnyConflictsIsConflicts() throws Exception {
+		gitAdd(git, rmContentA);
+		gitAdd(git, rmContentB);
+		RevCommit masterCommit = gitCommit(git);
+
+		git.checkout().setCreateBranch(true).setName("first_topic").call();
+		rmContentA = findFile(project, RM_CONTENT_A_FILE_NAME);
+		write(rmContentA.getLocation().toFile(), "First Topic Content");
+		project.refreshLocal(IResource.DEPTH_INFINITE, null);
+		gitAdd(git, rmContentA);
+		RevCommit firstTopicCommit = gitCommit(git);
+
+		git.checkout().setCreateBranch(true).setStartPoint(masterCommit)
+				.setName("second_topic").call();
+		rmContentA = findFile(project, RM_CONTENT_A_FILE_NAME);
+		write(rmContentA.getLocation().toFile(), "Second Topic Content");
+		project.refreshLocal(IResource.DEPTH_INFINITE, null);
+		gitAdd(git, rmContentA);
+		gitCommit(git);
+
+		MergeResult mergeResult = git.merge().include(firstTopicCommit).call();
+		assertEquals(MergeStatus.CONFLICTING, mergeResult.getMergeStatus());
+
+		IDecoratableResource[] expectedDRs = new IDecoratableResource[] {
+				newExpectedDecoratableResource(rmContentA).tracked()
+						.conflicts(),
+				newExpectedDecoratableResource(rmContentB).tracked(),
+				newExpectedDecoratableResourceMapping().tracked().conflicts() };
+		IndexDiffData indexDiffData = waitForIndexDiff(true);
+		IDecoratableResource[] actualDRs = {
+				newDecoratableResource(indexDiffData, rmContentA),
+				newDecoratableResource(indexDiffData, rmContentB),
+				newDecoratableResourceMapping(resourceMapping) };
+
+		assertArrayEquals(expectedDRs, actualDRs);
+		assertDecorationConflicts(resourceMapping);
+	}
+

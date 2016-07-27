@@ -1,0 +1,13 @@
+	@Test
+	public void testEmptyWorkingSetIsUndecorated() throws Exception {
+		clearWorkingSet();
+
+		IDecoratableResource[] expectedDRs = new IDecoratableResource[] {
+				newExpectedDecoratableWorkingSet(WORKING_SET) };
+		IDecoratableResource[] actualDRs = {
+				newDecoratableWorkingSet(resourceMapping) };
+
+		assertArrayEquals(expectedDRs, actualDRs);
+		assertUndecorated(resourceMapping);
+	}
+

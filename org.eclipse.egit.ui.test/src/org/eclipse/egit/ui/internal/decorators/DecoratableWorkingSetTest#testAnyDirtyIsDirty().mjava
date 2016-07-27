@@ -1,0 +1,26 @@
+	@Test
+	public void testAnyDirtyIsDirty() throws Exception {
+		IFile file = createFile(project1, TEST_FILE, "Something");
+		gitAdd(git, file);
+		gitCommit(git);
+
+		write(file.getLocation().toFile(), "Change");
+
+		IDecoratableResource[] expectedDRs = new IDecoratableResource[] {
+				newExpectedDecoratableResource(project1).tracked().dirty(),
+				newExpectedDecoratableResource(file).tracked().dirty(),
+				newExpectedDecoratableWorkingSet(WORKING_SET).tracked()
+						.dirty() };
+
+		waitForIndexDiff(true);
+		IndexDiffData indexDiffData = indexDiffCacheEntry.getIndexDiff();
+		IDecoratableResource[] actualDRs = {
+				newDecoratableResource(indexDiffData, project1),
+				newDecoratableResource(indexDiffData, file),
+				newDecoratableWorkingSet(resourceMapping) };
+
+		assertArrayEquals(expectedDRs, actualDRs);
+		assertHasUnstagedChanges(true, actualDRs);
+		assertDecorationDirty(resourceMapping);
+	}
+

@@ -1,64 +1,66 @@
-	public DecoratableResourceMapping(ResourceMapping mapping) throws IOException {
+	public DecoratableResourceMapping(ResourceMapping mapping)
+			throws IOException {
 		super(null); 
-		this.mapping = mapping;
-		IProject[] projects = mapping.getProjects();
+		Set<Repository> repositories = new HashSet<>();
+		Set<StagingState> stagingStates = new HashSet<>();
 
-		if(projects == null || projects.length == 0)
-			return;
+		List<IResource> extractResourcesFromMapping = ResourceUtil
+				.extractResourcesFromMapping(mapping);
 
-		Set<Repository> repositories = new HashSet<>(projects.length);
+		boolean anyIsTracked = false;
+		boolean anyIsConflict = false;
+		boolean anyIsDirty = false;
 
-		for(IProject prj : projects) {
-			RepositoryMapping repoMapping = RepositoryMapping.getMapping(prj);
-			if(repoMapping == null)
-				continue;
-
-			IndexDiffData diffData = ResourceStateFactory.getInstance()
-					.getIndexDiffDataOrNull(prj);
-			if(diffData == null)
-				continue;
-
-			setTracked(true);
-
-			Repository repository = repoMapping.getRepository();
-			String repoRelative = makeRepoRelative(repository, prj);
-			if (repoRelative == null) {
+		for (IResource mappingResource : extractResourcesFromMapping) {
+			if (mappingResource == null) {
 				continue;
 			}
-			repoRelative += "/"; 
-			Set<String> modified = diffData.getModified();
-			Set<String> conflicting = diffData.getConflicting();
 
-			if(containsPrefix(modified, repoRelative))
-				setDirty(true);
+			IndexDiffData indexDiffData = ResourceStateFactory.getInstance()
+					.getIndexDiffDataOrNull(mappingResource);
 
-			if(containsPrefix(conflicting, repoRelative))
-				setConflicts(true);
+			if (indexDiffData == null) {
+				continue;
+			}
 
+			Repository repository = ResourceUtil.getRepository(mappingResource);
 			repositories.add(repository);
+
+			DecoratableResourceAdapter adapter = new DecoratableResourceAdapter(
+					indexDiffData, mappingResource);
+			if (adapter.isTracked()) {
+				anyIsTracked = true;
+			}
+			if (adapter.hasConflicts()) {
+				anyIsConflict = true;
+			}
+			if (adapter.isDirty()) {
+				anyIsDirty = true;
+			}
+			stagingStates.add(adapter.getStagingState());
 		}
 
-		if(repositories.size() == 1) {
-			Repository repository = repositories.iterator().next();
-			repositoryName = DecoratableResourceHelper
-					.getRepositoryName(repository);
-			branch = DecoratableResourceHelper.getShortBranch(repository);
-			branchStatus = DecoratableResourceHelper
-					.getBranchStatus(repository);
-		} else if(repositories.size() > 1) {
-			Set<String> branches = new HashSet<>(2);
-			for (Repository repository : repositories) {
-				branches.add(DecoratableResourceHelper
-						.getShortBranch(repository));
-			    if (branches.size() > 1)
-			        break;
-			}
-
-			if (branches.size() == 1) {
-				repositoryName = MULTIPLE;
-				branch = branches.iterator().next();
-			}
-
+		if (anyIsTracked) {
+			setTracked(true);
 		}
+		if (anyIsConflict) {
+			setConflicts(true);
+		}
+		if (anyIsDirty) {
+			setDirty(true);
+		}
+
+		if (stagingStates.isEmpty()) {
+			setStagingState(StagingState.NOT_STAGED);
+		} else if (stagingStates.size() == 1) {
+			StagingState state = stagingStates.iterator().next();
+			if (state != null) {
+				setStagingState(state);
+			}
+		} else {
+			setStagingState(StagingState.MODIFIED);
+		}
+
+		decorateRepositoryInformation(this, repositories);
 	}
 

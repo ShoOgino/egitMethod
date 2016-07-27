@@ -1,0 +1,5 @@
+	protected static void gitRemove(Git git, IFile file) throws Exception {
+		String filePath = file.getFullPath().toString();
+		git.rm().addFilepattern(filePath.substring(1)).call();
+	}
+

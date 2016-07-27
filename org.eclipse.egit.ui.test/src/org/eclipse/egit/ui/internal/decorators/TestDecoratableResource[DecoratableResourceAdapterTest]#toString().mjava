@@ -1,4 +1,0 @@
-	@Override
-	public String toString() {
-		return "TestDecoratableResourceAdapter[" + getName() + (isTracked() ? ", tracked" : "") + (isIgnored() ? ", ignored" : "") + (isDirty() ? ", dirty" : "") + (hasConflicts() ? ",conflicts" : "") + ", staged=" + getStagingState() + "]"; 	}
-
