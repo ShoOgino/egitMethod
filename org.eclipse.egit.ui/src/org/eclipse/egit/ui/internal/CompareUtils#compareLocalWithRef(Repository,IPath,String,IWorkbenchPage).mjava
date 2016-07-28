@@ -1,5 +1,5 @@
-	private static void compareLocalWithRef(final Repository repository,
-			final IPath location, final String refName,
+	private static void compareLocalWithRef(@NonNull final Repository repository,
+			@NonNull final IPath location, final String refName,
 			final IWorkbenchPage page) {
 
 		Job job = new Job(UIText.CompareUtils_jobName) {

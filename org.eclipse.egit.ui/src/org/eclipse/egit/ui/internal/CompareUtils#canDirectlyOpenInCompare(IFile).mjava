@@ -1,4 +1,4 @@
-	public static boolean canDirectlyOpenInCompare(IFile file) {
+	public static boolean canDirectlyOpenInCompare(@NonNull IFile file) {
 		if (Activator.getDefault().getPreferenceStore()
 				.getBoolean(UIPreferences.USE_LOGICAL_MODEL)) {
 

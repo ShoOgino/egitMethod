@@ -1,4 +1,5 @@
-	public static ITypedElement getIndexTypedElement(final IFile baseFile)
+	public static ITypedElement getIndexTypedElement(@NonNull
+	final IFile baseFile)
 			throws IOException {
 		final RepositoryMapping mapping = RepositoryMapping.getMapping(baseFile);
 		if (mapping == null) {

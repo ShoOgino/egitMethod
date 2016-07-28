@@ -1,5 +1,8 @@
+	@NonNull
 	Repository getRepository() {
-		if (db == null)
-			throw new IllegalStateException("Repository has not been set"); 		return db;
+		Repository repo = db;
+		if (repo == null) {
+			throw new IllegalStateException("Repository has not been set"); 		}
+		return repo;
 	}
 
