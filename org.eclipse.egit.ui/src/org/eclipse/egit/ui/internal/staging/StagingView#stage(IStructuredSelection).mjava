@@ -20,7 +20,7 @@
 				addExpandedPathsBelowFolder(folder, unstagedViewer,
 						pathsToExpandInStaged);
 			} else {
-				IResource resource = AdapterUtils.adapt(element, IResource.class);
+				IResource resource = AdapterUtils.adaptToAnyResource(element);
 				if (resource != null) {
 					RepositoryMapping mapping = RepositoryMapping.getMapping(resource);
 					if (mapping != null && mapping.getRepository() == currentRepository) {

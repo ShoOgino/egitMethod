@@ -3,7 +3,12 @@
 			@NonNull IStructuredSelection selection) {
 		Set<Object> result = new HashSet<>();
 		for (Object o : selection.toList()) {
-			IResource resource = AdapterUtils.adapt(o, IResource.class);
+			Repository r = AdapterUtils.adapt(o, Repository.class);
+			if (r != null) {
+				result.add(r);
+				continue;
+			}
+			IResource resource = AdapterUtils.adaptToAnyResource(o);
 			if (resource != null) {
 				result.add(resource);
 				continue;
