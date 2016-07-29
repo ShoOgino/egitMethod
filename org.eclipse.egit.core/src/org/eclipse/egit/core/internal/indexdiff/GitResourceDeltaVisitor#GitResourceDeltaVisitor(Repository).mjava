@@ -1,7 +1,4 @@
 	public GitResourceDeltaVisitor(Repository repository) {
-		this.repository = repository;
-
-		filesToUpdate = new HashSet<String>();
-		resourcesToUpdate = new HashSet<IResource>();
+		this(repository, Collections.<IProject, IPath> emptyMap());
 	}
 

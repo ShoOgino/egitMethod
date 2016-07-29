@@ -1,0 +1,4 @@
+	public boolean isProjectDeleted() {
+		return projectDeleted;
+	}
+
