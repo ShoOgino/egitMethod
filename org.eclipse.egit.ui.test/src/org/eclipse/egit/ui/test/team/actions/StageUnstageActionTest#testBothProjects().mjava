@@ -12,14 +12,14 @@
 				addToIndexLabel);
 		TestUtil.joinJobs(ADD_TO_INDEX);
 		TestUtil.joinJobs(JobFamilies.INDEX_DIFF_CACHE_UPDATE);
-		verifyStaging(PROJ_A, filePath, true);
-		verifyStaging(PROJ_B, filePath, true);
+		StagingUtil.assertStaging(PROJ_A, filePath, true);
+		StagingUtil.assertStaging(PROJ_B, filePath, true);
 		projectExplorerTree.select(projectExplorerTree.getAllItems());
 		ContextMenuHelper.clickContextMenuSync(projectExplorerTree, "Team",
 				removeFromIndexLabel);
 		TestUtil.joinJobs(REMOVE_FROM_INDEX);
 		TestUtil.joinJobs(JobFamilies.INDEX_DIFF_CACHE_UPDATE);
-		verifyStaging(PROJ_A, filePath, false);
-		verifyStaging(PROJ_B, filePath, false);
+		StagingUtil.assertStaging(PROJ_A, filePath, false);
+		StagingUtil.assertStaging(PROJ_B, filePath, false);
 	}
 

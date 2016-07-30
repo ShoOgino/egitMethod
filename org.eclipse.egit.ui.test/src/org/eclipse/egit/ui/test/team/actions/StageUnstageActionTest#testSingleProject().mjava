@@ -15,7 +15,7 @@
 				addToIndexLabel);
 		TestUtil.joinJobs(ADD_TO_INDEX);
 		TestUtil.joinJobs(JobFamilies.INDEX_DIFF_CACHE_UPDATE);
-		verifyStaging(PROJ_A, filePath, true);
+		StagingUtil.assertStaging(PROJ_A, filePath, true);
 		util.getProjectItems(projectExplorerTree, PROJ_A)[0].select();
 		assertFalse("Add To Index should not be present",
 				ContextMenuHelper.contextMenuItemExists(projectExplorerTree,
@@ -24,6 +24,6 @@
 				removeFromIndexLabel);
 		TestUtil.joinJobs(REMOVE_FROM_INDEX);
 		TestUtil.joinJobs(JobFamilies.INDEX_DIFF_CACHE_UPDATE);
-		verifyStaging(PROJ_A, filePath, false);
+		StagingUtil.assertStaging(PROJ_A, filePath, false);
 	}
 
