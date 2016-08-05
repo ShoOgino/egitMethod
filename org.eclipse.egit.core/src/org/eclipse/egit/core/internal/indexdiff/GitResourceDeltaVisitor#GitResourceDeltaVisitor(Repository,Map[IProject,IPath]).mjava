@@ -1,0 +1,9 @@
+	public GitResourceDeltaVisitor(Repository repository,
+			Map<IProject, IPath> deletedProjects) {
+		this.repository = repository;
+
+		filesToUpdate = new HashSet<String>();
+		resourcesToUpdate = new HashSet<IResource>();
+		this.deletedProjects = deletedProjects;
+	}
+
