@@ -9,14 +9,17 @@
 				"refs/heads/*:refs/remotes/origin/*");
 		repository.getConfig().save();
 
+		SWTBotView repoView = getOrOpenView();
 		String currentBranch = repository.getBranch();
-		new Git(repository).branchRename().setOldName(currentBranch)
-				.setNewName("" + System.currentTimeMillis()).call();
+		try (Git git = new Git(repository)) {
+			git.branchRename().setOldName(currentBranch)
+					.setNewName("" + System.currentTimeMillis()).call();
+		}
 
-		SWTBotTree tree = getOrOpenView().bot().tree();
+		Job.getJobManager().join(JobFamilies.REPO_VIEW_REFRESH, null);
+		SWTBotTree tree = repoView.bot().tree();
 		tree.select(0);
 
-		TestUtil.waitForJobs(50, 5000);
 		selectNode(tree, useRemote, false);
 
 		runPush(tree);
