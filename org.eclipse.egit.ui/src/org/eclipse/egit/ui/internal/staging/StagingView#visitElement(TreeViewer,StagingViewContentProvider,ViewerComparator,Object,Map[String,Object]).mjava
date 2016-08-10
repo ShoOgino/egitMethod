@@ -1,0 +1,43 @@
+	private static boolean visitElement(TreeViewer stagingViewer,
+			StagingViewContentProvider contentProvider,
+			ViewerComparator comparator,
+			Object element, Map<String, Object> paths) {
+		if (element instanceof StagingEntry) {
+			StagingEntry stagingEntry = (StagingEntry) element;
+			if (contentProvider.isInFilter(stagingEntry)) {
+				String path = stagingEntry.getPath();
+				paths.put(path, stagingEntry);
+				return true;
+			}
+
+			return false;
+		}
+
+		if (element instanceof StagingFolderEntry) {
+			StagingFolderEntry stagingFolderEntry = (StagingFolderEntry) element;
+			Object[] children = contentProvider.getChildren(stagingFolderEntry);
+			comparator.sort(stagingViewer, children);
+
+			IPath path = stagingFolderEntry.getPath();
+			String pathString = path.toString();
+			paths.put(pathString, stagingFolderEntry);
+
+			boolean hasVisibleChildren = false;
+			for (Object child : children) {
+				if (visitElement(stagingViewer, contentProvider, comparator,
+						child, paths)) {
+					hasVisibleChildren = true;
+				}
+			}
+
+			if (hasVisibleChildren) {
+				return true;
+			}
+
+			paths.remove(pathString);
+			return false;
+		}
+
+		return false;
+	}
+

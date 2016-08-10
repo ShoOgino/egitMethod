@@ -1,0 +1,17 @@
+		private boolean traversePrecedingSiblings(TreeItem[] siblings,
+				TreeItem treeItem) {
+			boolean start = false;
+			for (int i = siblings.length - 1; i >= 0; --i) {
+				TreeItem sibling = siblings[i];
+				if (start) {
+					if (!traverseChildren(sibling)) {
+						return false;
+					}
+				} else if (sibling == treeItem) {
+					start = true;
+				}
+			}
+
+			return true;
+		}
+

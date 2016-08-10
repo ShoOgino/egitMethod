@@ -1,0 +1,13 @@
+	private static Map<String, Object> buildElementMap(TreeViewer stagingViewer,
+			StagingViewContentProvider contentProvider,
+			ViewerComparator comparator) {
+		Map<String, Object> result = new LinkedHashMap<>();
+		Object[] elements = contentProvider.getElements(null);
+		comparator.sort(stagingViewer, elements);
+		for (Object element : elements) {
+			visitElement(stagingViewer, contentProvider, comparator, element,
+					result);
+		}
+		return result;
+	}
+

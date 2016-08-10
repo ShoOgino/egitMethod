@@ -1,0 +1,12 @@
+		public void traverse(TreeItem treeItem) {
+			if (treeItem == null) {
+				treeItem = getLastItem(roots);
+				if (treeItem == null) {
+					return;
+				}
+			}
+			if (treeItem.getData() != null && visit(treeItem)) {
+				traversePrecedingSiblings(treeItem);
+			}
+		}
+

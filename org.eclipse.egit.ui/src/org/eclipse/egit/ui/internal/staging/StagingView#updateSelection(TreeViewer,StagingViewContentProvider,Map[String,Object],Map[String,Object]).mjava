@@ -1,0 +1,78 @@
+	private static StagingViewerUpdate updateSelection(TreeViewer stagingViewer,
+			StagingViewContentProvider contentProvider,
+			Map<String, Object> oldPaths, Map<String, Object> newPaths) {
+		Map<String, Object> addedPaths = new LinkedHashMap<>(newPaths);
+		addedPaths.keySet().removeAll(oldPaths.keySet());
+		if (!addedPaths.isEmpty()) {
+			List<Object> newSelection = new ArrayList<>();
+			Set<Object> elements = new LinkedHashSet<>(addedPaths.values());
+			Set<Object> excludeChildren = new LinkedHashSet<>();
+			for (Object element : elements) {
+				if (element instanceof StagingEntry) {
+					StagingEntry stagingEntry = (StagingEntry) element;
+					if (!excludeChildren.contains(stagingEntry.getParent())) {
+						newSelection.add(stagingEntry);
+					}
+				} else if (element instanceof StagingFolderEntry) {
+					StagingFolderEntry stagingFolderEntry = (StagingFolderEntry) element;
+					StagingFolderEntry parent = stagingFolderEntry.getParent();
+					if (excludeChildren.contains(parent)) {
+						excludeChildren.add(stagingFolderEntry);
+					} else if (elements.containsAll(contentProvider
+							.getStagingEntriesFiltered(stagingFolderEntry))) {
+						newSelection.add(stagingFolderEntry);
+						excludeChildren.add(stagingFolderEntry);
+					}
+				}
+			}
+
+			stagingViewer.setSelection(new StructuredSelection(newSelection),
+					true);
+			return StagingViewerUpdate.ADDED;
+		} else {
+			Map<String, Object> removedPaths = new LinkedHashMap<>(oldPaths);
+			removedPaths.keySet().removeAll(newPaths.keySet());
+			if (!removedPaths.isEmpty()) {
+				Collection<Object> removedElements = removedPaths.values();
+				Object firstRemovedElement = removedElements.iterator()
+						.next();
+				Object parent = contentProvider.getParent(firstRemovedElement);
+				Object candidate = null;
+				boolean visitSubsequentSiblings = false;
+				for (Object oldElement : oldPaths.values()) {
+					if (oldElement == firstRemovedElement) {
+						visitSubsequentSiblings = true;
+					}
+
+					if (visitSubsequentSiblings) {
+						if (!removedElements.contains(oldElement)) {
+							if (contentProvider
+									.getParent(oldElement) == parent) {
+								candidate = oldElement;
+								break;
+							} else if (candidate != null) {
+								break;
+							}
+						}
+					} else if (candidate == null || oldElement == parent
+							|| contentProvider
+									.getParent(oldElement) == parent) {
+						candidate = oldElement;
+					}
+				}
+
+				if (candidate == null && !newPaths.isEmpty()) {
+					candidate = newPaths.values().iterator().next();
+				}
+
+				if (candidate != null) {
+					stagingViewer.setSelection(
+							new StructuredSelection(candidate), true);
+					return StagingViewerUpdate.REMOVED;
+				}
+			}
+
+			return StagingViewerUpdate.UNCHANGED;
+		}
+	}
+

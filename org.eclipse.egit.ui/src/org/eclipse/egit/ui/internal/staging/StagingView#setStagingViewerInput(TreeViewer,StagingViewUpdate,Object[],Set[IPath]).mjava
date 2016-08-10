@@ -1,0 +1,79 @@
+	private void setStagingViewerInput(TreeViewer stagingViewer,
+			StagingViewUpdate newInput, Object[] previous,
+			Set<IPath> additionalPaths) {
+		final Tree tree = stagingViewer.getTree();
+		tree.setRedraw(false);
+		Cursor oldCursor = tree.getCursor();
+		tree.setCursor(tree.getDisplay().getSystemCursor(SWT.CURSOR_WAIT));
+
+		try {
+			TreeItem topItem = tree.getTopItem();
+			final Set<Object> precedingObjects = new LinkedHashSet<>();
+			if (topItem != null) {
+				new TreeItemVisitor(tree.getItems()) {
+					@Override
+					public boolean visit(TreeItem treeItem) {
+						precedingObjects.add(treeItem.getData());
+						return true;
+					}
+				}.traverse(topItem);
+				precedingObjects.remove(null);
+			}
+
+			boolean preserveTop = true;
+			boolean keepSelectionVisible = false;
+			StagingViewUpdate oldInput = (StagingViewUpdate) stagingViewer
+					.getInput();
+			if (oldInput != null && oldInput.repository == newInput.repository
+					&& oldInput.indexDiff != null) {
+				StagingViewContentProvider contentProvider = getContentProvider(
+						stagingViewer);
+				ViewerComparator comparator = stagingViewer.getComparator();
+				Map<String, Object> oldPaths = buildElementMap(stagingViewer,
+						contentProvider, comparator);
+
+				stagingViewer.setInput(newInput);
+				if (previous != null) {
+					expandPreviousExpandedAndPaths(previous, stagingViewer,
+							additionalPaths);
+				}
+
+				StagingViewerUpdate stagingViewerUpdate = updateSelection(
+						stagingViewer, contentProvider, oldPaths,
+						buildElementMap(stagingViewer, contentProvider,
+								comparator));
+
+				if (stagingViewerUpdate == StagingViewerUpdate.REMOVED) {
+					keepSelectionVisible = true;
+				} else if (stagingViewerUpdate == StagingViewerUpdate.ADDED) {
+					preserveTop = false;
+				}
+			} else {
+				stagingViewer.setInput(newInput);
+				if (previous != null) {
+					expandPreviousExpandedAndPaths(previous, stagingViewer,
+							additionalPaths);
+				}
+			}
+
+			if (preserveTop) {
+				TreeItem[] selection = tree.getSelection();
+				TreeItem initialItem = keepSelectionVisible
+						&& selection.length > 0 ? selection[0] : null;
+				new TreeItemVisitor(tree.getItems()) {
+					@Override
+					public boolean visit(TreeItem treeItem) {
+						if (precedingObjects.contains(treeItem.getData())) {
+							tree.setTopItem(treeItem);
+							return false;
+						}
+						return true;
+					}
+				}.traverse(initialItem);
+			}
+		} finally {
+			tree.setRedraw(true);
+			tree.setCursor(oldCursor);
+		}
+	}
+
