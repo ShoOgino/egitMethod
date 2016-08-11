@@ -11,6 +11,11 @@
 						.getMatchingResources(new IResource[] { resource, });
 				if (resources.length > 0) {
 					final ModelProvider model = candidate.getModelProvider();
+					IgnoreInGitSynchronizations adapter = model
+							.getAdapter(IgnoreInGitSynchronizations.class);
+					if (adapter != null) {
+						continue;
+					}
 					final ResourceMapping[] modelMappings = model.getMappings(
 							resource, context, new NullProgressMonitor());
 					for (ResourceMapping mapping : modelMappings)

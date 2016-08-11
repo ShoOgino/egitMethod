@@ -2,7 +2,8 @@
 			@NonNull Repository repository,
 			String leftRev, String rightRev, boolean includeLocal,
 			IWorkbenchPage page) throws IOException {
-		boolean useTreeCompare = shouldUseTreeCompare(resources);
+		boolean useTreeCompare = shouldUseTreeCompare(resources, repository,
+				leftRev, rightRev, includeLocal);
 		if (!useTreeCompare) {
 			if (includeLocal) {
 				compareWorkspaceWithRef(repository, resources[0],
@@ -21,8 +22,10 @@
 				compareBetween(repository, gitPath, leftRev, rightRev, page);
 			}
 		} else {
+			ResourceMappingContext mappingContext = prepareContext(repository,
+					leftRev, rightRev, includeLocal);
 			GitModelSynchronize.synchronize(resources, repository, leftRev,
-					rightRev, includeLocal);
+					rightRev, includeLocal, mappingContext);
 		}
 	}
 
