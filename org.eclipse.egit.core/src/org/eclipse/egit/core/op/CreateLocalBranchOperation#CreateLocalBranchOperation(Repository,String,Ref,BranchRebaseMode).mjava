@@ -1,5 +1,5 @@
 	public CreateLocalBranchOperation(Repository repository, String name,
-			Ref ref, UpstreamConfig config) {
+			Ref ref, BranchRebaseMode config) {
 		this.name = name;
 		this.repository = repository;
 		this.ref = ref;

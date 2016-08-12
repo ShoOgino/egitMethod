@@ -1,0 +1,5 @@
+	public void setEnabled(boolean enabled) {
+		label.setEnabled(enabled);
+		combo.getCombo().setEnabled(enabled);
+	}
+

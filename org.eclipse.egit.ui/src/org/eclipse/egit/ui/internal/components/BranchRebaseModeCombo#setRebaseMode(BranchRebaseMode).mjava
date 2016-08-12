@@ -1,0 +1,8 @@
+	public void setRebaseMode(BranchRebaseMode mode) {
+		if (mode == null) {
+			combo.setSelection(StructuredSelection.EMPTY, false);
+		} else {
+			combo.setSelection(new StructuredSelection(mode), true);
+		}
+	}
+

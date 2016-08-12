@@ -1,0 +1,4 @@
+	public @NonNull Label getLabel() {
+		return label;
+	}
+

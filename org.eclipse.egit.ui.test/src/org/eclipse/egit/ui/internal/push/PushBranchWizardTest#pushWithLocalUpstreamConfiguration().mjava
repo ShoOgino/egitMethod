@@ -22,6 +22,6 @@
 		ObjectId localId = repository.resolve("foo");
 		assertEquals(localId, remoteId);
 
-		assertBranchConfig("foo", "fetch", "refs/heads/foo", null);
+		assertBranchConfig("foo", "fetch", "refs/heads/foo", "false");
 	}
 

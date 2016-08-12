@@ -1,0 +1,10 @@
+	public void setUpstreamConfig(BranchRebaseMode upstreamConfig) {
+		if (upstreamConfig == null) {
+			configureUpstreamCheck.setSelection(false);
+		} else {
+			configureUpstreamCheck.setSelection(true);
+			rebase.setRebaseMode(upstreamConfig);
+		}
+		updateEnabled();
+	}
+

@@ -1,5 +1,5 @@
 		@Nullable
-		public UpstreamConfig getUpstreamConfig() {
+		public BranchRebaseMode getUpstreamConfig() {
 			return this.upstreamConfig;
 		}
 

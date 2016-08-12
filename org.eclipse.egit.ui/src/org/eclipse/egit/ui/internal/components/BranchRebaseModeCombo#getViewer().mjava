@@ -1,0 +1,4 @@
+	public @NonNull ComboViewer getViewer() {
+		return combo;
+	}
+

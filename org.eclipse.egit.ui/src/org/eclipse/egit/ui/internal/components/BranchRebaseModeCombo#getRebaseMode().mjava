@@ -1,0 +1,8 @@
+	public BranchRebaseMode getRebaseMode() {
+		IStructuredSelection selection = (IStructuredSelection) combo
+				.getSelection();
+		return selection.isEmpty() ? null
+				: (BranchRebaseMode) selection.getFirstElement();
+
+	}
+

@@ -4,19 +4,19 @@
 				branchName);
 
 		String remote = branchConfig.getRemote();
-		if (remote == null)
+		if (remote == null) {
 			return false;
-		if (!remote.equals(remoteConfig.getName()))
+		}
+		if (!remote.equals(remoteConfig.getName())) {
 			return true;
-
+		}
 		String merge = branchConfig.getMerge();
-		if (merge == null || !merge.equals(getFullRemoteReference()))
+		if (merge == null || !merge.equals(getFullRemoteReference())) {
 			return true;
-
-		boolean rebase = branchConfig.isRebase();
-		if (rebase != isRebaseSelected())
+		}
+		if (branchConfig.getRebaseMode() != getUpstreamConfig()) {
 			return true;
-
+		}
 		return false;
 	}
 
