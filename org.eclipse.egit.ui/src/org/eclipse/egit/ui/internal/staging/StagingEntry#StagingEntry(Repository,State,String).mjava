@@ -2,6 +2,5 @@
 		this.repository = repository;
 		this.state = state;
 		this.path = path;
-		this.file = ResourceUtil.getFileForLocation(repository, path, false);
 	}
 
