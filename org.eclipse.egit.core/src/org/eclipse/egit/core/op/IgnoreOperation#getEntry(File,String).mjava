@@ -1,3 +1,4 @@
 	private String getEntry(File file, String entry) throws IOException {
-		return prependNewline(file) ? "\n" + entry : entry; 	}
+		return prependNewline(file) ? '\n' + entry : entry;
+	}
 

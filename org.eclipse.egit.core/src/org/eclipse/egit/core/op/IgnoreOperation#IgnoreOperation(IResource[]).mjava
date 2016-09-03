@@ -6,5 +6,7 @@
 			if (location != null)
 				paths.add(location);
 		}
+		gitignoreOutsideWSChanged = false;
+		schedulingRule = calcSchedulingRule();
 	}
 
