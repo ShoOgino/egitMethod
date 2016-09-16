@@ -18,7 +18,8 @@
 			else
 				loadExistingState(helper, oldState);
 		} else { 			if (!commitMessageComponent.getHeadCommit().equals(
-					helper.getPreviousCommit())) {
+					helper.getPreviousCommit())
+					|| !commitMessageComponent.isAmending()) {
 				if (!commitMessageComponent.isAmending()
 						&& userEnteredCommitMessage())
 					addHeadChangedWarning(commitMessageComponent
