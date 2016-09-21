@@ -1,20 +1,21 @@
-	public static boolean canDirectlyOpenInCompare(@NonNull IFile file,
-			ResourceMappingContext context) {
+	public static boolean canDirectlyOpenInCompare(@NonNull IFile file) {
 		if (Activator.getDefault().getPreferenceStore()
 				.getBoolean(UIPreferences.USE_LOGICAL_MODEL)) {
 
 			final ResourceMapping[] mappings = ResourceUtil
-					.getResourceMappings(file, context);
+					.getResourceMappings(file,
+							ResourceMappingContext.LOCAL_CONTEXT);
 
 			for (ResourceMapping mapping : mappings) {
 				try {
 					final ResourceTraversal[] traversals = mapping
-							.getTraversals(context, null);
+							.getTraversals(
+									ResourceMappingContext.LOCAL_CONTEXT, null);
 					for (ResourceTraversal traversal : traversals) {
 						final IResource[] resources = traversal.getResources();
-						if (resources.length > 1
-								&& Arrays.asList(resources).contains(file)) {
-							return false;
+						for (IResource resource : resources) {
+							if (!resource.equals(file))
+								return false;
 						}
 					}
 				} catch (CoreException e) {
