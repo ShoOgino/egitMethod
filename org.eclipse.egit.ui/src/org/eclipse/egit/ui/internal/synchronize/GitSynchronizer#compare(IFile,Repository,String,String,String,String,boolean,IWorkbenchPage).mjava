@@ -1,0 +1,4 @@
+	void compare(@NonNull IFile file, @NonNull Repository repository,
+			String leftPath, String rightPath, String leftRev, String rightRev,
+			boolean includeLocal, IWorkbenchPage somePage) throws IOException;
+

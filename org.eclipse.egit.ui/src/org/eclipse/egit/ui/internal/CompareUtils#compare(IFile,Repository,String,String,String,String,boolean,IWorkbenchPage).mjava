@@ -1,0 +1,9 @@
+	public static void compare(@NonNull IFile file,
+			@NonNull Repository repository,
+			String leftPath, String rightPath, String leftRev, String rightRev,
+			boolean includeLocal, IWorkbenchPage page) throws IOException {
+		getSynchronizer().compare(file, repository, leftPath,
+				rightPath,
+				leftRev, rightRev, includeLocal, page);
+	}
+

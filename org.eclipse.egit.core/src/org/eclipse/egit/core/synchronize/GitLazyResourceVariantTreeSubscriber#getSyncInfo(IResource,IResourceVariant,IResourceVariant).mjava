@@ -1,0 +1,27 @@
+	@Override
+	protected SyncInfo getSyncInfo(IResource local, IResourceVariant base,
+			IResourceVariant remote) throws TeamException {
+		if (getDataSet().shouldBeIncluded(local)) {
+			return super.getSyncInfo(local, base, remote);
+		}
+
+		IProject project = local.getProject();
+		Repository repo = ResourceUtil.getRepository(local);
+		if (repo == null) {
+			return null;
+		}
+		GitSynchronizeData data = getDataSet().getData(project);
+		if (data == null) {
+			for (GitSynchronizeData sd : getDataSet()) {
+				if (repo.equals(sd.getRepository())) {
+					data = sd;
+					break;
+				}
+			}
+		}
+		if (data == null) {
+			return null;
+		}
+		return getSyncInfo(local, base, remote, data);
+	}
+

@@ -1,0 +1,8 @@
+	protected SyncInfo getSyncInfo(IResource local, IResourceVariant base,
+			IResourceVariant remote, Repository repo) throws TeamException {
+		SyncInfo info = new GitSyncInfo(local, base, remote,
+				getResourceComparator(), cache.get(repo), repo);
+		info.init();
+		return info;
+	}
+

@@ -1,0 +1,24 @@
+	protected void synchronize(IResource[] resources, Repository repository,
+			String leftRev, String rightRev, boolean includeLocal)
+			throws IOException {
+		if (rightRev.equals(GitFileRevision.INDEX)) {
+			openGitTreeCompare(resources, leftRev,
+					CompareTreeView.INDEX_VERSION, includeLocal);
+		} else if (leftRev.equals(GitFileRevision.INDEX)) {
+			Set<IResource> resSet = new HashSet<>(
+					Arrays.asList(resources));
+			final GitSynchronizeData gsd = new GitSynchronizeData(
+					repository, leftRev, rightRev, true, resSet);
+			GitModelSynchronize.launch(new GitSynchronizeDataSet(gsd),
+					resources);
+		} else {
+			Set<IResource> resSet = new HashSet<>(
+					Arrays.asList(resources));
+			final GitSynchronizeData gsd = new GitSynchronizeData(
+					repository, leftRev, rightRev, includeLocal,
+					resSet);
+			GitModelSynchronize.launch(new GitSynchronizeDataSet(gsd),
+					resources);
+		}
+	}
+

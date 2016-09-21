@@ -1,0 +1,24 @@
+	@Override
+	protected boolean canCompareDirectly(IFile file) {
+		final ResourceMapping[] mappings = ResourceUtil
+				.getResourceMappings(file, context);
+
+		for (ResourceMapping mapping : mappings) {
+			try {
+				final ResourceTraversal[] traversals = mapping
+						.getTraversals(context, null);
+				for (ResourceTraversal traversal : traversals) {
+					final IResource[] traversalResources = traversal
+							.getResources();
+					if (traversalResources.length > 1 && Arrays
+							.asList(traversalResources).contains(file)) {
+						return false;
+					}
+				}
+			} catch (CoreException e) {
+				Activator.logError(e.getMessage(), e);
+			}
+		}
+		return true;
+	}
+

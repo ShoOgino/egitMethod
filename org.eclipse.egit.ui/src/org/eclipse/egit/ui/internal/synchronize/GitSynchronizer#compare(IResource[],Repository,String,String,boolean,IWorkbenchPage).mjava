@@ -1,0 +1,4 @@
+	void compare(IResource[] resources, @NonNull Repository repository,
+			String leftRev, String rightRev, boolean includeLocal,
+			IWorkbenchPage somePage) throws IOException;
+

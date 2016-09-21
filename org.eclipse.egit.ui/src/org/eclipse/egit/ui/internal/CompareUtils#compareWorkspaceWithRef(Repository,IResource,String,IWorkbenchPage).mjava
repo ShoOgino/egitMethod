@@ -1,4 +1,4 @@
-	private static void compareWorkspaceWithRef(@NonNull final Repository repository,
+	public static void compareWorkspaceWithRef(@NonNull final Repository repository,
 			final IResource file, final String refName, final IWorkbenchPage page) {
 		if (file == null) {
 			return;

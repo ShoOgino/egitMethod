@@ -1,4 +1,4 @@
-	private static void compareBetween(final Repository repository,
+	public static void compareBetween(final Repository repository,
 			final String leftGitPath, final String rightGitPath,
 			final String leftRev, final String rightRev,
 			final IWorkbenchPage page) {

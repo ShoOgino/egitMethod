@@ -1,28 +1,8 @@
-	public static void compare(IResource[] resources,
+	public static void compare(@NonNull IResource[] resources,
 			@NonNull Repository repository,
 			String leftRev, String rightRev, boolean includeLocal,
 			IWorkbenchPage page) throws IOException {
-		boolean useTreeCompare = shouldUseTreeCompare(resources);
-		if (!useTreeCompare) {
-			if (includeLocal) {
-				compareWorkspaceWithRef(repository, resources[0],
-						rightRev, page);
-			} else {
-				final IResource file = resources[0];
-				final RepositoryMapping mapping = RepositoryMapping
-						.getMapping(file);
-				if (mapping == null) {
-					Activator.error(NLS.bind(UIText.GitHistoryPage_errorLookingUpPath,
-							file.getLocation(), repository), null);
-					return;
-				}
-				final String gitPath = mapping.getRepoRelativePath(file);
-
-				compareBetween(repository, gitPath, leftRev, rightRev, page);
-			}
-		} else {
-			GitModelSynchronize.synchronize(resources, repository, leftRev,
-					rightRev, includeLocal);
-		}
+		getSynchronizer().compare(resources, repository, leftRev,
+				rightRev, includeLocal, page);
 	}
 

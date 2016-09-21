@@ -1,0 +1,16 @@
+	private SyncInfo getSyncInfo(IResource local, IResourceVariant base,
+			IResourceVariant remote, @NonNull GitSynchronizeData gsd) {
+		GitSyncObjectCache repoCache = getCache().get(gsd.getRepository());
+		if (repoCache == null) {
+			return null;
+		}
+		if (GitSyncCache.loadDataFromGit(gsd, null, repoCache)) {
+			try {
+				return getSyncInfo(local, base, remote, gsd.getRepository());
+			} catch (TeamException e) {
+				Activator.logError(e.getMessage(), e);
+			}
+		}
+		return null;
+	}
+

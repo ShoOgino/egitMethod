@@ -1,0 +1,4 @@
+	protected GitSynchronizeDataSet getDataSet() {
+		return gsds;
+	}
+
