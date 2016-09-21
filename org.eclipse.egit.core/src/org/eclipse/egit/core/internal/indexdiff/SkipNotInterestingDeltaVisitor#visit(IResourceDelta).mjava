@@ -1,0 +1,14 @@
+	@Override
+	public boolean visit(IResourceDelta delta) throws CoreException {
+		if (atLeastOneInterestingDelta) {
+			return false;
+		}
+
+		if (GitResourceDeltaVisitor.isInteresting(delta)) {
+			atLeastOneInterestingDelta = true;
+			return false;
+		}
+
+		return true;
+	}
+

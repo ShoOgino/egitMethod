@@ -72,8 +72,7 @@
 			return false;
 		}
 
-		if (delta.getKind() == IResourceDelta.CHANGED
-				&& (delta.getFlags() & INTERESTING_CHANGES) == 0) {
+		if (!isInteresting(delta)) {
 			return false;
 		}
 
