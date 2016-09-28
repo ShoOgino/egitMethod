@@ -1,0 +1,4 @@
+	public @Nullable GitDateFormatter.Format getFormat() {
+		return gitFormat;
+	}
+
