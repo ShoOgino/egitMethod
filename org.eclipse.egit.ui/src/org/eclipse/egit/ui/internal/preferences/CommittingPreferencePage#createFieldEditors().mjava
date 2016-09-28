@@ -16,7 +16,7 @@
 		autoStage = new BooleanFieldEditor(UIPreferences.AUTO_STAGE_ON_COMMIT,
 				UIText.CommittingPreferencePage_AutoStageOnCommit,
 				generalGroup);
-		GridDataFactory.fillDefaults().indent(20, 0)
+		GridDataFactory.fillDefaults().indent(UIUtils.getControlIndent(), 0)
 				.applyTo(autoStage.getDescriptionControl(generalGroup));
 		addField(autoStage);
 		autoStage.setEnabled(getPreferenceStore()
