@@ -1,0 +1,4 @@
+	public static void setGlobalActions(Control control, IAction... actions) {
+		setGlobalActions(control, Arrays.asList(actions));
+	}
+

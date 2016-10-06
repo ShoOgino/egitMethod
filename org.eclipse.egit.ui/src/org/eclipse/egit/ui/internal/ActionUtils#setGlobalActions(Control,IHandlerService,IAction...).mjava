@@ -1,0 +1,5 @@
+	public static void setGlobalActions(Control control,
+			IHandlerService service, IAction... actions) {
+		setGlobalActions(control, Arrays.asList(actions), service);
+	}
+

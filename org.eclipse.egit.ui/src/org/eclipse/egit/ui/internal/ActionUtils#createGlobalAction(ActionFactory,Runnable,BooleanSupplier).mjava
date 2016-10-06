@@ -1,0 +1,27 @@
+	public static IAction createGlobalAction(ActionFactory factory,
+			final Runnable action, final BooleanSupplier enabled) {
+		final String text = factory
+				.create(PlatformUI.getWorkbench().getActiveWorkbenchWindow())
+				.getText();
+		Action result = new Action() {
+
+			@Override
+			public String getText() {
+				return text;
+			}
+
+			@Override
+			public void run() {
+				action.run();
+			}
+
+			@Override
+			public boolean isEnabled() {
+				return enabled.getAsBoolean();
+			}
+		};
+		result.setActionDefinitionId(factory.getCommandId());
+		result.setId(factory.getId());
+		return result;
+	}
+
