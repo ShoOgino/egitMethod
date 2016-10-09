@@ -13,10 +13,13 @@
 		Object selected = selection.getFirstElement();
 		IResource resource = AdapterUtils.adapt(selected, IResource.class);
 		if (resource instanceof IFile) {
-			return isStaged(repository, resource.getLocation(), false);
+			return ResourceStateFactory.getInstance().get(resource).isStaged();
 		} else if (resource == null) {
 			IPath location = AdapterUtils.adapt(selected, IPath.class);
-			return isStaged(repository, location, false);
+			if (location != null) {
+				return ResourceStateFactory.getInstance().get(location.toFile())
+						.isStaged();
+			}
 		}
 
 		return false;
