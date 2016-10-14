@@ -1,0 +1,5 @@
+	public BlameOperation(CommitFileRevision revision, Shell shell,
+			IWorkbenchPage page) {
+		this(revision, shell, page, -1);
+	}
+
