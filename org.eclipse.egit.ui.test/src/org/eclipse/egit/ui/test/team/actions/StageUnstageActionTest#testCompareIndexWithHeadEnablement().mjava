@@ -18,6 +18,7 @@
 		TestUtil.joinJobs(ADD_TO_INDEX);
 		TestUtil.joinJobs(JobFamilies.INDEX_DIFF_CACHE_UPDATE);
 		StagingUtil.assertStaging(PROJ_A, filePath, true);
+		fileItem.select();
 		assertTrue("Compare With->Index with HEAD should be enabled",
 				ContextMenuHelper.isContextMenuItemEnabled(projectExplorerTree,
 						"Compare With", compareIndexWithHead));
@@ -26,6 +27,7 @@
 		TestUtil.joinJobs(REMOVE_FROM_INDEX);
 		TestUtil.joinJobs(JobFamilies.INDEX_DIFF_CACHE_UPDATE);
 		StagingUtil.assertStaging(PROJ_A, filePath, false);
+		fileItem.select();
 		assertTrue(
 				"Compare With->Index with HEAD should be disabled or absent again",
 				!ContextMenuHelper.contextMenuItemExists(projectExplorerTree,
