@@ -11,6 +11,9 @@
 		} else if ("projectsWithRepositories".equals(property)) { 			Repository repository = getRepositoryOfProjects(collection, false);
 			return repository != null;
 
+		} else if ("selectionSingleRepository".equals(property)) { 			return SelectionUtils
+					.getRepository(getStructuredSelection(collection)) != null;
+
 		} else if ("resourcesSingleRepository".equals(property)) { 			IStructuredSelection selection = getStructuredSelection(collection);
 
 			IResource[] resources = SelectionUtils
