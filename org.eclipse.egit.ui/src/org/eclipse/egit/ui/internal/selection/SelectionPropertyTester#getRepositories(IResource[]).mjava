@@ -1,0 +1,13 @@
+	private static Collection<Repository> getRepositories(
+			IResource[] resources) {
+		Set<Repository> result = new HashSet<>();
+		for (IResource resource : resources) {
+			Repository r = getRepositoryOfMapping(resource);
+			if (r == null) {
+				return Collections.emptySet();
+			}
+			result.add(r);
+		}
+		return result;
+	}
+
