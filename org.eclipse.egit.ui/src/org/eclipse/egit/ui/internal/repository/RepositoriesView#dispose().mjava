@@ -4,6 +4,7 @@
 			this.scheduledJob.cancel();
 			this.scheduledJob = null;
 		}
+		refreshUiJob.cancel();
 
 		repositoryUtil.getPreferences().removePreferenceChangeListener(
 				configurationListener);

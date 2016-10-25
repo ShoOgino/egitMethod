@@ -1,0 +1,6 @@
+		RefreshUiJob() {
+			super(PlatformUI.getWorkbench().getDisplay(),
+					"Refreshing Git Repositories View"); 			setSystem(true);
+			setUser(false);
+		}
+
