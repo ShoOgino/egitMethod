@@ -4,6 +4,18 @@
 				warnCheckbox.getSelection());
 		doGetPreferenceStore().setValue(UIPreferences.BLOCK_COMMIT,
 				blockCheckbox.getSelection());
-		return super.performOk();
+		boolean isOk = super.performOk();
+		if (isOk && corePreferences.needsSaving()) {
+			try {
+				corePreferences.save();
+			} catch (IOException e) {
+				String message = JFaceResources.format(
+						"PreferenceDialog.saveErrorMessage", getTitle(), 						e.getMessage());
+				Policy.getStatusHandler().show(
+						new Status(IStatus.ERROR, Policy.JFACE, message, e),
+						JFaceResources
+								.getString("PreferenceDialog.saveErrorTitle")); 			}
+		}
+		return isOk;
 	}
 
