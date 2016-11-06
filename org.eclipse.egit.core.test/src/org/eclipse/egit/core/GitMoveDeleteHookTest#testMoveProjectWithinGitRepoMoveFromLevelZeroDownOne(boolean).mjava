@@ -1,9 +1,10 @@
-	@Test
-	public void testMoveProjectWithinGitRepoMoveFromLevelZeroDownOne()
+	@Theory
+	public void testMoveProjectWithinGitRepoMoveFromLevelZeroDownOne(
+			boolean autoStageMoves)
 			throws Exception {
 		try {
 			dotestMoveProjectWithinRepoWithinWorkspace("P/", "Project-1",
-					"P/Project-1/", "P2", "P/Project-1/");
+					"P/Project-1/", "P2", "P/Project-1/", autoStageMoves);
 			if (!"true".equals(System.getProperty("egit.assume_307140_fixed")))
 				fail("ResourceException expected, core functionality dangerously broken and therefore forbidden");
 		} catch (CoreException e) {
