@@ -3,5 +3,6 @@
 			lastSearchContext = searchContext;
 			statusListener.setMessage(toolbar, ""); 			toolbar = null;
 			openCloseToggle.setChecked(false);
+			wasVisible = false;
 		}
 
