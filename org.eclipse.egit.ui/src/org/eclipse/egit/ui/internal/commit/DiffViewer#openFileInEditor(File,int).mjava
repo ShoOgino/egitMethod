@@ -1,0 +1,14 @@
+	public static void openFileInEditor(File file, int lineNoToReveal) {
+		if (!file.exists()) {
+			Activator.showError(
+					NLS.bind(UIText.DiffViewer_FileDoesNotExist,
+							file.getPath()),
+					null);
+			return;
+		}
+		IWorkbenchPage page = PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getActivePage();
+		IEditorPart editor = EgitUiEditorUtils.openEditor(file, page);
+		EgitUiEditorUtils.revealLine(editor, lineNoToReveal);
+	}
+

@@ -26,8 +26,10 @@
 						compareInput);
 			} else {
 				IFile file = fileNode.getFile();
-				if (file != null)
-					openFileInEditor(file.getLocation().toOSString());
+				if (file != null) {
+					DiffViewer.openFileInEditor(file.getLocation().toFile(),
+							-1);
+				}
 			}
 		}
 	}

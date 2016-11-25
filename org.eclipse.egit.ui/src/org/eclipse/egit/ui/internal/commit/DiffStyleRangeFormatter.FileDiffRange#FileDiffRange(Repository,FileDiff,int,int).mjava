@@ -1,0 +1,8 @@
+		public FileDiffRange(Repository repository, FileDiff fileDiff,
+				int start, int end) {
+			this.startOffset = start;
+			this.endOffset = end;
+			this.diff = fileDiff;
+			this.repository = repository;
+		}
+

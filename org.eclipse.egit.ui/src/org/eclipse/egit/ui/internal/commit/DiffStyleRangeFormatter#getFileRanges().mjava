@@ -1,0 +1,5 @@
+	public FileDiffRange[] getFileRanges() {
+		return this.fileRanges
+				.toArray(new FileDiffRange[this.fileRanges.size()]);
+	}
+

@@ -1,0 +1,4 @@
+		public FileDiff getDiff() {
+			return diff;
+		}
+

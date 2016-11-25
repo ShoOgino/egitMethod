@@ -1,0 +1,4 @@
+	public DiffDocument(String text) {
+		super(text);
+	}
+
