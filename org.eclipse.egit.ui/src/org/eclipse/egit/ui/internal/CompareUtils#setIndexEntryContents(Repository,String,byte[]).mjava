@@ -19,7 +19,7 @@
 					break;
 				case INPUT:
 				case TRUE:
-					EolCanonicalizingInputStream in = new EolCanonicalizingInputStream(
+					AutoLFInputStream in = new AutoLFInputStream(
 							new ByteArrayInputStream(newContent), true);
 					content = new byte[newContent.length];
 					length = IO.readFully(in, content, 0);
