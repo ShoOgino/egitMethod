@@ -1,0 +1,4 @@
+	public IEditorActionBarContributor getTextEditorActionContributor() {
+		return textActionContributor;
+	}
+

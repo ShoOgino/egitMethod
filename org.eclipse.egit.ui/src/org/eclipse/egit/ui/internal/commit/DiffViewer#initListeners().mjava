@@ -7,8 +7,10 @@
 			IDocument document = getDocument();
 			if (document instanceof DiffDocument) {
 				try {
+					int modelOffset = widgetOffset2ModelOffset(
+							event.lineOffset);
 					ITypedRegion partition = ((DiffDocument) document)
-							.getPartition(event.lineOffset);
+							.getPartition(modelOffset);
 					if (partition != null) {
 						Color color = backgroundColors.get(partition.getType());
 						if (color != null) {

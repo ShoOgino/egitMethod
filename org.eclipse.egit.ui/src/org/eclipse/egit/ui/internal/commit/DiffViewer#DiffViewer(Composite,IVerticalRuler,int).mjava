@@ -1,0 +1,4 @@
+	public DiffViewer(Composite parent, IVerticalRuler ruler, int styles) {
+		this(parent, ruler, null, false, styles);
+	}
+
