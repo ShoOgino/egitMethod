@@ -1,0 +1,9 @@
+	@Override
+	public void dispose() {
+		if (outlinePage != null) {
+			outlinePage.dispose();
+			outlinePage = null;
+		}
+		super.dispose();
+	}
+

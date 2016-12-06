@@ -1,0 +1,5 @@
+	public MultiPageEditorContentOutlinePage(MultiPageEditorPart editorPart) {
+		super();
+		this.editorPart = editorPart;
+	}
+

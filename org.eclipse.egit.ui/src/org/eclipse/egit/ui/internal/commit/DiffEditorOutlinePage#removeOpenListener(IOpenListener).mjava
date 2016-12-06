@@ -1,0 +1,4 @@
+	public void removeOpenListener(IOpenListener listener) {
+		openListeners.remove(listener);
+	}
+

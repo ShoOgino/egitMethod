@@ -1,0 +1,4 @@
+	public void addOpenListener(IOpenListener listener) {
+		openListeners.addIfAbsent(listener);
+	}
+

@@ -1,4 +1,7 @@
 	@Override
 	public void setActive(boolean active) {
+		if (active) {
+			setFocus();
+		}
 	}
 

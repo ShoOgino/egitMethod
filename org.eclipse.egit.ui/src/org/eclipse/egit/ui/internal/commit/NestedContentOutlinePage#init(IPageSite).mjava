@@ -1,0 +1,7 @@
+	@Override
+	public void init(IPageSite pageSite) {
+		ISelectionProvider provider = pageSite.getSelectionProvider();
+		super.init(pageSite);
+		pageSite.setSelectionProvider(provider);
+	}
+
