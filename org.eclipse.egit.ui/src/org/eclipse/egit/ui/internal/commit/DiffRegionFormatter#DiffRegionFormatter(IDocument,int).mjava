@@ -1,0 +1,4 @@
+	public DiffRegionFormatter(IDocument document, int offset) {
+		this(document, offset, -1);
+	}
+

@@ -8,7 +8,7 @@
 				stream.write(
 						NLS.bind(UIText.DiffStyleRangeFormatter_diffTruncated,
 								Integer.valueOf(maxLines)));
-				stream.write("\n"); 				addRange(Type.HEADLINE, start, stream.offset);
+				stream.write("\n"); 				addRegion(Type.HEADLINE, start, stream.offset);
 				linesWritten++;
 			}
 			return;
@@ -21,7 +21,7 @@
 			int start = stream.offset;
 			super.writeLine(prefix, text, cur);
 			stream.flushLine();
-			addRange(type, start, stream.offset);
+			addRegion(type, start, stream.offset);
 		}
 		linesWritten++;
 	}

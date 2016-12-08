@@ -1,9 +1,9 @@
-	public void connect(DiffStyleRangeFormatter formatter) {
-		ranges = formatter.getRanges();
-		fileRanges = formatter.getFileRanges();
-		if ((fileRanges == null || fileRanges.length == 0)
+	public void connect(DiffRegionFormatter formatter) {
+		regions = formatter.getRegions();
+		fileRegions = formatter.getFileRegions();
+		if ((fileRegions == null || fileRegions.length == 0)
 				&& defaultRepository != null && defaultFileDiff != null) {
-			fileRanges = new FileDiffRange[] { new FileDiffRange(
+			fileRegions = new FileDiffRegion[] { new FileDiffRegion(
 					defaultRepository, defaultFileDiff, 0, getLength()) };
 		}
 		newPathPattern = Pattern.compile(

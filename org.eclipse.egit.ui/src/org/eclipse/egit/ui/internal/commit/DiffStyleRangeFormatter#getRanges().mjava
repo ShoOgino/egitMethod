@@ -1,4 +1,0 @@
-	public DiffStyleRange[] getRanges() {
-		return this.ranges.toArray(new DiffStyleRange[this.ranges.size()]);
-	}
-

@@ -1,0 +1,4 @@
+	public DiffRegionFormatter(IDocument document) {
+		this(document, document.getLength(), -1);
+	}
+

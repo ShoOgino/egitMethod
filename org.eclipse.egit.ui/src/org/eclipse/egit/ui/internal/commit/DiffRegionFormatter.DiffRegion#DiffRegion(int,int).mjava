@@ -1,0 +1,4 @@
+		public DiffRegion(int offset, int length) {
+			super(offset, length);
+		}
+

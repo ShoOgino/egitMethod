@@ -1,4 +1,4 @@
-	public DiffStyleRangeFormatter(IDocument document, int offset,
+	public DiffRegionFormatter(IDocument document, int offset,
 			int maxLines) {
 		super(new DocumentOutputStream(document, offset));
 		this.stream = (DocumentOutputStream) getOutputStream();
