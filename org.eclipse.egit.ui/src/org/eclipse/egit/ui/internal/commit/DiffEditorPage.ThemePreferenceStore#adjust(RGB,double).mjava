@@ -1,0 +1,6 @@
+		private RGB adjust(RGB rgb, double saturation) {
+			float[] hsb = rgb.getHSB();
+			return new RGB(hsb[0], (float) Math.min(hsb[1] * saturation, 1.0),
+					hsb[2] < 0.5 ? hsb[2] * 2 : hsb[2]);
+		}
+

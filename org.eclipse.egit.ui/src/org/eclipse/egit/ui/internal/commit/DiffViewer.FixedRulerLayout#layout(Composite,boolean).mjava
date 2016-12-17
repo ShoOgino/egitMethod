@@ -1,0 +1,9 @@
+		@Override
+		protected void layout(Composite composite, boolean flushCache) {
+			Rectangle bounds = composite.getBounds();
+			if (bounds.width == 0 || bounds.height == 0) {
+				return;
+			}
+			super.layout(composite, flushCache);
+		}
+
