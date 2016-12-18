@@ -18,7 +18,7 @@
 				candidateChange = determineChangeFromString(clipText.trim());
 			}
 		}
-		Composite main = new Composite(parent, SWT.NONE);
+		main = new Composite(parent, SWT.NONE);
 		main.setLayout(new GridLayout(2, false));
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(main);
 		new Label(main, SWT.NONE)
@@ -50,9 +50,21 @@
 				.applyTo(checkoutGroup);
 		checkoutGroup.setText(UIText.FetchGerritChangePage_AfterFetchGroup);
 
+		changeBranch = new Button(checkoutGroup, SWT.RADIO);
+		GridDataFactory.fillDefaults().span(3, 1).applyTo(changeBranch);
+		changeBranch
+				.setText(UIText.FetchGerritChangePage_ChangeToLocalBranchRadio);
+		changeBranch.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				checkPage();
+			}
+		});
+
 		createBranch = new Button(checkoutGroup, SWT.RADIO);
 		GridDataFactory.fillDefaults().span(1, 1).applyTo(createBranch);
-		createBranch.setText(UIText.FetchGerritChangePage_LocalBranchRadio);
+		createBranch.setText(UIText.FetchGerritChangePage_CreateLocalBranchRadio);
 		createBranch.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -145,9 +157,12 @@
 			}
 		});
 
-		if ("checkout".equals(defaultCommand)) 			checkout.setSelection(true);
-		else
+		if ("checkout".equals(defaultCommand)) { 			checkout.setSelection(true);
+		} else if (getLocalRef(refName) != null) {
+			changeBranch.setSelection(true);
+		} else {
 			createBranch.setSelection(true);
+		}
 
 		warningAdditionalRefNotActive = new Composite(main, SWT.NONE);
 		GridDataFactory.fillDefaults().span(2, 1).grab(true, false)
@@ -167,13 +182,16 @@
 			public void modifyText(ModifyEvent e) {
 				Change change = Change.fromRef(refText.getText());
 				if (change != null) {
-					branchText.setText(NLS
-							.bind(UIText.FetchGerritChangePage_SuggestedRefNamePattern,
-									change.getChangeNumber(),
-									change.getPatchSetNumber()));
+					branchText.setText(change.suggestBranchName());
 					tagText.setText(branchText.getText());
 				} else {
 					branchText.setText(""); 					tagText.setText(""); 				}
+				if (getLocalRef(refText.getText()) == null
+						&& changeBranch.getSelection()) {
+					createBranch.setSelection(true);
+				} else {
+					changeBranch.setSelection(true);
+				}
 				checkPage();
 			}
 		});
