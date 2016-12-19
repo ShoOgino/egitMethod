@@ -35,7 +35,7 @@
 				if (range.getOffset() + range.getLength() <= start) {
 					continue;
 				}
-				switch (range.diffType) {
+				switch (range.getType()) {
 				case HEADLINE:
 					fileRange = findFileRange(diffDocument, fileRange,
 							range.getOffset());

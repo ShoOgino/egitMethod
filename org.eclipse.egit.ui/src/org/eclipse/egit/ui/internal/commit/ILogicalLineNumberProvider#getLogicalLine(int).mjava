@@ -1,0 +1,2 @@
+	int getLogicalLine(int lineNumber);
+

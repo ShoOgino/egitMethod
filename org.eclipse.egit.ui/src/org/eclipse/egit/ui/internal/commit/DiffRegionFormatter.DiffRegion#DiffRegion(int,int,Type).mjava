@@ -1,5 +1,0 @@
-		public DiffRegion(int offset, int length, Type type) {
-			super(offset, length);
-			this.diffType = type;
-		}
-

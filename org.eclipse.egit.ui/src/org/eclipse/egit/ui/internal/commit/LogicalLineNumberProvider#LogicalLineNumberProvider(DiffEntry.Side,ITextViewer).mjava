@@ -1,0 +1,6 @@
+	public LogicalLineNumberProvider(@NonNull DiffEntry.Side side,
+			@NonNull ITextViewer viewer) {
+		this.side = side;
+		this.viewer = viewer;
+	}
+

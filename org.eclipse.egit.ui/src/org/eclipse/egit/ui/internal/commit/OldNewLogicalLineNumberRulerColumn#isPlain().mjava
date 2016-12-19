@@ -1,0 +1,4 @@
+	public boolean isPlain() {
+		return plain;
+	}
+

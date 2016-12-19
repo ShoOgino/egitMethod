@@ -13,15 +13,18 @@
 			}
 			return;
 		}
+
+		int start = stream.offset;
+		super.writeLine(prefix, text, cur);
+		stream.flushLine();
 		if (prefix == ' ') {
-			super.writeLine(prefix, text, cur);
-			stream.flushLine();
+			addRegion(Type.CONTEXT, start, stream.offset, cur, ++lastNewLine);
+		} else if (prefix == '+') {
+			addRegion(Type.ADD, start, stream.offset, DiffRegion.NO_LINE, cur);
+
 		} else {
-			Type type = prefix == '+' ? Type.ADD : Type.REMOVE;
-			int start = stream.offset;
-			super.writeLine(prefix, text, cur);
-			stream.flushLine();
-			addRegion(type, start, stream.offset);
+			addRegion(Type.REMOVE, start, stream.offset, cur,
+					DiffRegion.NO_LINE);
 		}
 		linesWritten++;
 	}

@@ -8,7 +8,8 @@
 		}
 		newPathPattern = Pattern.compile(
 				Pattern.quote(formatter.getNewPrefix()) + "\\S+"); 		oldPathPattern = Pattern.compile(
-				Pattern.quote(formatter.getOldPrefix()) + "\\S+"); 		IDocumentPartitioner partitioner = new FastPartitioner(
+				Pattern.quote(formatter.getOldPrefix()) + "\\S+"); 		maximumLineNumbers = formatter.getMaximumLineNumbers();
+		IDocumentPartitioner partitioner = new FastPartitioner(
 				new DiffPartitionTokenScanner(),
 				new String[] { IDocument.DEFAULT_CONTENT_TYPE,
 						HEADLINE_CONTENT_TYPE, HUNK_CONTENT_TYPE,

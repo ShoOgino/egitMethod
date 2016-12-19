@@ -1,0 +1,4 @@
+	protected @NonNull DiffEntry.Side getSide() {
+		return side;
+	}
+

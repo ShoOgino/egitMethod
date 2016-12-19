@@ -1,0 +1,10 @@
+	public OldNewLogicalLineNumberRulerColumn(boolean plain) {
+		this.plain = plain;
+		if (!plain) {
+			composite.addDecorator(0, oldLines);
+			composite.addDecorator(1, newLines);
+		} else {
+			composite.addDecorator(0, plainLines);
+		}
+	}
+

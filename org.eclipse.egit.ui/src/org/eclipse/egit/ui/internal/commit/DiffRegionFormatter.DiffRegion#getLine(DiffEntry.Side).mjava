@@ -1,0 +1,7 @@
+		public int getLine(@NonNull DiffEntry.Side side) {
+			if (DiffEntry.Side.NEW.equals(side)) {
+				return bLine;
+			}
+			return aLine;
+		}
+

@@ -1,0 +1,15 @@
+	public void setPlain(boolean plain) {
+		if (this.plain != plain) {
+			this.plain = plain;
+			if (!plain) {
+				composite.removeDecorator(plainLines);
+				composite.addDecorator(0, oldLines);
+				composite.addDecorator(1, newLines);
+			} else {
+				composite.removeDecorator(oldLines);
+				composite.removeDecorator(newLines);
+				composite.addDecorator(0, plainLines);
+			}
+		}
+	}
+

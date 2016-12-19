@@ -1,0 +1,4 @@
+	public OldNewLogicalLineNumberRulerColumn() {
+		this(false);
+	}
+
