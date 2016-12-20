@@ -6,5 +6,6 @@
 		this.localDb = localDb;
 		this.result = result;
 		this.sourceString = sourceString;
+		fetchResultImage = UIIcons.WIZBAN_FETCH.createImage();
 	}
 
