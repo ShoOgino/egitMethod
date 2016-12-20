@@ -1,0 +1,10 @@
+	public void dispose() {
+		for (Control tracked : trackedControls) {
+			if (!tracked.isDisposed()) {
+				unhookControl(tracked);
+			}
+		}
+		trackedControls.clear();
+		lastFocusControl = null;
+	}
+

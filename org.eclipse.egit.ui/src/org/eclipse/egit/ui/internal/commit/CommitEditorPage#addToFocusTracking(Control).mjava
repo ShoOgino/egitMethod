@@ -1,0 +1,4 @@
+	protected void addToFocusTracking(@NonNull Control control) {
+		focusTracker.addToFocusTracking(control);
+	}
+

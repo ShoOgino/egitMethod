@@ -1,0 +1,8 @@
+	public Control getLastFocusControl() {
+		if (lastFocusControl != null && lastFocusControl.isDisposed()) {
+			trackedControls.remove(lastFocusControl);
+			lastFocusControl = null;
+		}
+		return lastFocusControl;
+	}
+

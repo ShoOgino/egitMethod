@@ -1,0 +1,4 @@
+	public FocusManagerFormPart(FocusTracker focusTracker) {
+		this.focusTracker = focusTracker;
+	}
+

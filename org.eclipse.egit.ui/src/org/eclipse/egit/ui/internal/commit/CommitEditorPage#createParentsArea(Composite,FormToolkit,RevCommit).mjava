@@ -27,6 +27,7 @@
 								"Error opening commit editor", e1);					}
 				}
 			});
+			addToFocusTracking(link);
 		}
 	}
 

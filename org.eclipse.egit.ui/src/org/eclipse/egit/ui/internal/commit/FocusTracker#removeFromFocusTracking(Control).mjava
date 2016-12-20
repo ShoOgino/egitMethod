@@ -1,0 +1,6 @@
+	public void removeFromFocusTracking(Control control) {
+		if (trackedControls.remove(control) && !control.isDisposed()) {
+			unhookControl(control);
+		}
+	}
+
