@@ -1,6 +1,6 @@
 	@Test
 	public void testRebaseFailOnConflict() throws Exception {
-		ErrorDialog.AUTOMATED_MODE = false;
+		disableAutomatedMode();
 
 		Git git = Git.wrap(repository);
 
