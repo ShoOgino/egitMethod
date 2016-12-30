@@ -1,5 +1,0 @@
-	@Override
-	public String getContentIdentifier() {
-		return getVariant().getCommitId().getId().getName();
-	}
-

@@ -1,4 +1,0 @@
-	public Set<IResource> getKnownResources() {
-		return Collections.unmodifiableSet(cache.keySet());
-	}
-

@@ -1,5 +1,0 @@
-	public GitSyncInfoToDiffConverter(
-			GitResourceVariantTreeProvider variantTreeProvider) {
-		this.variantTreeProvider = variantTreeProvider;
-	}
-
