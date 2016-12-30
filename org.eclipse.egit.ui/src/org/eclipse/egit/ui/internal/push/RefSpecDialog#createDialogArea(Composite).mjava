@@ -46,12 +46,7 @@
 			}
 		});
 		UIUtils.addRefContentProposalToText(sourceText, repo,
-				new IRefListProvider() {
-					@Override
-					public List<Ref> getRefList() {
-						return assistProvider.getRefsForContentAssist(true, pushMode);
-					}
-				});
+				() -> assistProvider.getRefsForContentAssist(true, pushMode));
 
 		if (!pushMode) {
 			final Button autoSuggest = new Button(main, SWT.CHECK);
@@ -85,12 +80,7 @@
 			}
 		});
 		UIUtils.addRefContentProposalToText(destinationText, repo,
-				new IRefListProvider() {
-					@Override
-					public List<Ref> getRefList() {
-						return assistProvider.getRefsForContentAssist(false, pushMode);
-					}
-				});
+				() -> assistProvider.getRefsForContentAssist(false, pushMode));
 
 		forceButton = new Button(main, SWT.CHECK);
 		forceButton.setText(UIText.RefSpecDialog_ForceUpdateCheckbox);
