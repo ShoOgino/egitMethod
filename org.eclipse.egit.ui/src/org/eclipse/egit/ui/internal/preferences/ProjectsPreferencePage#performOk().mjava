@@ -10,7 +10,7 @@
 					((IPersistentPreferenceStore) uiPreferences).save();
 				} catch (IOException e) {
 					String message = JFaceResources.format(
-							"PreferenceDialog.saveErrorMessage", getTitle(), 							e.getMessage());
+							"PreferenceDialog.saveErrorMessage", 							new Object[] { getTitle(), e.getMessage() });
 					Policy.getStatusHandler().show(
 							new Status(IStatus.ERROR, Policy.JFACE, message, e),
 							JFaceResources.getString(
