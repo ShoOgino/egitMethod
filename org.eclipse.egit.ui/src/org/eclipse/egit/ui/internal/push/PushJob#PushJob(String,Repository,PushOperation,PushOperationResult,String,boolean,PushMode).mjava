@@ -1,11 +1,12 @@
 	public PushJob(String name, Repository repository, PushOperation operation,
 			PushOperationResult expectedResult, String destinationString,
-			boolean showConfigureButton) {
+			boolean showConfigureButton, @NonNull PushMode pushMode) {
 		super(name);
 		this.operation = operation;
 		this.resultToCompare = expectedResult;
 		this.destinationString = destinationString;
 		this.localDb = repository;
 		this.showConfigureButton = showConfigureButton;
+		this.pushMode = pushMode;
 	}
 

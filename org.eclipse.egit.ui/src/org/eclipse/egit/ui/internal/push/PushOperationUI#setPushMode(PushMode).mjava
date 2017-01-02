@@ -1,0 +1,4 @@
+	public void setPushMode(@NonNull PushMode mode) {
+		pushMode = mode;
+	}
+

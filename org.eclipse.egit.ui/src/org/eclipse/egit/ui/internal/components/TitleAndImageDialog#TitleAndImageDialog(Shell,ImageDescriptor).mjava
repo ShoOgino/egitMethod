@@ -1,0 +1,5 @@
+	public TitleAndImageDialog(Shell parent, ImageDescriptor defaultImageDescriptor) {
+		super(parent);
+		this.defaultImageDescriptor = defaultImageDescriptor;
+	}
+
