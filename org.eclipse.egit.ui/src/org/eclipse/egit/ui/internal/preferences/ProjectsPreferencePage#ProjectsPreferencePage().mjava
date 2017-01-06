@@ -1,7 +1,4 @@
 	public ProjectsPreferencePage() {
 		super(GRID);
-		ScopedPreferenceStore store = new ScopedPreferenceStore(
-				InstanceScope.INSTANCE, Activator.getPluginId());
-		setPreferenceStore(store);
 	}
 

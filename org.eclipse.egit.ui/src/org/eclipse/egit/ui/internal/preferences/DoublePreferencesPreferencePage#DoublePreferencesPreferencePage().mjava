@@ -1,0 +1,4 @@
+	public DoublePreferencesPreferencePage() {
+		super(FLAT);
+	}
+

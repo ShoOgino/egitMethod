@@ -1,0 +1,4 @@
+	protected DoublePreferencesPreferencePage(int style) {
+		super(style);
+	}
+

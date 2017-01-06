@@ -1,0 +1,5 @@
+	protected DoublePreferencesPreferencePage(String title,
+			ImageDescriptor imageDescriptor, int style) {
+		super(title, imageDescriptor, style);
+	}
+

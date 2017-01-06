@@ -1,0 +1,7 @@
+	public IPreferenceStore getSecondaryPreferenceStore() {
+		if (secondaryStore == null) {
+			secondaryStore = doGetSecondaryPreferenceStore();
+		}
+		return secondaryStore;
+	}
+

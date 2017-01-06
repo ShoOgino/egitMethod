@@ -1,0 +1,4 @@
+	protected DoublePreferencesPreferencePage(String title, int style) {
+		super(title, style);
+	}
+

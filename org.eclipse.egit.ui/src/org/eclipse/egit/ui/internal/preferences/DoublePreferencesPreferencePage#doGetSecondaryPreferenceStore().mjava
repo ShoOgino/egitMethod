@@ -1,0 +1,4 @@
+	protected IPreferenceStore doGetSecondaryPreferenceStore() {
+		return null;
+	}
+
