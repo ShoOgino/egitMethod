@@ -1,0 +1,9 @@
+		private void normalize() {
+			String name = nameText.getText();
+			if (!isPaste()) {
+				name = name.replaceAll("\\s$", UNDERSCORE);			}
+			name = Repository.normalizeBranchName(name);
+			nameText.setText(name);
+			nameText.setSelection(nameText.getText().length() + 1);
+		}
+
