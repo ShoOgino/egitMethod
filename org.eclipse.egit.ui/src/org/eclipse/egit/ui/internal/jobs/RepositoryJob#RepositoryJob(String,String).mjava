@@ -1,0 +1,5 @@
+	public RepositoryJob(String name, String dialogPreference) {
+		super(name);
+		this.dialogPreference = dialogPreference;
+	}
+
