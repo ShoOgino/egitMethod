@@ -1,7 +1,12 @@
 	private void reactOnSelection(StructuredSelection selection) {
-		if (selection.size() != 1 || !shouldUpdateSelection()) {
+		if (selection.size() != 1 || isDisposed()) {
 			return;
 		}
+		if (!shouldUpdateSelection()) {
+			lastSelection = reactOnSelection ? selection : null;
+			return;
+		}
+		lastSelection = null;
 		Object firstElement = selection.getFirstElement();
 		if (firstElement instanceof RepositoryTreeNode) {
 			RepositoryTreeNode repoNode = (RepositoryTreeNode) firstElement;
