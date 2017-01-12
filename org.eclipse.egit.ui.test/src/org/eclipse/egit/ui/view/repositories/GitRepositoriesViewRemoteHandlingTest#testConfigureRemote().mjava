@@ -16,13 +16,13 @@
 		shell.bot().button(IDialogConstants.OK_LABEL).click();
 
 		shell = bot.shell(UIText.SimpleConfigureFetchDialog_WindowTitle);
-		shell.bot().button(UIText.SimpleConfigureFetchDialog_ChangeUriButton)
+		shell.bot().button(UIText.AbstractConfigureRemoteDialog_ChangeUriLabel)
 				.click();
-		shell = bot.shell(UIText.SelectUriWiazrd_Title);
+		shell = bot.shell(UIText.SelectUriWizard_Title);
 		shell.bot().text().setText("file:///" + remoteRepositoryFile.getPath());
 		shell.bot().button(IDialogConstants.FINISH_LABEL).click();
 		shell = bot.shell(UIText.SimpleConfigureFetchDialog_WindowTitle);
-		shell.bot().button(UIText.SimpleConfigureFetchDialog_AddRefSpecButton)
+		shell.bot().button(UIText.AbstractConfigureRemoteDialog_AddRefSpecLabel)
 				.click();
 		shell = bot.shell(UIText.SimpleFetchRefSpecWizard_WizardTitle);
 		shell.bot().textWithLabel(UIText.FetchSourcePage_SourceLabel).setText(
@@ -32,7 +32,7 @@
 				.setText("refs/remotes/testRemote/*");
 		shell.bot().button(IDialogConstants.FINISH_LABEL).click();
 		shell = bot.shell(UIText.SimpleConfigureFetchDialog_WindowTitle);
-		shell.bot().button(UIText.SimpleConfigureFetchDialog_SaveButton)
+		shell.bot().button(UIText.AbstractConfigureRemoteDialog_SaveButton)
 				.click();
 
 		refreshAndWait();
@@ -47,7 +47,8 @@
 
 		shell = bot.shell(UIText.SimpleConfigurePushDialog_WindowTitle);
 		shell.bot()
-				.button(UIText.SimpleConfigurePushDialog_AddRefSpecButton, 1)
+				.button(UIText.AbstractConfigureRemoteDialog_AddRefSpecLabel,
+						1)
 				.click();
 
 		shell = bot.shell(UIText.RefSpecDialog_WindowTitle);
@@ -68,7 +69,7 @@
 		});
 		shell.bot().button(IDialogConstants.OK_LABEL).click();
 		shell = bot.shell(UIText.SimpleConfigurePushDialog_WindowTitle);
-		shell.bot().button(UIText.SimpleConfigurePushDialog_SaveButton).click();
+		shell.bot().button(UIText.AbstractConfigureRemoteDialog_SaveButton).click();
 
 		refreshAndWait();
 		item = TestUtil.expandAndWait(
@@ -102,13 +103,13 @@
 
 		String shellText = UIText.SimpleConfigureFetchDialog_WindowTitle;
 		shell = bot.shell(shellText);
-		shell.bot().button(UIText.SimpleConfigureFetchDialog_ChangeUriButton)
+		shell.bot().button(UIText.AbstractConfigureRemoteDialog_ChangeUriLabel)
 				.click();
-		shell = bot.shell(UIText.SelectUriWiazrd_Title);
+		shell = bot.shell(UIText.SelectUriWizard_Title);
 		shell.bot().text().setText("file:///" + remoteRepositoryFile.getPath());
 		shell.bot().button(IDialogConstants.FINISH_LABEL).click();
 		shell = bot.shell(shellText);
-		shell.bot().button(UIText.SimpleConfigureFetchDialog_AddRefSpecButton)
+		shell.bot().button(UIText.AbstractConfigureRemoteDialog_AddRefSpecLabel)
 				.click();
 		shell = bot.shell(UIText.SimpleFetchRefSpecWizard_WizardTitle);
 		shell.bot().textWithLabel(UIText.FetchSourcePage_SourceLabel).setText(
@@ -118,7 +119,7 @@
 				.setText("refs/remotes/testRemote/*");
 		shell.bot().button(IDialogConstants.FINISH_LABEL).click();
 		shell = bot.shell(shellText);
-		shell.bot().button(UIText.SimpleConfigureFetchDialog_SaveButton)
+		shell.bot().button(UIText.AbstractConfigureRemoteDialog_SaveButton)
 				.click();
 		refreshAndWait();
 		item = TestUtil.expandAndWait(
@@ -150,12 +151,13 @@
 				.click();
 
 		shell = bot.shell(shellText);
-		shell = bot.shell(UIText.SelectUriWiazrd_Title);
+		shell = bot.shell(UIText.SelectUriWizard_Title);
 		shell.bot().text().setText("file:///" + remoteRepositoryFile.getPath());
 		shell.bot().button(IDialogConstants.FINISH_LABEL).click();
 		shell = bot.shell(shellText);
 		shell.bot()
-				.button(UIText.SimpleConfigurePushDialog_AddRefSpecButton, 1)
+				.button(UIText.AbstractConfigureRemoteDialog_AddRefSpecLabel,
+						1)
 				.click();
 		shell = bot.shell(UIText.RefSpecDialog_WindowTitle);
 
@@ -177,7 +179,7 @@
 		shell.bot().button(IDialogConstants.OK_LABEL).click();
 
 		shell = bot.shell(shellText);
-		shell.bot().button(UIText.SimpleConfigurePushDialog_SaveButton).click();
+		shell.bot().button(UIText.AbstractConfigureRemoteDialog_SaveButton).click();
 		refreshAndWait();
 		item = TestUtil.expandAndWait(
 				myRepoViewUtil.getRemotesItem(tree, repositoryFile));

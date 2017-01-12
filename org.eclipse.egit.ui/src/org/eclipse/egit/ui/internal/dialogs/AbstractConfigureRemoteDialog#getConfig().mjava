@@ -1,0 +1,4 @@
+	protected RemoteConfig getConfig() {
+		return config;
+	}
+

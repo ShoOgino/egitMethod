@@ -1,6 +1,6 @@
 	public RefSpecDialog(Shell parentShell, Repository repository,
 			RemoteConfig config, boolean push) {
-		super(parentShell);
+		super(parentShell, push ? UIIcons.WIZBAN_PUSH : UIIcons.WIZBAN_FETCH);
 		setShellStyle(getShellStyle() | SWT.SHELL_TRIM);
 		this.repo = repository;
 		this.config = config;
