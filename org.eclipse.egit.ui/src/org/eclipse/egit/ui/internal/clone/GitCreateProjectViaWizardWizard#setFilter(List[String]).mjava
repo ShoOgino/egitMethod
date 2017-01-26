@@ -1,0 +1,4 @@
+	public void setFilter(List<String> filter) {
+		myFilter = filter;
+	}
+

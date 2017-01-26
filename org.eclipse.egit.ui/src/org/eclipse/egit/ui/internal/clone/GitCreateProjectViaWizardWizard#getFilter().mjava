@@ -1,0 +1,7 @@
+	public List<String> getFilter() {
+		if (myFilter == null) {
+			return Collections.emptyList();
+		}
+		return Collections.unmodifiableList(myFilter);
+	}
+
