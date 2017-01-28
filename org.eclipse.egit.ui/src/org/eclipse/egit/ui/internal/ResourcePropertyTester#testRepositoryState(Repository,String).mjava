@@ -29,7 +29,9 @@
 					return false;
 				}
 
-			if (property.length() > 3 && property.startsWith("is")) { 				String lookFor = property.substring(2,3) + property.substring(3).replaceAll("([A-Z])","_$1").toUpperCase();  				if (state.toString().equals(lookFor))
+			if (property.length() > 3 && property.startsWith("is")) { 				String lookFor = property.substring(2, 3)
+						+ property.substring(3).replaceAll("([A-Z])", "_$1") 								.toUpperCase(Locale.ROOT);
+				if (state.toString().equals(lookFor))
 					return true;
 			}
 			try {

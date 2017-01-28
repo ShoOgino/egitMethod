@@ -9,7 +9,7 @@
 			int brace = segment.indexOf('}');
 			if (brace > 0) {
 				String keyword = segment.substring(0, brace);
-				keyword = keyword.toUpperCase().replaceAll(" ", "_"); 				value = processKeyword(commit, DiffHeaderKeyword.valueOf(keyword));
+				keyword = keyword.toUpperCase(Locale.ROOT).replaceAll(" ", "_"); 				value = processKeyword(commit, DiffHeaderKeyword.valueOf(keyword));
 			}
 
 			String trailingCharacters = segment.substring(brace + 1);
