@@ -5,8 +5,9 @@
 			if (filter.size() > 1) {
 				String decoration = MessageFormat.format(
 						UIText.GitSelectWizardPage_Selected,
-						new Integer(filter.size()));
-				button.setText(button.getText() + " " + decoration); 			}
+						Integer.valueOf(filter.size()));
+				button.setText(button.getText() + ' ' + decoration);
+			}
 		}
 	}
 
