@@ -1,4 +1,4 @@
 	public EclipseGitProgressTransformer(final IProgressMonitor eclipseMonitor) {
-		root = eclipseMonitor;
+		root = SubMonitor.convert(eclipseMonitor);
 	}
 

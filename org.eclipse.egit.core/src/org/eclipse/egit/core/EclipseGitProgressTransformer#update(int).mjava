@@ -1,33 +1,40 @@
 	@Override
 	public void update(final int work) {
-		if (task == null)
+		if (work <= 0) {
 			return;
-
+		}
 		final int cmp = lastWorked + work;
-		if (totalWork == UNKNOWN && cmp > 0) {
-			if (lastWorked != cmp)
-				task.subTask(msg + ", " + cmp); 		} else if (totalWork <= 0) {
+		if (totalWork == UNKNOWN) {
+			root.subTask(msg + ", " + cmp); 			root.setWorkRemaining(100);
+			root.worked(1);
 		} else if (cmp * 100 / totalWork != lastWorked * 100 / totalWork) {
 			final StringBuilder m = new StringBuilder();
 			m.append(msg);
-			m.append(": ");  			while (m.length() < 25)
+			m.append(": ");  			while (m.length() < 25) {
 				m.append(' ');
-
+			}
 			final String twstr = String.valueOf(totalWork);
 			String cmpstr = String.valueOf(cmp);
-			while (cmpstr.length() < twstr.length())
-				cmpstr = " " + cmpstr; 			final int pcnt = (cmp * 100 / totalWork);
-			if (pcnt < 100)
+			while (cmpstr.length() < twstr.length()) {
+				cmpstr = ' ' + cmpstr;
+			}
+			final int pcnt = (cmp * 100 / totalWork);
+			if (pcnt < 100) {
 				m.append(' ');
-			if (pcnt < 10)
+			}
+			if (pcnt < 10) {
 				m.append(' ');
+			}
 			m.append(pcnt);
 			m.append("% ("); 			m.append(cmpstr);
-			m.append("/"); 			m.append(twstr);
-			m.append(")"); 
-			task.subTask(m.toString());
+			m.append('/');
+			m.append(twstr);
+			m.append(')');
+
+			root.subTask(m.toString());
+			root.setWorkRemaining(100);
+			root.worked(1);
 		}
 		lastWorked = cmp;
-		task.worked(work);
 	}
 

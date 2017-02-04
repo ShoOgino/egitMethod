@@ -3,15 +3,15 @@
 
 		SubMonitor progress = SubMonitor.convert(m,
 				CoreText.DisconnectProviderOperation_disconnecting,
-				projectList.size() * 200);
+				projectList.size());
 		for (IProject p : projectList) {
-			if (GitTraceLocation.CORE.isActive())
+			if (GitTraceLocation.CORE.isActive()) {
 				GitTraceLocation.getTrace().trace(
 						GitTraceLocation.CORE.getLocation(),
-						"disconnect " + p.getName()); 			unmarkTeamPrivate(p);
+						"disconnect " + p.getName()); 			}
+			unmarkTeamPrivate(p);
 			RepositoryProvider.unmap(p);
-			progress.worked(100);
-			p.refreshLocal(IResource.DEPTH_INFINITE, progress.newChild(100));
+			p.refreshLocal(IResource.DEPTH_INFINITE, progress.newChild(1));
 		}
 	}
 
