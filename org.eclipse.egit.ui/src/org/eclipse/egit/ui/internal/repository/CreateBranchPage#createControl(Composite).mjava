@@ -86,7 +86,7 @@
 			setSourceRef(myBaseRef);
 
 		nameText.setFocus();
-		nameText.addModifyListener(branchNormalizer);
+		nameText.addModifyListener(new BranchNormalizerModifyListener());
 		nameText.addModifyListener(e -> checkPage());
 	}
 
