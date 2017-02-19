@@ -1,0 +1,3 @@
+	private String trimKey(String keyValue) {
+		return keyValue.replaceAll("^(?:\\h|\\v)*|(?:\\h|\\v)*$", ""); 	}
+
