@@ -10,6 +10,11 @@
 					commit1.getName(), commit2.getName()), e);
 		}
 		if (commonAncestor != null) {
+			if (commit1.equals(commonAncestor.getId())
+					|| commit2.equals(commonAncestor.getId())) {
+				return null;
+			}
+
 			ITypedElement ancestorCandidate = CompareUtils
 					.getFileRevisionTypedElement(gitPath, commonAncestor, db);
 			if (!(ancestorCandidate instanceof EmptyTypedElement))
