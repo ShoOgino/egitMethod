@@ -1,4 +1,4 @@
-	public static void addBulbDecorator(final Control control,
+	public static ControlDecoration addBulbDecorator(final Control control,
 			final String tooltip) {
 		ControlDecoration dec = new ControlDecoration(control, SWT.TOP
 				| SWT.LEFT);
@@ -10,5 +10,6 @@
 		dec.setShowHover(true);
 
 		dec.setDescriptionText(tooltip);
+		return dec;
 	}
 

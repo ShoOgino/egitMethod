@@ -86,7 +86,9 @@
 			setSourceRef(myBaseRef);
 
 		nameText.setFocus();
-		nameText.addModifyListener(new BranchNormalizerModifyListener());
 		nameText.addModifyListener(e -> checkPage());
+		BranchNameNormalizer normalizer = new BranchNameNormalizer(nameText,
+				UIText.CreateBranchPage_NormalizeNameTooltip);
+		normalizer.setVisible(false);
 	}
 
