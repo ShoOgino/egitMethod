@@ -1,0 +1,9 @@
+		private String getUrl(Object eventData) {
+			if (!(eventData instanceof String)) {
+				return null;
+			}
+			String[] dataLines = ((String) eventData)
+					.split(System.getProperty("line.separator")); 			String url = dataLines[0];
+			return url;
+		}
+

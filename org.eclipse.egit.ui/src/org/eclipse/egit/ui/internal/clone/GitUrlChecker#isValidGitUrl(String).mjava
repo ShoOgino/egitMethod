@@ -1,0 +1,19 @@
+	public static boolean isValidGitUrl(String url) {
+		try {
+			if (url != null) {
+				URIish u = new URIish(url);
+				if (canHandleProtocol(u)) {
+					if (Protocol.GIT.handles(u) || Protocol.SSH.handles(u)
+							|| (Protocol.HTTP.handles(u)
+									|| Protocol.HTTPS.handles(u))
+									&& KnownHosts.isKnownHost(u.getHost())
+							|| url.endsWith(Constants.DOT_GIT_EXT)) {
+						return true;
+					}
+				}
+			}
+		} catch (URISyntaxException e) {
+		}
+		return false;
+	}
+

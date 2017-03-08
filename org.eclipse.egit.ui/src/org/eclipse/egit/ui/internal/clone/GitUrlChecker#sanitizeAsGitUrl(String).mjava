@@ -1,0 +1,8 @@
+	public static String sanitizeAsGitUrl(String input) {
+		String sanitized = input.trim();
+		if (sanitized.startsWith(GIT_CLONE_COMMAND_PREFIX)) {
+			sanitized = sanitized.substring(GIT_CLONE_COMMAND_PREFIX.length())
+					.trim();
+		}
+		return sanitized.split("[\\h|\\v]", 2)[0]; 	}
+

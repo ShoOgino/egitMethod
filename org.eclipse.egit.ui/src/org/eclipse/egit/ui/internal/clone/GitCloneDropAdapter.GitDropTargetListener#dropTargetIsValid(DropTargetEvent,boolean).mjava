@@ -1,0 +1,16 @@
+		private boolean dropTargetIsValid(DropTargetEvent e, boolean isDrop) {
+			if (URLTransfer.getInstance().isSupportedType(e.currentDataType)) {
+				if (isDrop || Util.isWindows()) {
+					if (e.data == null && !extractEventData(e)) {
+						return !isDrop;
+					}
+					final String url = getUrl(e.data);
+					if (!GitUrlChecker.isValidGitUrl(url)) {
+						return false;
+					}
+				}
+				return true;
+			}
+			return false;
+		}
+
