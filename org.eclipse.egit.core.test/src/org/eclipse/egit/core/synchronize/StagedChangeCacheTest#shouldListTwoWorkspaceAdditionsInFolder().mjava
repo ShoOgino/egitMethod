@@ -2,7 +2,10 @@
 	public void shouldListTwoWorkspaceAdditionsInFolder() throws Exception {
 		writeTrashFile(db, "folder/a.txt", "trash");
 		writeTrashFile(db, "folder/b.txt", "trash");
-		new Git(db).add().addFilepattern("folder/a.txt").addFilepattern("folder/b.txt").call();
+		try (Git git = new Git(db)) {
+			git.add().addFilepattern("folder/a.txt")
+					.addFilepattern("folder/b.txt").call();
+		}
 
 		Map<String, Change> result = StagedChangeCache.build(db);
 

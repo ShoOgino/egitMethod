@@ -2,7 +2,9 @@
 	public void shouldListTwoWorkspaceChanges() throws Exception {
 		writeTrashFile(db, "a.txt", "trash");
 		writeTrashFile(db, "b.txt", "trash");
-		new Git(db).add().addFilepattern("a.txt").addFilepattern("b.txt").call();
+		try (Git git = new Git(db)) {
+			git.add().addFilepattern("a.txt").addFilepattern("b.txt").call();
+		}
 		writeTrashFile(db, "a.txt", "modification");
 		writeTrashFile(db, "b.txt", "modification");
 

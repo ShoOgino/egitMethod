@@ -1,9 +1,10 @@
 	@Test
 	public void testPush() throws Exception {
 		TestUtil.appendFileContent(file, "additional content", true);
-		Git git = new Git(localRepository);
-		git.add().addFilepattern(SampleTestRepository.A_txt_name).call();
-		git.commit().setMessage("Change").call();
+		try (Git git = new Git(localRepository)) {
+			git.add().addFilepattern(SampleTestRepository.A_txt_name).call();
+			git.commit().setMessage("Change").call();
+		}
 		configurePush();
 		PushWizardTester wizardTester = new PushWizardTester();
 		RepoPropertiesPage repoPropertiesPage = wizardTester.openPushWizard(localRepository);

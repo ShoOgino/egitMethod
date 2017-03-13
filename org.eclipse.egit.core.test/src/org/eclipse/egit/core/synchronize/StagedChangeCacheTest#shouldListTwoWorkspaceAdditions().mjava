@@ -2,7 +2,9 @@
 	public void shouldListTwoWorkspaceAdditions() throws Exception {
 		writeTrashFile(db, "a.txt", "trash");
 		writeTrashFile(db, "b.txt", "trash");
-		new Git(db).add().addFilepattern("a.txt").addFilepattern("b.txt").call();
+		try (Git git = new Git(db)) {
+			git.add().addFilepattern("a.txt").addFilepattern("b.txt").call();
+		}
 
 		Map<String, Change> result = StagedChangeCache.build(db);
 

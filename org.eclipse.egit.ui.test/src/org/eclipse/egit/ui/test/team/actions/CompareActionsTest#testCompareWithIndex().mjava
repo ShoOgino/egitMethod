@@ -11,8 +11,9 @@
 
 		assertTreeCompareChanges(1);
 
-		new Git(lookupRepository(repositoryFile)).add().addFilepattern(
-				PROJ1 + "/" + FOLDER + "/" + FILE1).call();
+		try (Git git = new Git(lookupRepository(repositoryFile))) {
+			git.add().addFilepattern(PROJ1 + "/" + FOLDER + "/" + FILE1).call();
+		}
 
 		clickCompareWith(compareWithIndexActionLabel);
 
