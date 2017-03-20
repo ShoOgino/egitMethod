@@ -32,7 +32,7 @@
 		v.setContentProvider(new RepoComboContentProvider());
 		v.setLabelProvider(new RepoComboLabelProvider());
 		v.setInput(new Object());
-		v.setComparator(new ViewerComparator());
+		v.setSorter(new ViewerSorter());
 
 		existingRepoCombo.addSelectionListener(new SelectionAdapter() {
 			@Override
