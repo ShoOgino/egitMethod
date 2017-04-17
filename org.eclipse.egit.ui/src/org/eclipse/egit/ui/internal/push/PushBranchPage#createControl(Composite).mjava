@@ -195,5 +195,8 @@
 				checkPage();
 			}
 		});
+		BranchNameNormalizer normalizer = new BranchNameNormalizer(
+				remoteBranchNameText, null);
+		normalizer.setVisible(false);
 	}
 
