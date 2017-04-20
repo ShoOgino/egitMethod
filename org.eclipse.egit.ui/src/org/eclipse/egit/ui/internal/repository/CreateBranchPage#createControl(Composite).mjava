@@ -87,8 +87,7 @@
 
 		nameText.setFocus();
 		nameText.addModifyListener(e -> checkPage());
-		BranchNameNormalizer normalizer = new BranchNameNormalizer(nameText,
-				UIText.CreateBranchPage_NormalizeNameTooltip);
+		BranchNameNormalizer normalizer = new BranchNameNormalizer(nameText);
 		normalizer.setVisible(false);
 	}
 

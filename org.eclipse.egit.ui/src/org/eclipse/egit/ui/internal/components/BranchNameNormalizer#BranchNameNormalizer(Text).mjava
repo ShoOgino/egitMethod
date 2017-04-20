@@ -1,0 +1,4 @@
+	public BranchNameNormalizer(Text text) {
+		this(text, UIText.BranchNameNormalizer_Tooltip);
+	}
+
