@@ -126,6 +126,9 @@
 				checkPage();
 			}
 		});
+		BranchNameNormalizer tagNormalizer = new BranchNameNormalizer(tagText,
+				UIText.BranchNameNormalizer_TooltipForTag);
+		tagNormalizer.setVisible(false);
 
 		checkout = new Button(checkoutGroup, SWT.RADIO);
 		GridDataFactory.fillDefaults().span(3, 1).applyTo(checkout);
