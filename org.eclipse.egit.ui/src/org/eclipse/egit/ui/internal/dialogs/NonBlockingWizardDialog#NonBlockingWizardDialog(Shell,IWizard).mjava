@@ -1,0 +1,4 @@
+	public NonBlockingWizardDialog(Shell parentShell, IWizard newWizard) {
+		super(parentShell, newWizard);
+	}
+

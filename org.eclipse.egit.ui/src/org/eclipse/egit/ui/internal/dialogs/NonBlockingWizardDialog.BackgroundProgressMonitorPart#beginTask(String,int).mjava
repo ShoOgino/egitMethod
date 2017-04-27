@@ -1,0 +1,9 @@
+		@Override
+		public void beginTask(String name, int totalWork) {
+			Display display = this.getDisplay();
+			Control focusControl = display.isDisposed() ? null
+					: display.getFocusControl();
+			super.beginTask(name, totalWork);
+			restoreFocus(focusControl);
+		}
+

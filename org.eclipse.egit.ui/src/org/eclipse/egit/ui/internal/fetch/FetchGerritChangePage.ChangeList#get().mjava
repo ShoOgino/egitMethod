@@ -1,0 +1,18 @@
+		public synchronized List<Change> get()
+				throws InterruptedException, InvocationTargetException {
+			switch (state) {
+			case DONE:
+			case CANCELED:
+				return result;
+			case PRISTINE:
+				fetch();
+				return get();
+			default:
+				wait();
+				if (state == State.CANCELING || state == State.INTERRUPT) {
+					throw new InterruptedException();
+				}
+				return get();
+			}
+		}
+

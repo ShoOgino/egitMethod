@@ -1,0 +1,14 @@
+		@Override
+		public void setBlocked(final IStatus reason) {
+			IProgressMonitor wrapped = getWrappedProgressMonitor();
+			if (!(wrapped instanceof IProgressMonitorWithBlocking)) {
+				return;
+			}
+
+			display.asyncExec(() -> {
+				((IProgressMonitorWithBlocking) wrapped).setBlocked(reason);
+				Dialog.getBlockedHandler().showBlocked(wrapped, reason,
+						currentTask);
+			});
+		}
+

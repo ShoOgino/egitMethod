@@ -1,0 +1,7 @@
+	@Override
+	public void showPage(IWizardPage page) {
+		synchronized (jobs) {
+			super.showPage(page);
+		}
+	}
+

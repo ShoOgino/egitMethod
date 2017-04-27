@@ -1,0 +1,11 @@
+	public void cancelJobs() {
+		Job currentJob;
+		synchronized (jobs) {
+			currentJob = jobs.peek();
+			jobs.clear();
+		}
+		if (currentJob != null) {
+			currentJob.cancel();
+		}
+	}
+

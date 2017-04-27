@@ -1,0 +1,8 @@
+		public ForwardingProgressMonitor(IProgressMonitor monitor,
+				IProgressMonitor jobMonitor, Display display) {
+			super(monitor);
+			Assert.isNotNull(display);
+			this.display = display;
+			this.jobMonitor = jobMonitor;
+		}
+

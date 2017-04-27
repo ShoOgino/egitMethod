@@ -1,0 +1,6 @@
+		private synchronized void clearCollector(Collector collectorToClear) {
+			if (this.collector == collectorToClear) {
+				this.collector = null;
+			}
+		}
+
