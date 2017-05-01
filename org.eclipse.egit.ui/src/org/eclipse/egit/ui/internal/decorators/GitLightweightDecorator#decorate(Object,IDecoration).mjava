@@ -4,7 +4,8 @@
 			return;
 		}
 
-		if (!PlatformUI.isWorkbenchRunning()) {
+		if (!PlatformUI.isWorkbenchRunning()
+				|| ResourcesPlugin.getWorkspace() == null) {
 			return;
 		}
 
