@@ -1,0 +1,8 @@
+	private void updateSpellChecking(boolean isEnabled) {
+		this.unconfigure();
+		this.configure(configuration);
+		if (!isEnabled) {
+			SpellingProblem.removeAll(this, null);
+		}
+	}
+

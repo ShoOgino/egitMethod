@@ -1,5 +1,5 @@
 	public static void setGlobalActions(Control control,
-			Collection<IAction> actions) {
+			Collection<? extends IAction> actions) {
 		setGlobalActions(control, actions, CommonUtils
 				.getService(PlatformUI.getWorkbench(), IHandlerService.class));
 	}
