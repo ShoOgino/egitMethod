@@ -38,6 +38,9 @@
 					if (doActivateAdditionalRefs) {
 						activateAdditionalRefs();
 					}
+					if (mode == CheckoutMode.NOCHECKOUT) {
+						repository.fireEvent(new FetchHeadChangedEvent());
+					}
 					storeLastUsedUri(uri);
 				} catch (CoreException ce) {
 					return ce.getStatus();

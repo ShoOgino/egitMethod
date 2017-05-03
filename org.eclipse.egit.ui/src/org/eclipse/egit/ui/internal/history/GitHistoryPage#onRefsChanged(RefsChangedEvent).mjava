@@ -19,7 +19,8 @@
 												GitTraceLocation.HISTORYVIEW
 														.getLocation(),
 												"Executing async repository changed event"); 							refschangedRunnable = null;
-							initAndStartRevWalk(true);
+							initAndStartRevWalk(
+									!(e instanceof FetchHeadChangedEvent));
 						}
 					}
 				};
