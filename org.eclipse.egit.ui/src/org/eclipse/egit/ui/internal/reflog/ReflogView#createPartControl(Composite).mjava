@@ -54,19 +54,28 @@
 
 			@Override
 			public String getText(Object element) {
-				final ReflogEntry entry = (ReflogEntry) element;
-				return entry.getNewId().abbreviate(7).name();
+				if (element instanceof ReflogEntry) {
+					final ReflogEntry entry = (ReflogEntry) element;
+					return entry.getNewId().abbreviate(7).name();
+				}
+				return null;
 			}
 
 			@Override
 			public String getToolTipText(Object element) {
-				final ReflogEntry entry = (ReflogEntry) element;
-				return entry.getNewId().name();
+				if (element instanceof ReflogEntry) {
+					final ReflogEntry entry = (ReflogEntry) element;
+					return entry.getNewId().name();
+				}
+				return null;
 			}
 
 			@Override
 			public Image getImage(Object element) {
-				return branchImage;
+				if (element instanceof ReflogEntry) {
+					return branchImage;
+				}
+				return null;
 			}
 
 		});
@@ -77,9 +86,14 @@
 
 			@Override
 			public String getText(Object element) {
-				final ReflogEntry entry = (ReflogEntry) element;
-				RevCommit c = getCommit(entry);
-				return c == null ? "" : c.getShortMessage(); 			}
+				if (element instanceof ReflogEntry) {
+					final ReflogEntry entry = (ReflogEntry) element;
+					RevCommit c = getCommit(entry);
+					return c == null ? "" : c.getShortMessage(); 				} else if (element instanceof IWorkbenchAdapter) {
+					return ((IWorkbenchAdapter) element).getLabel(element);
+				}
+				return null;
+			}
 
 			private RevCommit getCommit(final ReflogEntry entry) {
 				try (RevWalk walk = new RevWalk(getRepository())) {
@@ -97,9 +111,12 @@
 
 			@Override
 			public String getText(Object element) {
-				final ReflogEntry entry = (ReflogEntry) element;
-				final PersonIdent who = entry.getWho();
-				return dateFormatter.formatDate(who);
+				if (element instanceof ReflogEntry) {
+					final ReflogEntry entry = (ReflogEntry) element;
+					final PersonIdent who = entry.getWho();
+					return dateFormatter.formatDate(who);
+				}
+				return null;
 			}
 
 			@Override
@@ -118,12 +135,18 @@
 
 			@Override
 			public String getText(Object element) {
-				final ReflogEntry entry = (ReflogEntry) element;
-				return entry.getComment();
+				if (element instanceof ReflogEntry) {
+					final ReflogEntry entry = (ReflogEntry) element;
+					return entry.getComment();
+				}
+				return null;
 			}
 
 			@Override
 			public Image getImage(Object element) {
+				if (!(element instanceof ReflogEntry)) {
+					return null;
+				}
 				String comment = ((ReflogEntry) element).getComment();
 				if (comment.startsWith("commit:") || comment.startsWith("commit (initial):")) 					return (Image) resourceManager.get(UIIcons.COMMIT);
 				if (comment.startsWith("commit (amend):")) 					return (Image) resourceManager.get(UIIcons.AMEND_COMMIT);
