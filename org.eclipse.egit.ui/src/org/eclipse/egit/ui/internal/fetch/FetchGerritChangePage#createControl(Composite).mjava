@@ -51,7 +51,7 @@
 		contentProposer = addRefContentProposalToText(refText);
 		refText.addVerifyListener(event -> {
 			event.text = event.text
-					.replaceAll("\r|\n|\r\n|\u2028|\u2029", " ") 					.trim();
+					.replaceAll("\\v", " ") 					.trim();
 		});
 
 		final Group checkoutGroup = new Group(main, SWT.SHADOW_ETCHED_IN);
