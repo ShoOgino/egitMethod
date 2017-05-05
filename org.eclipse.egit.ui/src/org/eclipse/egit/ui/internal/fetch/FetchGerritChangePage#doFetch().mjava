@@ -34,6 +34,7 @@
 								progress.newChild(1));
 						break;
 					default:
+						break;
 					}
 					if (doActivateAdditionalRefs) {
 						activateAdditionalRefs();
