@@ -1,0 +1,4 @@
+	protected void internalSetZoom(int zoomLevel) {
+		this.zoom = zoomLevel;
+	}
+
