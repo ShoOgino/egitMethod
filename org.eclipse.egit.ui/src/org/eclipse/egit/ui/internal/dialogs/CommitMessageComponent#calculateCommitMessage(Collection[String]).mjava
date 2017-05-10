@@ -1,11 +1,11 @@
-	private String calculateCommitMessage(Collection<String> paths) {
+	String calculateCommitMessage(Collection<String> paths) {
 		if (commitMessage != null) {
 			return commitMessage;
 		}
 
 		if (amending)
 			return previousCommitMessage;
-		String calculatedCommitMessage = null;
+		StringBuilder calculatedCommitMessage = new StringBuilder();
 
 		Set<IResource> resources = new HashSet<>();
 		for (String path : paths) {
@@ -17,21 +17,25 @@
 			resources
 					.addAll(Arrays.asList(ProjectUtil.getProjects(repository)));
 		}
-		try {
-			ICommitMessageProvider messageProvider = getCommitMessageProvider();
-			if (messageProvider != null) {
-				IResource[] resourcesArray = resources
-						.toArray(new IResource[0]);
-				calculatedCommitMessage = messageProvider
-						.getMessage(resourcesArray);
+		List<ICommitMessageProvider> messageProviders = getCommitMessageProviders();
+		IResource[] resourcesArray = resources.toArray(new IResource[0]);
+		String providedMessageSeparator = "\n\n"; 
+		for (ICommitMessageProvider messageProvider : messageProviders) {
+			String message = null;
+			try {
+				message = messageProvider.getMessage(resourcesArray);
+			} catch (RuntimeException e) {
+				Activator.logError(e.getMessage(), e);
 			}
-		} catch (CoreException coreException) {
-			Activator.logError(coreException.getLocalizedMessage(),
-					coreException);
+
+			if (message != null && !message.trim().isEmpty()) {
+				if (calculatedCommitMessage.length() > 0) {
+					calculatedCommitMessage.append(providedMessageSeparator);
+				}
+				calculatedCommitMessage.append((message.trim()));
+			}
 		}
-		if (calculatedCommitMessage != null)
-			return calculatedCommitMessage;
-		else
-			return EMPTY_STRING;
+
+		return calculatedCommitMessage.toString();
 	}
 

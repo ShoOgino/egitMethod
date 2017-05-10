@@ -1,0 +1,11 @@
+	private CommitMessageComponent newCommitMessageComponent(
+			List<ICommitMessageProvider> providers) {
+		return new CommitMessageComponent(null) {
+
+			@Override
+			List<ICommitMessageProvider> getCommitMessageProviders() {
+				return providers;
+			}
+		};
+	}
+
