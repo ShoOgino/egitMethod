@@ -1,36 +1,52 @@
 	@Override
 	public IResource[] members(IResource res) throws TeamException {
-		if (res.getType() == IResource.FILE || !gsds.shouldBeIncluded(res))
+		if (res.getType() == IResource.FILE || !gsds.shouldBeIncluded(res)) {
 			return new IResource[0];
-
+		}
 		GitSynchronizeData gsd = gsds.getData(res.getProject());
 		Repository repo = gsd.getRepository();
 		GitSyncObjectCache repoCache = cache.get(repo);
 
-		Set<IResource> gitMembers = new HashSet<IResource>();
-		Map<String, IResource> allMembers = new HashMap<String, IResource>();
+		Collection<IResource> allMembers = new ArrayList<>();
+		Map<String, IResource> existingMembers = new HashMap<>();
 
-		Set<GitSyncObjectCache> gitCachedMembers = new HashSet<GitSyncObjectCache>();
 		String path = stripWorkDir(repo.getWorkTree(), res.getLocation().toFile());
 		GitSyncObjectCache cachedMembers = repoCache.get(path);
-		if (cachedMembers != null) {
-			Collection<GitSyncObjectCache> members = cachedMembers.members();
-			if (members != null)
-				gitCachedMembers.addAll(members);
-		}
 		try {
-			for (IResource member : ((IContainer) res).members())
-				allMembers.put(member.getName(), member);
+			IContainer container = (IContainer) res;
+			if (container.exists()) {
+				for (IResource member : container.members()) {
+					existingMembers.put(member.getName(), member);
+				}
+			}
 
-			for (GitSyncObjectCache gitMember : gitCachedMembers) {
-				IResource member = allMembers.get(gitMember.getName());
-				if (member != null)
-					gitMembers.add(member);
+			if (cachedMembers != null) {
+				Collection<GitSyncObjectCache> members = cachedMembers
+						.members();
+				if (members != null) {
+					for (GitSyncObjectCache gitMember : members) {
+						String name = gitMember.getName();
+						IResource existing = existingMembers.get(name);
+						if (existing != null) {
+							allMembers.add(existing);
+						}
+						if (existing == null || (existing
+								.getType() != IResource.FILE) != gitMember
+										.getDiffEntry().isTree()) {
+							IPath localPath = new Path(name);
+							if (gitMember.getDiffEntry().isTree()) {
+								allMembers.add(container.getFolder(localPath));
+							} else {
+								allMembers.add(container.getFile(localPath));
+							}
+						}
+					}
+				}
 			}
 		} catch (CoreException e) {
 			throw TeamException.asTeamException(e);
 		}
 
-		return gitMembers.toArray(new IResource[gitMembers.size()]);
+		return allMembers.toArray(new IResource[allMembers.size()]);
 	}
 

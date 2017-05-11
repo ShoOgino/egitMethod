@@ -17,6 +17,11 @@
 		if (obj == null)
 			return IN_SYNC;
 
+		if (obj.getDiffEntry().isTree()) {
+			if (!hasNonSyncFile(obj)) {
+				return IN_SYNC;
+			}
+		}
 		int direction;
 		Direction gitDirection = obj.getDiffEntry().getDirection();
 		if (gitDirection == Direction.INCOMING)
