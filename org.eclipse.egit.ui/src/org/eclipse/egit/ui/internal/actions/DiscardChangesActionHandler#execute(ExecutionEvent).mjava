@@ -13,8 +13,7 @@
 								launch.getName()));
 			} else {
 				question = MessageFormat.format(question, ""); 			}
-			boolean performAction = MessageDialog.openConfirm(getShell(event),
-					UIText.DiscardChangesAction_confirmActionTitle, question);
+			boolean performAction = openConfirmationDialog(event, question);
 			if (!performAction) {
 				return null;
 			}
