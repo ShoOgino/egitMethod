@@ -1,0 +1,12 @@
+	private int calculateCaretPosition(
+			CommitMessageWithCaretPosition messageWithCaretPosition) {
+		if (commitMessage != null) {
+			return caretPosition;
+		}
+
+		if (amending)
+			return previousCaretPosition;
+
+		return messageWithCaretPosition.getDesiredCaretPosition();
+	}
+

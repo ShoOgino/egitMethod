@@ -1,0 +1,5 @@
+	private void assertPosition(int actualPosition, String message) {
+		int expectedPosition = message.indexOf("><") + 1;
+		assertEquals("Position mismatch", expectedPosition, actualPosition);
+	}
+

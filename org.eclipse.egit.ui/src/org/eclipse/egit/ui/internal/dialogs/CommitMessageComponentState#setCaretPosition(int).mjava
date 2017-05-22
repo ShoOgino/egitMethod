@@ -1,0 +1,4 @@
+	public void setCaretPosition(int caretPosition) {
+		this.caretPosition = caretPosition;
+	}
+

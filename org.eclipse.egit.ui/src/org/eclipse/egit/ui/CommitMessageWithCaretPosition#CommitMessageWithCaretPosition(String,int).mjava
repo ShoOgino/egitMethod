@@ -1,0 +1,6 @@
+	public CommitMessageWithCaretPosition(String message,
+			int caretPosition) {
+		this.message = message;
+		this.caretPosition = caretPosition;
+	}
+

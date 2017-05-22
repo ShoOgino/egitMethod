@@ -1,0 +1,4 @@
+	public static void logWarning(final String message, final Throwable thr) {
+		handleIssue(IStatus.WARNING, message, thr, false);
+	}
+

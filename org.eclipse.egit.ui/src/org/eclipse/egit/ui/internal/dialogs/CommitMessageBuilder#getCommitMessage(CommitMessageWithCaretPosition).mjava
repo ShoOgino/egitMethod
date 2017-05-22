@@ -1,0 +1,8 @@
+	private String getCommitMessage(
+			CommitMessageWithCaretPosition messageWithPosition) {
+		if (messageWithPosition == null) {
+			return ""; 		} else {
+			return append(messageWithPosition.getMessage());
+		}
+	}
+

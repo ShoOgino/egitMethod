@@ -1,6 +1,7 @@
-	private CommitMessageComponent newCommitMessageComponent(
+	private CommitMessageBuilder newCommitMessageBuilder(
 			List<ICommitMessageProvider> providers) {
-		return new CommitMessageComponent(null) {
+		return new CommitMessageBuilder(testRepository.getRepository(),
+				Collections.emptyList()) {
 
 			@Override
 			List<ICommitMessageProvider> getCommitMessageProviders() {

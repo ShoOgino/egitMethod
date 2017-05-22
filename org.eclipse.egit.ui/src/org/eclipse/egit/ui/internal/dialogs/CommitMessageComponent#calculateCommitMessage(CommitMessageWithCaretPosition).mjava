@@ -1,0 +1,12 @@
+	String calculateCommitMessage(
+			CommitMessageWithCaretPosition messageWithCaretPosition) {
+		if (commitMessage != null) {
+			return commitMessage;
+		}
+
+		if (amending)
+			return previousCommitMessage;
+
+		return messageWithCaretPosition.getMessage();
+	}
+

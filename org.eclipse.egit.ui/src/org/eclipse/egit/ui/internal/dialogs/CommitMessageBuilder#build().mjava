@@ -1,0 +1,30 @@
+	CommitMessageWithCaretPosition build() {
+		StringBuilder finalMessage = new StringBuilder();
+		int caretPosition = CommitMessageWithCaretPosition.NO_POSITION;
+		isMessageEmpty = true;
+
+		for (ICommitMessageProvider provider : getCommitMessageProviders()) {
+			String message = ""; 			try {
+				if (provider instanceof ICommitMessageProvider2) {
+					CommitMessageWithCaretPosition commitMessageWithPosition = ((ICommitMessageProvider2) provider)
+							.getCommitMessageWithPosition(resourcesArray);
+					if (commitMessageWithPosition != null) {
+						caretPosition = updateCaretPosition(finalMessage,
+								caretPosition, commitMessageWithPosition,
+								(ICommitMessageProvider2) provider);
+					}
+					message = getCommitMessage(commitMessageWithPosition);
+				} else {
+					message = append(
+							provider.getMessage(resourcesArray));
+				}
+			} catch (RuntimeException e) {
+				Activator.logError(e.getMessage(), e);
+			}
+			finalMessage.append(message);
+			isMessageEmpty = finalMessage.length() == 0;
+		}
+		return new CommitMessageWithCaretPosition(finalMessage.toString(),
+				Math.max(0, caretPosition));
+	}
+
