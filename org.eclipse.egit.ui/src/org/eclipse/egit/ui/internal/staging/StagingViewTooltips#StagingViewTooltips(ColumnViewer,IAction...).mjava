@@ -1,0 +1,13 @@
+	protected StagingViewTooltips(ColumnViewer viewer, IAction... actions) {
+		super(viewer.getControl(), ToolTip.NO_RECREATE, false);
+		Assert.isLegal(actions != null && actions.length > 0);
+		for (IAction action : actions) {
+			Assert.isNotNull(action.getImageDescriptor());
+			Assert.isLegal(
+					(action.getStyle() & IAction.AS_DROP_DOWN_MENU) == 0);
+		}
+		this.viewer = viewer;
+		this.actions = actions;
+		setHideOnMouseDown(false);
+	}
+
