@@ -1,0 +1,4 @@
+	public void setPopupDelay(int popupDelay) {
+		this.popupDelay = popupDelay;
+	}
+

@@ -1,0 +1,4 @@
+	public void setHideDelay(int hideDelay) {
+		this.hideDelay = hideDelay;
+	}
+

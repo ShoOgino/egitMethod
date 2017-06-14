@@ -1,0 +1,7 @@
+	private void passOnEvent(Shell tip, Event event) {
+		if (control != null && !control.isDisposed() && event != null
+				&& event.widget != control && event.type == SWT.MouseDown) {
+			tip.close();
+		}
+	}
+

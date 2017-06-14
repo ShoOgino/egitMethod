@@ -1,0 +1,7 @@
+	public Object getData(String key) {
+		if (data != null) {
+			return data.get(key);
+		}
+		return null;
+	}
+

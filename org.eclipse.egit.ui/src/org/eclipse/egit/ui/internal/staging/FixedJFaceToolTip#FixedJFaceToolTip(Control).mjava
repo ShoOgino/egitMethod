@@ -1,0 +1,4 @@
+	public FixedJFaceToolTip(Control control) {
+		this(control, ToolTip.RECREATE, false);
+	}
+

@@ -1,0 +1,3 @@
+	protected abstract Composite createToolTipContentArea(Event event,
+			Composite parent);
+

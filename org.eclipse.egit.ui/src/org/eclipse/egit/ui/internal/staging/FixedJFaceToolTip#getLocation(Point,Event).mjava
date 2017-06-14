@@ -1,0 +1,4 @@
+	public Point getLocation(Point tipSize, Event event) {
+		return control.toDisplay(event.x + xShift, event.y + yShift);
+	}
+

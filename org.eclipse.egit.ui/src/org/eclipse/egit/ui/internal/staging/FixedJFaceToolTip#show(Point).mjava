@@ -1,0 +1,8 @@
+	public void show(Point location) {
+		Event event = new Event();
+		event.x = location.x;
+		event.y = location.y;
+		event.widget = control;
+		toolTipCreate(event);
+	}
+

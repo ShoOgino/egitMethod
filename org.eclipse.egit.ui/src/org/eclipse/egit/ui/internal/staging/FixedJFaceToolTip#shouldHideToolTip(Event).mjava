@@ -1,0 +1,17 @@
+	private boolean shouldHideToolTip(Event event) {
+		if (event != null && event.type == SWT.MouseMove
+				&& (style & ToolTip.NO_RECREATE) != 0) {
+			Object tmp = getToolTipArea(event);
+
+			if (tmp == null) {
+				hide();
+				return false;
+			}
+
+			boolean rv = !tmp.equals(currentArea);
+			return rv;
+		}
+
+		return true;
+	}
+

@@ -1,0 +1,4 @@
+	public void setRespectMonitorBounds(boolean respectMonitorBounds) {
+		this.respectMonitorBounds = respectMonitorBounds;
+	}
+

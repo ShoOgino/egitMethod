@@ -1,0 +1,4 @@
+	public void hide() {
+		toolTipHide(CURRENT_TOOLTIP, null);
+	}
+

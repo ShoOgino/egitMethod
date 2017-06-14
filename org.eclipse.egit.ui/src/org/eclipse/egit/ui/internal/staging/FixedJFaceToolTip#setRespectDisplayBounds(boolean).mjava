@@ -1,0 +1,4 @@
+	public void setRespectDisplayBounds(boolean respectDisplayBounds) {
+		this.respectDisplayBounds = respectDisplayBounds;
+	}
+

@@ -1,0 +1,4 @@
+	protected Object getToolTipArea(Event event) {
+		return control;
+	}
+

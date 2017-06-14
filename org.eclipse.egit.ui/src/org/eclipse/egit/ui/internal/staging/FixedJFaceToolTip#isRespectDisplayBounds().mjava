@@ -1,0 +1,4 @@
+	public boolean isRespectDisplayBounds() {
+		return respectDisplayBounds;
+	}
+

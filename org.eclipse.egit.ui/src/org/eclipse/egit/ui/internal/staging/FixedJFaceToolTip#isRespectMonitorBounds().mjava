@@ -1,0 +1,4 @@
+	public boolean isRespectMonitorBounds() {
+		return respectMonitorBounds;
+	}
+

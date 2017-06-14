@@ -1,0 +1,16 @@
+	public void setHideOnMouseDown(final boolean hideOnMouseDown) {
+		if (CURRENT_TOOLTIP != null && !CURRENT_TOOLTIP.isDisposed()) {
+			if (hideOnMouseDown != this.hideOnMouseDown) {
+				control.getDisplay().syncExec(() -> {
+					if (CURRENT_TOOLTIP != null
+							&& CURRENT_TOOLTIP.isDisposed()) {
+						toolTipHookByTypeRecursively(CURRENT_TOOLTIP,
+								hideOnMouseDown, SWT.MouseDown);
+					}
+				});
+			}
+		}
+
+		this.hideOnMouseDown = hideOnMouseDown;
+	}
+

@@ -1,0 +1,24 @@
+	public FixedJFaceToolTip(Control control, int style,
+			boolean manualActivation) {
+		this.control = control;
+		this.style = style;
+		this.listener = new ToolTipOwnerControlListener();
+		this.shellListener = event -> {
+			if (FixedJFaceToolTip.this.control != null
+					&& !FixedJFaceToolTip.this.control.isDisposed()) {
+				FixedJFaceToolTip.this.control.getDisplay().asyncExec(() -> {
+					if (FixedJFaceToolTip.this.control != null
+							&& !FixedJFaceToolTip.this.control.isDisposed()
+							&& FixedJFaceToolTip.this.control.getDisplay()
+									.getActiveShell() != CURRENT_TOOLTIP) {
+						toolTipHide(CURRENT_TOOLTIP, event);
+					}
+				});
+			}
+		};
+
+		if (!manualActivation) {
+			activate();
+		}
+	}
+
