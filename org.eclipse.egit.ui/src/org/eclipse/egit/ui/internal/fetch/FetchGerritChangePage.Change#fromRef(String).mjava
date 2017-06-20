@@ -1,8 +1,12 @@
 		static Change fromRef(String refName) {
 			try {
-				if (refName == null || !refName.startsWith("refs/changes/")) { 					return null;
+				if (refName == null
+						|| !refName.startsWith(GERRIT_CHANGE_REF_PREFIX)) {
+					return null;
 				}
-				String[] tokens = refName.substring(13).split("/"); 				if (tokens.length != 3) {
+				String[] tokens = refName
+						.substring(GERRIT_CHANGE_REF_PREFIX.length())
+						.split("/"); 				if (tokens.length != 3) {
 					return null;
 				}
 				Integer subdir = Integer.valueOf(tokens[0]);
