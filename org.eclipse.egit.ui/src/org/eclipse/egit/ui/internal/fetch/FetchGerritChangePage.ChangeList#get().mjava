@@ -1,4 +1,4 @@
-		public synchronized List<Change> get()
+		public synchronized Collection<Change> get()
 				throws InterruptedException, InvocationTargetException {
 			switch (state) {
 			case DONE:
