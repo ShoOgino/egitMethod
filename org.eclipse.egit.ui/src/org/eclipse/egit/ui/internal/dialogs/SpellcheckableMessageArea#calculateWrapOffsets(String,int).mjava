@@ -5,28 +5,32 @@
 		IntList wrapOffsets = new IntList();
 		int wordStart = 0;
 		int lineStart = 0;
-		boolean lastWasSpace = true;
-		boolean onlySpaces = true;
-		for (int i = 0; i < line.length(); i++) {
+		int length = line.length();
+		int nofPreviousWordChars = 0;
+		int nofCurrentWordChars = 0;
+		for (int i = 0; i < length; i++) {
 			char ch = line.charAt(i);
 			if (ch == ' ') {
-				lastWasSpace = true;
+				nofPreviousWordChars += nofCurrentWordChars;
+				nofCurrentWordChars = 0;
 			} else if (ch == '\n') {
 				lineStart = i + 1;
 				wordStart = i + 1;
-				lastWasSpace = true;
-				onlySpaces = true;
-			} else { 				if (lastWasSpace) {
-					lastWasSpace = false;
-					if (!onlySpaces) { 						wordStart = i;
+				nofPreviousWordChars = 0;
+				nofCurrentWordChars = 0;
+			} else { 				if (nofCurrentWordChars == 0) {
+					if (nofPreviousWordChars > maxLineLength / 10
+							|| nofPreviousWordChars > 0
+									&& (i - lineStart) > maxLineLength / 2) {
+						wordStart = i;
 					}
-				} else {
-					onlySpaces = false;
 				}
+				nofCurrentWordChars++;
 				if (i >= lineStart + maxLineLength) {
 					if (wordStart != lineStart) { 						wrapOffsets.add(wordStart);
 						lineStart = wordStart;
-						onlySpaces = true;
+						nofPreviousWordChars = 0;
+						nofCurrentWordChars = 0;
 					}
 				}
 			}
