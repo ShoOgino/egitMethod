@@ -7,16 +7,12 @@
 		}
 		Change change = determineChangeFromString(currentText);
 		if (change != null && change.getPatchSetNumber() == null) {
-			int changeNumber = change.getChangeNumber().intValue();
-			for (Change fromGerrit : changes) {
-				int num = fromGerrit.getChangeNumber().intValue();
-				if (num < changeNumber) {
-					return; 				} else if (changeNumber == num) {
-					String fullRef = fromGerrit.getRefName();
-					refText.setText(fullRef);
-					refText.setSelection(fullRef.length());
-					return;
-				}
+			Change fromGerrit = findHighestPatchSet(changes,
+					change.getChangeNumber().intValue());
+			if (fromGerrit != null) {
+				String fullRef = fromGerrit.getRefName();
+				refText.setText(fullRef);
+				refText.setSelection(fullRef.length());
 			}
 		}
 	}
