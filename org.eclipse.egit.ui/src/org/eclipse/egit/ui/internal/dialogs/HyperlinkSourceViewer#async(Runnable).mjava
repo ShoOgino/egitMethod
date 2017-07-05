@@ -1,0 +1,11 @@
+	protected void async(Runnable runnable) {
+		Control control = getControl();
+		if (control != null && !control.isDisposed()) {
+			control.getDisplay().asyncExec(() -> {
+				if (!control.isDisposed()) {
+					runnable.run();
+				}
+			});
+		}
+	}
+

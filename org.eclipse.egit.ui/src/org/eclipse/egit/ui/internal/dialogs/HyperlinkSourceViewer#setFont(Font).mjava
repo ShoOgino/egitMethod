@@ -1,0 +1,31 @@
+	protected void setFont(Font font) {
+		StyledText styledText = getTextWidget();
+		IVerticalRuler verticalRuler = getVerticalRuler();
+		if (getDocument() != null) {
+			ISelectionProvider provider = getSelectionProvider();
+			ISelection selection = provider.getSelection();
+			int topIndex = getTopIndex();
+
+			Control parent = getControl();
+			parent.setRedraw(false);
+			styledText.setFont(font);
+			if (verticalRuler instanceof IVerticalRulerExtension) {
+				IVerticalRulerExtension e = (IVerticalRulerExtension) verticalRuler;
+				e.setFont(font);
+			}
+			provider.setSelection(selection);
+			setTopIndex(topIndex);
+			if (parent instanceof Composite) {
+				Composite composite = (Composite) parent;
+				composite.layout(true);
+			}
+			parent.setRedraw(true);
+		} else {
+			styledText.setFont(font);
+			if (verticalRuler instanceof IVerticalRulerExtension) {
+				IVerticalRulerExtension e = (IVerticalRulerExtension) verticalRuler;
+				e.setFont(font);
+			}
+		}
+	}
+

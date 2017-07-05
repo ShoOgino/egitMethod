@@ -1,0 +1,6 @@
+	protected void handleJFacePreferencesChange(PropertyChangeEvent event) {
+		if (JFacePreferences.HYPERLINK_COLOR.equals(event.getProperty())) {
+			async(() -> invalidateTextPresentation());
+		}
+	}
+
