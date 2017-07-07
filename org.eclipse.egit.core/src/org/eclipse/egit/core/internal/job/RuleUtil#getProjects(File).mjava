@@ -1,0 +1,20 @@
+	public static IProject[] getProjects(File workTreeDirectory) {
+		final IProject[] projects = ResourcesPlugin.getWorkspace().getRoot()
+				.getProjects();
+		List<IProject> result = new ArrayList<IProject>();
+		final Path workTree = workTreeDirectory.getAbsoluteFile().toPath();
+		for (IProject p : projects) {
+			IPath projectLocation = p.getLocation();
+			if (projectLocation == null) {
+				continue;
+			}
+			Path projectPath = projectLocation.toFile().getAbsoluteFile()
+					.toPath();
+			if (projectPath.startsWith(workTree)
+					|| workTree.startsWith(projectPath)) {
+				result.add(p);
+			}
+		}
+		return result.toArray(new IProject[result.size()]);
+	}
+
