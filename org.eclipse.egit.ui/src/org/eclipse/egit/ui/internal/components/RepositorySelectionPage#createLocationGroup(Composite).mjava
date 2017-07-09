@@ -29,6 +29,13 @@
 			@Override
 			public void widgetSelected(SelectionEvent evt) {
 				DirectoryDialog dialog = new DirectoryDialog(getShell());
+				if (sourceSelection) {
+					dialog.setMessage(
+							UIText.RepositorySelectionPage_sourceSelectionTitle);
+				} else {
+					dialog.setMessage(
+							UIText.RepositorySelectionPage_destinationSelectionTitle);
+				}
 				if (!uriText.getText().isEmpty()) {
 					try {
 						File testFile = new File(uriText.getText());
