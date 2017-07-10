@@ -1,11 +1,15 @@
-	private void extractFileProperties(@NonNull IndexDiffData indexDiffData,
-			@NonNull String repoRelativePath, @NonNull ResourceState state) {
+	private @NonNull IResourceState extractFileProperties(
+			@NonNull IndexDiffData indexDiffData,
+			@NonNull String repoRelativePath) {
 		Set<String> ignoredFiles = indexDiffData.getIgnoredNotInIndex();
 		boolean ignored = ignoredFiles.contains(repoRelativePath)
 				|| containsPrefixPath(ignoredFiles, repoRelativePath);
-		state.setIgnored(ignored);
+		if (ignored) {
+			return IGNORED;
+		}
+		ResourceState state = new ResourceState();
 		Set<String> untracked = indexDiffData.getUntracked();
-		state.setTracked(!ignored && !untracked.contains(repoRelativePath));
+		state.setTracked(!untracked.contains(repoRelativePath));
 
 		Set<String> added = indexDiffData.getAdded();
 		Set<String> removed = indexDiffData.getRemoved();
@@ -31,5 +35,6 @@
 
 		Set<String> assumeUnchanged = indexDiffData.getAssumeUnchanged();
 		state.setAssumeUnchanged(assumeUnchanged.contains(repoRelativePath));
+		return state;
 	}
 

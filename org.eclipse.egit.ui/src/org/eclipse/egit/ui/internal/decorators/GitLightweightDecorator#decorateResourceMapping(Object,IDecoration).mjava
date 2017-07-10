@@ -23,9 +23,6 @@
 			return;
 		}
 
-		final DecorationHelper helper = new DecorationHelper(
-				Activator.getDefault().getPreferenceStore());
-
 		helper.decorate(decoration, decoRes);
 	}
 

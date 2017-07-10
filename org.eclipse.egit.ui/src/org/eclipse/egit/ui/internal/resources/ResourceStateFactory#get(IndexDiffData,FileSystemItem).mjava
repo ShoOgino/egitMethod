@@ -16,19 +16,17 @@
 		if (repoRelativePath.equals(path.toString())) {
 			return UNKNOWN_STATE;
 		}
-		ResourceState result = new ResourceState();
 		if (file.isContainer()) {
 			if (!repoRelativePath.endsWith("/")) { 				repoRelativePath += '/';
 			}
 			if (ResourceUtil.isSymbolicLink(repository, repoRelativePath)) {
-				extractFileProperties(indexDiffData, repoRelativePath, result);
+				return extractFileProperties(indexDiffData, repoRelativePath);
 			} else {
-				extractContainerProperties(indexDiffData, repoRelativePath,
-						file, result);
+				return extractContainerProperties(indexDiffData,
+						repoRelativePath, file);
 			}
 		} else {
-			extractFileProperties(indexDiffData, repoRelativePath, result);
+			return extractFileProperties(indexDiffData, repoRelativePath);
 		}
-		return result;
 	}
 
