@@ -15,8 +15,8 @@
 
 		Image repoImage = UIIcons.REPOSITORY.createImage();
 		UIUtils.hookDisposal(form, repoImage);
-		final Image branchImage = UIIcons.CHANGESET.createImage();
-		UIUtils.hookDisposal(form, branchImage);
+		Image commitImage = UIIcons.CHANGESET.createImage();
+		UIUtils.hookDisposal(form, commitImage);
 		form.setImage(repoImage);
 		form.setText(UIText.StagingView_NoSelectionTitle);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(form);
@@ -73,7 +73,7 @@
 			@Override
 			public Image getImage(Object element) {
 				if (element instanceof ReflogEntry) {
-					return branchImage;
+					return commitImage;
 				}
 				return null;
 			}
@@ -237,11 +237,20 @@
 		UIUtils.notifySelectionChangedWithCurrentSelection(
 				selectionChangedListener, site);
 
-		site.setSelectionProvider(refLogTableTreeViewer);
+		site.setSelectionProvider(new RepositorySelectionProvider(
+				refLogTableTreeViewer, () -> getRepository()));
+
 
 		addRefsChangedListener = Repository.getGlobalListenerList()
 				.addRefsChangedListener(this);
 
+		IToolBarManager toolbar = getViewSite().getActionBars()
+				.getToolBarManager();
+		switchRepositoriesAction = new RepositoryToolbarAction(false,
+				() -> getRepository(),
+				repo -> reactOnSelection(new StructuredSelection(repo)));
+		toolbar.add(switchRepositoriesAction);
+		getViewSite().getActionBars().updateActionBars();
 		MenuManager menuManager = new MenuManager();
 		menuManager.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
 		Tree tree = refLogTableTreeViewer.getTree();

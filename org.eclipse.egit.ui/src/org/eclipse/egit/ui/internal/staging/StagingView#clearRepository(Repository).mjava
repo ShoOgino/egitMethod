@@ -1,5 +1,6 @@
 	private void clearRepository(@Nullable Repository repository) {
 		saveCommitMessageComponentState();
+		realRepository = repository;
 		currentRepository = null;
 		StagingViewUpdate update = new StagingViewUpdate(null, null, null);
 		setStagingViewerInput(unstagedViewer, update, null, null);
@@ -13,5 +14,7 @@
 			form.setText(UIText.StagingView_NoSelectionTitle);
 		}
 		updateIgnoreErrorsButtonVisibility();
+		updateRebaseButtonVisibility(false);
+		unstagedViewer.setSelection(unstagedViewer.getSelection());
 	}
 

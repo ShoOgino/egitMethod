@@ -1,0 +1,8 @@
+		public RepositoryToolbarAction(boolean includeBare,
+				@NonNull Supplier<Repository> currentRepo,
+				@NonNull Consumer<Repository> action) {
+			this(UIText.RepositoryToolbarAction_label, UIIcons.REPOSITORY,
+					UIText.RepositoryToolbarAction_tooltip, includeBare,
+					currentRepo, action);
+		}
+

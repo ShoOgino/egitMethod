@@ -179,7 +179,11 @@
 		attachCommitSelectionChanged();
 		initActions();
 
-		getSite().setSelectionProvider(graph.getTableView());
+		getSite().setSelectionProvider(
+				new RepositorySelectionProvider(graph.getTableView(), () -> {
+					HistoryPageInput myInput = getInputInternal();
+					return myInput != null ? myInput.getRepository() : null;
+				}));
 		getSite().registerContextMenu(POPUP_ID, popupMgr, graph.getTableView());
 		layout();
 

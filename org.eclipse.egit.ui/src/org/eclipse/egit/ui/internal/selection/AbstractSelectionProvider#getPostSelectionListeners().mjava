@@ -1,0 +1,4 @@
+	protected CopyOnWriteArrayList<ISelectionChangedListener> getPostSelectionListeners() {
+		return postSelectionListeners;
+	}
+

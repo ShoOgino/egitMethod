@@ -1,0 +1,17 @@
+	public MultiViewerSelectionProvider(Viewer... providers) {
+		Assert.isLegal(providers != null && providers.length > 0);
+		for (Viewer viewer : providers) {
+			Assert.isLegal(viewer != null);
+			viewers.add(viewer);
+			viewer.getControl().addListener(SWT.FocusIn, focusHook);
+			viewer.addSelectionChangedListener(selectionHook);
+			if (viewer instanceof IPostSelectionProvider) {
+				((IPostSelectionProvider) viewer)
+						.addPostSelectionChangedListener(postSelectionHook);
+			}
+			if (currentViewer == null) {
+				currentViewer = viewer;
+			}
+		}
+	}
+

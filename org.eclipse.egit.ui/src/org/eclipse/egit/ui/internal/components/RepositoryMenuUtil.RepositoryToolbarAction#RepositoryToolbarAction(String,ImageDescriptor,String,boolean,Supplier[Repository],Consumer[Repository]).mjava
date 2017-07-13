@@ -1,0 +1,20 @@
+		public RepositoryToolbarAction(String text,
+				@Nullable ImageDescriptor image, @Nullable String tooltip,
+				boolean includeBare, @NonNull Supplier<Repository> currentRepo,
+				@NonNull Consumer<Repository> action) {
+			super(text, IAction.AS_DROP_DOWN_MENU);
+			setImageDescriptor(image);
+			setToolTipText(tooltip == null ? text : tooltip);
+			this.includeBare = includeBare;
+			this.currentRepo = currentRepo;
+			this.action = action;
+			this.listener = event -> {
+				if (RepositoryUtil.PREFS_DIRECTORIES_REL
+						.equals(event.getKey())) {
+					setEnabled(!util.getRepositories().isEmpty());
+				}
+			};
+			setEnabled(!util.getRepositories().isEmpty());
+			preferences.addPreferenceChangeListener(listener);
+		}
+

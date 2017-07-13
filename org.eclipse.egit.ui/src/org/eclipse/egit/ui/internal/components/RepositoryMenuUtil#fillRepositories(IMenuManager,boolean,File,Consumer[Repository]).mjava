@@ -1,0 +1,9 @@
+	public static void fillRepositories(@NonNull IMenuManager menuManager,
+			boolean includeBare, @Nullable File currentRepoDir,
+			@NonNull Consumer<Repository> action) {
+		for (IAction item : getRepositoryActions(includeBare, currentRepoDir,
+				action)) {
+			menuManager.add(item);
+		}
+	}
+
