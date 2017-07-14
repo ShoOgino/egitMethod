@@ -240,7 +240,6 @@
 		site.setSelectionProvider(new RepositorySelectionProvider(
 				refLogTableTreeViewer, () -> getRepository()));
 
-
 		addRefsChangedListener = Repository.getGlobalListenerList()
 				.addRefsChangedListener(this);
 
