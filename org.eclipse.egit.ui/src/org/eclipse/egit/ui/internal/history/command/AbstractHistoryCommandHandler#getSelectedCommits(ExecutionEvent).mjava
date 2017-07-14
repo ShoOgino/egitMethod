@@ -9,9 +9,11 @@
 		List<RevCommit> commits = new ArrayList<>();
 		try (RevWalk walk = new RevWalk(repository)) {
 			for (Object element : selection.toList()) {
-				RevCommit commit = (RevCommit) element;
-				RevCommit reparsed = walk.parseCommit(commit.getId());
-				commits.add(reparsed);
+				RevCommit commit = AdapterUtils.adapt(element, RevCommit.class);
+				if (commit != null) {
+					RevCommit reparsed = walk.parseCommit(commit.getId());
+					commits.add(reparsed);
+				}
 			}
 		} catch (IOException e) {
 			throw new ExecutionException(e.getMessage(), e);
