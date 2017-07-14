@@ -1,0 +1,6 @@
+	@Override
+	default ObjectId getObjectId() {
+		RevCommit commit = getRevCommit();
+		return commit == null ? null : commit.getId();
+	}
+

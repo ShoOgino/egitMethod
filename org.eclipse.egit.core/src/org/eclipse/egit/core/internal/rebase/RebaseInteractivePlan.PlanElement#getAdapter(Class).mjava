@@ -1,10 +1,10 @@
 		@SuppressWarnings("unchecked")
 		@Override
 		public Object getAdapter(Class adapter) {
-			if (adapter.isInstance(this)) {
-				return this;
-			} else if (Repository.class.equals(adapter)) {
-				return repositoryRef.get();
+			if (Repository.class.equals(adapter)) {
+				return getRepository();
+			} else if (RevCommit.class.equals(adapter)) {
+				return getRevCommit();
 			}
 			return null;
 		}

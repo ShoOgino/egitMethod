@@ -1,5 +1,5 @@
 	@Override
 	public RevCommit getRevCommit() {
-		return commit;
+		return this;
 	}
 

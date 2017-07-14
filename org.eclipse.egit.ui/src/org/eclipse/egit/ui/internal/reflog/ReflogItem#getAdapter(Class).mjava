@@ -4,7 +4,7 @@
 		if (adapter.isInstance(this)) {
 			return this;
 		} else if (Repository.class.equals(adapter)) {
-			return input.getRepository();
+			return getRepository();
 		}
 		return null;
 	}
