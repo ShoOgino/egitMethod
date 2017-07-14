@@ -1,4 +1,4 @@
 	public NonBlockingWizardDialog(Shell parentShell, IWizard newWizard) {
-		super(parentShell, newWizard);
+		this(parentShell, newWizard, true);
 	}
 

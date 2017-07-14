@@ -1,0 +1,4 @@
+	public MinimumSizeWizardDialog(Shell parentShell, IWizard newWizard) {
+		this(parentShell, newWizard, true);
+	}
+

@@ -1,0 +1,6 @@
+	public MinimumSizeWizardDialog(Shell parentShell, IWizard newWizard,
+			boolean restrictResize) {
+		super(parentShell, newWizard);
+		this.restrictResize = restrictResize;
+	}
+

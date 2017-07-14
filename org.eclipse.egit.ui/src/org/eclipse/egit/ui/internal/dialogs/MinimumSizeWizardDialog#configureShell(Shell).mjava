@@ -1,0 +1,14 @@
+	@Override
+	protected void configureShell(Shell newShell) {
+		super.configureShell(newShell);
+		if (restrictResize) {
+			newShell.addShellListener(new ShellAdapter() {
+
+				@Override
+				public void shellActivated(ShellEvent e) {
+					newShell.removeShellListener(this); 					newShell.setMinimumSize(newShell.getSize());
+				}
+			});
+		}
+	}
+
