@@ -133,6 +133,5 @@
 
 		getSite().setSelectionProvider(new RepositorySelectionProvider(
 				planTreeViewer, () -> currentRepository));
-
 	}
 
