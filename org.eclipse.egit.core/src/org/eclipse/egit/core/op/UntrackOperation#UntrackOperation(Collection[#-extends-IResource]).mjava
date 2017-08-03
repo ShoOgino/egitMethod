@@ -1,5 +1,6 @@
 	public UntrackOperation(final Collection<? extends IResource> rsrcs) {
 		rsrcList = rsrcs;
+		locations = Collections.emptyList();
 		edits = new IdentityHashMap<Repository, DirCacheEditor>();
 	}
 
