@@ -4,6 +4,6 @@
 		if (shouldHardWrap()) {
 			text = wrapCommitMessage(text);
 		}
-		return text;
+		text = TRAILING_WHITE_SPACE_ON_LINES.matcher(text).replaceAll(""); 		text = TRAILING_NEWLINES.matcher(text).replaceFirst("\n"); 		return text;
 	}
 
