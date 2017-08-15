@@ -14,6 +14,9 @@
 			if (commitCombo != null)
 				tagCommit = commitCombo.getValue();
 			tagMessage = tagMessageText.getCommitMessage();
+			if (tagMessage != null) {
+				tagMessage = LEADING_WHITESPACE.matcher(tagMessage)
+						.replaceFirst(""); 			}
 			overwriteTag = overwriteButton.getSelection();
 			okPressed();
 		} else {
