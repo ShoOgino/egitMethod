@@ -1,0 +1,5 @@
+	public ListRemoteOperation(final URIish uri, int timeout) {
+		rc = Git.lsRemoteRepository();
+		rc.setRemote(uri.toString()).setTimeout(timeout);
+	}
+
