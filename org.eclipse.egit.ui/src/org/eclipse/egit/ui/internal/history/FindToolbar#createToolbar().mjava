@@ -104,6 +104,9 @@
 		patternModifyListener = new ModifyListener() {
 			@Override
 			public void modifyText(ModifyEvent e) {
+				if (getSearchPattern().equals(lastSearchPattern)) {
+					return;
+				}
 				final FindToolbarJob finder = createFinder();
 				finder.setUser(false);
 				finder.schedule(200);
@@ -117,7 +120,7 @@
 			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
 				if (e.detail != SWT.ICON_CANCEL
-						&& !patternField.getText().isEmpty()) {
+						&& !getSearchPattern().isEmpty()) {
 					final FindToolbarJob finder = createFinder();
 					finder.setUser(false);
 					finder.schedule();

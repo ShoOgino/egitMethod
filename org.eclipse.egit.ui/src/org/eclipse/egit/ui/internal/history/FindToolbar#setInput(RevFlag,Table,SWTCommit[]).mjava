@@ -3,6 +3,7 @@
 		if (job != null) {
 			job.cancel();
 		}
+		this.lastSearchPattern = null;
 		this.fileRevisions = commitArray;
 		this.historyTable = historyTable;
 		findResults.setHighlightFlag(hFlag);
