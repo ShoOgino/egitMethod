@@ -183,6 +183,8 @@
 			}
 		});
 
+		specViewer.addDoubleClickListener(event -> doChangeRefSpec());
+
 		copyRefSpecAction.setEnabled(false);
 		changeRefSpecAction.setEnabled(false);
 		deleteRefSpecAction.setEnabled(false);
