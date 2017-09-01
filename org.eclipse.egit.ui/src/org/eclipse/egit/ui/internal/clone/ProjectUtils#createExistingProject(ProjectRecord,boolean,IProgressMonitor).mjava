@@ -20,18 +20,13 @@
 			return null;
 		}
 		if (record.getProjectDescription() == null) {
-			record.setProjectDescription(workspace
-					.newProjectDescription(projectName));
-			IPath locationPath = new Path(record.getProjectSystemFile()
-					.getAbsolutePath());
-
-			if (Platform.getLocation().isPrefixOf(locationPath))
-				record.getProjectDescription().setLocation(null);
-			else
-				record.getProjectDescription().setLocation(locationPath);
-		} else {
-			record.getProjectDescription().setName(projectName);
+			String message = MessageFormat.format(
+					UIText.ProjectUtils_Invalid_ProjectFile,
+					record.getProjectSystemFile(), projectName);
+			Activator.logError(message, new IllegalStateException(message));
+			return null;
 		}
+		record.getProjectDescription().setName(projectName);
 
 		SubMonitor progress = SubMonitor.convert(monitor,
 				UIText.WizardProjectsImportPage_CreateProjectsTask, 8);
