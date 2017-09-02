@@ -1,0 +1,11 @@
+	public SampleTestRepository(int n, boolean serveHttp, boolean withSsl)
+			throws Exception {
+		this.serveHttp = serveHttp;
+		src = createRepository();
+		generateSampleData(n);
+		if (serveHttp)
+			serveHttp(withSsl);
+		else
+			serve();
+	}
+

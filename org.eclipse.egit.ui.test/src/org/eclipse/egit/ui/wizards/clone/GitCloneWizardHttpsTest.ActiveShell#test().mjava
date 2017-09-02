@@ -1,0 +1,9 @@
+		@Override
+		public boolean test() throws Exception {
+			try {
+				return localBot.activeShell().widget == shell.widget;
+			} catch (WidgetNotFoundException e) {
+			}
+			return false;
+		}
+
