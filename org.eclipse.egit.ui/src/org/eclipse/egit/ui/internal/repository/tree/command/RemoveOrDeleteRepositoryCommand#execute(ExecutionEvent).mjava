@@ -1,10 +1,13 @@
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		List<RepositoryNode> selectedNodes = getSelectedNodes(event);
-		if (selectedNodes.size() != 1)
+		if (selectedNodes.size() != 1) {
 			return null;
-
+		}
 		Repository repository = selectedNodes.get(0).getObject();
+		if (repository == null) {
+			return null;
+		}
 		String repositoryName = Activator.getDefault().getRepositoryUtil()
 				.getRepositoryName(repository);
 
@@ -22,8 +25,11 @@
 				MessageDialog.QUESTION, buttonLabels, 0);
 
 		int result = dialog.open();
-		if (result == 0) 			super.removeRepository(event, false);
-		else if (result == 1) 			super.removeRepository(event, true);
+		if (result == 0) {
+			super.removeRepository(event, false);
+		} else if (result == 1) {
+			super.removeRepository(event, true);
+		}
 		return null;
 	}
 
