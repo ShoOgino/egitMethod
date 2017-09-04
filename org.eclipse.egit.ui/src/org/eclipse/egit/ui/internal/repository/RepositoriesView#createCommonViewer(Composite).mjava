@@ -7,14 +7,16 @@
 				TreeSelection sel = (TreeSelection) event.getSelection();
 				RepositoryTreeNode element = (RepositoryTreeNode) sel
 						.getFirstElement();
-				if (element.getRepository().isBare())
+				if (element.getRepository().isBare()) {
 					return;
-				if (element instanceof RefNode)
-					executeOpenCommandWithConfirmation(((RefNode) element)
-							.getObject().getName());
-				if (element instanceof TagNode)
-					executeOpenCommandWithConfirmation(((TagNode) element)
-							.getObject().getName());
+				}
+				if (element instanceof RefNode) {
+					executeOpenCommandWithConfirmation(element,
+							((RefNode) element).getObject().getName());
+				} else if (element instanceof TagNode) {
+					executeOpenCommandWithConfirmation(element,
+							((TagNode) element).getObject().getName());
+				}
 			}
 		});
 		viewer.addOpenListener(new IOpenListener() {
@@ -25,7 +27,7 @@
 						.getFirstElement();
 				if (element instanceof FileNode
 						|| element instanceof StashedCommitNode)
-					executeOpenCommand();
+					executeOpenCommand(element);
 			}
 		});
 		ISelectionService srv = CommonUtils.getService(getSite(), ISelectionService.class);

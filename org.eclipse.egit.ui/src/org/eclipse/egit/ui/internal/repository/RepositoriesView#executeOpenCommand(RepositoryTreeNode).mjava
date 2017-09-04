@@ -1,0 +1,4 @@
+	private void executeOpenCommand(RepositoryTreeNode element) {
+		CommonUtils.runCommand("org.eclipse.egit.ui.RepositoriesViewOpen", 				new StructuredSelection(element));
+	}
+
