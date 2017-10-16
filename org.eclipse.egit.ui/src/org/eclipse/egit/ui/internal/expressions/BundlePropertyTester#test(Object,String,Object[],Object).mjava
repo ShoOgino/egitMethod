@@ -1,0 +1,8 @@
+	@Override
+	public boolean test(Object receiver, String property, Object[] args,
+			Object expectedValue) {
+		if ("isBundleInstalled".equals(property)) { 			return computeResult(expectedValue, versionCheck(args));
+		}
+		return false;
+	}
+
