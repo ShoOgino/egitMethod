@@ -25,13 +25,9 @@
 				"repositoryLabel") { 			@Override
 			protected Control createControl(Composite parent) {
 				FormToolkit toolkit = getHeaderForm().getToolkit();
-				Composite composite = toolkit.createComposite(parent);
-				RowLayout layout = new RowLayout();
-				composite.setLayout(layout);
-				composite.setBackground(null);
 				String label = getCommit().getRepositoryName();
 
-				ImageHyperlink link = new ImageHyperlink(composite, SWT.NONE);
+				ImageHyperlink link = new ImageHyperlink(parent, SWT.NONE);
 				headerFocusTracker.addToFocusTracking(link);
 				link.setText(label);
 				link.setFont(JFaceResources.getBannerFont());
@@ -55,7 +51,7 @@
 					}
 				});
 
-				return composite;
+				return link;
 			}
 		};
 		toolbar.add(repositoryLabelControl);
