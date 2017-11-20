@@ -1,13 +1,16 @@
 	public static void refreshRepositoryResources(Repository repository,
 			Collection<String> relativePaths, IProgressMonitor monitor)
 			throws CoreException {
+		if (repository == null || repository.isBare()) {
+			return;
+		}
 		if (relativePaths.isEmpty() || relativePaths.contains("")) { 			refreshResources(getProjects(repository), monitor);
 			return;
 		}
 
 		IPath repositoryPath = new Path(repository.getWorkTree().getAbsolutePath());
 		IProject[] projects = null;
-		Set<IResource> resources = new LinkedHashSet<IResource>();
+		Set<IResource> resources = new LinkedHashSet<>();
 		for (String relativePath : relativePaths) {
 			IPath location = repositoryPath.append(relativePath);
 			IResource resource = ResourceUtil
