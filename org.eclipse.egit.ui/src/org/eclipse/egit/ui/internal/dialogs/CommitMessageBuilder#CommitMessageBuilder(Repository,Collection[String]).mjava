@@ -1,6 +1,5 @@
-	CommitMessageBuilder(@NonNull Repository repository,
+	CommitMessageBuilder(Repository repository,
 			Collection<String> paths) {
-		this.repository = repository;
-		this.resourcesArray = toResourceArray(paths);
+		this.resourcesArray = toResourceArray(repository, paths);
 	}
 
