@@ -6,15 +6,13 @@
 		try {
 			trace("save " + dat);  			tmp = File.createTempFile(
 					"gpd_",  					".prop",   					dat.getParentFile());
-			final FileOutputStream o = new FileOutputStream(tmp);
-			try {
+			try (OutputStream o = Files.newOutputStream(tmp.toPath())) {
 				final Properties p = new Properties();
 				for (final RepositoryMapping repoMapping : mappings.values()) {
 					repoMapping.store(p);
 				}
 				p.store(o, "GitProjectData");  				ok = true;
 			} finally {
-				o.close();
 				if (!ok && tmp.exists()) {
 					FileUtils.delete(tmp);
 				}

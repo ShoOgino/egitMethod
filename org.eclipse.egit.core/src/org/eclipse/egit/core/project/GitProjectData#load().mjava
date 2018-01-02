@@ -1,8 +1,7 @@
 	private GitProjectData load() throws IOException {
 		final File dat = propertyFile();
 		trace("load " + dat);  
-		final FileInputStream o = new FileInputStream(dat);
-		try {
+		try (InputStream o = Files.newInputStream(dat.toPath())) {
 			final Properties p = new Properties();
 			p.load(o);
 
@@ -14,8 +13,6 @@
 					mappings.put(mapping.getContainerPath(), mapping);
 				}
 			}
-		} finally {
-			o.close();
 		}
 
 		if (!remapAll()) {
