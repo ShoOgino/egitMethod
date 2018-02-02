@@ -185,6 +185,11 @@
 					return myInput != null ? myInput.getRepository() : null;
 				}));
 		getSite().registerContextMenu(POPUP_ID, popupMgr, graph.getTableView());
+		focusTracker = new FocusTracker();
+		trackFocus(graph.getControl());
+		trackFocus(diffViewer.getControl());
+		trackFocus(commentViewer.getControl());
+		trackFocus(fileViewer.getControl());
 		layout();
 
 		myRefsChangedHandle = Repository.getGlobalListenerList()
