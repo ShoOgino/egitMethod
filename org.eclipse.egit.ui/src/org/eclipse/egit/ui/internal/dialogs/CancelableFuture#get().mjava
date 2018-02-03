@@ -1,0 +1,18 @@
+	public synchronized V get()
+			throws InterruptedException, InvocationTargetException {
+		switch (state) {
+		case DONE:
+		case CANCELED:
+			return result;
+		case PRISTINE:
+			start();
+			return get();
+		default:
+			wait();
+			if (state == State.CANCELING || state == State.INTERRUPT) {
+				throw new InterruptedException();
+			}
+			return get();
+		}
+	}
+
