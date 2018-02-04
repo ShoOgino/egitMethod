@@ -1,0 +1,4 @@
+	public RefContentProposal(Repository repo, Ref ref, boolean upstream) {
+		this(repo, ref.getName(), ref.getObjectId(), upstream);
+	}
+

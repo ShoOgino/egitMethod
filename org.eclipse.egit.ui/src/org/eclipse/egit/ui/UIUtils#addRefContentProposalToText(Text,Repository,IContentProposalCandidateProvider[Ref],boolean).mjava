@@ -1,7 +1,8 @@
 	public static final ExplicitContentProposalAdapter addRefContentProposalToText(
 			Text textField,
 			Repository repository,
-			IContentProposalCandidateProvider<Ref> refListProvider) {
+			IContentProposalCandidateProvider<Ref> refListProvider,
+			boolean upstream) {
 		return UIUtils.<Ref> addContentProposalToText(textField,
 				refListProvider, (pattern, ref) -> {
 					String shortenedName = Repository
@@ -11,7 +12,7 @@
 							&& !pattern.matcher(shortenedName).matches()) {
 						return null;
 					}
-					return new RefContentProposal(repository, ref);
+					return new RefContentProposal(repository, ref, upstream);
 				}, null,
 				UIText.UIUtils_StartTypingForRemoteRefMessage,
 				UIText.UIUtils_PressShortcutForRemoteRefMessage);
