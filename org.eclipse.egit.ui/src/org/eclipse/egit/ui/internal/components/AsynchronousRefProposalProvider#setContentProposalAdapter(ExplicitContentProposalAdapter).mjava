@@ -1,0 +1,5 @@
+	public void setContentProposalAdapter(
+			ExplicitContentProposalAdapter adapter) {
+		contentProposer = adapter;
+	}
+
