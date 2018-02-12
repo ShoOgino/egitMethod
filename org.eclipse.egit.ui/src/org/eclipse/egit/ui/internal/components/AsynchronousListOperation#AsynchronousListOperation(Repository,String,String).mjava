@@ -1,7 +1,0 @@
-	public AsynchronousListOperation(Repository repository, String uriText,
-			String jobTitle) {
-		this.repository = repository;
-		this.uriText = uriText;
-		this.jobTitle = jobTitle;
-	}
-
