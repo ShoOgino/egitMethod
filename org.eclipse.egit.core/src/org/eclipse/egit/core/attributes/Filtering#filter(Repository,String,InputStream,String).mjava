@@ -1,0 +1,12 @@
+	public static InputStream filter(Repository repository, String path,
+			InputStream raw, String command) throws IOException {
+		if (command == null || command.isEmpty()) {
+			return raw;
+		}
+		if (FilterCommandRegistry.isRegistered(command)) {
+			return runInternalFilter(repository, raw, command);
+		} else {
+			return runExternalFilter(repository, path, raw, command);
+		}
+	}
+

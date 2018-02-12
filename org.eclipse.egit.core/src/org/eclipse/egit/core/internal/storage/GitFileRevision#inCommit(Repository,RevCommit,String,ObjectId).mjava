@@ -1,5 +1,0 @@
-	public static GitFileRevision inCommit(final Repository db,
-			final RevCommit commit, final String path, final ObjectId blobId) {
-		return new CommitFileRevision(db, commit, path, blobId);
-	}
-
