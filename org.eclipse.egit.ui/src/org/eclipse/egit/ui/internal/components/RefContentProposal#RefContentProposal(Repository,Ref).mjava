@@ -1,4 +1,0 @@
-	public RefContentProposal(final Repository repo, final Ref ref) {
-		this(repo, ref.getName(), ref.getObjectId());
-	}
-

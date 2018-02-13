@@ -1,0 +1,8 @@
+		public ExplicitContentProposalAdapter(Control control,
+				IControlContentAdapter controlContentAdapter,
+				IContentProposalProvider proposalProvider,
+				KeyStroke keyStroke, char[] autoActivationCharacters) {
+			super(control, controlContentAdapter, proposalProvider, keyStroke,
+					autoActivationCharacters);
+		}
+

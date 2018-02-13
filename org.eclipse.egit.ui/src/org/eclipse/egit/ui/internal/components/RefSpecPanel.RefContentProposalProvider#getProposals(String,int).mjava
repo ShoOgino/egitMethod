@@ -5,24 +5,30 @@
 
 			if (contents.indexOf('*') != -1 || contents.indexOf('?') != -1) {
 
-				if (isValidRefExpression(contents))
-					result.add(new RefContentProposal(localDb, contents, null));
+				if (isValidRefExpression(contents)) {
+					result.add(new RefContentProposal(localDb, contents, null,
+							true));
+				}
 
 				final String regex = ".*" 						+ contents.replace("*", ".*").replace("?", ".?") + ".*"; 				final Pattern p = Pattern.compile(regex);
-				for (final RefContentProposal prop : proposals)
-					if (p.matcher(prop.getContent()).matches())
+				for (final RefContentProposal prop : proposals) {
+					if (p.matcher(prop.getContent()).matches()) {
 						result.add(prop);
+					}
+				}
 			} else {
-				for (final RefContentProposal prop : proposals)
-					if (prop.getContent().contains(contents))
+				for (final RefContentProposal prop : proposals) {
+					if (prop.getContent().contains(contents)) {
 						result.add(prop);
+					}
+				}
 
 				if (tryResolvingLocally && result.isEmpty()) {
 					final ObjectId id = tryResolveLocalRef(contents);
-					if (id != null)
-						result
-								.add(new RefContentProposal(localDb, contents,
-										id));
+					if (id != null) {
+						result.add(new RefContentProposal(localDb, contents, id,
+								false));
+					}
 				}
 			}
 			return result.toArray(new IContentProposal[0]);
