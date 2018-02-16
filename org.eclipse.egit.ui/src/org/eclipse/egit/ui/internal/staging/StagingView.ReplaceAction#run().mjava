@@ -11,9 +11,15 @@
 								launch.getName()));
 			} else {
 				question = MessageFormat.format(question, ""); 			}
-			boolean performAction = MessageDialog.openConfirm(form.getShell(),
-					UIText.DiscardChangesAction_confirmActionTitle, question);
-			if (!performAction) {
+
+			MessageDialog dlg = new MessageDialog(form.getShell(),
+					UIText.DiscardChangesAction_confirmActionTitle, null,
+					question, MessageDialog.CONFIRM,
+					new String[] {
+							UIText.DiscardChangesAction_discardChangesButtonText,
+							IDialogConstants.CANCEL_LABEL },
+					0);
+			if (dlg.open() != Window.OK) {
 				return;
 			}
 			List<String> files = new ArrayList<>();
