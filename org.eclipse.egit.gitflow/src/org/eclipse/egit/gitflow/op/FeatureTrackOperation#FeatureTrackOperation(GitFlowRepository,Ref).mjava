@@ -1,5 +1,0 @@
-	@Deprecated
-	public FeatureTrackOperation(GitFlowRepository repository, Ref ref) {
-		this(repository, ref, 0);
-	}
-
