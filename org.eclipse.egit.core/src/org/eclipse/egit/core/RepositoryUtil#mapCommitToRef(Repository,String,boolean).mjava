@@ -44,14 +44,14 @@
 				return cacheEntry.get(commitId);
 			}
 			if (cacheEntry == null) {
-				cacheEntry = new HashMap<String, String>();
+				cacheEntry = new HashMap<>();
 				commitMappingCache.put(repository.getDirectory().getPath(),
 						cacheEntry);
 			} else {
 				cacheEntry.clear();
 			}
 
-			Map<String, Date> tagMap = new HashMap<String, Date>();
+			Map<String, Date> tagMap = new HashMap<>();
 			try (RevWalk rw = new RevWalk(repository)) {
 				Map<String, Ref> tags = repository.getRefDatabase().getRefs(
 						Constants.R_TAGS);
@@ -103,7 +103,7 @@
 			}
 
 			if (cacheValue == null) {
-				Set<String> branchNames = new TreeSet<String>();
+				Set<String> branchNames = new TreeSet<>();
 				try {
 					Map<String, Ref> remoteBranches = repository
 							.getRefDatabase().getRefs(Constants.R_HEADS);
@@ -123,7 +123,7 @@
 			}
 
 			if (cacheValue == null) {
-				Set<String> branchNames = new TreeSet<String>();
+				Set<String> branchNames = new TreeSet<>();
 				try {
 					Map<String, Ref> remoteBranches = repository
 							.getRefDatabase().getRefs(Constants.R_REMOTES);
