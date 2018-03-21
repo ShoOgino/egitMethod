@@ -16,7 +16,7 @@
 
 		repoParentPath = repo.getDirectory().getParentFile().getAbsolutePath();
 
-		projects = new HashSet<IProject>();
+		projects = new HashSet<>();
 		final Iterable<? extends IResource> includedResourceIterable;
 		if (includedResources == null)
 			includedResourceIterable = Arrays.asList(ROOT.getProjects());
