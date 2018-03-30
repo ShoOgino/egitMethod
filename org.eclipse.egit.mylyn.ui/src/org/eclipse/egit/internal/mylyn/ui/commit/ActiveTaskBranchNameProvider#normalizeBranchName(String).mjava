@@ -1,6 +1,6 @@
 	private String normalizeBranchName(String name) {
-		String normalized = Repository.normalizeBranchName(name);
-		if (normalized != null && normalized.length() > 30) {
+		String normalized = Repository
+				.normalizeBranchName(name.replaceAll("[#$!]", " ")); 		if (normalized.length() > 30) {
 			normalized = Repository
 					.normalizeBranchName(normalized.substring(0, 30));
 		}
