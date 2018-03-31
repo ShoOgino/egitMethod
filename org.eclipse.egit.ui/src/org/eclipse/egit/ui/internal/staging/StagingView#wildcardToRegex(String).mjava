@@ -1,0 +1,8 @@
+	private Pattern wildcardToRegex(String filter) {
+		String trimmed = filter.trim();
+		if (trimmed.isEmpty()) {
+			return null;
+		}
+		String regex = (trimmed.contains("*") ? "^" : "") + "\\Q"				+ trimmed.replaceAll("\\*", 						Matcher.quoteReplacement("\\E.*?\\Q")) 				+ "\\E";		regex = regex.replaceAll(Pattern.quote("\\Q\\E"), ""); 		return Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+	}
+
