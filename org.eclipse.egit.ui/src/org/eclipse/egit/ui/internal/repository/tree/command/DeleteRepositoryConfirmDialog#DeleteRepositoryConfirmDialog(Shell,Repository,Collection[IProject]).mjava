@@ -1,10 +1,10 @@
 	public DeleteRepositoryConfirmDialog(Shell parentShell,
-			Repository repository, int numberOfProjects) {
+			Repository repository, Collection<IProject> projectsToDelete) {
 		super(parentShell);
 		setHelpAvailable(false);
 		if (repository.isBare())
 			throw new IllegalArgumentException(
 					"DeleteRepositoryConfirmDialog can only be used for non-bare repository."); 		this.repository = repository;
-		this.numberOfProjects = numberOfProjects;
+		this.projectsToDelete = projectsToDelete;
 	}
 

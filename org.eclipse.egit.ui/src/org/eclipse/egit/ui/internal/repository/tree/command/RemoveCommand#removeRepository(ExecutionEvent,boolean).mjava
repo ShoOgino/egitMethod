@@ -33,7 +33,7 @@
 						return;
 				} else {
 					DeleteRepositoryConfirmDialog dlg = new DeleteRepositoryConfirmDialog(
-							getShell(event), repository, projectsToDelete.size());
+							getShell(event), repository, projectsToDelete);
 					if (dlg.open() != Window.OK)
 						return;
 					deleteWorkingDir = dlg.shouldDeleteWorkingDir();
