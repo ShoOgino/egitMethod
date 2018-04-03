@@ -1,0 +1,9 @@
+	public CommitSelectDialog(Shell parent, List<RevCommit> commits,
+			String message) {
+		super(parent);
+		setShellStyle(getShellStyle() | SWT.SHELL_TRIM);
+		this.commits.addAll(commits);
+		setHelpAvailable(false);
+		this.message = message;
+	}
+
