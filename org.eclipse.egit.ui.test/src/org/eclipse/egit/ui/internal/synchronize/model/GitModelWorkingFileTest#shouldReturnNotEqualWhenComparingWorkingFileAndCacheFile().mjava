@@ -1,7 +1,7 @@
 	@Test public void shouldReturnNotEqualWhenComparingWorkingFileAndCacheFile()
 			throws Exception {
-		GitModelWorkingFile left = createWorkingFile(getFile1Location());
-		GitModelCacheFile right = mock(GitModelCacheFile.class);
+		GitModelObject left = createWorkingFile(getFile1Location());
+		GitModelObject right = mock(GitModelCacheFile.class);
 
 		boolean actual = left.equals(right);
 
