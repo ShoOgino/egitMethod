@@ -1,9 +1,10 @@
 	private void refreshChangeIdText() {
 		if (createChangeId) {
-			String text = commitText.getText().replaceAll(Text.DELIMITER, "\n"); 			String changedText = ChangeIdUtil.insertId(
-					text,
-					originalChangeId != null ? originalChangeId : ObjectId
-							.zeroId(), true);
+			String text = commitText.getText().replaceAll(Text.DELIMITER, "\n"); 			String changedText = ChangeIdUtil.insertId(text,
+					originalChangeId != null ? originalChangeId
+							: ObjectId.zeroId(),
+					repository
+							.getRepositoryState() != RepositoryState.CHERRY_PICKING_RESOLVED);
 			if (!text.equals(changedText)) {
 				changedText = changedText.replaceAll("\n", Text.DELIMITER); 				commitText.setText(changedText);
 			}
