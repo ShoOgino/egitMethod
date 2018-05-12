@@ -1,0 +1,46 @@
+	@Test
+	public void testIndexEditWithAttributes() throws Exception {
+		IFile testFile = touch("a");
+		stage(testFile);
+		IFile gitAttributes = touch(PROJ1, FOLDER + "/.gitattributes",
+				FILE1 + " filter=test");
+		try {
+			FilterCommandRegistry.register("egitui://builtin/test/smudge",
+					new TestCommandFactory('a', 'x'));
+			StoredConfig config = repository.getConfig();
+			config.setString("filter", "test", "smudge",
+					"egitui://builtin/test/smudge");
+			config.save();
+			ITypedElement element = CompareUtils.getIndexTypedElement(testFile);
+			assert (element instanceof EditableRevision);
+			EditableRevision revision = (EditableRevision) element;
+			try (InputStream in = revision.getContents()) {
+				assertEquals("x", get(in));
+			}
+			FilterCommandRegistry.register("egitui://builtin/test/clean",
+					new TestCommandFactory('x', 'a'));
+			config.setString("filter", "test", "clean",
+					"egitui://builtin/test/clean");
+			config.save();
+			revision.setContent("xx".getBytes(StandardCharsets.UTF_8));
+			CommitOperation op = new CommitOperation(repository,
+					TestUtil.TESTAUTHOR, TestUtil.TESTCOMMITTER,
+					"Commit modified index");
+			op.execute(null);
+			TestUtil.waitForJobs(50, 5000);
+			gitAttributes.delete(true, true, new NullProgressMonitor());
+			config.unsetSection("filter", "test");
+			config.save();
+			ResetOperation reset = new ResetOperation(repository,
+					Constants.HEAD, ResetType.HARD);
+			reset.execute(null);
+			TestUtil.waitForJobs(50, 5000);
+			try (InputStream in = testFile.getContents()) {
+				assertEquals("aa", get(in));
+			}
+		} finally {
+			FilterCommandRegistry.unregister("egitui://builtin/test/smudge");
+			FilterCommandRegistry.unregister("egitui://builtin/test/clean");
+		}
+	}
+

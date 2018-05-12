@@ -15,7 +15,7 @@
 		GitRemoteFolder base = new GitRemoteFolder(repo, null, commit,
 				commit.getTree(), folderPath);
 		GitRemoteFile remote = new GitRemoteFile(repo, commit,
-				commit.getTree(), filePath);
+				commit.getTree(), filePath, null);
 
 		assertFalse(grvc.compare(base, remote));
 	}

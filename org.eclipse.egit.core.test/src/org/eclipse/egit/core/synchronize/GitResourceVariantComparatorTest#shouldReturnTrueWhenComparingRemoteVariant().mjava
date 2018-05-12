@@ -9,10 +9,10 @@
 
 		String path = Repository.stripWorkDir(repo.getWorkTree(), file);
 		GitRemoteFile base = new GitRemoteFile(repo, commit, commit.getTree(),
-				path);
+				path, null);
 
 		GitRemoteFile remote = new GitRemoteFile(repo, commit,
-				commit.getTree(), path);
+				commit.getTree(), path, null);
 
 		assertTrue(grvc.compare(base, remote));
 	}
