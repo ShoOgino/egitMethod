@@ -1,0 +1,4 @@
+	protected BranchNameInputValidator(GitFlowRepository repository) {
+		this.repository = repository;
+	}
+
