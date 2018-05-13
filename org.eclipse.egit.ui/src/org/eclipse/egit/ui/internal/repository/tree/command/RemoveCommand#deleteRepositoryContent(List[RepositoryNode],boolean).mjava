@@ -27,7 +27,7 @@
 						&& node.getParent().getType() == RepositoryTreeNodeType.SUBMODULES) {
 					FileUtils.delete(workTree, FileUtils.RECURSIVE
 							| FileUtils.RETRY | FileUtils.SKIP_MISSING);
-					node.getParent().getRepository().notifyIndexChanged();
+					node.getParent().getRepository().notifyIndexChanged(true);
 				}
 				String[] files = workTree.list();
 				boolean isWorkingDirEmpty = files != null && files.length == 0;
