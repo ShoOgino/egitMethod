@@ -1,5 +1,5 @@
 		@Override
-		public String getColumnText(Object element, int columnIndex) {
+		public String getText(Object element) {
 			if (element instanceof String)
 				return (String) element;
 			else if (element instanceof Ref)

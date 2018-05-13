@@ -1,5 +1,5 @@
 		@Override
-		public Image getColumnImage(Object element, int columnIndex) {
+		public Image getImage(Object element) {
 			if (element instanceof String)
 				return null;
 			else if (element instanceof Ref)
