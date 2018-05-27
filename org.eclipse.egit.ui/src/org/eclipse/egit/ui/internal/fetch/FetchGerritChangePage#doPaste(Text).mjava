@@ -1,4 +1,4 @@
-	private void doPaste(Text text) {
+	private boolean doPaste(Text text) {
 		Clipboard clipboard = new Clipboard(text.getDisplay());
 		try {
 			String clipText = (String) clipboard
@@ -8,14 +8,18 @@
 						clipText.trim());
 				if (input != null) {
 					String toInsert = input.getChangeNumber().toString();
+					boolean replacesEverything = text.getText().trim().isEmpty()
+							|| text.getSelectionText().equals(text.getText());
+					boolean openContentAssist = false;
 					if (input.getPatchSetNumber() != null) {
-						if (text.getText().trim().isEmpty() || text
-								.getSelectionText().equals(text.getText())) {
+						if (replacesEverything) {
 							toInsert = input.getRefName();
 						} else {
 							toInsert = toInsert + '/'
 									+ input.getPatchSetNumber();
 						}
+					} else {
+						openContentAssist = replacesEverything;
 					}
 					clipboard.setContents(new Object[] { toInsert },
 							new Transfer[] { TextTransfer.getInstance() });
@@ -25,6 +29,7 @@
 						clipboard.setContents(new Object[] { clipText },
 								new Transfer[] { TextTransfer.getInstance() });
 					}
+					return openContentAssist;
 				} else {
 					text.paste();
 				}
@@ -32,5 +37,6 @@
 		} finally {
 			clipboard.dispose();
 		}
+		return false;
 	}
 
