@@ -1,5 +1,6 @@
 	@Override
 	protected JSch createDefaultJSch(FS fs) throws JSchException {
-		provider.createSession("127.0.0.1", 0, "eclipse"); 		return provider.getJSch();
+		provider.createSession("127.0.0.1", 0, "eclipse"); 		JSch.setLogger(new JSchLogger());
+		return provider.getJSch();
 	}
 

@@ -1,0 +1,11 @@
+	private String levelToString(int level) {
+		switch (level) {
+		case 0:
+			return "DEBUG"; 		case 1:
+			return "INFO"; 		case 2:
+			return "WARN"; 		case 3:
+			return "ERROR"; 		case 4:
+			return "FATAL"; 		default:
+			return "UNKNOWN(" + level + ')'; 		}
+	}
+
