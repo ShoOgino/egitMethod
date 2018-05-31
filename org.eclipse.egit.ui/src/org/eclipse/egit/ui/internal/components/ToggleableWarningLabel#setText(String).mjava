@@ -1,0 +1,6 @@
+	protected void setText(String message) {
+		warningText.setText(message);
+		layout(true);
+		changeVisibility(true);
+	}
+
