@@ -1,5 +1,6 @@
 	private void clearRepository(@Nullable Repository repository) {
 		saveCommitMessageComponentState();
+		removeRepositoryListeners();
 		realRepository = repository;
 		currentRepository = null;
 		if (isDisposed()) {
