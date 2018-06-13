@@ -1,5 +1,0 @@
-	public FileDiff(final RevCommit c, final DiffEntry entry) {
-		diffEntry = entry;
-		commit = c;
-	}
-

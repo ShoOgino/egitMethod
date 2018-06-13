@@ -94,7 +94,9 @@
 				if (GitTraceLocation.QUICKDIFF.isActive())
 					GitTraceLocation.getTrace().trace(
 							GitTraceLocation.QUICKDIFF.getLocation(),
-							"(GitDocument) compareTo: " + baseline); 				ObjectLoader loader = repository.open(id, Constants.OBJ_BLOB);
+							"(GitDocument) compareTo: " + baseline); 				ObjectLoader loader = LfsFactory.getInstance().applySmudgeFilter(
+						repository, repository.open(id, Constants.OBJ_BLOB),
+						tw.getAttributes().get(Constants.ATTR_DIFF));
 				byte[] bytes = loader.getBytes();
 				String charset;
 				charset = CompareCoreUtils.getResourceEncoding(resource);
