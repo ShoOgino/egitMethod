@@ -14,7 +14,7 @@
 				refresh(); 				return;
 			}
 
-			Set<String> paths = new TreeSet<String>();
+			Set<String> paths = new TreeSet<>();
 			try (TreeWalk walk = new TreeWalk(repository)) {
 				walk.addTree(new DirCacheIterator(oldIndex));
 				walk.addTree(new DirCacheIterator(currentIndex));

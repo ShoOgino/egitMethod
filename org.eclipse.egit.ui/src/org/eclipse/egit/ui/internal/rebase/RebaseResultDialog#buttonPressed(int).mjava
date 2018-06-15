@@ -11,20 +11,13 @@
 			}
 			if (startMergeButton.getSelection()) {
 				super.buttonPressed(buttonId);
-				IProject[] projects = ResourcesPlugin.getWorkspace().getRoot()
-						.getProjects();
-				for (IProject project : projects) {
-					RepositoryMapping mapping = RepositoryMapping
-							.getMapping(project);
-					if (mapping != null && mapping.getRepository().equals(repo)) {
-						try {
-							project
-									.refreshLocal(IResource.DEPTH_INFINITE,
-											null);
-						} catch (CoreException e) {
-							Activator.handleError(e.getMessage(), e, false);
-						}
-					}
+				IProject[] projects = ProjectUtil.getProjects(repo);
+				try {
+					ResourcesPlugin.getWorkspace().run(
+							pm -> ProjectUtil.refreshResources(projects, pm),
+							null, IWorkspace.AVOID_UPDATE, null);
+				} catch (CoreException e) {
+					Activator.logError(e.getMessage(), e);
 				}
 				List<IPath> locationList = new ArrayList<>();
 				IPath repoWorkdirPath = new Path(repo.getWorkTree().getPath());
