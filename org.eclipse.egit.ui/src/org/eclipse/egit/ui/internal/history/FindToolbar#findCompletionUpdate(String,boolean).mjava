@@ -15,14 +15,14 @@
 				int ix = findResults.getFirstIndex();
 				notifyListeners(ix);
 			}
-			patternField.setBackground(null);
+			setNormalBackgroundColor();
 			findNextAction.setEnabled(total > 1);
 			findPreviousAction.setEnabled(total > 1);
 			lastErrorPattern = null;
 		} else {
 			currentPosition = -1;
 			if (pattern.length() > 0) {
-				patternField.setBackground(errorBackgroundColor);
+				setNotFoundBackgroundColor();
 				label = UIText.HistoryPage_findbar_notFound;
 				if (lastErrorPattern == null
 						|| !lastErrorPattern.startsWith(pattern)) {
@@ -32,7 +32,7 @@
 				}
 				lastErrorPattern = pattern;
 			} else {
-				patternField.setBackground(null);
+				setNormalBackgroundColor();
 				label = ""; 				findNextAction.setEnabled(false);
 				findPreviousAction.setEnabled(false);
 				lastErrorPattern = null;

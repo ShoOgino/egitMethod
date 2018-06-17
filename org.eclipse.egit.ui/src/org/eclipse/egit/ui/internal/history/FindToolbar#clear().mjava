@@ -1,6 +1,6 @@
 	void clear() {
 		if (!isDisposed()) {
-			patternField.setBackground(null);
+			setNormalBackgroundColor();
 			if (patternField.getText().length() > 0) {
 				patternField.selectAll();
 			}

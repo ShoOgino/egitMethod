@@ -39,7 +39,7 @@
 								}
 								findNextAction.setEnabled(total > 1);
 								findPreviousAction.setEnabled(total > 1);
-								patternField.setBackground(null);
+								setNormalBackgroundColor();
 								if (firstUpdate) {
 									historyTable.clearAll();
 								}
