@@ -11,7 +11,7 @@
 				GitTraceLocation.getTrace().traceEntry(
 						GitTraceLocation.HISTORYVIEW.getLocation(), useAsInput);
 
-			if (useAsInput == getInput())
+			if (useAsInput == super.getInput())
 				return true;
 			this.input = null;
 			return super.setInput(useAsInput);

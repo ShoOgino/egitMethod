@@ -20,7 +20,7 @@
 					if (trace)
 						GitTraceLocation.getTrace().trace(
 								GitTraceLocation.HISTORYVIEW.getLocation(),
-								"Setting input to table"); 					final Object currentInput = getInput();
+								"Setting input to table"); 					final Object currentInput = GitHistoryPage.super.getInput();
 					searchBar.setInput(new ICommitsProvider() {
 
 						@Override
