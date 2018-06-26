@@ -1,0 +1,9 @@
+	public FileDiffInput(Repository repository, TreeWalk walk, RevCommit commit,
+			Collection<String> interestingPaths, boolean selectMarked) {
+		this.commit = commit;
+		this.selectMarked = selectMarked;
+		this.repository = repository;
+		this.walk = walk;
+		this.interestingPaths = interestingPaths;
+	}
+

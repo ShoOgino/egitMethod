@@ -1,0 +1,4 @@
+	public @Nullable Collection<String> getInterestingPaths() {
+		return interestingPaths;
+	}
+

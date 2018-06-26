@@ -1,0 +1,4 @@
+	public TreeWalk getTreeWalk() {
+		return walk;
+	}
+

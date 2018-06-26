@@ -14,12 +14,10 @@
 
 			AnyObjectId headId = resolveHead(db, true);
 			if (headId == null) {
-				TableViewer viewer = graph.getTableView();
-				viewer.setInput(new SWTCommit[0]);
 				currentHeadId = null;
 				currentFetchHeadId = null;
 				currentRepo = db;
-				viewer.setSelection(viewer.getSelection());
+				clearViewers();
 				return;
 			}
 			AnyObjectId fetchHeadId = resolveFetchHead(db);
@@ -27,18 +25,28 @@
 			List<FilterPath> paths = buildFilterPaths(input.getItems(), input
 					.getFileList(), db);
 
-			if (forceNewWalk || shouldRedraw(db, headId, fetchHeadId, paths)) {
+			boolean repoChanged = false;
+			if (!db.equals(currentRepo)) {
+				repoChanged = true;
+				currentRepo = db;
+			}
+
+			if (forceNewWalk || repoChanged
+					|| shouldRedraw(headId, fetchHeadId, paths)) {
 				releaseGenerateHistoryJob();
 
-				SWTWalk walk = createNewWalk(db, headId, fetchHeadId);
-				setWalkStartPoints(walk, db, headId);
+				if (repoChanged) {
+					clearViewers();
+				}
 
-				setupFileViewer(walk, db, paths);
-				setupCommentViewer(db);
+				SWTWalk walk = createNewWalk(db, headId, fetchHeadId);
+
+				fileDiffWalker = createFileWalker(walk, db, paths);
 
 				loadInitialHistory(walk);
-			} else
+			} else {
 				graph.setHistoryPageInput(input);
+			}
 		} finally {
 			if (trace)
 				GitTraceLocation.getTrace().traceExit(

@@ -1,8 +1,0 @@
-	public static FileDiff[] compute(final Repository repository,
-			final TreeWalk walk, final RevCommit commit,
-			final TreeFilter... markTreeFilters) throws MissingObjectException,
-			IncorrectObjectTypeException, CorruptObjectException, IOException {
-		return compute(repository, walk, commit, commit.getParents(),
-				markTreeFilters);
-	}
-

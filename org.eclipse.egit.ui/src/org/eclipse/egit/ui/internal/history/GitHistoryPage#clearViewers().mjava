@@ -1,0 +1,6 @@
+	private void clearViewers() {
+		TableViewer viewer = graph.getTableView();
+		viewer.setInput(new SWTCommit[0]);
+		viewer.setSelection(viewer.getSelection());
+	}
+
