@@ -32,6 +32,8 @@
 				UIPreferences.RESOURCEHISTORY_SHOW_EMAIL_ADDRESSES,
 				UIText.HistoryPreferencePage_toggleEmailAddresses,
 				showGroup));
+		addField(new BooleanFieldEditor(UIPreferences.HISTORY_CUT_AT_START,
+				UIText.HistoryPreferencePage_toggleShortenAtStart, showGroup));
 		addField(new IntegerFieldEditor(UIPreferences.HISTORY_MAX_NUM_COMMITS,
 				UIText.ResourceHistory_MaxNumCommitsInList,
 				showGroup));
@@ -44,10 +46,8 @@
 				showGroup));
 		addField(new IntegerFieldEditor(UIPreferences.HISTORY_MAX_DIFF_LINES,
 				UIText.HistoryPreferencePage_MaxDiffLines, showGroup));
-
-		addField(new BooleanFieldEditor(UIPreferences.HISTORY_CUT_AT_START,
-				UIText.HistoryPreferencePage_toggleShortenAtStart, showGroup));
 		updateMargins(showGroup);
+
 		Group commentGroup = new Group(main, SWT.SHADOW_ETCHED_IN);
 		GridDataFactory.fillDefaults().grab(true, false).span(2, 1)
 				.applyTo(commentGroup);
@@ -67,6 +67,5 @@
 				UIText.ResourceHistory_toggleCommentFill,
 				commentGroup));
 		updateMargins(commentGroup);
-		adjustGridLayout();
 	}
 
