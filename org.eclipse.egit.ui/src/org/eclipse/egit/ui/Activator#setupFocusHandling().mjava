@@ -54,6 +54,8 @@
 				return Status.OK_STATUS;
 			}
 		};
+		job.setSystem(true);
+		job.setUser(false);
 		job.schedule();
 	}
 
