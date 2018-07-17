@@ -1,9 +1,0 @@
-	private void initCommitsMap() {
-		commitsMap = new HashMap<>();
-		synchronized (allCommits) {
-			for (PlotCommit commit : allCommits)
-				if (commit != null)
-					commitsMap.put(commit.getId().name(), commit);
-		}
-	}
-
