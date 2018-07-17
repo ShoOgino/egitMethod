@@ -123,7 +123,8 @@
 			}
 		};
 
-		compare = new Action(UIText.CommitFileDiffViewer_CompareMenuLabel) {
+		compareWithPrevious = new Action(
+				UIText.CommitFileDiffViewer_CompareMenuLabel) {
 			@Override
 			public void run() {
 				ISelection s = getSelection();
@@ -171,7 +172,7 @@
 		mgr.add(openThisVersion);
 		mgr.add(openPreviousVersion);
 		mgr.add(new Separator());
-		mgr.add(compare);
+		mgr.add(compareWithPrevious);
 		mgr.add(compareWorkingTreeVersion);
 		mgr.add(blame);
 

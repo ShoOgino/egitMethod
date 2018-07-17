@@ -62,7 +62,7 @@
 						}
 					}
 				});
-				if (selected.size() == 1) {
+				if (selected.size() == 1 && !haveNew.isEmpty()) {
 					menuManager.add(new Separator());
 					menuManager.add(new Action(
 							UIText.CommitFileDiffViewer_CompareMenuLabel) {
