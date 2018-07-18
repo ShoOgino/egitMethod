@@ -1,6 +1,6 @@
 		private Map<IResource, Boolean> computeResources(
 				Set<String> modified, Set<String> deleted, IPath workTree,
-				Set<IPath> roots, IProgressMonitor monitor) {
+				Map<IPath, IProject> roots, IProgressMonitor monitor) {
 			if (GitTraceLocation.REPOSITORYCHANGESCANNER.isActive()) {
 				GitTraceLocation.getTrace().trace(
 						GitTraceLocation.REPOSITORYCHANGESCANNER.getLocation(),
@@ -16,9 +16,16 @@
 					throw new OperationCanceledException();
 				}
 				IPath filePath = "/".equals(path) ? workTree 						: workTree.append(path);
+				IProject project = roots.get(filePath);
+				if (project != null) {
+					handled.put(filePath, null);
+					result.put(project, Boolean.FALSE);
+					progress.worked(1);
+					return;
+				}
 				if (fullRefreshes.stream()
 						.anyMatch(full -> full.isPrefixOf(filePath))
-						|| !roots.stream()
+						|| !roots.keySet().stream()
 								.anyMatch(root -> root.isPrefixOf(filePath))) {
 					progress.worked(1);
 					return;
