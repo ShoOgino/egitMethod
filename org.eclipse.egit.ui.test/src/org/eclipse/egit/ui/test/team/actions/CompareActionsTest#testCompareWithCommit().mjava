@@ -11,7 +11,8 @@
 		JobJoiner jobJoiner = JobJoiner.startListening(
 				ISynchronizeManager.FAMILY_SYNCHRONIZE_OPERATION, 60,
 				TimeUnit.SECONDS);
-		dialog.bot().button(IDialogConstants.OK_LABEL).click();
+		dialog.bot().button(UIText.HistoryCommitSelectionDialog_ButtonOK)
+				.click();
 		jobJoiner.join();
 
 		closeFirstEmptySynchronizeDialog();
@@ -24,7 +25,8 @@
 		jobJoiner = JobJoiner.startListening(
 				ISynchronizeManager.FAMILY_SYNCHRONIZE_OPERATION, 60,
 				TimeUnit.SECONDS);
-		dialog.bot().button(IDialogConstants.OK_LABEL).click();
+		dialog.bot().button(UIText.HistoryCommitSelectionDialog_ButtonOK)
+				.click();
 		jobJoiner.join();
 
 		assertSynchronizeFile1Changed();

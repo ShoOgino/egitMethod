@@ -10,7 +10,7 @@
 				.setText(TESTSECTION + "." + TESTNAME);
 		addDialog.bot().textWithLabel(UIText.AddConfigEntryDialog_ValueLabel)
 				.setText("true");
-		addDialog.bot().button(IDialogConstants.OK_LABEL).click();
+		addDialog.bot().button(UIText.AddConfigEntryDialog_ButtonOK).click();
 		preferencePage.bot().button(IDialogConstants.OK_LABEL).click();
 		config.load();
 

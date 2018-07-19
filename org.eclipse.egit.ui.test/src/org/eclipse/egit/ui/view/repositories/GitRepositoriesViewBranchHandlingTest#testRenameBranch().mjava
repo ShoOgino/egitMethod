@@ -17,10 +17,12 @@
 
 		renameDialog.bot().text(" " + 				NLS.bind(UIText.ValidationUtils_InvalidRefNameMessage,
 						"refs/heads/invalid~name"));
-		assertFalse(renameDialog.bot().button(IDialogConstants.OK_LABEL)
+		assertFalse(renameDialog.bot()
+				.button(UIText.RenameBranchDialog_RenameButtonLabel)
 				.isEnabled());
 		newBranchNameText.setText("newmaster");
-		renameDialog.bot().button(IDialogConstants.OK_LABEL).click();
+		renameDialog.bot().button(UIText.RenameBranchDialog_RenameButtonLabel)
+				.click();
 
 		refreshAndWait();
 
@@ -36,7 +38,7 @@
 		newBranchNameText = renameDialog.bot().text(0);
 
 		newBranchNameText.setText("master");
-		renameDialog.bot().button(IDialogConstants.OK_LABEL).click();
+		renameDialog.bot().button(UIText.BranchRenameDialog_ButtonOK).click();
 
 		refreshAndWait();
 
