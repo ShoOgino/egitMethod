@@ -64,9 +64,9 @@
 		Label dummyLabel = SWTUtils.createLabel(pane, ""); 		dummyLabel.setLayoutData(SWTUtils.createGridData(SWT.DEFAULT,
 				SWT.DEFAULT, false, false));
 		formatExplanation = new Label(pane, SWT.LEFT | SWT.WRAP);
-		GridData layout = SWTUtils.createGridData(SWT.FILL, SWT.TOP,
+		GridData layout = SWTUtils.createGridData(SWT.DEFAULT, SWT.DEFAULT,
 				true, false);
-		formatExplanation.setLayoutData(layout);
+		layout.widthHint = 150; 		formatExplanation.setLayoutData(layout);
 		lastCustomValue = getPreferenceStore()
 				.getString(UIPreferences.DATE_FORMAT);
 		String initialValue = getPreferenceStore()
