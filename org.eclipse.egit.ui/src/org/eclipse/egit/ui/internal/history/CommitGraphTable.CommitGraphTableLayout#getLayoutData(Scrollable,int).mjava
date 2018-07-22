@@ -1,0 +1,6 @@
+		@Override
+		protected ColumnLayoutData getLayoutData(Scrollable tableTree,
+				int columnIndex) {
+			return super.getLayoutData(tableTree, columnIndex);
+		}
+
