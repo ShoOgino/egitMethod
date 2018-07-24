@@ -1,0 +1,6 @@
+	protected void fireLabelEvent() {
+		LabelProviderChangedEvent event = new LabelProviderChangedEvent(this);
+		PlatformUI.getWorkbench().getDisplay()
+				.asyncExec(() -> fireLabelProviderChanged(event));
+	}
+

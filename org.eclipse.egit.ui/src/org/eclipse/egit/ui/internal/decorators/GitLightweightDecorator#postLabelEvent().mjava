@@ -1,4 +1,0 @@
-	private void postLabelEvent() {
-		LabelEventJob.getInstance().postLabelEvent(this);
-	}
-

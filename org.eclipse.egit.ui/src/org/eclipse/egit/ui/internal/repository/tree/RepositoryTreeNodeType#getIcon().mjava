@@ -1,4 +1,4 @@
-	public Image getIcon() {
+	public ImageDescriptor getIcon() {
 		return myImage;
 	}
 

@@ -1,0 +1,5 @@
+	private void decorateStash(StashedCommitNode node, IDecoration decoration) {
+		RevCommit commit = node.getObject();
+		decoration.addSuffix(
+				" [" + abbreviate(commit) + "] " + commit.getShortMessage()); 	}
+

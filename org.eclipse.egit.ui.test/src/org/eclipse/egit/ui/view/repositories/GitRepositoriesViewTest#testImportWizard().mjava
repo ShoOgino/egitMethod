@@ -15,10 +15,11 @@
 		SWTBotShell shell = bot.shell(wizardTitle);
 		bot.radio(UIText.GitSelectWizardPage_ImportExistingButton).click();
 		TableCollection selected = shell.bot().tree().selection();
-		String wizardNode = selected.get(0, 0);
-		assertEquals(
-				myRepoViewUtil.getWorkdirItem(tree, repositoryFile).getText(),
-				wizardNode);
+		String wizardNodeText = selected.get(0, 0);
+		String expected = myRepoViewUtil.getWorkdirItem(tree, repositoryFile)
+				.getText();
+		assertTrue(expected.contains(wizardNodeText)
+				|| wizardNodeText.contains(expected));
 		shell.close();
 		tree = getOrOpenView().bot().tree();
 		TestUtil.expandAndWait(
@@ -28,8 +29,8 @@
 				myUtil.getPluginLocalizedValue("ImportProjectsCommand"));
 		shell = bot.shell(wizardTitle);
 		selected = shell.bot().tree().selection();
-		wizardNode = selected.get(0, 0);
-		assertEquals(Constants.DOT_GIT, wizardNode);
+		wizardNodeText = selected.get(0, 0);
+		assertEquals(Constants.DOT_GIT, wizardNodeText);
 		shell.bot().button(IDialogConstants.NEXT_LABEL).click();
 		shell.bot().label("Import Projects"); 		assertEquals(0, shell.bot().tree().getAllItems().length);
 		shell.bot().button(IDialogConstants.BACK_LABEL).click();

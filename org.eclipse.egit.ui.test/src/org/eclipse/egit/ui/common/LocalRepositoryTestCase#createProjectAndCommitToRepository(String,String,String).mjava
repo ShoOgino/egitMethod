@@ -47,7 +47,7 @@
 		} else {
 			commitables = new IFile[] { dotProject, textFile, textFile2 };
 		}
-		ArrayList<IFile> untracked = new ArrayList<IFile>();
+		ArrayList<IFile> untracked = new ArrayList<>();
 		untracked.addAll(Arrays.asList(commitables));
 		CommitOperation op = new CommitOperation(commitables,
 				untracked, TestUtil.TESTAUTHOR, TestUtil.TESTCOMMITTER,

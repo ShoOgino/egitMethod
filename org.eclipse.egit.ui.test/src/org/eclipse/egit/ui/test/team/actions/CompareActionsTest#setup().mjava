@@ -17,9 +17,6 @@
 		top.execute(null);
 		touchAndSubmit(null);
 
-		RepositoriesViewLabelProvider provider = GitRepositoriesViewTestUtils
-				.createLabelProvider();
-		TAGS = provider.getText(new TagsNode(new RepositoryNode(null, repo),
-				repo));
+		TAGS = UIText.RepositoriesViewLabelProvider_TagsNodeText;
 	}
 

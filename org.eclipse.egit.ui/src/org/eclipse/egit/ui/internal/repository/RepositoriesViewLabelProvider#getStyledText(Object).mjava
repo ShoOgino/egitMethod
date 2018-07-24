@@ -1,98 +1,26 @@
 	@Override
 	public StyledString getStyledText(Object element) {
-		if (!(element instanceof RepositoryTreeNode))
-			return null;
-
-		RepositoryTreeNode node = (RepositoryTreeNode) element;
-
-		switch (node.getType()) {
-		case REPO:
-			if (node.getParent() != null
-					&& node.getParent().getType() == RepositoryTreeNodeType.SUBMODULES)
-				return getStyledTextForSubmodule(node);
-			return GitLabels.getStyledLabelExtendedSafe(node.getObject());
-		case ADDITIONALREF:
-			Ref ref = (Ref) node.getObject();
-			StyledString refName = new StyledString(
-					Repository.shortenRefName(ref.getName()));
-
-			if (ref.isSymbolic()) {
-				refName.append(' ');
-				refName.append('[', StyledString.DECORATIONS_STYLER);
-				refName.append(ref.getLeaf().getName(),
-						StyledString.DECORATIONS_STYLER);
-				refName.append(']', StyledString.DECORATIONS_STYLER);
+		StyledString decoratedLabel = super.getStyledText(element);
+		if (decoratedLabel.getString().equals(labelProvider.getText(element))) {
+			StyledString previousLabel = previousDecoratedLabels.get(element);
+			if (previousLabel != null) {
+				return previousLabel;
 			}
-			ObjectId refId = ref.getObjectId();
-			refName.append(' ');
-			RevCommit commit = getLatestCommit(node);
-			if (commit != null) {
-				refName.append(abbreviate(commit),
-						StyledString.QUALIFIER_STYLER)
-						.append(' ')
-						.append(commit.getShortMessage(),
+		}
+		if (element instanceof RepositoryNode) {
+			Repository repository = ((RepositoryNode) element).getRepository();
+			if (repository != null) {
+				decoratedLabel.append(" - ", StyledString.QUALIFIER_STYLER) 						.append(repository.getDirectory().getAbsolutePath(),
 								StyledString.QUALIFIER_STYLER);
-			} else if (!ref.isSymbolic() || refId != null) {
-				refName.append(abbreviate(refId),
-						StyledString.QUALIFIER_STYLER);
-			} else {
-				refName.append(
-						UIText.RepositoriesViewLabelProvider_UnbornBranchText,
-						StyledString.QUALIFIER_STYLER);
 			}
-			return refName;
-		case WORKINGDIR:
-			StyledString dirString = new StyledString(
-					UIText.RepositoriesView_WorkingDir_treenode);
-			dirString.append(" - ", StyledString.QUALIFIER_STYLER); 			dirString.append(node.getRepository().getWorkTree()
-					.getAbsolutePath(), StyledString.QUALIFIER_STYLER);
-			return dirString;
-
-		case REF:
-			StyledString styled = null;
-			String nodeText = getSimpleText(node);
-			if (nodeText != null) {
-				styled = new StyledString(nodeText);
-				if (verboseBranchMode) {
-					RevCommit latest = getLatestCommit(node);
-					if (latest != null)
-						styled.append(' ')
-								.append(abbreviate(latest),
-										StyledString.QUALIFIER_STYLER)
-								.append(' ')
-								.append(latest.getShortMessage(),
-										StyledString.QUALIFIER_STYLER);
-				}
+		} else if (element instanceof WorkingDirNode) {
+			Repository repository = ((WorkingDirNode) element).getRepository();
+			if (repository != null) {
+				decoratedLabel.append(" - ", StyledString.QUALIFIER_STYLER) 						.append(repository.getWorkTree().getAbsolutePath(),
+								StyledString.QUALIFIER_STYLER);
 			}
-			return styled;
-		case TAG:
-			return getStyledTextForTag((TagNode) node);
-		case STASHED_COMMIT:
-			return getStyledTextForCommit((StashedCommitNode) node);
-		case SUBMODULES:
-			return getStyledTextForSubmodules((SubmodulesNode) node);
-		case PUSH:
-		case FETCH:
-		case FILE:
-		case FOLDER:
-		case BRANCHES:
-		case LOCAL:
-		case REMOTETRACKING:
-		case BRANCHHIERARCHY:
-		case TAGS:
-		case ADDITIONALREFS:
-		case REMOTES:
-		case REMOTE:
-		case STASH:
-		case ERROR: {
-			String label = getSimpleText(node);
-			if (label != null)
-				return new StyledString(label);
 		}
-
-		}
-
-		return null;
-
+		previousDecoratedLabels.put(element, decoratedLabel);
+		return decoratedLabel;
 	}
 

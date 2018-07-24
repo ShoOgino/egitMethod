@@ -1,0 +1,6 @@
+	private void decorateSubmodules(@NonNull Repository repository,
+			IDecoration decoration) throws IOException {
+		if (haveSubmoduleChanges(repository)) {
+			decoration.addPrefix("> "); 		}
+	}
+

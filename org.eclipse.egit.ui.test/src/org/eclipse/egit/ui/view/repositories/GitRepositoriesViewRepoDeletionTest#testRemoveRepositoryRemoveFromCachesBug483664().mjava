@@ -57,7 +57,8 @@
 					Thread.currentThread().interrupt();
 					return Status.CANCEL_STATUS;
 				}
-				waitForFinalization(5000);
+				myRepoViewUtil.dispose();
+				waitForFinalization(10000);
 				Repository[] repositories = org.eclipse.egit.core.Activator
 						.getDefault().getRepositoryCache().getAllRepositories();
 				results[0] = Arrays.asList(repositories).toString();

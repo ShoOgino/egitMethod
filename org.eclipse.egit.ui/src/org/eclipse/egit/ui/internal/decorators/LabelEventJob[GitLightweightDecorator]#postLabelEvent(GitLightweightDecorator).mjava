@@ -1,8 +1,0 @@
-	void postLabelEvent(final GitLightweightDecorator decorator) {
-		if (glwDecorator == null)
-			glwDecorator = decorator;
-		if (getState() == SLEEPING || getState() == WAITING)
-			cancel();
-		schedule(DELAY);
-	}
-

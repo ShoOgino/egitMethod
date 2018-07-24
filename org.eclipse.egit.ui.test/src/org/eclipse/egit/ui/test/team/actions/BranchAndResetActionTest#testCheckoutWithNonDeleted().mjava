@@ -25,7 +25,7 @@
 				.getProject(PROJ1).getFolder(FOLDER).getFile("ToBeDeleted");
 		toBeDeleted.create(new ByteArrayInputStream(new byte[0]), false, null);
 
-		ArrayList<IFile> untracked = new ArrayList<IFile>();
+		ArrayList<IFile> untracked = new ArrayList<>();
 		untracked.add(toBeDeleted);
 		CommitOperation op = new CommitOperation(new IFile[] { toBeDeleted },
 				untracked, TestUtil.TESTAUTHOR, TestUtil.TESTCOMMITTER,

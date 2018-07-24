@@ -1,0 +1,5 @@
+	public GitDecorator() {
+		org.eclipse.egit.core.Activator.getDefault().getIndexDiffCache()
+				.addIndexDiffChangedListener(this);
+	}
+
