@@ -1,0 +1,4 @@
+	public RepositoryTreeNodeLabelProvider() {
+		this(new WorkbenchLabelProvider());
+	}
+

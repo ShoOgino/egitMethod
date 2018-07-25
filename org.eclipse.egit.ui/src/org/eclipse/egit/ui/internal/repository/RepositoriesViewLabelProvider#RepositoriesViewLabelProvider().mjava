@@ -1,4 +1,0 @@
-	public RepositoriesViewLabelProvider() {
-		this(new WorkbenchLabelProvider());
-	}
-
