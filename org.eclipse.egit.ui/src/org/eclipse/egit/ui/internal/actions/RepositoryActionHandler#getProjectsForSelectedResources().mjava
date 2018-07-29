@@ -1,5 +1,5 @@
 	protected IProject[] getProjectsForSelectedResources() {
 		IStructuredSelection selection = getSelection();
-		return getProjectsForSelectedResources(selection);
+		return SelectionUtils.getSelectedProjects(selection);
 	}
 
