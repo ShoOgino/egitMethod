@@ -1,0 +1,4 @@
+	public void setDefault(@NonNull FileDiff fileDiff) {
+		defaultFileDiff = fileDiff;
+	}
+

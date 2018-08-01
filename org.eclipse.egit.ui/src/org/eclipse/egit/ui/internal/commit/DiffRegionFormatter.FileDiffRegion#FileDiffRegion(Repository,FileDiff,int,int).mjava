@@ -1,7 +1,0 @@
-		public FileDiffRegion(Repository repository, FileDiff fileDiff,
-				int start, int length) {
-			super(start, length);
-			this.diff = fileDiff;
-			this.repository = repository;
-		}
-

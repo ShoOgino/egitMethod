@@ -1,0 +1,16 @@
+	public static void openInEditor(FileDiff d, DiffEntry.Side side,
+			int lineNoToReveal) {
+		ObjectId[] blobs = d.getBlobs();
+		switch (side) {
+		case OLD:
+			openInEditor(d.getRepository(), d.getOldPath(),
+					d.getCommit().getParent(0),
+					blobs[0], lineNoToReveal);
+			break;
+		default:
+			openInEditor(d.getRepository(), d.getNewPath(), d.getCommit(),
+					blobs[blobs.length - 1], lineNoToReveal);
+			break;
+		}
+	}
+

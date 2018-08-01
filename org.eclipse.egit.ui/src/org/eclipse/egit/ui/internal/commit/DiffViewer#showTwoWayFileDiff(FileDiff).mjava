@@ -1,4 +1,4 @@
-	public static void showTwoWayFileDiff(Repository repository, FileDiff d) {
+	public static void showTwoWayFileDiff(FileDiff d) {
 		String np = d.getNewPath();
 		String op = d.getOldPath();
 		RevCommit c = d.getCommit();
@@ -26,6 +26,7 @@
 		IWorkbenchWindow window = PlatformUI.getWorkbench()
 				.getActiveWorkbenchWindow();
 		IWorkbenchPage page = window.getActivePage();
+		Repository repository = d.getRepository();
 		if (oldCommit != null && newCommit != null && repository != null) {
 			IFile file = np != null
 					? ResourceUtil.getFileForLocation(repository, np, false)

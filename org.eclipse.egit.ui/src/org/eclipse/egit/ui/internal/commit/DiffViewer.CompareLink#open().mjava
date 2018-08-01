@@ -1,5 +1,5 @@
 		@Override
 		public void open() {
-			showTwoWayFileDiff(repository, fileDiff);
+			showTwoWayFileDiff(fileDiff);
 		}
 

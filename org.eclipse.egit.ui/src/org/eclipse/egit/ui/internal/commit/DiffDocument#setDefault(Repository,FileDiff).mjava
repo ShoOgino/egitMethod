@@ -1,5 +1,0 @@
-	public void setDefault(Repository repository, FileDiff fileDiff) {
-		defaultRepository = repository;
-		defaultFileDiff = fileDiff;
-	}
-
