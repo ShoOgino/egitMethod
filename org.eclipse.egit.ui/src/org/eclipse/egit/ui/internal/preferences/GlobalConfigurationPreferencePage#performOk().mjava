@@ -18,7 +18,7 @@
 			}
 		}
 		final Repository[] repos = dirtyRepositories
-				.toArray(new Repository[dirtyRepositories.size()]);
+				.toArray(new Repository[0]);
 		for (Repository repository : repos) {
 			ConfigurationEditorComponent editor = repoConfigEditors.get(repository);
 			try {
