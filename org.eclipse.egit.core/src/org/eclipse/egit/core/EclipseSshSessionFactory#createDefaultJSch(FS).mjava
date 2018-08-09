@@ -1,6 +1,6 @@
 	@Override
 	protected JSch createDefaultJSch(FS fs) throws JSchException {
-		provider.createSession("127.0.0.1", 0, "eclipse"); 		JSch.setLogger(new JSchLogger());
+		JSch.setConfig("ssh-rsa", JSch.getConfig("signature.rsa")); 		JSch.setConfig("ssh-dss", JSch.getConfig("signature.dss")); 		provider.createSession("127.0.0.1", 0, "eclipse"); 		JSch.setLogger(new JSchLogger());
 		return provider.getJSch();
 	}
 
