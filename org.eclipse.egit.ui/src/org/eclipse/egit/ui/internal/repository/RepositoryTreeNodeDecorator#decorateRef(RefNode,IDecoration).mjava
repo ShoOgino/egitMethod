@@ -1,9 +1,11 @@
-	private void decorateRef(RefNode node, IDecoration decoration) {
+	private boolean decorateRef(RefNode node, IDecoration decoration) {
 		if (verboseBranchMode) {
 			RevCommit latest = getLatestCommit(node);
 			if (latest != null) {
 				decoration.addSuffix(" " + abbreviate(latest) + ' ' 						+ latest.getShortMessage());
+				return true;
 			}
 		}
+		return false;
 	}
 
