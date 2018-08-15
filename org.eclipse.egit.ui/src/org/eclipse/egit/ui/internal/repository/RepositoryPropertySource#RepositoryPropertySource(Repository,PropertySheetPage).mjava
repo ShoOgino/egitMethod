@@ -49,6 +49,9 @@
 						mgr.add(new Action(aMode.getText()) {
 							@Override
 							public void run() {
+								if (aMode == getCurrentMode()) {
+									return;
+								}
 								changeModeAction.getAction().setText(
 										aMode.getText());
 								boolean enabled = true;
@@ -70,10 +73,9 @@
 
 							@Override
 							public boolean isEnabled() {
-								return aMode != getCurrentMode()
-										&& (aMode != DisplayMode.SYSTEM
+								return aMode != DisplayMode.SYSTEM
 												|| systemConfig
-														.getFile() != null);
+												.getFile() != null;
 							}
 
 							@Override
@@ -83,7 +85,7 @@
 
 							@Override
 							public int getStyle() {
-								return IAction.AS_CHECK_BOX;
+								return IAction.AS_RADIO_BUTTON;
 							}
 						});
 					}
