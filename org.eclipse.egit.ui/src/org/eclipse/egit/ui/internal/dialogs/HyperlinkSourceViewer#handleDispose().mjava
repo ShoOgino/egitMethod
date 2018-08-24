@@ -15,12 +15,15 @@
 					.removePropertyChangeListener(jFacePropertyChangeListener);
 			jFacePropertyChangeListener = null;
 		}
-		for (Color color : customColors.values()) {
-			if (color != null) {
-				color.dispose();
+		try {
+			super.handleDispose();
+		} finally {
+			for (Color color : customColors.values()) {
+				if (color != null) {
+					color.dispose();
+				}
 			}
+			customColors.clear();
 		}
-		customColors.clear();
-		super.handleDispose();
 	}
 
