@@ -88,22 +88,13 @@
 
 			@Override
 			public String getText(Object element) {
-				if (element instanceof ReflogEntry) {
-					final ReflogEntry entry = (ReflogEntry) element;
-					RevCommit c = getCommit(entry);
-					return c == null ? "" : c.getShortMessage(); 				} else if (element instanceof IWorkbenchAdapter) {
+				if (element instanceof ReflogItem) {
+					ReflogItem entry = (ReflogItem) element;
+					String c = entry.getCommitMessage();
+					return c == null ? "" : c; 				} else if (element instanceof IWorkbenchAdapter) {
 					return ((IWorkbenchAdapter) element).getLabel(element);
 				}
 				return null;
-			}
-
-			private RevCommit getCommit(final ReflogEntry entry) {
-				try (RevWalk walk = new RevWalk(getRepository())) {
-					walk.setRetainBody(true);
-					return walk.parseCommit(entry.getNewId());
-				} catch (IOException ignored) {
-					return null;
-				}
 			}
 		});
 

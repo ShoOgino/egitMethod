@@ -3,9 +3,20 @@
 				IElementCollector collector, IProgressMonitor monitor) {
 			if (refLog != null) {
 				return; 			}
-			try (Git git = new Git(repository)) {
+			try (Git git = new Git(repository);
+					RevWalk walk = new RevWalk(repository)) {
 				refLog = git.reflog().setRef(ref).call().stream()
-						.map(entry -> new ReflogItem(ReflogInput.this, entry))
+						.map(entry -> {
+							String commitMessage = null;
+							try {
+								commitMessage = walk
+										.parseCommit(entry.getNewId())
+										.getShortMessage();
+							} catch (IOException e) {
+							}
+							return new ReflogItem(ReflogInput.this, entry,
+									commitMessage);
+						})
 						.toArray(ReflogItem[]::new);
 				collector.add(refLog, monitor);
 			} catch (Exception e) {
