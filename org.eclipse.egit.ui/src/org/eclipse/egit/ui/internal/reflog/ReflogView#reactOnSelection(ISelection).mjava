@@ -23,7 +23,7 @@
 		}
 
 		Repository currentRepo = getRepository();
-		if (currentRepo == null
+		if (currentRepo == null || !partListener.isVisible()
 				|| !selectedRepo.getDirectory().equals(
 						currentRepo.getDirectory())) {
 			showReflogFor(selectedRepo);

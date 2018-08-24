@@ -1,0 +1,4 @@
+	protected final boolean isMe(IWorkbenchPartReference partRef) {
+		return partRef.getPart(false) == myself;
+	}
+
