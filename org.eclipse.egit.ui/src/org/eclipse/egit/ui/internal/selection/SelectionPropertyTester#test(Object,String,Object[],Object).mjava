@@ -14,6 +14,12 @@
 		} else if ("selectionSingleRepository".equals(property)) { 			return SelectionUtils
 					.getRepository(getStructuredSelection(collection)) != null;
 
+		} else if ("resourcesMultipleRepositories".equals(property)) { 			return resourceSelectionContainsMoreThanOneRepository(collection,
+					args);
+
+		} else if ("selectionMultipleRepositories".equals(property)) { 			return selectionContainsMoreThanOneRepository(collection,
+					args);
+
 		} else if ("resourcesSingleRepository".equals(property)) { 			IStructuredSelection selection = getStructuredSelection(collection);
 
 			IResource[] resources = SelectionUtils
