@@ -2,7 +2,7 @@
 			String targetBranchName, boolean squash, boolean fastForwardSingleCommit) throws CoreException {
 		try {
 			if (!repository.hasBranch(targetBranchName)) {
-				throw new RuntimeException(String.format(
+				throw new RuntimeException(NLS.bind(
 						CoreText.GitFlowOperation_branchNotFound,
 						targetBranchName));
 			}
@@ -14,7 +14,7 @@
 			branchOperation.execute(progress.newChild(1));
 			Status status = branchOperation.getResult().getStatus();
 			if (!CheckoutResult.Status.OK.equals(status)) {
-				throw new CoreException(error(format(
+				throw new CoreException(error(NLS.bind(
 						CoreText.GitFlowOperation_unableToCheckout, branchName,
 						status.toString())));
 			}
@@ -31,7 +31,7 @@
 
 			MergeResult result = mergeOperation.getResult();
 			if (result == null) {
-				throw new CoreException(error(format(
+				throw new CoreException(error(NLS.bind(
 						CoreText.GitFlowOperation_unableToMerge, branchName,
 						targetBranchName)));
 			}
