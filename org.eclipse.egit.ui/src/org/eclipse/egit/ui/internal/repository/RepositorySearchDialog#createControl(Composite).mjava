@@ -139,12 +139,6 @@
 				enableOk();
 			}
 		});
-		fTreeViewer.addDoubleClickListener(event -> {
-			Object element = ((IStructuredSelection) event.getSelection())
-					.getFirstElement();
-			fTreeViewer.setChecked(element, !fTreeViewer.getChecked(element));
-			enableOk();
-		});
 
 		GridDataFactory.fillDefaults().grab(true, true).minSize(0, 300)
 				.applyTo(fTree);
