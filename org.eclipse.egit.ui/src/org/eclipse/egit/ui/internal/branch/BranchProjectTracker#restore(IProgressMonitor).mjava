@@ -1,6 +1,7 @@
 	public void restore(final IProgressMonitor monitor) {
 		String branch = getBranch();
-		if (branch != null)
+		if (branch != null) {
 			restore(branch, monitor);
+		}
 	}
 

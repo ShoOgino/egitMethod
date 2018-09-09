@@ -1,6 +1,7 @@
 	public void restore(final String branch, final IProgressMonitor monitor) {
-		String[] paths = getProjectPaths(branch);
-		if (paths.length == 0)
+		List<String> paths = ProjectTrackerPreferenceHelper
+				.restoreFromPreferences(repository, branch);
+		if (paths.size() == 0)
 			return;
 
 		Set<ProjectRecord> records = new LinkedHashSet<>();

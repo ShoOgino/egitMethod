@@ -1,0 +1,6 @@
+	static String getPreferenceKey(Repository repo,
+			final String branch) {
+		return PREFIX + '_' + repo.getDirectory().getAbsolutePath() + '_'
+				+ branch;
+	}
+
