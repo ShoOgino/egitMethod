@@ -9,7 +9,7 @@
 			}
 		}
 
-		Map<GitSynchronizeData, Collection<String>> updateRequests = new HashMap<GitSynchronizeData, Collection<String>>();
+		Map<GitSynchronizeData, Collection<String>> updateRequests = new HashMap<>();
 		for (IResource resource : resources) {
 			IProject project = resource.getProject();
 			GitSynchronizeData data = gsds.getData(project.getName());
@@ -19,7 +19,7 @@
 				if (mapping != null) {
 					Collection<String> paths = updateRequests.get(data);
 					if (paths == null) {
-						paths = new ArrayList<String>();
+						paths = new ArrayList<>();
 						updateRequests.put(data, paths);
 					}
 
