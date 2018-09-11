@@ -1,0 +1,4 @@
+	@Override
+	public void selectionChanged(IAction action, ISelection selection) {
+	}
+
