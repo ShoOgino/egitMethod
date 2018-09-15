@@ -1,20 +1,28 @@
+	@Nullable
 	protected static IProject getProject(TemplateContext context) {
-		IProject project = null;
+		if (IAdaptable.class.isInstance(context)) {
+			return AdapterUtils.adapt(context, IProject.class);
+		}
 		if (Activator.hasJavaPlugin()) {
-			if (context instanceof CodeTemplateContext) {
-				IJavaProject javaProject = ((CodeTemplateContext) context)
-						.getJavaProject();
-				if (javaProject != null) {
-					project = javaProject.getProject();
+			boolean hasPublicMethod = context.getClass().getSimpleName()
+					.equals("CodeTemplateContext"); 			try {
+				Method method;
+				if (hasPublicMethod) {
+					method = context.getClass().getMethod("getJavaProject"); 				} else {
+					method = context.getClass().getSuperclass()
+							.getDeclaredMethod("getJavaProject"); 					method.setAccessible(true);
 				}
-			} else if (context instanceof CompilationUnitContext) {
-				ICompilationUnit cu = ((CompilationUnitContext) context)
-						.getCompilationUnit();
-				if (cu != null) {
-					project = cu.getJavaProject().getProject();
+				Object result = method.invoke(context);
+				if (result instanceof IJavaProject) {
+					IJavaProject javaProject = (IJavaProject) result;
+					return javaProject.getProject();
 				}
+			} catch (NoSuchMethodException | SecurityException
+					| IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException e) {
+				return null;
 			}
 		}
-		return project;
+		return null;
 	}
 
