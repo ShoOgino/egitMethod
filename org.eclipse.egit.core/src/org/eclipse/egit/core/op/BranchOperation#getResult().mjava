@@ -1,5 +1,0 @@
-	@NonNull
-	public CheckoutResult getResult() {
-		return result;
-	}
-
