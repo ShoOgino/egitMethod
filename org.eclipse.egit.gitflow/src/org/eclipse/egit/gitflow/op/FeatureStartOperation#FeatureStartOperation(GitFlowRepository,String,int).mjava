@@ -1,0 +1,6 @@
+	public FeatureStartOperation(GitFlowRepository repository,
+			String featureName, int timeout) {
+		super(repository, featureName);
+		this.timeoutInSeconds = timeout;
+	}
+
