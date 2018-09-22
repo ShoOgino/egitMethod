@@ -1,7 +1,7 @@
 		@Override
 		public String toString() {
 			StringBuilder builder = new StringBuilder("Path: "); 			builder.append(getPath());
-			builder.append("regular: "); 			builder.append(isRegularFile());
+			builder.append(", regular: "); 			builder.append(isRegularFile());
 
 			return builder.toString();
 		}
