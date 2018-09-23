@@ -20,7 +20,8 @@
 		layout.addShowViewShortcut(ReflogView.VIEW_ID);
 		layout.addShowViewShortcut(RepositoriesView.VIEW_ID);
 
-		layout.addPerspectiveShortcut("org.eclipse.ui.resourcePerspective"); 
+		layout.addPerspectiveShortcut("org.eclipse.ui.resourcePerspective"); 		layout.addPerspectiveShortcut(
+				"org.eclipse.team.ui.TeamSynchronizingPerspective"); 
 		layout.addActionSet("org.eclipse.egit.ui.navigation"); 		layout.addActionSet("org.eclipse.egit.ui.SearchActionSet"); 
 		layout.addNewWizardShortcut(
 				"org.eclipse.egit.ui.CreateRepositoryWizard"); 	}
