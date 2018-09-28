@@ -1,0 +1,4 @@
+	protected List<String> getInitialRepositories() {
+		return util.getConfiguredRepositories();
+	}
+
