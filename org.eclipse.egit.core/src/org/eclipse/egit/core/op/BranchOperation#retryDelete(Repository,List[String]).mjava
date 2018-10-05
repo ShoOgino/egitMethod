@@ -1,15 +1,18 @@
 	void retryDelete(Repository repo, List<String> pathList) {
 		long startTime = System.currentTimeMillis();
 		for (String path : pathList) {
-			if (System.currentTimeMillis() - startTime > 1000)
+			if (System.currentTimeMillis() - startTime > 1000) {
 				break;
+			}
 			File fileToDelete = new File(repo.getWorkTree(), path);
-			if (fileToDelete.exists())
+			if (fileToDelete.exists()) {
 				try {
-					if (!fileToDelete.isFile())
+					if (!fileToDelete.isFile()) {
 						FileUtils.delete(fileToDelete, FileUtils.RETRY);
+					}
 				} catch (IOException e) {
 				}
+			}
 		}
 	}
 
