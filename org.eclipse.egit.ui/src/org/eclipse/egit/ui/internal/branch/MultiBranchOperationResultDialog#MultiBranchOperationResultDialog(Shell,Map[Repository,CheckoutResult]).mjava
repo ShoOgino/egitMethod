@@ -1,0 +1,11 @@
+	protected MultiBranchOperationResultDialog(Shell parentShell,
+			Map<Repository, CheckoutResult> results) {
+		super(parentShell);
+		setShellStyle(
+				getShellStyle() & ~SWT.APPLICATION_MODAL | SWT.SHELL_TRIM);
+		setBlockOnOpen(false);
+		this.results.putAll(results);
+
+		this.initializeResultMessages();
+	}
+

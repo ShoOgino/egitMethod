@@ -1,0 +1,7 @@
+	ProjectTrackerPreferenceSnapshot(Repository repo, String branch,
+			List<String> associatedProjects) {
+		this.repo = repo;
+		this.branch = branch;
+		this.associatedProjects = associatedProjects;
+	}
+

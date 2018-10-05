@@ -1,0 +1,5 @@
+	@NonNull
+	public Map<Repository, CheckoutResult> getResults() {
+		return results;
+	}
+

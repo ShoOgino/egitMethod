@@ -1,35 +1,9 @@
-	public IMemento snapshot() {
-		String branch = getBranch();
-		if (branch == null)
-			return null;
+	public ProjectTrackerMemento snapshot() {
 
-		IProject[] projects;
-		try {
-			projects = ProjectUtil.getValidOpenProjects(repository);
-		} catch (CoreException e) {
-			return null;
-		}
-		XMLMemento memento = XMLMemento.createWriteRoot(KEY_PROJECTS);
-		memento.putString(KEY_BRANCH, branch);
-		final String workDir = repository.getWorkTree().getAbsolutePath();
-		for (IProject project : projects) {
-			IPath path = project.getLocation();
-			if (path == null) {
-				continue;
-			}
-			if (!ResourceUtil.isSharedWithGit(project)) {
-				continue;
-			}
-			String fullPath = path.toOSString();
-			if (fullPath.startsWith(workDir)) {
-				String relative = fullPath.substring(workDir.length());
-				if (relative.length() == 0) {
-					relative = REPO_ROOT;
-				}
-				IMemento child = memento.createChild(KEY_PROJECT);
-				child.putTextData(relative);
-			}
-		}
+		ProjectTrackerMemento memento = new ProjectTrackerMemento();
+
+		Stream.of(repositories) 				.map(this::takeSnapshot) 				.filter(Objects::nonNull) 				.forEach(x -> memento.addSnapshot(x));
+
 		return memento;
 	}
 

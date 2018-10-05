@@ -1,0 +1,10 @@
+	private BranchOperationUI(Repository[] repositories, String target,
+			boolean showQuestionsBeforeCheckout) {
+		this.repositories = repositories;
+		this.target = target;
+		this.isSingleRepositoryOperation = repositories.length == 1;
+		this.showQuestionsBeforeCheckout = isSingleRepositoryOperation
+				? showQuestionsBeforeCheckout
+				: false;
+	}
+

@@ -1,0 +1,4 @@
+	void addSnapshot(ProjectTrackerPreferenceSnapshot snapshot) {
+		snapshots.add(snapshot);
+	}
+
