@@ -112,11 +112,6 @@
 				return null;
 			}
 
-			@Override
-			public Image getImage(Object element) {
-				return null;
-			}
-
 		});
 
 		TreeViewerColumn messageColumn = createColumn(layout,
@@ -152,6 +147,7 @@
 				if (comment.startsWith("checkout")) 					return (Image) resourceManager.get(UIIcons.CHECKOUT);
 				if (comment.startsWith("cherry-pick")) 					return (Image) resourceManager.get(UIIcons.CHERRY_PICK);
 				if (comment.startsWith("Branch: renamed ")) 					return (Image) resourceManager.get(UIIcons.EDITCONFIG);
+				if (comment.startsWith("reset")) 					return (Image) resourceManager.get(UIIcons.RESET);
 				return null;
 			}
 
