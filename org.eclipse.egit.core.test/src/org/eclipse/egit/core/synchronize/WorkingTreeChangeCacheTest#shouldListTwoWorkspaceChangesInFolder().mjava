@@ -1,5 +1,5 @@
 	@Test
-	public void shouldListTwoWorkspaceChagneInFolder() throws Exception {
+	public void shouldListTwoWorkspaceChangesInFolder() throws Exception {
 		writeTrashFile(db, "folder/a.txt", "trash");
 		writeTrashFile(db, "folder/b.txt", "trash");
 		try (Git git = new Git(db)) {
