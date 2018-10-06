@@ -1,5 +1,5 @@
 	protected FetchResult fetch(IProgressMonitor monitor, int timeout)
-			throws URISyntaxException, InvocationTargetException {
+			throws InvocationTargetException {
 		RemoteConfig config = repository.getConfig().getDefaultRemoteConfig();
 		FetchOperation fetchOperation = new FetchOperation(
 				repository.getRepository(), config, timeout, false);
