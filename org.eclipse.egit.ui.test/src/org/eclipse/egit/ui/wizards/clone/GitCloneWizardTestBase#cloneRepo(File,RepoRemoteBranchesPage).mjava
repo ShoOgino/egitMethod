@@ -20,7 +20,8 @@
 				.resolve("origin/master"));
 		assertNotNull(repository.resolve(
 				Constants.R_TAGS + SampleTestRepository.v1_0_name).name());
-		int refs = repository.getAllRefs().size();
+		int refs = repository.getRefDatabase().getRefsByPrefix(RefDatabase.ALL)
+				.size();
 		assertTrue(refs >= 4);
 		assertTrue(new File(destinationRepo, SampleTestRepository.A_txt_name)
 				.exists());

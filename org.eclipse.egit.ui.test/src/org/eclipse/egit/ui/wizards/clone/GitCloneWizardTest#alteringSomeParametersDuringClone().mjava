@@ -28,7 +28,8 @@
 		assertEquals(repository.resolve("stable"), repository
 				.resolve("src/stable"));
 		assertNotNull(repository.resolve(Constants.R_TAGS + SampleTestRepository.v2_0_name).name());
-		assertTrue(repository.getAllRefs().size() >= 4);
+		assertTrue(repository.getRefDatabase().getRefsByPrefix(RefDatabase.ALL)
+				.size() >= 4);
 		bot.button("Cancel").click();
 	}
 
