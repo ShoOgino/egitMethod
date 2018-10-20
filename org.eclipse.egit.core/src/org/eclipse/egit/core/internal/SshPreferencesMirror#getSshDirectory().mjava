@@ -1,0 +1,6 @@
+	public File getSshDirectory() {
+		synchronized (this) {
+			return sshDirectory;
+		}
+	}
+

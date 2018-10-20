@@ -1,0 +1,6 @@
+	public void stop() {
+		if (preferences != null) {
+			preferences.removePreferenceChangeListener(listener);
+		}
+	}
+

@@ -1,0 +1,4 @@
+	public IProxyService getProxyService() {
+		return proxyServiceTracker.getService();
+	}
+

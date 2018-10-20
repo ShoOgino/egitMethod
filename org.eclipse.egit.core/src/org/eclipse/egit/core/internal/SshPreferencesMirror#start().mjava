@@ -1,0 +1,8 @@
+	public void start() {
+		preferences = InstanceScope.INSTANCE.getNode("org.eclipse.jsch.core"); 		if (preferences == null) {
+			return;
+		}
+		preferences.addPreferenceChangeListener(listener);
+		reloadPreferences();
+	}
+

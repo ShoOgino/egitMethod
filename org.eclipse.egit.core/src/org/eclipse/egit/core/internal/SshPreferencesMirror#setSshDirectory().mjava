@@ -1,0 +1,14 @@
+	private void setSshDirectory() {
+		String sshDir = get("SSH2HOME"); 		if (sshDir != null) {
+			try {
+				sshDirectory = Paths.get(sshDir).toFile();
+			} catch (InvalidPathException e) {
+				Activator.logWarning(
+						format(CoreText.SshPreferencesMirror_invalidDirectory,
+								sshDir),
+						null);
+			}
+		}
+		sshDirectory = null;
+	}
+

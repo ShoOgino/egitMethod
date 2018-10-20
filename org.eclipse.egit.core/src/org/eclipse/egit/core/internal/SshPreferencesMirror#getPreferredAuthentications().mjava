@@ -1,0 +1,6 @@
+	public String getPreferredAuthentications() {
+		synchronized (this) {
+			return defaultMechanisms;
+		}
+	}
+

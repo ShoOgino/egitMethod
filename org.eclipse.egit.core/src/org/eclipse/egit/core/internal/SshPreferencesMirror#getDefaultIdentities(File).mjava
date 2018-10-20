@@ -1,0 +1,11 @@
+	public List<Path> getDefaultIdentities(@NonNull File sshDir) {
+		synchronized (this) {
+			if (defaultIdentities == null) {
+				return null;
+			}
+			return defaultIdentities.stream()
+					.map(s -> new File(sshDir, s).toPath())
+					.filter(Files::exists).collect(Collectors.toList());
+		}
+	}
+

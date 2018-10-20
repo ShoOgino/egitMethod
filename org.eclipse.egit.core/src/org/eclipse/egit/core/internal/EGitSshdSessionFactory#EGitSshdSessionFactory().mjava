@@ -1,0 +1,4 @@
+	public EGitSshdSessionFactory() {
+		super(null, new EGitProxyDataFactory());
+	}
+
