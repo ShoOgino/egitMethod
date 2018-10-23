@@ -1,0 +1,4 @@
+	public FinishableWizardDialog(Shell parentShell, IWizard newWizard) {
+		super(parentShell, newWizard);
+	}
+

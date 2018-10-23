@@ -1,0 +1,9 @@
+	public boolean finish() {
+		Button finishButton = getButton(IDialogConstants.FINISH_ID);
+		if (finishButton.isEnabled() && getWizard().canFinish()) {
+			finishPressed();
+			return getShell() == null || getShell().isDisposed();
+		}
+		return false;
+	}
+
