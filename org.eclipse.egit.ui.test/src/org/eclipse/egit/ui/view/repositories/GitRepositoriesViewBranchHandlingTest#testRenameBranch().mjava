@@ -15,7 +15,7 @@
 		SWTBotText newBranchNameText = renameDialog.bot().textWithLabel(UIText.BranchRenameDialog_NewNameLabel);
 		newBranchNameText.setText("invalid~name");
 
-		renameDialog.bot().text(" " + 				NLS.bind(UIText.ValidationUtils_InvalidRefNameMessage,
+		renameDialog.bot().text(" " + 				NLS.bind(CoreText.ValidationUtils_InvalidRefNameMessage,
 						"refs/heads/invalid~name"));
 		assertFalse(renameDialog.bot()
 				.button(UIText.RenameBranchDialog_RenameButtonLabel)
