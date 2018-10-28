@@ -1,4 +1,4 @@
-	public Map<Repository, Object> getResults() {
+	public Map<Repository, PullResult> getResults() {
 		return this.results;
 	}
 

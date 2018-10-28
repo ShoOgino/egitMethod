@@ -1,11 +1,17 @@
 	private void waitForWorkspaceLock(IProgressMonitor monitor) {
-		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		Repository repository = getRepository();
+		ISchedulingRule rule;
+		if (repository == null) {
+			rule = ResourcesPlugin.getWorkspace().getRoot();
+		} else {
+			rule = RuleUtil.getRule(repository);
+		}
 		try {
-			Job.getJobManager().beginRule(root, monitor);
+			Job.getJobManager().beginRule(rule, monitor);
 		} catch (OperationCanceledException e) {
 			return;
 		} finally {
-			Job.getJobManager().endRule(root);
+			Job.getJobManager().endRule(rule);
 		}
 	}
 

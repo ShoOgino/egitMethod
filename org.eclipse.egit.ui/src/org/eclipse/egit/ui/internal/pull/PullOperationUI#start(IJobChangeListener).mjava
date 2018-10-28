@@ -15,24 +15,22 @@
 				shortBranchName = ""; 			}
 			jobName = NLS.bind(UIText.PullOperationUI_PullingTaskName,
 					shortBranchName, repoName);
-		} else
+		} else {
 			jobName = UIText.PullOperationUI_PullingMultipleTaskName;
-		Job job = new WorkspaceJob(jobName) {
+		}
+		Job job = new Job(jobName) {
 
 			@Override
-			public IStatus runInWorkspace(IProgressMonitor monitor) {
+			public IStatus run(IProgressMonitor monitor) {
 				execute(monitor, false);
 				return Status.OK_STATUS;
 			}
 
 			@Override
 			public boolean belongsTo(Object family) {
-				if (JobFamilies.PULL.equals(family))
-					return true;
-				return super.belongsTo(family);
+				return JobFamilies.PULL.equals(family);
 			}
 		};
-		job.setRule(RuleUtil.getRuleForRepositories(Arrays.asList(repositories)));
 		job.setUser(true);
 		job.addJobChangeListener(jobChangeListener);
 		job.schedule();
