@@ -1,4 +1,4 @@
 	protected boolean shouldRunAction() {
-		return true;
+		return handler.isEnabled();
 	}
 
