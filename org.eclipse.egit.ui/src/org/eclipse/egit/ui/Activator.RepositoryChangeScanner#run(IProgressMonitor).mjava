@@ -1,7 +1,7 @@
 		@Override
 		protected IStatus run(IProgressMonitor monitor) {
 			if (getDefault().getPreferenceStore()
-					.getBoolean(UIPreferences.REFESH_ONLY_WHEN_ACTIVE)
+					.getBoolean(UIPreferences.REFRESH_ONLY_WHEN_ACTIVE)
 					&& !isActive()) {
 				monitor.done();
 				return Status.OK_STATUS;
