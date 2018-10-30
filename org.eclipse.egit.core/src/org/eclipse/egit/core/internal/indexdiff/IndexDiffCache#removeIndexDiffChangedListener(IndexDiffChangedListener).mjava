@@ -1,6 +1,4 @@
 	public void removeIndexDiffChangedListener(IndexDiffChangedListener listener) {
-		synchronized (listeners) {
-			listeners.remove(listener);
-		}
+		listeners.remove(listener);
 	}
 

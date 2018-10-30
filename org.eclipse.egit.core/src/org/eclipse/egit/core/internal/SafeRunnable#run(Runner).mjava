@@ -1,0 +1,4 @@
+	public static void run(Runner code) {
+		SafeRunner.run(code);
+	}
+
