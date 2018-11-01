@@ -9,7 +9,7 @@
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				viewer.collapseAll();
+				UIUtils.collapseAll(viewer);
 			}
 
 		});
@@ -23,7 +23,7 @@
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				viewer.expandAll();
+				UIUtils.expandAll(viewer);
 			}
 
 		});

@@ -1,0 +1,9 @@
+	public static void expandAll(AbstractTreeViewer viewer) {
+		viewer.getControl().setRedraw(false);
+		try {
+			viewer.expandAll();
+		} finally {
+			viewer.getControl().setRedraw(true);
+		}
+	}
+
