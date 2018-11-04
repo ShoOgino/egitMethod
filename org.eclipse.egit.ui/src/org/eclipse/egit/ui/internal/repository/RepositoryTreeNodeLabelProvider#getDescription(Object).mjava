@@ -1,0 +1,13 @@
+	@Override
+	public String getDescription(Object element) {
+		StringBuilder result = new StringBuilder(getText(element));
+		if (element instanceof RepositoryTreeNode) {
+			if (((RepositoryTreeNode) element)
+					.getType() != RepositoryTreeNodeType.REPO) {
+				Repository repo = ((RepositoryTreeNode) element)
+						.getRepository();
+				result.append(" - ").append(GitLabels.getPlainShortLabel(repo)); 			}
+		}
+		return result.toString();
+	}
+
