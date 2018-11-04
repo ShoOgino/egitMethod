@@ -1,5 +1,5 @@
 	@Override
 	public ISchedulingRule getSchedulingRule() {
-		return RuleUtil.getRuleForRepositories(Arrays.asList(repositories));
+		return null;
 	}
 
