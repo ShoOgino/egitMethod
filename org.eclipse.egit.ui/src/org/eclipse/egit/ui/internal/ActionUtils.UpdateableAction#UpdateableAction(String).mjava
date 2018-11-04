@@ -1,0 +1,4 @@
+		public UpdateableAction(String text) {
+			super(text);
+		}
+

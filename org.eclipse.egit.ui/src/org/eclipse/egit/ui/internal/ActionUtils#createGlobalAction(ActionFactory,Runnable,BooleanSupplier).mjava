@@ -1,8 +1,8 @@
-	public static IAction createGlobalAction(ActionFactory factory,
+	public static UpdateableAction createGlobalAction(ActionFactory factory,
 			final Runnable action, final BooleanSupplier enabled) {
 		IWorkbenchAction template = factory
 				.create(PlatformUI.getWorkbench().getActiveWorkbenchWindow());
-		IAction result = new Action(template.getText()) {
+		UpdateableAction result = new UpdateableAction(template.getText()) {
 
 			@Override
 			public void run() {
@@ -10,12 +10,16 @@
 			}
 
 			@Override
-			public boolean isEnabled() {
-				return enabled.getAsBoolean();
+			public void update() {
+				setEnabled(enabled.getAsBoolean());
 			}
 		};
-		result.setActionDefinitionId(factory.getCommandId());
-		result.setId(factory.getId());
+		result.setActionDefinitionId(template.getActionDefinitionId());
+		result.setId(template.getId());
+		result.setImageDescriptor(template.getImageDescriptor());
+		result.setDisabledImageDescriptor(
+				template.getDisabledImageDescriptor());
+		result.update();
 		template.dispose();
 		return result;
 	}
