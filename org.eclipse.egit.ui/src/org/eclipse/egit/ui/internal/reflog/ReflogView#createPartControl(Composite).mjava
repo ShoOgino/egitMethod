@@ -147,7 +147,7 @@
 				if (comment.startsWith("checkout")) 					return (Image) resourceManager.get(UIIcons.CHECKOUT);
 				if (comment.startsWith("cherry-pick")) 					return (Image) resourceManager.get(UIIcons.CHERRY_PICK);
 				if (comment.startsWith("Branch: renamed ")) 					return (Image) resourceManager.get(UIIcons.EDITCONFIG);
-				if (comment.startsWith("reset")) 					return (Image) resourceManager.get(UIIcons.RESET);
+				if (comment.startsWith("reset") 						|| comment.endsWith(": updating HEAD")) 					return (Image) resourceManager.get(UIIcons.RESET);
 				return null;
 			}
 
