@@ -1,0 +1,6 @@
+		@Override
+		protected boolean shouldCancel(IStatus lastCompletedJobResult,
+				int numberOfFailedJobs, int numberOfCancelledJobs) {
+			return false;
+		}
+
