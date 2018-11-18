@@ -1,0 +1,6 @@
+	private String quotePath(String path) {
+		if (Util.isLinux() || Util.isMac()) {
+			path = path.replaceAll("[\"$`]", "\\\\$0"); 		}
+		return path;
+	}
+
