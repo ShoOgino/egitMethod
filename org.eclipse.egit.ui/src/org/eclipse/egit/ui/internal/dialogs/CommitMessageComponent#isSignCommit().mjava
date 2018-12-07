@@ -1,0 +1,4 @@
+	public boolean isSignCommit() {
+		return signCommit;
+	}
+

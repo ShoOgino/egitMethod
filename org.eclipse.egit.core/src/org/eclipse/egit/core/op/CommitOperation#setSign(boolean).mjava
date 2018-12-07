@@ -1,0 +1,4 @@
+	public void setSign(boolean sign) {
+		this.sign = sign;
+	}
+

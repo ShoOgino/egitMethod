@@ -1,0 +1,4 @@
+	public boolean getSign() {
+		return sign;
+	}
+

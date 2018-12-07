@@ -10,6 +10,7 @@
 		previousAuthor = null;
 		committer = null;
 		signedOff = false;
+		signCommit = false;
 		amending = false;
 		amendAllowed = false;
 		createChangeId = false;

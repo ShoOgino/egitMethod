@@ -103,6 +103,13 @@
 		UIUtils.hookDisposal(signedOffItem, signedOffImage);
 		signedOffItem.setImage(signedOffImage);
 
+		signCommitItem = new ToolItem(messageToolbar, SWT.CHECK);
+
+		signCommitItem.setToolTipText(UIText.CommitDialog_SignCommit);
+		Image signCommitImage = UIIcons.SIGN_COMMIT.createImage();
+		UIUtils.hookDisposal(signCommitItem, signCommitImage);
+		signCommitItem.setImage(signCommitImage);
+
 		changeIdItem = new ToolItem(messageToolbar, SWT.CHECK);
 		Image changeIdImage = UIIcons.GERRIT.createImage();
 		UIUtils.hookDisposal(changeIdItem, changeIdImage);
@@ -119,6 +126,11 @@
 			@Override
 			public void updateChangeIdToggleSelection(boolean selection) {
 				changeIdItem.setSelection(selection);
+			}
+
+			@Override
+			public void updateSignCommitToggleSelection(boolean selection) {
+				signCommitItem.setSelection(selection);
 			}
 
 			@Override
@@ -161,6 +173,14 @@
 				commitMessageComponent
 						.setSignedOffButtonSelection(signedOffItem
 								.getSelection());
+			}
+		});
+
+		signCommitItem.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				commitMessageComponent.setSignCommitButtonSelection(
+						signCommitItem.getSelection());
 			}
 		});
 

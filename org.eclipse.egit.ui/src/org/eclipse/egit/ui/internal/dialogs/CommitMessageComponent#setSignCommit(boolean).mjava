@@ -1,0 +1,4 @@
+	public void setSignCommit(boolean signCommit) {
+		this.signCommit = signCommit;
+	}
+
