@@ -25,6 +25,9 @@
 			boolean indexDiffAvailable = indexDiffAvailable(indexDiff);
 			boolean noConflicts = noConflicts(indexDiff);
 
+			titleNode = new RepositoryNode(null, repository);
+			form.setText(
+					titleLabelProvider.getStyledText(titleNode).getString());
 			if (repositoryChanged) {
 				resetPathsToExpand();
 				removeRepositoryListeners();
@@ -106,7 +109,6 @@
 					Activator.logError(e.getLocalizedMessage(), e);
 				}
 			}
-			form.setText(GitLabels.getStyledLabelSafe(repository).toString());
 			updateCommitMessageComponent(repositoryChanged, indexDiffAvailable);
 			enableCommitWidgets(indexDiffAvailable && noConflicts);
 

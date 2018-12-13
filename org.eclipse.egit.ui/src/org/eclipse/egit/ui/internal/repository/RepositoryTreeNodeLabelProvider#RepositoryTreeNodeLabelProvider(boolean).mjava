@@ -1,0 +1,4 @@
+	public RepositoryTreeNodeLabelProvider(boolean showPaths) {
+		this(new WorkbenchLabelProvider(), showPaths);
+	}
+

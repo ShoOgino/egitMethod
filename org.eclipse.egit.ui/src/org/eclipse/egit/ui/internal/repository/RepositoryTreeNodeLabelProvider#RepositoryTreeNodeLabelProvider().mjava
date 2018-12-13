@@ -1,4 +1,4 @@
 	public RepositoryTreeNodeLabelProvider() {
-		this(new WorkbenchLabelProvider());
+		this(true);
 	}
 
