@@ -1,7 +1,8 @@
 	private void setPreferredAuthentications() {
 		String mechanisms = get("CVSSSH2PreferencePage.PREF_AUTH_METHODS"); 		if (mechanisms == null || mechanisms.isEmpty()) {
 			defaultMechanisms = null;
+		} else {
+			defaultMechanisms = mechanisms;
 		}
-		defaultMechanisms = mechanisms;
 	}
 

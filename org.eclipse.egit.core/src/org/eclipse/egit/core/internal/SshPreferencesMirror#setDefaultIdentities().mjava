@@ -3,7 +3,7 @@
 			defaultIdentities = null;
 			return;
 		}
-		defaultIdentities = Arrays.asList(defaultKeys.trim().split("\\s*,\\s*")) 				.stream().map(s -> {
+		defaultIdentities = Arrays.stream(defaultKeys.trim().split("\\s*,\\s*")) 				.map(s -> {
 					if (s.isEmpty()) {
 						return null;
 					}
