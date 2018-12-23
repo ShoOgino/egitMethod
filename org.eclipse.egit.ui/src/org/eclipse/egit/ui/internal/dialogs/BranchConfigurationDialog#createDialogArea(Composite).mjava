@@ -14,7 +14,8 @@
 		branchText = new Combo(main, SWT.BORDER);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(branchText);
 
-		remoteText.add("."); 		for (String remote : myConfig
+		remoteText.add(BranchConfig.LOCAL_REPOSITORY);
+		for (String remote : myConfig
 				.getSubsections(ConfigConstants.CONFIG_REMOTE_SECTION))
 			remoteText.add(remote);
 
