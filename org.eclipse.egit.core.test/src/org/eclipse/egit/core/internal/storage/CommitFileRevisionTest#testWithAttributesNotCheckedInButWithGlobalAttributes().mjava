@@ -28,8 +28,7 @@
 			content = Files.readAllLines(filePath, StandardCharsets.UTF_8);
 			assertEquals(1, content.size());
 			assertEquals("x", content.get(0));
-			String relativePath = repository.getWorkTree().toPath()
-					.relativize(filePath).toString();
+			String relativePath = getRevisionPath(filePath);
 			CommitFileRevision fileRevision = new CommitFileRevision(repository,
 					head, relativePath);
 			ByteBuffer rawContent = null;

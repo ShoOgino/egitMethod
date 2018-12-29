@@ -1,0 +1,5 @@
+	private String getRevisionPath(Path filePath) {
+		return repository.getWorkTree().toPath().relativize(filePath).toString()
+				.replace('\\', '/');
+	}
+
