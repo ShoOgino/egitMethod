@@ -3,21 +3,21 @@
 		prepareCacheEntry();
 
 		testRepository.connect(project.project);
-		waitForJobs(MAX_WAIT_TIME, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
+		TestUtils.waitForJobs(MAX_WAIT_TIME, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
 
 		assertFalse(entry.reloadScheduled);
 		assertFalse(entry.updateScheduled);
 		cleanEntryFlags();
 
 		testRepository.addToIndex(project.project);
-		waitForJobs(MAX_WAIT_TIME, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
+		TestUtils.waitForJobs(MAX_WAIT_TIME, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
 
 		assertTrue(entry.reloadScheduled);
 		assertTrue(entry.updateScheduled);
 		cleanEntryFlags();
 
 		testRepository.createInitialCommit("first commit\n");
-		waitForJobs(MAX_WAIT_TIME, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
+		TestUtils.waitForJobs(MAX_WAIT_TIME, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
 
 		assertTrue(entry.reloadScheduled);
 		assertTrue(entry.updateScheduled);
@@ -35,7 +35,7 @@
 
 			}
 		}, null);
-		waitForJobs(MAX_WAIT_TIME, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
+		TestUtils.waitForJobs(MAX_WAIT_TIME, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
 
 		assertTrue(entry.reloadScheduled);
 		assertTrue(entry.updateScheduled);
@@ -52,7 +52,7 @@
 
 			}
 		}, null);
-		waitForJobs(MAX_WAIT_TIME, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
+		TestUtils.waitForJobs(MAX_WAIT_TIME, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
 
 		assertFalse(entry.reloadScheduled);
 		assertTrue(entry.updateScheduled);
@@ -69,7 +69,7 @@
 
 			}
 		}, null);
-		waitForJobs(MAX_WAIT_TIME, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
+		TestUtils.waitForJobs(MAX_WAIT_TIME, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
 
 		assertTrue(entry.reloadScheduled);
 		assertFalse(entry.updateScheduled);
