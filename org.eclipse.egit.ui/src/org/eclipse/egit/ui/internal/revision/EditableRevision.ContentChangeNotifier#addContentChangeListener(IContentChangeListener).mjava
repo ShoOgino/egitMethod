@@ -1,7 +1,0 @@
-			@Override
-			public void addContentChangeListener(IContentChangeListener listener) {
-				if (fListenerList == null)
-					fListenerList= new ListenerList();
-				fListenerList.add(listener);
-			}
-
