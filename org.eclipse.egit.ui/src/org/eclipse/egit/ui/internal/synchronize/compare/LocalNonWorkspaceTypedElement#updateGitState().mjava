@@ -1,5 +1,4 @@
-	private void fireChanges() {
-		fireContentChanged();
+	private void updateGitState() {
 		Repository myRepository = repository;
 		boolean updated = false;
 		if (!myRepository.isBare()) {
