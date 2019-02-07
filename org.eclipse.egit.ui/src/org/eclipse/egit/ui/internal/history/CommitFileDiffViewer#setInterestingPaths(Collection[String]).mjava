@@ -1,5 +1,8 @@
 	void setInterestingPaths(Collection<String> interestingPaths) {
-		((FileDiffContentProvider) getContentProvider())
-				.setInterestingPaths(interestingPaths);
+		if (realInput != null) {
+			cancelJob();
+			realInput.setInterestingPaths(interestingPaths);
+			startJob(realInput);
+		}
 	}
 

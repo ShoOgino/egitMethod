@@ -1,0 +1,13 @@
+	public ImageDescriptor getImageDcoration() {
+		switch (getChange()) {
+		case ADD:
+			return UIIcons.OVR_STAGED_ADD;
+		case DELETE:
+			return UIIcons.OVR_STAGED_REMOVE;
+		case RENAME:
+			return UIIcons.OVR_STAGED_RENAME;
+		default:
+			return null;
+		}
+	}
+

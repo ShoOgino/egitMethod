@@ -2,7 +2,7 @@
 		currentRepo = null;
 		name = ""; 		input = null;
 		commentViewer.setInput(null);
-		fileViewer.setInput(null);
+		fileViewer.newInput(null);
 		setInput(null);
 	}
 
