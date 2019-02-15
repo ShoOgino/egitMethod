@@ -1,19 +1,29 @@
 	public static ITypedElement getHeadTypedElement(Repository repository, String repoRelativePath) {
 		try {
 			Ref head = repository.exactRef(Constants.HEAD);
-			if (head == null || head.getObjectId() == null)
-				return new EmptyTypedElement(""); 
+			if (head == null || head.getObjectId() == null) {
+				return new EmptyTypedElement(""); 			}
 			RevCommit latestFileCommit;
 			try (RevWalk rw = new RevWalk(repository)) {
 				RevCommit headCommit = rw.parseCommit(head.getObjectId());
+				try (TreeWalk tw = TreeWalk.forPath(repository,
+						repoRelativePath, headCommit.getTree())) {
+					if (tw == null) {
+						return new GitCompareFileRevisionEditorInput.EmptyTypedElement(
+								NLS.bind(UIText.GitHistoryPage_FileNotInCommit,
+										getName(repoRelativePath),
+										Constants.HEAD));
+					}
+				}
 				rw.markStart(headCommit);
 				rw.setTreeFilter(AndTreeFilter.create(
 						PathFilterGroup.createFromStrings(repoRelativePath),
 						TreeFilter.ANY_DIFF));
 				rw.setRewriteParents(false);
 				latestFileCommit = rw.next();
-				if (latestFileCommit == null)
+				if (latestFileCommit == null) {
 					latestFileCommit = headCommit;
+				}
 			}
 
 			return CompareUtils.getFileRevisionTypedElement(repoRelativePath, latestFileCommit, repository);
