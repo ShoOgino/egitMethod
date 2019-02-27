@@ -1,0 +1,11 @@
+	public static boolean canContinueRebase(@NonNull RepositoryState state) {
+		switch (state) {
+		case REBASING_INTERACTIVE:
+			return true;
+		case REBASING_MERGE:
+			return true;
+		default:
+			return false;
+		}
+	}
+

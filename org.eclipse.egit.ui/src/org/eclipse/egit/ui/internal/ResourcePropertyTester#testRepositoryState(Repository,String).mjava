@@ -9,26 +9,10 @@
 			}
 			RepositoryState state = repository.getRepositoryState();
 
-			if ("canAbortRebase".equals(property)) 				switch (state) {
-				case REBASING_INTERACTIVE:
-					return true;
-				case REBASING_REBASING:
-					return true;
-				case REBASING_MERGE:
-					return true;
-				default:
-					return false;
-				}
-
-			if ("canContinueRebase".equals(property)) 				switch (state) {
-				case REBASING_INTERACTIVE:
-					return true;
-				case REBASING_MERGE:
-					return true;
-				default:
-					return false;
-				}
-
+			if ("canAbortRebase".equals(property)) { 				return canAbortRebase(state);
+			}
+			if ("canContinueRebase".equals(property)) { 				return canContinueRebase(state);
+			}
 			if (property.length() > 3 && property.startsWith("is")) { 				String lookFor = property.substring(2, 3)
 						+ property.substring(3).replaceAll("([A-Z])", "_$1") 								.toUpperCase(Locale.ROOT);
 				if (state.toString().equals(lookFor))
