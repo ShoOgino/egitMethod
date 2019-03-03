@@ -6,6 +6,6 @@
 
 		super.createButtonsForButtonBar(parent);
 
-		getButton(Window.OK).setEnabled(!branchTree.getSelection().isEmpty());
+		setOkButtonEnabled(!branchTree.getSelection().isEmpty());
 	}
 
