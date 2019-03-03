@@ -218,6 +218,7 @@
 		refText.addModifyListener(new ModifyListener() {
 			@Override
 			public void modifyText(ModifyEvent e) {
+				refTextEdited = true;
 				Change change = determineChangeFromString(refText.getText());
 				String suggestion = ""; 				if (change != null) {
 					Object ps = change.getPatchSetNumber();
@@ -248,6 +249,7 @@
 				refText.setText(candidateChange.getChangeNumber().toString());
 			}
 		}
+		refTextEdited = false;
 
 		SortedSet<String> uris = new TreeSet<>();
 		try {

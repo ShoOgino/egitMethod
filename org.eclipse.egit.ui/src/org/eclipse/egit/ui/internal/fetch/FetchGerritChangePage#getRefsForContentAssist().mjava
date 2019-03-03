@@ -1,4 +1,4 @@
-	private Collection<Change> getRefsForContentAssist(String originalRefText)
+	private Collection<Change> getRefsForContentAssist()
 			throws InvocationTargetException, InterruptedException {
 		String uriText = uriCombo.getText();
 		if (!changeRefs.containsKey(uriText)) {
@@ -6,6 +6,9 @@
 		}
 		ChangeList list = changeRefs.get(uriText);
 		if (!list.isFinished()) {
+			if (!list.mark()) {
+				return null;
+			}
 			IWizardContainer container = getContainer();
 			IRunnableWithProgress operation = monitor -> {
 				monitor.beginTask(MessageFormat.format(
@@ -22,11 +25,6 @@
 						UIText.AsynchronousRefProposalProvider_ShowingProposalsJobName) {
 
 					@Override
-					public boolean shouldRun() {
-						return super.shouldRun() && !fetching;
-					}
-
-					@Override
 					public IStatus runInUIThread(IProgressMonitor uiMonitor) {
 						try {
 							if (container instanceof NonBlockingWizardDialog) {
@@ -39,20 +37,16 @@
 								}
 								if (refText != refText.getDisplay()
 										.getFocusControl()) {
-									fillInPatchSet(result, null);
+									refTextEdited = false;
+									fillInPatchSet(result);
 									return Status.CANCEL_STATUS;
 								}
-								fillInPatchSet(result, originalRefText);
-								doAutoFill = false;
-							} else {
-								fillInPatchSet(result, null);
-								doAutoFill = false;
 							}
+							fillInPatchSet(result);
 							contentProposer.openProposalPopup();
 						} catch (SWTException e) {
 							return Status.CANCEL_STATUS;
 						} finally {
-							doAutoFill = true;
 							uiMonitor.done();
 						}
 						return Status.OK_STATUS;
@@ -75,9 +69,7 @@
 			return null;
 		}
 		Collection<Change> changes = list.get();
-		if (doAutoFill) {
-			fillInPatchSet(changes, originalRefText);
-		}
+		fillInPatchSet(changes);
 		return changes;
 	}
 
