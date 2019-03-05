@@ -28,6 +28,8 @@
 								subMonitor.newChild(1));
 					} catch (CoreException e) {
 					}
+
+					refreshRepositoriesView();
 				}
 			});
 		} catch (Exception e) {
