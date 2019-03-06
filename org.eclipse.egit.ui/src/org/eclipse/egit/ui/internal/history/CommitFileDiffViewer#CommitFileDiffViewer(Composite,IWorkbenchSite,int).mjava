@@ -1,6 +1,6 @@
 	public CommitFileDiffViewer(final Composite parent,
 			final IWorkbenchSite site, final int style) {
-		super(parent, style);
+		super(parent, preventBug499850(style));
 		this.site = site;
 		final Table rawTable = getTable();
 
@@ -11,7 +11,7 @@
 		ColumnViewerToolTipSupport.enableFor(this);
 
 		setLabelProvider(new FileDiffLabelProvider(dimmedForegroundRgb));
-		setContentProvider(new FileDiffContentProvider());
+		setContentProvider(ArrayContentProvider.getInstance());
 		setComparator(new ViewerComparator() {
 
 			@Override
@@ -61,19 +61,14 @@
 		});
 
 		final MenuManager mgr = new MenuManager();
-		Control c = getControl();
-		c.setMenu(mgr.createContextMenu(c));
+		rawTable.setMenu(mgr.createContextMenu(rawTable));
 
 		openThisVersion = new Action(
 				UIText.CommitFileDiffViewer_OpenInEditorMenuLabel) {
 			@Override
 			public void run() {
-				final ISelection s = getSelection();
-				if (s.isEmpty() || !(s instanceof IStructuredSelection))
-					return;
-				final IStructuredSelection iss = (IStructuredSelection) s;
-				for (Object element : iss.toList())
-					openThisVersionInEditor((FileDiff) element);
+				withSelection(
+						CommitFileDiffViewer.this::openThisVersionInEditor);
 			}
 		};
 
@@ -81,12 +76,8 @@
 				UIText.CommitFileDiffViewer_OpenPreviousInEditorMenuLabel) {
 			@Override
 			public void run() {
-				final ISelection s = getSelection();
-				if (s.isEmpty() || !(s instanceof IStructuredSelection))
-					return;
-				final IStructuredSelection iss = (IStructuredSelection) s;
-				for (Object element : iss.toList())
-					openPreviousVersionInEditor((FileDiff) element);
+				withSelection(
+						CommitFileDiffViewer.this::openPreviousVersionInEditor);
 			}
 		};
 
@@ -94,12 +85,7 @@
 				UIIcons.ANNOTATE) {
 			@Override
 			public void run() {
-				final ISelection s = getSelection();
-				if (s.isEmpty() || !(s instanceof IStructuredSelection))
-					return;
-				final IStructuredSelection iss = (IStructuredSelection) s;
-				for (Iterator<FileDiff> it = iss.iterator(); it.hasNext();)
-					showAnnotations(it.next());
+				withSelection(CommitFileDiffViewer.this::showAnnotations);
 			}
 		};
 
@@ -107,19 +93,14 @@
 				UIText.CommitFileDiffViewer_OpenWorkingTreeVersionInEditorMenuLabel) {
 			@Override
 			public void run() {
-				final ISelection s = getSelection();
-				if (s.isEmpty() || !(s instanceof IStructuredSelection))
-					return;
-				final IStructuredSelection iss = (IStructuredSelection) s;
-				for (Iterator<FileDiff> it = iss.iterator(); it.hasNext();) {
-					FileDiff diff = it.next();
-					String relativePath = diff.getPath();
+				withSelection(d -> {
+					String relativePath = d.getPath();
 					File file = new Path(
-							diff.getRepository().getWorkTree()
+							d.getRepository().getWorkTree()
 									.getAbsolutePath())
 									.append(relativePath).toFile();
 					DiffViewer.openFileInEditor(file, -1);
-				}
+				});
 			}
 		};
 
@@ -127,13 +108,8 @@
 				UIText.CommitFileDiffViewer_CompareMenuLabel) {
 			@Override
 			public void run() {
-				ISelection s = getSelection();
-				if (s.isEmpty() || !(s instanceof IStructuredSelection)) {
-					return;
-				}
-				IStructuredSelection iss = (IStructuredSelection) s;
-				FileDiff d = (FileDiff) iss.getFirstElement();
-				showTwoWayFileDiff(d);
+				withFirstSelected(
+						CommitFileDiffViewer.this::showTwoWayFileDiff);
 			}
 		};
 
@@ -141,11 +117,8 @@
 				UIText.CommitFileDiffViewer_CompareWorkingDirectoryMenuLabel) {
 			@Override
 			public void run() {
-				final ISelection s = getSelection();
-				if (s.isEmpty() || !(s instanceof IStructuredSelection))
-					return;
-				final IStructuredSelection iss = (IStructuredSelection) s;
-				showWorkingDirectoryFileDiff((FileDiff) iss.getFirstElement());
+				withFirstSelected(
+						CommitFileDiffViewer.this::showWorkingDirectoryFileDiff);
 			}
 		};
 
@@ -183,16 +156,37 @@
 		mgr.add(showInSubMenu);
 
 		mgr.add(new Separator());
-		selectAll = ActionUtils.createGlobalAction(ActionFactory.SELECT_ALL,
-				() -> doSelectAll());
-		selectAll.setEnabled(true);
 		copy = ActionUtils.createGlobalAction(ActionFactory.COPY,
-				() -> doCopy());
+				() -> {
+					IStructuredSelection selection = getStructuredSelection();
+					if (selection != null && !selection.isEmpty()) {
+						doCopy(selection.iterator());
+					}
+				});
 		copy.setText(UIText.CommitFileDiffViewer_CopyFilePathMenuLabel);
 		copy.setEnabled(true);
-		ActionUtils.setGlobalActions(getControl(), copy, selectAll);
-		mgr.add(selectAll);
+		if ((rawTable.getStyle() & SWT.MULTI) != 0) {
+			selectAll = ActionUtils.createGlobalAction(ActionFactory.SELECT_ALL,
+					() -> doSelectAll());
+			selectAll.setEnabled(true);
+			ActionUtils.setGlobalActions(rawTable, copy, selectAll);
+			mgr.add(selectAll);
+		} else {
+			ActionUtils.setGlobalActions(rawTable, copy);
+		}
 		mgr.add(copy);
+		copyAll = new Action(
+				UIText.CommitFileDiffViewer_CopyAllFilePathsMenuLabel) {
+
+			@Override
+			public void run() {
+				doCopy(Arrays
+						.asList(((IStructuredContentProvider) getContentProvider())
+								.getElements(getInput()))
+						.iterator());
+			}
+		};
+		mgr.add(copyAll);
 		mgr.addMenuListener(manager -> getControl().setFocus());
 	}
 

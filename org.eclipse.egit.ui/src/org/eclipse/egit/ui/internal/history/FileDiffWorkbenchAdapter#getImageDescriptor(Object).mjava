@@ -1,0 +1,15 @@
+	@Override
+	public ImageDescriptor getImageDescriptor(Object object) {
+		if (object instanceof FileDiff) {
+			FileDiff diff = (FileDiff) object;
+			ImageDescriptor base = diff.getBaseImageDescriptor();
+			ImageDescriptor decoration = diff.getImageDcoration();
+			if (decoration != null) {
+				return new DecorationOverlayDescriptor(base, decoration,
+						IDecoration.BOTTOM_RIGHT);
+			}
+			return base;
+		}
+		return null;
+	}
+

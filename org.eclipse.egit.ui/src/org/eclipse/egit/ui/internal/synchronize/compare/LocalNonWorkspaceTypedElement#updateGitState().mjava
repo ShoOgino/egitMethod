@@ -1,0 +1,14 @@
+	private void updateGitState() {
+		Repository myRepository = repository;
+		boolean updated = false;
+		if (!myRepository.isBare()) {
+			updated = refreshRepositoryState(myRepository);
+		}
+		if (!updated) {
+			RepositoryMapping mapping = RepositoryMapping.getMapping(path);
+			if (mapping != null) {
+				mapping.getRepository().fireEvent(new IndexChangedEvent(true));
+			}
+		}
+	}
+

@@ -3,21 +3,21 @@
 		prepareCacheEntry();
 
 		entry.refresh();
-		waitForJobs(MAX_WAIT_TIME, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
+		TestUtils.waitForJobs(MAX_WAIT_TIME, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
 
 		assertTrue(entry.reloadScheduled);
 		assertFalse(entry.updateScheduled);
 		cleanEntryFlags();
 
 		entry.refreshFiles(Arrays.asList("a"));
-		waitForJobs(MAX_WAIT_TIME, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
+		TestUtils.waitForJobs(MAX_WAIT_TIME, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
 
 		assertFalse(entry.reloadScheduled);
 		assertTrue(entry.updateScheduled);
 		cleanEntryFlags();
 
 		entry.refreshFiles(Arrays.asList("a", "b"));
-		waitForJobs(MAX_WAIT_TIME, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
+		TestUtils.waitForJobs(MAX_WAIT_TIME, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
 
 		assertTrue(entry.reloadScheduled);
 		assertTrue(entry.updateScheduled);
@@ -25,7 +25,7 @@
 
 		entry.getUpdateJob().addChanges(Arrays.asList("a", "b"),
 				Collections.<IResource> emptyList());
-		waitForJobs(MAX_WAIT_TIME, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
+		TestUtils.waitForJobs(MAX_WAIT_TIME, JobFamilies.INDEX_DIFF_CACHE_UPDATE);
 
 		assertTrue(entry.reloadScheduled);
 		assertFalse(entry.updateScheduled);

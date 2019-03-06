@@ -1,6 +1,0 @@
-	public LocalFileRevision(IFileState state) {
-		this.state = state;
-		this.file = null;
-		this.baseRevision = null;
-	}
-

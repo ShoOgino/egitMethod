@@ -1,0 +1,4 @@
+	public void setInterestingPaths(Collection<String> interestingPaths) {
+		this.interestingPaths = interestingPaths;
+	}
+
