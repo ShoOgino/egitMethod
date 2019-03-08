@@ -1,3 +1,4 @@
 	private String formatCommit(final RevCommit commit) {
-		return commit.abbreviate(7).name() + ":  " + commit.getShortMessage(); 	}
+		return Utils.getShortObjectId(commit) + ":  " 				+ commit.getShortMessage();
+	}
 

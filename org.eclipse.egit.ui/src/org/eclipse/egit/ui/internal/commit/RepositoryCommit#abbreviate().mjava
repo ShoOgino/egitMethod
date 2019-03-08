@@ -1,4 +1,4 @@
 	public String abbreviate() {
-		return commit.abbreviate(NAME_LENGTH).name();
+		return Utils.getShortObjectId(commit);
 	}
 

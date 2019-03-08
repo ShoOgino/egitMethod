@@ -3,7 +3,7 @@
 		if (commitId == null)
 			return ""; 
 		StringBuilder s = new StringBuilder();
-		s.append(commitId.abbreviate(7).name());
+		s.append(Utils.getShortObjectId(commitId));
 		s.append("..."); 
 		PersonIdent authorIdent = commitId.getAuthorIdent();
 		if (authorIdent != null) {

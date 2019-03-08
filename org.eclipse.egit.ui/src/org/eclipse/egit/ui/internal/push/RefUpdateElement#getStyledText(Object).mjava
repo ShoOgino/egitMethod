@@ -34,9 +34,10 @@
 				} else {
 					String separator = update.isFastForward() ? ".." : "..."; 					ObjectId objectId = oldRef.getObjectId();
 					Object oldName = objectId != null
-							? objectId.abbreviate(7).name() : "?"; 					styled.append(MessageFormat.format(
+							? Utils.getShortObjectId(objectId)
+							: "?"; 					styled.append(MessageFormat.format(
 							UIText.RefUpdateElement_CommitRangeDecoration,
-							update.getNewObjectId().abbreviate(7).name(),
+							Utils.getShortObjectId(update.getNewObjectId()),
 									separator, oldName),
 							StyledString.DECORATIONS_STYLER);
 					styled.append(' ');

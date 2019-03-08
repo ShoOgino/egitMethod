@@ -26,7 +26,7 @@
 					ObjectId objectId = ((Ref) element).getObjectId();
 					if (objectId == null) {
 						return ""; 					}
-					return objectId.abbreviate(7).name();
+					return Utils.getShortObjectId(objectId);
 				}
 				return super.getText(element);
 			}});
