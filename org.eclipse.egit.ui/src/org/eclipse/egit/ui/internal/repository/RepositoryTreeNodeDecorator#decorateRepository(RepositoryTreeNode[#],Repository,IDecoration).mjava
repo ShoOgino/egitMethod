@@ -3,7 +3,8 @@
 		boolean isSubModule = node.getParent() != null && node.getParent()
 				.getType() == RepositoryTreeNodeType.SUBMODULES;
 		if (RepositoryUtil.hasChanges(repository)) {
-			decoration.addPrefix("> "); 		}
+			decoration.addPrefix(HAS_CHANGES_PREFIX);
+		}
 		StringBuilder suffix = new StringBuilder();
 		if (isSubModule) {
 			Ref head = DecoratorRepositoryStateCache.INSTANCE
@@ -11,7 +12,8 @@
 			if (head == null) {
 				return false;
 			}
-			suffix.append(" ["); 			if (head.isSymbolic()) {
+			suffix.append(OPEN_BRACKET);
+			if (head.isSymbolic()) {
 				suffix.append(
 						Repository.shortenRefName(head.getLeaf().getName()));
 			} else if (head.getObjectId() != null) {
@@ -31,7 +33,8 @@
 			if (branch == null) {
 				return false;
 			}
-			suffix.append(" ["); 			suffix.append(branch);
+			suffix.append(OPEN_BRACKET);
+			suffix.append(branch);
 
 			String trackingStatus = DecoratorRepositoryStateCache.INSTANCE
 					.getBranchStatus(repository);

@@ -7,6 +7,7 @@
 
 		switch (myType) {
 
+		case REPOGROUP:
 		case BRANCHES:
 		case LOCAL:
 		case REMOTETRACKING:

@@ -28,6 +28,7 @@
 		case STASHED_COMMIT:
 		case TAGS:
 			return myObject.equals(otherObject);
+		case REPOGROUP:
 		}
 		return false;
 	}

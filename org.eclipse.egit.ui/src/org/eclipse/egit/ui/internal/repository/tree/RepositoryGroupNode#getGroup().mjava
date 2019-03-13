@@ -1,0 +1,4 @@
+	public RepositoryGroup getGroup() {
+		return group;
+	}
+

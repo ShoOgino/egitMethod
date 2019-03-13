@@ -2,6 +2,7 @@
 			IDecoration decoration) {
 		RevCommit commit = node.getObject();
 		decoration.addSuffix(
-				" [" + abbreviate(commit) + "] " + commit.getShortMessage()); 		return true;
+				OPEN_BRACKET + abbreviate(commit) + "] " 				+ commit.getShortMessage());
+		return true;
 	}
 

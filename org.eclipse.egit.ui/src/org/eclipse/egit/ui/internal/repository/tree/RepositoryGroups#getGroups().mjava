@@ -1,0 +1,4 @@
+	public List<RepositoryGroup> getGroups() {
+		return new ArrayList<>(groupMap.values());
+	}
+

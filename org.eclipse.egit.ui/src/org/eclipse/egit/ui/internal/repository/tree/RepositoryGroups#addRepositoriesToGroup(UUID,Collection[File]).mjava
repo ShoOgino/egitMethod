@@ -1,0 +1,15 @@
+	public void addRepositoriesToGroup(UUID groupId,
+			Collection<File> repoDirs) {
+		if (!groupMap.containsKey(groupId)) {
+			throw new IllegalArgumentException();
+		}
+		Collection<RepositoryGroup> currentGroups = groupMap.values();
+		for (RepositoryGroup groups : currentGroups) {
+			groups.removeRepositoryDirectories(repoDirs);
+		}
+
+		groupMap.get(groupId).addRepositoryDirectories(repoDirs);
+		savePreferences();
+
+	}
+

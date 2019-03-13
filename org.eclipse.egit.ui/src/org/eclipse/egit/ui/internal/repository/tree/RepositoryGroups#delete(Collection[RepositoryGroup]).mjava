@@ -1,0 +1,9 @@
+	public void delete(Collection<RepositoryGroup> groupsToDelete) {
+		for (RepositoryGroup group : groupsToDelete) {
+			preferences.remove(PREFS_GROUP_PREFIX + group.getGroupId());
+			preferences.remove(PREFS_GROUP_NAME_PREFIX + group.getGroupId());
+			groupMap.remove(group.getGroupId());
+		}
+		savePreferences();
+	}
+

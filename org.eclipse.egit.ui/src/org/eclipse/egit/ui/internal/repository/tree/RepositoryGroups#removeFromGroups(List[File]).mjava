@@ -1,0 +1,7 @@
+	public void removeFromGroups(List<File> repositoryDirecptories) {
+		for (RepositoryGroup group : groupMap.values()) {
+			group.removeRepositoryDirectories(repositoryDirecptories);
+		}
+		savePreferences();
+	}
+

@@ -1,0 +1,7 @@
+	public DeleteRepositoryGroupConfirmDialog(Shell parentShell,
+			List<RepositoryGroupNode> groupsToDelete) {
+		super(parentShell);
+		setHelpAvailable(false);
+		this.groupsToDelete = groupsToDelete;
+	}
+

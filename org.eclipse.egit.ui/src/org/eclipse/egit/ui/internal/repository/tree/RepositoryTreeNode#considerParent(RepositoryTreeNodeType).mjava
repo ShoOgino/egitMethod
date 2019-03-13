@@ -1,0 +1,4 @@
+	private boolean considerParent(RepositoryTreeNodeType nodeType) {
+		return nodeType != RepositoryTreeNodeType.REPO;
+	}
+

@@ -1,0 +1,4 @@
+	public UUID getGroupId() {
+		return groupId;
+	}
+

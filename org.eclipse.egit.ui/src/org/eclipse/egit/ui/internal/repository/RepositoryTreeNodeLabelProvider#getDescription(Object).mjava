@@ -6,7 +6,10 @@
 			String branchName = Repository.shortenRefName(ref.getName());
 			result = new StringBuilder(branchName);
 		}
-		if (element instanceof RepositoryTreeNode) {
+		if (element instanceof RepositoryGroupNode) {
+			RepositoryGroup group = ((RepositoryGroupNode) element).getGroup();
+			result.append(" (").append(group.getRepositoryDirectories().size()) 					.append(')');
+		} else if (element instanceof RepositoryTreeNode) {
 			if (((RepositoryTreeNode) element)
 					.getType() != RepositoryTreeNodeType.REPO) {
 				Repository repo = ((RepositoryTreeNode) element)

@@ -1,0 +1,9 @@
+	public void renameGroup(RepositoryGroup group, String newName) {
+		checkGroupName(newName);
+		RepositoryGroup myGroup = groupMap.get(group.getGroupId());
+		if (myGroup != null) {
+			myGroup.setGroupName(newName);
+			savePreferences();
+		}
+	}
+

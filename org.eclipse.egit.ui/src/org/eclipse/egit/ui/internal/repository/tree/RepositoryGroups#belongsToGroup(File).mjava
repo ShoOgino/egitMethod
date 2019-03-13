@@ -1,0 +1,5 @@
+	public boolean belongsToGroup(File repositoryDirectory) {
+		return groupMap.values().stream().anyMatch(group -> group
+				.getRepositoryDirectories().contains(repositoryDirectory));
+	}
+

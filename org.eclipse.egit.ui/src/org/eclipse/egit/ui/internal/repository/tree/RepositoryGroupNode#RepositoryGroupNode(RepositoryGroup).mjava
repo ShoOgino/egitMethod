@@ -1,0 +1,5 @@
+	public RepositoryGroupNode(RepositoryGroup group) {
+		super(null, RepositoryTreeNodeType.REPOGROUP, null, group.getName());
+		this.group = group;
+	}
+

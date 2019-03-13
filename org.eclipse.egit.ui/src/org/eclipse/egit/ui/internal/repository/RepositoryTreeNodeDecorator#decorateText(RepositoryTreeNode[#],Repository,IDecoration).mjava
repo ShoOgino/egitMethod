@@ -25,6 +25,7 @@
 			return;
 		}
 		if (!decorated) {
-			decoration.addSuffix(" "); 		}
+			ensureCorrectLabelCaching(decoration);
+		}
 	}
 

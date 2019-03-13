@@ -1,0 +1,5 @@
+	public @NonNull String getAbsoluteRepositoryPath(
+			@NonNull String pathString) {
+		return workspacePath.resolve(pathString).toString();
+	}
+

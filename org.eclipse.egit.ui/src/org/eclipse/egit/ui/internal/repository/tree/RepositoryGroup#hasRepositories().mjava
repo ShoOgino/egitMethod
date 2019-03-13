@@ -1,0 +1,4 @@
+	public boolean hasRepositories() {
+		return !repositoryDirectories.isEmpty();
+	}
+

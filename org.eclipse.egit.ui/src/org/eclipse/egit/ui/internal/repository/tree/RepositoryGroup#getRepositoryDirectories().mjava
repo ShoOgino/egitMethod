@@ -1,0 +1,4 @@
+	public List<File> getRepositoryDirectories() {
+		return new ArrayList<>(repositoryDirectories);
+	}
+

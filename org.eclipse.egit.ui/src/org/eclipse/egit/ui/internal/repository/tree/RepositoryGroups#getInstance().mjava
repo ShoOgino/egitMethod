@@ -1,0 +1,4 @@
+	public static RepositoryGroups getInstance() {
+		return INSTANCE;
+	}
+

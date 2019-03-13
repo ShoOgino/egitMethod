@@ -1,7 +1,8 @@
 	private boolean decorateSubmodules(@NonNull Repository repository,
 			IDecoration decoration) {
 		if (haveSubmoduleChanges(repository)) {
-			decoration.addPrefix("> "); 			return true;
+			decoration.addPrefix(HAS_CHANGES_PREFIX);
+			return true;
 		}
 		return false;
 	}
