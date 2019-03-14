@@ -1,0 +1,8 @@
+	private static void showFailureDialog(RevCommit commit,
+			MergeResult result) {
+		PlatformUI.getWorkbench().getDisplay().asyncExec(() -> {
+			RevertFailureDialog.show(PlatformUI.getWorkbench()
+					.getModalDialogShellProvider().getShell(), commit, result);
+		});
+	}
+
