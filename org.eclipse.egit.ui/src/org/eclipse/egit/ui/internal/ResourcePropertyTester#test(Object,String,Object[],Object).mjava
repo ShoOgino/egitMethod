@@ -1,12 +1,15 @@
 	@Override
 	public boolean test(Object receiver, String property, Object[] args,
 			Object expectedValue) {
-		boolean value = internalTest(receiver, property);
+		if (!(receiver instanceof IResource)) {
+			return false;
+		}
+		boolean value = internalTest((IResource) receiver, property);
 		boolean trace = GitTraceLocation.PROPERTIESTESTER.isActive();
 		if (trace)
 			GitTraceLocation
 					.getTrace()
 					.trace(GitTraceLocation.PROPERTIESTESTER.getLocation(),
-							"prop "	+ property + " of " + receiver + " = " + value + ", expected = " + expectedValue); 		return value;
+							"prop "	+ property + " of " + receiver + " = " + value + ", expected = " + expectedValue); 		return computeResult(expectedValue, value);
 	}
 
