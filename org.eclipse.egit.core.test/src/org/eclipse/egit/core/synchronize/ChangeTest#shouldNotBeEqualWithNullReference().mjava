@@ -1,5 +1,5 @@
 	@Test
-	public void shouldNotBeEqualWithNullRefference() {
+	public void shouldNotBeEqualWithNullReference() {
 		Change change = new Change();
 
 		boolean result = change.equals(null);
