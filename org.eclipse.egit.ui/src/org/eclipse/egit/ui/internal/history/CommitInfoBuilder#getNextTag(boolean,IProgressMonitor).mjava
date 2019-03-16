@@ -4,10 +4,10 @@
 			throw new OperationCanceledException();
 		try (RevWalk revWalk = new RevWalk(db)) {
 			revWalk.setRetainBody(false);
-			Map<String, Ref> tagsMap = db.getTags();
 			Ref tagRef = null;
 
-			for (Ref ref : tagsMap.values()) {
+			for (Ref ref : db.getRefDatabase()
+					.getRefsByPrefix(Constants.R_TAGS)) {
 				if (monitor.isCanceled())
 					throw new OperationCanceledException();
 				RevCommit current = revWalk.parseCommit(commit);
