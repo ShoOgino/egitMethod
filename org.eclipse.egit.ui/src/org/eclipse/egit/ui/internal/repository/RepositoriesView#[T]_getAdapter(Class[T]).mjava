@@ -1,0 +1,11 @@
+	@Override
+	public <T> T getAdapter(Class<T> adapter) {
+		if (adapter == IPropertySheetPage.class) {
+			PropertySheetPage page = new PropertySheetPage();
+			page.setPropertySourceProvider(
+					new RepositoryPropertySourceProvider(page));
+			return adapter.cast(page);
+		}
+		return super.getAdapter(adapter);
+	}
+

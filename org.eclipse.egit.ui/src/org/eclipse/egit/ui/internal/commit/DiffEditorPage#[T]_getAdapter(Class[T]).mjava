@@ -1,6 +1,5 @@
-	@SuppressWarnings("unchecked")
 	@Override
-	public Object getAdapter(Class adapter) {
+	public <T> T getAdapter(Class<T> adapter) {
 		if (IContentOutlinePage.class.equals(adapter)) {
 			if (outlinePage == null) {
 				outlinePage = createOutlinePage();
@@ -11,7 +10,7 @@
 							new StructuredSelection(currentFileDiffRange));
 				}
 			}
-			return outlinePage;
+			return adapter.cast(outlinePage);
 		}
 		return super.getAdapter(adapter);
 	}
