@@ -12,10 +12,11 @@
 		}
 		boolean value = internalTest(node, repository, property);
 		boolean trace = GitTraceLocation.PROPERTIESTESTER.isActive();
-		if (trace)
+		if (trace) {
 			GitTraceLocation
 					.getTrace()
 					.trace(GitTraceLocation.PROPERTIESTESTER.getLocation(),
-							"prop "	+ property + " of " + receiver + " = " + value + ", expected = " + expectedValue); 		return computeResult(expectedValue, value);
+							"prop "	+ property + " of " + receiver + " = " + value + ", expected = " + expectedValue); 		}
+		return computeResult(expectedValue, value);
 	}
 

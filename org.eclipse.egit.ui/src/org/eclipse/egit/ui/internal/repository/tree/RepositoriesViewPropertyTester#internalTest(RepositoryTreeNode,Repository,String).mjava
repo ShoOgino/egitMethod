@@ -22,13 +22,15 @@
 					return false;
 				}
 			}
-			if (!(node.getObject() instanceof Ref))
+			if (!(node.getObject() instanceof Ref)) {
 				return false;
+			}
 			Ref ref = (Ref) node.getObject();
 			return isRefCheckedOut(repository, ref);
 		}
-		if (property.equals("isLocalBranch")) { 			if (!(node.getObject() instanceof Ref))
+		if (property.equals("isLocalBranch")) { 			if (!(node.getObject() instanceof Ref)) {
 				return false;
+			}
 			Ref ref = (Ref) node.getObject();
 			return ref.getName().startsWith(Constants.R_HEADS);
 		}
@@ -63,12 +65,14 @@
 		}
 		if (property.equals("canStash")) { 			return repository.getRepositoryState().canCommit();
 		}
-		if (property.equals("canMerge")) { 			if (repository.getRepositoryState() != RepositoryState.SAFE)
+		if (property.equals("canMerge")) { 			if (repository.getRepositoryState() != RepositoryState.SAFE) {
 				return false;
+			}
 			try {
 				String branch = repository.getFullBranch();
-				if (branch == null)
-					return false; 				return branch.startsWith(Constants.R_HEADS);
+				if (branch == null) {
+					return false; 				}
+				return branch.startsWith(Constants.R_HEADS);
 			} catch (IOException e) {
 				return false;
 			}
