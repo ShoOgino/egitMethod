@@ -4,5 +4,5 @@
 			os = System.getProperty("os.name"); 		} catch (RuntimeException e) {
 			return false;
 		}
-		return os.indexOf("Windows") != -1; 	}
+		return os.contains("Windows"); 	}
 
