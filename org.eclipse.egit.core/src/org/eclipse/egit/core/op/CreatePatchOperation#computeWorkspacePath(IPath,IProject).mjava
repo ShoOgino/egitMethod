@@ -6,7 +6,8 @@
 		String repoRelativePath = rm.getRepoRelativePath(project);
 		if (repoRelativePath == null)
 			return path;
-		if (repoRelativePath.equals("")) 			return path;
+		if (repoRelativePath.isEmpty())
+			return path;
 		return path.removeFirstSegments(path.matchingFirstSegments(new Path(
 				repoRelativePath)));
 	}

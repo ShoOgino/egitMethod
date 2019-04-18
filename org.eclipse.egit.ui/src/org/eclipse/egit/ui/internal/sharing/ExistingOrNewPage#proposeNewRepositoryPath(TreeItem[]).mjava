@@ -2,7 +2,8 @@
 		IPath p = null;
 		for (TreeItem ti : treeItems) {
 			String gitDirParentCandidate = ti.getText(1);
-			if (gitDirParentCandidate.equals("")) 				continue;
+			if (gitDirParentCandidate.isEmpty())
+				continue;
 			if (ti.getItemCount() > 0)
 				if (hasRepositoryInOwnDirectory(ti.getItems()))
 					return null;

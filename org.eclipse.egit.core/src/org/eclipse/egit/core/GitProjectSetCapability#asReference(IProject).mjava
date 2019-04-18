@@ -26,7 +26,8 @@
 		if (projectPath == null) {
 			return null;
 		}
-		if (projectPath.equals("")) 			projectPath = "."; 
+		if (projectPath.isEmpty())
+			projectPath = "."; 
 		return asReference(url, branch, projectPath);
 	}
 

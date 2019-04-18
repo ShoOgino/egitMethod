@@ -10,7 +10,8 @@
 			if (rm != null) {
 				String repoRelativePath = rm.getRepoRelativePath(r);
 				if (repoRelativePath != null)
-					if (repoRelativePath.equals("")) 						return TreeFilter.ALL;
+					if (repoRelativePath.isEmpty())
+						return TreeFilter.ALL;
 					else
 						filters.add(repoRelativePath);
 			}

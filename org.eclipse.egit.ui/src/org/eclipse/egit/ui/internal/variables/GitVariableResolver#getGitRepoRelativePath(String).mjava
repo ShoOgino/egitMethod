@@ -5,7 +5,8 @@
 			String repoRelativePath = mapping.getRepoRelativePath(res);
 			if (repoRelativePath == null) {
 				return ""; 			}
-			if (repoRelativePath.equals("")) 				return "."; 			else
+			if (repoRelativePath.isEmpty())
+				return "."; 			else
 				return repoRelativePath;
 		}
 		return ""; 	}
