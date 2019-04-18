@@ -1,0 +1,5 @@
+	@Nullable
+	public String getRunningLaunchConfigurationName(
+			final Collection<Repository> repositories,
+			IProgressMonitor monitor);
+

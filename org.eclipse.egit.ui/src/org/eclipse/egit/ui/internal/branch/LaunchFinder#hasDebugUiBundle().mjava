@@ -1,0 +1,8 @@
+	private static final boolean hasDebugUiBundle() {
+		try {
+			return Class.forName(
+					"org.eclipse.debug.core.ILaunchConfiguration") != null; 		} catch (ClassNotFoundException e) {
+			return false;
+		}
+	}
+

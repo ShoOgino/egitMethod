@@ -1,14 +1,14 @@
 		@Override
 		public void run() {
 			String question = UIText.DiscardChangesAction_confirmActionMessage;
-			ILaunchConfiguration launch = LaunchFinder
+			String launch = LaunchFinder
 					.getRunningLaunchConfiguration(
 							Collections.singleton(getCurrentRepository()),
 							null);
 			if (launch != null) {
 				question = MessageFormat.format(question,
 						"\n\n" + MessageFormat.format( 								UIText.LaunchFinder_RunningLaunchMessage,
-								launch.getName()));
+								launch));
 			} else {
 				question = MessageFormat.format(question, ""); 			}
 
