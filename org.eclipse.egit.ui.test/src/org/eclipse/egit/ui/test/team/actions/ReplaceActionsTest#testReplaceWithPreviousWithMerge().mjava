@@ -33,9 +33,6 @@
 				.getPluginLocalizedValue(
 						"ReplaceWithPreviousVersionAction.label");
 		clickReplaceWith(menuLabel);
-		bot.shell(UIText.DiscardChangesAction_confirmActionTitle).bot()
-				.button(UIText.DiscardChangesAction_discardChangesButtonText)
-				.click();
 		SWTBotShell selectDialog = bot
 				.shell(UIText.CommitSelectDialog_WindowTitle);
 		assertEquals(2, selectDialog.bot().table().rowCount());
@@ -46,11 +43,6 @@
 		assertEquals(contentAfterMerge, contentAfterClose);
 
 		clickReplaceWith(menuLabel);
-		bot.shell(UIText.DiscardChangesAction_confirmActionTitle).bot()
-				.button(UIText.DiscardChangesAction_discardChangesButtonText)
-				.click();
-		TestUtil.waitForJobs(100, 5000);
-
 		selectDialog = bot.shell(UIText.CommitSelectDialog_WindowTitle);
 		SWTBotTable table = selectDialog.bot().table();
 		assertEquals("Master commit", table.cell(0, 1));
