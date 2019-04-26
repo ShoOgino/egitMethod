@@ -5,7 +5,7 @@
 		CompareEditorTester compareEditor = getCompareEditorForFileInGitChangeSet(
 				FILE1, true);
 
-		Display.getDefault().syncExec(new Runnable() {
+		PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
 			@Override
 			public void run() {
 				CommonUtils.runCommand("org.eclipse.compare.copyLeftToRight",

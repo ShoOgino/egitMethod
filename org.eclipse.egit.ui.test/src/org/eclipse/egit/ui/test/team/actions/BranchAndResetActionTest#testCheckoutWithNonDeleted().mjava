@@ -38,7 +38,7 @@
 					.shell(UIText.NonDeletedFilesDialog_NonDeletedFilesTitle);
 			assertEquals("ToBeDeleted", showUndeleted.bot().tree()
 					.getAllItems()[0].getItems()[0].getItems()[0].getText());
-			Display.getDefault().syncExec(new Runnable() {
+			PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
 				@Override
 				public void run() {
 					assertSame(folderImage, showUndeleted.bot().tree()
@@ -67,7 +67,7 @@
 			pathButton.pressShortcut(KeyStroke.getInstance("ESC"));
 			assertEquals("ToBeDeleted", showUndeleted.bot().tree()
 					.getAllItems()[0].getItems()[0].getItems()[0].getText());
-			Display.getDefault().syncExec(new Runnable() {
+			PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
 				@Override
 				public void run() {
 					assertSame(projectImage, showUndeleted.bot().tree()
