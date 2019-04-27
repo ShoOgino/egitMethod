@@ -47,11 +47,32 @@
 		Job job = new Job(UIText.Activator_setupFocusListener) {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
-				if (PlatformUI.isWorkbenchRunning())
+				if (PlatformUI.isWorkbenchRunning()) {
 					PlatformUI.getWorkbench().addWindowListener(focusListener);
-				else
+					registerCoreJobFamilyIcons();
+				} else {
 					schedule(1000L);
+				}
 				return Status.OK_STATUS;
+			}
+
+			private void registerCoreJobFamilyIcons() {
+				PlatformUI.getWorkbench().getDisplay()
+						.asyncExec(() -> {
+							IProgressService service = PlatformUI.getWorkbench()
+									.getProgressService();
+
+							service.registerIconForFamily(UIIcons.PULL,
+									JobFamilies.PULL);
+							service.registerIconForFamily(UIIcons.REPOSITORY,
+									JobFamilies.AUTO_IGNORE);
+							service.registerIconForFamily(UIIcons.REPOSITORY,
+									JobFamilies.AUTO_SHARE);
+							service.registerIconForFamily(UIIcons.REPOSITORY,
+									JobFamilies.INDEX_DIFF_CACHE_UPDATE);
+							service.registerIconForFamily(UIIcons.REPOSITORY,
+									JobFamilies.REPOSITORY_CHANGED);
+						});
 			}
 		};
 		job.setSystem(true);
