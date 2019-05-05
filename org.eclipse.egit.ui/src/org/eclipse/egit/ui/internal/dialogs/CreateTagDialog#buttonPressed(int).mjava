@@ -18,6 +18,7 @@
 				tagMessage = LEADING_WHITESPACE.matcher(tagMessage)
 						.replaceFirst(""); 			}
 			overwriteTag = overwriteButton.getSelection();
+			annotated = !tagMessageText.getCommitMessage().isEmpty();
 			okPressed();
 		} else {
 			super.buttonPressed(buttonId);

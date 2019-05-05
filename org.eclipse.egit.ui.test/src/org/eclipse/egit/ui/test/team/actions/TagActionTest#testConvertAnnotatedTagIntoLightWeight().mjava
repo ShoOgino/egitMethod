@@ -1,17 +1,17 @@
 	@Test
-	public void testCreateTag() throws Exception {
+	public void testConvertAnnotatedTagIntoLightWeight() throws Exception {
+		assertIsAnnotated("SomeTag", someTagCommit, null);
+
 		SWTBotShell tagDialog = openTagDialog();
 		tagDialog.bot().textWithLabel(UIText.CreateTagDialog_tagName)
 				.setText("SomeTag");
 		assertFalse("Ok should be disabled", tagDialog.bot()
 				.button(UIText.CreateTagDialog_CreateTagButton).isEnabled());
-		tagDialog.bot().button(UIText.CreateTagDialog_clearButton).click();
-		tagDialog.bot().textWithLabel(UIText.CreateTagDialog_tagName)
-				.setText("AnotherTag");
+		tagDialog.bot().checkBox(UIText.CreateTagDialog_overwriteTag).click();
 		tagDialog.bot().styledTextWithLabel(UIText.CreateTagDialog_tagMessage)
-				.setText("Here's the message text");
+				.setText("");
 		tagDialog.bot().button(UIText.CreateTagDialog_CreateTagButton).click();
 		TestUtil.joinJobs(JobFamilies.TAG);
-		assertIsAnnotated("AnotherTag", headCommit, "Here's the message text");
+		assertIsLightweight("SomeTag", headCommit);
 	}
 

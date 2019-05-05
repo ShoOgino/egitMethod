@@ -7,18 +7,18 @@
 
 		advanced.setText(UIText.CreateTagDialog_advanced);
 		advanced.setToolTipText(UIText.CreateTagDialog_advancedToolTip);
-		advanced.setLayoutData(GridDataFactory.fillDefaults().grab(true, false)
-				.create());
+		advanced.setLayoutData(
+				GridDataFactory.fillDefaults().grab(true, false).create());
 
 		Composite advancedComposite = new Composite(advanced, SWT.WRAP);
 		advancedComposite.setLayout(GridLayoutFactory.swtDefaults().create());
-		advancedComposite.setLayoutData(GridDataFactory.fillDefaults()
-				.grab(true, true).create());
+		advancedComposite.setLayoutData(
+				GridDataFactory.fillDefaults().grab(true, true).create());
 
 		Label advancedLabel = new Label(advancedComposite, SWT.WRAP);
 		advancedLabel.setText(UIText.CreateTagDialog_advancedMessage);
-		advancedLabel.setLayoutData(GridDataFactory.fillDefaults()
-				.grab(true, false).create());
+		advancedLabel.setLayoutData(
+				GridDataFactory.fillDefaults().grab(true, false).create());
 
 		commitCombo = new CommitCombo(advancedComposite, SWT.NORMAL);
 		commitCombo.setLayoutData(GridDataFactory.fillDefaults()
@@ -50,7 +50,7 @@
 						commitCombo.add(revCommit);
 
 					if (existingTag != null)
-						commitCombo.setSelectedElement(existingTag.getObject());
+						commitCombo.setSelectedElement(existingTag.getId());
 				}
 				composite.layout(true);
 				composite.getShell().pack();

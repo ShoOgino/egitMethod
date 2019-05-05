@@ -1,0 +1,5 @@
+		public String getName() {
+			if (annotatedTag != null)
+				return annotatedTag.getTagName();
+			return lightweightTag.getName().replaceFirst("^" + Constants.R_TAGS, 					""); 		}
+
