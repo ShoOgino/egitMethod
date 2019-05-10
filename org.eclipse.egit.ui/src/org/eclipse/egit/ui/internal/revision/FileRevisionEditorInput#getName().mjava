@@ -4,7 +4,7 @@
 		if (rev != null) {
 			String identifier;
 			if (rev instanceof CommitFileRevision) {
-				identifier = rev.getContentIdentifier().substring(0, 7);
+				identifier = abbreviate(rev.getContentIdentifier());
 			} else {
 				identifier = rev.getContentIdentifier();
 			}

@@ -1,4 +1,0 @@
-	public FileRevisionEditorInput(IFileState state) {
-		this(state, state);
-	}
-

@@ -5,7 +5,9 @@
 			if (tempName.length() > 200) {
 				tempName = storage.getName();
 			}
-			path = Files.createTempDirectory("egit") 					.resolve(tempName);
+			path = Files
+					.createTempDirectory(Activator.getDefault()
+							.getStateLocation().toFile().toPath(), "egit") 					.resolve(tempName);
 			try (InputStream in = storage.getContents()) {
 				Files.copy(in, path);
 			}
