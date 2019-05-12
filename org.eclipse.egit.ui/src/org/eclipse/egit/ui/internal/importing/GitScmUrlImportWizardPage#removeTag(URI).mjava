@@ -5,9 +5,11 @@
 		int j = ssp.indexOf(';');
 		if (j != -1) {
 			sb.append(ssp.substring(0, j));
-			String[] params = ssp.substring(j).split(";"); 			for (int k = 0; k < params.length; k++)
-				if (params[k].startsWith("tag=")) { 				} else if (params[k].startsWith("version=")) { 				} else if (params[k] != null && !params[k].isEmpty())
-					sb.append(";").append(params[k]); 		} else
+			String[] params = ssp.substring(j).split(";"); 			for (String param : params) {
+				if (param.startsWith("tag=")) {				} else if (param.startsWith("version=")) {				} else if (!param.isEmpty()) {
+					sb.append(";").append(param); 				}
+			}
+		} else
 			sb.append(ssp);
 		return sb.toString();
 	}
