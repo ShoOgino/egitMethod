@@ -1,6 +1,6 @@
 	@Nullable
 	public static KeyStroke getKeystrokeOfBestActiveBindingFor(String commandId) {
-		IBindingService bindingService = AdapterUtils
+		IBindingService bindingService = Adapters
 				.adapt(PlatformUI.getWorkbench(), IBindingService.class);
 		if (bindingService == null) {
 			return null;

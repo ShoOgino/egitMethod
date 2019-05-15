@@ -1,7 +1,7 @@
 	@Nullable
 	protected static IProject getProject(TemplateContext context) {
 		if (IAdaptable.class.isInstance(context)) {
-			return AdapterUtils.adapt(context, IProject.class);
+			return Adapters.adapt(context, IProject.class);
 		}
 		if (Activator.hasJavaPlugin()) {
 			boolean hasPublicMethod = context.getClass().getSimpleName()
