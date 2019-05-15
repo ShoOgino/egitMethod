@@ -13,11 +13,9 @@
 					}
 				}
 			} catch (CoreException e) {
-				Activator
-				.logError(
-						NLS
-						.bind(
-								"An internal error occurred while determining the resources for {0}", saveable.getName()), e); 			}
+				Activator.logError(NLS.bind(
+						"An internal error occurred while determining the resources for {0}", 						saveable.getName()), e);
+			}
 		} else {
 			IFile file = ResourceUtil.getFile(saveable);
 			if (file != null) {

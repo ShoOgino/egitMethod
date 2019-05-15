@@ -8,7 +8,9 @@
 				}
 				if (container.isTeamPrivateMember()) {
 					if (GitTraceLocation.CORE.isActive()) {
-						GitTraceLocation.getTrace().trace(GitTraceLocation.CORE.getLocation(), "notTeamPrivate " + container); 					}
+						GitTraceLocation.getTrace().trace(
+								GitTraceLocation.CORE.getLocation(),
+								"notTeamPrivate " + container); 					}
 					container.setTeamPrivateMember(false);
 				}
 			}
