@@ -1,0 +1,30 @@
+	public static boolean confirmCheckout(Shell shell,
+			Map<Repository, Collection<String>> repoAndPaths,
+			boolean filesOnly) {
+		if (haveChanges(repoAndPaths, filesOnly)) {
+			String question = UIText.DiscardChangesAction_confirmActionMessage;
+			String launch = LaunchFinder
+					.getRunningLaunchConfiguration(repoAndPaths.keySet(), null);
+			if (launch != null) {
+				question = MessageFormat.format(question,
+						"\n\n" + MessageFormat.format( 								UIText.LaunchFinder_RunningLaunchMessage,
+								launch));
+			} else {
+				question = MessageFormat.format(question, ""); 			}
+			Shell parent = shell != null ? shell
+					: PlatformUI.getWorkbench().getModalDialogShellProvider()
+							.getShell();
+			MessageDialog messageDialog = new MessageDialog(parent,
+					UIText.DiscardChangesAction_confirmActionTitle, null,
+					question, MessageDialog.CONFIRM,
+					new String[] {
+							UIText.DiscardChangesAction_discardChangesButtonText,
+							IDialogConstants.CANCEL_LABEL },
+					0);
+			return messageDialog.open() == Window.OK;
+		} else {
+			return !LaunchFinder.shouldCancelBecauseOfRunningLaunches(
+					repoAndPaths.keySet(), null);
+		}
+	}
+
