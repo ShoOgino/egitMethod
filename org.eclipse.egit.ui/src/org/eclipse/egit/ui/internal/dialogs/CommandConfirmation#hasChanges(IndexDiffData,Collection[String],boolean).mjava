@@ -1,5 +1,8 @@
-	private boolean hasChanges(@NonNull IndexDiffData diff,
-			Collection<String> paths) {
+	private static boolean hasChanges(@NonNull IndexDiffData diff,
+			Collection<String> paths, boolean filesOnly) {
+		if (paths.isEmpty()) {
+			return diff.hasChanges();
+		}
 		Set<String> repoPaths = new HashSet<>(paths);
 		if (repoPaths.contains("")) { 			return diff.hasChanges();
 		}
@@ -9,7 +12,7 @@
 				|| containsAny(repoPaths, diff.getRemoved())) {
 			return true;
 		}
-		if (hasDirectories) {
+		if (!filesOnly) {
 			return containsAnyDirectory(repoPaths, diff.getAdded())
 					|| containsAnyDirectory(repoPaths, diff.getChanged())
 					|| containsAnyDirectory(repoPaths, diff.getModified())

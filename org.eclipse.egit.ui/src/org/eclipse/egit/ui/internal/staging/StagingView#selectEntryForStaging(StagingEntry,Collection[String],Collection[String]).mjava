@@ -5,7 +5,14 @@
 		case CHANGED:
 		case REMOVED:
 			break;
-		case CONFLICTING:
+		case CONFLICTING: {
+			if (!entry.getLocation().toFile().exists()) {
+				rmPaths.add(entry.getPath());
+			} else {
+				addPaths.add(entry.getPath());
+			}
+			break;
+		}
 		case MODIFIED:
 		case MODIFIED_AND_CHANGED:
 		case MODIFIED_AND_ADDED:

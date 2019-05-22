@@ -6,11 +6,7 @@
 					"getNavigatables", Void.class); 			baseNavigables.setAccessible(true);
 			return (INavigatable[]) baseNavigables.invoke(mainNavigator,
 					Void.class);
-		} catch (SecurityException e) {
-		} catch (NoSuchMethodException e) {
-		} catch (IllegalArgumentException e) {
-		} catch (IllegalAccessException e) {
-		} catch (InvocationTargetException e) {
+		} catch (SecurityException | NoSuchMethodException | IllegalArgumentException | IllegalAccessException | InvocationTargetException e) {
 		}
 		return new INavigatable[0];
 	}

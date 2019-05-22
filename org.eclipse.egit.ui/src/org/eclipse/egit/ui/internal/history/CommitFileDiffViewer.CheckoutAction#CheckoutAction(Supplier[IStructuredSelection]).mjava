@@ -1,0 +1,6 @@
+		public CheckoutAction(
+				Supplier<IStructuredSelection> selectionProvider) {
+			super(UIText.CommitFileDiffViewer_CheckoutThisVersionMenuLabel);
+			this.selectionProvider = selectionProvider;
+		}
+

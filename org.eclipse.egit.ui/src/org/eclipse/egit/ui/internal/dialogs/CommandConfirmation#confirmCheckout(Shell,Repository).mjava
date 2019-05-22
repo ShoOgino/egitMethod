@@ -1,0 +1,6 @@
+	public static boolean confirmCheckout(Shell shell, Repository repository) {
+		return confirmCheckout(shell,
+				Collections.singletonMap(repository, Collections.emptyList()),
+				true);
+	}
+

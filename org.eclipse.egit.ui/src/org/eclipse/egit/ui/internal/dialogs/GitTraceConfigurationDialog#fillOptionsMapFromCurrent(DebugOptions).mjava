@@ -5,11 +5,8 @@
 			try {
 				URL resource = Platform.getBundle(plugin.getPlugin())
 						.getResource(".options"); 				if (resource != null) {
-					InputStream is = resource.openStream();
-					try {
+					try (InputStream is = resource.openStream()) {
 						props.load(is);
-					} finally {
-						is.close();
 					}
 				}
 			} catch (IOException e) {

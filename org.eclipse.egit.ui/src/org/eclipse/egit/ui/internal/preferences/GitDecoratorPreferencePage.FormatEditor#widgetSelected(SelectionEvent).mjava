@@ -21,7 +21,7 @@
 
 			Object[] result = dialog.getResult();
 
-			for (int i = 0; i < result.length; i++) {
-				text.insert("{" + ((Map.Entry) result[i]).getKey() + "}"); 			}
+			for (Object r : result) {
+				text.insert("{" + ((Map.Entry) r).getKey() + "}"); 			}
 		}
 

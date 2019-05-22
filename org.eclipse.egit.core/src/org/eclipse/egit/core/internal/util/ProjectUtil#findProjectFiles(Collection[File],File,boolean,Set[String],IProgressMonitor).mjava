@@ -30,8 +30,7 @@
 
 		boolean foundProject = false;
 		final String dotProject = IProjectDescription.DESCRIPTION_FILE_NAME;
-		for (int i = 0; i < contents.length; i++) {
-			File file = contents[i];
+		for (File file : contents) {
 			if (file.isFile() && file.getName().equals(dotProject)) {
 				files.add(file);
 				foundProject = true;
@@ -39,16 +38,18 @@
 		}
 		if (foundProject && !searchNested)
 			return true;
-		for (int i = 0; i < contents.length; i++) {
-			if (!contents[i].isDirectory())
+		for (File content : contents) {
+			if (!content.isDirectory()) {
 				continue;
-			if (contents[i].getName().equals(METADATA_FOLDER))
+			}
+			if (content.getName().equals(METADATA_FOLDER)) {
 				continue;
-			String path = contents[i].getAbsolutePath();
+			}
+			String path = content.getAbsolutePath();
 			if (!directoriesVisited.add(path))
 				continue;
-			findProjectFiles(files, contents[i], searchNested,
-					directoriesVisited, pm);
+			findProjectFiles(files, content, searchNested, directoriesVisited,
+					pm);
 		}
 		return true;
 	}

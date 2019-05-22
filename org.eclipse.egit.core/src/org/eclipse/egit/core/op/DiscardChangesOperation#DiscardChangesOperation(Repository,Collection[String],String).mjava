@@ -1,5 +1,6 @@
 	public DiscardChangesOperation(Repository repository,
-			Collection<String> paths) {
+			Collection<String> paths, String revision) {
 		this(Collections.singletonMap(repository, paths));
+		this.revision = revision;
 	}
 
