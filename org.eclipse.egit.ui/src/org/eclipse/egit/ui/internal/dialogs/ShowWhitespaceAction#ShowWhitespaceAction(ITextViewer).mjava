@@ -1,0 +1,4 @@
+	public ShowWhitespaceAction(ITextViewer viewer) {
+		this(viewer, false);
+	}
+
