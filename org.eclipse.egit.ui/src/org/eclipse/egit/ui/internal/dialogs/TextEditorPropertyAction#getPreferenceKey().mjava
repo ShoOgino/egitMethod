@@ -1,0 +1,4 @@
+	protected String getPreferenceKey() {
+		return preferenceKey;
+	}
+

@@ -1,7 +1,0 @@
-		public TextViewerAction(ITextOperationTarget target,
-				int operationCode) {
-			fOperationCode= operationCode;
-			fOperationTarget = target;
-			update();
-		}
-

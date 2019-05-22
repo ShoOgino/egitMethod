@@ -1,9 +1,0 @@
-		@Override
-		public void update() {
-			if (fOperationCode == ITextOperationTarget.REDO) {
-				return;
-			}
-			setEnabled(fOperationTarget != null
-					&& fOperationTarget.canDoOperation(fOperationCode));
-		}
-
