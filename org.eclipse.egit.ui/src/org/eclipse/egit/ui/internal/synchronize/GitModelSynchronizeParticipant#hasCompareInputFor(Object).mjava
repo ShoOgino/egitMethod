@@ -3,7 +3,7 @@
 		if (object instanceof GitModelBlob || object instanceof IFile)
 			return true;
 
-		IResource res = AdapterUtils.adapt(object, IResource.class);
+		IResource res = Adapters.adapt(object, IResource.class);
 		if (res != null && res.getType() == IResource.FILE)
 			return true;
 

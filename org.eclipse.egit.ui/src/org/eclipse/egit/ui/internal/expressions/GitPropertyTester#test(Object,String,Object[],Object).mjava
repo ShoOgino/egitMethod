@@ -1,7 +1,7 @@
 	@Override
 	public boolean test(Object receiver, String property, Object[] args,
 			Object expectedValue) {
-		if ("parentCount".equals(property)) { 			RevCommit commit = AdapterUtils.adapt(receiver, RevCommit.class);
+		if ("parentCount".equals(property)) { 			RevCommit commit = Adapters.adapt(receiver, RevCommit.class);
 			if (commit == null) {
 				return false;
 			}
@@ -12,36 +12,33 @@
 				return computeResult(expectedValue,
 						commit.getParentCount() > 0);
 			}
-		} else if ("isBare".equals(property)) { 			Repository repository = AdapterUtils.adapt(receiver,
-					Repository.class);
+		} else if ("isBare".equals(property)) { 			Repository repository = Adapters.adapt(receiver, Repository.class);
 			if (repository != null) {
 				return computeResult(expectedValue, repository.isBare());
 			}
-		} else if ("isSafe".equals(property)) { 			Repository repository = AdapterUtils.adapt(receiver,
-					Repository.class);
+		} else if ("isSafe".equals(property)) { 			Repository repository = Adapters.adapt(receiver, Repository.class);
 			if (repository != null) {
 				return computeResult(expectedValue, repository
 						.getRepositoryState().equals(RepositoryState.SAFE));
 			}
-		} else if ("canCommit".equals(property)) { 			Repository repository = AdapterUtils.adapt(receiver,
-					Repository.class);
+		} else if ("canCommit".equals(property)) { 			Repository repository = Adapters.adapt(receiver, Repository.class);
 			if (repository != null) {
 				return computeResult(expectedValue,
 						repository.getRepositoryState().canCommit());
 			}
-		} else if ("hasMultipleRefs".equals(property)) { 			IRepositoryCommit commit = AdapterUtils.adapt(receiver,
+		} else if ("hasMultipleRefs".equals(property)) { 			IRepositoryCommit commit = Adapters.adapt(receiver,
 					IRepositoryCommit.class);
 			if (commit != null) {
 				return computeResult(expectedValue,
 						hasMultipleRefs(commit, toRefNames(args)));
 			}
-		} else if ("hasRef".equals(property)) { 			IRepositoryCommit commit = AdapterUtils.adapt(receiver,
+		} else if ("hasRef".equals(property)) { 			IRepositoryCommit commit = Adapters.adapt(receiver,
 					IRepositoryCommit.class);
 			if (commit != null) {
 				return computeResult(expectedValue,
 						hasRef(commit, toRefNames(args)));
 			}
-		} else if ("isStash".equals(property)) { 			RepositoryCommit commit = AdapterUtils.adapt(receiver,
+		} else if ("isStash".equals(property)) { 			RepositoryCommit commit = Adapters.adapt(receiver,
 					RepositoryCommit.class);
 			return computeResult(expectedValue,
 					commit != null && commit.isStash());

@@ -1,0 +1,6 @@
+	public ShowWhitespaceAction(ITextViewer viewer, boolean initiallyOff) {
+		super(UIText.SpellcheckableMessageArea_showWhitespace, viewer,
+				AbstractTextEditor.PREFERENCE_SHOW_WHITESPACE_CHARACTERS,
+				initiallyOff);
+	}
+

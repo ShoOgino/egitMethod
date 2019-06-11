@@ -1,0 +1,13 @@
+	private static List<Ref> getBranches(RevCommit commit,
+			Collection<Ref> allRefs, Repository db, IProgressMonitor monitor)
+			throws MissingObjectException, IncorrectObjectTypeException,
+			IOException {
+		EclipseGitProgressTransformer progress = new EclipseGitProgressTransformer(
+				SubMonitor.convert(monitor, allRefs.size()));
+		try (RevWalk revWalk = new RevWalk(db)) {
+			revWalk.setRetainBody(false);
+			return RevWalkUtils.findBranchesReachableFrom(commit, revWalk,
+					allRefs, progress);
+		}
+	}
+

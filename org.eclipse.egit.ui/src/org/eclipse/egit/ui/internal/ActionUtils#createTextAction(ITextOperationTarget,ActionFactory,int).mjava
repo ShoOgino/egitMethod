@@ -1,0 +1,12 @@
+	public static UpdateableAction createTextAction(
+			ITextOperationTarget target, ActionFactory factory,
+			int operationCode) {
+		if (operationCode == ITextOperationTarget.REDO) {
+			return createGlobalAction(factory,
+					() -> target.doOperation(operationCode), () -> true);
+		}
+		return createGlobalAction(factory,
+				() -> target.doOperation(operationCode),
+				() -> target.canDoOperation(operationCode));
+	}
+
