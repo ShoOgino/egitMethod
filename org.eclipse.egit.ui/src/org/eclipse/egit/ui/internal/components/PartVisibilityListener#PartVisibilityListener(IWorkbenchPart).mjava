@@ -1,0 +1,4 @@
+	public PartVisibilityListener(IWorkbenchPart part) {
+		myself = part;
+	}
+

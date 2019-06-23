@@ -9,7 +9,7 @@
 			}
 			IWorkbenchPart part = partRef.getPart(false);
 			StructuredSelection sel = getSelectionOfPart(part);
-			if (isViewHidden) {
+			if (!isVisible()) {
 				lastSelection = sel;
 			} else {
 				lastSelection = null;
