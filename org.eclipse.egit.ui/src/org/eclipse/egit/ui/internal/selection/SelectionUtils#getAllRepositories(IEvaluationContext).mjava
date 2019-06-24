@@ -1,0 +1,6 @@
+	@NonNull
+	public static Repository[] getAllRepositories(
+			@Nullable IEvaluationContext evaluationContext) {
+		return getAllRepositories(getSelection(evaluationContext));
+	}
+
