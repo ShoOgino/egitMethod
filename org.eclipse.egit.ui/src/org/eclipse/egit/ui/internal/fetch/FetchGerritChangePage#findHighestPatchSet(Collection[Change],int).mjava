@@ -1,5 +1,8 @@
 	private Change findHighestPatchSet(Collection<Change> changes,
 			int changeNumber) {
+		if (changes == null) {
+			return null;
+		}
 		for (Change fromGerrit : changes) {
 			int num = fromGerrit.getChangeNumber().intValue();
 			if (num < changeNumber) {
