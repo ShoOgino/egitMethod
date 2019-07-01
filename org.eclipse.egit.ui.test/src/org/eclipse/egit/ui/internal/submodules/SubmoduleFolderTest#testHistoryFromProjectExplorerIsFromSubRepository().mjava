@@ -9,7 +9,7 @@
 		((org.eclipse.team.internal.ui.history.GenericHistoryView) viewPart)
 				.setLinkingEnabled(true);
 		TestUtil.navigateTo(TestUtil.getExplorerTree(), PROJ1).select();
-		assertRowCountInHistory(PROJ1, 3);
+		assertRowCountInHistory(PROJ1, 4);
 		TestUtil.navigateTo(TestUtil.getExplorerTree(),
 				childFolder.getFullPath().segments()).select();
 		assertRowCountInHistory(childFolder.getFullPath() + " from submodule",
