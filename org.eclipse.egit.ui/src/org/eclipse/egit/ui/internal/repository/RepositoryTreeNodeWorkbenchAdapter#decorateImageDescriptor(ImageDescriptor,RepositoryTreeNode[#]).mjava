@@ -20,13 +20,13 @@
 				TagNode tagNode = (TagNode) node;
 				compareString = tagNode.getCommitId();
 			} else if (refName.startsWith(Constants.R_REMOTES)) {
-				ObjectId id = repository.resolve(refName);
-				if (id == null) {
-					return base;
-				}
-				try (RevWalk rw = new RevWalk(repository)) {
-					RevCommit commit = rw.parseCommit(id);
-					compareString = commit.getId().name();
+				ObjectId objectId = leaf.getObjectId();
+				if (objectId != null) {
+					String leafName = objectId.getName();
+					if (leafName.equals(branchName)) {
+						return new DecorationOverlayDescriptor(base,
+								UIIcons.OVR_CHECKEDOUT, IDecoration.TOP_LEFT);
+					}
 				}
 			} else if (refName.equals(Constants.HEAD)) {
 				return new DecorationOverlayDescriptor(base,
