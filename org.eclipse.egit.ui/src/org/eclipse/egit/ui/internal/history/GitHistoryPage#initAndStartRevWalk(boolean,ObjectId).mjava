@@ -1,0 +1,66 @@
+	private void initAndStartRevWalk(boolean forceNewWalk,
+			ObjectId newSelectedObj)
+			throws IllegalStateException {
+		try {
+			if (trace)
+				GitTraceLocation.getTrace().traceEntry(
+						GitTraceLocation.HISTORYVIEW.getLocation());
+
+			if (input == null)
+				return;
+			Repository db = input.getRepository();
+			if (repoHasBeenRemoved(db)) {
+				clearHistoryPage();
+				return;
+			}
+
+			AnyObjectId headId = resolveHead(db, true);
+			if (headId == null) {
+				currentHeadId = null;
+				currentFetchHeadId = null;
+				selectedObj = null;
+				currentRepo = db;
+				clearViewers();
+				return;
+			}
+			AnyObjectId fetchHeadId = resolveFetchHead(db);
+
+			List<FilterPath> paths = buildFilterPaths(input.getItems(), input
+					.getFileList(), db);
+
+			boolean repoChanged = false;
+			if (!db.equals(currentRepo)) {
+				repoChanged = true;
+				currentRepo = db;
+			}
+
+			boolean objChanged = false;
+			if (newSelectedObj != null && newSelectedObj != selectedObj) {
+				objChanged = !newSelectedObj.equals(selectedObj);
+			}
+			selectedObj = newSelectedObj;
+
+			if (forceNewWalk || repoChanged || objChanged
+					|| shouldRedraw(headId, fetchHeadId, paths)) {
+				releaseGenerateHistoryJob();
+
+				if (repoChanged) {
+					clearViewers();
+				}
+
+				SWTWalk walk = createNewWalk(db, headId, fetchHeadId);
+
+				fileDiffWalker = createFileWalker(walk, db, paths);
+
+				loadInitialHistory(walk);
+			} else {
+				graph.setHistoryPageInput(input);
+			}
+		} finally {
+			if (trace)
+				GitTraceLocation.getTrace().traceExit(
+						GitTraceLocation.HISTORYVIEW.getLocation());
+
+		}
+	}
+
