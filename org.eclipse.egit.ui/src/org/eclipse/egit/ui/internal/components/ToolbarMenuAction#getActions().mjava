@@ -1,0 +1,3 @@
+	@NonNull
+	protected abstract Collection<IAction> getActions();
+

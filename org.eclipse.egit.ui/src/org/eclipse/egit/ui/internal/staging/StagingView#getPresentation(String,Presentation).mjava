@@ -1,0 +1,11 @@
+	private static Presentation getPresentation(String value,
+			Presentation def) {
+		if (!value.isEmpty()) {
+			try {
+				return Presentation.valueOf(value);
+			} catch (IllegalArgumentException e) {
+			}
+		}
+		return def;
+	}
+
