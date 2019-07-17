@@ -9,6 +9,7 @@
 
 		selectionWithProj1Common();
 
-		new File(gitDir, Constants.LOGS + "/" + Constants.HEAD).delete();
+		assertTrue(new File(gitDir, Constants.LOGS + "/" + Constants.HEAD)
+				.delete());
 	}
 
