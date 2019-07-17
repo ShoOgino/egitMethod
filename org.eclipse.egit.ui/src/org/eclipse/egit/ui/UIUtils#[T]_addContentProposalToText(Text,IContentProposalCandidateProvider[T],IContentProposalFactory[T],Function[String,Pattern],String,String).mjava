@@ -36,8 +36,7 @@
 						resultList.add(proposal);
 					}
 				}
-				return resultList.toArray(new IContentProposal[resultList
-						.size()]);
+				return resultList.toArray(new IContentProposal[0]);
 			}
 		};
 

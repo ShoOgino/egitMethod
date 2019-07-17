@@ -1,4 +1,4 @@
 	public DiffRegion[] getRegions() {
-		return this.regions.toArray(new DiffRegion[this.regions.size()]);
+		return this.regions.toArray(new DiffRegion[0]);
 	}
 
