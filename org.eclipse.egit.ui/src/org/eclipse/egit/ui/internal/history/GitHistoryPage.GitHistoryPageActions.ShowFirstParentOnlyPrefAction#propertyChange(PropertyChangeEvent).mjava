@@ -1,0 +1,26 @@
+			@Override
+			public void propertyChange(PropertyChangeEvent event) {
+				Repository repo = historyPage.getCurrentRepo();
+
+				final String prefKey = UIPreferences.RESOURCEHISTORY_SHOW_FIRST_PARENT_ONLY_DEFAULT;
+
+				if (repo == null) {
+					if (prefKey.equals(event.getProperty())) {
+						applyNewState(historyPage.store.getBoolean(prefKey));
+					}
+					return;
+				}
+
+				String repoSpecificKey = getRepoSpecificKey(repo, prefKey);
+
+				if (prefKey.equals(event.getProperty())) {
+					if (!historyPage.store.contains(repoSpecificKey)) {
+						applyNewState(historyPage.store.getBoolean(prefKey));
+					}
+				}
+
+				if (P_REPOSITORY.equals(event.getProperty())) {
+					applyNewState(historyPage.isShowFirstParentOnly());
+				}
+			}
+

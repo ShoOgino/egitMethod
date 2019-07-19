@@ -1,0 +1,6 @@
+	private void unsetRepoSpecificPreference(String repositoryPath,
+			String key) {
+		String prefString = getRepoSpecificKey(repositoryPath, key);
+		store.setToDefault(prefString);
+	}
+

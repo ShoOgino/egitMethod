@@ -1,0 +1,12 @@
+			private void applyNewState(boolean newState) {
+				Control control = historyPage.getControl();
+				if (control != null && !control.isDisposed()) {
+					control.getDisplay().asyncExec(() -> {
+						if (!control.isDisposed()) {
+							setChecked(newState);
+						}
+					});
+				}
+				historyPage.refresh();
+			}
+

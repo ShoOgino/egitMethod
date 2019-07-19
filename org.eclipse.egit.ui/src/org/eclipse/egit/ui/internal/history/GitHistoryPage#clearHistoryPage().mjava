@@ -1,5 +1,5 @@
 	private void clearHistoryPage() {
-		currentRepo = null;
+		setCurrentRepo(null);
 		selectedObj = null;
 		name = ""; 		input = null;
 		commentViewer.setInput(null);
