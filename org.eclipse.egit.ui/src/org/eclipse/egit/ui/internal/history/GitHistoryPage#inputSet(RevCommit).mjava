@@ -111,8 +111,9 @@
 
 			boolean filtersActive = inResources != null || inFiles != null;
 			actions.showAllRepoVersionsAction.setEnabled(filtersActive);
-			actions.showAllProjectVersionsAction.setEnabled(filtersActive);
-			actions.showAllFolderVersionsAction.setEnabled(inResources != null);
+			actions.showAllProjectVersionsAction
+					.setEnabled(inResources != null);
+			actions.showAllFolderVersionsAction.setEnabled(filtersActive);
 			actions.showAllResourceVersionsAction.setEnabled(filtersActive);
 
 			setErrorMessage(null);
