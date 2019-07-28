@@ -1,0 +1,4 @@
+	public CheckoutResult getCheckoutResult() {
+		return checkoutResult;
+	}
+

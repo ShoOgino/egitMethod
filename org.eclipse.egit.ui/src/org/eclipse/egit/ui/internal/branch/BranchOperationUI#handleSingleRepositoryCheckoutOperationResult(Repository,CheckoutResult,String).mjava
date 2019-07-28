@@ -1,5 +1,5 @@
-	private void handleSingleRepositoryCheckoutOperationResult(
-			Repository repository, CheckoutResult result) {
+	public static void handleSingleRepositoryCheckoutOperationResult(
+			Repository repository, CheckoutResult result, String target) {
 
 		if (result.getStatus() == CheckoutResult.Status.CONFLICTS) {
 			PlatformUI.getWorkbench().getDisplay().asyncExec(() -> {
