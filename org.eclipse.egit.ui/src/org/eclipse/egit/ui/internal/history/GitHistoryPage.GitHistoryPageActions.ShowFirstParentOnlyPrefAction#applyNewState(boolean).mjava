@@ -7,6 +7,6 @@
 						}
 					});
 				}
-				historyPage.refresh();
+				historyPage.refresh(historyPage.selectedCommit());
 			}
 

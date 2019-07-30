@@ -96,6 +96,7 @@
 			@Override
 			public void widgetDisposed(final DisposeEvent e) {
 				clipboard.dispose();
+				allCommitsArray = null;
 			}
 		});
 
