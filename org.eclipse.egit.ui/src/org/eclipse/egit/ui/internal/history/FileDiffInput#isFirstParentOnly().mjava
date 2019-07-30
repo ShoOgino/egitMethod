@@ -1,0 +1,4 @@
+	public boolean isFirstParentOnly() {
+		return firstParentOnly;
+	}
+
