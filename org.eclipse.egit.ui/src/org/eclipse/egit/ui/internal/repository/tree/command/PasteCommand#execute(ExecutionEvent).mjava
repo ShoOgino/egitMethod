@@ -43,7 +43,8 @@
 		} finally {
 			clip.dispose();
 			if (errorMessage != null) {
-				Activator.showError(errorMessage, null);
+				MessageDialog.openError(getShell(event),
+						UIText.RepositoriesView_CannotPaste, errorMessage);
 			}
 		}
 	}
