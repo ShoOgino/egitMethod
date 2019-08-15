@@ -1,5 +1,6 @@
 	public DecoratableWorkingSet(ResourceMapping mapping) throws IOException {
-		super(null); 
+		super(mapping);
+
 		this.mapping = mapping;
 		IProject[] projects = mapping.getProjects();
 
@@ -38,6 +39,10 @@
 			repositories.add(repository);
 		}
 
+		if (repositories.isEmpty()) {
+			return;
+		}
+		someShared = true;
 		DecoratableResourceMapping.decorateRepositoryInformation(this,
 				repositories);
 	}

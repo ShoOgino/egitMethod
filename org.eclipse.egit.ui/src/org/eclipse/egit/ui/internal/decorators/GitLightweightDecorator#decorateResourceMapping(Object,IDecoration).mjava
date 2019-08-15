@@ -7,7 +7,7 @@
 
 		boolean isWorkingSet = mapping.getModelObject() instanceof IWorkingSet;
 
-		IDecoratableResource decoRes;
+		DecoratableResourceGroup decoRes;
 		try {
 			if (isWorkingSet) {
 				decoRes = new DecoratableWorkingSet(mapping);
@@ -17,6 +17,10 @@
 		} catch (IOException e) {
 			throw new CoreException(Activator.createErrorStatus(
 					NLS.bind(UIText.Decorator_exceptionMessage, element), e));
+		}
+
+		if (!decoRes.hasSharedResources()) {
+			return;
 		}
 
 		if (!decoRes.isTracked() && isWorkingSet) {

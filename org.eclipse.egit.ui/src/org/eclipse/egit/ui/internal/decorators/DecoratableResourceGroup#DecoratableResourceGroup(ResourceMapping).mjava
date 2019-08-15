@@ -1,0 +1,3 @@
+	protected DecoratableResourceGroup(ResourceMapping mapping) {
+		super(null); 	}
+

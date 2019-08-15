@@ -1,6 +1,7 @@
 	public DecoratableResourceMapping(ResourceMapping mapping)
 			throws IOException {
-		super(null); 
+		super(mapping);
+
 		Set<Repository> repositories = new HashSet<>();
 		Set<StagingState> stagingStates = new HashSet<>();
 
@@ -61,6 +62,10 @@
 			setStagingState(StagingState.MODIFIED);
 		}
 
+		if (repositories.isEmpty()) {
+			return;
+		}
+		someShared = true;
 		decorateRepositoryInformation(this, repositories);
 	}
 
