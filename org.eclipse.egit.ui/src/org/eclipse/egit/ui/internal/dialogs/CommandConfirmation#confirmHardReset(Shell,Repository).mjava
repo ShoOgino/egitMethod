@@ -4,15 +4,12 @@
 				.getRunningLaunchConfiguration(Collections.singleton(repo),
 						null);
 		if (launch != null) {
-			question = MessageFormat.format(question,
-					"\n\n" + MessageFormat.format( 							UIText.LaunchFinder_RunningLaunchMessage,
-							launch));
-		} else {
-			question = MessageFormat.format(question, ""); 		}
+			question += "\n\n" + MessageFormat.format( 					UIText.LaunchFinder_RunningLaunchMessage, launch);
+		}
 
 		MessageDialog messageDialog = new MessageDialog(shell,
-				UIText.ResetTargetSelectionDialog_ResetQuestion, null, question,
-				MessageDialog.QUESTION,
+				UIText.ResetTargetSelectionDialog_ResetConfirmTitle, null,
+				question, MessageDialog.QUESTION,
 				new String[] {
 						UIText.CommandConfirmationHardResetDialog_resetButtonLabel,
 						IDialogConstants.CANCEL_LABEL },

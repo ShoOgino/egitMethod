@@ -6,11 +6,8 @@
 			String launch = LaunchFinder
 					.getRunningLaunchConfiguration(repoAndPaths.keySet(), null);
 			if (launch != null) {
-				question = MessageFormat.format(question,
-						"\n\n" + MessageFormat.format( 								UIText.LaunchFinder_RunningLaunchMessage,
-								launch));
-			} else {
-				question = MessageFormat.format(question, ""); 			}
+				question += "\n\n" + MessageFormat.format( 						UIText.LaunchFinder_RunningLaunchMessage, launch);
+			}
 			Shell parent = shell != null ? shell
 					: PlatformUI.getWorkbench().getModalDialogShellProvider()
 							.getShell();
