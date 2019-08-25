@@ -11,7 +11,8 @@
 					.getType() != RepositoryTreeNodeType.REPO) {
 				Repository repo = ((RepositoryTreeNode) element)
 						.getRepository();
-				result.append(" - ").append(GitLabels.getPlainShortLabel(repo)); 			}
+				result.append(" [").append(GitLabels.getPlainShortLabel(repo)) 						.append(']');
+			}
 		}
 		return result.toString();
 	}
