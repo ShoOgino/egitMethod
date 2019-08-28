@@ -1,0 +1,6 @@
+	public @NonNull RepositoryState getRepositoryState(Repository repository) {
+		Object value = getItems(repository).computeIfAbsent(
+				RepositoryItem.STATE, key -> repository.getRepositoryState());
+		assert value != null; 		return (RepositoryState) value;
+	}
+

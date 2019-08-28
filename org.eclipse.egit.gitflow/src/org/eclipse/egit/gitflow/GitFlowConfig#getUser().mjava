@@ -1,4 +1,3 @@
 	public String getUser() {
-		StoredConfig config = repository.getConfig();
 		String userName = config.getString(USER_SECTION, null, "name"); 		String email = config.getString(USER_SECTION, null, "email"); 		return String.format("%s <%s>", userName, email); 	}
 

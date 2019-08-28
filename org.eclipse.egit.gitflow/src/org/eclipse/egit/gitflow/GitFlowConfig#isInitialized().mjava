@@ -1,5 +1,4 @@
-	public boolean isInitialized() throws IOException {
-		StoredConfig config = repository.getConfig();
+	public boolean isInitialized() {
 		Set<String> sections = config.getSections();
 		return sections.contains(GITFLOW_SECTION);
 	}

@@ -1,0 +1,36 @@
+	private static RemoteConfig getConfiguredRemote(String branch,
+			Config config) {
+		if (branch == null) {
+			return null;
+		}
+		String remoteName;
+		if (ObjectId.isId(branch)) {
+			remoteName = Constants.DEFAULT_REMOTE_NAME;
+		} else {
+			remoteName = config.getString(
+					ConfigConstants.CONFIG_BRANCH_SECTION, branch,
+					ConfigConstants.CONFIG_REMOTE_SECTION);
+		}
+		List<RemoteConfig> allRemotes;
+		try {
+			allRemotes = RemoteConfig.getAllRemoteConfigs(config);
+		} catch (URISyntaxException e) {
+			allRemotes = new ArrayList<>();
+		}
+
+		RemoteConfig defaultConfig = null;
+		RemoteConfig configuredConfig = null;
+		for (RemoteConfig cfg : allRemotes) {
+			if (cfg.getName().equals(Constants.DEFAULT_REMOTE_NAME)) {
+				defaultConfig = cfg;
+			}
+			if (remoteName != null && cfg.getName().equals(remoteName)) {
+				configuredConfig = cfg;
+			}
+		}
+
+		RemoteConfig configToUse = configuredConfig != null ? configuredConfig
+				: defaultConfig;
+		return configToUse;
+	}
+

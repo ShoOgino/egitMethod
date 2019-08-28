@@ -1,0 +1,4 @@
+	public GitFlowConfig(@NonNull StoredConfig config) {
+		this.config = config;
+	}
+

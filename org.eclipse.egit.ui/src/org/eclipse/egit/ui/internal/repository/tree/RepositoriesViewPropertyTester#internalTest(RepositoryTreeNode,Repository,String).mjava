@@ -39,7 +39,8 @@
 
 				RemoteConfig rconfig;
 				try {
-					rconfig = new RemoteConfig(repository.getConfig(),
+					rconfig = new RemoteConfig(
+							RepositoryStateCache.INSTANCE.getConfig(repository),
 							configName);
 				} catch (URISyntaxException e2) {
 					return false;
@@ -53,7 +54,8 @@
 
 				RemoteConfig rconfig;
 				try {
-					rconfig = new RemoteConfig(repository.getConfig(),
+					rconfig = new RemoteConfig(
+							RepositoryStateCache.INSTANCE.getConfig(repository),
 							configName);
 				} catch (URISyntaxException e2) {
 					return false;
@@ -63,19 +65,20 @@
 								.getURIs().isEmpty());
 			}
 		}
-		if (property.equals("canStash")) { 			return repository.getRepositoryState().canCommit();
+		if (property.equals("canStash")) { 			RepositoryState state = RepositoryStateCache.INSTANCE
+					.getRepositoryState(repository);
+			return state.canCommit();
 		}
-		if (property.equals("canMerge")) { 			if (repository.getRepositoryState() != RepositoryState.SAFE) {
+		if (property.equals("canMerge")) { 			RepositoryState state = RepositoryStateCache.INSTANCE
+					.getRepositoryState(repository);
+			if (state != RepositoryState.SAFE) {
 				return false;
 			}
-			try {
-				String branch = repository.getFullBranch();
-				if (branch == null) {
-					return false; 				}
-				return branch.startsWith(Constants.R_HEADS);
-			} catch (IOException e) {
-				return false;
-			}
+			String branch = RepositoryStateCache.INSTANCE
+					.getFullBranchName(repository);
+			if (branch == null) {
+				return false; 			}
+			return branch.startsWith(Constants.R_HEADS);
 		}
 
 		if ("isSubmodule".equals(property)) { 			RepositoryTreeNode<?> parent = node.getParent();

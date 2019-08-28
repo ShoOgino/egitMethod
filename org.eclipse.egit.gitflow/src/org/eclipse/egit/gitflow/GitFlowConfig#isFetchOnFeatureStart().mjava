@@ -1,5 +1,4 @@
 	public boolean isFetchOnFeatureStart() {
-		StoredConfig config = repository.getConfig();
 		return config.getBoolean(GITFLOW_SECTION, FEATURE_START_SUBSECTION,
 				FEATURE_START_FETCH_KEY, false);
 	}

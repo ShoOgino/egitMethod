@@ -18,13 +18,15 @@
 			}
 		} else if ("isSafe".equals(property)) { 			Repository repository = Adapters.adapt(receiver, Repository.class);
 			if (repository != null) {
-				return computeResult(expectedValue, repository
-						.getRepositoryState().equals(RepositoryState.SAFE));
+				return computeResult(expectedValue,
+						RepositoryState.SAFE.equals(RepositoryStateCache.INSTANCE
+								.getRepositoryState(repository)));
 			}
 		} else if ("canCommit".equals(property)) { 			Repository repository = Adapters.adapt(receiver, Repository.class);
 			if (repository != null) {
-				return computeResult(expectedValue,
-						repository.getRepositoryState().canCommit());
+				RepositoryState state = RepositoryStateCache.INSTANCE
+						.getRepositoryState(repository);
+				return computeResult(expectedValue, state.canCommit());
 			}
 		} else if ("hasMultipleRefs".equals(property)) { 			IRepositoryCommit commit = Adapters.adapt(receiver,
 					IRepositoryCommit.class);

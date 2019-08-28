@@ -1,5 +1,4 @@
-	public GitFlowConfig(Repository repository) {
-		Assert.isNotNull(repository);
-		this.repository = repository;
+	public GitFlowConfig(@NonNull Repository repository) {
+		this(repository.getConfig());
 	}
 

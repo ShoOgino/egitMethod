@@ -7,7 +7,8 @@
 			}
 			if ("canPushToGerrit".equals(property)) { 				return canPushToGerrit(repository);
 			}
-			RepositoryState state = repository.getRepositoryState();
+			RepositoryState state = RepositoryStateCache.INSTANCE
+					.getRepositoryState(repository);
 
 			if ("canAbortRebase".equals(property)) { 				return canAbortRebase(state);
 			}

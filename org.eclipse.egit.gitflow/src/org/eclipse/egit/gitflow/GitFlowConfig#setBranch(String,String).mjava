@@ -1,5 +1,4 @@
 	public void setBranch(String branchName, String value) {
-		StoredConfig config = repository.getConfig();
 		config.setString(GITFLOW_SECTION, BRANCH_SECTION, branchName, value);
 	}
 
