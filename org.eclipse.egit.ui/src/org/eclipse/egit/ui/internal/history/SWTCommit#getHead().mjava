@@ -1,0 +1,4 @@
+	public Ref getHead() throws IOException {
+		return walk.getHead();
+	}
+

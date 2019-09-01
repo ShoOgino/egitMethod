@@ -1,0 +1,8 @@
+	public Ref getHead() throws IOException {
+		if (!headInitialized) {
+			head = determineHead();
+			headInitialized = true;
+		}
+		return head;
+	}
+
