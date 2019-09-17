@@ -3,7 +3,7 @@
 			final IProgressMonitor monitor) throws TeamException {
 		try {
 
-			List<IProject> importedProjects = new ArrayList<IProject>();
+			List<IProject> importedProjects = new ArrayList<>();
 
 			final IWorkspace workspace = ResourcesPlugin.getWorkspace();
 			final IWorkspaceRoot root = workspace.getRoot();
