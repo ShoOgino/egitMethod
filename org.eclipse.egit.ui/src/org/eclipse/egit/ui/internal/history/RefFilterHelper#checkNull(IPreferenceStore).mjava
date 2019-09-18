@@ -1,0 +1,6 @@
+	private static @NonNull IPreferenceStore checkNull(IPreferenceStore store) {
+		if (store == null) {
+			throw new NullPointerException("Preference store is null."); 		}
+		return store;
+	}
+

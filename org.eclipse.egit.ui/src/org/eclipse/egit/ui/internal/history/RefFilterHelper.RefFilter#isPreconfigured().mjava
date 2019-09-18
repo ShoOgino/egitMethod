@@ -1,0 +1,4 @@
+		public boolean isPreconfigured() {
+			return preconfigured;
+		}
+

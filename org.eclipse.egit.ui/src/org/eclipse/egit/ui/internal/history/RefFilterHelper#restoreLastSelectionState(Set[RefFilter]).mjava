@@ -1,0 +1,7 @@
+	public void restoreLastSelectionState(Set<RefFilter> filters) {
+		for(RefFilter filter : filters) {
+			filter.setSelected(getLastSelectedFilters()
+					.contains(filter.getFilterString()));
+		}
+	}
+

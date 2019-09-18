@@ -12,7 +12,9 @@
 					return;
 				}
 
-				String repoSpecificKey = getRepoSpecificKey(repo, prefKey);
+				String repoSpecificKey = Activator.getDefault()
+						.getRepositoryUtil()
+						.getRepositorySpecificPreferenceKey(repo, prefKey);
 
 				if (prefKey.equals(event.getProperty())) {
 					if (!historyPage.store.contains(repoSpecificKey)) {

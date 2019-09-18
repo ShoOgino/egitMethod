@@ -1,0 +1,21 @@
+	public Set<RefFilter> getRefFilters() {
+		Map<String, RefFilter> filters = new HashMap<>();
+		addPreconfigueredFilters(filters);
+
+		for (String filter : getConfiguredFilters()) {
+			if (filter == null || filter.isEmpty()) {
+				continue;
+			}
+			filters.put(filter, new RefFilter(filter, false));
+		}
+
+		for (String filter : getSelectedFilters()) {
+			if (filter == null || filter.isEmpty()) {
+				continue;
+			}
+			filters.putIfAbsent(filter, new RefFilter(filter, false));
+			filters.get(filter).setSelected(true);
+		}
+		return new HashSet<>(filters.values());
+	}
+

@@ -1,0 +1,15 @@
+	public boolean isOnlyHEADSelected(Set<RefFilter> filters) {
+		for (RefFilter filter : filters) {
+			if (filter.isSelected()) {
+				if (!filtersForHEAD.contains(filter)) {
+					return false;
+				}
+			} else {
+				if (filtersForHEAD.contains(filter)) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+

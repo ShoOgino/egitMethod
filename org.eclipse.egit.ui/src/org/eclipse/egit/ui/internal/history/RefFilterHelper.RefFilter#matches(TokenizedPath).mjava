@@ -1,0 +1,5 @@
+		public boolean matches(TokenizedPath refPath) {
+			return patternWithExpandedMacros().matchPath(refPath,
+					true);
+		}
+

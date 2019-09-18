@@ -1,0 +1,6 @@
+	public void selectExactlyAllBranchesAndTags(Set<RefFilter> filters) {
+		for (RefFilter filter : filters) {
+			filter.setSelected(filtersForAllBranchesAndTags.contains(filter));
+		}
+	}
+

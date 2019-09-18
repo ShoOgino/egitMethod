@@ -1,0 +1,9 @@
+		private RefFilter(String filterString, boolean isPreconfigured) {
+			if (filterString == null || filterString.isEmpty()) {
+				throw new IllegalArgumentException(
+						"Filter string is null or empty."); 			}
+			this.filterString = filterString;
+			this.filterPattern = new TokenizedPattern(filterString);
+			this.preconfigured = isPreconfigured;
+		}
+

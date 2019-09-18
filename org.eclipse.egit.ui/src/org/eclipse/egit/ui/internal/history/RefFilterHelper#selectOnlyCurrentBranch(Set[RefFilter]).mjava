@@ -1,0 +1,6 @@
+	public void selectOnlyCurrentBranch(Set<RefFilter> filters) {
+		for (RefFilter filter : filters) {
+			filter.setSelected(filtersForCurrentBranch.contains(filter));
+		}
+	}
+

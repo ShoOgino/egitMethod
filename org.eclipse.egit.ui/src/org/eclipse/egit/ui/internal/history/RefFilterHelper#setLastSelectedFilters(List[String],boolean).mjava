@@ -1,0 +1,6 @@
+	public void setLastSelectedFilters(List<String> filters, boolean save) {
+		setFiltersInPref(
+				UIPreferences.RESOURCEHISTORY_LAST_SELECTED_REF_FILTERS,
+				filters, save);
+	}
+

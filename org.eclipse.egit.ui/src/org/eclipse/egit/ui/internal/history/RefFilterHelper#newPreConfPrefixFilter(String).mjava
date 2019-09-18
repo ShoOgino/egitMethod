@@ -1,0 +1,3 @@
+	private RefFilter newPreConfPrefixFilter(String prefix) {
+		return newPreConfFilter(prefix + "**"); 	}
+

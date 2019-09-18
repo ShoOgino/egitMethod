@@ -1,0 +1,15 @@
+	public boolean isOnlyCurrentBranchSelected(Set<RefFilter> filters) {
+		for (RefFilter filter : filters) {
+			if (filter.isSelected()) {
+				if (!filtersForCurrentBranch.contains(filter)) {
+					return false;
+				}
+			} else {
+				if (filtersForCurrentBranch.contains(filter)) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+

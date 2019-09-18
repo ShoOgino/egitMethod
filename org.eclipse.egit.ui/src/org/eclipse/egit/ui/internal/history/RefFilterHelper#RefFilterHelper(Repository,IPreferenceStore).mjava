@@ -1,0 +1,9 @@
+	public RefFilterHelper(@NonNull Repository repository,
+			@NonNull IPreferenceStore store) {
+		this.repository = repository;
+		this.store = store;
+		setupPreconfigueredFilters();
+		setupMacros();
+		initDefaultsForRepo();
+	}
+

@@ -1,0 +1,11 @@
+		public void setFilterString(String filterString) {
+			if (filterString == null || filterString.isEmpty()) {
+				throw new IllegalArgumentException(
+						"Filter string is null or empty."); 			}
+			if (preconfigured) {
+				throw new IllegalStateException(
+						"Cannot change a preconfigured filter."); 			}
+			this.filterString = filterString;
+			this.filterPattern = new TokenizedPattern(filterString);
+		}
+

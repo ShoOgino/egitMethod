@@ -1,0 +1,6 @@
+	public void selectOnlyHEAD(Set<RefFilter> filters) {
+		for (RefFilter filter : filters) {
+			filter.setSelected(filtersForHEAD.contains(filter));
+		}
+	}
+

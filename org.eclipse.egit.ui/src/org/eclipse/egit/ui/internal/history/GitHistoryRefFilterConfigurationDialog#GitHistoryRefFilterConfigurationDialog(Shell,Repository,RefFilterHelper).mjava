@@ -1,0 +1,7 @@
+	public GitHistoryRefFilterConfigurationDialog(Shell parentShell,
+			Repository repo, RefFilterHelper helper) {
+		super(parentShell);
+		this.repo = repo;
+		this.helper = helper;
+	}
+

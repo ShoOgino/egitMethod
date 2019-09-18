@@ -1,0 +1,8 @@
+	private void initDefaultsForRepo() {
+		setDefaultSelectionBasedOnShowAllBranches();
+		initDefaultForRepo(UIPreferences.RESOURCEHISTORY_REF_FILTERS);
+		initDefaultForRepo(UIPreferences.RESOURCEHISTORY_SELECTED_REF_FILTERS);
+		initDefaultForRepo(
+				UIPreferences.RESOURCEHISTORY_LAST_SELECTED_REF_FILTERS);
+	}
+

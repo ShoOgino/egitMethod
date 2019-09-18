@@ -1,0 +1,4 @@
+		public RefFilter(String filterString) {
+			this(filterString, false);
+		}
+

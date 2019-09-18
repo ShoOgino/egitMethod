@@ -1,0 +1,13 @@
+	public boolean isExactlyAllBranchesAndTagsSelected(Set<RefFilter> filters) {
+		for (RefFilter filter : filters) {
+			if (filter.isSelected()) {
+				if (!filtersForAllBranchesAndTags.contains(filter))
+					return false;
+			} else {
+				if (filtersForAllBranchesAndTags.contains(filter))
+					return false;
+			}
+		}
+		return true;
+	}
+

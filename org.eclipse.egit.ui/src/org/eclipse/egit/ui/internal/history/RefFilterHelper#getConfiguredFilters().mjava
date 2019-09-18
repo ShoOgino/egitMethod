@@ -1,0 +1,4 @@
+	public List<String> getConfiguredFilters() {
+		return getFiltersFromPref(UIPreferences.RESOURCEHISTORY_REF_FILTERS);
+	}
+

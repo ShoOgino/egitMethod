@@ -1,0 +1,5 @@
+		public RefFilter(RefFilter original) {
+			this(original.getFilterString(), original.isPreconfigured());
+			this.selected = original.isSelected();
+		}
+

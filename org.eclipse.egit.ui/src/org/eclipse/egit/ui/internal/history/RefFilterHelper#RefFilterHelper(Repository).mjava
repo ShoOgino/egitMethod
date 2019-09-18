@@ -1,0 +1,5 @@
+	public RefFilterHelper(@NonNull Repository repository) {
+		this(repository,
+				checkNull(Activator.getDefault().getPreferenceStore()));
+	}
+

@@ -1,0 +1,6 @@
+		public RefSelectionDialog(Shell parentShell, Repository repository) {
+			super(parentShell, repository, "", SHOW_LOCAL_BRANCHES 					| SHOW_REMOTE_BRANCHES | SHOW_TAGS | SHOW_REFERENCES
+					| SELECT_CURRENT_REF | EXPAND_LOCAL_BRANCHES_NODE
+					| EXPAND_REMOTE_BRANCHES_NODE);
+		}
+

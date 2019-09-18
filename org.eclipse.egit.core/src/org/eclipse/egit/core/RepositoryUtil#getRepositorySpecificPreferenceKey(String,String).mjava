@@ -1,0 +1,4 @@
+	public String getRepositorySpecificPreferenceKey(String repositoryId,
+			String preferenceKey) {
+		return preferenceKey + "_" + repositoryId; 	}
+

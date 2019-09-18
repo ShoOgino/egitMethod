@@ -1,0 +1,10 @@
+	public void saveSelectionStateAsLastSelectionState(Set<RefFilter> filters) {
+		List<String> selected = new ArrayList<>();
+		for(RefFilter filter : filters) {
+			if (filter.isSelected()) {
+				selected.add(filter.getFilterString());
+			}
+		}
+		setLastSelectedFilters(selected, true);
+	}
+
