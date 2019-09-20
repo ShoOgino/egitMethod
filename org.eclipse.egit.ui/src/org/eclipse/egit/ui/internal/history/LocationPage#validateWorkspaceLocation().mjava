@@ -1,5 +1,6 @@
 	private boolean validateWorkspaceLocation() {
-		if (wsPathText.getText().equals("")){ 			if (wsRadio.getSelection() && wsBrowsed)
+		if (wsPathText.getText().isEmpty()) {
+			if (wsRadio.getSelection() && wsBrowsed)
 				setErrorMessage(UIText.GitCreatePatchWizard_WorkspacePatchEnterValidFileName);
 			else
 				setErrorMessage(UIText.GitCreatePatchWizard_WorkspacePatchSelectByBrowsing);

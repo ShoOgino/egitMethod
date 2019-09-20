@@ -12,7 +12,9 @@
 				modelProvider = GitChangeSetModelProvider.ID;
 			} else {
 				String lastSelectedModel = preferenceStore.getString(UIPreferences.SYNC_VIEW_LAST_SELECTED_MODEL);
-				if (!"".equals(lastSelectedModel)) 					modelProvider = lastSelectedModel;
+				if (lastSelectedModel != null && !lastSelectedModel.isEmpty()) {
+					modelProvider = lastSelectedModel;
+				}
 			}
 		}
 

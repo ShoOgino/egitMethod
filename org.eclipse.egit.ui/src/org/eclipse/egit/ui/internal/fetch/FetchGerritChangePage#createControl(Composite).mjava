@@ -117,7 +117,8 @@
 			@Override
 			public void widgetSelected(SelectionEvent selectionEvent) {
 				String txt = branchText.getText();
-				String refToMark = "".equals(txt) ? null : Constants.R_HEADS + txt; 				AbstractBranchSelectionDialog dlg = new BranchEditDialog(
+				String refToMark = txt.isEmpty() ? null : Constants.R_HEADS + txt;
+				AbstractBranchSelectionDialog dlg = new BranchEditDialog(
 						checkoutGroup.getShell(), repository, refToMark);
 				if (dlg.open() == Window.OK) {
 					branchText.setText(Repository.shortenRefName(dlg

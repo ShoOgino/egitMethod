@@ -13,7 +13,8 @@
 						String launchCmd = getShowInSystemExplorerCommand(
 								canonicalPath);
 
-						if ("".equals(launchCmd)) { 							return Status.CANCEL_STATUS;
+						if (launchCmd.isEmpty()) {
+							return Status.CANCEL_STATUS;
 						}
 
 						File dir = canonicalPath.getParentFile();

@@ -25,7 +25,8 @@
 					RepositoryMapping mapping = RepositoryMapping.getMapping(resource);
 					if (mapping != null && mapping.getRepository() == currentRepository) {
 						String path = mapping.getRepoRelativePath(resource);
-						if ("".equals(path)) 							addPaths.add("."); 						else
+						if (path == null || path.isEmpty())
+							addPaths.add("."); 						else
 							addPaths.add(path);
 					}
 				}
