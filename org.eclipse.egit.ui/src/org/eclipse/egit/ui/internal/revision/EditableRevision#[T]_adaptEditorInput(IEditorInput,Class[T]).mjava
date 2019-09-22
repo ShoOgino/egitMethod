@@ -1,0 +1,5 @@
+	protected <T> T adaptEditorInput(IEditorInput editorInput,
+			Class<T> adapter) {
+		return null;
+	}
+
