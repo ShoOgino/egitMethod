@@ -41,7 +41,6 @@
 			public void windowActivated(IWorkbenchWindow window) {
 				updateUiState();
 				rcs.schedule(500);
-				refreshJob.triggerRefresh();
 			}
 		};
 		Job job = new Job(UIText.Activator_setupFocusListener) {

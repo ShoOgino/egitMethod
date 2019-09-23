@@ -1,8 +1,0 @@
-		void triggerRefresh() {
-			if (GitTraceLocation.REPOSITORYCHANGESCANNER.isActive()) {
-				GitTraceLocation.getTrace().trace(
-						GitTraceLocation.REPOSITORYCHANGESCANNER.getLocation(),
-						"Triggered refresh"); 			}
-			schedule();
-		}
-
