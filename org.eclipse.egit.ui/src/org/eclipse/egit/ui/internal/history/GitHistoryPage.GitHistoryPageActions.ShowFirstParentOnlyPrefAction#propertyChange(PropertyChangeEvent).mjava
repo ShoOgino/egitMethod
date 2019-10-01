@@ -6,7 +6,8 @@
 
 				if (repo == null) {
 					if (prefKey.equals(event.getProperty())) {
-						applyNewState(historyPage.store.getBoolean(prefKey));
+						applyNewState(historyPage.store.getBoolean(prefKey),
+								true);
 					}
 					return;
 				}
@@ -15,12 +16,13 @@
 
 				if (prefKey.equals(event.getProperty())) {
 					if (!historyPage.store.contains(repoSpecificKey)) {
-						applyNewState(historyPage.store.getBoolean(prefKey));
+						applyNewState(historyPage.store.getBoolean(prefKey),
+								true);
 					}
 				}
 
 				if (P_REPOSITORY.equals(event.getProperty())) {
-					applyNewState(historyPage.isShowFirstParentOnly());
+					applyNewState(historyPage.isShowFirstParentOnly(), false);
 				}
 			}
 
