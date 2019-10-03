@@ -1,0 +1,3 @@
+	public abstract Control setEditor(ViewerCell cell, Composite parent,
+			Control control, Object element);
+

@@ -1,4 +1,0 @@
-	protected boolean isEnabled(final Object element) {
-		return true;
-	}
-
