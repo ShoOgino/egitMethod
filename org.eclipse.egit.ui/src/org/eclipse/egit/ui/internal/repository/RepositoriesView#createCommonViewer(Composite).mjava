@@ -7,6 +7,9 @@
 				TreeSelection sel = (TreeSelection) event.getSelection();
 				RepositoryTreeNode element = (RepositoryTreeNode) sel
 						.getFirstElement();
+				if (element == null) {
+					return;
+				}
 				if (element.getRepository().isBare()) {
 					return;
 				}
