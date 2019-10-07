@@ -5,6 +5,7 @@
 					beforeHide();
 				}
 				super.setVisible(visible);
+				workAroundBug551067(visible);
 				bars.updateActionBars();
 				if (visible && toolbar != null) {
 					openCloseToggle.setChecked(true);
