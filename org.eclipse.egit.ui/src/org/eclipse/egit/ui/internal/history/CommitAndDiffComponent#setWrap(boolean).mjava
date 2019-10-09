@@ -1,4 +1,4 @@
-	private void setWrap(boolean wrap) {
+	public void setWrap(boolean wrap) {
 		commentViewer.getTextWidget().setWordWrap(wrap);
 		diffViewer.getTextWidget().setWordWrap(wrap);
 		resizeCommentAndDiffScrolledComposite();

@@ -1,0 +1,4 @@
+	public CommitMessageViewer getCommitViewer() {
+		return commentViewer;
+	}
+

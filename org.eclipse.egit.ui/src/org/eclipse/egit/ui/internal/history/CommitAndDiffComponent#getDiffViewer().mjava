@@ -1,0 +1,4 @@
+	public DiffViewer getDiffViewer() {
+		return diffViewer;
+	}
+
