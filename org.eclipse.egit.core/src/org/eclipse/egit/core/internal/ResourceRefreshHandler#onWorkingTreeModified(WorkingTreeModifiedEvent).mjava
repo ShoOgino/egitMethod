@@ -11,7 +11,9 @@
 					GitTraceLocation.REFRESH.getLocation(),
 					"Triggered refresh for repo: " + repo); 		}
 		try {
-			refreshRepository(event);
+			refreshRepository(event,
+					event.getRepository().getWorkTree().getAbsoluteFile(),
+					null);
 		} catch (OperationCanceledException oe) {
 			return;
 		} catch (CoreException e) {

@@ -1,26 +1,34 @@
 	private Map<IResource, Boolean> computeResources(
 			Collection<String> modified, Collection<String> deleted,
-			IPath workTree, Map<IPath, IProject> roots) {
+			IPath workTree, Map<IPath, IProject> roots,
+			IProgressMonitor monitor) {
 		if (GitTraceLocation.REFRESH.isActive()) {
 			GitTraceLocation.getTrace().trace(
 					GitTraceLocation.REFRESH.getLocation(),
 					"Calculating refresh for repository " + workTree + ' ' 							+ modified.size() + ' ' + deleted.size());
 		}
+		SubMonitor progress = SubMonitor.convert(monitor,
+				modified.size() + deleted.size());
 		Set<IPath> fullRefreshes = new HashSet<>();
 		Map<IPath, IFile> handled = new HashMap<>();
 		Map<IResource, Boolean> result = new HashMap<>();
 		Stream.concat(modified.stream(), deleted.stream()).forEach(path -> {
+			if (progress.isCanceled()) {
+				throw new OperationCanceledException();
+			}
 			IPath filePath = "/".equals(path) ? workTree 					: workTree.append(path);
 			IProject project = roots.get(filePath);
 			if (project != null) {
 				handled.put(filePath, null);
 				result.put(project, Boolean.FALSE);
+				progress.worked(1);
 				return;
 			}
 			if (fullRefreshes.stream()
 					.anyMatch(full -> full.isPrefixOf(filePath))
 					|| !roots.keySet().stream()
 							.anyMatch(root -> root.isPrefixOf(filePath))) {
+				progress.worked(1);
 				return;
 			}
 			IPath containerPath;
@@ -84,6 +92,7 @@
 					result.put(file.getParent(), Boolean.FALSE);
 				}
 			}
+			progress.worked(1);
 		});
 
 		if (GitTraceLocation.REFRESH.isActive()) {

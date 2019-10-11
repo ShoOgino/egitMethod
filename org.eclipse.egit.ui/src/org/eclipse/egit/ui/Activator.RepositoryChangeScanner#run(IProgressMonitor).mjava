@@ -15,6 +15,7 @@
 			monitor.beginTask(UIText.Activator_scanningRepositories,
 					repos.length);
 			try {
+				events = new ArrayList<>();
 				for (Repository repo : repos) {
 					if (monitor.isCanceled()) {
 						break;
@@ -39,12 +40,16 @@
 					}
 					monitor.worked(1);
 				}
+				if (!monitor.isCanceled()) {
+					refresher.trigger(events);
+				}
+				events.clear();
 			} catch (IOException e) {
 				if (GitTraceLocation.REPOSITORYCHANGESCANNER.isActive()) {
 					GitTraceLocation.getTrace().trace(
 							GitTraceLocation.REPOSITORYCHANGESCANNER
 									.getLocation(),
-							"Stopped rescheduling " + getName() + "job"); 				}
+							"Stopped rescheduling " + getName() + " job"); 				}
 				return createErrorStatus(UIText.Activator_scanError, e);
 			} finally {
 				monitor.done();

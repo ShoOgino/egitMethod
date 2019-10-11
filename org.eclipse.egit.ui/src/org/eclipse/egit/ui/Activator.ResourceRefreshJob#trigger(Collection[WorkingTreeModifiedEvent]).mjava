@@ -1,0 +1,30 @@
+		public void trigger(Collection<WorkingTreeModifiedEvent> events) {
+			boolean haveChanges = false;
+			for (WorkingTreeModifiedEvent event : events) {
+				if (event.isEmpty()) {
+					continue;
+				}
+				Repository repo = event.getRepository();
+				if (repo == null || repo.isBare()) {
+					continue; 				}
+				File gitDir = repo.getDirectory();
+				synchronized (repositoriesChanged) {
+					WorkingTreeChanges changes = repositoriesChanged
+							.get(gitDir);
+					if (changes == null) {
+						repositoriesChanged.put(gitDir,
+								new WorkingTreeChanges(event));
+					} else {
+						changes.merge(event);
+						if (changes.isEmpty()) {
+							repositoriesChanged.remove(gitDir);
+						}
+					}
+				}
+				haveChanges = true;
+			}
+			if (haveChanges) {
+				schedule();
+			}
+		}
+
