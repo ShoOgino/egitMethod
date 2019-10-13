@@ -8,10 +8,6 @@
 		if (base == null) {
 			return null;
 		}
-		try {
-			return decorateImageDescriptor(base, node);
-		} catch (IOException e) {
-			return base;
-		}
+		return decorateImageDescriptor(base, node);
 	}
 

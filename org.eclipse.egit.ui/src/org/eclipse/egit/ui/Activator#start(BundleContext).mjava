@@ -7,7 +7,7 @@
 		context.registerService(DebugOptionsListener.class.getName(), this,
 				props);
 
-		RepositoryStateCache.INSTANCE.initialize();
+		SelectionRepositoryStateCache.INSTANCE.initialize();
 		setupRepoChangeScanner();
 		setupFocusHandling();
 		setupCredentialsProvider();

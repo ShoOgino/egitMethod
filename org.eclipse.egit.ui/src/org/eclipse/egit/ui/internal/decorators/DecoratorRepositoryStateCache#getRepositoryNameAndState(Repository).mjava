@@ -1,0 +1,11 @@
+	public String getRepositoryNameAndState(Repository repository) {
+		String repoName = Activator.getDefault().getRepositoryUtil()
+				.getRepositoryName(repository);
+		RepositoryState state = getRepositoryState(repository);
+		if (state != RepositoryState.SAFE) {
+			return repoName + '|' + state.getDescription();
+		} else {
+			return repoName;
+		}
+	}
+

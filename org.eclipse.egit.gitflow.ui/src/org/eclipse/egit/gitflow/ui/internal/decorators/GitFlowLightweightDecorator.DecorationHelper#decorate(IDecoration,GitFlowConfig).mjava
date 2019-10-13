@@ -1,0 +1,5 @@
+		public void decorate(IDecoration decoration, GitFlowConfig config)
+				throws IOException {
+			decorateIcons(decoration, config);
+		}
+

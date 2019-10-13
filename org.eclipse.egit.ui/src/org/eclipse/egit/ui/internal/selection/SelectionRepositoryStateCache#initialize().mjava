@@ -1,6 +1,8 @@
+	@Override
 	public void initialize() {
 		IEclipseContext applicationContext = PlatformUI.getWorkbench()
 				.getService(IEclipseContext.class);
-		applicationContext.runAndTrack(new ContextListener(stopped, cache));
+		applicationContext
+				.runAndTrack(new ContextListener(stopped, this::clear));
 	}
 

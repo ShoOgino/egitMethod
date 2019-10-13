@@ -4,7 +4,7 @@
 		if (repo == null)
 			return false;
 
-		RepositoryState state = RepositoryStateCache.INSTANCE
+		RepositoryState state = SelectionRepositoryStateCache.INSTANCE
 				.getRepositoryState(repo);
 		return state.isRebasing()
 				|| RebaseCurrentRefCommand.isEnabledForState(repo, state);

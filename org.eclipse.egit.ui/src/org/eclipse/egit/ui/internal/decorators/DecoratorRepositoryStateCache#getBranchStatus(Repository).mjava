@@ -1,0 +1,22 @@
+	public String getBranchStatus(Repository repository) {
+		String label = branchStateLabels
+				.computeIfAbsent(repository.getDirectory(), dir -> {
+					String branchName = getFullBranchName(repository);
+					if (branchName == null) {
+						return ""; 					}
+					BranchTrackingStatus status = null;
+					try {
+						status = BranchTrackingStatus.of(repository,
+								branchName);
+					} catch (IOException e) {
+					}
+					if (status == null) {
+						return ""; 					}
+					if (status.getAheadCount() == 0
+							&& status.getBehindCount() == 0) {
+						return ""; 					}
+					return GitLabels.formatBranchTrackingStatus(status);
+				});
+		return StringUtils.isEmptyOrNull(label) ? null : label;
+	}
+
