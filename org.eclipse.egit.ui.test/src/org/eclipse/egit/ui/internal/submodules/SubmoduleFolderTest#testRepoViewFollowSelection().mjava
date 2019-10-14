@@ -1,10 +1,13 @@
 	@Test
 	public void testRepoViewFollowSelection() throws Exception {
+		ICommandService srv = CommonUtils.getService(PlatformUI.getWorkbench(),
+				ICommandService.class);
+		State commandState = srv.getCommand(ToggleLinkWithSelectionCommand.ID)
+				.getState(RegistryToggleState.STATE_ID);
+		Boolean followsSelection = (Boolean) commandState.getValue();
+		commandState.setValue(Boolean.TRUE);
 		SWTBotView view = TestUtil.showView(RepositoriesView.VIEW_ID);
 		TestUtil.joinJobs(REPO_VIEW_REFRESH);
-		view.toolbarButton(
-				UTIL.getPluginLocalizedValue("LinkWithSelectionCommand"))
-				.click();
 		try {
 			SWTBotTree projectExplorerTree = TestUtil.getExplorerTree();
 			SWTBotTreeItem node = TestUtil.navigateTo(projectExplorerTree,
@@ -38,9 +41,7 @@
 			assertTrue("Selected node not under parent repository",
 					parentFound[0]);
 		} finally {
-			view.toolbarButton(
-					UTIL.getPluginLocalizedValue("LinkWithSelectionCommand"))
-					.click();
+			commandState.setValue(followsSelection);
 		}
 	}
 

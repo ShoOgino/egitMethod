@@ -1,4 +1,0 @@
-	public void setReactOnSelection(boolean reactOnSelection) {
-		this.reactOnSelection = reactOnSelection;
-	}
-

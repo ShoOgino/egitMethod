@@ -19,7 +19,5 @@
 		getProjectItem(projectExplorerTree, PROJ1).select();
 
 		assertTrue(tree.selection().get(0, 0).equals(PROJ1));
-
-		toggleLinkWithSelection();
 	}
 

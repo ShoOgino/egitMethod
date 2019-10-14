@@ -1,4 +1,4 @@
 	public boolean isHierarchical() {
-		return branchHierarchyMode;
+		return ((Boolean) branchHierarchy.getValue()).booleanValue();
 	}
 
