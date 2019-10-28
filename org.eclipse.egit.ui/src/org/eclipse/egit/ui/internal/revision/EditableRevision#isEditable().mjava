@@ -1,5 +1,10 @@
 	@Override
 	public boolean isEditable() {
+		IFileRevision revision = getFileRevision();
+		if (revision instanceof IndexFileRevision
+				&& ((IndexFileRevision) revision).isGitlink()) {
+			return false;
+		}
 		return true;
 	}
 

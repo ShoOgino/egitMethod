@@ -1,0 +1,9 @@
+	public GitBlobStorage(Repository repository, String path, ObjectId blob,
+			CheckoutMetadata metadata, boolean isGitlink) {
+		this.db = repository;
+		this.path = path;
+		this.blobId = blob;
+		this.metadata = metadata;
+		this.isGitlink = isGitlink;
+	}
+

@@ -1,17 +1,17 @@
-	private ObjectId locateBlobObjectId(DirCache cache) {
+	private DirCacheEntry locateEntry(DirCache cache) {
 		int firstIndex = cache.findEntry(path);
 		if (firstIndex < 0)
 			return null;
 
 		DirCacheEntry firstEntry = cache.getEntry(firstIndex);
 		if (stage == FIRST_AVAILABLE || firstEntry.getStage() == stage)
-			return firstEntry.getObjectId();
+			return firstEntry;
 
 		int nextIndex = cache.nextEntry(firstIndex);
 		for (int i = firstIndex; i < nextIndex; i++) {
 			DirCacheEntry entry = cache.getEntry(i);
 			if (entry.getStage() == stage)
-				return entry.getObjectId();
+				return entry;
 		}
 		return null;
 	}

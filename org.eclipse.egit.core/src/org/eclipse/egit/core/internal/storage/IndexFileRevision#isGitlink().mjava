@@ -1,0 +1,4 @@
+	public boolean isGitlink() {
+		return isGitlink;
+	}
+
