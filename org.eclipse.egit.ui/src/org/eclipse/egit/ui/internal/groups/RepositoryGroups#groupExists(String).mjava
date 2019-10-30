@@ -1,0 +1,5 @@
+	public boolean groupExists(String groupName) {
+		return groupMap.values().stream()
+				.anyMatch(group -> group.getName().equals(groupName));
+	}
+

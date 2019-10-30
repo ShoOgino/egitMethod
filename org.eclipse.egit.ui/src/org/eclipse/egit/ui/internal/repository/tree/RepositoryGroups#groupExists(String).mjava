@@ -1,7 +1,0 @@
-	public boolean groupExists(String groupName)
-			throws IllegalArgumentException {
-		checkGroupName(groupName);
-		return groupMap.values().stream()
-				.anyMatch(group -> group.getName().equals(groupName));
-	}
-
