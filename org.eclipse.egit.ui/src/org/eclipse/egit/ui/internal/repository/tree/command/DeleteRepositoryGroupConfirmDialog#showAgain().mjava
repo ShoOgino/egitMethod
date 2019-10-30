@@ -1,0 +1,4 @@
+	public boolean showAgain() {
+		return shouldShowAgain;
+	}
+
