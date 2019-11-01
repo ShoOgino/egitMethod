@@ -25,10 +25,10 @@
 			boolean indexDiffAvailable = indexDiffAvailable(indexDiff);
 			boolean noConflicts = noConflicts(indexDiff);
 
-			titleNode = new RepositoryNode(null, repository);
-			form.setText(
-					titleLabelProvider.getStyledText(titleNode).getString());
 			if (repositoryChanged) {
+				titleNode = new RepositoryNode(null, repository);
+				form.setText(titleLabelProvider.getStyledText(titleNode)
+						.getString());
 				resetPathsToExpand();
 				removeRepositoryListeners();
 				refsChangedListener = repository.getListenerList()
