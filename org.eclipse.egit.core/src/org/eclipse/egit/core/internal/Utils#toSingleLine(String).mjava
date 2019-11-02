@@ -1,0 +1,3 @@
+	public static String toSingleLine(String text) {
+		return VERTICAL_SPACES.matcher(text).replaceAll(" "); 	}
+
