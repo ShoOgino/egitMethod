@@ -1,7 +1,10 @@
-	private void loadInitialHistory(@NonNull RevWalk walk) {
+	private void loadInitialHistory(@NonNull RevWalk walk, RevCommit toShow) {
 		job = new GenerateHistoryJob(this, walk, resources);
 		job.setRule(pageSchedulingRule);
 		job.setLoadHint(INITIAL_ITEM);
+		if (toShow != null) {
+			job.setLoadHint(toShow);
+		}
 		if (trace)
 			GitTraceLocation.getTrace().trace(
 					GitTraceLocation.HISTORYVIEW.getLocation(),
