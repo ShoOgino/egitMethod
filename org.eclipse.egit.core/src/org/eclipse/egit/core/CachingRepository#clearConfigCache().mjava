@@ -1,0 +1,5 @@
+	void clearConfigCache() {
+		Map<File, CachedConfig> cache = CACHED_CONFIG.get();
+		cache.remove(getDirectory());
+	}
+

@@ -1,0 +1,4 @@
+	public CachingRepository(BaseRepositoryBuilder options) throws IOException {
+		super(options);
+	}
+

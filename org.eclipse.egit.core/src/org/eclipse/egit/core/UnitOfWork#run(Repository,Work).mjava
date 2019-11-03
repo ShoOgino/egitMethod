@@ -1,0 +1,7 @@
+	public static void run(Repository repository, Work work)
+			throws IOException {
+		try (ConfigScope scope = new ConfigScope(repository)) {
+			work.run();
+		}
+	}
+

@@ -1,0 +1,25 @@
+	void cacheConfig(boolean doCache) {
+		Map<File, CachedConfig> cache = CACHED_CONFIG.get();
+		CachedConfig cfg = cache.get(getDirectory());
+		if (cfg == null) {
+			if (!doCache) {
+				return;
+			}
+			cfg = new CachedConfig();
+			cache.put(getDirectory(), cfg);
+		}
+		if (!doCache) {
+			if (cfg.level > 0) {
+				if (--cfg.level == 0) {
+					cache.remove(getDirectory());
+				}
+			} else {
+				Activator.logWarning(MessageFormat.format(
+						CoreText.CachingRepository_cacheLevelZero,
+						getDirectory()), null);
+			}
+		} else if (doCache) {
+			cfg.level++;
+		}
+	}
+

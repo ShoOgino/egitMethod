@@ -1,0 +1,4 @@
+	public CachingRepository(String filename) throws IOException {
+		super(filename);
+	}
+

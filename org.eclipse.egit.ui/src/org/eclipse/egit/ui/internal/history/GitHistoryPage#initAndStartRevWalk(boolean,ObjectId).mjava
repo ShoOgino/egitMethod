@@ -1,10 +1,9 @@
 	private void initAndStartRevWalk(boolean forceNewWalk,
-			ObjectId newSelectedObj)
-			throws IllegalStateException {
+			ObjectId newSelectedObj) throws IllegalStateException {
 		try {
 			if (trace)
-				GitTraceLocation.getTrace().traceEntry(
-						GitTraceLocation.HISTORYVIEW.getLocation());
+				GitTraceLocation.getTrace()
+						.traceEntry(GitTraceLocation.HISTORYVIEW.getLocation());
 
 			if (input == null) {
 				return;
@@ -17,60 +16,63 @@
 
 			Assert.isNotNull(db);
 
-			AnyObjectId headId = resolveHead(db, true);
-			if (headId == null) {
-				currentHeadId = null;
-				currentFetchHeadId = null;
-				selectedObj = null;
-				setCurrentRepo(db);
-				clearViewers();
-				return;
-			}
-			AnyObjectId fetchHeadId = resolveFetchHead(db);
-
-			List<FilterPath> paths = buildFilterPaths(input.getItems(), input
-					.getFileList(), db);
-
-			boolean repoChanged = false;
-			if (!db.equals(getCurrentRepo())) {
-				repoChanged = true;
-				setCurrentRepo(db);
-			}
-
-			boolean objChanged = false;
-			if (newSelectedObj != null && newSelectedObj != selectedObj) {
-				objChanged = !newSelectedObj.equals(selectedObj);
-			}
-			selectedObj = newSelectedObj;
-
-			boolean headChanged = !headId.equals(currentHeadId);
-			boolean pathsChanged = pathChanged(pathFilters, paths);
-			boolean settingsChanged = updateSettings();
-			boolean fetchHeadChanged = currentShowAdditionalRefs
-					&& fetchHeadId != null
-					&& !fetchHeadId.equals(currentFetchHeadId);
-			if (forceNewWalk || repoChanged || objChanged || headChanged
-					|| fetchHeadChanged || pathsChanged || settingsChanged) {
-				releaseGenerateHistoryJob();
-
-				if (repoChanged) {
+			UnitOfWork.execute(db, () -> {
+				AnyObjectId headId = resolveHead(db, true);
+				if (headId == null) {
+					currentHeadId = null;
+					currentFetchHeadId = null;
+					selectedObj = null;
+					setCurrentRepo(db);
 					clearViewers();
+					return;
+				}
+				AnyObjectId fetchHeadId = resolveFetchHead(db);
+
+				List<FilterPath> paths = buildFilterPaths(input.getItems(),
+						input.getFileList(), db);
+
+				boolean repoChanged = false;
+				if (!db.equals(getCurrentRepo())) {
+					repoChanged = true;
+					setCurrentRepo(db);
 				}
 
-				SWTWalk walk = createNewWalk(db, headId, fetchHeadId);
-
-				fileDiffWalker = createFileWalker(walk, db, paths);
-
-				RevCommit toShow = null;
-				if (headChanged) {
-					toShow = toRevCommit(walk, headId);
-				} else if (fetchHeadChanged) {
-					toShow = toRevCommit(walk, fetchHeadId);
+				boolean objChanged = false;
+				if (newSelectedObj != null && newSelectedObj != selectedObj) {
+					objChanged = !newSelectedObj.equals(selectedObj);
 				}
-				loadInitialHistory(walk, toShow);
-			} else {
-				graph.setHistoryPageInput(input);
-			}
+				selectedObj = newSelectedObj;
+
+				boolean headChanged = !headId.equals(currentHeadId);
+				boolean pathsChanged = pathChanged(pathFilters, paths);
+				boolean settingsChanged = updateSettings();
+				boolean fetchHeadChanged = currentShowAdditionalRefs
+						&& fetchHeadId != null
+						&& !fetchHeadId.equals(currentFetchHeadId);
+				if (forceNewWalk || repoChanged || objChanged || headChanged
+						|| fetchHeadChanged || pathsChanged
+						|| settingsChanged) {
+					releaseGenerateHistoryJob();
+
+					if (repoChanged) {
+						clearViewers();
+					}
+
+					SWTWalk walk = createNewWalk(db, headId, fetchHeadId);
+
+					fileDiffWalker = createFileWalker(walk, db, paths);
+
+					RevCommit toShow = null;
+					if (headChanged) {
+						toShow = toRevCommit(walk, headId);
+					} else if (fetchHeadChanged) {
+						toShow = toRevCommit(walk, fetchHeadId);
+					}
+					loadInitialHistory(walk, toShow);
+				} else {
+					graph.setHistoryPageInput(input);
+				}
+			});
 		} finally {
 			if (trace)
 				GitTraceLocation.getTrace().traceExit(

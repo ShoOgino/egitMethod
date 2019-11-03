@@ -1,0 +1,6 @@
+	public static <T> T get(Repository repository, Supplier<? extends T> work) {
+		try (ConfigScope scope = new ConfigScope(repository)) {
+			return work.get();
+		}
+	}
+

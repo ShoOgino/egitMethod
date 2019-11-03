@@ -1,0 +1,7 @@
+	public static <T> T run(Repository repository,
+			WorkWithResult<? extends T> work) throws IOException {
+		try (ConfigScope scope = new ConfigScope(repository)) {
+			return work.get();
+		}
+	}
+

@@ -1,0 +1,11 @@
+		public ConfigScope(Repository repository) {
+			Repository toCache = repository;
+			if (repository instanceof RepositoryHandle) {
+				toCache = ((RepositoryHandle) repository).getDelegate();
+			}
+			if (toCache instanceof CachingRepository) {
+				repo = (CachingRepository) toCache;
+				repo.cacheConfig(true);
+			}
+		}
+
