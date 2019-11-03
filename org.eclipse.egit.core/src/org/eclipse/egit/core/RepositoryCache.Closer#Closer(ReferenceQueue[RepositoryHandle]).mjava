@@ -1,0 +1,5 @@
+		public Closer(ReferenceQueue<RepositoryHandle> queue) {
+			this.queue = queue;
+			setDaemon(true);
+			setName("Git Repository Closer"); 		}
+

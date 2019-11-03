@@ -1,0 +1,6 @@
+	private static void fireEvent(Repository repo,
+			RepositoryEvent<? extends RepositoryListener> event) {
+		event.setRepository(repo);
+		repo.getListenerList().dispatch(event);
+	}
+

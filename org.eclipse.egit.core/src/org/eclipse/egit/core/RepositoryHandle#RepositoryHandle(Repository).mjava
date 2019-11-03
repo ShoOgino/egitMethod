@@ -1,0 +1,8 @@
+	RepositoryHandle(Repository delegate) {
+		super(new RepositoryBuilder());
+		Assert.isLegal(!(delegate instanceof RepositoryHandle),
+				"Delegate of a RepositoryHandle must not be another RepositoryHandle"); 		this.delegate = delegate;
+		addListeners(listeners, delegate.getListenerList(),
+				new WeakReference<>(this));
+	}
+

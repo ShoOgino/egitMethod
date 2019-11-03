@@ -1,19 +1,21 @@
 	public Repository lookupRepository(final File gitDir) throws IOException {
 		File normalizedGitDir = new Path(gitDir.getAbsolutePath()).toFile();
 		synchronized (repositoryCache) {
-			Reference<Repository> r = repositoryCache.get(normalizedGitDir);
+			RepositoryReference r = repositoryCache.get(normalizedGitDir);
 			if (r == null) {
-				Repository result = FileRepositoryBuilder
+				Repository inner = FileRepositoryBuilder
 						.create(normalizedGitDir);
+				RepositoryHandle result = new RepositoryHandle(inner);
 				repositoryCache.put(normalizedGitDir,
-						new WeakReference<>(result));
+						new RepositoryReference(result, inner, queue));
 				return result;
 			} else {
 				Repository result = r.get();
 				if (result != null && result.getDirectory().exists()) {
 					return result;
 				} else {
-					repositoryCache.remove(normalizedGitDir);
+					Closer.closeReference(
+							repositoryCache.remove(normalizedGitDir));
 				}
 			}
 		}

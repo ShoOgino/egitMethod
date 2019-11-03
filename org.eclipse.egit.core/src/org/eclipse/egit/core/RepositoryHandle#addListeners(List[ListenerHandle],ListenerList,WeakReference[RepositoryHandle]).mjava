@@ -1,0 +1,30 @@
+	private static void addListeners(List<ListenerHandle> listeners,
+			ListenerList list, WeakReference<RepositoryHandle> ref) {
+		listeners.add(list.addConfigChangedListener(event -> {
+			Repository repo = ref.get();
+			if (repo != null) {
+				fireEvent(repo, new ConfigChangedEvent());
+			}
+		}));
+		listeners.add(list.addIndexChangedListener(event -> {
+			Repository repo = ref.get();
+			if (repo != null) {
+				fireEvent(repo, new IndexChangedEvent(event.isInternal()));
+			}
+		}));
+		listeners.add(list.addRefsChangedListener(event -> {
+			Repository repo = ref.get();
+			if (repo != null) {
+				fireEvent(repo, new RefsChangedEvent());
+			}
+		}));
+		listeners.add(list.addWorkingTreeModifiedListener(event -> {
+			Repository repo = ref.get();
+			if (repo != null) {
+				fireEvent(repo,
+						new WorkingTreeModifiedEvent(event.getModified(),
+						event.getDeleted()));
+			}
+		}));
+	}
+
