@@ -1,0 +1,8 @@
+	public boolean pasteInEditor() {
+		if (textCellEditor != null && textCellEditor.isActivated()) {
+			textCellEditor.performPaste();
+			return true;
+		}
+		return false;
+	}
+

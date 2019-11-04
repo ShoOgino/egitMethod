@@ -1,5 +1,9 @@
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
+		RepositoriesView view = getView(event);
+		if (view.pasteInEditor()) {
+			return null;
+		}
 		String errorMessage = null;
 
 		Clipboard clip = new Clipboard(getShell(event).getDisplay());

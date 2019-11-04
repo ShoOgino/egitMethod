@@ -1,0 +1,4 @@
+	public DefaultToolTip getToolTip() {
+		return errorPopup;
+	}
+

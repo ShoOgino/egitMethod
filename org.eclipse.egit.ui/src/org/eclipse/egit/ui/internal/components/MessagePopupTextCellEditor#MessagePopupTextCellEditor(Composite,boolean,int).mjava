@@ -1,0 +1,6 @@
+	public MessagePopupTextCellEditor(Composite parent,
+			boolean cancelOnFocusLost, int style) {
+		super(parent, style);
+		this.cancelOnFocusLost = cancelOnFocusLost;
+	}
+

@@ -1,0 +1,4 @@
+	public MessagePopupTextCellEditor(Composite parent) {
+		this(parent, false);
+	}
+

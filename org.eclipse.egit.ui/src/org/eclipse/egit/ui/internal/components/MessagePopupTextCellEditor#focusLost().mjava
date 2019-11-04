@@ -1,0 +1,11 @@
+	@Override
+	protected void focusLost() {
+		if (cancelOnFocusLost) {
+			if (isActivated()) {
+				fireCancelEditor();
+			}
+		} else {
+			super.focusLost();
+		}
+	}
+

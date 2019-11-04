@@ -1,11 +1,11 @@
-	public UUID createGroup(String groupName) {
+	public RepositoryGroup createGroup(String groupName) {
 		checkGroupName(groupName);
 		if (!groupExists(groupName)) {
 			UUID groupId = UUID.randomUUID();
 			RepositoryGroup group = new RepositoryGroup(groupId, groupName);
 			groupMap.put(groupId, group);
 			savePreferences();
-			return groupId;
+			return group;
 		} else {
 			throw new IllegalStateException(
 					MessageFormat.format(
