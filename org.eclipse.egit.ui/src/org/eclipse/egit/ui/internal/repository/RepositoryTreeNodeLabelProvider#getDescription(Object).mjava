@@ -7,7 +7,7 @@
 			result = new StringBuilder(branchName);
 		}
 		if (element instanceof RepositoryGroupNode) {
-			RepositoryGroup group = ((RepositoryGroupNode) element).getGroup();
+			RepositoryGroup group = ((RepositoryGroupNode) element).getObject();
 			result.append(" (").append(group.getRepositoryDirectories().size()) 					.append(')');
 		} else if (element instanceof RepositoryTreeNode) {
 			if (((RepositoryTreeNode) element)

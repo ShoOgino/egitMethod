@@ -17,11 +17,6 @@
 					+ ((myObject == null) ? 0 : ((Repository) myObject)
 							.getDirectory().hashCode());
 			break;
-		case REPOGROUP:
-			RepositoryGroup group = ((RepositoryGroupNode) this).getGroup();
-			result = prime * result + group.getGroupId().hashCode();
-			result = prime * result + group.getName().hashCode();
-			break;
 		case REF:
 		case TAG:
 		case ADDITIONALREF:
@@ -43,6 +38,7 @@
 		case FETCH:
 		case BRANCHHIERARCHY:
 		case STASHED_COMMIT:
+		case REPOGROUP:
 		case ERROR:
 			result = prime * result
 					+ ((myObject == null) ? 0 : myObject.hashCode());

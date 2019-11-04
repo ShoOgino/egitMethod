@@ -26,9 +26,9 @@
 		case PUSH:
 		case BRANCHHIERARCHY:
 		case STASHED_COMMIT:
+		case REPOGROUP:
 		case TAGS:
 			return myObject.equals(otherObject);
-		case REPOGROUP:
 		}
 		return false;
 	}
