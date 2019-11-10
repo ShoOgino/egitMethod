@@ -190,6 +190,15 @@
 
 		specViewer.addDoubleClickListener(event -> doChangeRefSpec());
 
+		specViewer.getTable().addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.keyCode == SWT.DEL) {
+					doDeleteRefSpecs();
+				}
+			}
+		});
+
 		copyRefSpecAction.setEnabled(false);
 		changeRefSpecAction.setEnabled(false);
 		deleteRefSpecAction.setEnabled(false);
