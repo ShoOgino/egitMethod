@@ -1,0 +1,4 @@
+	public RepositoryTreeNodeSorter() {
+		this(null);
+	}
+

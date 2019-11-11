@@ -1,0 +1,4 @@
+	public RepositoryTreeNodeSorter(Collator collator) {
+		super(collator);
+	}
+
