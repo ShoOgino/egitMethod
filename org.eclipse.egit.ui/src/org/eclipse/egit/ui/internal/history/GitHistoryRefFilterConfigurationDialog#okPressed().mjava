@@ -1,6 +1,6 @@
 	@Override
 	protected void okPressed() {
-		helper.setRefFilters(filters);
+		getButton(OK).setFocus(); 		helper.setRefFilters(filters);
 		if (defaultsPerformed) {
 			helper.resetLastSelectionStateToDefault();
 		}
