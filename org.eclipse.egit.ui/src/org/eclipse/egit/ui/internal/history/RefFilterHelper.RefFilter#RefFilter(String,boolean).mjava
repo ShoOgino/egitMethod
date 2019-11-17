@@ -3,7 +3,7 @@
 				throw new IllegalArgumentException(
 						"Filter string is null or empty."); 			}
 			this.filterString = filterString;
-			this.filterPattern = new TokenizedPattern(filterString);
+			this.filterPattern = createPattern(filterString);
 			this.preconfigured = isPreconfigured;
 		}
 

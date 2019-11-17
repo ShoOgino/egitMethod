@@ -1,0 +1,15 @@
+		@Override
+		public String toString() {
+			StringBuilder builder = new StringBuilder();
+			builder.append("RefFilter ["); 			if (filterPattern != null) {
+				builder.append("pattern="); 				builder.append(filterPattern);
+				builder.append(", "); 				if (expandedFilterPattern != null
+						&& !expandedFilterPattern.equals(filterPattern)) {
+					builder.append("expandedPattern="); 					builder.append(expandedFilterPattern);
+					builder.append(", "); 				}
+			}
+			builder.append("preconfigured="); 			builder.append(preconfigured);
+			builder.append(", selected="); 			builder.append(selected);
+			builder.append("]"); 			return builder.toString();
+		}
+

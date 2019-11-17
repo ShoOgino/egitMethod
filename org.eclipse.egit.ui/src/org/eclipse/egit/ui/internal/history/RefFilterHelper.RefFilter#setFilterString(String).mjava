@@ -6,6 +6,7 @@
 				throw new IllegalStateException(
 						"Cannot change a preconfigured filter."); 			}
 			this.filterString = filterString;
-			this.filterPattern = new TokenizedPattern(filterString);
+			this.filterPattern = createPattern(filterString);
+			this.expandedFilterPattern = null;
 		}
 
