@@ -1,4 +1,4 @@
-	private void addPreconfigueredFilters(Map<String, RefFilter> filters) {
+	private void addPreconfiguredFilters(Map<String, RefFilter> filters) {
 		for (RefFilter filter : preconfiguredFilters) {
 			filters.put(filter.getFilterString(), new RefFilter(filter));
 		}

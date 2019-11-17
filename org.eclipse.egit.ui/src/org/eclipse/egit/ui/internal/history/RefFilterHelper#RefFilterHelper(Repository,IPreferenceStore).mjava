@@ -2,7 +2,7 @@
 			@NonNull IPreferenceStore store) {
 		this.repository = repository;
 		this.store = store;
-		setupPreconfigueredFilters();
+		setupPreconfiguredFilters();
 		setupMacros();
 		initDefaultsForRepo();
 	}
