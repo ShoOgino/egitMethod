@@ -1,3 +1,8 @@
 	private String getStatsAsString(Properties stats, String key) {
-		return bigIntFmt.format(firstNonNull(stats.get(key), "")); 	}
+		try {
+			return bigIntFmt.format(firstNonNull(stats.get(key), "")); 		} catch (IllegalArgumentException e) {
+			Activator.handleError(e.getMessage(), e, false);
+			return UIText.RepositoryStatistics_unknown;
+		}
+	}
 
