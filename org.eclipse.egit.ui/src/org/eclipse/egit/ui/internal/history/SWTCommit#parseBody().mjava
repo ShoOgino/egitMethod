@@ -1,6 +1,9 @@
 	public void parseBody() throws IOException {
 		if (getRawBuffer() == null) {
-			walk.parseBody(this);
+			Repository repo = walk.getRepository();
+			try (RevWalk w = new RevWalk(repo)) {
+				w.parseBody(this);
+			}
 		}
 	}
 
