@@ -1,3 +1,2 @@
-	@NonNull
-	protected abstract Collection<IAction> getActions();
+	protected abstract Collection<IContributionItem> getActions();
 
