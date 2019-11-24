@@ -1,0 +1,4 @@
+	public boolean hasGroups() {
+		return !groupMap.isEmpty();
+	}
+
