@@ -1,0 +1,4 @@
+	public void setRepositoryGroup(RepositoryGroup group) {
+		this.group = group;
+	}
+

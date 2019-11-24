@@ -38,7 +38,13 @@
 				}
 			}
 
+			file = FileUtils.canonicalize(file);
 			if (util.addConfiguredRepository(file)) {
+				RepositoryGroup group = getSelectedRepositoryGroup(event);
+				if (group != null) {
+					RepositoryGroups.getInstance().addRepositoriesToGroup(group,
+							Collections.singletonList(file));
+				}
 			} else {
 				errorMessage = NLS.bind(
 						UIText.RepositoriesView_PasteRepoAlreadyThere, content);
