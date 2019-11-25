@@ -1,6 +1,7 @@
 	@Override
 	protected void okPressed() {
-		getButton(OK).setFocus(); 		helper.setRefFilters(filters);
+		configsTable.applyEditorValue();
+		helper.setRefFilters(filters);
 		if (defaultsPerformed) {
 			helper.resetLastSelectionStateToDefault();
 		}
