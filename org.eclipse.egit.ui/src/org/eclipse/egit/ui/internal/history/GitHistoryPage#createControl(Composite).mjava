@@ -93,7 +93,8 @@
 				.addPreferenceChangeListener(prefListener);
 
 		IToolBarManager manager = getSite().getActionBars().getToolBarManager();
-		searchBar = new SearchBar(GitHistoryPage.class.getName() + ".searchBar", 				graph, actions.findAction, getSite().getActionBars());
+		searchBar = new HistorySearchBar(
+				GitHistoryPage.class.getName() + ".searchBar", 				graph, actions.findAction, getSite().getActionBars());
 		manager.prependToGroup("org.eclipse.team.ui.historyView", searchBar); 		getSite().getActionBars().updateActionBars();
 		if (trace)
 			GitTraceLocation.getTrace().traceExit(

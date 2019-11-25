@@ -1,0 +1,5 @@
+	public SearchBar(String id, CommitGraphTable graph) {
+		super(id);
+		this.graph = graph;
+	}
+

@@ -1,11 +1,17 @@
 	@Override
 	protected Control createDialogArea(Composite parent) {
+		Composite searchBarParent = new Composite(parent, SWT.NONE);
+		searchBarParent.setLayout(new GridLayout(1, false));
+		GridDataFactory.fillDefaults().grab(true, false)
+				.applyTo(searchBarParent);
+
 		Composite main = new Composite(parent, SWT.NONE);
 		main.setLayout(new GridLayout(1, false));
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(main);
 		final ResourceManager resources = new LocalResourceManager(
 				JFaceResources.getResources());
 		UIUtils.hookDisposal(main, resources);
+
 		table = new CommitGraphTable(main, null, resources, false);
 		table.getTableView().addSelectionChangedListener(
 				new ISelectionChangedListener() {
@@ -31,6 +37,25 @@
 				400).applyTo(table.getControl());
 		allCommits = new SWTCommitList(resources);
 		table.getControl().addDisposeListener(e -> allCommits.clear());
+
+		searchBar = new SearchBar(
+				CommitSelectionDialog.class.getName() + ".searchBar", table) {
+			@Override
+			protected void showStatus(FindToolbar originator, String text) {
+				statusLabel.setText(text);
+				statusLabel.requestLayout();
+			}
+
+		};
+		searchBar.fill(searchBarParent);
+
+		Composite statusLine = new Composite(parent, SWT.NONE);
+		statusLine.setLayout(new GridLayout());
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(statusLine);
+		statusLabel = new Label(statusLine, SWT.NONE);
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.CENTER)
+				.grab(false, false).applyTo(statusLabel);
+
 		return main;
 	}
 

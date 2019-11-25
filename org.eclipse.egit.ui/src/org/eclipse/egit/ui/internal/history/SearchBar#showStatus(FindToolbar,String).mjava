@@ -1,0 +1,2 @@
+	abstract protected void showStatus(FindToolbar originator, String text);
+

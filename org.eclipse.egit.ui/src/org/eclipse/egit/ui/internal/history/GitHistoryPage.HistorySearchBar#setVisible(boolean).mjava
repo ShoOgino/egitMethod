@@ -6,7 +6,9 @@
 				}
 				super.setVisible(visible);
 				workAroundBug551067(visible);
-				bars.updateActionBars();
+				if (bars != null) {
+					bars.updateActionBars();
+				}
 				if (visible && toolbar != null) {
 					openCloseToggle.setChecked(true);
 					graph.getControl().setFocus();
