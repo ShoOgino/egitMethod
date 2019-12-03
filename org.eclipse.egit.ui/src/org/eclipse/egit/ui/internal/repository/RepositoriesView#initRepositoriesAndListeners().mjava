@@ -1,7 +1,7 @@
 	private void initRepositoriesAndListeners() {
 		synchronized (repositories) {
 			repositories.clear();
-			unregisterRepositoryListener();
+			unregisterRepositoryListeners();
 			Set<File> dirs = new HashSet<>();
 			for (String dir : repositoryUtil.getConfiguredRepositories()) {
 				File repoDir = new File(dir);

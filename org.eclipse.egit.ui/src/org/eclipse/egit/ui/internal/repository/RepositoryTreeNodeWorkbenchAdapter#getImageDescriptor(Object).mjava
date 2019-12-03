@@ -4,10 +4,31 @@
 			return null;
 		}
 		RepositoryTreeNode<?> node = (RepositoryTreeNode) object;
-		ImageDescriptor base = getBaseImageDescriptor(node);
-		if (base == null) {
-			return null;
+		switch (node.getType()) {
+		case FILE: {
+			Object item = node.getObject();
+			if (item instanceof File) {
+				return PlatformUI.getWorkbench().getEditorRegistry()
+						.getImageDescriptor(((File) item).getName());
+			}
+			break;
 		}
-		return decorateImageDescriptor(base, node);
+		case REPO: {
+			Object item = node.getObject();
+			if (item instanceof Repository && ResourcePropertyTester
+					.hasGerritConfiguration((Repository) item)) {
+				return UIIcons.REPOSITORY_GERRIT;
+			}
+			break;
+		}
+		case TAG:
+			if (((TagNode) node).isAnnotated()) {
+				return UIIcons.TAG_ANNOTATED;
+			}
+			break;
+		default:
+			break;
+		}
+		return node.getType().getIcon();
 	}
 

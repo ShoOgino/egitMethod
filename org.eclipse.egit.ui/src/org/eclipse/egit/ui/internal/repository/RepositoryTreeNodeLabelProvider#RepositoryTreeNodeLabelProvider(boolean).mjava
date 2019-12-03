@@ -1,4 +1,5 @@
 	public RepositoryTreeNodeLabelProvider(boolean showPaths) {
-		this(new WorkbenchLabelProvider(), showPaths);
+		this(new WorkbenchLabelProvider(), PlatformUI.getWorkbench()
+				.getDecoratorManager().getLabelDecorator(), null, showPaths);
 	}
 
