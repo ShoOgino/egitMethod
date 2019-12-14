@@ -1,6 +1,6 @@
 	private boolean hasTagsChildren(Repository repo) {
 		try {
-			if (branchRefs.get(repo) == null) {
+			if (!refCache.isLoaded(repo)) {
 				WorkspaceJob job = new WorkspaceJob(
 						UIText.RepositoriesViewContentProvider_ReadReferencesJob) {
 
