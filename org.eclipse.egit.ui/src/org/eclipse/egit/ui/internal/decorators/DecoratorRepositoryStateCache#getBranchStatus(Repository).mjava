@@ -1,6 +1,10 @@
 	public String getBranchStatus(Repository repository) {
+		File gitDir = repository.getDirectory();
+		if (branchStatesToClear.remove(gitDir)) {
+			branchStateLabels.remove(gitDir);
+		}
 		String label = branchStateLabels
-				.computeIfAbsent(repository.getDirectory(), dir -> {
+				.computeIfAbsent(gitDir, dir -> {
 					return UnitOfWork.get(repository, () -> {
 						String branchName = getFullBranchName(repository);
 						if (branchName == null) {

@@ -1,0 +1,4 @@
+	public void resetBranchState(Repository repository) {
+		branchStatesToClear.add(repository.getDirectory());
+	}
+
