@@ -27,8 +27,7 @@
 
 			if (repositoryChanged) {
 				titleNode = new RepositoryNode(null, repository);
-				form.setText(titleLabelProvider.getStyledText(titleNode)
-						.getString());
+				updateTitle(true);
 				resetPathsToExpand();
 				removeRepositoryListeners();
 				refsChangedListener = repository.getListenerList()
@@ -40,8 +39,7 @@
 								event -> updateCommitAuthorAndCommitter(
 										repository));
 			} else if (titleNode != null) {
-				form.setText(titleLabelProvider.getStyledText(titleNode)
-						.getString());
+				updateTitle(false);
 			}
 			final StagingViewUpdate update = new StagingViewUpdate(repository,
 					indexDiff, null);
