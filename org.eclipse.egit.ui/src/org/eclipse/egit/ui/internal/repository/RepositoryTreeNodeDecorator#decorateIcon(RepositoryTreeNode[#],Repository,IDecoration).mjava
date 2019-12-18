@@ -30,6 +30,11 @@
 			}
 			break;
 		}
+		case WORKINGDIR:
+		case FOLDER:
+		case FILE:
+			decorateConflict(node.getPath().toFile(), decoration);
+			break;
 		default:
 			break;
 		}
