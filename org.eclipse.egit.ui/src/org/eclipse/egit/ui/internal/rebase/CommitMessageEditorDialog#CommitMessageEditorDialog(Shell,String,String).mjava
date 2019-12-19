@@ -1,7 +1,8 @@
 	public CommitMessageEditorDialog(Shell parentShell, String commitMessage,
 			String title) {
-		super(parentShell);
-		this.commitMessage = commitMessage;
+		this(parentShell, commitMessage,
+				UIText.CommitMessageEditorDialog_OkButton,
+				IDialogConstants.CANCEL_LABEL);
 		this.title = title;
 	}
 
