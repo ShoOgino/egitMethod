@@ -1,8 +1,4 @@
 	private void setupInlineEditing(CommonViewer viewer) {
-		TreeViewerFocusCellManager focusCellManager = new TreeViewerFocusCellManager(
-				viewer, new FocusCellHighlighter(viewer) {
-				});
-
 		ColumnViewerEditorActivationStrategy editorActivation = new ColumnViewerEditorActivationStrategy(
 				viewer) {
 
@@ -13,7 +9,7 @@
 			}
 		};
 
-		TreeViewerEditor.create(viewer, focusCellManager, editorActivation,
+		TreeViewerEditor.create(viewer, editorActivation,
 				ColumnViewerEditor.TABBING_HORIZONTAL);
 
 		String initialValue[] = { null };
