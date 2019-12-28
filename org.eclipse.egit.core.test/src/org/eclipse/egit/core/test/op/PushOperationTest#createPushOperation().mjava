@@ -2,7 +2,7 @@
 		PushOperationSpecification spec = new PushOperationSpecification();
 		URIish remote = new URIish("file:///"
 				+ repository2.getRepository().getDirectory().toString());
-		List<RemoteRefUpdate> refUpdates = new ArrayList<RemoteRefUpdate>();
+		List<RemoteRefUpdate> refUpdates = new ArrayList<>();
 		RemoteRefUpdate update = new RemoteRefUpdate(repository1
 				.getRepository(), "HEAD", "refs/heads/test", false, null, null);
 		refUpdates.add(update);

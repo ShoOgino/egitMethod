@@ -6,7 +6,7 @@
 		assertEquals(Status.UP_TO_DATE, getStatus(pop.getOperationResult()));
 
 		IProject proj = importProject(repository1, projectName);
-		ArrayList<IFile> files = new ArrayList<IFile>();
+		ArrayList<IFile> files = new ArrayList<>();
 		IFile newFile = testUtils.addFileToProject(proj, "folder2/file2.txt",
 				"New file");
 		files.add(newFile);

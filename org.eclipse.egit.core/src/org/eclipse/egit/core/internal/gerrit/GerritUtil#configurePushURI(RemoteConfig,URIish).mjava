@@ -1,6 +1,6 @@
 	public static void configurePushURI(RemoteConfig remoteConfig,
 			URIish pushURI) {
-		List<URIish> pushURIs = new ArrayList<URIish>(
+		List<URIish> pushURIs = new ArrayList<>(
 				remoteConfig.getPushURIs());
 		for (URIish urIish : pushURIs) {
 			remoteConfig.removePushURI(urIish);
