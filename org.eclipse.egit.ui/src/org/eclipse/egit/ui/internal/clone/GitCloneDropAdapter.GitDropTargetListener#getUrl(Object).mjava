@@ -3,7 +3,8 @@
 				return null;
 			}
 			String[] dataLines = ((String) eventData)
-					.split(System.getProperty("line.separator")); 			String url = dataLines[0];
+					.split(System.lineSeparator());
+			String url = dataLines[0];
 			return url;
 		}
 
