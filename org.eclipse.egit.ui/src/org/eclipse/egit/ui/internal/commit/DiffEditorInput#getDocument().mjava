@@ -1,0 +1,4 @@
+	public DiffDocument getDocument() {
+		return document;
+	}
+

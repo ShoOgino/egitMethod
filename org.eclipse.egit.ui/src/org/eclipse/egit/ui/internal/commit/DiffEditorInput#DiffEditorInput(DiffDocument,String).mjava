@@ -1,0 +1,5 @@
+	public DiffEditorInput(DiffDocument diff, String title) {
+		document = diff;
+		this.title = title;
+	}
+

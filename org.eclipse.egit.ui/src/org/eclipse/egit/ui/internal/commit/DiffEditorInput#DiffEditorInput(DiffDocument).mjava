@@ -1,0 +1,4 @@
+	public DiffEditorInput(DiffDocument diff) {
+		this(diff, UIText.DiffEditorPage_Title);
+	}
+
