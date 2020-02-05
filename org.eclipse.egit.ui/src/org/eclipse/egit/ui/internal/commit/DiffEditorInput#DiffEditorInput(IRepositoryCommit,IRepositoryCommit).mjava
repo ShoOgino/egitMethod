@@ -1,0 +1,5 @@
+	public DiffEditorInput(@NonNull IRepositoryCommit tip,
+			IRepositoryCommit base) {
+		this(tip, base, null, null);
+	}
+

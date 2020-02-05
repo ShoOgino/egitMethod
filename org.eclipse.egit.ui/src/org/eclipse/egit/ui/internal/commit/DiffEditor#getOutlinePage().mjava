@@ -1,0 +1,4 @@
+	protected DiffEditorOutlinePage getOutlinePage() {
+		return outlinePage;
+	}
+

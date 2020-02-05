@@ -1,4 +1,4 @@
-	public DiffDocument getDocument() {
+	public IDocument getDocument() {
 		return document;
 	}
 
