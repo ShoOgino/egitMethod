@@ -2,6 +2,11 @@
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		List<IRepositoryCommit> commits = getCommits(event);
 		if (commits.size() == 2) {
+			Collections.sort(commits,
+					Comparator.<IRepositoryCommit> comparingInt(
+							repoCommit -> repoCommit.getRevCommit()
+									.getCommitTime())
+							.reversed());
 			show(commits.get(0), commits.get(1));
 		}
 		return null;
