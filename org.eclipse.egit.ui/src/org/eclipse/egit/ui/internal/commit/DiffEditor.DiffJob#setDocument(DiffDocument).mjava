@@ -1,0 +1,4 @@
+		public void setDocument(DiffDocument document) {
+			this.document = document;
+		}
+
