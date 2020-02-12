@@ -21,5 +21,13 @@
 		refListenerHandle = org.eclipse.egit.core.Activator.getDefault()
 				.getRepositoryCache().getGlobalListenerList()
 				.addRefsChangedListener(this);
+		pageListener = event -> {
+			IEvaluationService service = PlatformUI.getWorkbench()
+					.getService(IEvaluationService.class);
+			if (service != null) {
+				service.requestEvaluation(ISources.ACTIVE_PART_NAME);
+			}
+		};
+		addPageChangedListener(pageListener);
 	}
 

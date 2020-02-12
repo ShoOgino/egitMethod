@@ -1,4 +1,8 @@
 	@Override
 	public void doSaveAs() {
+		IEditorPart editor = getActiveEditor();
+		if (editor != null && editor.isSaveAsAllowed()) {
+			editor.doSaveAs();
+		}
 	}
 
