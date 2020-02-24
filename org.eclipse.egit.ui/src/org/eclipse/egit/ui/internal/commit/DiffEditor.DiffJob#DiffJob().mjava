@@ -1,0 +1,4 @@
+		protected DiffJob() {
+			super(UIText.DiffEditor_TaskGeneratingDiff);
+		}
+

@@ -1,12 +1,9 @@
 	@Override
 	public void dispose() {
+		DiffEditorOutlinePage outlinePage = getOutlinePage();
 		if (outlinePage != null) {
 			outlinePage.dispose();
 			outlinePage = null;
-		}
-		if (overviewStore != null) {
-			overviewStore.dispose();
-			overviewStore = null;
 		}
 		super.dispose();
 	}

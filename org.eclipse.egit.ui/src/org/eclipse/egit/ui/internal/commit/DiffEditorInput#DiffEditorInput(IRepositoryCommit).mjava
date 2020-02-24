@@ -1,0 +1,4 @@
+	public DiffEditorInput(@NonNull IRepositoryCommit commit) {
+		this(commit, null, null, null);
+	}
+

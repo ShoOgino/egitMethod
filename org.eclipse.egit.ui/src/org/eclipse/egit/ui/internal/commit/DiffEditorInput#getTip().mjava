@@ -1,0 +1,5 @@
+	@NonNull
+	public IRepositoryCommit getTip() {
+		return tip;
+	}
+

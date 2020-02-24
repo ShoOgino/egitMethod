@@ -13,7 +13,7 @@
 		if (isShowingLineNumbers) {
 			boolean plain = lineNumberColumn.isPlain();
 			IAction togglePlain = new Action(
-					UIText.DiffEditorPage_ToggleLineNumbers,
+					UIText.DiffEditor_ToggleLineNumbers,
 					IAction.AS_CHECK_BOX) {
 
 				@Override

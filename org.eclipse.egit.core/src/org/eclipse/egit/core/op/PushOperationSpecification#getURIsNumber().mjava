@@ -1,4 +1,4 @@
 	public int getURIsNumber() {
-		return urisRefUpdates.keySet().size();
+		return urisRefUpdates.size();
 	}
 

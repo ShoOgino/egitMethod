@@ -1,0 +1,11 @@
+	private Point computeTextSize() {
+		boolean isEmpty = text.getText().isEmpty();
+		Point size = text.computeSize(SWT.DEFAULT, SWT.DEFAULT);
+		if (isEmpty) {
+			size.x = size.y;
+		} else {
+			size.x += size.y;
+		}
+		return size;
+	}
+

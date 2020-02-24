@@ -1,0 +1,8 @@
+	@Override
+	public void performDelete() {
+		super.performDelete();
+		if (outer != null) {
+			adjustSize();
+		}
+	}
+

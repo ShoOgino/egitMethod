@@ -1,0 +1,8 @@
+	protected void setSelectionAndActivate(ISelection selection,
+			boolean activate) {
+		if (activate) {
+			getSite().getPage().activate(this);
+		}
+		doSetSelection(selection);
+	}
+

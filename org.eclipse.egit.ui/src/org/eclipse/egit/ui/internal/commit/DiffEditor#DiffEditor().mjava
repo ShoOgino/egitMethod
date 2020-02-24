@@ -1,0 +1,4 @@
+	public DiffEditor() {
+		setPartName(UIText.DiffEditor_Title);
+	}
+
