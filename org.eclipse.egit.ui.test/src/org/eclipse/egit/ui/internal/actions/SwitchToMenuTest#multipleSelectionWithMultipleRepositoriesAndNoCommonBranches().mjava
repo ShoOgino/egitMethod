@@ -16,7 +16,8 @@
 		mockMultiProjectSelection(PROJ1, PROJ2);
 
 		MenuItem[] items = fillMenu();
-		assertTextEquals(UIText.SwitchToMenu_NoCommonBranchesFound, items[0]);
+		assertTextEquals(UIText.SwitchToMenu_NewBranchMenuLabel, items[0]);
+		assertTextEquals(UIText.SwitchToMenu_NoCommonBranchesFound, items[2]);
 
 		new File(gitOne, Constants.LOGS + "/" + Constants.HEAD).delete();
 		new File(gitTwo, Constants.LOGS + "/" + Constants.HEAD).delete();

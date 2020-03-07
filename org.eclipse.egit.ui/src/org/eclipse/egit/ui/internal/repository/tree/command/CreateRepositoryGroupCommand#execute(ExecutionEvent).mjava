@@ -12,10 +12,12 @@
 		if (!repoDirs.isEmpty()) {
 			groupsUtil.addRepositoriesToGroup(group, repoDirs);
 		}
-		CommonViewer viewer = getView(event).getCommonViewer();
+		RepositoriesView view = getView(event);
+		CommonViewer viewer = view.getCommonViewer();
 		viewer.refresh();
 		viewer.setSelection(
 				new StructuredSelection(new RepositoryGroupNode(group)), true);
+		view.expandNodeForGroup(group);
 		IStructuredSelection sel = viewer.getStructuredSelection();
 		if ("gtk".equals(SWT.getPlatform())) { 			viewer.getControl().getDisplay().asyncExec(
 					() -> viewer.editElement(sel.getFirstElement(), 0));

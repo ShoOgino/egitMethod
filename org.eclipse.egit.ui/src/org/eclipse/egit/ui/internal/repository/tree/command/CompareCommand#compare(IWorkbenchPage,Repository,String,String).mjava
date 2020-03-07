@@ -1,0 +1,7 @@
+	protected void compare(IWorkbenchPage workbenchPage, Repository repo,
+			String compareCommit, String baseCommit) throws ExecutionException {
+		GitCompareEditorInput compareInput = new GitCompareEditorInput(
+				compareCommit, baseCommit, repo);
+		CompareUtils.openInCompare(workbenchPage, compareInput);
+	}
+

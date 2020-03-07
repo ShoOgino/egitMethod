@@ -44,6 +44,7 @@
 				if (group != null) {
 					RepositoryGroups.getInstance().addRepositoriesToGroup(group,
 							Collections.singletonList(file));
+					view.expandNodeForGroup(group);
 				}
 			} else {
 				errorMessage = NLS.bind(
