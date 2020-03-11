@@ -1,9 +1,12 @@
-	protected void cloneRepo(File destinationRepo,
+	protected Repository cloneRepo(File destinationRepo,
 			RepoRemoteBranchesPage remoteBranches) throws Exception {
 		remoteBranches.assertRemoteBranches(SampleTestRepository.FIX,
 				Constants.MASTER);
 		remoteBranches.selectBranches(SampleTestRepository.FIX,
 				Constants.MASTER);
+		if (tagOptionToSelect != null) {
+			remoteBranches.selectTagOption(tagOptionToSelect);
+		}
 
 		WorkingCopyPage workingCopy = remoteBranches.nextToWorkingCopy();
 		workingCopy.setDirectory(destinationRepo.toString());
@@ -18,8 +21,11 @@
 		assertNotNull(repository.resolve("origin/master"));
 		assertEquals(repository.resolve("master"), repository
 				.resolve("origin/master"));
-		assertNotNull(repository.resolve(
-				Constants.R_TAGS + SampleTestRepository.v1_0_name).name());
+		if (tagOptionToSelect == null) {
+			assertNotNull(repository
+					.resolve(Constants.R_TAGS + SampleTestRepository.v1_0_name)
+					.name());
+		}
 		int refs = repository.getRefDatabase().getRefsByPrefix(RefDatabase.ALL)
 				.size();
 		assertTrue(refs >= 4);
@@ -32,5 +38,6 @@
 		assertNotNull(fileEntry);
 		assertEquals(0,
 				ResourcesPlugin.getWorkspace().getRoot().getProjects().length);
+		return repository;
 	}
 

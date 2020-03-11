@@ -1,0 +1,4 @@
+	public void setTagOption(TagOpt tagOption) {
+		this.tagOption = tagOption;
+	}
+
