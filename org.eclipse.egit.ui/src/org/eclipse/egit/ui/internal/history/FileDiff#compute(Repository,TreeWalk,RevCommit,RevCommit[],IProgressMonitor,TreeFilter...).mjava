@@ -15,6 +15,7 @@
 		}
 
 		if (walk.getTreeCount() <= 2) {
+			RevCommit base = parents.length == 1 ? parents[0] : null;
 			SubMonitor progress = SubMonitor.convert(monitor, 3);
 			List<DiffEntry> entries = DiffEntry.scan(walk, false,
 					markTreeFilters);
@@ -37,7 +38,8 @@
 			if (!cancelled) {
 				progress.setWorkRemaining(renames.size());
 				for (DiffEntry m : renames) {
-					final FileDiff d = new FileDiff(repository, commit, m);
+					final FileDiff d = new FileDiff(repository, commit, base,
+							m);
 					r.add(d);
 					for (Iterator<DiffEntry> i = xentries.iterator(); i
 							.hasNext();) {
@@ -51,7 +53,7 @@
 				}
 			}
 			for (DiffEntry m : xentries) {
-				final FileDiff d = new FileDiff(repository, commit, m);
+				final FileDiff d = new FileDiff(repository, commit, base, m);
 				r.add(d);
 			}
 		}

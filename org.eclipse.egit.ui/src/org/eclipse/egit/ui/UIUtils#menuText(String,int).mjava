@@ -1,0 +1,4 @@
+	public static String menuText(String text, int maxLength) {
+		String result = Utils.shortenText(text, maxLength);
+		return SPACES.matcher(result).replaceAll(" "); 	}
+
