@@ -1,11 +1,11 @@
 	public DiffViewer(Composite parent, IVerticalRuler ruler,
 			IOverviewRuler overviewRuler, boolean showsAnnotationOverview,
-			int styles) {
+			int styles, IContextService ctx) {
 		super(parent, ruler, overviewRuler, showsAnnotationOverview, styles);
 		getTextWidget().setAlwaysShowScrollBars(false);
 		setEditable(false);
 		setDocument(new Document());
-		initListeners();
+		initListeners(ctx);
 		getTextWidget()
 				.setFont(JFaceResources.getFont(JFaceResources.TEXT_FONT));
 		refreshDiffStyles();

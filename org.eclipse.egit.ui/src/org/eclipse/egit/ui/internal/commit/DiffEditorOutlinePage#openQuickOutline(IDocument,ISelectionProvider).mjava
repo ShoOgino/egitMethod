@@ -1,0 +1,5 @@
+	static void openQuickOutline(IDocument document,
+			ISelectionProvider selectionProvider) {
+		new QuickOutlinePopup(document, selectionProvider).open();
+	}
+
