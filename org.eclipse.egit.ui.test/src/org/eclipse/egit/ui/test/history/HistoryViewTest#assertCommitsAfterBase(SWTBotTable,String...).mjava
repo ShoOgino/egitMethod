@@ -1,6 +1,5 @@
 	private void assertCommitsAfterBase(SWTBotTable table, String... commitMsgs)
 			throws Exception {
-		TestUtil.waitForJobs(50, 5000);
 		int expectedNumberOfCommits = commitMsgs.length + 3;
 		bot.waitUntil(new DefaultCondition() {
 
@@ -28,6 +27,5 @@
 		assertThat("Expected different commits",
 				getCommitMsgsFromUi(table),
 				is(arrayContainingInAnyOrder(matchers)));
-		table.unselect();
 	}
 
