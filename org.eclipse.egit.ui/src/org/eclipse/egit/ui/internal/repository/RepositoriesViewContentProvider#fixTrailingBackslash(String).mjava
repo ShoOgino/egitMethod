@@ -1,0 +1,14 @@
+	private static String fixTrailingBackslash(String text) {
+		int l = text.length();
+		int i = l;
+		for (; i > 0; i--) {
+			if (text.charAt(i - 1) != '\\') {
+				break;
+			}
+		}
+		if ((l - i) % 2 == 1) {
+			return text + '\\';
+		}
+		return text;
+	}
+

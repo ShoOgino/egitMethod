@@ -1,0 +1,4 @@
+	public void keepOnly(Collection<File> gitDirs) {
+		cache.keySet().retainAll(gitDirs);
+	}
+

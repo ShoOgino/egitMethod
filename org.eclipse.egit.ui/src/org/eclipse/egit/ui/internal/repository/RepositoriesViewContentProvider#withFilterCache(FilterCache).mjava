@@ -1,0 +1,5 @@
+	public RepositoriesViewContentProvider withFilterCache(FilterCache cache) {
+		this.filters = cache;
+		return this;
+	}
+

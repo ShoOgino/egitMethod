@@ -1,0 +1,6 @@
+	public String get(FilterableNode node) {
+		Map<RepositoryTreeNodeType, String> filters = cache
+				.get(node.getRepository().getDirectory());
+		return filters == null ? null : filters.get(node.getType());
+	}
+

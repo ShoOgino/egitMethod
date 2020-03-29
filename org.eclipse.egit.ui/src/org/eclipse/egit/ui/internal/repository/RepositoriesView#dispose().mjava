@@ -1,5 +1,9 @@
 	@Override
 	public void dispose() {
+		if (filterCacheLoaded) {
+			filterCacheLoaded = false;
+			FilterCache.INSTANCE.save();
+		}
 		if (textCellEditor != null) {
 			textCellEditor.dispose();
 			textCellEditor = null;
