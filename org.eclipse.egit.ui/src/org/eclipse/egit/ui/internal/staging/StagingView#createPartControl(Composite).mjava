@@ -298,7 +298,7 @@
 			}
 			@Override
 			protected IHandlerService getHandlerService() {
-				return CommonUtils.getService(getSite(), IHandlerService.class);
+				return getSite().getService(IHandlerService.class);
 			}
 		};
 		commitMessageText.setData(FormToolkit.KEY_DRAW_BORDER,
@@ -534,11 +534,9 @@
 		UIUtils.notifySelectionChangedWithCurrentSelection(
 				selectionChangedListener, site);
 
-		ISelectionService srv = CommonUtils.getService(site, ISelectionService.class);
+		ISelectionService srv = site.getService(ISelectionService.class);
 		srv.addPostSelectionListener(selectionChangedListener);
-		CommonUtils.getService(site, IPartService.class).addPartListener(
-				partListener);
-
+		site.getService(IPartService.class).addPartListener(partListener);
 
 		site.setSelectionProvider(new RepositorySelectionProvider(
 				new MultiViewerSelectionProvider(unstagedViewer, stagedViewer),
@@ -562,8 +560,8 @@
 
 		restoreSashFormWeights();
 
-		IWorkbenchSiteProgressService service = CommonUtils.getService(
-				getSite(), IWorkbenchSiteProgressService.class);
+		IWorkbenchSiteProgressService service = getSite()
+				.getService(IWorkbenchSiteProgressService.class);
 		if (service != null && reactOnSelection)
 			service.showBusyForFamily(org.eclipse.egit.core.JobFamilies.INDEX_DIFF_CACHE_UPDATE);
 	}

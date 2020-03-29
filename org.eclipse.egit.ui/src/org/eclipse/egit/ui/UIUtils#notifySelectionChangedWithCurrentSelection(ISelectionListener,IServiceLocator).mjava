@@ -1,6 +1,7 @@
 	public static void notifySelectionChangedWithCurrentSelection(
 			ISelectionListener selectionListener, IServiceLocator serviceLocator) {
-		IHandlerService handlerService = CommonUtils.getService(serviceLocator, IHandlerService.class);
+		IHandlerService handlerService = serviceLocator
+				.getService(IHandlerService.class);
 		IEvaluationContext state = handlerService.getCurrentState();
 		Object partObject = state.getVariable(ISources.ACTIVE_PART_NAME);
 		if (!(partObject instanceof IWorkbenchPart)) {

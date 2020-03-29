@@ -49,7 +49,8 @@
 		addLink.addHyperlinkListener(new HyperlinkAdapter() {
 			@Override
 			public void linkActivated(HyperlinkEvent e) {
-				IHandlerService service = CommonUtils.getService(getViewSite(), IHandlerService.class);
+				IHandlerService service = getViewSite()
+						.getService(IHandlerService.class);
 				UIUtils.executeCommand(service,
 						"org.eclipse.egit.ui.RepositoriesViewAddRepository"); 			}
 		});
@@ -66,7 +67,8 @@
 		cloneLink.addHyperlinkListener(new HyperlinkAdapter() {
 			@Override
 			public void linkActivated(HyperlinkEvent e) {
-				IHandlerService service = CommonUtils.getService(getViewSite(), IHandlerService.class);
+				IHandlerService service = getViewSite()
+						.getService(IHandlerService.class);
 				UIUtils.executeCommand(service,
 						"org.eclipse.egit.ui.RepositoriesViewClone"); 			}
 		});
@@ -84,7 +86,8 @@
 		createLink.addHyperlinkListener(new HyperlinkAdapter() {
 			@Override
 			public void linkActivated(HyperlinkEvent e) {
-				IHandlerService service = CommonUtils.getService(getViewSite(), IHandlerService.class);
+				IHandlerService service = getViewSite()
+						.getService(IHandlerService.class);
 				UIUtils.executeCommand(service,
 						"org.eclipse.egit.ui.RepositoriesViewCreateRepository"); 			}
 		});
