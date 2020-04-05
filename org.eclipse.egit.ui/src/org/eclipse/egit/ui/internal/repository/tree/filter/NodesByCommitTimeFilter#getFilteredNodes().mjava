@@ -1,0 +1,9 @@
+	public List<RepositoryTreeNode<?>> getFilteredNodes() {
+		if (isFiltering()) {
+			return nodes.stream().map(node -> node.node)
+					.collect(Collectors.toList());
+		} else {
+			return allNodes;
+		}
+	}
+
