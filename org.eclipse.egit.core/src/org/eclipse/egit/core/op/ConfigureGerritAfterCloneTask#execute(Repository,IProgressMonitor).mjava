@@ -3,8 +3,7 @@
 			throws CoreException {
 		try {
 			if (isGerrit(repository)) {
-				Activator.logInfo(uri
-						+ " was detected to be hosted by a Gerrit server"); 				configureGerrit(repository);
+				configureGerrit(repository);
 			}
 		} catch (Exception e) {
 			throw new CoreException(Activator.error(e.getMessage(), e));
