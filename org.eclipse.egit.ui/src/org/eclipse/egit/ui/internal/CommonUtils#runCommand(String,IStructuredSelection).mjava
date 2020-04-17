@@ -24,7 +24,9 @@
 				handlerService.executeCommand(commandId, null);
 
 			return true;
-		} catch (CommandException ignored) {
+		} catch (CommandException e) {
+			Activator.logError(MessageFormat
+					.format(UIText.CommonUtils_CommandError, commandId), e);
 		}
 		return false;
 	}
