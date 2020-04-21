@@ -2,7 +2,7 @@
 		final Group g = createGroup(parent,
 				UIText.RepositorySelectionPage_groupLocation);
 
-		g.setLayout(new GridLayout(3, false));
+		g.setLayout(new GridLayout(4, false));
 
 		newLabel(g, UIText.RepositorySelectionPage_promptURI + ":"); 		uriText = new Text(g, SWT.BORDER);
 
@@ -22,9 +22,13 @@
 		uriProposalHandler = UIUtils.addPreviousValuesContentProposalToText(
 				uriText, USED_URIS_PREF);
 
-		Button browseButton = new Button(g, SWT.NULL);
-		browseButton.setText(UIText.RepositorySelectionPage_BrowseLocalFile);
-		browseButton.addSelectionListener(new SelectionAdapter() {
+		Button browseLocalFolderButton = new Button(g, SWT.NULL);
+		if (!sourceSelection) {
+			GridDataFactory.fillDefaults().span(3, 1)
+					.applyTo(browseLocalFolderButton);
+		}
+		browseLocalFolderButton.setText(UIText.RepositorySelectionPage_BrowseLocalFolder);
+		browseLocalFolderButton.addSelectionListener(new SelectionAdapter() {
 
 			@Override
 			public void widgetSelected(SelectionEvent evt) {
@@ -36,38 +40,35 @@
 					dialog.setMessage(
 							UIText.RepositorySelectionPage_destinationSelectionTitle);
 				}
-				if (!uriText.getText().isEmpty()) {
-					try {
-						File testFile = new File(uriText.getText());
-						if (testFile.exists()) {
-							dialog.setFilterPath(testFile.getPath());
-						} else {
-							URIish testUri = new URIish(uriText.getText());
-							if (Protocol.FILE.defaultScheme
-									.equals(testUri.getScheme())) {
-								testFile = new File(testUri.getPath());
-								if (testFile.exists()) {
-									dialog.setFilterPath(testFile.getPath());
-								}
-							}
-						}
-					} catch (IllegalArgumentException | URISyntaxException e) {
-					}
-				}
-				String filterPath = dialog.getFilterPath();
-				if (filterPath == null || filterPath.isEmpty()) {
-					dialog.setFilterPath(
-							RepositoryUtil.getDefaultRepositoryDir());
-				}
+				dialog.setFilterPath(getUriFilterPath());
 				String result = dialog.open();
 				if (result != null) {
-					uriText.setText("file:///" + result); 				}
+					uriText.setText(
+							Protocol.FILE.getDefaultScheme() + "://" + result); 				}
 			}
 
 		});
 
+		if (sourceSelection) {
+			Button browseLocalBundleFileButton = new Button(g, SWT.NULL);
+			browseLocalBundleFileButton.setText(UIText.RepositorySelectionPage_BrowseLocalBundleFile);
+			browseLocalBundleFileButton.addSelectionListener(new SelectionAdapter() {
+
+				@Override
+				public void widgetSelected(SelectionEvent evt) {
+					FileDialog dialog = new FileDialog(getShell());
+					dialog.setText(UIText.RepositorySelectionPage_sourceSelectionTitle);
+					dialog.setFilterPath(getUriFilterPath());
+
+					String result = dialog.open();
+					if (result != null) {
+								uriText.setText(Protocol.FILE.getDefaultScheme()
+										+ "://" + result); 					}
+				}
+			});
+		}
 		newLabel(g, UIText.RepositorySelectionPage_promptHost + ":"); 		hostText = new Text(g, SWT.BORDER);
-		GridDataFactory.fillDefaults().span(2, 1).applyTo(hostText);
+		GridDataFactory.fillDefaults().span(3, 1).applyTo(hostText);
 		hostText.addModifyListener(new ModifyListener() {
 			@Override
 			public void modifyText(final ModifyEvent e) {
@@ -76,7 +77,7 @@
 		});
 
 		newLabel(g, UIText.RepositorySelectionPage_promptPath + ":"); 		pathText = new Text(g, SWT.BORDER);
-		GridDataFactory.fillDefaults().span(2, 1).applyTo(pathText);
+		GridDataFactory.fillDefaults().span(3, 1).applyTo(pathText);
 		pathText.addModifyListener(new ModifyListener() {
 			@Override
 			public void modifyText(final ModifyEvent e) {
