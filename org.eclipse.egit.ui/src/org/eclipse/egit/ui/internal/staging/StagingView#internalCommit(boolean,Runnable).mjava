@@ -34,16 +34,8 @@
 		commitOperation.setSign(signCommitAction.isChecked());
 
 		PushMode pushMode = null;
-		final Repository repository = currentRepository;
-		if (pushUpstream && repository != null) {
-			pushMode = PushMode.UPSTREAM; 			try {
-				if (withChangeId && RemoteConfig
-						.getAllRemoteConfigs(repository.getConfig()).stream()
-						.anyMatch(GerritUtil::isGerritPush)) {
-					pushMode = PushMode.GERRIT;
-				}
-			} catch (URISyntaxException ex) {
-			}
+		if (pushUpstream) {
+			pushMode = getPushMode();
 		}
 		Job commitJob = new CommitJob(currentRepository, commitOperation)
 				.setOpenCommitEditor(openNewCommitsAction.isChecked())
