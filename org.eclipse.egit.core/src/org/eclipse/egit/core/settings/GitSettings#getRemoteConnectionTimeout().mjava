@@ -1,0 +1,5 @@
+	public static int getRemoteConnectionTimeout() {
+		return Platform.getPreferencesService().getInt(Activator.getPluginId(),
+				GitCorePreferences.core_remoteConnectionTimeout, 60, null);
+	}
+

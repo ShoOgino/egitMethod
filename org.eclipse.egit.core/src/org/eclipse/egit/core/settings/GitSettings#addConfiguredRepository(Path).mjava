@@ -1,0 +1,6 @@
+	public static void addConfiguredRepository(Path gitDir)
+			throws IllegalArgumentException {
+		Activator.getDefault().getRepositoryUtil().addConfiguredRepository(
+				Objects.requireNonNull(gitDir).toFile());
+	}
+

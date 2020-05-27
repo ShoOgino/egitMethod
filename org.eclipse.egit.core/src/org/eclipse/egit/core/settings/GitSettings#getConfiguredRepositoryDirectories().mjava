@@ -1,0 +1,5 @@
+	public static Collection<Path> getConfiguredRepositoryDirectories() {
+		return Activator.getDefault().getRepositoryUtil().getRepositories()
+				.stream().map(Paths::get).collect(Collectors.toSet());
+	}
+

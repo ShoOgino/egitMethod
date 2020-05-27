@@ -1,6 +1,7 @@
 	private void createPushOperation() throws CoreException {
 		if (remoteName != null) {
-			op = new PushOperation(repository, remoteName, dryRun, getTimeout());
+			op = new PushOperation(repository, remoteName, dryRun,
+					GitSettings.getRemoteConnectionTimeout());
 			return;
 		}
 
@@ -31,6 +32,7 @@
 				}
 			}
 		}
-		op = new PushOperation(repository, spec, dryRun, getTimeout());
+		op = new PushOperation(repository, spec, dryRun,
+				GitSettings.getRemoteConnectionTimeout());
 	}
 

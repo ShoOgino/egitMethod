@@ -1,0 +1,4 @@
+	public static Path getDefaultRepositoryDir() {
+		return Paths.get(RepositoryUtil.getDefaultRepositoryDir());
+	}
+
