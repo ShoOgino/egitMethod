@@ -33,7 +33,8 @@
 			Map<String, Object> removedPaths = new LinkedHashMap<>(oldPaths);
 			removedPaths.keySet().removeAll(newPaths.keySet());
 			if (!removedPaths.isEmpty()) {
-				Collection<Object> removedElements = removedPaths.values();
+				Collection<Object> removedElements = new LinkedHashSet<>(
+						removedPaths.values());
 				Object firstRemovedElement = removedElements.iterator()
 						.next();
 				Object parent = contentProvider.getParent(firstRemovedElement);

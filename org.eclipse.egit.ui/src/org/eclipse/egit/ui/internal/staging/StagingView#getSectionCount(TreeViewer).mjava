@@ -2,8 +2,9 @@
 		StagingViewContentProvider contentProvider = getContentProvider(viewer);
 		int count = contentProvider.getCount();
 		int shownCount = contentProvider.getShownCount();
-		if (shownCount == count)
+		if (getFilterPattern() != null && count > 0) {
+			return shownCount + "/" + count; 		} else {
 			return Integer.toString(count);
-		else
-			return shownCount + "/" + count; 	}
+		}
+	}
 
