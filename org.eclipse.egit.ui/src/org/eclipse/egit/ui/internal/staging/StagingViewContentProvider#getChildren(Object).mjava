@@ -7,10 +7,11 @@
 		if (parentElement instanceof StagingFolderEntry) {
 			return ((StagingFolderEntry) parentElement).getChildren();
 		} else {
-			if (stagingView.getPresentation() == Presentation.LIST)
+			if (stagingView.getPresentation() == Presentation.LIST) {
+				getTreeRoots();
 				return content;
-			else
-				return getTreePresentationRoots();
+			}
+			return getTreePresentationRoots();
 		}
 	}
 

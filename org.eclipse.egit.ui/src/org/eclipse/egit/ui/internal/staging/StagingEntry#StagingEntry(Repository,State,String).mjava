@@ -1,6 +1,0 @@
-	public StagingEntry(Repository repository, State state, String path) {
-		this.repository = repository;
-		this.state = state;
-		this.path = path;
-	}
-
