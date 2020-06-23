@@ -1,6 +1,14 @@
 	private void refreshViewersInternal() {
+		IStructuredSelection selection = unstagedViewer
+				.getStructuredSelection();
+		unstagedViewer.setSelection(StructuredSelection.EMPTY);
 		unstagedViewer.refresh();
+		unstagedViewer
+				.setSelection(new StructuredSelection(selection.toList()));
+		selection = stagedViewer.getStructuredSelection();
+		stagedViewer.setSelection(StructuredSelection.EMPTY);
 		stagedViewer.refresh();
+		stagedViewer.setSelection(new StructuredSelection(selection.toList()));
 		updateSectionText();
 	}
 
