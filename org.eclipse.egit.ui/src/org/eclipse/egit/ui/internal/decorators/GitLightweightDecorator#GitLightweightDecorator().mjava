@@ -1,5 +1,5 @@
 	public GitLightweightDecorator() {
-		ensureFontAndColorsCreated(FONT_IDS, COLOR_IDS);
+		ensureFontAndColorsCreated();
 		TeamUI.addPropertyChangeListener(this);
 		Activator.addPropertyChangeListener(this);
 		PlatformUI.getWorkbench().getThemeManager().getCurrentTheme()
