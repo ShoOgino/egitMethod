@@ -1,5 +1,5 @@
 		private void setBackgroundColor(IDecoration decoration, Color color) {
-			if (!color.getRGB().equals(defaultBackgroundRgb))
+			if (!color.getRGB().equals(resources.getDefaultBackground()))
 				decoration.setBackgroundColor(color);
 		}
 

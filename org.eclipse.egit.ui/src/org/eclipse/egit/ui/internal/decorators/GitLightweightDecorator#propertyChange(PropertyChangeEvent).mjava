@@ -18,8 +18,9 @@
 		case UIPreferences.THEME_IgnoredResourceFont:
 		case UIPreferences.THEME_IgnoredResourceBackgroundColor:
 		case UIPreferences.THEME_IgnoredResourceForegroundColor:
-			ensureFontAndColorsCreated();
-			postLabelEvent(); 			break;
+			resources.reload();
+			postLabelEvent();
+			break;
 		default:
 			break;
 		}

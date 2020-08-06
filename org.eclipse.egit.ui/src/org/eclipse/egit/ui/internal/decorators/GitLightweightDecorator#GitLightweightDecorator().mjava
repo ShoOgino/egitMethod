@@ -1,5 +1,8 @@
 	public GitLightweightDecorator() {
-		ensureFontAndColorsCreated();
+		resources = new ReloadableColorsAndFonts();
+		resources.reload();
+		helper = new DecorationHelper(
+				Activator.getDefault().getPreferenceStore(), resources);
 		TeamUI.addPropertyChangeListener(this);
 		Activator.addPropertyChangeListener(this);
 		PlatformUI.getWorkbench().getThemeManager().getCurrentTheme()
