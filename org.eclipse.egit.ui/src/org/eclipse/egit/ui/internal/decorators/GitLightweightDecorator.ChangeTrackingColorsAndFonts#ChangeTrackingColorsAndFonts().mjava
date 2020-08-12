@@ -1,0 +1,6 @@
+		public ChangeTrackingColorsAndFonts() {
+			PlatformUI.getWorkbench().getThemeManager().getCurrentTheme()
+					.addPropertyChangeListener(themeListener);
+			reload();
+		}
+

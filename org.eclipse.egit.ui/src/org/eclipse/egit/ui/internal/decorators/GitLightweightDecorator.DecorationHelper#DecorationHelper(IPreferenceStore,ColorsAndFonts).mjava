@@ -1,4 +1,4 @@
-		private DecorationHelper(IPreferenceStore preferencesStore,
+		public DecorationHelper(IPreferenceStore preferencesStore,
 				ColorsAndFonts resources) {
 			store = preferencesStore;
 			this.resources = resources;

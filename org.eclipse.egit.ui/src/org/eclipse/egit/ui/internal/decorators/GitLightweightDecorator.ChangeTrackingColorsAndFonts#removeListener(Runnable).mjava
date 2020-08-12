@@ -1,0 +1,4 @@
+		public void removeListener(Runnable runnable) {
+			listeners.remove(runnable);
+		}
+

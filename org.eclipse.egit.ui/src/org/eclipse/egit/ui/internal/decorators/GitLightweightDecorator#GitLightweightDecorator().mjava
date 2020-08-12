@@ -1,12 +1,10 @@
 	public GitLightweightDecorator() {
-		resources = new ReloadableColorsAndFonts();
-		resources.reload();
+		resources = new ChangeTrackingColorsAndFonts();
 		helper = new DecorationHelper(
 				Activator.getDefault().getPreferenceStore(), resources);
+		resources.addListener(this::postLabelEvent);
 		TeamUI.addPropertyChangeListener(this);
 		Activator.addPropertyChangeListener(this);
-		PlatformUI.getWorkbench().getThemeManager().getCurrentTheme()
-				.addPropertyChangeListener(this);
 
 		GitProjectData.addRepositoryChangeListener(mappingChangeListener);
 	}
