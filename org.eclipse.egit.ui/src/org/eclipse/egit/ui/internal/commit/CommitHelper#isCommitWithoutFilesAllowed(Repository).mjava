@@ -1,4 +1,7 @@
 	public static boolean isCommitWithoutFilesAllowed(Repository repository) {
+		if (repository == null) {
+			return false;
+		}
 		RepositoryState state = repository.getRepositoryState();
 		return state == RepositoryState.MERGING_RESOLVED;
 	}
