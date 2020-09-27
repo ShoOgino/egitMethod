@@ -1,5 +1,4 @@
-	public void hideMessage() {
-		if (getVisible())
-			changeVisibility(false);
+	public boolean hideMessage() {
+		return changeVisibility(false);
 	}
 

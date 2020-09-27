@@ -1,9 +1,12 @@
-	public void showMessage(String message) {
+	public boolean showMessage(String message) {
+		boolean changed = false;
 		if (!isBuiltInImage) {
 			image.setImage(PlatformUI.getWorkbench().getSharedImages()
 					.getImage(ISharedImages.IMG_OBJS_WARN_TSK));
 			isBuiltInImage = true;
+			changed = true;
 		}
-		setText(message);
+		changed |= setText(message);
+		return changed;
 	}
 
