@@ -1,10 +1,15 @@
 		private void createRefreshAction() {
 			refreshAction = new Action(UIText.GitHistoryPage_RefreshMenuLabel,
 					UIIcons.ELCL16_REFRESH) {
+
 				@Override
 				public void run() {
 					historyPage.refresh();
 				}
 			};
+			refreshAction.setActionDefinitionId(
+					IWorkbenchCommandConstants.FILE_REFRESH);
+			historyPage.getSite().getActionBars().setGlobalActionHandler(
+					ActionFactory.REFRESH.getId(), refreshAction);
 		}
 
